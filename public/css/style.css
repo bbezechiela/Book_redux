@@ -1,0 +1,237 @@
+#login-btn {
+	background-color: #E55B13;
+	color: #fff;
+}
+
+#login-btn:hover {
+	background-color: #fff;
+	color: #E55B13;
+	border: 1px solid #E55B13;
+}
+
+.navbar-brand:hover {
+	border-bottom: 2px solid #E55B13;
+}
+
+.nav-link {
+	color: #003060;
+}
+
+.nav-item .nav-link:hover {
+	color: #E55B13;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#landing-title {
+	border-left: 15px solid #E55B13;
+	color: #003060;
+}
+
+#signup-btn {
+	background-color: #fff;
+	border: 1px solid #E55B13;
+	color: #E55B13;
+}
+
+#signup-btn:hover {
+	background-color: #E55B13;	
+	color: #fff;
+}
+
+#howItWorks-head {
+	color: #003060;
+	/* border-bottom: 1px solid #003060; */
+}
+
+#howItWorks-header {
+	color: #414C68;;
+}
+
+.howItWorks-btn:hover {
+	font-weight: bold;
+	color: #E55B13;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#selling {
+	border-bottom: 2px solid #003060;
+}
+
+#buying-page, #exchange-page, #renting-page, #donate-page {
+	display: none;
+}
+
+.card-body {
+	color: #060084;
+}
+
+#num-text {
+	color: #E55B13;
+}
+
+#howItWorks-num {
+	font-size: 70px;
+}
+
+#hints-head {
+	color: #061874;
+	/* border-bottom: 1px solid #061874; */
+}
+
+#aboutUs-head {	
+	color: #061874;
+	/* display: ; */
+}
+
+#hints-btn {
+	color: #003060;
+	text-decoration: underline;
+}
+
+#hints-btn:hover {
+	text-decoration: none;
+	border: 1px solid #003060;
+}
+
+#indicator {
+	background-color: #E55B13;
+}
+
+p {
+	color: #061874;
+}
+
+h3, h2 {
+	color: #061874;
+}
+
+#mission-vission {
+	border: 1px solid #060084;
+}
+
+/* sign.up.php */
+#create-acct {
+	color: #003060;
+	/* border-bottom: 1px solid #003060; */
+}
+
+.orange-design {
+	width: 23px;
+	height: 40px;
+	background-color: #E55B13;
+}
+
+.signup-form {
+	border-left: 20px solid #E55B13;
+	border-top: 1px solid #DDDBDB;
+	border-bottom: 1px solid #DDDBDB;
+	border-right: 1px solid #DDDBDB;
+}
+
+.fillup-form {
+	color: #003060;	
+}
+
+input, select {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 1px solid #003060;
+	color: #003060;
+	background-color: #fff;
+}
+
+input:focus {
+	outline: none;
+}
+
+select:focus {
+	outline: none;
+}
+
+#username, #password{
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 1px solid;
+}
+
+/* #pass-tip {
+	color: red;
+} */
+
+.upload-btn {
+	border: 1px solid #003060;
+	color: #003060;
+}
+
+.upload-btn:hover {
+	background-color: #003060;
+	color: #fff;
+}
+
+.sign-up-btn {
+	background-color: #E55B13;	
+	color: #fff;
+}
+
+.sign-up-btn:hover {
+	border: 1px solid #E55B13;
+	color: #E55B13;
+}
+
+/* login/php */
+
+.login-orange {
+	border-left: 20px solid #E55B13;
+	border-top: 1px solid #DDDBDB;
+	border-bottom: 1px solid #DDDBDB;
+	border-right: 1px solid #DDDBDB;
+}
+
+
+/* * {
+	font-family: "Inria Sans", sans-serif;
+}
+
+#home:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#guidelines:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#how-to-use:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#faqs:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#why-us:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#about-us:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#join:hover {
+	text-decoration: underline;
+	text-decoration-color: black;
+}
+
+.input_text {
+	border: 1px solid black;
+}
+ */
