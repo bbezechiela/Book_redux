@@ -1,0 +1,98 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+#daily-discover,
+#featured,
+#recommended,
+#check_this_out,
+#for_sale,
+#for_exchange,
+#for_rent {
+    padding-top: 90px;
+}
+
+#daily-discover-header:hover,
+#featured-header:hover,
+#recommended-header:hover,
+#check-this-out-header:hover,
+#for-sale-header:hover,
+#for-exchange-header:hover,
+#for-rent-header:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a,
+h4,
+p {
+    color: #003060;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #E55B13;
+    font-weight: bold;
+}
+
+#book-title {
+    color: #003060;
+
+}
+
+.card-text {
+    font-size: smaller;
+}
+
+.price {
+    color: #E55B13;
+}
+
+.btn-card {
+    border: 1px solid #E55B13;
+}
+
+.btn-card:hover {
+    background-color: #E55B13;
+}
+
+.daily-discovery-content {
+    display: none;
+}
+
+.daily_discovery_text {
+    color: #E55B13;
+    border-bottom: 3px solid #E55B13;
+}

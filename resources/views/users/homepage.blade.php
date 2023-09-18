@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+@include('partials.__header', [
+    'title' => 'Home | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/homepage-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
+])
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,112 +13,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home | BookRedux</title>
     <link rel="icon" href="{{ asset('/assets/Book_Logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('/bootstrap/bootstrap.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/css/homepage-style.css') }}"> --}}
-</head>
+    <link rel="stylesheet" href="{{ asset('/bootstrap/bootstrap.min.css') }}">    
+</head> --}}
 
-<style>
-    :root {
-        --sidebar_width: 320px;
-    }
-
-    .sidebar {
-        position: fixed;
-        background-color: #003060;
-        color: #fff;
-        width: var(--sidebar_width);
-    }
-
-    .profile-content {
-        font-size: smaller;
-    }
-
-    #home-side-btn {
-        background-color: #2D6092;
-    }
-
-    .nav-link:hover {
-        color: #fff;
-    }
-
-    .nav-item:hover {
-        background-color: #2D6092;
-    }
-
-    .nav-link {
-        color: #fff;
-        font-size: 15px;
-    }
-
-    #content {
-        padding-left: var(--sidebar_width);
-    }
-
-    #daily-discover,
-    #featured,
-    #recommended,
-    #check_this_out,
-    #for_sale,
-    #for_exchange,
-    #for_rent {
-        padding-top: 90px;
-    }
-
-    #daily-discover-header:hover,
-    #featured-header:hover,
-    #recommended-header:hover,
-    #check-this-out-header:hover,
-    #for-sale-header:hover,
-    #for-exchange-header:hover,
-    #for-rent-header:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
-
-    a,
-    h4,
-    p {
-        color: #003060;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: #E55B13;
-        font-weight: bold;
-    }
-
-    #book-title {
-        color: #003060;
-
-    }
-
-    .card-text {
-        font-size: smaller;
-    }
-
-    .price {
-        color: #E55B13;
-    }
-
-    .btn-card {
-        border: 1px solid #E55B13;
-    }
-
-    .btn-card:hover {
-        background-color: #E55B13;
-    }
-
-    .daily-discovery-content {
-        display: none;
-    }
-
-    .daily_discovery_text {
-        color: #E55B13;
-        border-bottom: 3px solid #E55B13;
-    }
-</style>
-
-<body>
+{{-- <body> --}}
     <div id="body-container" class="container-fluid px-0">
         {{-- <div class="row mx-0"> --}}
             <div id="sidebar" class="sidebar p-2 min-vh-100">
@@ -3029,7 +2933,10 @@
         </div>
     </div>
 </body>
-<script src="{{ asset('/bootstrap/bootstrap.bundle.min.js') }}"></script>
+@include('partials.__footer', [
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+])
 <script>
     var sidebar_width = document.getElementById("sidebar").offsetWidth;
     var content_width = document.getElementById("content");
@@ -3168,4 +3075,4 @@
 </script>
 {{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}
 
-</html>
+
