@@ -37,6 +37,7 @@
                         <a class="mx-2" id="for_sale-anchor" href="#for_sale">For sale</a>
                         <a class="mx-2" id="for_exchange-anchor" href="#for_exchange">For exchange</a>
                         <a class="mx-2" id="for_rent-anchor" href="#for_rent">For rent</a>
+                        {{-- <a class="mx-2" id="for_rent-anchor" href="#for_rent">{{$firstName}}</a> --}}
                     </div>
                 </ul>
                 <div id="daily-discover" class="mx-2 px-3">

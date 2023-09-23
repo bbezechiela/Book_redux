@@ -34,6 +34,10 @@ Route::get('/signup', [UserController::class, 'signup']);
 
 Route::get('/sidebar', [UserController::class, 'sidebar']);
 
-Route::get('/home', [UserController::class, 'home']);
+Route::get('/home', [UserController::class, 'home'])->name('home');
+
+Route::get('/wishlist', [UserController::class, 'wishlist']);
 
 Route::get('/mylist', [UserController::class, 'myList']);
+
+Route::post('/register', [UserController::class, 'store']);

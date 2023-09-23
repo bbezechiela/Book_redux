@@ -21,8 +21,6 @@ class Users extends Model
         'interest',
         'username',
         'password',
-        'profile_photo',
-        'created_at',
-        'updated_at'
+        'profile_photo'        
     ];
 }

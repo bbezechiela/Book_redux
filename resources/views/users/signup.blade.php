@@ -9,9 +9,8 @@
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
     <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1" data-aos="fade-down" data-aos-duration="1500">
         Create Account</h1>
-    <form id="form" action="./php-queries/create.php?signup=create" method="post" enctype="multipart/form-data">
-        <!-- <div class="row px-0"> -->
-        <!-- <div class="col px-0 py-0 mx-2"> -->
+    <form id="form" action="/register" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="container px-0 rounded rounded-2 shadow fillup-form signup-form" data-aos="zoom-in-right"
             data-aos-duration="1500">
             <!-- <div class="orange-design"></div> -->

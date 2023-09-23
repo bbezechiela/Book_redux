@@ -1,0 +1,92 @@
+/* Sidebar */
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+/* My List */
+input,
+select,
+.modal,
+textarea {
+    color: #003060;
+}
+
+#exchange,
+#rent {
+    display: none;
+}
+
+.book-status {
+    background-color: #E55B13;
+    color: white;
+}
+
+.book-status:hover {
+    background-color: white;
+    border: 1px solid #E55B13;
+    color: #E55B13;
+}
+
+.order {
+    color: #003060;
+}
+
+.create-btn {
+    border: 1px solid #E55B13;
+    color: #E55B13;
+}
+
+.create-btn:hover {
+    background-color: #E55B13;
+    color: white;
+}
+
+.contents,
+.card-body,
+.card-foot {
+    color: #003060;
+}
+
+.edit-book {
+    color: #E55B13;
+    cursor: pointer;
+}
+
+input,
+select,
+textarea,
+button {
+    border: 1px solid #003060;
+}

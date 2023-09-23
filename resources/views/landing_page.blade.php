@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item mx-2 px-3">
-                        <a class="nav-link fs-5" aria-current="page" href="#" data-bs-toggle="tooltip"
+                        <a class="nav-link fs-5" aria-current="page" href="#home" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Home">Home</a>
                     </li>
                     <li class="nav-item mx-2 px-3">
@@ -43,7 +43,7 @@
     </nav>
 
     <!-- HOME -->
-    <div class="container-fluid offset">
+    <div id="home" class="container-fluid offset">
         <div class="row min-vh-100 align-items-center">
             <div id="landing-title" class="col mx-3" data-aos="fade-right" data-aos-duration="2000">
                 <h1 class="mx-2" style="font-size: 70px;">Uncover New Stories, Trade Used Pages</h1>

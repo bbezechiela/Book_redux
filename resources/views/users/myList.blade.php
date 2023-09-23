@@ -1,112 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('partials.__header', [
+    'title' => 'My List | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/mylist-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
+])
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My List | BookRedux</title>
-    <link rel="icon" href="{{ asset('/assets/Book_Logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('/bootstrap/bootstrap.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/css/homepage-style.css') }}"> --}}
-</head>
-
-<style>
-    /* Sidebar */
-    :root {
-        --sidebar_width: 320px;
-    }
-
-    .sidebar {
-        position: fixed;
-        background-color: #003060;
-        color: #fff;
-        width: var(--sidebar_width);
-    }
-
-    .profile-content {
-        font-size: smaller;
-    }
-
-    #home-side-btn {
-        background-color: #2D6092;
-    }
-
-    .nav-link:hover {
-        color: #fff;
-    }
-
-    .nav-item:hover {
-        background-color: #2D6092;
-    }
-
-    .nav-link {
-        color: #fff;
-        font-size: 15px;
-    }
-
-    #content {
-        padding-left: var(--sidebar_width);
-    }
-
-    /* My List */
-    input,
-    select,
-    .modal,
-    textarea {
-        color: #003060;
-    }
-
-    #exchange,
-    #rent {
-        display: none;
-    }
-
-    .book-status {
-        background-color: #E55B13;
-        color: white;
-    }
-
-    .book-status:hover {
-        background-color: white;
-        border: 1px solid #E55B13;
-        color: #E55B13;
-    }
-
-    .order {
-        color: #003060;
-    }
-
-    .create-btn {
-        border: 1px solid #E55B13;
-        color: #E55B13;
-    }
-
-    .create-btn:hover {
-        background-color: #E55B13;
-        color: white;
-    }
-
-    .contents,
-    .card-body,
-    .card-foot {
-        color: #003060;
-    }
-
-    .edit-book {
-        color: #E55B13;
-        cursor: pointer;
-    }
-
-    input,
-    select,
-    textarea,
-    button {
-        border: 1px solid #003060;
-    }
-</style>
-
-<body>
+{{-- <body> --}}
     <div id="body-container" class="container-fluid px-0">
         {{-- <div class="row mx-0"> --}}
         <div id="sidebar" class="sidebar p-2 min-vh-100">
@@ -443,8 +342,11 @@
         </div>
     </div>
     </div>
-</body>
-<script src="{{ asset('/bootstrap/bootstrap.bundle.min.js') }}"></script>
+{{-- </body> --}}
+@include('partials.__footer', [
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+])
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -470,4 +372,3 @@
 </script>
 {{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}
 
-</html>

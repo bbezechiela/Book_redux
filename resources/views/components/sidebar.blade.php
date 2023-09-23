@@ -42,7 +42,7 @@
     <li id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/wish_list-icon.png" alt="home icon" width="20"
                 class="img"></i>
-        <a href="#" class="nav-link">Wish List</a>
+        <a href="/wishlist" class="nav-link">Wish List</a>
     </li>
     <li class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/book_shelf-icon.png" alt="home icon" width="20"
@@ -72,7 +72,7 @@
     <li class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/logout.png" alt="home icon" width="20"
                 class="img"></i>
-        <a href="./php-queries/read.php" class="nav-link">Logout</a>
+        <a href="/" class="nav-link">Logout</a>
     </li>
 </ul>
 <script src=""></script>
