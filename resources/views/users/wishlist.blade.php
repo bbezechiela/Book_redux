@@ -7,7 +7,7 @@
 <div id="body-container" class="container-fluid px-0">
     {{-- <div class="row mx-0"> --}}
     <div id="sidebar" class="sidebar p-2 min-vh-100">
-        <x-sidebar />
+        <x-sidebar pic="{{ session('profile_pic') }}" name="{{ session('first_name') . ' ' . session('last_name') }}" address="{{ session('address') }}" />
     </div>
     <div id="content" class="pe-0 border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">

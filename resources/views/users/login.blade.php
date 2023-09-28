@@ -11,7 +11,8 @@
     <div class="mx-auto login-orange px-5 align-self-center py-2 rounded-3 shadow fillup-form" data-aos="zoom-in-up"
         data-aos-duration="2000" style="width: 503px;">
         <h2 class="fw-bold text-center mb-5">Log In</h2>
-        <form action="login.php" method="post">
+        <form action="/loginprocess" method="post">
+            @csrf
             <input class="w-100 fs-5 mb-3 px-2" id="username" name="username" type="text" placeholder="Username">
             <input class="w-100 fs-5 px-2" id="password" name="password" type="password" placeholder="Password">
             <input type="checkbox" id="show-password" class="ms-2">

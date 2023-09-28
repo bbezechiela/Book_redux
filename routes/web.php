@@ -30,6 +30,10 @@ Route::get('/', [UserController::class, 'welcome']);
 
 Route::get('/login', [UserController::class, 'login']);
 
+Route::post('/loginprocess', [UserController::class, 'login_process']);
+
+Route::get('/logout', [UserController::class, 'logout']);
+
 Route::get('/signup', [UserController::class, 'signup']);
 
 Route::get('/sidebar', [UserController::class, 'sidebar']);

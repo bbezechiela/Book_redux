@@ -87,6 +87,7 @@ textarea {
 input,
 select,
 textarea,
-button {
+button,
+.shipping-btn {
     border: 1px solid #003060;
 }

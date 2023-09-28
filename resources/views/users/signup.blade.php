@@ -19,7 +19,7 @@
                     <!-- <p class="text-center fw-bold fs-6">Upload Profile Photo</p> -->
                     <img class="img mx-auto rounded-circle border" id="img-icon" src="../assets/accounts.png"
                         alt="upload_profile" width="120" height="120">
-                    <input type="file" class="d-none" accept="*/image" id="profileUpload" name="profile_photo"
+                    <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo"
                         required>
                     <label for="profileUpload" class="btn w-100 w-50 mx-auto mt-3 py-0 px-0 upload-btn">Upload
                         Profile</label>
