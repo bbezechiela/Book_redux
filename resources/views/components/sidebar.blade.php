@@ -12,7 +12,7 @@
 </div>
 
 <ul class="nav">
-    <a href="/home" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/home" class="btn nav-item d-flex flex-row w-100 px-5 py-0 home-side-btn">
         <i class="d-flex align-items-center"><img src="../assets/home-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Home</span>
@@ -57,7 +57,7 @@
                 class="img"></i>
         <span class="nav-link">Categories</span>
     </a>
-    <a href="/mylist" id="myList-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/mylist" class="btn nav-item d-flex flex-row w-100 px-5 py-0 myList-side-btn">
         <i class="d-flex align-items-center"><img src="../assets/my_list-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">My List</span>

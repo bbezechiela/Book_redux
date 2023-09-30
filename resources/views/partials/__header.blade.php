@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset($bootstrap_link) }}">
     <link rel="stylesheet" href="{{ asset($css_link) }}">
     <link rel="stylesheet" href="{{ asset($aos_link) }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,0" />
 </head>
 
 <body>

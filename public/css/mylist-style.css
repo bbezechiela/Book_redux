@@ -14,10 +14,6 @@
     font-size: smaller;
 }
 
-#home-side-btn {
-    background-color: #2D6092;
-}
-
 .nav-link:hover {
     color: #fff;
 }
@@ -33,6 +29,10 @@
 
 #content {
     padding-left: var(--sidebar_width);
+}
+
+.myList-side-btn {
+    background-color: #2D6092;
 }
 
 /* My List */

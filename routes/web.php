@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,3 +46,5 @@ Route::get('/wishlist', [UserController::class, 'wishlist']);
 Route::get('/mylist', [UserController::class, 'myList']);
 
 Route::post('/register', [UserController::class, 'store']);
+
+Route::post('/salepost', [ListingController::class, 'saleList']);
