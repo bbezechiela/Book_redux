@@ -49,3 +49,86 @@
     color: white;
     background-color: #E55B13;
 }
+
+.settings-button {
+    color: #003060;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.wishlist h4 {
+    font-size: 20px;
+}
+
+.custom-bg-color {
+    background-color: #003060;
+}
+
+.card-body p {
+    font-size: 14px;
+}
+
+.card-body a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #003060;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+    color: #E55B13;
+}
+
+.header-create {
+    margin-left: 9em;
+}
+
+.header-settings {
+    margin-left: 6em;
+}
+
+.btn-create {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 9em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    background-color: #003060;
+}
+
+.btn-create:hover {
+    background-color: #E55B13;
+    border-color: #E55B13;
+}
+
+.btn-update {
+    width: 9em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    background-color: #003060;
+}
+
+.btn-update:hover{
+    background-color: #E55B13;
+    border-color: #E55B13;
+}
+
+.btn-delete {
+    width: 9em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    background-color: #1f1f1e;
+    border-color: #1f1f1e;
+    margin-left: 5em;
+}
+
+.btn-delete:hover{
+    background-color: #494949;
+    border-color: #494949;
+}

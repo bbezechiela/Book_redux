@@ -50,6 +50,22 @@ class UserController extends Controller
         }
     }
 
+    public function singleProduct() {
+        return view('users.singleProduct');
+    }
+
+    public function cart() {
+        return view('users.cart');
+    }
+    
+    public function checkout() {
+        return view('users.checkout');
+    }
+
+    public function deliveryAddress() {
+        return view('users.deliveryAddress');
+    }
+
     public function wishlist()
     {
         if (session()->has('user')) {
@@ -57,6 +73,10 @@ class UserController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
+    }
+
+    public function categories() {
+        return view('users.categories');
     }
 
     public function myList()
@@ -68,6 +88,10 @@ class UserController extends Controller
         }
     }
 
+    public function myLikes() {
+        return view('users.myLikes');
+    }
+    
     public function store(Request $request)
     {
         $validated = $request->validate([

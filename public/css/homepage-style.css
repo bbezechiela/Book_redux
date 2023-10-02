@@ -37,7 +37,7 @@
 #daily-discover,
 #featured,
 #recommended,
-#check_this_out,
+#near_you,
 #for_sale,
 #for_exchange,
 #for_rent {
@@ -47,7 +47,7 @@
 #daily-discover-header:hover,
 #featured-header:hover,
 #recommended-header:hover,
-#check-this-out-header:hover,
+#near-you-header:hover,
 #for-sale-header:hover,
 #for-exchange-header:hover,
 #for-rent-header:hover {
@@ -97,4 +97,36 @@ a:hover {
     border-bottom: 3px solid #E55B13;
 }
 
+.button-container {
+    display: flex;
+    align-items: center;
+}
 
+.add-button,
+.like-button {
+    color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.add-button:hover,
+.like-button:hover {
+    color: #E55B13;
+    background-color: transparent;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu .dropdown-item{
+    color: #003060;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em; 
+}
