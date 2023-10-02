@@ -44,7 +44,9 @@ class UserController extends Controller
     public function home()
     {
         if (session()->has('user')) {
-            return view('users.homepage');
+            
+            $users = Users::where('id', session('id'))->first();
+            return view('users.homepage', ['user' => $users]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
@@ -55,15 +57,6 @@ class UserController extends Controller
         if (session()->has('user')) {
             return view('users.wishlist');
         } else {
-            return view('landing_page')->with('message', 'You have to login first');
-        }
-    }
-
-    public function myList()
-    {
-        if (session()->has('user')) {
-            return view('users.myList');
-        } else {            
             return view('landing_page')->with('message', 'You have to login first');
         }
     }
@@ -100,8 +93,9 @@ class UserController extends Controller
 
         if ($user) {
             $request->session()->put([
-                'first_name' => $validated["first_name"],
-                'last_name' => $validated["last_name"],
+                'id' => $user->id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
                 'address' => $validated["address"],
                 'user' => $validated["username"],
                 'profile_pic' => $validated["profile_photo"]
@@ -128,6 +122,7 @@ class UserController extends Controller
         $user = Users::where('username', $login["username"])->first();
         if ($user && Hash::check($login["password"], $user["password"])) {
             $request->session()->put([
+                'id' => $user["id"],
                 'first_name' => $user["first_name"],
                 'last_name' => $user["last_name"],
                 'address' => $user["address"],

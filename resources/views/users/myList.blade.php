@@ -9,10 +9,20 @@
 <div id="body-container" class="container-fluid px-0">
     {{-- <div class="row mx-0"> --}}
     <div id="sidebar" class="sidebar p-2 min-vh-100">
-        <x-sidebar pic="{{ session('profile_pic') }}" name="{{ session('first_name') . ' ' . session('last_name') }}"
-            address="{{ session('address') }}" />
+        <x-sidebar />
     </div>
+
     <div id="content" class="pe-0 border content">
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
             <div class="w-100 d-flex justify-content-between mt-1 p-0">
                 <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
@@ -51,32 +61,39 @@
                             class="create-btn btn px-3 ms-2 d-flex align-items-center h-75">Create listing</button>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
+                        {{-- <form action="#"> --}}
                         <label class="fw-bold" for="sort">Sort by</label>
                         <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort">
+                            <option selected disabled>{{ $status }}</option>
                             <option value="Sale">Sale</option>
                             <option value="Exchange">Exchange</option>
                             <option value="Rent">Rent</option>
                         </select>
+                        {{-- </form> --}}
                     </div>
                     <div class="row justify-content-center mb-5">
-                        <div class="card col-3 m-2 shadow" style="width: 200px;">
-                            <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                                height="170px">
-                            <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                                <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                                    Self Help</p>
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <a class="fw-bold p-0 edit-book">Edit</a>
-                                    <div class="btns d-flex flex-row mb-2 dropdown">
-                                        <button
-                                            class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center"><img
-                                                src="../assets/like-icon.png" alt="like"></button>
+
+                        @foreach ($books as $book)
+                            <div class="card col-3 m-2 shadow" style="width: 200px;">
+                                <img src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
+                                    alt="{{ $book->book_photo }}" width="180px" height="180px">
+                                <div class="card-body py-0">
+                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $book->title }}</p>
+                                    <p class="card-text mt-0 mb-2">{{ $book->author }}<br>
+                                        {{ $book->genre }}</p>
+                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                        <a class="fw-bold p-0 edit-book">Edit</a>
+                                        <div class="btns d-flex flex-row mb-2 dropdown">
+                                            <button
+                                                class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center"><img
+                                                    src="../assets/like-icon.png" alt="like"></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card col-3 m-2 shadow" style="width: 200px;">
+                        @endforeach
+
+                        {{-- <div class="card col-3 m-2 shadow" style="width: 200px;">
                             <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
                                 height="170px">
                             <div class="card-body py-0">
@@ -194,14 +211,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header border-0">
@@ -211,13 +228,12 @@
                             <option value="Exchange">Exchange</option>
                             <option value="Rent">Rent</option>
                         </select>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <!-- sale -->
                     <div id="sale">
-                        <form id="sale-form" action="/salepost" method="POST" enctype="multipart/form-data">
+                        <form id="sale-form" action="/mylist/salepost" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body container-fluid px-5">
 
@@ -231,11 +247,11 @@
                                         <input type="text" name="length" id="sale-length" hidden>
                                         <input type="text" name="courier" id="sale-courier" hidden>
 
-                                        <input type="file" name="book_photo" id="image" accept="image/*"
-                                            class="d-none">
-                                        <label for="image" class="position-relative w-100 h-100"
+                                        <input type="file" name="book_photo" id="sale-image" accept="image/*"
+                                            hidden>
+                                        <label for="sale-image" class="position-relative w-100 h-100"
                                             style="cursor: pointer;">
-                                            <img id="book-image" src="../assets/image.png" alt="image"
+                                            <img id="sale-book-image" src="../assets/image.png" alt="image"
                                                 class="img-fluid position-absolute top-50 start-50 translate-middle"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 data-bs-title="Click to Upload Image" width="170" height="170">
@@ -293,7 +309,7 @@
 
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="submit" id="submit" class="btn mx-auto w-25 text-white rounded-3"
+                                <button type="submit" class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">List</button>
                             </div>
                         </form>
@@ -301,7 +317,8 @@
 
                     <!-- exchange -->
                     <div id="exchange" class="modal-body container-fluid px-5">
-                        <form id="exchange-form" action="#" method="POST" enctype="multipart/form-data">
+                        <form id="exchange-form" action="/mylist/exchangepost" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-5 me-1 border px-0 mb-2 rounded">
@@ -313,10 +330,10 @@
                                     <input type="text" name="length" id="exchange-length" hidden>
                                     <input type="text" name="courier" id="exchange-courier" hidden>
 
-                                    <input type="file" name="book_photo" id="image" class="d-none">
-                                    <label for="image" class="position-relative w-100 h-100"
+                                    <input type="file" name="book_photo" id="exchange-image" class="d-none">
+                                    <label for="exchange-image" class="position-relative w-100 h-100"
                                         style="cursor: pointer;">
-                                        <img id="book-image" src="../assets/image.png" alt="image"
+                                        <img id="exchange-book-image" src="../assets/image.png" alt="image"
                                             class="img-fluid position-absolute top-50 start-50 translate-middle"
                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                             data-bs-title="Click to Upload Image" width="170" height="170">
@@ -359,7 +376,7 @@
                                         <option value="English" selected>English</option>
                                     </select>
                                 </div>
-                                <input type="text" name="name" class="w-100 mb-2 px-3 rounded"
+                                <input type="text" name="title" class="w-100 mb-2 px-3 rounded"
                                     placeholder="Title">
                                 <input type="text" name="author" class="w-100 mb-2 px-3 rounded"
                                     placeholder="Author">
@@ -368,12 +385,16 @@
                                 <textarea name="description" id="description" class="px-3 rounded" cols="30" rows="4"
                                     placeholder="Description"></textarea>
                             </div>
+                            <div class="modal-footer border-0">
+                                <button type="submit" class="btn mx-auto w-25 text-white rounded-3"
+                                    style="background-color: #E55B13;">List</button>
+                            </div>
                         </form>
                     </div>
 
                     <!-- rent -->
                     <div id="rent">
-                        <form id="rent-form" action="#" method="POST" enctype="multipart/form-data">
+                        <form id="rent-form" action="/mylist/rentpost" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body container-fluid px-5">
                                 <div class="row">
@@ -386,10 +407,10 @@
                                         <input type="text" name="length" id="rent-length" hidden>
                                         <input type="text" name="courier" id="rent-courier" hidden>
 
-                                        <input type="file" name="book_photo" id="image" class="d-none">
-                                        <label for="image" class="position-relative w-100 h-100"
+                                        <input type="file" name="book_photo" id="rent-image" class="d-none">
+                                        <label for="rent-image" class="position-relative w-100 h-100"
                                             style="cursor: pointer;">
-                                            <img id="book-image" src="../assets/image.png" alt="image"
+                                            <img id="rent-book-image" src="../assets/image.png" alt="image"
                                                 class="img-fluid position-absolute top-50 start-50 translate-middle"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 data-bs-title="Click to Upload Image" width="170" height="170">
@@ -452,7 +473,7 @@
 
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" id="submit" class="btn mx-auto w-25 text-white rounded-3"
+                                <button type="submit" id="submit" class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">List</button>
                             </div>
                         </form>
@@ -511,9 +532,28 @@
     'aos_link' => '/aos-master/dist/aos.js',
 ])
 <script>
+    // sort select    
+    var sort_by = document.getElementById('sort');
+    sort_by.addEventListener('change', function() {
+        if (sort_by.value == "Sale"){
+            window.location.href = "/mylist/sale";
+        } else if (sort_by.value == "Exchange") {
+            window.location.href = "/mylist/exchange";
+        } else if (sort_by.value == "Rent") {
+            window.location.href = "/mylist/rent";
+        }
+    });
+
     // tool tips
-    const imageToolTip = document.getElementById('book-image');
-    const tooltipImageShow = bootstrap.Tooltip.getOrCreateInstance(imageToolTip);
+    const SaleimageToolTip = document.getElementById('sale-book-image');
+    const tooltipSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(SaleimageToolTip);
+
+    const ExchangeImageToolTip = document.getElementById('exchange-book-image');
+    const tooltipExchangeImageShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeImageToolTip);
+
+    const RentImageToolTip = document.getElementById('rent-book-image');
+    const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip);
+
 
     const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
     const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
@@ -596,51 +636,39 @@
     rent_shipping_fee_btn.addEventListener('click', function() {
         listingModal.hide();
         shippingModal.show();
-    });
+    });    
 
-    var form = document.getElementById('sale-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+    var sale_form = document.getElementById('sale-form');
+    var exchange_form = document.getElementById('exchange-form');
+    var rent_form = document.getElementById('rent-form');
+
+    sale_form.addEventListener('submit', function(event) {
         sale_weight.value = weight.value;
         sale_width.value = width.value;
         sale_height.value = height.value;
         sale_length.value = length.value;
         sale_courier.value = courier;
+
     });
-    // save button or listing buttons
-    // document.getElementById('submit').addEventListener('click', function() {
-    //     if (list_category.value == 'Sale') {
-    //         sale_weight.value = weight.value;
-    //         sale_width.value = width.value;
-    //         sale_height.value = height.value;
-    //         sale_length.value = length.value;
-    //         sale_courier.value = courier;
 
+    exchange_form.addEventListener('submit', function(event) {
+        exchange_weight.value = weight.value;
+        exchange_width.value = width.value;
+        exchange_height.value = height.value;
+        exchange_length.value = length.value;
+        exchange_courier.value = courier;
 
-    //         // form.action = "/salepost";
-    //         form.submit();
-    //     } else if (list_category.value == "Exchange") {
-    //         exchange_weight.value = weight.value;
-    //         exchange_width.value = width.value;
-    //         exchange_height.value = height.value;
-    //         exchange_length.value = length.value;
-    //         exchange_courier.value = courier;
+    });
 
-    //         var form = document.getElementById('exchange-form');
-    //         form.submit();
-    //     } else if (list_category.value == "Rent") {
-    //         rent_weight.value = weight.value;
-    //         rent_width.value = width.value;
-    //         rent_height.value = height.value;
-    //         rent_length.value = length.value;
-    //         rent_courier.value = courier;
+    rent_form.addEventListener('submit', function(event) {
+        rent_weight.value = weight.value;
+        rent_width.value = width.value;
+        rent_height.value = height.value;
+        rent_length.value = length.value;
+        rent_courier.value = courier;
 
-    //         var form = document.getElementById('rent-form');
-    //         form.submit();
-    //     }
+    });
 
-
-    // });
 
     shipping_save_btn.addEventListener('click', function() {
 
@@ -655,11 +683,11 @@
                 courier = null;
             }
 
-            // sale_weight.value = weight.value;
-            // sale_width.value = width.value;
-            // sale_height.value = height.value;
-            // sale_length.value = length.value;
-            // sale_courier.value = courier;
+            sale_weight.value = weight.value;
+            sale_width.value = width.value;
+            sale_height.value = height.value;
+            sale_length.value = length.value;
+            sale_courier.value = courier;
 
             shippingModal.hide();
             listingModal.show();
@@ -690,11 +718,23 @@
     });
 
     // uploading image
-    var image_upload = document.getElementById("image");
+    var sale_image_upload = document.getElementById("sale-image");
+    var exchange_image_upload = document.getElementById("exchange-image");
+    var rent_image_upload = document.getElementById("rent-image");
 
-    image_upload.addEventListener("change", function() {
-        var image = document.getElementById("book-image");
+    sale_image_upload.addEventListener("change", function() {
+        var image = document.getElementById("sale-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
-    })
+    });
+
+    exchange_image_upload.addEventListener("change", function() {
+        var image = document.getElementById("exchange-book-image");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    });
+
+    rent_image_upload.addEventListener("change", function() {
+        var image = document.getElementById("rent-book-image");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    });
 </script>
 {{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}

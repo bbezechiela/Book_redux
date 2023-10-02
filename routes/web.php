@@ -43,8 +43,18 @@ Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/wishlist', [UserController::class, 'wishlist']);
 
-Route::get('/mylist', [UserController::class, 'myList']);
+Route::get('/mylist', [ListingController::class, 'myList'])->name('mylist');
 
 Route::post('/register', [UserController::class, 'store']);
 
-Route::post('/salepost', [ListingController::class, 'saleList']);
+Route::post('/mylist/salepost', [ListingController::class, 'saleList']);
+
+Route::post('/mylist/exchangepost', [ListingController::class, 'exchangeList']);
+
+Route::post('/mylist/rentpost', [ListingController::class, 'rentList']);
+
+Route::get('/mylist/sale', [ListingController::class, 'sale']);
+
+Route::get('/mylist/exchange', [ListingController::class, 'exchange']);
+
+Route::get('/mylist/rent', [ListingController::class, 'rent']);

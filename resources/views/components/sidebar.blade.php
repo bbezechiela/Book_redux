@@ -1,13 +1,11 @@
 <div class="d-flex flex-row p-3 shadow head-nav">
     <i class="border border-white rounded-circle"><img class="rounded-circle"
-            src="{{ asset('images/profile_photos/' . $pic) }}" alt="Profile photo" class="img" width="65"
+            src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="Profile photo" class="img" width="65"
             height="65"></i>
     <div class="d-flex flex-column ms-2 text-white">
-        <span class="fw-bold">{{ $name }}</span>
-        {{-- <span class="fw-bold">Sample Name</span> --}}
+        <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>        
         <span class="profile-content">2.9K Followers . 500 Following</span>
-        <span class="profile-content">Lives in {{ $address }}</span>
-        {{-- <span class="profile-content">Lives in Sample Address</span> --}}
+        <span class="profile-content">Lives in {{ session('address') }}</span>        
     </div>
 </div>
 
