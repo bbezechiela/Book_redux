@@ -13,7 +13,7 @@
     font-size: smaller;
 }
 
-.home-side-btn {
+#home-side-btn {
     background-color: #2D6092;
 }
 
@@ -34,38 +34,16 @@
     padding-left: var(--sidebar_width);
 }
 
-#daily-discover,
-#featured,
-#recommended,
-#near_you,
-#for_sale,
-#for_exchange,
-#for_rent {
+#likes {
     padding-top: 90px;
 }
 
-#daily-discover-header:hover,
-#featured-header:hover,
-#recommended-header:hover,
-#near-you-header:hover,
-#for-sale-header:hover,
-#for-exchange-header:hover,
-#for-rent-header:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-a,
-h4,
-p {
+h4{
     color: #003060;
-    text-decoration: none;
+    font-weight: bold;
+    margin-left: 1em;
 }
 
-a:hover {
-    color: #E55B13;
-    font-weight: bold;
-}
 
 #book-title {
     color: #003060;
@@ -88,23 +66,20 @@ a:hover {
     background-color: #E55B13;
 }
 
-.daily-discovery-content {
-    display: none;
-}
-
-.daily_discovery_text {
-    color: #E55B13;
-    border-bottom: 3px solid #E55B13;
-}
-
 .button-container {
     display: flex;
     align-items: center;
 }
 
-.add-button,
-.like-button {
+.add-button {
     color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.like-button {
+    color: #E55B13;
     background: none;
     border: none;
     padding: 0;
@@ -112,15 +87,15 @@ a:hover {
 
 .add-button:hover,
 .like-button:hover {
-    color: #E55B13;
+    color: #2D6092;
     background-color: transparent;
 }
 
-.dropdown-toggle::after {
+.add-button::after {
     display: none;
 }
 
-.dropdown-menu .dropdown-item{
+.dropdown-menu .dropdown-item {
     color: #003060;
 }
 
@@ -128,5 +103,5 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10em; 
+    margin-top: 10em;
 }

@@ -15,42 +15,42 @@
                 class="img"></i>
         <span class="nav-link">Home</span>
     </a>
-    <a href="#" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/notification" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/notification-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Notification</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/messages" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/group_message-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Messages</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/cart-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Cart</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/book_club-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Book Club</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="#" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/book_trading-icon.png" alt="home icon" width="20"
                 class="img"></i>
-        <span class="nav-link">Book Trading</span>
+        <span class="nav-link">Interactive Trading</span>
     </a>
     <a href="/wishlist" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/wish_list-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Wish List</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="#" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/book_shelf-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Book Shelf</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/categories" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/categories-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">Categories</span>
@@ -60,12 +60,12 @@
                 class="img"></i>
         <span class="nav-link">My List</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/mylikes" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/my_likes-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">My Likes</span>
     </a>
-    <a class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/myprofile" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="../assets/my_profile-icon.png" alt="home icon" width="20"
                 class="img"></i>
         <span class="nav-link">My Profile</span>

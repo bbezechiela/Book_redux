@@ -1,0 +1,53 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.img-card{
+    margin-left: 2em;
+    margin-top: 2em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.total-likes{
+    background-color: #fff;
+    border-color: #003060;
+    color: #003060;
+    width: 8em;
+}
+
+.total-likes:hover{
+    background-color: #E55B13;
+    border-color: #E55B13;
+}

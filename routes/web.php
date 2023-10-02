@@ -41,9 +41,23 @@ Route::get('/sidebar', [UserController::class, 'sidebar']);
 
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
+Route::get('/product', [UserController::class, 'singleProduct']);
+
+Route::get('/cart', [UserController::class, 'cart']);
+
+Route::get('/checkout', [UserController::class, 'checkout']);
+
+Route::get('/deliveryAddress', [UserController::class, 'deliveryAddress']);
+
 Route::get('/wishlist', [UserController::class, 'wishlist']);
 
 Route::get('/mylist', [ListingController::class, 'myList'])->name('mylist');
+
+Route::get('/categories', [UserController::class, 'categories']);
+
+// Route::get('/mylist', [UserController::class, 'myList']);
+
+Route::get('/mylikes', [UserController::class, 'myLikes']);
 
 Route::post('/register', [UserController::class, 'store']);
 

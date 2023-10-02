@@ -44,12 +44,32 @@ class UserController extends Controller
     public function home()
     {
         if (session()->has('user')) {
-            
+
             $users = Users::where('id', session('id'))->first();
             return view('users.homepage', ['user' => $users]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
+    }
+
+    public function singleProduct()
+    {
+        return view('users.singleProduct');
+    }
+
+    public function cart()
+    {
+        return view('users.cart');
+    }
+
+    public function checkout()
+    {
+        return view('users.checkout');
+    }
+
+    public function deliveryAddress()
+    {
+        return view('users.deliveryAddress');
     }
 
     public function wishlist()
@@ -59,6 +79,25 @@ class UserController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
+    }
+
+    public function categories()
+    {
+        return view('users.categories');
+    }
+
+    // public function myList()
+    // {
+    //     if (session()->has('user')) {
+    //         return view('users.myList');
+    //     } else {            
+    //         return view('landing_page')->with('message', 'You have to login first');
+    //     }
+    // }
+
+    public function myLikes()
+    {
+        return view('users.myLikes');
     }
 
     public function store(Request $request)
