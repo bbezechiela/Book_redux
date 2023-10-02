@@ -1,0 +1,107 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+#likes {
+    padding-top: 90px;
+}
+
+h4{
+    color: #003060;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+
+#book-title {
+    color: #003060;
+
+}
+
+.card-text {
+    font-size: smaller;
+}
+
+.price {
+    color: #E55B13;
+}
+
+.btn-card {
+    border: 1px solid #E55B13;
+}
+
+.btn-card:hover {
+    background-color: #E55B13;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-button {
+    color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.like-button {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.add-button:hover,
+.like-button:hover {
+    color: #2D6092;
+    background-color: transparent;
+}
+
+.add-button::after {
+    display: none;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #003060;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em;
+}
