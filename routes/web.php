@@ -55,8 +55,6 @@ Route::get('/mylist', [ListingController::class, 'myList'])->name('mylist');
 
 Route::get('/categories', [UserController::class, 'categories']);
 
-// Route::get('/mylist', [UserController::class, 'myList']);
-
 Route::get('/mylikes', [UserController::class, 'myLikes']);
 
 Route::post('/register', [UserController::class, 'store']);
