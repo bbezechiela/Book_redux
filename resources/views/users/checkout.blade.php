@@ -38,34 +38,40 @@
                             <h1 class="product-details">Book Ordered</h1>
                             <h1 class="price">Price</h1>
                         </div>
-                        <div class="name-cart">
-                            <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-                        </div>
-                        <div class="product-cart">
-                        <div class="book-details">
-                            <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                            <div class="book-info">
-                                <p class="book-title">City of Secrets</p>
-                                <p class="mb-0 fw-bold interaction-type">Sale</p>
+                        <div class="order-cart">
+                            <div class="name-cart">
+                                <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                                <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
                             </div>
-                            <div class="product-price">P144</div> 
-                        </div>
-                        </div>
-                        <div class="name-cart">
-                            <a class="seller-name" href="#"><span>Nestine Blackpink</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-                        </div>
-                        <div class="product-cart">
-                        <div class="book-details">
-                            <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                            <div class="book-info">
-                                <p class="book-title">Many Secrets</p>
-                                <p class="mb-0 fw-bold interaction-type">Sale</p>
+                            <div class="product-cart">
+                            <div class="book-details">
+                                <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
+                                <div class="book-info">
+                                    <p class="book-title">City of Secrets</p>
+                                    <p class="mb-0 fw-bold interaction-type">Sale</p>
+                                </div>
+                                <div class="product-price">P144</div> 
                             </div>
-                            <div class="product-price">P100</div> 
+                            </div>
                         </div>
+                        
+                        <div class="order-cart">
+                            <div class="name-cart">
+                                <a class="seller-name" href="#"><span>Nestine Blackpink</span></a>
+                                <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="product-cart">
+                            <div class="book-details">
+                                <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
+                                <div class="book-info">
+                                    <p class="book-title">Many Secrets</p>
+                                    <p class="mb-0 fw-bold interaction-type">Sale</p>
+                                </div>
+                                <div class="product-price">P100</div> 
+                            </div>
+                            </div>
                         </div>
+                        
                        <div class="shipping-option">
                             <p class="txt-shipping-opt">Shipping Option:</p>
                             <div class="dropdown">
@@ -100,7 +106,7 @@
                             <p>Total Payment: <span class="summary-total">P294</span></p>
                         </div>
                         <div class="col-md-6 text-right">
-                                    <button class="btn btn-primary checkout-button"><a href="">Place Order</a></button>
+                                    <button class="btn btn-primary place-order-button"><a href="">Place Order</a></button>
                         </div>
                     </main>
                 </div>
