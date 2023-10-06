@@ -4,20 +4,6 @@
     'css_link' => '/css/homepage-style.css',
     'aos_link' => '/aos-master/dist/aos.css',
 ])
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home | BookRedux</title>
-    <link rel="icon" href="{{ asset('/assets/Book_Logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('/bootstrap/bootstrap.min.css') }}">    
-    
-</head> --}}
-
-{{-- <body> --}}
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
