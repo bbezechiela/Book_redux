@@ -1,0 +1,35 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}

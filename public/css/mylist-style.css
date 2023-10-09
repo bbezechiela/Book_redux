@@ -48,7 +48,13 @@ textarea {
     display: none;
 }
 
-.book-status {
+a::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.book-status{
     background-color: #E55B13;
     color: white;
 }
@@ -73,6 +79,24 @@ textarea {
     color: white;
 }
 
+.like-button {
+    color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.like-button:hover {
+    color: #E55B13;
+    background-color: transparent;
+}
+
+.interaction-type{
+    font-size: 1.25rem!important;
+    color: #003060;
+    background-color:azure;
+}
+
 .contents,
 .card-body,
 .card-foot {
@@ -91,3 +115,4 @@ button,
 .shipping-btn {
     border: 1px solid #003060;
 }
+

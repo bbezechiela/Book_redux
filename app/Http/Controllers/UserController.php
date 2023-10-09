@@ -100,6 +100,11 @@ class UserController extends Controller
         return view('users.myLikes');
     }
 
+    public function orders()
+    {
+        return view('users.orders');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

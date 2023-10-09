@@ -72,3 +72,11 @@ Route::get('/mylist/sale', [ListingController::class, 'sale']);
 Route::get('/mylist/exchange', [ListingController::class, 'exchange']);
 
 Route::get('/mylist/rent', [ListingController::class, 'rent']);
+
+Route::get('/orders', [UserController::class, 'orders']);
+
+Route::get('/completed', [UserController::class, 'completed']);
+
+Route::get('/cancelled', [UserController::class, 'cancelled']);
+
+Route::get('/return', [UserController::class, 'return']);
