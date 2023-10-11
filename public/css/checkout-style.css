@@ -63,6 +63,7 @@
 }
 
 .delivery-address-title {
+    margin-top: -1em;
     margin-left: 1.8em;
 }
 
@@ -84,8 +85,8 @@
     background: none;
     border: none;
     padding: 0;
-    margin-top: -3em;
-    margin-left: 40em;
+    margin-top: -4.2em;
+    margin-left: 28em;
 }
 
 .change-button a:hover {
@@ -118,11 +119,11 @@ h1, h2 {
 
 .product-details {
     margin-left: .5em;
-    margin-right: 15em;
+    margin-right: 10em;
 }
 
 .price {
-    margin-left: 41em;
+    margin-left: 23em;
 }
 
 .product-cart {
@@ -185,11 +186,11 @@ h1, h2 {
 }
 
 .book-info {
-    margin-left: 10px;
+    margin-left: 9px;
 }
 
 .product-price {
-    margin-left: 70em;
+    margin-left: 40em;
 }
 
 .shipping-option {
@@ -212,7 +213,7 @@ h1, h2 {
 }
 
 .shipping-price {
-    margin-left: 58em;
+    margin-left: 30em;
 }
 
 .shipping-button {
@@ -249,7 +250,7 @@ h1, h2 {
 .order-total p {
     margin-top: 1em;
     margin-right: 1em;
-    margin-left: 54em;
+    margin-left: 31.4em;
 }
 
 .total {
@@ -258,7 +259,7 @@ h1, h2 {
 
 .payment-details {
     margin-left: .5em;
-    margin-right: 50em;
+    margin-right: 30em;
     font-size: 20px;
 }
 
@@ -303,7 +304,7 @@ h1, h2 {
 
 .summary p {
     color: #003060;
-    margin-left: 65em;
+    margin-left: 37em;
 }
 
 .merchandise-subtotal {
@@ -319,13 +320,13 @@ h1, h2 {
 }
 
 .summary-total{
-    margin-left: 6.5em;
+    margin-left: 6.3em;
     color: #E55B13;
     font-weight: bold;
 }
 
-.checkout-button {
-    margin-left: 78em;
+.place-order-button {
+    margin-left: 48em;
     background-color: #003060;
     border-color: #003060;
     width: 15em;
@@ -333,13 +334,13 @@ h1, h2 {
     margin-bottom: 4em;
 }
 
-.checkout-button:hover {
+.place-order-button:hover {
     background-color: #E55B13;
     color: #fff;
     border-color: #E55B13;
 }
 
-.checkout-button a{
+.place-order-button a{
     color: #fff;
     text-decoration: none;
 }

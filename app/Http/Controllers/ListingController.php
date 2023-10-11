@@ -10,9 +10,9 @@ class ListingController extends Controller
     public function myList()
     {
         if (session()->has('user')) {
-            // $data = Books::all();
-            // return view('users.myList', ['books' => $data]);
-            return redirect('mylist/sale');
+            $data = Books::all();
+            return view('users.myList', ['books' => $data, 'status' => 'All']);
+            // return redirect('mylist/sale');
         } else {            
             return view('landing_page')->with('message', 'You have to login first');
         }

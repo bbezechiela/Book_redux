@@ -77,6 +77,7 @@
                         <label class="fw-bold" for="sort">Sort by</label>
                         <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort">
                             <option selected disabled>{{ $status }}</option>
+                            <option value="All">All</option>
                             <option value="Sale">Sale</option>
                             <option value="Exchange">Exchange</option>
                             <option value="Rent">Rent</option>
@@ -237,6 +238,7 @@
                     <div class="modal-header border-0">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for </h1>
                         <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">
+                            <option value="Sale">Sale</option>
                             <option value="Sale">Sale</option>
                             <option value="Exchange">Exchange</option>
                             <option value="Rent">Rent</option>
@@ -555,7 +557,9 @@
     // sort select    
     var sort_by = document.getElementById('sort');
     sort_by.addEventListener('change', function() {
-        if (sort_by.value == "Sale") {
+        if (sort_by.value == "All") {
+            window.location.href = "/mylist";
+        } else if (sort_by.value == "Sale") {
             window.location.href = "/mylist/sale";
         } else if (sort_by.value == "Exchange") {
             window.location.href = "/mylist/exchange";
