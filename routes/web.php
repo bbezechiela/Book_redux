@@ -70,3 +70,5 @@ Route::get('/mylist/sale', [ListingController::class, 'sale']);
 Route::get('/mylist/exchange', [ListingController::class, 'exchange']);
 
 Route::get('/mylist/rent', [ListingController::class, 'rent']);
+
+Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
