@@ -266,12 +266,12 @@ class ListingController extends Controller
                 'length' => $validated['length'],
                 'courier' => $validated['courier']
             ]);
-            
+
             if ($post) {
                 return redirect()->route('mylist');
             } else {
                 return "error bitch";
-            }            
+            }
         } else {
             $validated = $request->validate([
                 'post_user' => ['required', 'min:4'],
@@ -293,7 +293,7 @@ class ListingController extends Controller
             $post = Books::find($id);
             $post->update([
                 'post_user' => $validated['post_user'],
-                'status' => 'Sale',                
+                'status' => 'Sale',
                 'title' => $validated['title'],
                 'author' => $validated['author'],
                 'edition' => $validated['edition'],
@@ -317,7 +317,8 @@ class ListingController extends Controller
         }
     }
 
-    public function exchangeUpdate(Request $request, $id) {
+    public function exchangeUpdate(Request $request, $id)
+    {
         if ($request->hasFile('book_photo')) {
             $validated = $request->validate([
                 'post_user' => ['required', 'min:4'],
@@ -347,7 +348,7 @@ class ListingController extends Controller
             $post = Books::find($id);
             $post->update([
                 'post_user' => $validated['post_user'],
-                'status' => 'Sale',
+                'status' => 'Exchange',
                 'book_photo' => $validated['book_photo'],
                 'title' => $validated['title'],
                 'author' => $validated['author'],
@@ -356,7 +357,7 @@ class ListingController extends Controller
                 'condition' => $validated['condition'],
                 'description' => $validated['description'],
                 'language' => $validated['language'],
-                'price' => $validated['price'],
+                'exchange_preferences' => $validated['exchange_preferences'],
                 'weight' => $validated['weight'],
                 'width' => $validated['width'],
                 'height' => $validated['height'],
@@ -369,7 +370,6 @@ class ListingController extends Controller
             } else {
                 return "error bitch";
             }
-            
         } else {
             $validated = $request->validate([
                 'post_user' => ['required', 'min:4'],
@@ -392,8 +392,8 @@ class ListingController extends Controller
             $post = Books::find($id);
             $post->update([
                 'post_user' => $validated['post_user'],
-                'status' => 'Sale',
-                'book_photo' => $validated['book_photo'],
+                'status' => 'Exchange',
+                // 'book_photo' => $validated['book_photo'],
                 'title' => $validated['title'],
                 'author' => $validated['author'],
                 'edition' => $validated['edition'],
@@ -401,7 +401,7 @@ class ListingController extends Controller
                 'condition' => $validated['condition'],
                 'description' => $validated['description'],
                 'language' => $validated['language'],
-                'price' => $validated['price'],
+                'exchange_preferences' => $validated['exchange_preferences'],
                 'weight' => $validated['weight'],
                 'width' => $validated['width'],
                 'height' => $validated['height'],
@@ -415,6 +415,5 @@ class ListingController extends Controller
                 return "error bitch";
             }
         }
-        
     }
 }
