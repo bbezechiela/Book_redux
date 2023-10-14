@@ -519,8 +519,7 @@
 
                     <!-- exchange -->
                     <div id="edit-exchange-div" class="modal-body container-fluid px-5">
-                        <form id="exchange-form" action="/mylist/exchangepost" method="POST"
-                            enctype="multipart/form-data">
+                        <form id="edit-exchange-form" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-5 me-1 border px-0 mb-2 rounded">
@@ -591,7 +590,7 @@
                                     placeholder="Description"></textarea>
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" id="update" class="btn mx-auto w-25 text-white rounded-3"
+                                <button type="button" id="exchange-update" class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">Update</button>
                                 <button type="button" id="delete" class="btn mx-auto w-25 bg-light rounded-3"
                                     style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
@@ -916,7 +915,9 @@
         updateListingModal.show();
     }
 
+    // update btn
     var sale_update_btn = document.getElementById('sale-update');
+    var exchange_update_btn = document.getElementById('exchange-update');
 
     sale_update_btn.addEventListener('click', () => {
         var sale_form = document.getElementById('edit-sale-form');
@@ -924,6 +925,14 @@
 
         sale_form.action = "/mylist/updateSale/" + book_id.value;
         sale_form.submit();
+    });
+
+    exchange_update_btn.addEventListener('click', () => {
+        var exchange_form = document.getElementById('edit-exchange-form');
+        var book_id = document.getElementById('edit-book-id');
+
+        exchange_form.action = "/mylist/updateExchange/" + book_id.value;
+        exchange_form.submit();
     })
 
 
@@ -1155,8 +1164,8 @@
 
     // uploading edit image
     var edit_sale_image_upload = document.getElementById("edit-sale-image");
-    var exchange_image_upload = document.getElementById("exchange-image");
-    var rent_image_upload = document.getElementById("rent-image");
+    var exchange_image_upload = document.getElementById("edit-exchange-image");
+    var rent_image_upload = document.getElementById("edit-rent-image");
 
     edit_sale_image_upload.addEventListener("change", function() {
         var image = document.getElementById("edit-sale-book-image");
@@ -1164,13 +1173,14 @@
     });
 
     exchange_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("exchange-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);
+        var image = document.getElementById("edit-exchange-book-image");
+        image.src = URL.createObjectURL(event.target.files[0]);        
     });
 
     rent_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("rent-book-image");
+        var image = document.getElementById("edit-rent-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
 </script>
 {{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}
+

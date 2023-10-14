@@ -316,4 +316,105 @@ class ListingController extends Controller
             }
         }
     }
+
+    public function exchangeUpdate(Request $request, $id) {
+        if ($request->hasFile('book_photo')) {
+            $validated = $request->validate([
+                'post_user' => ['required', 'min:4'],
+                'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'title' => ['required', 'min:4'],
+                'author' => ['required', 'min:4'],
+                'edition' => ['required', 'min:4'],
+                'genre' => ['required', 'min:2'],
+                'condition' => ['required', 'min:4'],
+                'description' => ['required', 'min:4'],
+                'language' => 'required',
+                'weight' => 'required',
+                'width' => 'required',
+                'height' => 'required',
+                'length' => 'required',
+                'courier' => 'required',
+                'exchange_preferences' => ['required', 'min:4']
+            ]);
+
+            $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('book_photo')->getClientOriginalExtension();
+            $fileNameToStore = $fileName . '_' . time() . $extension;
+            $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
+            $validated['book_photo'] = $fileNameToStore;
+
+            $post = Books::find($id);
+            $post->update([
+                'post_user' => $validated['post_user'],
+                'status' => 'Sale',
+                'book_photo' => $validated['book_photo'],
+                'title' => $validated['title'],
+                'author' => $validated['author'],
+                'edition' => $validated['edition'],
+                'genre' => $validated['genre'],
+                'condition' => $validated['condition'],
+                'description' => $validated['description'],
+                'language' => $validated['language'],
+                'price' => $validated['price'],
+                'weight' => $validated['weight'],
+                'width' => $validated['width'],
+                'height' => $validated['height'],
+                'length' => $validated['length'],
+                'courier' => $validated['courier']
+            ]);
+
+            if ($post) {
+                return redirect()->route('mylist');
+            } else {
+                return "error bitch";
+            }
+            
+        } else {
+            $validated = $request->validate([
+                'post_user' => ['required', 'min:4'],
+                // 'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'title' => ['required', 'min:4'],
+                'author' => ['required', 'min:4'],
+                'edition' => ['required', 'min:4'],
+                'genre' => ['required', 'min:2'],
+                'condition' => ['required', 'min:4'],
+                'description' => ['required', 'min:4'],
+                'language' => 'required',
+                'weight' => 'required',
+                'width' => 'required',
+                'height' => 'required',
+                'length' => 'required',
+                'courier' => 'required',
+                'exchange_preferences' => ['required', 'min:4']
+            ]);
+
+            $post = Books::find($id);
+            $post->update([
+                'post_user' => $validated['post_user'],
+                'status' => 'Sale',
+                'book_photo' => $validated['book_photo'],
+                'title' => $validated['title'],
+                'author' => $validated['author'],
+                'edition' => $validated['edition'],
+                'genre' => $validated['genre'],
+                'condition' => $validated['condition'],
+                'description' => $validated['description'],
+                'language' => $validated['language'],
+                'price' => $validated['price'],
+                'weight' => $validated['weight'],
+                'width' => $validated['width'],
+                'height' => $validated['height'],
+                'length' => $validated['length'],
+                'courier' => $validated['courier']
+            ]);
+
+            if ($post) {
+                return redirect()->route('mylist');
+            } else {
+                return "error bitch";
+            }
+        }
+        
+    }
 }

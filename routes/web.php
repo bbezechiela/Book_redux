@@ -80,3 +80,5 @@ Route::get('/cancelled', [UserController::class, 'cancelled']);
 Route::get('/return', [UserController::class, 'return']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
+
+Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
