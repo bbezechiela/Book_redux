@@ -78,3 +78,5 @@ Route::get('/delivered', [UserController::class, 'delivered']);
 Route::get('/dropped', [UserController::class, 'dropped']);
 
 Route::get('/refund', [UserController::class, 'refund']);
+
+Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
