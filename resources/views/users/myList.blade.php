@@ -38,28 +38,28 @@
             <div class="row border mx-2 mt-3 p-3 shadow rounded">
                 <div class="col d-flex align-items-center">
                     <p class="fs-3 order mx-auto fw-bold m-0">Order Status</p>
-                </div>    
+                </div>
 
                 <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Orders</p>
                 </a>
-                
+
                 <a class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Completed</p>
                 </a>
-                
+
                 <a class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Cancelled</p>
                 </a>
-                
+
                 <a class="btn book-status col-2 me-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Return</p>
                 </a>
-                
+
             </div>
             <!-- My List contents -->
             <div class="row contents px-3 mt-4">
@@ -125,7 +125,7 @@
                                         <div class="btns d-flex flex-row mb-2 dropdown">
                                             <button
                                                 class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center"><img
-                                                    src="../assets/like-icon.png" alt="like"></button>                                            
+                                                    src="../assets/like-icon.png" alt="like"></button>
                                         </div>
                                     </div>
                                 </div>
@@ -962,32 +962,22 @@
     const ExchangeImageToolTip = document.getElementById('exchange-book-image');
     const tooltipExchangeImageShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeImageToolTip);
     const RentImageToolTip = document.getElementById('rent-book-image');
-    const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip); <<
-    << << < HEAD
-        ===
-        === =
-
-        const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
+    const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip);
+    const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
     const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
 
 
-    >>>
-    >>> > main
     const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
     const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
     const ExchangeShippingToolTip = document.getElementById('exchange-shipping-fee-btn');
     const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
     const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
-    const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip); <<
-    << << < HEAD
-        ===
-        === =
+    const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip); 
 
-        const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
+    const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
     const tooltipEditSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleShippingToolTip);
 
-    >>>
-    >>> > main
+
     // modals
     const createListingModal = new bootstrap.Modal('#createListingModal', {
         keyboard: false
@@ -998,35 +988,26 @@
     });
     const shippingModal = new bootstrap.Modal('#shipping-fee', {
         keyboard: false
-    }); <<
-    << << < HEAD
-        ===
-        === =
+    });
 
-        const editShippingModal = new bootstrap.Modal('#edit-shipping-fee', {
-            keyboard: false
-        });
+    const editShippingModal = new bootstrap.Modal('#edit-shipping-fee', {
+        keyboard: false
+    });
 
-    >>>
-    >>> > main
     // buttons for modals
     var create_listing_btn = document.getElementById('create-listing');
     var back_btn = document.getElementById("back-shipping");
     var sale_shipping_fee_btn = document.getElementById('sale-shipping-fee-btn');
     var exchange_shipping_fee_btn = document.getElementById('exchange-shipping-fee-btn');
     var rent_shipping_fee_btn = document.getElementById('rent-shipping-fee-btn');
-    var shipping_save_btn = document.getElementById('shipping-save-btn'); <<
-    << << < HEAD
-        ===
-        === =
+    var shipping_save_btn = document.getElementById('shipping-save-btn');
 
-        var edit_back_btn = document.getElementById("edit-back-shipping");
+    var edit_back_btn = document.getElementById("edit-back-shipping");
     var edit_sale_shipping_fee_btn = document.getElementById('edit-sale-shipping-fee-btn');
     var edit_exchange_shipping_fee_btn = document.getElementById('edit-exchange-shipping-fee-btn');
     var edit_rent_shipping_fee_btn = document.getElementById('edit-rent-shipping-fee-btn');
 
-    >>>
-    >>> > main
+
     // shipping form inputs
     var weight = document.getElementById('weight');
     var width = document.getElementById('width');
@@ -1071,15 +1052,12 @@
     rent_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
-    }); <<
-    << << < HEAD
-        ===
-        === =
+    });
 
-        edit_back_btn.addEventListener('click', () => {
-            editShippingModal.hide();
-            updateListingModal.show();
-        });
+    edit_back_btn.addEventListener('click', () => {
+        editShippingModal.hide();
+        updateListingModal.show();
+    });
 
     edit_sale_shipping_fee_btn.addEventListener('click', () => {
         updateListingModal.hide();
@@ -1096,8 +1074,7 @@
         editShippingModal.show()
     });
 
-    >>>
-    >>> > main
+
     var sale_form = document.getElementById('sale-form');
     var exchange_form = document.getElementById('exchange-form');
     var rent_form = document.getElementById('rent-form');
