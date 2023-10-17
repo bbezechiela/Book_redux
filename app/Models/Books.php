@@ -10,7 +10,7 @@ class Books extends Model
     use HasFactory;
 
     protected $fillable = [
-        'post_user',
+        'user_id',
         'status',
         'book_photo',
         'title',

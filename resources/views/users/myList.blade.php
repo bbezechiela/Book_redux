@@ -162,8 +162,8 @@
 
                                 <div class="row">
                                     <div class="col-5 me-1 px-0 border mb-2 rounded">
-                                        <input type="text" name="post_user"
-                                            value="{{ session('first_name') . ' ' . session('last_name') }}" hidden>
+                                        <input type="text" name="user_id"
+                                            value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="sale-weight" hidden>
                                         <input type="text" name="width" id="sale-width" hidden>
                                         <input type="text" name="height" id="sale-height" hidden>
@@ -247,8 +247,8 @@
                             @csrf
                             <div class="row">
                                 <div class="col-5 me-1 border px-0 mb-2 rounded">
-                                    <input type="text" name="post_user"
-                                        value="{{ session('first_name') . ' ' . session('last_name') }}" hidden>
+                                    <input type="text" name="user_id"
+                                        value="{{ session('id') }}" hidden>
                                     <input type="text" name="weight" id="exchange-weight" hidden>
                                     <input type="text" name="width" id="exchange-width" hidden>
                                     <input type="text" name="height" id="exchange-height" hidden>
@@ -327,8 +327,8 @@
                             <div class="modal-body container-fluid px-5">
                                 <div class="row">
                                     <div class="col-5 px-0 me-1 border mb-2 rounded">
-                                        <input type="text" name="post_user"
-                                            value="{{ session('first_name') . ' ' . session('last_name') }}" hidden>
+                                        <input type="text" name="user_id"
+                                            value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="rent-weight" hidden>
                                         <input type="text" name="width" id="rent-width" hidden>
                                         <input type="text" name="height" id="rent-height" hidden>
@@ -430,7 +430,7 @@
                         <option value="Exchange">Exchange</option>
                         <option value="Rent">Rent</option>
                     </select>
-                    <input type="text" id="edit-book-id" hidden>
+                    <input type="text" id="edit-book-id" name="id" hidden>
                     <!-- sale -->
                     <div id="edit-sale-div">
                         <form id="edit-sale-form" method="POST" enctype="multipart/form-data">
@@ -439,8 +439,8 @@
 
                                 <div class="row">
                                     <div class="col-5 me-1 px-0 border mb-2 rounded">
-                                        <input type="text" name="post_user"
-                                            value="{{ session('first_name') . ' ' . session('last_name') }}" hidden>
+                                        <input type="text" name="user_id"
+                                            value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="edit-sale-weight" hidden>
                                         <input type="text" name="width" id="edit-sale-width" hidden>
                                         <input type="text" name="height" id="edit-sale-height" hidden>
@@ -511,8 +511,12 @@
                             <div class="modal-footer border-0">
                                 <button type="button" id="sale-update" class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">Update</button>
-                                <button type="button" id="sale-delete" class="btn mx-auto w-25 bg-light rounded-3"
-                                    style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
+                                <form id="sale-form-delete" method="POST">
+                                    @csrf
+                                    <button type="button" id="sale-delete"
+                                        class="btn mx-auto w-25 bg-light rounded-3"
+                                        style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
+                                </form>
                             </div>
                         </form>
                     </div>
@@ -523,8 +527,8 @@
                             @csrf
                             <div class="row">
                                 <div class="col-5 me-1 border px-0 mb-2 rounded">
-                                    <input type="text" name="post_user"
-                                        value="{{ session('first_name') . ' ' . session('last_name') }}" hidden>
+                                    <input type="text" name="user_id"
+                                            value="{{ session('id') }}" hidden>
                                     <input type="text" name="weight" id="edit-exchange-weight" hidden>
                                     <input type="text" name="width" id="edit-exchange-width" hidden>
                                     <input type="text" name="height" id="edit-exchange-height" hidden>
@@ -554,6 +558,7 @@
                                         <option value="Young Adult">Young Adult</option>
                                         <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
                                         <option value="Horror & Supernatural">Horror & Supernatural</option>
+                                        va
                                         <option value="Comedy & Satire">Comedy & Satire</option>
                                         <option value="Poetry & Prose">Poetry & Prose</option>
                                         <option value="Self-Help">Self-Help</option>
@@ -590,9 +595,11 @@
                                     placeholder="Description"></textarea>
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" id="exchange-update" class="btn mx-auto w-25 text-white rounded-3"
+                                <button type="button" id="exchange-update"
+                                    class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">Update</button>
-                                <button type="button" id="delete" class="btn mx-auto w-25 bg-light rounded-3"
+                                <button type="button" id="exchange-delete"
+                                    class="btn mx-auto w-25 bg-light rounded-3"
                                     style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
                             </div>
                         </form>
@@ -600,13 +607,13 @@
 
                     <!-- rent -->
                     <div id="edit-rent-div">
-                        <form id="rent-form" action="/mylist/rentpost" method="POST" enctype="multipart/form-data">
+                        <form id="edit-rent-form" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body container-fluid px-5">
                                 <div class="row">
                                     <div class="col-5 px-0 me-1 border mb-2 rounded">
-                                        <input type="text" name="post_user"
-                                            value="{{ session('first_name') . ' ' . session('last_name') }}" hidden>
+                                        <input type="text" name="user_id"
+                                            value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="edit-rent-weight" hidden>
                                         <input type="text" name="width" id="edit-rent-width" hidden>
                                         <input type="text" name="height" id="edit-rent-height" hidden>
@@ -680,9 +687,9 @@
 
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" id="update" class="btn mx-auto w-25 text-white rounded-3"
+                                <button type="button" id="rent-update" class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">Update</button>
-                                <button type="button" id="delete" class="btn mx-auto w-25 bg-light rounded-3"
+                                <button type="button" id="rent-delete" class="btn mx-auto w-25 bg-light rounded-3"
                                     style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
                             </div>
                         </form>
@@ -766,7 +773,8 @@
                         <label for="edit-jt">J&T Express</label>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
+                        <button type="button" id="edit-shipping-save-btn"
+                            class="btn mx-auto w-25 text-white rounded-3"
                             style="background-color: #E55B13;">Save</button>
                     </div>
                 </div>
@@ -782,8 +790,29 @@
     'aos_link' => '/aos-master/dist/aos.js',
 ])
 <script>
+    // delete
+    var sale_delete = document.getElementById('sale-delete');
+    var exchange_delete = document.getElementById('exchange-delete');
+    var rent_delete = document.getElementById('rent-delete');
+
+    sale_delete.addEventListener('click', () => {        
+        var id = document.getElementById('edit-book-id');
+        window.location.href = "/mylist/delete/" + id.value;        
+    });
+
+    exchange_delete.addEventListener('click', () => {
+        var id = document.getElementById('edit-book-id');
+        window.location.href = "/mylist/delete/" + id.value;
+    });
+
+    rent_delete.addEventListener('click', () => {
+        var id = document.getElementById('edit-book-id');
+        window.location.href = "/mylist/delete/" + id.value;
+    });
+
     // update    
     var edit_modal = document.getElementById('edit-modal-category');
+    var edit_courier;
 
     function itemClicked(card) {
         var status = document.getElementById('status_' + card);
@@ -808,9 +837,6 @@
         var security_deposit = document.getElementById('security_deposit_' + card);
 
         edit_modal.value = status.textContent;
-
-        // alert(status.textContent);
-        // alert(titleId.getAttribute('data-filename'));              
 
         if (edit_modal.value == 'Sale') {
             document.getElementById('edit-sale-weight').value = weight.textContent;
@@ -837,10 +863,11 @@
             document.getElementById('edit-length').value = length.textContent.trim();
             if (courier.textContent == "JRS Express") {
                 document.getElementById('edit-jrs').checked = true;
+                edit_courier = document.getElementById('edit-jrs').value;
             } else if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
+                edit_courier = document.getElementById('edit-jt').value;
             }
-            // alert(img.getAttribute('data-filename'));
 
             document.getElementById("edit-sale-div").style.display = "flex";
             document.getElementById("edit-exchange-div").style.display = "none";
@@ -869,8 +896,10 @@
             document.getElementById('edit-length').value = length.textContent.trim();
             if (courier.textContent == "JRS Express") {
                 document.getElementById('edit-jrs').checked = true;
+                edit_courier = document.getElementById('edit-jrs').value;
             } else if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
+                edit_courier = document.getElementById('edit-jt').value;
             }
 
             document.getElementById("edit-sale-div").style.display = "none";
@@ -904,8 +933,10 @@
             document.getElementById('edit-length').value = length.textContent.trim();
             if (courier.textContent == "JRS Express") {
                 document.getElementById('edit-jrs').checked = true;
+                edit_courier = document.getElementById('edit-jrs').value;
             } else if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
+                edit_courier = document.getElementById('edit-jt').value;
             }
 
             document.getElementById("edit-sale-div").style.display = "none";
@@ -918,10 +949,23 @@
     // update btn
     var sale_update_btn = document.getElementById('sale-update');
     var exchange_update_btn = document.getElementById('exchange-update');
+    var rent_update_btn = document.getElementById('rent-update');
+
 
     sale_update_btn.addEventListener('click', () => {
         var sale_form = document.getElementById('edit-sale-form');
         var book_id = document.getElementById('edit-book-id');
+
+        var edit_weight = document.getElementById('edit-weight');
+        var edit_width = document.getElementById('edit-width');
+        var edit_height = document.getElementById('edit-height');
+        var edit_length = document.getElementById('edit-length');
+
+        document.getElementById('edit-sale-weight').value = edit_weight.value;
+        document.getElementById('edit-sale-width').value = edit_width.value
+        document.getElementById('edit-sale-height').value = edit_height.value;
+        document.getElementById('edit-sale-length').value = edit_length.value;
+        document.getElementById('edit-sale-courier').value = edit_courier;
 
         sale_form.action = "/mylist/updateSale/" + book_id.value;
         sale_form.submit();
@@ -931,9 +975,39 @@
         var exchange_form = document.getElementById('edit-exchange-form');
         var book_id = document.getElementById('edit-book-id');
 
+        var edit_weight = document.getElementById('edit-weight');
+        var edit_width = document.getElementById('edit-width');
+        var edit_height = document.getElementById('edit-height');
+        var edit_length = document.getElementById('edit-length');
+
+        document.getElementById('edit-exchange-weight').value = edit_weight.value;
+        document.getElementById('edit-exchange-width').value = edit_width.value
+        document.getElementById('edit-exchange-height').value = edit_height.value;
+        document.getElementById('edit-exchange-length').value = edit_length.value;
+        document.getElementById('edit-exchange-courier').value = edit_courier;
+
         exchange_form.action = "/mylist/updateExchange/" + book_id.value;
         exchange_form.submit();
-    })
+    });
+
+    rent_update_btn.addEventListener('click', () => {
+        var rent_form = document.getElementById('edit-rent-form');
+        var book_id = document.getElementById('edit-book-id');
+
+        var edit_weight = document.getElementById('edit-weight');
+        var edit_width = document.getElementById('edit-width');
+        var edit_height = document.getElementById('edit-height');
+        var edit_length = document.getElementById('edit-length');
+
+        document.getElementById('edit-rent-weight').value = edit_weight.value;
+        document.getElementById('edit-rent-width').value = edit_width.value
+        document.getElementById('edit-rent-height').value = edit_height.value;
+        document.getElementById('edit-rent-length').value = edit_length.value;
+        document.getElementById('edit-rent-courier').value = edit_courier;
+
+        rent_form.action = "/mylist/rentExchange/" + book_id.value;
+        rent_form.submit();
+    });
 
 
     edit_modal.addEventListener('change', () => {
@@ -950,7 +1024,7 @@
             document.getElementById("edit-exchange-div").style.display = "none";
             document.getElementById("edit-rent-div").style.display = "flex";
         }
-    })
+    });
 
     // sort select    
     var sort_by = document.getElementById('sort');
@@ -975,17 +1049,15 @@
     const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
     const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
 
-
     const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
     const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
     const ExchangeShippingToolTip = document.getElementById('exchange-shipping-fee-btn');
     const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
     const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
-    const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip); 
+    const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip);
 
     const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
     const tooltipEditSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleShippingToolTip);
-
 
     // modals
     const createListingModal = new bootstrap.Modal('#createListingModal', {
@@ -1015,7 +1087,7 @@
     var edit_sale_shipping_fee_btn = document.getElementById('edit-sale-shipping-fee-btn');
     var edit_exchange_shipping_fee_btn = document.getElementById('edit-exchange-shipping-fee-btn');
     var edit_rent_shipping_fee_btn = document.getElementById('edit-rent-shipping-fee-btn');
-
+    var edit_shipping_save_btn = document.getElementById('edit-shipping-save-btn');
 
     // shipping form inputs
     var weight = document.getElementById('weight');
@@ -1043,21 +1115,26 @@
     var rent_height = document.getElementById('rent-height');
     var rent_length = document.getElementById('rent-length');
     var rent_courier = document.getElementById('rent-courier');
+
     create_listing_btn.addEventListener('click', function() {
         createListingModal.show();
     });
+
     back_btn.addEventListener("click", function() {
         shippingModal.hide();
         createListingModal.show();
     });
+
     sale_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
     });
+
     exchange_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
     });
+
     rent_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
@@ -1087,6 +1164,7 @@
     var sale_form = document.getElementById('sale-form');
     var exchange_form = document.getElementById('exchange-form');
     var rent_form = document.getElementById('rent-form');
+
     sale_form.addEventListener('submit', function(event) {
         sale_weight.value = weight.value;
         sale_width.value = width.value;
@@ -1094,6 +1172,7 @@
         sale_length.value = length.value;
         sale_courier.value = courier;
     });
+
     exchange_form.addEventListener('submit', function(event) {
         exchange_weight.value = weight.value;
         exchange_width.value = width.value;
@@ -1101,6 +1180,7 @@
         exchange_length.value = length.value;
         exchange_courier.value = courier;
     });
+
     rent_form.addEventListener('submit', function(event) {
         rent_weight.value = weight.value;
         rent_width.value = width.value;
@@ -1108,9 +1188,10 @@
         rent_length.value = length.value;
         rent_courier.value = courier;
     });
+
     shipping_save_btn.addEventListener('click', function() {
         if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
-            alert("please complete every filleds");
+            alert("please complete every fields");
         } else {
             if (jrsRadio.checked) {
                 courier = jrsRadio.value;
@@ -1128,6 +1209,36 @@
             createListingModal.show();
         }
     });
+
+    edit_shipping_save_btn.addEventListener('click', () => {
+        // var book_id = document.getElementById('edit-book-id');
+        var edit_weight = document.getElementById('edit-weight');
+        var edit_width = document.getElementById('edit-width');
+        var edit_height = document.getElementById('edit-height');
+        var edit_length = document.getElementById('edit-length');
+        var edit_jrs_radio = document.getElementById('edit-jrs');
+        var edit_jt_radio = document.getElementById('edit-jt');
+
+        if (edit_weight.value == "" || edit_width.value == "" || edit_height.value == "" || edit_length.value ==
+            "") {
+            alert("Please fill all the inputs");
+        } else {
+            if (edit_jrs_radio.checked) {
+                edit_courier = edit_jrs_radio.value;
+            } else if (edit_jt_radio.checked) {
+                edit_courier = edit_jt_radio.value;
+            } else {
+                edit_courier = null;
+            }
+
+            editShippingModal.hide();
+            updateListingModal.show();
+        }
+
+        // alert(edit_weight.value + " " + edit_width.value + " " + edit_height.value + " " + edit_length.value + " " + edit_courier);
+    });
+
+    // list category
     var list_category = document.getElementById("modal-category");
     list_category.addEventListener("change", function() {
         // console.log(String(list_category.value));
@@ -1174,7 +1285,7 @@
 
     exchange_image_upload.addEventListener("change", function() {
         var image = document.getElementById("edit-exchange-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);        
+        image.src = URL.createObjectURL(event.target.files[0]);
     });
 
     rent_image_upload.addEventListener("change", function() {
@@ -1183,4 +1294,3 @@
     });
 </script>
 {{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}
-

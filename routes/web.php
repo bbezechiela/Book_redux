@@ -82,3 +82,7 @@ Route::get('/return', [UserController::class, 'return']);
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
+
+Route::post('/mylist/rentExchange/{id}', [ListingController::class, 'rentUpdate']);
+
+Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
