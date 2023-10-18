@@ -17,6 +17,9 @@
             <input class="w-100 fs-5 px-2" id="password" name="password" type="password" placeholder="Password">
             <input type="checkbox" id="show-password" class="ms-2">
             <label for="show-password">Show Password</label> <br>
+            @if (isset($message))
+                <p class="text-danger text-center fw-bold mt-3">{{$message}}</p>
+            @endif
             <button class="btn mt-3 w-100 sign-up-btn mb-3 fw-bold" type="submit">Log in</button>
         </form>
         <p class="mt-5 text-center">Don't have an account? <a href="/signup">Click here!</a></p>
@@ -44,4 +47,3 @@
         }
     });
 </script>
-

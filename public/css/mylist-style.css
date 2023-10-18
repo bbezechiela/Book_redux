@@ -116,3 +116,18 @@ button,
     border: 1px solid #003060;
 }
 
+/* @media screen and (max-width: 556px) {
+    .interaction-type{
+        font-size: 1.25rem!important;
+        color: #003060;
+        background-color:azure;
+    }
+}
+
+@media screen and (min-width: 556px) {
+    .interaction-type{
+        font-size: 1.25rem!important;
+        color: #003060;
+        background-color:azure;
+    }
+} */

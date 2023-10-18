@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Books;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -45,8 +46,13 @@ class UserController extends Controller
     {
         if (session()->has('user')) {
 
-            $users = Users::where('id', session('id'))->first();
-            return view('users.homepage', ['user' => $users]);
+            // $users = Users::where();
+            // $users = Users::find(session('id'));
+            $post = Books::all();
+            return view('users.homepage', [
+                // 'user' => $users
+                'post' => $post
+            ]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
