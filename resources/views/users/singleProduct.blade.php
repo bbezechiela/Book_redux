@@ -67,38 +67,6 @@
           </div>
         </div>
       </div>
-
-      {{-- <div class="container text-center seller-details">
-        <div class="row align-items-center">
-          <div class="col">
-            <div class="circle-picture"></div>
-          </div>
-          <div class="col">
-            <div class="user-info">
-              <p>Nestine Nicole Navarro</p>
-              <p>2K followers. 400 following</p>
-              <p>Lives in Tacloban city</p>
-              <button>Message</button>
-              <button>View Profile</button>
-            </div>
-          </div>
-          <div class="col">
-            <div class="ratings">
-              <p>Ratings</p>
-              <p>Books Bought</p>
-              <p>Books Lent</p>
-            </div>
-          </div>
-          <div class="col">
-            <div class="ratings">
-              <p>Books Sold</p>
-              <p>Books Exchanged</p>
-              <p>Books Rented</p>
-            </div>
-          </div>
-        </div>
-      </div> --}}
-
       <div class="container text-center seller-details">
         <div class="row align-items-center">
           <div class="col">

@@ -73,11 +73,11 @@ Route::get('/mylist/rent', [ListingController::class, 'rent']);
 
 Route::get('/orders', [UserController::class, 'orders']);
 
-Route::get('/completed', [UserController::class, 'completed']);
+Route::get('/delivered', [UserController::class, 'delivered']);
 
-Route::get('/cancelled', [UserController::class, 'cancelled']);
+Route::get('/dropped', [UserController::class, 'dropped']);
 
-Route::get('/return', [UserController::class, 'return']);
+Route::get('/refund', [UserController::class, 'refund']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
 

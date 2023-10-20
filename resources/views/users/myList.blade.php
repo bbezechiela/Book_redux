@@ -39,25 +39,23 @@
                 <div class="col d-flex align-items-center">
                     <p class="fs-3 order mx-auto fw-bold m-0">Order Status</p>
                 </div>
-
+                
                 <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Orders</p>
                 </a>
 
-                <a class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
+                <a href="/delivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
-                    <p class="my-0 text-center fs-6">Completed</p>
+                    <p class="my-0 text-center fs-6">Delivered</p>
                 </a>
-
-                <a class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
+                <a href="/dropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
-                    <p class="my-0 text-center fs-6">Cancelled</p>
+                    <p class="my-0 text-center fs-6">Dropped</p>
                 </a>
-
-                <a class="btn book-status col-2 me-1 rounded rounded-4 py-2">
+                <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
-                    <p class="my-0 text-center fs-6">Return</p>
+                    <p class="my-0 text-center fs-6">Refund</p>
                 </a>
 
             </div>
@@ -409,6 +407,8 @@
                         </form>
                     </div>
                 </div>
+
+                
             </div>
         </div>
 

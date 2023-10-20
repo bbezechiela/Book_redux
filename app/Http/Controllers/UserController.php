@@ -111,6 +111,21 @@ class UserController extends Controller
         return view('users.orders');
     }
 
+    public function delivered()
+    {
+        return view('users.delivered');
+    }
+
+    public function dropped()
+    {
+        return view('users.dropped');
+    }
+
+    public function refund()
+    {
+        return view('users.refund');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
