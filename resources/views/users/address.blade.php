@@ -1,46 +1,65 @@
 @include('partials.__header', [
-    'title' => 'Delivery Address | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/deliveryAddress-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Address | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/deliveryAddress-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
-    <div id="body-container" class="container-fluid px-0">
-        <div id="sidebar" class="sidebar p-2 min-vh-100"><x-sidebar /></div>
-        <div id="content" class="pe-0 border content">
-            <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-                <div class="w-100 d-flex justify-content-between mt-1 p-0">
-                    <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
-                    <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png"
-                            alt="Logo"></a>
-                </div>
-            </ul>
-            <div id="del-address" class="del-address-content mt-3 w-100">
-                <h4 class="text-center del_address_text mx-5 pb-2">Delivery Address</h4>
-                <button class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
-                        class="fa fa-plus" aria-hidden="true"></i>Add new address</button>
+<div id="body-container" class="container-fluid px-0">
+    <div id="sidebar" class="sidebar p-2 min-vh-100">
+        <x-sidebar />
+    </div>
+    <div id="content" class="pe-0 border content">
+        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+            <div class="w-100 d-flex justify-content-between mt-1 p-0">
+                <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
+                <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/mypurchase">My Purchase</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/addresses">Addresses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
+                </li>
+            </ul>
+        </ul>
+        <div class="address-container">
+            <div class="header">
+                <h4>Address</h4>
+                <p>Manage your addresses</p>
+            </div>
+            <button class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
+                    class="fa fa-plus" aria-hidden="true"></i>Add new address</button>
             <div class="del-address-container">
                 <div class="address-details">
                     <p>Nestine Nicole Navarro <span>09054173103</span></p>
                     <p>Peerless Village, Bagacay, Tacloban City, <span>6500</span></p>
                     <p class="default-txt">Default</p>
                 </div>
-                <button class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                        href="#">Edit</a></button>
-                <div class="col-md-6 text-right sticky-button">
-                    <button class="btn btn-primary confirm-button">Confirm</button>
+                <div class="button-container">
+                    <button class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-address"><a href="#">Edit</a></button>
+                    <button class="delete-button"><a href="#">Delete</a></button>
                 </div>
             </div>
         </div>
 
-        <!-- Add Address Modal -->
-        <div class="modal fade" id="add-address" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+          <!-- Add Address Modal -->
+          <div class="modal fade" id="add-address" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -139,11 +158,11 @@
                 </div>
             </div>
         </div>
-</body>
 
-
+    </div>
+</div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])

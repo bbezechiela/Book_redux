@@ -1,0 +1,306 @@
+@include('partials.__header', [
+'title' => 'To Receive | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/myPurchase-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
+])
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<div id="body-container" class="container-fluid px-0">
+    <div id="sidebar" class="sidebar p-2 min-vh-100">
+        <x-sidebar />
+    </div>
+    <div id="content" class="pe-0 border content">
+        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+            <div class="w-100 d-flex justify-content-between mt-1 p-0">
+                <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
+                <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
+            </div>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/mypurchase">My Purchase</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/addresses">Addresses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
+                </li>
+            </ul>
+        </ul>
+        <div class="purchase-container">
+            <div class="header">
+                <h4>My Purchase</h4>
+                <p>View and track your purchase item</p>
+            </div>
+            <div class="card-body nav-details">
+                <nav class="nav nav-pills flex-column flex-sm-row">
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/mypurchase">To Pay</a>
+                    <a class="flex-sm-fill text-sm-center nav-link"
+                        style="background-color: #003060;" aria-current="page" href="/toreceive">To
+                        Receive</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/delivered-mypurchase">Delivered</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/dropped-mypurchase">Dropped</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/refund-mypurchase">Refund</a>
+                </nav>
+            </div>
+        </div>
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name" href="#"><span>Liuza Sober</span></a>
+                </div>
+                <span class="order-text me-5 mt-0">To Receive</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">City of Secrets</p>
+                            <p class="mb-0 fw-bold interaction-type">Sale</p>
+                            <p class="payment-mode">Personal Transaction</p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">P144</p>
+                            <p class="text-total">Total Payment:<span class="product-total">P144</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-details">
+                    <div class="order-message">
+                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                            data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
+                                class="fa fa-angle-right" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary btn-sm receive-button" disabled>Order
+                            Received</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name" href="#"><span>Liuza Sober</span></a>
+                </div>
+                <span class="order-text me-5 mt-0">To Receive</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">City of Secrets</p>
+                            <p class="mb-0 fw-bold interaction-type">Sale</p>
+                            <p class="payment-mode">Personal Transaction</p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">P144</p>
+                            <p class="text-total">Total Payment:<span class="product-total">P144</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-details">
+                    <div class="order-message">
+                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                            data-bs-target="#track-delivery">Your order has been delivered<i class="fa fa-angle-right"
+                                aria-hidden="true"></i></button>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-primary btn-sm receive-button" data-bs-toggle="modal"
+                            data-bs-target="#order-received">Order
+                            Received</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tracking Modal -->
+        <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My Purchase
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tracking-details">
+                            <div class="tracking-number">
+                                <p>Tracking Number</p>
+                                <p>1234567890</p>
+                            </div>
+                            <div class="tracking-progress">
+                                <div class="circle-icon">
+                                </div>
+                                <div class="date-time">
+                                    <p>2023-10-15 10:30 AM</p>
+                                </div>
+                                <div class="message">
+                                    <p>Your order has arrived at catbalogan</p>
+                                </div>
+                            </div>
+                            <div class="tracking-progress">
+                                <div class="circle-icon">
+                                </div>
+                                <div class="date-time">
+                                    <p>2023-10-15 10:30 AM</p>
+                                </div>
+                                <div class="message">
+                                    <p>Your order has arrived at Catarman</p>
+                                </div>
+                            </div>
+                            <div class="tracking-progress">
+                                <div class="circle-icon">
+                                </div>
+                                <div class="date-time">
+                                    <p>2023-10-15 10:30 AM</p>
+                                </div>
+                                <div class="message">
+                                    <p>Your order has been shipped</p>
+                                </div>
+                            </div>
+                            <div class="tracking-progress">
+                                <div class="circle-icon">
+                                </div>
+                                <div class="date-time">
+                                    <p>2023-10-15 10:30 AM</p>
+                                </div>
+                                <div class="message">
+                                    <p>Preparing to ship</p>
+                                </div>
+                            </div>
+                            <div class="tracking-progress">
+                                <div class="circle-icon">
+                                </div>
+                                <div class="date-time">
+                                    <p>2023-10-15 10:30 AM</p>
+                                </div>
+                                <div class="message">
+                                    <p>Order placed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation-Order Modal -->
+        <div class="modal fade" id="order-received" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Release
+                            <span>P120.00</span> to seller</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="color: #003060;">
+                        <p>Check that you received all items in satisfactory condition (no return/refund required)
+                            before confirming receipt.</p>
+                        <p>Once you confirm, the order is completed and we will release the payment to seller.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#return-refund">Return Refund</button>
+                        <button type="button" class="btn btn-primary confirm-btn">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Return Refund Modal -->
+        <div class="modal fade" id="return-refund" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Return/Refund
+                            Request</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" style="color: #003060;">
+                        <p>Please complete the following details for return/refund request.</p>
+                        <div class="order-cart">
+                            <div class="name-return d-flex justify-content-between">
+                                <div>
+                                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                                </div>
+                            </div>
+                            <div class="product-return">
+                                <div class="book-details-return">
+                                    <div class="left-section">
+                                        <img src="../assets/city_of_secrets.png" alt="book" width="50px" height="80px">
+                                        <div class="book-info-return">
+                                            <p class="mb-0 book-title">City of Secrets</p>
+                                            <p class="mb-0 fw-bold interaction-type">Sale</p>
+                                            <p class="payment-mode">Personal Transaction</p>
+                                        </div>
+                                    </div>
+                                    <div class="right-section">
+                                        <div class="book-price">
+                                            <p class="product-price">P144</p>
+                                            <p class="text-total">Total Payment:<span class="product-total">P144</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleTextarea" class="form-label">Reason/s:</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="5"
+                                placeholder="Enter your text here..."></textarea>
+                        </div>
+                        <p>Evidence:
+                            <div class="image-container">
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary request-btn">Send Request</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @include('partials.__footer', [
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+    ])

@@ -41,6 +41,14 @@ Route::get('/sidebar', [UserController::class, 'sidebar']);
 
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
+Route::get('/notification', [UserController::class, 'notification']);
+
+Route::get('/read', [UserController::class, 'readNotification']);
+
+Route::get('/unread', [UserController::class, 'unreadNotification']);
+
+Route::get('/messages', [UserController::class, 'message']);
+
 Route::get('/product', [UserController::class, 'singleProduct']);
 
 Route::get('/cart', [UserController::class, 'cart']);
@@ -56,6 +64,24 @@ Route::get('/mylist', [ListingController::class, 'myList'])->name('mylist');
 Route::get('/categories', [UserController::class, 'categories']);
 
 Route::get('/mylikes', [UserController::class, 'myLikes']);
+
+Route::get('/myprofile', [UserController::class, 'myProfile']);
+
+Route::get('/mypurchase', [UserController::class, 'myPurchase']);
+
+Route::get('/toreceive', [UserController::class, 'toReceive']);
+
+Route::get('/delivered-mypurchase', [UserController::class, 'deliveredMyPurchase']);
+
+Route::get('/dropped-mypurchase', [UserController::class, 'droppedMyPurchase']);
+
+Route::get('/refund-mypurchase', [UserController::class, 'refundMyPurchase']);
+
+Route::get('/addresses', [UserController::class, 'address']);
+
+Route::get('/changepassword', [UserController::class, 'changePassword']);
+
+Route::get('/reviewsandratings', [UserController::class, 'userReviewsAndRatings']);
 
 Route::post('/register', [UserController::class, 'store']);
 

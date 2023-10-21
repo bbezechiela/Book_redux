@@ -1,5 +1,5 @@
 @include('partials.__header', [
-'title' => 'My List | BookRedux',
+'title' => 'Orders | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
 'css_link' => '/css/orders-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
@@ -24,13 +24,13 @@
         <div class="card-body rating-details">
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
-                    href="#">Orders</a>
+                    href="/orders">Orders</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="#">Delivered</a>
+                    href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="#">Dropped</a>
+                    href="/dropped">Dropped</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="#">Refund</a>
+                    href="/refund">Refund</a>
             </nav>
         </div>
 
@@ -111,7 +111,7 @@
                                 Shipment</button>
                         </div>
                     </div>
-                    <p class="order-ID">Order ID <span class="float-end me-5">#7649324789134</span></p>
+                    <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p>
                 </div>
             </div>
         </div>

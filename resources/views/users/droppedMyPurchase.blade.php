@@ -1,7 +1,7 @@
 @include('partials.__header', [
 'title' => 'Dropped | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/orders-style.css',
+'css_link' => '/css/myPurchase-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
 ])
 
@@ -19,19 +19,44 @@
                 <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
                 <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/mypurchase">My Purchase</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/addresses">Addresses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
+                </li>
+            </ul>
         </ul>
-
-        <div class="card-body rating-details">
-            <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/orders">Orders</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/delivered">Delivered</a>
-                <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
-                    href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
-            </nav>
+        <div class="purchase-container">
+            <div class="header">
+                <h4>My Purchase</h4>
+                <p>View and track your purchase item</p>
+            </div>
+            <div class="card-body nav-details">
+                <nav class="nav nav-pills flex-column flex-sm-row">
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/mypurchase">To Pay</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        style="background-color: #003060;" aria-current="page" href="/toreceive">To
+                        Receive</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/delivered-mypurchase">Delivered</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
+                        aria-current="page" href="/dropped-mypurchase">Dropped</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/refund-mypurchase">Refund</a>
+                </nav>
+            </div>
         </div>
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
@@ -62,7 +87,7 @@
                         <p class="cancelled-text">Cancelled by you</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
@@ -93,44 +118,10 @@
                 </div>
                 <div class="order-details">
                     <div class="order-message">
-                        <p class="cancelled-text">Cancelled by buyer</p>
+                        <p class="cancelled-text">Cancelled by seller</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Dropped</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <p class="cancelled-text">Cancelled by buyer</p>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
