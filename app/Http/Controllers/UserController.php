@@ -27,7 +27,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('user')) {
-            return view('users.homepage');
+            return redirect('/home');
         } else {
             return view('users.login');
         }
@@ -36,7 +36,7 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         if ($request->session()->has('user')) {
-            return view('users.homepage');
+            return redirect('/home');
         } else {
             return view('users.signup');
         }
@@ -49,10 +49,9 @@ class UserController extends Controller
             // $users = Users::where();
             // $users = Users::find(session('id'));
             $post = Books::all();
-            return view('users.homepage', [
-                // 'user' => $users
-                'post' => $post
-            ]);
+            return view('users.homepage', ['post' => $post]);
+            // return view('users.homepage')->with('post', $post);
+            // return view('users.homepage', compact('post'));
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }

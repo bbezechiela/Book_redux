@@ -11,16 +11,30 @@
 
 <body>
     <div id="body-container" class="container-fluid px-0">
-        <div id="sidebar" class="sidebar p-2 min-vh-100">
+        <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvasExampleLabel">
             <x-sidebar />
-        </div>
+        </div>  
         <div id="content" class="pe-0 border content">
             <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-                <div class="w-100 d-flex justify-content-between mt-1 p-0">
-                    <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
-                    <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png"
-                            alt="Logo"></a>
+            
+                <div class="w-100 d-flex mt-1 p-0">
+                    <button class="btn btn-light" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebar" aria-controls="offcanvasExample">
+                        <i><img src="/assets/burger.png" alt="menu"></i>
+                    </button>
+                    <a href="/" id="logo" class="px-2"><img class="img mt-2 me-5" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
+                    <input class="rounded-3 ms-2 px-3 w-25" type="text" placeholder="Search" style="border: 1px solid #003060;">  
+                    <button type="button" class="btn p-0"><img src="/assets/search.png" alt="search" width="20" style="margin-left: -50px"></button>
+                    
                 </div>
+                <div class="position-absolute end-0">
+                    <button class="btn mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Messages"><img src="./assets/message.png" alt="message" width="25"></button>
+                    <button class="btn mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Notification"><img src="./assets/notification.png" alt="notification" width="25"></button>
+                    <button class="btn mx-1 p-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Profile"><img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification" width="40" height="35" class="rounded-3"></button>
+                    <a id="logout-btn" href="/logout" class="btn ms-3 me-4 py-2 fw-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Logout"><img src="/assets/logout.png" width="30" height="30" alt="Logout"></a>
+                </div>
+               
             </ul>
             <div id="cart" class="mx-2 px-3">
                 <h4 id="cart-header">Shopping Cart

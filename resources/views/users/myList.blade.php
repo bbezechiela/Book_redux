@@ -12,7 +12,8 @@
 {{-- <body> --}}
 <div id="body-container" class="container-fluid px-0">
     {{-- <div class="row mx-0"> --}}
-    <div id="sidebar" class="sidebar p-2 min-vh-100">
+    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
+        aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
 
@@ -27,19 +28,44 @@
                 </ul>
             </div>
         @endif
-        <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
+        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+            
+            <div class="w-100 d-flex mt-1 p-0">
+                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebar" aria-controls="offcanvasExample">
+                    <i><img src="/assets/burger.png" alt="menu"></i>
+                </button>
+                <a href="/" class="px-2"><img class="img mt-2 me-5" src="../assets/Book_Logo.png"
+                    alt="Logo"></a>
+                <input class="rounded-3 ms-2 px-3 w-25" type="text" placeholder="Search" style="border: 1px solid #003060;">  
+                <button type="button" class="btn p-0"><img src="/assets/search.png" alt="search" width="20" style="margin-left: -50px"></button>
+                
+            </div>
+            <div class="position-absolute end-0">
+                <button class="btn mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Messages"><img src="./assets/message.png" alt="message" width="25"></button>
+                <button class="btn mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Notification"><img src="./assets/notification.png" alt="notification" width="25"></button>
+                <button class="btn mx-1 p-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Profile"><img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification" width="40" height="35" class="rounded-3"></button>
+                <a id="logout-btn" href="/logout" class="btn ms-1 me-4 py-2 fw-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Logout"><img src="/assets/logout.png" width="30" height="30" alt="Logout"></a>
+            </div>
+            
+        </ul>
+        {{-- <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
             <div class="w-100 d-flex justify-content-between mt-1 p-0">
+                <button class="btn btn-light mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                    aria-controls="offcanvasExample">
+                    <i><img src="/assets/burger.png" alt="menu"></i>
+                </button>
                 <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
                 <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
             </div>
-        </ul>
+        </ul> --}}
         <div class="container-fuid pt-3 px-3">
             <div class="row border mx-2 mt-3 p-3 shadow rounded">
                 <div class="col d-flex align-items-center">
                     <p class="fs-3 order mx-auto fw-bold m-0">Order Status</p>
                 </div>
-                
+
                 <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Orders</p>
@@ -113,9 +139,11 @@
                                 <div class="card-body py-0">
                                     <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
                                         {{ $book->title }}</p>
-                                    <p id="author_{{ $book->id }}" class="card-text mt-0 mb-2">{{ $book->author }}
+                                    <p id="author_{{ $book->id }}" class="card-text mt-0 mb-2">
+                                        {{ $book->author }}
                                     </p>
-                                    <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-2"> {{ $book->genre }}
+                                    <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-2">
+                                        {{ $book->genre }}
                                     </p>
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <a class="fw-bold p-0 edit-book"
@@ -129,7 +157,7 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        {{-- {{ $books->links() }} --}}
                     </div>
                 </div>
             </div>
@@ -160,8 +188,7 @@
 
                                 <div class="row">
                                     <div class="col-5 me-1 px-0 border mb-2 rounded">
-                                        <input type="text" name="user_id"
-                                            value="{{ session('id') }}" hidden>
+                                        <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="sale-weight" hidden>
                                         <input type="text" name="width" id="sale-width" hidden>
                                         <input type="text" name="height" id="sale-height" hidden>
@@ -245,8 +272,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-5 me-1 border px-0 mb-2 rounded">
-                                    <input type="text" name="user_id"
-                                        value="{{ session('id') }}" hidden>
+                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                     <input type="text" name="weight" id="exchange-weight" hidden>
                                     <input type="text" name="width" id="exchange-width" hidden>
                                     <input type="text" name="height" id="exchange-height" hidden>
@@ -325,8 +351,7 @@
                             <div class="modal-body container-fluid px-5">
                                 <div class="row">
                                     <div class="col-5 px-0 me-1 border mb-2 rounded">
-                                        <input type="text" name="user_id"
-                                            value="{{ session('id') }}" hidden>
+                                        <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="rent-weight" hidden>
                                         <input type="text" name="width" id="rent-width" hidden>
                                         <input type="text" name="height" id="rent-height" hidden>
@@ -408,7 +433,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
         </div>
 
@@ -439,8 +464,7 @@
 
                                 <div class="row">
                                     <div class="col-5 me-1 px-0 border mb-2 rounded">
-                                        <input type="text" name="user_id"
-                                            value="{{ session('id') }}" hidden>
+                                        <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="edit-sale-weight" hidden>
                                         <input type="text" name="width" id="edit-sale-width" hidden>
                                         <input type="text" name="height" id="edit-sale-height" hidden>
@@ -527,8 +551,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-5 me-1 border px-0 mb-2 rounded">
-                                    <input type="text" name="user_id"
-                                            value="{{ session('id') }}" hidden>
+                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                     <input type="text" name="weight" id="edit-exchange-weight" hidden>
                                     <input type="text" name="width" id="edit-exchange-width" hidden>
                                     <input type="text" name="height" id="edit-exchange-height" hidden>
@@ -612,8 +635,7 @@
                             <div class="modal-body container-fluid px-5">
                                 <div class="row">
                                     <div class="col-5 px-0 me-1 border mb-2 rounded">
-                                        <input type="text" name="user_id"
-                                            value="{{ session('id') }}" hidden>
+                                        <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                         <input type="text" name="weight" id="edit-rent-weight" hidden>
                                         <input type="text" name="width" id="edit-rent-width" hidden>
                                         <input type="text" name="height" id="edit-rent-height" hidden>
@@ -795,9 +817,9 @@
     var exchange_delete = document.getElementById('exchange-delete');
     var rent_delete = document.getElementById('rent-delete');
 
-    sale_delete.addEventListener('click', () => {        
+    sale_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
-        window.location.href = "/mylist/delete/" + id.value;        
+        window.location.href = "/mylist/delete/" + id.value;
     });
 
     exchange_delete.addEventListener('click', () => {
