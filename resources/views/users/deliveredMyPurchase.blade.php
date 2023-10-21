@@ -1,7 +1,7 @@
 @include('partials.__header', [
 'title' => 'Delivered | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/orders-style.css',
+'css_link' => '/css/myPurchase-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
 ])
 
@@ -19,54 +19,43 @@
                 <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
                 <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/mypurchase">My Purchase</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/addresses">Addresses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
+                </li>
+            </ul>
         </ul>
-
-        <div class="card-body rating-details">
-            <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/orders">Orders</a>
-                <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
-                    href="/delivered">Delivered</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
-            </nav>
-        </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Delivered</span>
+        <div class="purchase-container">
+            <div class="header">
+                <h4>My Purchase</h4>
+                <p>View and track your purchase item</p>
             </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
-                            data-bs-target="#rate-review">Post
-                            Rating and Review</button>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
-                    </div>
-                </div>
+            <div class="card-body nav-details">
+                <nav class="nav nav-pills flex-column flex-sm-row">
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/mypurchase">To Pay</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        style="background-color: #003060;" aria-current="page" href="/toreceive">To
+                        Receive</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
+                        aria-current="page" href="/delivered-mypurchase">Delivered</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/dropped-mypurchase">Dropped</a>
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/refund-mypurchase">Refund</a>
+                </nav>
             </div>
         </div>
         <div class="order-cart">
@@ -95,60 +84,23 @@
                 </div>
                 <div class="order-details">
                     <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
                             data-bs-target="#rate-review">Post
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Delivered</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
-                            data-bs-target="#rate-review">Post
-                            Rating and Review</button>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Rate and Review Modal -->
         <div class="modal fade" id="rate-review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rate and Review User</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review User</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -158,7 +110,7 @@
                                     <img src="../assets/nestine.png" alt="seller image" class="circle-picture">
                                     <div class="name-interaction">
                                         <p>Nestine Nicole Navarro</p>
-                                        <div class="dropdown">
+                                        <div class="dropdown interaction-drpdwn">
                                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                                 aria-expanded="false">
                                                 Interaction Type
@@ -184,6 +136,8 @@
                                 </div>
                             </div>
                             <div class="review-details">
+                                <p>Accuracy of Condition:<span>10/10</span></p>
+                                <p>Accuracy of Description:<span>10/10</span></p>
                                 <p>Interaction:<span>10/10</span></p>
                                 <div class="mb-3">
                                     <label for="exampleTextarea" class="form-label">Description:</label>
@@ -222,12 +176,11 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary confirm-button">Submit</button>
+                        <button type="button" class="btn btn-primary submit-button">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

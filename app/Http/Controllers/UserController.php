@@ -100,6 +100,71 @@ class UserController extends Controller
         return view('users.myLikes');
     }
 
+    public function myProfile()
+    {
+        return view('users.myProfile');
+    }
+
+    public function myPurchase()
+    {
+        return view('users.myPurchase');
+    }
+
+    public function notification()
+    {
+        return view('users.notification');
+    }
+
+    public function readNotification()
+    {
+        return view('users.readNotification');
+    }
+
+    public function unreadNotification()
+    {
+        return view('users.unreadNotification');
+    }
+
+    public function message()
+    {
+        return view('users.message');
+    }
+
+    public function toReceive()
+    {
+        return view('users.toReceive');
+    }
+
+    public function deliveredMyPurchase()
+    {
+        return view('users.deliveredMyPurchase');
+    }
+
+    public function droppedMyPurchase()
+    {
+        return view('users.droppedMyPurchase');
+    }
+
+    public function refundMyPurchase()
+    {
+        return view('users.refundMyPurchase');
+    }
+
+    public function address()
+    {
+        return view('users.address');
+    }
+
+    public function changePassword()
+    {
+        return view('users.changePassword');
+    }
+
+    public function userReviewsAndRatings()
+    {
+        return view('users.userReviewsAndRatings');
+    }
+    
     public function orders()
     {
         return view('users.orders');

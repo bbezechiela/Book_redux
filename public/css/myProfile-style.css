@@ -1,0 +1,114 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.nav-underline .nav-item .nav-link.active{
+    color: #E55B13;
+}
+
+.nav-underline .nav-item {
+    margin-right: 80px; 
+}
+
+.custom-nav-link{
+    color: #003060;
+}
+
+.row{
+    color: #003060;
+    margin-top: 2em;
+}
+
+.col-3, .col{
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.upload-btn{
+    color: #a7a7a7;
+    font-size: 14px;
+    border: 1px solid #d3d3d3;
+    width: 10em;
+}
+
+.upload-btn:hover{
+    color: #a7a7a7;
+    border: 1px solid #d3d3d3;
+}
+
+.save-button{
+    background-color: #E55B13;
+    border-color: #E55B13;
+    width: 10em;
+    margin-top: 2.4em;
+}
+
+.save-button:hover{
+    background-color: #003060;
+    border-color: #003060;
+}
+
+.ratings {
+    text-align: justify;
+    margin-left: 2em;
+}
+
+.rate {
+    margin-left: 100px; 
+}
+
+.bought{
+    margin-left: 55px;
+}
+
+.lent{
+    margin-left: 75px;
+}
+
+.sold{
+    margin-left: 95px;
+}
+
+.exchange{
+    margin-left: 50px;
+}
+
+.rent{
+    margin-left: 76px;
+}
+
+.ratings span{
+    color: #E55B13;
+}

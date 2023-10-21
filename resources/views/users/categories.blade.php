@@ -1,5 +1,5 @@
 @include('partials.__header', [
-    'title' => 'Home | BookRedux',
+    'title' => 'Categories | BookRedux',
     'bootstrap_link' => '/bootstrap/bootstrap.min.css',
     'css_link' => '/css/categories-style.css',
     'aos_link' => '/aos-master/dist/aos.css',

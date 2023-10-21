@@ -61,7 +61,6 @@
 .address-details {
     margin-top: 1em;
     color: #003060;
-
 }
 
 .default-txt {
@@ -69,7 +68,7 @@
 }
 
 .edit-button,
-.edit-button a {
+.edit-button a{
     color: #E55B13;
     background: none;
     border: none;
@@ -79,7 +78,18 @@
     margin-bottom: 7em;
 }
 
-.edit-button a:hover {
+.delete-button,
+.delete-button a {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: -5em;
+    margin-bottom: 7em;
+    margin-left: 10px;
+}
+
+.edit-button a:hover .delete-button a {
     color: #003060;
 }
 
@@ -132,21 +142,48 @@
     border-color: #E55B13;
 }
 
-.modal-content{
+.modal-content {
     color: #003060;
 }
 
-.save-button{
+.save-button {
     background-color: #E55B13;
     border-color: #E55B13;
     width: 7em;
 }
 
-.save-button:hover{
+.save-button:hover {
     background-color: #003060;
     border-color: #003060;
 }
 
-.close-button{
+.close-button {
     width: 7em;
+}
+
+.address-container{
+    color: #003060;
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+.address-container .header{
+    margin-bottom: 2em;
+}
+
+.nav-underline .nav-item .nav-link.active {
+    color: #E55B13;
+}
+
+.nav-underline .nav-item {
+    margin-right: 80px;
+}
+
+.custom-nav-link {
+    color: #003060;
+}
+
+.button-container {
+    display: flex; 
+    gap: 10px; 
 }
