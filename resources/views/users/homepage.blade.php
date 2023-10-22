@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                    {{-- @else --}}
                     <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;" onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                         <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
                             alt="..." width="130px" height="170px">
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-                @else
+                {{-- @else --}}
                 <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                     <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="170px">
@@ -194,7 +194,7 @@
                                 </div>
                             </div>
                         </div>
-                    @else
+                    {{-- @else --}}
                     <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;" onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                         <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
                             alt="..." width="130px" height="170px">
