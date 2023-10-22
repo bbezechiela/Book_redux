@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -57,9 +58,16 @@ class UserController extends Controller
         }
     }
 
-    public function singleProduct()
+    public function singleProduct($id, $user_id)
     {
-        return view('users.singleProduct');
+        if (session()->has('user')) {
+            $book = Books::find($id);
+            $user = Users::find($user_id);
+            return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        
     }
 
     public function cart()

@@ -49,7 +49,7 @@ Route::get('/unread', [UserController::class, 'unreadNotification']);
 
 Route::get('/messages', [UserController::class, 'message']);
 
-Route::get('/product', [UserController::class, 'singleProduct']);
+Route::get('/product/{id}/{user_id} ', [UserController::class, 'singleProduct']);
 
 Route::get('/cart', [UserController::class, 'cart']);
 
@@ -109,6 +109,6 @@ Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate'])
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
 
-Route::post('/mylist/rentExchange/{id}', [ListingController::class, 'rentUpdate']);
+Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'rentUpdate']);
 
 Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);

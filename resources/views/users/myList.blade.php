@@ -29,7 +29,6 @@
             </div>
         @endif
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-
             <div class="w-100 d-flex mt-1 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
@@ -56,7 +55,6 @@
                     data-bs-placement="bottom" data-bs-title="Logout"><img src="/assets/logout.png" width="30"
                         height="30" alt="Logout"></a>
             </div>
-
         </ul>
         {{-- <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
             <div class="w-100 d-flex justify-content-between mt-1 p-0">
@@ -368,7 +366,7 @@
                                         <input type="file" name="book_photo" id="rent-image" class="d-none">
                                         <label for="rent-image" class="position-relative w-100 h-100"
                                             style="cursor: pointer;">
-                                            <img id="rent-book-image" src="../assets/image.png" alt="image"
+                                            <img id="rent-book-image" src="/assets/image.png" alt="image"
                                                 class="img-fluid position-absolute top-50 start-50 translate-middle"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 data-bs-title="Click to Upload Image" width="170" height="170">
@@ -978,7 +976,7 @@
     // update btn
     var sale_update_btn = document.getElementById('sale-update');
     var exchange_update_btn = document.getElementById('exchange-update');
-    var rent_update_btn = document.getElementById('rent');
+    var rent_update_btn = document.getElementById('rent-update');
 
 
     sale_update_btn.addEventListener('click', () => {
@@ -1034,7 +1032,7 @@
         document.getElementById('edit-rent-length').value = edit_length.value;
         document.getElementById('edit-rent-courier').value = edit_courier;
 
-        rent_form.action = "/mylist/rentExchange/" + book_id.value;
+        rent_form.action = "/mylist/updateExchange/" + book_id.value;
         rent_form.submit();
     });
 
@@ -1278,6 +1276,7 @@
     var sale_image_upload = document.getElementById("sale-image");
     var exchange_image_upload = document.getElementById("exchange-image");
     var rent_image_upload = document.getElementById("rent-image");
+
     sale_image_upload.addEventListener("change", function() {
         var image = document.getElementById("sale-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
