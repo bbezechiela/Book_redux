@@ -1,6 +1,6 @@
-:root {
+/* :root {
     --sidebar_width: 320px;
-}
+} */
 
 .sidebar {
     position: fixed;
@@ -157,4 +157,18 @@
 .report-button:hover{
     background-color: #003060;
     border-color: #003060;
+}
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.search-field {
+    margin-right: 2em;
+    border: none;
+    background-color: #fff;
+}
+
+.input-group-text .field i{
+    color: #003060;
 }

@@ -1,6 +1,6 @@
-:root {
-    /* --sidebar_width: 320px; */
-}
+/* :root {
+    --sidebar_width: 320px;
+} */
 
 .sidebar {
     position: fixed;
@@ -246,4 +246,21 @@ h1 {
 .checkout-button a{
     color: #fff;
     text-decoration: none;
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i{
+    color: #003060;
 }

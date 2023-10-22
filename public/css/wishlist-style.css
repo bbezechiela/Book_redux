@@ -132,3 +132,20 @@
     background-color: #494949;
     border-color: #494949;
 }
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .search-field {
+    border: none;
+    background-color: #fff;
+}
+
+.search-field {
+    margin-right: 2em;
+}
+
+.input-group-text i{
+    color: #003060;
+}

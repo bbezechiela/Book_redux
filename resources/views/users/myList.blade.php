@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'My List | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/mylist-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'My List | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/mylist-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -19,44 +19,46 @@
 
     <div id="content" class="pe-0 border content">
         @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     @endforeach
-                </ul>
-            </div>
+            </ul>
+        </div>
         @endif
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-
             <div class="w-100 d-flex mt-1 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
-                    <i><img src="/assets/burger.png" alt="menu"></i>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
-                <a href="/" class="px-2"><img class="img mt-2 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
-                <input class="rounded-3 ms-2 px-3 w-25" type="text" placeholder="Search"
-                    style="border: 1px solid #003060;">
-                <button type="button" class="btn p-0"><img src="/assets/search.png" alt="search" width="20"
-                        style="margin-left: -50px"></button>
-
+                <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
-                <button class="btn mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-title="Messages"><img src="/assets/message.png" alt="message" width="25"></button>
-                <button class="btn mx-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-title="Notification"><img src="/assets/notification.png" alt="notification"
-                        width="25"></button>
-                <button class="btn mx-1 p-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-title="Profile"><img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                        alt="notification" width="40" height="35" class="rounded-3"></button>
-                <a id="logout-btn" href="/logout" class="btn ms-1 me-4 py-2 fw-bold" data-bs-toggle="tooltip"
-                    data-bs-placement="bottom" data-bs-title="Logout"><img src="/assets/logout.png" width="30"
-                        height="30" alt="Logout"></a>
+                <div class="d-flex">
+                    <div class="input-group mt-1" style="height: 2em">
+                        <span class="input-group-text">
+                            <i class="fa fa-search"></i>
+                        </span>
+                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
+                    </div>
+                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Messages">
+                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                        </button></a>
+                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Notification">
+                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                        </button></a>
+                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Profile">
+                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
+                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
+                        </button></a>
+                </div>
             </div>
-
         </ul>
         {{-- <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
             <div class="w-100 d-flex justify-content-between mt-1 p-0">
@@ -114,56 +116,55 @@
                         </select>
                         {{-- </form> --}}
                     </div>
-                    <div class="row justify-content-center mb-5">
-
+                    {{-- <div class="row justify-content-center mb-5"> --}}
+                    <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto"
+                        style="height: 300px; margin-top: 2em;">
                         @foreach ($books as $book)
-                            <div class="card col-3 m-2 shadow" style="width: 200px;">
-                                <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
-                                <span id="user_{{ $book->id }}" hidden>{{ $book->post_user }}</span>
-                                <span id="edition_{{ $book->id }}" hidden>{{ $book->edition }}</span>
-                                <span id="condition_{{ $book->id }}" hidden>{{ $book->condition }}</span>
-                                <span id="description_{{ $book->id }}" hidden>{{ $book->description }}</span>
-                                <span id="language_{{ $book->id }}" hidden>{{ $book->language }}</span>
-                                <span id="weight_{{ $book->id }}" hidden>{{ $book->weight }}</span>
-                                <span id="width_{{ $book->id }}" hidden>{{ $book->width }}</span>
-                                <span id="height_{{ $book->id }}" hidden>{{ $book->height }}</span>
-                                <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
-                                <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
-                                <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
+                        <div class="card col-3 m-1 shadow" style="width: 200px; flex: 0 0 auto;">
+                            <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
+                            <span id="user_{{ $book->id }}" hidden>{{ $book->post_user }}</span>
+                            <span id="edition_{{ $book->id }}" hidden>{{ $book->edition }}</span>
+                            <span id="condition_{{ $book->id }}" hidden>{{ $book->condition }}</span>
+                            <span id="description_{{ $book->id }}" hidden>{{ $book->description }}</span>
+                            <span id="language_{{ $book->id }}" hidden>{{ $book->language }}</span>
+                            <span id="weight_{{ $book->id }}" hidden>{{ $book->weight }}</span>
+                            <span id="width_{{ $book->id }}" hidden>{{ $book->width }}</span>
+                            <span id="height_{{ $book->id }}" hidden>{{ $book->height }}</span>
+                            <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
+                            <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
+                            <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
 
-                                <span id="exchange_preferences_{{ $book->id }}"
-                                    hidden>{{ $book->exchange_preferences }}</span>
+                            <span id="exchange_preferences_{{ $book->id }}"
+                                hidden>{{ $book->exchange_preferences }}</span>
 
-                                <span id="rental_duration_{{ $book->id }}"
-                                    hidden>{{ $book->rental_duration }}</span>
-                                <span id="rental_terms_and_condition_{{ $book->id }}"
-                                    hidden>{{ $book->rental_terms_and_condition }}</span>
-                                <span id="security_deposit_{{ $book->id }}"
-                                    hidden>{{ $book->security_deposit }}</span>
+                            <span id="rental_duration_{{ $book->id }}" hidden>{{ $book->rental_duration }}</span>
+                            <span id="rental_terms_and_condition_{{ $book->id }}"
+                                hidden>{{ $book->rental_terms_and_condition }}</span>
+                            <span id="security_deposit_{{ $book->id }}" hidden>{{ $book->security_deposit }}</span>
 
-                                <img id="photo_{{ $book->id }}" data-filename="{{ $book->book_photo }}"
-                                    src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
-                                    alt="{{ $book->book_photo }}" width="180px" height="180px">
-                                <div class="card-body py-0">
-                                    <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
-                                        {{ $book->title }}</p>
-                                    <p id="author_{{ $book->id }}" class="card-text mt-0 mb-2">
-                                        {{ $book->author }}
-                                    </p>
-                                    <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-2">
-                                        {{ $book->genre }}
-                                    </p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <a class="fw-bold p-0 edit-book"
-                                            onclick="itemClicked('{{ $book->id }}')">Edit</a>
-                                        <div class="btns d-flex flex-row mb-2 dropdown">
-                                            <button
-                                                class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center"><img
-                                                    src="../assets/like-icon.png" alt="like"></button>
-                                        </div>
+                            <img id="photo_{{ $book->id }}" data-filename="{{ $book->book_photo }}"
+                                src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
+                                alt="{{ $book->book_photo }}" width="130px" height="170px">
+                            <div class="card-body py-0">
+                                <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
+                                    {{ $book->title }}</p>
+                                <p id="author_{{ $book->id }}" class="card-text mt-0 mb-2">
+                                    {{ $book->author }}<br> {{ $book->genre }}
+                                </p>
+                                {{-- <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-2">
+                                {{ $book->genre }}
+                                </p> --}}
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <a class="fw-bold p-0 edit-book" onclick="itemClicked('{{ $book->id }}')">Edit</a>
+                                    <div class="btns d-flex flex-row mb-2 dropdown">
+                                        <button
+                                            class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center like-button"><i
+                                                class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                style="margin-right: 8px"></i>100</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                         {{-- {{ $books->links() }} --}}
                     </div>
@@ -172,8 +173,8 @@
         </div>
         <!-- Modal -->
         {{-- create listing --}}
-        <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header border-0">
@@ -184,8 +185,7 @@
                             <option value="Exchange">Exchange</option>
                             <option value="Rent">Rent</option>
                         </select>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <!-- sale -->
@@ -203,8 +203,7 @@
                                         <input type="text" name="length" id="sale-length" hidden>
                                         <input type="text" name="courier" id="sale-courier" hidden>
 
-                                        <input type="file" name="book_photo" id="sale-image" accept="image/*"
-                                            hidden>
+                                        <input type="file" name="book_photo" id="sale-image" accept="image/*" hidden>
                                         <label for="sale-image" class="position-relative w-100 h-100"
                                             style="cursor: pointer;">
                                             <img id="sale-book-image" src="../assets/image.png" alt="image"
@@ -233,9 +232,8 @@
                                             <option value="Self-Help">Self-Help</option>
                                             <option value="Crime & Thriller">Crime & Thriller</option>
                                         </select>
-                                        <input type="text" name="price" id="price" class="form-control"
-                                            id="list-name" placeholder="Price"
-                                            style="margin-bottom: 12px; color: #003060;">
+                                        <input type="text" name="price" id="price" class="form-control" id="list-name"
+                                            placeholder="Price" style="margin-bottom: 12px; color: #003060;">
                                         <button type="button" id="sale-shipping-fee-btn" class="form-control"
                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                             data-bs-title="Click to open shipping form"
@@ -261,8 +259,9 @@
                                         style="margin-bottom: 12px; color: #003060;">
                                     <input type="text" name="edition" id="edition-sale" class="form-control"
                                         placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
-                                    <textarea name="description" id="description" class="form-control" cols="30" rows="4"
-                                        placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    <textarea name="description" id="description" class="form-control" cols="30"
+                                        rows="4" placeholder="Description"
+                                        style="margin-bottom: 12px; color: #003060;"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer border-0">
@@ -339,8 +338,9 @@
                                     style="margin-bottom: 12px; color: #003060;">
                                 <input type="text" name="author" class="form-control" placeholder="Author"
                                     style="margin-bottom: 12px; color: #003060;">
-                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30" rows="4"
-                                    placeholder="Exchange Preferences" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control"
+                                    cols="30" rows="4" placeholder="Exchange Preferences"
+                                    style="margin-bottom: 12px; color: #003060;"></textarea>
                                 <textarea name="description" id="description" class="form-control" cols="30" rows="4"
                                     placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
                             </div>
@@ -409,8 +409,7 @@
                                         <input type="text" name="price" id="rental-price" class="form-control"
                                             placeholder="Rental Price" style="margin-bottom: 12px; color: #003060;">
                                         <input type="text" name="security_deposit" class="form-control"
-                                            placeholder="Security Deposit"
-                                            style="margin-bottom: 12px; color: #003060;">
+                                            placeholder="Security Deposit" style="margin-bottom: 12px; color: #003060;">
                                     </div>
                                     <input type="text" name="title" class="form-control" placeholder="Title"
                                         style="margin-bottom: 12px; color: #003060;">
@@ -425,10 +424,12 @@
                                     </select>
                                     <input type="text" name="rental_duration" class="form-control"
                                         placeholder="Rental Duration" style="margin-bottom: 12px; color: #003060;">
-                                    <textarea name="rental_terms_and_condition" id="exchange-preferences" class="form-control" cols="30"
-                                        rows="4" placeholder="Rental Terms and Condition" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    <textarea name="rental_terms_and_condition" id="exchange-preferences"
+                                        class="form-control" cols="30" rows="4" placeholder="Rental Terms and Condition"
+                                        style="margin-bottom: 12px; color: #003060;"></textarea>
                                     <textarea name="description" id="" class="form-control" cols="30" rows="4"
-                                        placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                        placeholder="Description"
+                                        style="margin-bottom: 12px; color: #003060;"></textarea>
                                 </div>
 
                             </div>
@@ -444,15 +445,14 @@
         </div>
 
         {{-- update listing modal --}}
-        <div class="modal fade" id="updateListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="updateListingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header border-0">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Listing</h1>
 
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
                         <option value="Sale">Sale</option>
@@ -476,8 +476,8 @@
                                         <input type="text" name="length" id="edit-sale-length" hidden>
                                         <input type="text" name="courier" id="edit-sale-courier" hidden>
 
-                                        <input type="file" name="book_photo" id="edit-sale-image"
-                                            accept="image/*" hidden>
+                                        <input type="file" name="book_photo" id="edit-sale-image" accept="image/*"
+                                            hidden>
                                         <label for="edit-sale-image" class="position-relative w-100 h-100"
                                             style="cursor: pointer;">
                                             <img id="edit-sale-book-image" src="../assets/image.png" alt="image"
@@ -505,9 +505,8 @@
                                             <option value="Self-Help">Self-Help</option>
                                             <option value="Crime & Thriller">Crime & Thriller</option>
                                         </select>
-                                        <input type="text" name="price" id="edit-sale-price"
-                                            class="form-control" placeholder="Price"
-                                            style="margin-bottom: 12px; color: #003060;">
+                                        <input type="text" name="price" id="edit-sale-price" class="form-control"
+                                            placeholder="Price" style="margin-bottom: 12px; color: #003060;">
                                         <button type="button" id="edit-sale-shipping-fee-btn" class="form-control"
                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                             data-bs-title="Click to open shipping form"
@@ -535,8 +534,9 @@
                                     <input type="text" id="edit-sale-edition" name="edition" id="edition-sale"
                                         class="form-control" placeholder="Edition"
                                         style="margin-bottom: 12px; color: #003060;">
-                                    <textarea name="description" id="edit-sale-description" class="form-control" cols="30" rows="4"
-                                        placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    <textarea name="description" id="edit-sale-description" class="form-control"
+                                        cols="30" rows="4" placeholder="Description"
+                                        style="margin-bottom: 12px; color: #003060;"></textarea>
                                 </div>
 
                             </div>
@@ -545,8 +545,7 @@
                                     style="background-color: #E55B13;">Update</button>
                                 <form id="sale-form-delete" method="POST">
                                     @csrf
-                                    <button type="button" id="sale-delete"
-                                        class="btn mx-auto w-25 bg-light rounded-3"
+                                    <button type="button" id="sale-delete" class="btn mx-auto w-25 bg-light rounded-3"
                                         style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
                                 </form>
                             </div>
@@ -595,9 +594,8 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="text" name="edition" id="edit-exchange-edition"
-                                        class="form-control" placeholder="Edition"
-                                        style="margin-bottom: 12px; color: #003060;">
+                                    <input type="text" name="edition" id="edit-exchange-edition" class="form-control"
+                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
                                     <button type="button" id="edit-exchange-shipping-fee-btn" class="form-control"
                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                         data-bs-title="Click to open shipping form"
@@ -621,17 +619,17 @@
                                     placeholder="Title" style="margin-bottom: 12px; color: #003060;">
                                 <input type="text" id="edit-exchange-author" name="author" class="form-control"
                                     placeholder="Author" style="margin-bottom: 12px; color: #003060;">
-                                <textarea name="exchange_preferences" id="edit-exchange-preferences" class="form-control" cols="30"
-                                    rows="4" placeholder="Exchange Preferences" style="margin-bottom: 12px; color: #003060;"></textarea>
-                                <textarea name="description" id="edit-exchange-description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <textarea name="exchange_preferences" id="edit-exchange-preferences"
+                                    class="form-control" cols="30" rows="4" placeholder="Exchange Preferences"
+                                    style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <textarea name="description" id="edit-exchange-description" class="form-control"
+                                    cols="30" rows="4" placeholder="Description"
+                                    style="margin-bottom: 12px; color: #003060;"></textarea>
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" id="exchange-update"
-                                    class="btn mx-auto w-25 text-white rounded-3"
+                                <button type="button" id="exchange-update" class="btn mx-auto w-25 text-white rounded-3"
                                     style="background-color: #E55B13;">Update</button>
-                                <button type="button" id="exchange-delete"
-                                    class="btn mx-auto w-25 bg-light rounded-3"
+                                <button type="button" id="exchange-delete" class="btn mx-auto w-25 bg-light rounded-3"
                                     style="color: #E55B13; border: 1px solid #E55B13;">Delete</button>
                             </div>
                         </form>
@@ -693,9 +691,8 @@
                                             style="text-align: justify; margin-bottom: 12px; color: #003060;">
                                             Shipping Fee
                                         </button>
-                                        <input type="text" name="price" id="edit-rent-rental-price"
-                                            class="form-control" placeholder="Rental Price"
-                                            style="margin-bottom: 12px; color: #003060;">
+                                        <input type="text" name="price" id="edit-rent-rental-price" class="form-control"
+                                            placeholder="Rental Price" style="margin-bottom: 12px; color: #003060;">
                                         <input type="text" name="security_deposit" id="edit-rent-security-deposit"
                                             class="form-control" placeholder="Security Deposit"
                                             style="margin-bottom: 12px; color: #003060;">
@@ -714,11 +711,13 @@
                                     <input type="text" name="rental_duration" id="edit-rent-rental-duration"
                                         class="form-control" placeholder="Rental Duration"
                                         style="margin-bottom: 12px; color: #003060;">
-                                    <textarea name="rental_terms_and_condition" id="edit-rent-rental-terms-and-condition" class="form-control"
-                                        cols="30" rows="4" placeholder="Rental Terms and Condition"
+                                    <textarea name="rental_terms_and_condition"
+                                        id="edit-rent-rental-terms-and-condition" class="form-control" cols="30"
+                                        rows="4" placeholder="Rental Terms and Condition"
                                         style="margin-bottom: 12px; color: #003060;"></textarea>
-                                    <textarea name="description" id="edit-rent-description" class="form-control" cols="30" rows="4"
-                                        placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    <textarea name="description" id="edit-rent-description" class="form-control"
+                                        cols="30" rows="4" placeholder="Description"
+                                        style="margin-bottom: 12px; color: #003060;"></textarea>
                                 </div>
 
                             </div>
@@ -750,17 +749,16 @@
                         <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please fill
                             in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
                             fee or failed delivery.</span>
-                        <input type="number" name="weight" id="weight" class="form-control"
-                            placeholder="Weight (kg)"
+                        <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight (kg)"
                             style="margin-bottom: 7px; margin-top: 8px; color: #003060;"><br>
 
                         <label class="fw-bold" for="size">Packaging Size</label><br>
-                        <input id="width" name="width" type="number" class="form-control"
-                            placeholder="Width (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-                        <input id="height" name="height" type="number" class="form-control"
-                            placeholder="Height (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-                        <input id="length" name="length" type="number" class="form-control"
-                            placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
+                        <input id="width" name="width" type="number" class="form-control" placeholder="Width (cm)"
+                            style="margin-bottom: 7px; color: #003060;"><br>
+                        <input id="height" name="height" type="number" class="form-control" placeholder="Height (cm)"
+                            style="margin-bottom: 7px; color: #003060;"><br>
+                        <input id="length" name="length" type="number" class="form-control" placeholder="Length (cm)"
+                            style="margin-bottom: 7px; color: #003060;"><br>
 
                         <label class="fw-bold" for="courier">Please Select Courier</label><br>
                         <input id="jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
@@ -777,8 +775,8 @@
         </div>
 
         {{-- edit shipping fee --}}
-        <div class="modal fade" id="edit-shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="edit-shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header text-center">
@@ -797,24 +795,21 @@
                             placeholder="Weight (kg)" style="margin-bottom: 7px; color: #003060;"><br>
 
                         <label class="fw-bold" for="size">Packaging Size</label><br>
-                        <input id="edit-width" name="width" type="number" class="form-control"
-                            placeholder="Width (cm)" style="margin-bottom: 7px; color: #003060;"><br>
+                        <input id="edit-width" name="width" type="number" class="form-control" placeholder="Width (cm)"
+                            style="margin-bottom: 7px; color: #003060;"><br>
                         <input id="edit-height" name="height" type="number" class="form-control"
                             placeholder="Height (cm)" style="margin-bottom: 7px; color: #003060;"><br>
                         <input id="edit-length" name="length" type="number" class="form-control"
                             placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
 
                         <label class="fw-bold" for="courier">Please Select Courier</label><br>
-                        <input id="edit-jrs" class="ms-2" name="courier" type="radio"
-                            value="JRS Express">
+                        <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                         <label for="edit-jrs">JRS Express</label><br>
-                        <input id="edit-jt" class="ms-2" name="courier" type="radio"
-                            value="J&T Express">
+                        <input id="edit-jt" class="ms-2" name="courier" type="radio" value="J&T Express">
                         <label for="edit-jt">J&T Express</label>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="edit-shipping-save-btn"
-                            class="btn mx-auto w-25 text-white rounded-3"
+                        <button type="button" id="edit-shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
                             style="background-color: #E55B13;">Save</button>
                     </div>
                 </div>
@@ -826,30 +821,26 @@
 {{-- </div> --}}
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 <script>
     // delete
     var sale_delete = document.getElementById('sale-delete');
     var exchange_delete = document.getElementById('exchange-delete');
     var rent_delete = document.getElementById('rent-delete');
-
     sale_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
         window.location.href = "/mylist/delete/" + id.value;
     });
-
     exchange_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
         window.location.href = "/mylist/delete/" + id.value;
     });
-
     rent_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
         window.location.href = "/mylist/delete/" + id.value;
     });
-
     // update    
     var edit_modal = document.getElementById('edit-modal-category');
     var edit_courier;
@@ -974,71 +965,55 @@
         }
         updateListingModal.show();
     }
-
     // update btn
     var sale_update_btn = document.getElementById('sale-update');
     var exchange_update_btn = document.getElementById('exchange-update');
     var rent_update_btn = document.getElementById('rent');
-
-
     sale_update_btn.addEventListener('click', () => {
         var sale_form = document.getElementById('edit-sale-form');
         var book_id = document.getElementById('edit-book-id');
-
         var edit_weight = document.getElementById('edit-weight');
         var edit_width = document.getElementById('edit-width');
         var edit_height = document.getElementById('edit-height');
         var edit_length = document.getElementById('edit-length');
-
         document.getElementById('edit-sale-weight').value = edit_weight.value;
         document.getElementById('edit-sale-width').value = edit_width.value
         document.getElementById('edit-sale-height').value = edit_height.value;
         document.getElementById('edit-sale-length').value = edit_length.value;
         document.getElementById('edit-sale-courier').value = edit_courier;
-
         sale_form.action = "/mylist/updateSale/" + book_id.value;
         sale_form.submit();
     });
-
     exchange_update_btn.addEventListener('click', () => {
         var exchange_form = document.getElementById('edit-exchange-form');
         var book_id = document.getElementById('edit-book-id');
-
         var edit_weight = document.getElementById('edit-weight');
         var edit_width = document.getElementById('edit-width');
         var edit_height = document.getElementById('edit-height');
         var edit_length = document.getElementById('edit-length');
-
         document.getElementById('edit-exchange-weight').value = edit_weight.value;
         document.getElementById('edit-exchange-width').value = edit_width.value
         document.getElementById('edit-exchange-height').value = edit_height.value;
         document.getElementById('edit-exchange-length').value = edit_length.value;
         document.getElementById('edit-exchange-courier').value = edit_courier;
-
         exchange_form.action = "/mylist/updateExchange/" + book_id.value;
         exchange_form.submit();
     });
-
     rent_update_btn.addEventListener('click', () => {
         var rent_form = document.getElementById('edit-rent-form');
         var book_id = document.getElementById('edit-book-id');
-
         var edit_weight = document.getElementById('edit-weight');
         var edit_width = document.getElementById('edit-width');
         var edit_height = document.getElementById('edit-height');
         var edit_length = document.getElementById('edit-length');
-
         document.getElementById('edit-rent-weight').value = edit_weight.value;
         document.getElementById('edit-rent-width').value = edit_width.value
         document.getElementById('edit-rent-height').value = edit_height.value;
         document.getElementById('edit-rent-length').value = edit_length.value;
         document.getElementById('edit-rent-courier').value = edit_courier;
-
         rent_form.action = "/mylist/rentExchange/" + book_id.value;
         rent_form.submit();
     });
-
-
     edit_modal.addEventListener('change', () => {
         if (edit_modal.value == 'Sale') {
             document.getElementById("edit-sale-div").style.display = "flex";
@@ -1054,7 +1029,6 @@
             document.getElementById("edit-rent-div").style.display = "flex";
         }
     });
-
     // sort select    
     var sort_by = document.getElementById('sort');
     sort_by.addEventListener('change', function() {
@@ -1083,10 +1057,8 @@
     const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
     const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
     const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip);
-
     const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
     const tooltipEditSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleShippingToolTip);
-
     // modals
     const createListingModal = new bootstrap.Modal('#createListingModal', {
         keyboard: false
@@ -1112,7 +1084,6 @@
     var edit_exchange_shipping_fee_btn = document.getElementById('edit-exchange-shipping-fee-btn');
     var edit_rent_shipping_fee_btn = document.getElementById('edit-rent-shipping-fee-btn');
     var edit_shipping_save_btn = document.getElementById('edit-shipping-save-btn');
-
     // shipping form inputs
     var weight = document.getElementById('weight');
     var width = document.getElementById('width');
@@ -1139,26 +1110,21 @@
     var rent_height = document.getElementById('rent-height');
     var rent_length = document.getElementById('rent-length');
     var rent_courier = document.getElementById('rent-courier');
-
     create_listing_btn.addEventListener('click', function() {
         createListingModal.show();
     });
-
     back_btn.addEventListener("click", function() {
         shippingModal.hide();
         createListingModal.show();
     });
-
     sale_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
     });
-
     exchange_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
     });
-
     rent_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();
@@ -1182,7 +1148,6 @@
     var sale_form = document.getElementById('sale-form');
     var exchange_form = document.getElementById('exchange-form');
     var rent_form = document.getElementById('rent-form');
-
     sale_form.addEventListener('submit', function(event) {
         sale_weight.value = weight.value;
         sale_width.value = width.value;
@@ -1190,7 +1155,6 @@
         sale_length.value = length.value;
         sale_courier.value = courier;
     });
-
     exchange_form.addEventListener('submit', function(event) {
         exchange_weight.value = weight.value;
         exchange_width.value = width.value;
@@ -1198,7 +1162,6 @@
         exchange_length.value = length.value;
         exchange_courier.value = courier;
     });
-
     rent_form.addEventListener('submit', function(event) {
         rent_weight.value = weight.value;
         rent_width.value = width.value;
@@ -1206,7 +1169,6 @@
         rent_length.value = length.value;
         rent_courier.value = courier;
     });
-
     shipping_save_btn.addEventListener('click', function() {
         if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
             alert("please complete every fields");
@@ -1227,7 +1189,6 @@
             createListingModal.show();
         }
     });
-
     edit_shipping_save_btn.addEventListener('click', () => {
         // var book_id = document.getElementById('edit-book-id');
         var edit_weight = document.getElementById('edit-weight');
@@ -1236,7 +1197,6 @@
         var edit_length = document.getElementById('edit-length');
         var edit_jrs_radio = document.getElementById('edit-jrs');
         var edit_jt_radio = document.getElementById('edit-jt');
-
         if (edit_weight.value == "" || edit_width.value == "" || edit_height.value == "" || edit_length.value ==
             "") {
             alert("Please fill all the inputs");
@@ -1248,14 +1208,11 @@
             } else {
                 edit_courier = null;
             }
-
             editShippingModal.hide();
             updateListingModal.show();
         }
-
         // alert(edit_weight.value + " " + edit_width.value + " " + edit_height.value + " " + edit_length.value + " " + edit_courier);
     });
-
     // list category
     var list_category = document.getElementById("modal-category");
     list_category.addEventListener("change", function() {
@@ -1294,7 +1251,6 @@
     var edit_sale_image_upload = document.getElementById("edit-sale-image");
     var exchange_image_upload = document.getElementById("edit-exchange-image");
     var rent_image_upload = document.getElementById("edit-rent-image");
-
     edit_sale_image_upload.addEventListener("change", function() {
         var image = document.getElementById("edit-sale-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
