@@ -74,7 +74,7 @@
                 <div class="profile-details">
                     <p>Change Profile Photo</p>
                 </div>
-                <img class="img mx-auto rounded-circle border" id="img-icon" src="../assets/accounts.png"
+                <img class="img mx-auto rounded-circle border" id="img-icon" src="{{ asset('images/profile_photos/' . $user->profile_photo) }}"
                     alt="upload_profile" width="80" height="80">
                 <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo" required>
                 <label for="profileUpload" class="btn mx-auto mt-3 py-1 px-0 upload-btn">Upload</label>
@@ -83,20 +83,20 @@
             <div class="col mx-2 d-flex justify-content-center flex-column w-50">
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="firstName" name="first_name" type="text"
-                        placeholder="First Name" style="margin-bottom: 12px; color: #003060;" required>
+                        placeholder="First Name" style="margin-bottom: 12px; color: #003060;" value="{{ $user->first_name }}" required>
                 </div>
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="email" name="email" type="email"
-                        placeholder="Email" style="margin-bottom: 12px; color: #003060;" required>
+                        placeholder="Email" style="margin-bottom: 12px; color: #003060;" value="{{ $user->email }}" required>
                 </div>
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="address" name="address" type="text"
-                        placeholder="Address" style="margin-bottom: 8px; color: #003060;" required>
+                        placeholder="Address" style="margin-bottom: 8px; color: #003060;" value="{{ $user->address }}" required>
                 </div>
                 <div class="mx-1 d-flex justify-content-center form-group">
                     <select class="w-100 mt-4 fs-6 px-2 form-control form-select" name="gender" id="gender"
-                        style="margin-bottom: 12px; color: #003060;" required>
-                        <option value="" disabled selected>Gender</option>
+                        style="margin-bottom: 12px; color: #003060;" value="{{ $user->gender }}" required>
+                        {{-- <option  disabled selected>Gender</option> --}}
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -105,21 +105,21 @@
             <div class="col mx-2 d-flex justify-content-center flex-column w-50">
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="lastName" name="last_name" type="text"
-                        placeholder="Last Name" style="margin-bottom: 12px; color: #003060;" required>
+                        placeholder="Last Name" style="margin-bottom: 12px; color: #003060;" value="{{ $user->last_name }}" required>
                 </div>
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="phoneNumber" name="phone_number" type="text"
-                        placeholder="Phone Number" style="margin-bottom: 12px; color: #003060;" required>
+                        placeholder="Phone Number" style="margin-bottom: 12px; color: #003060;" value="{{ $user->phone_number }}" required>
                 </div>
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="birthday" name="birthday" type="text"
-                        placeholder="Birthday" onfocus="(this.type='date')"
+                        placeholder="Birthday" value="{{ $user->birthday }}" onfocus="(this.type='date')"
                         onblur="if(this.value==''){this.type='text'}" style="margin-bottom: 12px; color: #003060;"
                         required>
                 </div>
                 <div class="mx-1 d-flex justify-content-center">
                     <input class="w-100 mt-3 fs-6 px-2 form-control" id="age" name="age" type="number" placeholder="Age"
-                        style="margin-bottom: 12px; color: #003060;" required>
+                        style="margin-bottom: 12px; color: #003060;" value="{{ $user->age }}" required>
                 </div>
             </div>
         </div>

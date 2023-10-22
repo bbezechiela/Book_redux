@@ -48,9 +48,9 @@ class UserController extends Controller
         if (session()->has('user')) {
 
             // $users = Users::where();
-            // $users = Users::find(session('id'));
+            $user = Users::find(session('id'));
             $post = Books::all();
-            return view('users.homepage', ['post' => $post]);
+            return view('users.homepage', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
         } else {
@@ -96,7 +96,13 @@ class UserController extends Controller
 
     public function categories()
     {
-        return view('users.categories');
+        if (session()->has('user')) {
+            $book = Books::all();
+            return view('users.categories', ['book' => $book]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        
     }
 
     // public function myList()
@@ -115,7 +121,12 @@ class UserController extends Controller
 
     public function myProfile()
     {
-        return view('users.myProfile');
+        if (session()->has('user')) {
+            $user = Users::find(session('id'));
+            return view('users.myProfile', ['user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }        
     }
 
     public function myPurchase()
