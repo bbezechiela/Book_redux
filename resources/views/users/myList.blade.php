@@ -368,7 +368,7 @@
                                         <input type="file" name="book_photo" id="rent-image" class="d-none">
                                         <label for="rent-image" class="position-relative w-100 h-100"
                                             style="cursor: pointer;">
-                                            <img id="rent-book-image" src="../assets/image.png" alt="image"
+                                            <img id="rent-book-image" src="/assets/image.png" alt="image"
                                                 class="img-fluid position-absolute top-50 start-50 translate-middle"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 data-bs-title="Click to Upload Image" width="170" height="170">
@@ -968,7 +968,9 @@
     // update btn
     var sale_update_btn = document.getElementById('sale-update');
     var exchange_update_btn = document.getElementById('exchange-update');
-    var rent_update_btn = document.getElementById('rent');
+    var rent_update_btn = document.getElementById('rent-update');
+
+
     sale_update_btn.addEventListener('click', () => {
         var sale_form = document.getElementById('edit-sale-form');
         var book_id = document.getElementById('edit-book-id');
@@ -1011,7 +1013,8 @@
         document.getElementById('edit-rent-height').value = edit_height.value;
         document.getElementById('edit-rent-length').value = edit_length.value;
         document.getElementById('edit-rent-courier').value = edit_courier;
-        rent_form.action = "/mylist/rentExchange/" + book_id.value;
+
+        rent_form.action = "/mylist/updateExchange/" + book_id.value;
         rent_form.submit();
     });
     edit_modal.addEventListener('change', () => {
@@ -1235,6 +1238,7 @@
     var sale_image_upload = document.getElementById("sale-image");
     var exchange_image_upload = document.getElementById("exchange-image");
     var rent_image_upload = document.getElementById("rent-image");
+
     sale_image_upload.addEventListener("change", function() {
         var image = document.getElementById("sale-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);

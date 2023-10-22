@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Messages | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/message-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Messages | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/message-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -14,7 +14,8 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
-    <div id="content" class="border content">
+    {{-- <div id="content" class="border content"> Changes from me --}}
+        <div id="content" class="pe-0 border content" style="max-height: 50%">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -48,12 +49,12 @@
                 </div>
             </div>
         </ul>
-        <div class="container py-5">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" id="chat3" style="border-radius: 5px;">
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row min-vh-100 border">
                                 <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                     <div class="p-3">
                                         <div class="input-group rounded mb-3">
@@ -63,7 +64,8 @@
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </span>
                                         </div>
-                                        <div class="your-scrollable-element overflow-auto" style="max-height: 600px">
+                                        {{-- shit --}}
+                                        <div class="your-scrollable-element overflow-y-auto">
                                             <ul class="list-unstyled mb-0">
                                                 <li class="p-2 border-bottom">
                                                     <a href="#!"
@@ -256,7 +258,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-lg-7 col-xl-8">
+                                {{-- shit --}}
+                                <div class="col-md-6 col-lg-7 col-xl-8"> 
                                     <div class="chat-about position-sticky top-0">
 
                                         <h6 class="m-b-0">Kate Moss<button type="button" class="btn menu-btn"
@@ -265,8 +268,9 @@
                                             </button>
                                         </h6>
                                     </div>
+                                    {{-- shit --}}
                                     <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
-                                        style="position: relative; max-height: 500px">
+                                        style="position: relative;">
                                         <div class="d-flex flex-row justify-content-start body-img">
                                             <img src="../assets/Eubert.png" alt="user_img"
                                                 style="width: 45px; height: 100%;">
@@ -302,7 +306,8 @@
                                                 style="width: 45px; height: 100%;">
                                             <div>
                                                 <p class="small p-2 ms-3 mb-1 rounded-3"
-                                                    style="background-color: #fff; border: 1px solid #E55B13;">Duis aute
+                                                    style="background-color: #fff; border: 1px solid #E55B13;">Duis
+                                                    aute
                                                     irure
                                                     dolor in reprehenderit in voluptate velit esse cillum dolore eu
                                                     fugiat nulla pariatur.
@@ -387,7 +392,7 @@
                                         class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
                                         <img src="../assets/osama.png" alt="user_img"
                                             style="width: 40px; height: 100%; margin-right: 8px;">
-                                        <input type="text" class="form-control form-control-lg"
+                                        <input type="textarea" class="form-control form-control-lg"
                                             id="exampleFormControlInput2" style="font-size: 13px;"
                                             placeholder="Type message">
                                         <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
@@ -403,17 +408,20 @@
             </div>
         </div>
         <!-- User Menu Modal -->
-        <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel" aria-hidden="true">
+        <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="side-img">
                             <img src="../assets/osama.png" alt="user_img"
-                                class="d-flex align-self-center me-3 with-border"></div>
+                                class="d-flex align-self-center me-3 with-border">
+                        </div>
                         <div class="pt-1">
                             <p class="fw-bold mb-0 name-msg">Ben Smith</p>
                         </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="d-flex justify-content-between align-items-center mb-1 menu">
@@ -451,49 +459,56 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="report-details">
                         <div class="reasons">
                             <p>Please select
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Prohibited Item
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Scam
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Counterfeit
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Offensive chat messages/images/videos
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Data privacy violation
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Others
-                                    </label>
-                                </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Prohibited Item
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Scam
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Counterfeit
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Offensive chat messages/images/videos
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Data privacy violation
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Others
+                                </label>
+                            </div>
                             </p>
                         </div>
                         <div class="mb-3">
@@ -503,23 +518,23 @@
                         </div>
                         <div class="supporting-images">
                             <p>Supporting Images:
-                                <div class="image-container">
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
+                            <div class="image-container">
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
                                 </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                                <div class="image-holder">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </div>
+                            </div>
                             </p>
                         </div>
 
@@ -533,6 +548,6 @@
 
     </div>
     @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+        'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+        'aos_link' => '/aos-master/dist/aos.js',
     ])
