@@ -176,8 +176,8 @@
                                 <p>Lives in {{ $user_id->address }}</p>
                                 <button class="message-button"><i class="fa fa-envelope"
                                         aria-hidden="true"></i>Message</button>
-                                <button class="view-profile-button"><i class="fa fa-eye" aria-hidden="true"></i>View
-                                    Profile</button>
+                                <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye" aria-hidden="true"></i>View
+                                    Profile</button></a>
                             </div>
                         </div>
                     </div>

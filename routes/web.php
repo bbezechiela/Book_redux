@@ -39,6 +39,10 @@ Route::get('/signup', [UserController::class, 'signup']);
 
 Route::get('/sidebar', [UserController::class, 'sidebar']);
 
+Route::get('/following', [UserController::class, 'following']);
+
+Route::get('/followers', [UserController::class, 'followers']);
+
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/notification', [UserController::class, 'notification']);
@@ -52,6 +56,14 @@ Route::get('/messages', [UserController::class, 'message']);
 Route::get('/product/{id}/{user_id} ', [UserController::class, 'singleProduct']);
 
 Route::get('/cart', [UserController::class, 'cart']);
+
+Route::get('/bookclub', [UserController::class, 'bookClub']);
+
+Route::get('/sellingclub', [UserController::class, 'bookSellingClub']);
+
+Route::get('/exchangeclub', [UserController::class, 'bookExchangeClub']);
+
+Route::get('/rentingclub', [UserController::class, 'bookRentingClub']);
 
 Route::get('/checkout', [UserController::class, 'checkout']);
 
@@ -82,6 +94,12 @@ Route::get('/addresses', [UserController::class, 'address']);
 Route::get('/changepassword', [UserController::class, 'changePassword']);
 
 Route::get('/reviewsandratings', [UserController::class, 'userReviewsAndRatings']);
+
+Route::get('/userlistings', [UserController::class, 'userProfilePreview']);
+
+Route::get('/userreviews', [UserController::class, 'previewReviews']);
+
+Route::get('/userwishlist', [UserController::class, 'previewWishlist']);
 
 Route::post('/register', [UserController::class, 'store']);
 

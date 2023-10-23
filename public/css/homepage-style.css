@@ -147,6 +147,7 @@ a:hover {
 .input-group-text i{
     color: #003060;
 }
+
 @media screen and (max-width: 576px) {
     #logo {
         display: none;

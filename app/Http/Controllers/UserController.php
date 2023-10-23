@@ -20,6 +20,16 @@ class UserController extends Controller
         return view('components.sidebar');
     }
 
+    public function following()
+    {
+        return view('users.following');
+    }
+
+    public function followers()
+    {
+        return view('users.followers');
+    }
+
     public function welcome()
     {
         return view('landing_page');
@@ -73,6 +83,26 @@ class UserController extends Controller
     public function cart()
     {
         return view('users.cart');
+    }
+
+    public function bookClub()
+    {
+        return view('users.bookClub');
+    }
+
+    public function bookSellingClub()
+    {
+        return view('users.bookSellingClub');
+    }
+
+    public function bookExchangeClub()
+    {
+        return view('users.bookExchangeClub');
+    }
+
+    public function bookRentingClub()
+    {
+        return view('users.bookRentingClub');
     }
 
     public function checkout()
@@ -152,6 +182,21 @@ class UserController extends Controller
     public function message()
     {
         return view('users.message');
+    }
+
+    public function userProfilePreview()
+    {
+        return view('users.userProfilePreview');
+    }
+
+    public function previewReviews()
+    {
+        return view('users.previewReviews');
+    }
+
+    public function previewWishlist()
+    {
+        return view('users.previewWishlist');
     }
 
     public function toReceive()

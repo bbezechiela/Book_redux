@@ -1,7 +1,7 @@
 @include('partials.__header', [
-'title' => 'Wish List | BookRedux',
+'title' => 'User Wish List | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/wishlist-style.css',
+'css_link' => '/css/preview-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
 ])
 
@@ -10,20 +10,19 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0">
-    {{-- <div class="row mx-0"> --}}
     <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-
-            <div class="w-100 d-flex mt-1 p-0">
+            <div class="w-100 d-flex mt-2 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
-                <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
+                <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -31,7 +30,7 @@
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
+                        <input class="form-control rounded-3" type="text" placeholder="Search">
                     </div>
                     <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
@@ -49,30 +48,68 @@
                 </div>
             </div>
         </ul>
-        
-        <div class="container-fluid py-0 px-4">
-            <div class="row mt-3 justify-content-between">
-                <div class="col-4 d-flex flex-row">
-                    <h2 class="fw-bold" style="margin-right: 10px;">Wish List</h2>
-                    <button class="create-btn btn px-3 py-1 ms-2 d-flex align-items-center my-auto"
-                        data-bs-toggle="modal" data-bs-target="#create-modal"><i class="fa fa-plus-circle"
-                            aria-hidden="true" style="margin-right: 5px;"></i>Create Album</button>
+        <div class="container text-center seller-details mx-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <div class="d-flex align-items-center">
+                        <img src="../assets/nestine.png" alt="seller image" class="circle-picture">
+                        <div class="user-info">
+                            <p>Nestine Nicole Navarro</p>
+                            <p>2K followers . 400 following</p>
+                            <p>Lives in Tacloban City</p>
+                            <button class="message-button"><i class="fa fa-envelope"
+                                    aria-hidden="true"></i>Message</button>
+                            <button class="follow-button"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-ellipsis-h ellipsis-icon ml-auto" aria-hidden="true"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-circle"
+                                            aria-hidden="true" style="margin-right: 7px"></i>
+                                        Report</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa fa-ban" aria-hidden="true"
+                                            style="margin-right: 7px"></i>Block</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
                 </div>
-                <!-- <div class="col-4 d-flex justify-content-end">
-                    <label class="fw-bold" for="sort">Sort by</label>
-                    <select class="px-3 py-1 h-75 ms-2" name="" id="sort">
-                        <option value="Author (A to Z)">Author (A to Z)</option>
-                        <option value="Author(Z to A)">Author(Z to A)</option>
-                        <option value="Date Added(Newest)">Date Added(Newest)</option>
-                        <option value="Date Added(Oldest)">Date Added(Oldest)</option>
-                        <option value="Title(A to Z)">Title(A to Z)</option>
-                        <option value="Title(Z to A)">Title(Z to A)</option>
-                    </select>
-                </div> -->
+                <div class="col">
+                    <div class="ratings">
+                        <p>Ratings <span class="rate">100</span></p>
+                        <p>Books Bought <span class="bought">20</span></p>
+                        <p>Books Lent <span class="lent">120</span></p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="ratings">
+                        <p>Books Sold <span class="sold">203</span></p>
+                        <p>Books Exchanged <span class="exchange">59</span></p>
+                        <p>Books Rented <span class="rent">9</span></p>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="navbar-details">
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/userlistings">Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="/userreviews">User Reviews and Ratings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/userwishlist">Wish List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="wishlist">
+            <h4 style="margin-left: 2em;">Wish List</h4>
             <div class="wishlist mx-4 mt-2 ml-7">
-                <h4>Nestine Wish List <button class="settings-button" data-bs-toggle="modal"
-                        data-bs-target="#settings-modal"><i class="fa fa-cog" aria-hidden="true"></i></button></h4>
+                <h6>Nestine Wish List</h6>
                 <div class="mx-3 pb-3 d-flex overflow-x-auto">
                     <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
                         <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
@@ -188,8 +225,7 @@
             </div>
             <!-- Another WIshlist -->
             <div class="wishlist mx-4 mt-2 ml-7">
-                <h4>Eubert Wish List <button class="settings-button"><i class="fa fa-cog"
-                            aria-hidden="true"></i></button></h4>
+                <h6>Eubert Wish List</h6>
                 <div class="mx-3 pb-3 d-flex overflow-x-auto">
                     <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
                         <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
@@ -303,183 +339,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Another WIshlist -->
-            <div class="wishlist mx-4 mt-2 ml-7">
-                <h4>O'sama Wish List <button class="settings-button"><i class="fa fa-cog"
-                            aria-hidden="true"></i></button></h4>
-                <div class="mx-3 pb-3 d-flex overflow-x-auto">
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card mx-2 shadow p-3" style="width: 9rem; flex: 0 0 auto;">
-                        <img src="../assets/brown_book.png" class="card-img-top" alt="bookimage">
-                        <div class="card-body p-0">
-                            <p class="card-text my-0 text-center custom-bg-color text-white">Magic Falling</p>
-                            <a href="" class="d-flex align-items-center">
-                                See more
-                                <i class="fa fa-long-arrow-right" aria-hidden="true"
-                                    style="margin-left: 9px; font-size: 14px;"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
-        <!-- Create Modal -->
-        <div class="modal fade" id="create-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="create-modalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 header-create">Create Album</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="list-name" class="form-label">List Name</label>
-                            <input type="text" class="form-control" id="list-name" placeholder="Enter wish list name"
-                                style="margin-bottom: 12px; color: #003060;">
-                            <label for="privacy" class="form-label">Privacy</label>
-                            <div class="form-group">
-                                <select class="form-control form-select" aria-label="Select privacy"
-                                    style="color: #003060;">
-                                    <option value="public">Public</option>
-                                    <option value="private">Private</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary btn-create">Create</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Settings Modal -->
-        <div class="modal fade" id="settings-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="create-modalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 header-settings">Nestine Wish List Settings</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="list-name" class="form-label">List Name</label>
-                            <input type="text" class="form-control" id="list-name" placeholder="Enter wish list name"
-                                style="margin-bottom: 12px; color: #003060;">
-                            <label for="privacy" class="form-label">Privacy</label>
-                            <div class="form-group">
-                                <select class="form-control form-select" aria-label="Select privacy"
-                                    style="color: #003060;">
-                                    <option value="public">Public</option>
-                                    <option value="private">Private</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary btn-delete">Delete</button>
-                        <button type="button" class="btn btn-primary btn-update">Update</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 @include('partials.__footer', [

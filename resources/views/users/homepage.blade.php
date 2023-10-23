@@ -103,7 +103,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $daily->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -178,7 +178,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $daily->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -545,7 +545,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $sale->author }}<br>
                                     {{ $sale->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $sale->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $sale->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -631,7 +631,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $rent->author }}<br>
                                     {{ $rent->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $rent->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -706,7 +706,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $daily->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -781,7 +781,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $daily->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -1177,7 +1177,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $sale->author }}<br>
                                     {{ $sale->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $sale->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $sale->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
@@ -1263,7 +1263,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $rent->author }}<br>
                                     {{ $rent->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">P{{ $rent->price }}</span>
+                                    <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                     <div class="button-container">
                                         <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button>
