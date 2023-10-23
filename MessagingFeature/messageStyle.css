@@ -1,0 +1,57 @@
+* {
+	margin: 0px;
+	box-sixing: border-box;
+}
+
+#outerContainer {
+	height: 600px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.messageRight {
+	height: auto;
+	width: 120px;
+	color: red;
+	border: 1px solid white;
+	clear: both;
+	float: right;
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.messageLeft {				
+	height: auto;
+	width: 120px;
+	color: blue;
+	border: 1px solid pink;
+	clear: both;
+	float: left;
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.searchResultCtn {
+	border: 1px solid green;
+
+}
+
+
+/* Conversation Container after pag ig click it user ha search result container */
+.conversationContainer {
+	height: 400px;
+	width: 400px;
+	border: 1px solid blue;
+	overflow: scroll;
+}
+
+#conversationList{
+	height: 200px;
+	width: 200px;
+	border: 1px solid red;
+}
