@@ -105,11 +105,11 @@
                             type="email" placeholder="Email" style="margin-bottom: 12px; color: #003060;"
                             value="{{ $user->email }}" required>
                     </div>
-                    <div class="mx-1 d-flex justify-content-center">
+                    {{-- <div class="mx-1 d-flex justify-content-center">
                         <input class="w-100 mt-3 fs-6 px-2 form-control" id="address" name="address"
                             type="text" placeholder="Address" style="margin-bottom: 8px; color: #003060;"
                             value="{{ $user->address }}" required>
-                    </div>
+                    </div> --}}
                     <div class="mx-1 d-flex justify-content-center form-group">
                         <select class="w-100 mt-4 fs-6 px-2 form-control form-select" name="gender" id="gender"
                             style="margin-bottom: 12px; color: #003060;" value="{{ $user->gender }}" required>
@@ -136,11 +136,11 @@
                             onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"
                             style="margin-bottom: 12px; color: #003060;" required>
                     </div>
-                    <div class="mx-1 d-flex justify-content-center">
+                    {{-- <div class="mx-1 d-flex justify-content-center">
                         <input class="w-100 mt-3 fs-6 px-2 form-control" id="age" name="age"
                             type="number" placeholder="Age" style="margin-bottom: 12px; color: #003060;"
                             value="{{ $user->age }}" required>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>
