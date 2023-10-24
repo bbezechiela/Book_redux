@@ -79,6 +79,8 @@ Route::get('/mylikes', [UserController::class, 'myLikes']);
 
 Route::get('/myprofile', [UserController::class, 'myProfile']);
 
+Route::post('/myprofileupdate', [UserController::class, 'myProfileUpdate']);
+
 Route::get('/mypurchase', [UserController::class, 'myPurchase']);
 
 Route::get('/toreceive', [UserController::class, 'toReceive']);
@@ -130,3 +132,6 @@ Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeU
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'rentUpdate']);
 
 Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
+
+Route::post('/updatepassword', [UserController::class, 'updateUserPassword']);
+

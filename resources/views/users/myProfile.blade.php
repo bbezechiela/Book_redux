@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'My Profile | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/myProfile-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'My Profile | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/myProfile-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -65,64 +65,86 @@
                 </div>
             </div>
         </ul>
-        <div class="row px-3 py-3 mx-3 border-bottom border-2">
-            <div class="header">
-                <h4>My Profile</h4>
-                <p>Manage and protect your account</p>
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    @endforeach
+                </ul>
             </div>
-            <div class="col-3 d-flex align-items-center flex-column px-5 py-3">
-                <div class="profile-details">
-                    <p>Change Profile Photo</p>
+        @endif
+        <form id="form" action="/myprofileupdate" method="POST" enctype="multipart/form-data">
+        @csrf
+            <div class="row px-3 py-3 mx-3 border-bottom border-2">
+                <div class="header">
+                    <h4>My Profile</h4>
+                    <p>Manage and protect your account</p>
                 </div>
-                <img class="img mx-auto rounded-circle border" id="img-icon" src="{{ asset('images/profile_photos/' . $user->profile_photo) }}"
-                    alt="upload_profile" width="80" height="80">
-                <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo" required>
-                <label for="profileUpload" class="btn mx-auto mt-3 py-1 px-0 upload-btn">Upload</label>
-                <button type="button" class="btn btn-primary save-button">Save</button>
-            </div>
-            <div class="col mx-2 d-flex justify-content-center flex-column w-50">
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="firstName" name="first_name" type="text"
-                        placeholder="First Name" style="margin-bottom: 12px; color: #003060;" value="{{ $user->first_name }}" required>
-                </div>
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="email" name="email" type="email"
-                        placeholder="Email" style="margin-bottom: 12px; color: #003060;" value="{{ $user->email }}" required>
-                </div>
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="address" name="address" type="text"
-                        placeholder="Address" style="margin-bottom: 8px; color: #003060;" value="{{ $user->address }}" required>
-                </div>
-                <div class="mx-1 d-flex justify-content-center form-group">
-                    <select class="w-100 mt-4 fs-6 px-2 form-control form-select" name="gender" id="gender"
-                        style="margin-bottom: 12px; color: #003060;" value="{{ $user->gender }}" required>
-                        {{-- <option  disabled selected>Gender</option> --}}
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col mx-2 d-flex justify-content-center flex-column w-50">
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="lastName" name="last_name" type="text"
-                        placeholder="Last Name" style="margin-bottom: 12px; color: #003060;" value="{{ $user->last_name }}" required>
-                </div>
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="phoneNumber" name="phone_number" type="text"
-                        placeholder="Phone Number" style="margin-bottom: 12px; color: #003060;" value="{{ $user->phone_number }}" required>
-                </div>
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="birthday" name="birthday" type="text"
-                        placeholder="Birthday" value="{{ $user->birthday }}" onfocus="(this.type='date')"
-                        onblur="if(this.value==''){this.type='text'}" style="margin-bottom: 12px; color: #003060;"
+                <div class="col-3 d-flex align-items-center flex-column px-5 py-3">
+                    <div class="profile-details">
+                        <p>Change Profile Photo</p>
+                    </div>
+                    <img class="img mx-auto rounded-circle border" id="img-icon"
+                        src="{{ asset('images/profile_photos/' . $user->profile_photo) }}" alt="upload_profile"
+                        width="80" height="80">
+                    <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo"
                         required>
+                    <label for="profileUpload" class="btn mx-auto mt-3 py-1 px-0 upload-btn">Upload</label>
+                    <button type="submit" class="btn btn-primary save-button" onclick="document.getElementById('form').submit()">Save</button>
                 </div>
-                <div class="mx-1 d-flex justify-content-center">
-                    <input class="w-100 mt-3 fs-6 px-2 form-control" id="age" name="age" type="number" placeholder="Age"
-                        style="margin-bottom: 12px; color: #003060;" value="{{ $user->age }}" required>
+                <div class="col mx-2 d-flex justify-content-center flex-column w-50">
+                    <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="firstName" name="first_name"
+                            type="text" placeholder="First Name" style="margin-bottom: 12px; color: #003060;"
+                            value="{{ $user->first_name }}" required>
+                    </div>
+                    <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="email" name="email"
+                            type="email" placeholder="Email" style="margin-bottom: 12px; color: #003060;"
+                            value="{{ $user->email }}" required>
+                    </div>
+                    {{-- <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="address" name="address"
+                            type="text" placeholder="Address" style="margin-bottom: 8px; color: #003060;"
+                            value="{{ $user->address }}" required>
+                    </div> --}}
+                    <div class="mx-1 d-flex justify-content-center form-group">
+                        <select class="w-100 mt-4 fs-6 px-2 form-control form-select" name="gender" id="gender"
+                            style="margin-bottom: 12px; color: #003060;" value="{{ $user->gender }}" required>
+                            {{-- <option  disabled selected>Gender</option> --}}
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
                 </div>
+                <div class="col mx-2 d-flex justify-content-center flex-column w-50">
+                    <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="lastName" name="last_name"
+                            type="text" placeholder="Last Name" style="margin-bottom: 12px; color: #003060;"
+                            value="{{ $user->last_name }}" required>
+                    </div>
+                    <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="phoneNumber" name="phone_number"
+                            type="text" placeholder="Phone Number" style="margin-bottom: 12px; color: #003060;"
+                            value="{{ $user->phone_number }}" required>
+                    </div>
+                    <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="birthday" name="birthday"
+                            type="text" placeholder="Birthday" value="{{ $user->birthday }}"
+                            onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"
+                            style="margin-bottom: 12px; color: #003060;" required>
+                    </div>
+                    {{-- <div class="mx-1 d-flex justify-content-center">
+                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="age" name="age"
+                            type="number" placeholder="Age" style="margin-bottom: 12px; color: #003060;"
+                            value="{{ $user->age }}" required>
+                    </div> --}}
+                </div>
+
             </div>
-        </div>
+        </form>
 
         <div class="container text-center seller-details">
             <div class="row align-items-center">
@@ -150,6 +172,15 @@
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
-])
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+]);
+
+<script>
+    var uploaded_image = document.getElementById("profileUpload");
+
+    uploaded_image.addEventListener("change", function() {
+        var image = document.getElementById("img-icon");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    });
+</script>

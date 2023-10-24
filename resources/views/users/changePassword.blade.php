@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Change Password | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/change-password-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Change Password | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/change-password-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -65,32 +65,85 @@
                 </div>
             </div>
         </ul>
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="change-password-container">
             <div class="header">
                 <h4>Change Password</h4>
                 <p>Manage and protect your account</p>
             </div>
-            <div class="password-details">
-                <label for="username" class="form-label">Username</label>
-                <input class="form-control input-text" id="username" name="username" type="text" placeholder="Username"
-                    required>
-                <label for="password" class="form-label">Current Password</label>
-                <input class="form-control input-text" id="password" name="password" type="password"
-                    placeholder="Enter your current password" required>
-                <label for="password" class="form-label">New Password</label>
-                <input class="form-control" id="password" name="password" type="password"
-                    placeholder="Enter your new password" required>
-                <span id="pass-tip"></span><br>
-                <span class="text-secondary">
-                    Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
-                </span> <br>
-                <button type="button" class="btn btn-primary btn-save">Save</button>
-            </div>
+            <form id="form" action="/updatepassword" method="POST">
+            @csrf
+                <div class="password-details">
+                    {{-- <p>{{ Hash::check($value, $hashedValue) }}</p> --}}
+                    <label for="username" class="form-label">Username</label>
+                    <input class="form-control input-text" id="username" type="text" placeholder="Username"
+                        value="{{ $user->username }}" required>
+                    <label for="password" class="form-label">Current Password</label>
+                    <input class="form-control input-text" id="password" name="password" type="password"
+                        placeholder="Enter your current password" required>
+                    <label for="password" class="form-label">New Password</label>
+                    <input class="form-control" id="new-password" name="new_password" type="password"
+                        placeholder="Enter your new password" required>
+                    <span id="pass-tip"></span><br>
+                    <span class="text-secondary">
+                        Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                    </span> <br>
+                    <button id="save-btn" type="button" class="btn btn-primary btn-save">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
-])
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+]);
+<script>
+    var pass = document.getElementById("new-password");
+    var form = document.getElementById('form');
+    var save_btn = document.getElementById('save-btn');
+
+    pass.addEventListener("input", function() {
+        var tip = document.getElementById("pass-tip");
+        var tip_color = ["#ff0000", "#ff8b00", "#fff300", "#00ff17", "#ff00e0"];
+        var labels = ["Very Weak", "Weak", "Moderate", "Strong", "Very Strong"];
+
+        var strength = 0;
+
+        if (pass.value.match(/[a-z]+/)) {
+            strength += 1;
+        }
+        if (pass.value.match(/[A-Z]+/)) {
+            strength += 1;
+        }
+        if (pass.value.match(/[0-9]+/)) {
+            strength += 1;
+        }
+        if (pass.value.match(/[!@#$%^&*]+/)) {
+            strength += 1;
+        }
+        if (pass.value.length >= 8) {
+            strength += 1;
+        }
+
+        tip.style.color = tip_color[strength - 1];
+        tip.className += "ms-2 mb-3 fw-bold"
+        tip.textContent = labels[strength - 1];
+    });
+
+    save_btn.addEventListener('click', () => {
+        
+        // form.action = "/updatepassword";
+        form.submit();
+    })
+</script>

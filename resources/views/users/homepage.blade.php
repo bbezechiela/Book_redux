@@ -534,7 +534,7 @@
             <h4 id="for-sale-header">For Sale</h4>
             <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
                 <!-- card For Sale -->
-                @foreach ($post as $sale)
+                @foreach ($post->shuffle() as $sale)
                     @if ($sale->status == 'Sale')
                         <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
@@ -577,7 +577,7 @@
             <h4 id="for-exchange-header">For Exchange</h4>
             <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
                 <!-- card For Exchange -->
-                @foreach ($post as $exchange)
+                @foreach ($post->shuffle() as $exchange)
                     @if ($exchange->status == 'Exchange')
                         <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
@@ -620,7 +620,7 @@
             <h4 id="for-rent-header">For Rent</h4>
             <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
                 <!-- card For Rent -->
-                @foreach ($post as $rent)
+                @foreach ($post->shuffle() as $rent)
                     @if ($rent->status == 'Rent')
                         <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $rent->id }}, {{ $rent->user_id }})">

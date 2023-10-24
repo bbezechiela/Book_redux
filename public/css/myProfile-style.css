@@ -19,6 +19,7 @@
 
 .nav-link:hover {
     color: #fff;
+    font-weight: bold;
 }
 
 .nav-item:hover {

@@ -118,7 +118,7 @@
                         {{-- </form> --}}
                     </div>
                     {{-- <div class="row justify-content-center mb-5"> --}}
-                    <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto"
+                    <div id="content-cards" class="w-100 mx-2 d-flex justify-content-start px-4 overflow-x-auto"
                         style="height: 300px; margin-top: 2em;">
                         @foreach ($books as $book)
                             <div class="card col-3 m-1 shadow" style="width: 200px; flex: 0 0 auto;">

@@ -77,7 +77,6 @@ class UserController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
-        
     }
 
     public function cart()
@@ -132,7 +131,6 @@ class UserController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
-        
     }
 
     // public function myList()
@@ -156,7 +154,72 @@ class UserController extends Controller
             return view('users.myProfile', ['user' => $user]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
-        }        
+        }
+    }
+
+    public function myProfileUpdate(Request $request)
+    {
+        if (session()->has('user')) {
+            if ($request->hasFile('profile_photo')) {
+                $validated = $request->validate([
+                    'first_name' => ['required', 'min:4'],
+                    'last_name' => ['required', 'min:4'],
+                    'email' => ['required', 'email'],
+                    'phone_number' => ['required', 'max:12'],
+                    'address' => ['required', 'min:4'],
+                    'birthday' => 'required',
+                    'gender' => 'required',
+                    'age' => 'required',
+                    // 'interest' => 'required',
+                    // 'username' => 'required',
+                    // 'password' => 'required',
+                    'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                ]);                
+
+                $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('profile_photo')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
+                $validated["profile_photo"] = $fileNameToStore;
+
+                $user = Users::find(session('id'));
+                $user->update($validated);
+
+                if ($user) {
+                    return redirect('/myprofile');
+                } else {
+                    return 'error bitch';
+                }
+            } else {
+                $validated = $request->validate([
+                    'first_name' => ['required', 'min:4'],
+                    'last_name' => ['required', 'min:4'],
+                    'email' => ['required', 'email'],
+                    'phone_number' => ['required', 'max:12'],
+                    'address' => ['required', 'min:4'],
+                    'birthday' => 'required',
+                    'gender' => 'required',
+                    'age' => 'required',
+                    // 'interest' => 'required',
+                    // 'username' => 'required',
+                    // 'password' => 'required',
+                    // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                ]);
+                
+                $user = Users::find(session('id'));
+                $user->update($validated);
+
+
+                if ($user) {
+                    return redirect('/myprofile');
+                } else {
+                    return 'error bitch';
+                }
+            }
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function myPurchase()
@@ -224,16 +287,21 @@ class UserController extends Controller
         return view('users.address');
     }
 
-    public function changePassword()
+    public function changePassword(Request $request)
     {
-        return view('users.changePassword');
+        if ($request->session()->has('user')) {            
+            $user = Users::find(session('id'));
+            return view('users.changePassword', ['user' => $user]);
+        } else {
+            return view('users.signup');
+        }        
     }
 
     public function userReviewsAndRatings()
     {
         return view('users.userReviewsAndRatings');
     }
-    
+
     public function orders()
     {
         return view('users.orders');
@@ -261,10 +329,10 @@ class UserController extends Controller
             'last_name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'max:12'],
-            'address' => ['required', 'min:4'],
+            // 'address' => ['required', 'min:4'],
             'birthday' => 'required',
             'gender' => 'required',
-            'age' => 'required',
+            // 'age' => 'required',
             'interest' => 'required',
             'username' => 'required',
             'password' => 'required',
@@ -325,6 +393,23 @@ class UserController extends Controller
             return redirect()->route('home');
         } else {
             return view('users.login')->with('message', 'Incorrect username or password');
+        }
+    }
+
+    public function updateUserPassword(Request $request) {
+        $validated = $request->validate([
+            'password' => 'required',
+            'new_password' => 'required',
+        ]);
+        $validated['new_password'] = bcrypt($validated['new_password']);
+
+        $user = Users::find(session('id'));
+
+        if ($user && Hash::check($validated["password"], $user->password)) {
+            $user->update(['password' => $validated["new_password"]]);
+            return view('users.changePassword', ['user' => $user]);
+        } else {
+            return "error bitch";
         }
     }
 }
