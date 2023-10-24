@@ -179,7 +179,7 @@ class ListingController extends Controller
             'author' => ['required', 'min:4'],
             'edition' => ['required', 'min:4'],
             'genre' => ['required', 'min:2'],
-            'condition' => ['required', 'min:4'],
+            'condition' => 'required',
             'description' => ['required', 'min:4'],
             'language' => 'required',
             'weight' => 'required',

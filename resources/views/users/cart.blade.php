@@ -187,8 +187,8 @@
                         <div class="col-md-6">
                             <p class="total-items">Total (4 items): <span class="total">P544</span></p>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <button class="btn btn-primary checkout-button"><a href="/checkout">Checkout</a></button>
+                        <div class="col-md-6 text-right">                            
+                            <a class="btn btn-primary checkout-button" href="/checkout">Checkout</a>
                         </div>
                     </div>
                 </div>

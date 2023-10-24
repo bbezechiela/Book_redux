@@ -115,3 +115,5 @@ Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'rentUpdat
 
 Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
+Route::post('/updatepassword', [UserController::class, 'updateUserPassword']);
+

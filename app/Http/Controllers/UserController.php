@@ -284,10 +284,10 @@ class UserController extends Controller
             'last_name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'max:12'],
-            'address' => ['required', 'min:4'],
+            // 'address' => ['required', 'min:4'],
             'birthday' => 'required',
             'gender' => 'required',
-            'age' => 'required',
+            // 'age' => 'required',
             'interest' => 'required',
             'username' => 'required',
             'password' => 'required',
@@ -348,6 +348,23 @@ class UserController extends Controller
             return redirect()->route('home');
         } else {
             return view('users.login')->with('message', 'Incorrect username or password');
+        }
+    }
+
+    public function updateUserPassword(Request $request) {
+        $validated = $request->validate([
+            'password' => 'required',
+            'new_password' => 'required',
+        ]);
+        $validated['new_password'] = bcrypt($validated['new_password']);
+
+        $user = Users::find(session('id'));
+
+        if ($user && Hash::check($validated["password"], $user->password)) {
+            $user->update(['password' => $validated["new_password"]]);
+            return view('users.changePassword', ['user' => $user]);
+        } else {
+            return "error bitch";
         }
     }
 }

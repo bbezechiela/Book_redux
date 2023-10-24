@@ -33,10 +33,10 @@
                         <input class="w-100 mt-3 fs-6 px-2" id="email" name="email" type="email"
                             placeholder="Email" required>
                     </div>
-                    <div class="mx-1 d-flex justify-content-center">
+                    {{-- <div class="mx-1 d-flex justify-content-center">
                         <input class="w-100 mt-3 fs-6 px-2" id="address" name="address" type="text"
                             placeholder="Address" required>
-                    </div>
+                    </div> --}}
                     <div class="mx-1 d-flex justify-content-center">
                         <select class="w-100 mt-4 fs-6 px-2" name="gender" id="gender" required>
                             <option value="" disabled selected>Gender</option>
@@ -59,10 +59,10 @@
                             placeholder="Birthday" onfocus="(this.type='date')"
                             onblur="if(this.value==''){this.type='text'}" required>
                     </div>
-                    <div class="mx-1 d-flex justify-content-center">
+                    {{-- <div class="mx-1 d-flex justify-content-center">
                         <input class="w-100 mt-3 fs-6 px-2" id="age" name="age" type="number"
                             placeholder="Age" required>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row px-3 py-3 mx-3">
