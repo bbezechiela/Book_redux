@@ -72,13 +72,13 @@
             </div>
             <div class="password-details">
                 <label for="username" class="form-label">Username</label>
-                <input class="form-control input-text" id="username" name="username" type="text" placeholder="Username"
+                <input class="form-control input-text" id="username" name="username" type="text" placeholder="Username" value="{{ $user->username }}"
                     required>
                 <label for="password" class="form-label">Current Password</label>
-                <input class="form-control input-text" id="password" name="password" type="password"
+                <input class="form-control input-text" id="password" name="password" type="password" 
                     placeholder="Enter your current password" required>
                 <label for="password" class="form-label">New Password</label>
-                <input class="form-control" id="password" name="password" type="password"
+                <input class="form-control" id="new-password" name="password" type="password"
                     placeholder="Enter your new password" required>
                 <span id="pass-tip"></span><br>
                 <span class="text-secondary">
@@ -93,4 +93,34 @@
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
-])
+]);
+<script>
+    var pass = document.getElementById("new-password");
+    pass.addEventListener("input", function() {
+        var tip = document.getElementById("pass-tip");
+        var tip_color = ["#ff0000", "#ff8b00", "#fff300", "#00ff17", "#ff00e0"];
+        var labels = ["Very Weak", "Weak", "Moderate", "Strong", "Very Strong"];
+
+        var strength = 0;
+
+        if (pass.value.match(/[a-z]+/)) {
+            strength += 1;
+        }
+        if (pass.value.match(/[A-Z]+/)) {
+            strength += 1;
+        }
+        if (pass.value.match(/[0-9]+/)) {
+            strength += 1;
+        }
+        if (pass.value.match(/[!@#$%^&*]+/)) {
+            strength += 1;
+        }
+        if (pass.value.length >= 8) {
+            strength += 1;
+        }
+
+        tip.style.color = tip_color[strength - 1];
+        tip.className += "ms-2 mb-3 fw-bold"
+        tip.textContent = labels[strength - 1];
+    });
+</script>
