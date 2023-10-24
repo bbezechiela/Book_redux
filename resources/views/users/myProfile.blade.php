@@ -152,4 +152,13 @@
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
-])
+]);
+
+<script>
+    var uploaded_image = document.getElementById("profileUpload");
+
+    uploaded_image.addEventListener("change", function() {
+        var image = document.getElementById("img-icon");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    });
+</script>
