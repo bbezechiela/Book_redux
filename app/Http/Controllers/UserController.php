@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Books;
 use App\Models\User;
 use App\Models\Users;
@@ -312,7 +313,7 @@ class UserController extends Controller
                 'id' => $user->id,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
-                'address' => $validated["address"],
+                // 'address' => $validated["address"],
                 'user' => $validated["username"],
                 'profile_pic' => $validated["profile_photo"]
             ]);
@@ -341,7 +342,7 @@ class UserController extends Controller
                 'id' => $user["id"],
                 'first_name' => $user["first_name"],
                 'last_name' => $user["last_name"],
-                'address' => $user["address"],
+                // 'address' => $user["address"],
                 'user' => $user["username"],
                 'profile_pic' => $user["profile_photo"]
             ]);
@@ -363,6 +364,27 @@ class UserController extends Controller
         if ($user && Hash::check($validated["password"], $user->password)) {
             $user->update(['password' => $validated["new_password"]]);
             return view('users.changePassword', ['user' => $user]);
+        } else {
+            return "error bitch";
+        }
+    }
+
+    public function storeAddress(Request $request, $id) {
+        $validated = $request->validate([
+            'name' => 'required',
+            'contact_number' => 'required',
+            'province_city_brgy' => 'required',
+            'postal_code' => 'required',
+            'street_building_house' => 'required'
+        ]);
+
+        $post_address = Address::creare([
+            'user_id' => $id,
+            $validated
+        ]);
+
+        if ($post_address) {
+            return redirect('addresses');
         } else {
             return "error bitch";
         }

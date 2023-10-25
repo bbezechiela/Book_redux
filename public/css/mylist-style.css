@@ -179,4 +179,9 @@ button,
     color: #003060;
 }
 
+a:hover {
+    color: #E55B13;
+    font-weight: bold;
+}
+
 

@@ -106,16 +106,13 @@
                 </div>
         </ul>
         <!--  Educational -->
-        <div id="educational" class="mx-2 px-3">
-            {{-- @if ($book->count() > 0) --}}
-                
-            
+        <div id="educational" class="mx-2 px-3">            
                 <h4 id="educational-header">Educational</h4>
                 <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
                     <!-- card Educational -->
                     @foreach ($book as $educational)
                         @if (preg_match('/Educational/i', $educational->genre))
-                            @if ($educational->status == "Exchange" && $educational->genre->count() > 0)
+                            @if ($educational->status == "Exchange" && !empty($educational->genre))
                                 <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                                     <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
                                     <div class="card-body py-0">
@@ -145,7 +142,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @else
+                            @elseif (!empty($educational->genre))
                                 <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                                     <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
                                     <div class="card-body py-0">
@@ -177,8 +174,7 @@
                                 </div>
                             @endif                            
                         @endif
-                    @endforeach
-                {{-- @endif --}}
+                    @endforeach                
             </div>
         </div>
         <div id="historical_fiction" class="mx-2 px-3">
@@ -187,7 +183,7 @@
                 <!-- card Historical Fiction -->
                 @foreach ($book as $historical_fiction)
                     @if (preg_match('/Historical Fiction/i', $historical_fiction->genre))
-                        @if ($historical_fiction->status == "Exchange")
+                        @if ($historical_fiction->status == "Exchange" && !empty($historical_fiction->genre))
                             <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                                 <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
                                 <div class="card-body py-0">
@@ -217,7 +213,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @else
+                        @elseif (!empty($historical_fiction->genre))
                             <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                                 <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
                                 <div class="card-body py-0">
@@ -247,6 +243,8 @@
                                     </div>
                                 </div>
                             </div>
+                        @else
+                            <h1>No books available</h1>
                         @endif                            
                     @endif
                 @endforeach                

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('phone_number');
-            $table->string('address');
+            // $table->string('address');
             $table->string('birthday');
             $table->string('gender');
-            $table->integer('age');
+            // $table->integer('age');
             $table->string('interest');
             $table->string('username');
             $table->string('password');

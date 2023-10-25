@@ -1,13 +1,13 @@
 @include('partials.__header', [
-'title' => 'Address | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/deliveryAddress-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Address | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/deliveryAddress-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
-<head>
+{{-- <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+</head> --}}
 
 <div id="body-container" class="container-fluid px-0">
     <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
@@ -94,50 +94,57 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New Address</h1>
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="fullname" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fullname" placeholder="Fullname"
-                                style="margin-bottom: 20px; color: #003060;">
-                            <label for="contact-number" class="form-label">Contact Number</label>
-                            <input type="text" class="form-control" id="contact-number" placeholder="Contact Number"
-                                style="margin-bottom: 20px; color: #003060;">
-                            <label for="address" class="form-label">Province, City, Barangay</label>
-                            <div class="form-group">
+                    <form action="/address/{{ session('id') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullname" placeholder="Fullname"
+                                    name="name" style="margin-bottom: 20px; color: #003060;">
+                                <label for="contact-number" class="form-label">Contact Number</label>
+                                <input type="text" class="form-control" id="contact-number" name="contact_number"
+                                    placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;">
+                                <label for="address" class="form-label">Province, City, Barangay</label>
+                                <input type="text" class="form-control" id="address" name="province_city_brgy"
+                                    placeholder="Province, City/Municipality, Barangay"
+                                    style="margin-bottom: 20px; color: #003060;">
+                                {{-- <div class="form-group">
                                 <select class="form-control form-select" aria-label="Select Address" placeholder=""
                                     style="color: #003060; margin-bottom: 20px;">
                                     <option value="public">To be continue</option>
                                     <option value="private">To be continue</option>
                                 </select>
+                            </div> --}}
+                                <label for="postal-code" class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="postal-code" name="postal_code"
+                                    placeholder="Postal Code" style="margin-bottom: 20px; color: #003060;">
+                                <label for="street" class="form-label">Street Name, Building, House No.</label>
+                                <input type="text" class="form-control" id="street"
+                                    name="street_building_house" placeholder="Street Name, Building, House No."
+                                    style="margin-bottom: 50px; color: #003060;">
                             </div>
-                            <label for="postal-code" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" id="postal-code" placeholder="Postal Code"
-                                style="margin-bottom: 20px; color: #003060;">
-                            <label for="street" class="form-label">Street Name, Building, House No.</label>
-                            <input type="text" class="form-control" id="street"
-                                placeholder="Street Name, Building, House No."
-                                style="margin-bottom: 50px; color: #003060;">
+                            <div class="form-check">
+                                <input class="form-check-input default-address" type="checkbox" value=""
+                                    id="default-address">
+                                <label class="form-check-label" for="default-address"
+                                    style="margin-bottom: 50px; color: #E55B13; margin-left: 8px;">
+                                    Set as default address
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input default-address" type="checkbox" value=""
-                                id="default-address">
-                            <label class="form-check-label" for="default-address"
-                                style="margin-bottom: 50px; color: #E55B13; margin-left: 8px;">
-                                Set as default address
-                            </label>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary close-button"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary save-button">Save</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary close-button"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary save-button">Save</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
 
         <!-- Edit Address Modal -->
-        <div class="modal fade" id="edit-address" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="edit-address" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -150,16 +157,19 @@
                             <input type="text" class="form-control" id="fullname" placeholder="Fullname"
                                 style="margin-bottom: 20px; color: #003060;">
                             <label for="contact-number" class="form-label">Contact Number</label>
-                            <input type="text" class="form-control" id="contact-number" placeholder="Contact Number"
+                            <input type="text" class="form-control" id="contact-number"
+                                placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;">
+                            <label for="address" class="form-label">Province, City/Municipality, Barangay</label>
+                            <input type="text" class="form-control" id="address"
+                                placeholder="Province, City/Municipality, Barangay"
                                 style="margin-bottom: 20px; color: #003060;">
-                            <label for="address" class="form-label">Province, City, Barangay</label>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <select class="form-control form-select" aria-label="Select Address" placeholder=""
                                     style="color: #003060; margin-bottom: 20px;">
                                     <option value="public">To be continue</option>
                                     <option value="private">To be continue</option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <label for="postal-code" class="form-label">Postal Code</label>
                             <input type="text" class="form-control" id="postal-code" placeholder="Postal Code"
                                 style="margin-bottom: 20px; color: #003060;">
@@ -190,6 +200,15 @@
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
-])
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+]);
+
+{{-- <script>
+    function initialize() {
+        var input = document.getElementById('address');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script> --}}
