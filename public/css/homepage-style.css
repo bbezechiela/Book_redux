@@ -55,6 +55,10 @@
     text-decoration: underline;
 }
 
+.tabs{
+    font-size: 12px;
+}
+
 a,
 h4,
 p {
@@ -146,6 +150,20 @@ a:hover {
 
 .input-group-text i{
     color: #003060;
+}
+
+.search-result-text{
+    margin-left: 4em;
+    font-size: 20px;
+    margin-top: 3em;
+}
+
+.search-result-text i{
+    margin-right: 8px;
+}
+
+.search-result-text span{
+    color: #E55B13;
 }
 
 @media screen and (max-width: 576px) {

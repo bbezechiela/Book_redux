@@ -1,7 +1,7 @@
 @include('partials.__header', [
 'title' => 'User Reviews and Ratings | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/singleProduct-style.css',
+'css_link' => '/css/reviews-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
 ])
 
@@ -14,6 +14,9 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
+    <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
+        <x-sidebarProfile/>
+    </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
@@ -23,7 +26,7 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                <ul class="nav nav-underline">
+                {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
                     </li>
@@ -40,7 +43,7 @@
                         <a class="nav-link active" aria-current="page" href="/reviewsandratings">User Reviews and
                             Ratings</a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -79,18 +82,18 @@
             <div class="card-body rating-details-review">
                 <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
-                        aria-current="page" href="#">Sold Rating</a>
+                        aria-current="page" href="#">Seller Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Exchange
+                        href="#">Exchanger
                         Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Rented
+                        href="#">Renter
                         Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Bought
+                        href="#">Buyer
                         Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Lent
+                        href="#">Lessor
                         Rating</a>
                 </nav>
             </div>

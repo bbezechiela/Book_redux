@@ -81,6 +81,7 @@ a:hover {
 
 .drpdwn-genre {
     color: #003060;
+    font-size: 12px;
 }
 
 .drpdwn-genre:hover {
@@ -168,6 +169,7 @@ a:hover {
 
 .dropdown-menu .dropdown-item {
     color: #003060;
+    font-size: 12px;
 }
 
 .pagination-container {

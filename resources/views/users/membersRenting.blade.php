@@ -34,10 +34,10 @@
                         <a class="nav-link custom-nav-link" href="/sellingclub">Book Selling Club</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/exchangeclub">Book Exchange Club</a>
+                        <a class="nav-link active" aria-current="page" href="/exchangeclub">Book Exchange Club</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/rentingclub">Book Renting Club</a>
+                        <a class="nav-link custom-nav-link" href="/rentingclub">Book Renting Club</a>
                     </li>
                 </ul> --}}
             </div>
@@ -88,199 +88,138 @@
                             <div class="d-flex justify-content-between">
                                 <ul class="nav nav-underline">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
-                                            href="/rentingClub">Discussion</a>
+                                        <a class="nav-link custom-nav-link" 
+                                            href="/rentingclub">Discussion</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link custom-nav-link" href="/eventsrentingclub">Events</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link custom-nav-link" href="/membersrentingclub">Members</a>
+                                        <a class="nav-link active" aria-current="page" href="/membersrentingclub">Members</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
+                    <div class="card mt-5 mb-1 card-post">
+                        <div class="card-header member-header">
+                            <p>Members .<span>100</span></p>
+                        </div>
+                        <div class="card-body card-members">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
+                    </div>
+                    <div class="card mt-5 mb-1 card-post">
+                        <div class="card-header member-header">
+                            <p>Members with things in common .<span>100</span></p>
                         </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
+                        <div class="card-body card-members">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
                             </div>
                         </div>
                     </div>
                     <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
+                        <div class="card-header member-header">
+                            <p>Members near me .<span>100</span></p>
+                        </div>
+                        <div class="card-body card-members">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">John Doe</p>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3"
+                                    width="50" height="50">
+                                <p class="mb-0">Jane Smith</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- For Rent Card -->
+                <!-- For Exchange Card -->
                 <div class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">For Rent</h5>
+                                <h5 class="mb-0">For Exchange</h5>
                                 <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
                             </div>
                         </div>

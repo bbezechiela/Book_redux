@@ -57,27 +57,24 @@ h4 {
     padding-top: 20px;
 }
 
-h1 {
-    font-size: 20px;
-    color: #E55B13;
-    text-align: center;
-}
-
 .details-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 4px 0px 4px 0px #dae9f8;
     border-radius: 3px;
     height: 55px;
     margin-bottom: 30px;
     padding: 0 20px;
     width: 93%;
-    margin-left: 3em;
+    margin-left: 2.3em;
+    color: #E55B13;
+    font-size: 20px;
 }
 
+
 .product-details {
-    margin-left: 2em;
-    margin-right: 11em;
+    margin-left: 6em;
 }
 
 .check-order {
@@ -92,11 +89,11 @@ h1 {
 }
 
 .price {
-    margin-left: 6em;
+    margin-right: 3em;
 }
 
 .action {
-    margin-left: 12em;
+    margin-right: 6em;
 }
 
 .product-cart {
@@ -167,7 +164,7 @@ h1 {
     margin-left: 10px; 
 }
 
-.product-price {
+.product-price, .product-price, .action, .product-details {
     display: flex;
     flex-direction: column;
     text-align: center;

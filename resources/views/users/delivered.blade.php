@@ -172,7 +172,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rate and Review User</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rate and Review Customer</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -188,11 +188,9 @@
                                                 Interaction Type
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item" type="button">Sale</button></li>
+                                                <li><button class="dropdown-item" type="button">Bought</button></li>
                                                 <li><button class="dropdown-item" type="button">Exchange</button></li>
                                                 <li><button class="dropdown-item" type="button">Rent</button></li>
-                                                <li><button class="dropdown-item" type="button">Bought</button></li>
-                                                <li><button class="dropdown-item" type="button">Lent</button></li>
                                             </ul>
                                         </div>
                                     </div>

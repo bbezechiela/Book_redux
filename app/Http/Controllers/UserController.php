@@ -104,6 +104,36 @@ class UserController extends Controller
         return view('users.bookRentingClub');
     }
 
+    public function eventsSelling()
+    {
+        return view('users.eventsSelling');
+    }
+
+    public function membersSelling()
+    {
+        return view('users.membersSelling');
+    }
+
+    public function eventsExchange()
+    {
+        return view('users.eventsExchange');
+    }
+
+    public function membersExchange()
+    {
+        return view('users.membersExchange');
+    }
+
+    public function eventsRenting()
+    {
+        return view('users.eventsRenting');
+    }
+
+    public function membersRenting()
+    {
+        return view('users.membersRenting');
+    }
+
     public function checkout()
     {
         return view('users.checkout');
@@ -245,6 +275,11 @@ class UserController extends Controller
     public function message()
     {
         return view('users.message');
+    }
+
+    public function searchResult()
+    {
+        return view('users.searchResult');
     }
 
     public function userProfilePreview()

@@ -53,6 +53,8 @@ Route::get('/unread', [UserController::class, 'unreadNotification']);
 
 Route::get('/messages', [UserController::class, 'message']);
 
+Route::get('/search', [UserController::class, 'searchResult']);
+
 Route::get('/product/{id}/{user_id} ', [UserController::class, 'singleProduct']);
 
 Route::get('/cart', [UserController::class, 'cart']);
@@ -64,6 +66,18 @@ Route::get('/sellingclub', [UserController::class, 'bookSellingClub']);
 Route::get('/exchangeclub', [UserController::class, 'bookExchangeClub']);
 
 Route::get('/rentingclub', [UserController::class, 'bookRentingClub']);
+
+Route::get('/eventssellingclub', [UserController::class, 'eventsSelling']);
+
+Route::get('/memberssellingclub', [UserController::class, 'membersSelling']);
+
+Route::get('/eventsexchangeclub', [UserController::class, 'eventsExchange']);
+
+Route::get('/membersexchangeclub', [UserController::class, 'membersExchange']);
+
+Route::get('/eventsrentingclub', [UserController::class, 'eventsRenting']);
+
+Route::get('/membersrentingclub', [UserController::class, 'membersRenting']);
 
 Route::get('/checkout', [UserController::class, 'checkout']);
 

@@ -23,13 +23,13 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                <a class="mx-2 mt-1" id="daily-discover-anchor" href="#daily-discover">Daily Discover</a>
-                <a class="mx-2 mt-1" id="featured-anchor" href="#featured">Featured</a>
-                <a class="mx-2 mt-1" id="recommended-anchor" href="#recommended">Recommended for you</a>
-                <a class="mx-2 mt-1" id="near_you-anchor" href="#near_you">Near you</a>
-                <a class="mx-2 mt-1" id="for_sale-anchor" href="#for_sale">For sale</a>
-                <a class="mx-2 mt-1" id="for_exchange-anchor" href="#for_exchange">For exchange</a>
-                <a class="mx-2 mt-1" id="for_rent-anchor" href="#for_rent">For rent</a>
+                <a class="mx-2 mt-2 tabs" id="daily-discover-anchor" href="#daily-discover">Daily Discover</a>
+                <a class="mx-2 mt-2 tabs" id="featured-anchor" href="#featured">Featured</a>
+                <a class="mx-2 mt-2 tabs" id="recommended-anchor" href="#recommended">Recommended for you</a>
+                <a class="mx-2 mt-2 tabs" id="near_you-anchor" href="#near_you">Near you</a>
+                <a class="mx-2 mt-2 tabs" id="for_sale-anchor" href="#for_sale">For sale</a>
+                <a class="mx-2 mt-2 tabs" id="for_exchange-anchor" href="#for_exchange">For exchange</a>
+                <a class="mx-2 mt-2 tabs" id="for_rent-anchor" href="#for_rent">For rent</a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">

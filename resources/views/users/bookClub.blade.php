@@ -14,6 +14,9 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
+    <div id="sidebarClub" class="sidebarClub p-2 min-vh-100 shadow">
+        <x-sidebarClub />
+    </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
@@ -23,7 +26,7 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                <ul class="nav nav-underline">
+                {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/bookclub">My Wall</a>
                     </li>
@@ -36,7 +39,7 @@
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/rentingclub">Book Renting Club</a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -62,7 +65,7 @@
                 </div>
             </div>
         </ul>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card mt-5 mb-3 card-post">

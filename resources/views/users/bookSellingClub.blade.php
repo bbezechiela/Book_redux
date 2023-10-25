@@ -14,6 +14,9 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
+    <div id="sidebarClub" class="sidebarClub p-2 min-vh-100 shadow">
+        <x-sidebarClub />
+    </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
@@ -23,7 +26,7 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                <ul class="nav nav-underline">
+                {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/bookclub">My Wall</a>
                     </li>
@@ -36,7 +39,7 @@
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/rentingclub">Book Renting Club</a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -62,55 +65,42 @@
                 </div>
             </div>
         </ul>
-        <div class="container">
+
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-7">
-                    {{-- <div class="card mb-3 card-cover">
+                <div class="col-lg-8">
+                    <div class="card mb-3 card-cover">
                         <div class="card-header selling-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center card-dets">
-                                    <div class="header-image" style="background-image: url('../assets/header.jpg');"></div>
+                                    <div class="header-image"></div>
                                 </div>
                             </div>
                         </div>
-                         --}}
-                        {{-- <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                </div>
-                            </div> --}}
-                        {{-- </div>
                         <div class="card-body">
-                            <h6>Book Selling Club<i class="fa fa-pencil-square-o" aria-hidden="true"></i></h6>
-                            <div class="d-flex">
-                                <div class="input-group mt-1" style="height: 2em">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                    <input class="form-control rounded-3" type="text" placeholder="Search">
-                                </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6>Book Selling Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
+                                        data-bs-toggle="modal" data-bs-target="#createpost"></i></h6>
+                                <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
+                                    style="height: 2em">
                             </div>
                         </div>
-                        <div class="card-footer"> --}}
-                            {{-- <div class="d-flex justify-content-between"> --}}
-                            {{-- <ul class="nav nav-underline">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="/bookclub">Discussion</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link custom-nav-link" href="/sellingclub">Events</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link custom-nav-link" href="/exchangeclub">Members</a>
-                                </li>
-                            </ul> --}}
-                            {{-- </div> --}}
-                        {{-- </div>
-                    </div> --}}
-
-                    
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+                                <ul class="nav nav-underline">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="/sellingclub">Discussion</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link custom-nav-link" href="/eventssellingclub">Events</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link custom-nav-link" href="/memberssellingclub">Members</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card mt-5 mb-3 card-post">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
@@ -285,12 +275,12 @@
                     </div>
                 </div>
 
-                <!-- Daily Discover Card -->
+                <!-- For Sale Card -->
                 <div class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">Daily Discover</h5>
+                                <h5 class="mb-0">For Sale</h5>
                                 <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
                             </div>
                         </div>
@@ -374,6 +364,44 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Create Post Modal -->
+        <div class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060">Create Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <textarea class="form-control border" id="exampleTextarea" rows="5"
+                                placeholder="Write something here..."></textarea>
+                        </div>
+                        <div class="image-container">
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary post-btn">Post</button>
                     </div>
                 </div>
             </div>
