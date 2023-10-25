@@ -145,7 +145,7 @@ class UserController extends Controller
                     // 'username' => 'required',
                     // 'password' => 'required',
                     'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
-                ]);                
+                ]);
 
                 $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
                 $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -177,7 +177,7 @@ class UserController extends Controller
                     // 'password' => 'required',
                     // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
                 ]);
-                
+
                 $user = Users::find(session('id'));
                 $user->update($validated);
 
@@ -238,19 +238,25 @@ class UserController extends Controller
         return view('users.refundMyPurchase');
     }
 
-    public function address()
+    public function address(Request $request)
     {
-        return view('users.address');
+        if ($request->session()->has('user')) {
+            $address = Address::where('user_id', session('id'))->get();
+            // $address = Address::findOrFail(session('id'));
+            return view('users.address', ['address' => $address]);
+        } else {            
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function changePassword(Request $request)
     {
-        if ($request->session()->has('user')) {            
+        if ($request->session()->has('user')) {
             $user = Users::find(session('id'));
             return view('users.changePassword', ['user' => $user]);
         } else {
             return view('users.signup');
-        }        
+        }
     }
 
     public function userReviewsAndRatings()
@@ -352,7 +358,8 @@ class UserController extends Controller
         }
     }
 
-    public function updateUserPassword(Request $request) {
+    public function updateUserPassword(Request $request)
+    {
         $validated = $request->validate([
             'password' => 'required',
             'new_password' => 'required',
@@ -369,7 +376,8 @@ class UserController extends Controller
         }
     }
 
-    public function storeAddress(Request $request, $id) {
+    public function storeAddress(Request $request, $id)
+    {
         $validated = $request->validate([
             'name' => 'required',
             'contact_number' => 'required',
@@ -378,9 +386,15 @@ class UserController extends Controller
             'street_building_house' => 'required'
         ]);
 
-        $post_address = Address::creare([
+        // dd($validated);
+
+        $post_address = Address::create([
             'user_id' => $id,
-            $validated
+            'name' => $validated['name'],
+            'contact_number' => $validated['contact_number'],
+            'province_city_brgy' => $validated['province_city_brgy'],
+            'postal_code' => $validated['postal_code'],
+            'street_building_house' => $validated['street_building_house']
         ]);
 
         if ($post_address) {

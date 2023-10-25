@@ -72,18 +72,22 @@
             </div>
             <button class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
                     class="fa fa-plus" aria-hidden="true"></i>Add new address</button>
-            <div class="del-address-container">
-                <div class="address-details">
-                    <p>Nestine Nicole Navarro <span>09054173103</span></p>
-                    <p>Peerless Village, Bagacay, Tacloban City, <span>6500</span></p>
-                    <p class="default-txt">Default</p>
+
+            @foreach ($address as $receiver)
+                <div class="del-address-container">
+                    <div class="address-details">
+                        <p>{{ $receiver->name }} <span>{{ $receiver->contact_number }}</span></p>
+                        <p>{{ $receiver->province_city_brgy }}, <span>{{ $receiver->postal_code }}</span></p>
+                        <p class="default-txt">Default</p>
+                    </div>
+                    <div class="button-container">
+                        <button class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                href="#">Edit</a></button>
+                        <button class="delete-button"><a href="#">Delete</a></button>
+                    </div>
                 </div>
-                <div class="button-container">
-                    <button class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                            href="#">Edit</a></button>
-                    <button class="delete-button"><a href="#">Delete</a></button>
-                </div>
-            </div>
+            @endforeach
+
         </div>
 
         <!-- Add Address Modal -->
@@ -100,28 +104,29 @@
                             <div class="mb-3">
                                 <label for="fullname" class="form-label">Full Name</label>
                                 <input type="text" class="form-control" id="fullname" placeholder="Fullname"
-                                    name="name" style="margin-bottom: 20px; color: #003060;">
+                                    name="name" style="margin-bottom: 20px; color: #003060;" required>
                                 <label for="contact-number" class="form-label">Contact Number</label>
                                 <input type="text" class="form-control" id="contact-number" name="contact_number"
-                                    placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;">
-                                <label for="address" class="form-label">Province, City, Barangay</label>
+                                    placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;"
+                                    required>
+                                <label for="address" class="form-label">Province, City/Municipality, Barangay</label>
                                 <input type="text" class="form-control" id="address" name="province_city_brgy"
                                     placeholder="Province, City/Municipality, Barangay"
-                                    style="margin-bottom: 20px; color: #003060;">
+                                    style="margin-bottom: 20px; color: #003060;" required>
                                 {{-- <div class="form-group">
                                 <select class="form-control form-select" aria-label="Select Address" placeholder=""
-                                    style="color: #003060; margin-bottom: 20px;">
+                                    style="color: #003060; margin-bottom: 20px;" required>
                                     <option value="public">To be continue</option>
                                     <option value="private">To be continue</option>
                                 </select>
                             </div> --}}
                                 <label for="postal-code" class="form-label">Postal Code</label>
                                 <input type="text" class="form-control" id="postal-code" name="postal_code"
-                                    placeholder="Postal Code" style="margin-bottom: 20px; color: #003060;">
+                                    placeholder="Postal Code" style="margin-bottom: 20px; color: #003060;" required>
                                 <label for="street" class="form-label">Street Name, Building, House No.</label>
                                 <input type="text" class="form-control" id="street"
                                     name="street_building_house" placeholder="Street Name, Building, House No."
-                                    style="margin-bottom: 50px; color: #003060;">
+                                    style="margin-bottom: 50px; color: #003060;" required>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input default-address" type="checkbox" value=""
