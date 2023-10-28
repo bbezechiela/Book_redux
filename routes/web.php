@@ -149,3 +149,31 @@ Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
 Route::post('/updatepassword', [UserController::class, 'updateUserPassword']);
 
+Route::get('/dashboard', [UserController::class, 'dashboard']);
+
+Route::get('/manageresources', [UserController::class, 'manageResources']);
+
+Route::get('/managerefund', [UserController::class, 'manageRefund']);
+
+Route::get('/managereviews', [UserController::class, 'manageReviews']);
+
+Route::get('/manageuseraccounts', [UserController::class, 'manageUserAccounts']);
+
+Route::get('/managerentingclub', [UserController::class, 'manageRentingClub']);
+
+Route::get('/managesellingclub', [UserController::class, 'manageSellingClub']);
+
+Route::get('/manageexchangeclub', [UserController::class, 'manageExchangeClub']);
+
+Route::get('/manageuserlisting', [UserController::class, 'manageUserListing']);
+
+Route::get('/reportedlisting', [UserController::class, 'reportedListing']);
+
+Route::get('/reportedpost', [UserController::class, 'reportedPost']);
+
+Route::get('/reportedexchangepost', [UserController::class, 'reportedExchangePost']);
+
+Route::get('/reportedrentpost', [UserController::class, 'reportedRentPost']);
+
+Route::get('/reporteduser', [UserController::class, 'reportedUser']);
+
