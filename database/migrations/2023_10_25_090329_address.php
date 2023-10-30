@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\Expr\Cast\String_;
 
 return new class extends Migration
 {
@@ -14,11 +15,14 @@ return new class extends Migration
         Schema::create('address', function (Blueprint $table) {
             $table->id();
             $table->text('user_id');
-            $table->text('name')->nullable();
-            $table->text('contact_number')->nullable();
-            $table->text('province_city_brgy')->nullable();
-            $table->string('postal_code')->nullable();
-            $table->text('street_building_house')->nullable();
+            $table->text('name');
+            $table->text('contact_number');
+            $table->text('region');            
+            $table->text('city_municipality');
+            $table->text('brgy_village');
+            $table->string('postal_code');
+            $table->text('street_building_house');
+            $table->string('default_address')->nullable();
             $table->timestamps();
         });
     }

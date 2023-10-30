@@ -244,9 +244,10 @@ class UserController extends Controller
             $address = Address::where('user_id', session('id'))->get();
             // $address = Address::findOrFail(session('id'));
             return view('users.address', ['address' => $address]);
-        } else {            
+        } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
+        // return $address;
     }
 
     public function changePassword(Request $request)
@@ -376,31 +377,144 @@ class UserController extends Controller
         }
     }
 
-    public function storeAddress(Request $request, $id)
+    public function storeAddress(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'contact_number' => 'required',
-            'province_city_brgy' => 'required',
-            'postal_code' => 'required',
-            'street_building_house' => 'required'
-        ]);
+        if ($request->has('default_address')) {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required',
+                'default_address' => 'accepted'
+            ]);
 
-        // dd($validated);
+            // dd($validated);
+            $post_address = Address::create([
+                'user_id' => session('id'),
+                'name' => $validated['name'],
+                'contact_number' => $validated['contact_number'],
+                'region' => $validated['region'],
+                'city_municipality' => $validated['city_municipality'],
+                'brgy_village' => $validated['brgy_village'],
+                'postal_code' => $validated['postal_code'],
+                'street_building_house' => $validated['street_building_house'],
+                'default_address' => $validated['default_address']
+            ]);
 
-        $post_address = Address::create([
-            'user_id' => $id,
-            'name' => $validated['name'],
-            'contact_number' => $validated['contact_number'],
-            'province_city_brgy' => $validated['province_city_brgy'],
-            'postal_code' => $validated['postal_code'],
-            'street_building_house' => $validated['street_building_house']
-        ]);
+            if ($post_address) {
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        } else {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required'
+            ]);
 
-        if ($post_address) {
+            // dd($validated);
+            $post_address = Address::create([
+                'user_id' => session('id'),
+                'name' => $validated['name'],
+                'contact_number' => $validated['contact_number'],
+                'region' => $validated['region'],
+                'city_municipality' => $validated['city_municipality'],
+                'brgy_village' => $validated['brgy_village'],
+                'postal_code' => $validated['postal_code'],
+                'street_building_house' => $validated['street_building_house'],
+                // 'default_address' => $validated['default_address']
+            ]);
+
+            if ($post_address) {
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        }
+    }
+
+    public function updateAddress(Request $request, $id)
+    {
+        if ($request->has('default_address')) {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required',
+                'default_address' => 'accepted'
+            ]);
+
+            // dd($validated);
+            $address = Address::find($id);
+            $address->update($validated);
+
+            if ($address) {
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        } else {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required',
+            ]);
+
+            // dd($validated);
+            $address = Address::find($id);
+            $address->update([
+                // 'user_id' => session('id'),
+                'name' => $validated['name'],
+                'contact_number' => $validated['contact_number'],
+                'region' => $validated['region'],
+                'city_municipality' => $validated['city_municipality'],
+                'brgy_village' => $validated['brgy_village'],
+                'postal_code' => $validated['postal_code'],
+                'street_building_house' => $validated['street_building_house'],
+                'default_address' => null
+            ]);
+
+            if ($address) {
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        }
+    }
+
+    public function destroyAddress($id) {
+        $address = Address::find($id);
+        $address->delete();
+
+        if ($address) {
             return redirect('addresses');
         } else {
             return "error bitch";
         }
+    }
+
+
+    
+    // API's
+    public function getAddress($id)
+    {
+        $address = Address::where('id', $id)->get();
+
+        return $address;
     }
 }

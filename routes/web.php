@@ -117,4 +117,15 @@ Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
 Route::post('/updatepassword', [UserController::class, 'updateUserPassword']);
 
-Route::post('/address/{id}', [UserController::class, 'storeAddress']);
+Route::post('/storeaddress', [UserController::class, 'storeAddress']);
+
+Route::post('/updateaddress/{id}', [UserController::class, 'updateAddress']);
+
+Route::get('/destroyaddress/{id}', [UserController::class, 'destroyAddress']);
+
+
+
+
+
+// API's
+Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);

@@ -208,3 +208,13 @@
 .input-group-text i{
     color: #003060;
 }
+
+.autocomplete {
+    background-color: #c7c6c6;
+    position: absolute;
+    cursor: pointer;    
+}
+
+#list:hover {
+    background-color: #2D6092;
+}
