@@ -661,6 +661,14 @@ class UserController extends Controller
 
 
     // API's
+    public function search($item) {
+        // $search = Books::where('title', $item)->get();
+        $search = Books::where('title', 'LIKE', '%' . $item . '%')->get();
+        // $search = Books::where('title', 'City of Secrets')->get();
+        // return response()->json(['result' => $search]);
+        return $search;
+    }
+
     public function getAddress($id)
     {
         $address = Address::where('id', $id)->get();

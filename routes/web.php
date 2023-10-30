@@ -55,7 +55,7 @@ Route::get('/messages', [UserController::class, 'message']);
 
 Route::get('/search', [UserController::class, 'searchResult']);
 
-Route::get('/product/{id}/{user_id} ', [UserController::class, 'singleProduct']);
+Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']);
 
 Route::get('/cart', [UserController::class, 'cart']);
 
@@ -185,4 +185,6 @@ Route::get('/reporteduser', [UserController::class, 'reportedUser']);
 
 
 // API's
+Route::get('/search/{item}', [UserController::class, 'search']);
+
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);

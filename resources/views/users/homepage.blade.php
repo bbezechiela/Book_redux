@@ -37,7 +37,10 @@
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
-                        <input class="form-control rounded-3" type="text" placeholder="Search">
+                        <div class="position-relevant">
+                            <input id="search_input" class="form-control rounded-3" type="text" placeholder="Search">
+                            <div id="searches" class="position-absolute bg-light w-100 p-2" style="cursor: pointer;"></div>
+                        </div>
                     </div>
                     <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
@@ -730,7 +733,7 @@
                             </div>
                         </div>
                     @endif
-                @endforeach                
+                @endforeach
             </div>
         </div>
         <!-- FEATURED CONTENT -->
@@ -805,7 +808,7 @@
                             </div>
                         </div>
                     @endif
-                @endforeach                
+                @endforeach
             </div>
         </div>
         <!-- RECOMMENDED FOR YOU CONTENT -->
@@ -884,7 +887,7 @@
                             </div>
                         @endif
                     @endif
-                @endforeach                
+                @endforeach
             </div>
         </div>
         {{-- <!-- NEAR YOU CONTENT -->
@@ -1201,7 +1204,7 @@
                             </div>
                         </div>
                     @endif
-                @endforeach                
+                @endforeach
             </div>
         </div>
         <!-- FOR EXCHANGE CONTENT -->
@@ -1245,7 +1248,7 @@
                         </div>
                     @endif
                 @endforeach
-                
+
             </div>
         </div>
         <!-- FOR RENT -->
@@ -1574,11 +1577,44 @@
     'aos_link' => '/aos-master/dist/aos.js',
 ])
 <script>
+    // search script
+    var search = document.getElementById('search_input');
+    var searchContainer = document.getElementById('searches');
+
+    search.addEventListener('input', () => {
+        if (search.value.trim().length >= 1) {
+            const requestOptions = {
+                method: 'GET',
+            };
+            
+            fetch('/search/' + search.value.trim(), requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    searchContainer.innerHTML = '';
+                    // console.log(result);
+                    result.forEach(data => {                        
+                        const suggestionElement = document.createElement('div');
+                        suggestionElement.textContent = data.title;
+                        suggestionElement.id = "searched-item";
+                        
+                        suggestionElement.addEventListener('click', () => {
+                            window.location.href = "/product/" + data.id +"/" + data.user_id;
+                            searchContainer.innerHTML = '';
+                        });
+
+                        searchContainer.appendChild(suggestionElement);
+                    });
+                })
+                .catch(error => console.log('error', error));
+        } else {
+            searchContainer.innerHTML = '';
+        }
+    });
+
     // clicked post
     function clickedPost(id, user_id) {
         window.location.href = "/product/" + id + "/" + user_id;
     };
-
 
     // tooltip
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -1666,7 +1702,7 @@
     //     daily_discover_cards.style.display = "none";
     //     featured_cards.style.display = "none";
     //     recommended_cards.style.display = "none";
-        // near_you_cards.style.display = "none";
+    // near_you_cards.style.display = "none";
     //     for_sale_cards.style.display = "none";
     //     for_exchange_cards.style.display = "none";
     //     for_rent_cards.style.display = "none";

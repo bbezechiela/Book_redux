@@ -166,6 +166,12 @@ a:hover {
     color: #E55B13;
 }
 
+#searched-item:hover {
+    /* background-color: #2D6092; */
+    font-weight: bold;
+    color: #E55B13;
+}
+
 @media screen and (max-width: 576px) {
     #logo {
         display: none;
