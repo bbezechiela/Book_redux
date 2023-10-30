@@ -63,9 +63,9 @@
             </div>
             <main class="product-list">
                 <div class="details-container">
-                    <h1 class="product-details">Product Details</h1>
-                    <h1 class="price">Price</h1>
-                    <h1 class="action">Actions</h1>
+                    <div class="product-details">Product Details</div>
+                    <div class="price">Price</div>
+                    <div class="action">Actions</div>
                 </div>
                 <div class="order-cart">
                     <div class="name-cart">

@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-{{-- <body> --}}
 <div id="body-container" class="container-fluid px-0">
-    {{-- <div class="row mx-0"> --}}
     <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
@@ -826,7 +824,6 @@
 
     </div>
 </div>
-{{-- </div> --}}
 
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',

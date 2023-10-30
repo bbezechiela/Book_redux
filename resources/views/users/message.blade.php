@@ -54,7 +54,7 @@
                 <div class="col-md-12">
                     <div class="card" id="chat3" style="border-radius: 5px;">
                         <div class="card-body">
-                            <div class="row min-vh-100 border">
+                            <div class="row min-vh-100">
                                 <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                     <div class="p-3">
                                         <div class="input-group rounded mb-3">
@@ -444,8 +444,8 @@
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center btn-menu">
-                            <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
-                                    style="margin-left: 10em;"></i></p>
+                            <a href="/userlistings" class="text-decoration-none"><p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
+                                style="margin-left: 10em;"></i></p></a>
                         </div>
                     </div>
                 </div>

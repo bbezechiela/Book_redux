@@ -1,7 +1,3 @@
-/* :root {
-    --sidebar_width: 320px;
-} */
-
 .sidebar {
     position: fixed;
     background-color: #003060;
@@ -314,10 +310,6 @@
 .reviews-container{
     margin-top: 2em;
     margin-left: 2em;
-}
-
-.nav-underline{
-    margin-left: 7em;
 }
 
 .search-field:focus {

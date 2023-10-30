@@ -21,6 +21,16 @@ class UserController extends Controller
         return view('components.sidebar');
     }
 
+    public function following()
+    {
+        return view('users.following');
+    }
+
+    public function followers()
+    {
+        return view('users.followers');
+    }
+
     public function welcome()
     {
         return view('landing_page');
@@ -73,6 +83,56 @@ class UserController extends Controller
     public function cart()
     {
         return view('users.cart');
+    }
+
+    public function bookClub()
+    {
+        return view('users.bookClub');
+    }
+
+    public function bookSellingClub()
+    {
+        return view('users.bookSellingClub');
+    }
+
+    public function bookExchangeClub()
+    {
+        return view('users.bookExchangeClub');
+    }
+
+    public function bookRentingClub()
+    {
+        return view('users.bookRentingClub');
+    }
+
+    public function eventsSelling()
+    {
+        return view('users.eventsSelling');
+    }
+
+    public function membersSelling()
+    {
+        return view('users.membersSelling');
+    }
+
+    public function eventsExchange()
+    {
+        return view('users.eventsExchange');
+    }
+
+    public function membersExchange()
+    {
+        return view('users.membersExchange');
+    }
+
+    public function eventsRenting()
+    {
+        return view('users.eventsRenting');
+    }
+
+    public function membersRenting()
+    {
+        return view('users.membersRenting');
     }
 
     public function checkout()
@@ -216,6 +276,26 @@ class UserController extends Controller
     public function message()
     {
         return view('users.message');
+    }
+
+    public function searchResult()
+    {
+        return view('users.searchResult');
+    }
+
+    public function userProfilePreview()
+    {
+        return view('users.userProfilePreview');
+    }
+
+    public function previewReviews()
+    {
+        return view('users.previewReviews');
+    }
+
+    public function previewWishlist()
+    {
+        return view('users.previewWishlist');
     }
 
     public function toReceive()
@@ -506,10 +586,80 @@ class UserController extends Controller
         } else {
             return "error bitch";
         }
+    }    
+
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function manageResources()
+    {
+        return view('admin.manageResources');
+    }
+
+    public function manageRefund()
+    {
+        return view('admin.manageRefund');
+    }
+
+    public function manageReviews()
+    {
+        return view('admin.manageReviews');
+    }
+
+    public function manageUserAccounts()
+    {
+        return view('admin.manageUserAccounts');
+    }
+
+    public function manageRentingClub()
+    {
+        return view('admin.manageRentingClub');
+    }
+
+    public function manageSellingClub()
+    {
+        return view('admin.manageSellingClub');
+    }
+
+    public function manageExchangeClub()
+    {
+        return view('admin.manageExchangeClub');
+    }
+
+    public function manageUserListing()
+    {
+        return view('admin.manageUserListing');
+    }
+
+    public function reportedListing()
+    {
+        return view('admin.reportedListing');
+    }
+
+    public function reportedPost()
+    {
+        return view('admin.reportedPost');
+    }
+
+    public function reportedExchangePost()
+    {
+        return view('admin.reportedExchangePost');
+    }
+
+    public function reportedRentPost()
+    {
+        return view('admin.reportedRentPost');
+    }
+
+    public function reportedUser()
+    {
+        return view('admin.reportedUser');
     }
 
 
-    
+
     // API's
     public function getAddress($id)
     {

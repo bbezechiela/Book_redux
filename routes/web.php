@@ -39,6 +39,10 @@ Route::get('/signup', [UserController::class, 'signup']);
 
 Route::get('/sidebar', [UserController::class, 'sidebar']);
 
+Route::get('/following', [UserController::class, 'following']);
+
+Route::get('/followers', [UserController::class, 'followers']);
+
 Route::get('/home', [UserController::class, 'home'])->name('home');
 
 Route::get('/notification', [UserController::class, 'notification']);
@@ -49,9 +53,31 @@ Route::get('/unread', [UserController::class, 'unreadNotification']);
 
 Route::get('/messages', [UserController::class, 'message']);
 
+Route::get('/search', [UserController::class, 'searchResult']);
+
 Route::get('/product/{id}/{user_id} ', [UserController::class, 'singleProduct']);
 
 Route::get('/cart', [UserController::class, 'cart']);
+
+Route::get('/bookclub', [UserController::class, 'bookClub']);
+
+Route::get('/sellingclub', [UserController::class, 'bookSellingClub']);
+
+Route::get('/exchangeclub', [UserController::class, 'bookExchangeClub']);
+
+Route::get('/rentingclub', [UserController::class, 'bookRentingClub']);
+
+Route::get('/eventssellingclub', [UserController::class, 'eventsSelling']);
+
+Route::get('/memberssellingclub', [UserController::class, 'membersSelling']);
+
+Route::get('/eventsexchangeclub', [UserController::class, 'eventsExchange']);
+
+Route::get('/membersexchangeclub', [UserController::class, 'membersExchange']);
+
+Route::get('/eventsrentingclub', [UserController::class, 'eventsRenting']);
+
+Route::get('/membersrentingclub', [UserController::class, 'membersRenting']);
 
 Route::get('/checkout', [UserController::class, 'checkout']);
 
@@ -84,6 +110,12 @@ Route::get('/addresses', [UserController::class, 'address']);
 Route::get('/changepassword', [UserController::class, 'changePassword']);
 
 Route::get('/reviewsandratings', [UserController::class, 'userReviewsAndRatings']);
+
+Route::get('/userlistings', [UserController::class, 'userProfilePreview']);
+
+Route::get('/userreviews', [UserController::class, 'previewReviews']);
+
+Route::get('/userwishlist', [UserController::class, 'previewWishlist']);
 
 Route::post('/register', [UserController::class, 'store']);
 
@@ -123,8 +155,33 @@ Route::post('/updateaddress/{id}', [UserController::class, 'updateAddress']);
 
 Route::get('/destroyaddress/{id}', [UserController::class, 'destroyAddress']);
 
+Route::get('/dashboard', [UserController::class, 'dashboard']);
 
+Route::get('/manageresources', [UserController::class, 'manageResources']);
 
+Route::get('/managerefund', [UserController::class, 'manageRefund']);
+
+Route::get('/managereviews', [UserController::class, 'manageReviews']);
+
+Route::get('/manageuseraccounts', [UserController::class, 'manageUserAccounts']);
+
+Route::get('/managerentingclub', [UserController::class, 'manageRentingClub']);
+
+Route::get('/managesellingclub', [UserController::class, 'manageSellingClub']);
+
+Route::get('/manageexchangeclub', [UserController::class, 'manageExchangeClub']);
+
+Route::get('/manageuserlisting', [UserController::class, 'manageUserListing']);
+
+Route::get('/reportedlisting', [UserController::class, 'reportedListing']);
+
+Route::get('/reportedpost', [UserController::class, 'reportedPost']);
+
+Route::get('/reportedexchangepost', [UserController::class, 'reportedExchangePost']);
+
+Route::get('/reportedrentpost', [UserController::class, 'reportedRentPost']);
+
+Route::get('/reporteduser', [UserController::class, 'reportedUser']);
 
 
 // API's

@@ -116,6 +116,10 @@
     color: #003060;
 }
 
+.modal-body a{
+    color: #E55B13;
+}
+
 .btn-close{
     font-size: 10px;
 }

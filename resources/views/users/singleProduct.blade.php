@@ -176,8 +176,8 @@
                                 <p>Lives in {{ $user_id->address }}</p>
                                 <button class="message-button"><i class="fa fa-envelope"
                                         aria-hidden="true"></i>Message</button>
-                                <button class="view-profile-button"><i class="fa fa-eye" aria-hidden="true"></i>View
-                                    Profile</button>
+                                <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye" aria-hidden="true"></i>View
+                                    Profile</button></a>
                             </div>
                         </div>
                     </div>
@@ -203,18 +203,18 @@
                     <h5 class="card-title">User Ratings and Reviews</h5>
                     <nav class="nav nav-pills flex-column flex-sm-row">
                         <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
-                            aria-current="page" href="#">Sold Rating</a>
+                            aria-current="page" href="#">Seller Rating</a>
                         <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                            href="#">Exchange
+                            href="#">Exchanger
                             Rating</a>
                         <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                            href="#">Rented
+                            href="#">Renter
                             Rating</a>
                         <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                            href="#">Bought
+                            href="#">Buyer
                             Rating</a>
                         <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                            href="#">Lent
+                            href="#">Lessor
                             Rating</a>
                     </nav>
                 </div>

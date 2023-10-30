@@ -49,13 +49,7 @@
                 </div>
             </div>
         </ul>
-        {{-- <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
-            <div class="w-100 d-flex justify-content-between mt-1 p-0">
-                <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
-                <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
-            </div>
-        </ul> --}}
+        
         <div class="container-fluid py-0 px-4">
             <div class="row mt-3 justify-content-between">
                 <div class="col-4 d-flex flex-row">

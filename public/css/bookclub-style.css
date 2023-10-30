@@ -1,0 +1,370 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.sidebarClub {
+    position: fixed;
+    background-color: #003060;
+    color: #003060;
+    width: var(--sidebar_width);
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text,
+.form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+.nav-underline {
+    margin-left: 1em;
+}
+
+.nav-underline .nav-item .nav-link.active {
+    color: #E55B13;
+}
+
+.nav-underline .nav-item {
+    margin-right: 20px;
+}
+
+.custom-nav-link {
+    color: #003060;
+}
+
+.card {
+    margin: 0;
+    color: #003060;
+}
+
+.card-post {
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-left: 4em;
+}
+
+.card-header {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.card-dets h5 {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.card-dets p {
+    font-size: 13px;
+}
+
+.card-dets small {
+    font-size: 10px;
+}
+
+.dropdown i {
+    color: #E55B13;
+}
+
+.dropdown-menu a {
+    color: #003060;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body p {
+    font-size: 12px;
+}
+
+.card-body img {
+    margin-right: 20px;
+}
+
+.card-footer {
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.card-footer i {
+    margin-right: 7px;
+}
+
+.card-footer .btn-link {
+    text-decoration: none;
+    color: #E55B13;
+    padding: 5px 10px;
+}
+
+.card-footer .btn-link:hover {
+    color: #003060;
+}
+
+.custom-sticky-card {
+    position: sticky;
+    top: 110px;
+    z-index: 100;
+}
+
+.card-sidebar {
+    margin: 0;
+    border: none;
+    margin-right: 2em;
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.card-sidebar .card-header {
+    border-bottom: none;
+}
+
+.card-sidebar .card-header h5 {
+    color: #E55B13;
+}
+
+.card-sidebar .card-header small {
+    color: #6d6c6c;
+}
+
+.card-sidebar .card-header i {
+    margin-left: 7px;
+}
+
+.card-sidebar .card-body {
+    cursor: pointer;
+}
+
+.card-cover {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-left: 4em;
+}
+
+.selling-header {
+    background-image: url('../assets/header3.jpg');
+    padding: 70px;
+    margin-top: 0;
+    border: none;
+}
+
+.card-body h6 {
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.card-body i {
+    border: none;
+    color: #003060;
+    font-size: 20px;
+}
+
+.search-club {
+    width: 15em;
+    border: 1px solid #E55B13;
+    color: #fff;
+    font-size: 15px;
+}
+
+.search-club:focus {
+    box-shadow: inset 0px 0px 0px 1px #003060;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.image-holder {
+    width: 9em;
+    margin-right: 10px;
+    border: 1px dashed #ccc;
+    color: #e4e4e4;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.image-holder i {
+    padding: 1em;
+    font-size: 20px;
+}
+
+.modal-body {
+    color: #003060;
+}
+
+.event-card {
+    border-radius: 5px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-left: 3.3em;
+    padding: 1em;
+    font-size: 14px;
+}
+
+.event-card img {
+    width: 90%;
+    height: auto;
+}
+
+.event-details {
+    padding: 20px;
+}
+
+.event-details h5 {
+    font-size: 16px;
+}
+
+.event-details a {
+    color: #E55B13;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: -.5em;
+}
+
+.event-details a:hover {
+    color: #003060;
+}
+
+.event-details .text-muted {
+    color: #888;
+}
+
+.event-details .btn-primary {
+    width: 20%;
+    float: right;
+    background-color: #fff;
+    color: #003060;
+    border-color: #003060;
+    margin-top: 5em;
+}
+
+.setup {
+    background-color: #003060;
+    color: #fff;
+    padding: 5px;
+    width: 90%;
+}
+
+.join-btn:hover {
+    background-color: #E55B13;
+    color: #fff;
+    border-color: #E55B13;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+.event-dets input,
+.event-dets select,
+.event-dets textarea {
+    border: 1px solid #ddd;
+    color: #003060;
+}
+
+.input-group-text,
+.form-control {
+    border-color: #ddd;
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+.upload-image-btn {
+    background-color: #fff;
+    border: none;
+    color: #003060;
+}
+
+.upload-image-btn:hover {
+    border: 1px solid #003060;
+    background-color: transparent;
+    color: #003060;
+}
+
+.post-btn {
+    border: 1px solid #E55B13;
+    background-color: #E55B13;
+    color: #fff;
+    width: 12em;
+}
+
+.post-btn:hover {
+    border: 1px solid #003060;
+    background-color: #003060;
+}
+
+.card-participants {
+    border: none;
+}
+
+.card-joined {
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.joined-header {
+    font-weight: bold;
+    font-size: 17px;
+    height: 3em;
+    text-align: center;
+}
+
+.card-members {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.member-header {
+    font-weight: bold;
+}
