@@ -39,7 +39,8 @@
                         </span>
                         <div class="position-relevant">
                             <input id="search_input" class="form-control rounded-3" type="text" placeholder="Search">
-                            <div id="searches" class="position-absolute bg-light w-100 p-2" style="cursor: pointer;"></div>
+                            <div id="searches" class="position-absolute border bg-light w-100 p-2" style="cursor: pointer;">                                
+                            </div>
                         </div>
                     </div>
                     <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
@@ -1576,13 +1577,18 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+
 <script>
     // search script
     var search = document.getElementById('search_input');
     var searchContainer = document.getElementById('searches');
 
+    if (search.value.trim().length < 1) {
+        searchContainer.style.display = 'none'
+    }
+
     search.addEventListener('input', () => {
-        if (search.value.trim().length >= 1) {
+        if (search.value.trim().length > 1) {            
             const requestOptions = {
                 method: 'GET',
             };
@@ -1590,12 +1596,33 @@
             fetch('/search/' + search.value.trim(), requestOptions)
                 .then(response => response.json())
                 .then(result => {
+                    searchContainer.style.display = 'inline';
                     searchContainer.innerHTML = '';
                     // console.log(result);
-                    result.forEach(data => {                        
+                    result.forEach(data => {             
+                        // console.log(data);
                         const suggestionElement = document.createElement('div');
-                        suggestionElement.textContent = data.title;
+                        const searchedImage = document.createElement('img');
+                        const searchedContent = document.createElement('div');
+                        const titleText = document.createElement('p');
+                        const authorText = document.createElement('p');
+
+                        // suggestionElement.textContent = data.title;
                         suggestionElement.id = "searched-item";
+                        suggestionElement.className = 'row px-2';
+
+                        searchedImage.src = 'images/books/' + data.book_photo;
+                        searchedImage.className = 'col-3 px-0 bg-light';
+
+                        searchedContent.className = 'col border';
+                        searchedContent.id = 'textContent';
+
+                        titleText.className = 'm-0 fw-bold';
+                        titleText.id = 'searched-title';
+                        titleText.textContent = data.title;
+
+                        authorText.id = 'searched-author';
+                        authorText.textContent = data.author;
                         
                         suggestionElement.addEventListener('click', () => {
                             window.location.href = "/product/" + data.id +"/" + data.user_id;
@@ -1603,11 +1630,16 @@
                         });
 
                         searchContainer.appendChild(suggestionElement);
+                        suggestionElement.appendChild(searchedImage);
+                        suggestionElement.appendChild(searchedContent);
+                        searchedContent.appendChild(titleText);
+                        searchedContent.appendChild(authorText);                        
                     });
                 })
                 .catch(error => console.log('error', error));
         } else {
-            searchContainer.innerHTML = '';
+            searchContainer.style.display = 'none'
+            searchContainer.innerHTML = '';                    
         }
     });
 

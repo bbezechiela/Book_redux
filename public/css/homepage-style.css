@@ -152,7 +152,7 @@ a:hover {
     color: #003060;
 }
 
-.search-result-text{
+/* .search-result-text{
     margin-left: 4em;
     font-size: 20px;
     margin-top: 3em;
@@ -164,12 +164,17 @@ a:hover {
 
 .search-result-text span{
     color: #E55B13;
+} */
+
+#searched-item #textContent:hover {
+    background-color: #2D6092;
 }
 
-#searched-item:hover {
+#searched-item #textContent:hover p {
     /* background-color: #2D6092; */
-    font-weight: bold;
-    color: #E55B13;
+    /* font-weight: bold; */
+    color: #fff;
+    /* display: ; */
 }
 
 @media screen and (max-width: 576px) {
