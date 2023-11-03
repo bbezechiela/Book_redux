@@ -155,7 +155,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             {{-- <p class="total-items">Total (<span>4 items</span>): <span id="total" class="total">₱{{ $totalPrice }}.0</span></p> --}}
-                            <p class="total-items">Total (<span>4 items</span>): <span id="total"
+                            <p class="total-items">Total (<span id="items">0</span> item/s): <span id="total"
                                     class="total">₱0.00</span></p>
                         </div>
                         <div class="col-md-6 text-right">
@@ -175,6 +175,8 @@
     var select_all = document.getElementById('select-all');
     var prices = document.querySelectorAll('input[name="items"]');
     var total = document.getElementById('total');
+    var items = document.getElementById('items');
+    var totalItems = 0;
     var totalPrice = 0.0;
     var checkedValues = [];
 
@@ -188,10 +190,14 @@
                 checkedValues.push(this.value);
                 totalPrice += parseFloat(this.value);
                 total.textContent = '₱' + totalPrice + '.0';
+                totalItems += 1;
+                items.textContent = totalItems;
             } else if (totalPrice > 0.0) {
                 checkedValues.pop(this.value);
                 totalPrice -= parseFloat(this.value);
                 total.textContent = '₱' + totalPrice + '.0';
+                totalItems -= 1;
+                items.textContent = totalItems;
                 if (totalPrice <= 0.0) {
                     total.textContent = '₱' + '0.00';
                     totalPrice = 0.0;
@@ -204,7 +210,7 @@
         if (select_all.checked) {
             totalPrice = 0.0;
             for (var i = 0; i < prices.length; i++) {
-                prices[i].checked = true;
+                prices[i].checked = true;                
             }
 
             prices.forEach((checkbox) => {                
@@ -212,22 +218,28 @@
                     checkedValues.push(checkbox.value);
                     totalPrice += parseFloat(checkbox.value);
                     total.textContent = '₱' + totalPrice + '.0';
+                    totalItems += 1;
                 } else if (totalPrice > 0.0) {
                     checkedValues.pop(checkbox.value);
                     totalPrice -= parseFloat(checkbox.value);
                     total.textContent = '₱' + totalPrice + '.0';
+                    totalItems -= 1;
                     if (totalPrice <= 0.0) {
                         total.textContent = '₱' + '0.00';
                         totalPrice = 0.0;
                     }
                 }                
             });
+
+            items.textContent = totalItems;
         } else {
             for (var i = 0; i < prices.length; i++) {
                 prices[i].checked = false;
             }
             total.textContent = '₱' + '0.00';
             totalPrice = 0.0;
+            totalItems = 0;
+            items.textContent = totalItems;
         }
     });
 </script>
