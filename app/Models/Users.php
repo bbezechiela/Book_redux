@@ -9,6 +9,10 @@ class Users extends Model
 {
     use HasFactory;
 
+    public function cart() {
+        return $this->hasMany(Cart::class, 'user_id');
+    }
+
     protected $fillable = [
         'first_name',
         'last_name',

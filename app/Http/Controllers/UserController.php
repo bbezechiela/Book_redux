@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Books;
+use App\Models\Cart;
 use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
@@ -82,7 +83,11 @@ class UserController extends Controller
 
     public function cart()
     {
-        return view('users.cart');
+        // $user = Cart::where('user_id', session('id'))->with('productRelation.user')->get(); // also works        
+
+        $user = Users::with('cart.productRelation.user')->find(session('id'));
+        // $cartItems = $user->cart->with('productRelation')->get();
+        return view('users.cart', ['items' => $user]);
     }
 
     public function bookClub()
@@ -586,7 +591,18 @@ class UserController extends Controller
         } else {
             return "error bitch";
         }
-    }    
+    }
+
+    public function search($item) {
+        // $search = Books::where('title', 'LIKE', '%' . $item . '%')->get();
+        $search = Books::where(function($query) use ($item){
+            $query->where('title', 'LIKE', '%' . $item . '%')
+            ->orWhere('author', 'LIKE', '%' . $item . '%')
+            ->orWhere('genre', 'LIKE', '%' . $item . '%');
+        })->get();
+
+        return view('users.search', ['items' => $search]);
+    }
 
     public function dashboard()
     {
@@ -661,17 +677,19 @@ class UserController extends Controller
 
 
     // API's
-    public function search($item) {
-        // $search = Books::where('title', $item)->get();
-        $search = Books::where('title', 'LIKE', '%' . $item . '%')->get();
-        // $search = Books::where('title', 'City of Secrets')->get();
-        // return response()->json(['result' => $search]);
+    public function searchItem($item) {      
+        $search = Books::where(function($query) use ($item){
+            $query->where('title', 'LIKE', '%' . $item . '%')
+            ->orWhere('author', 'LIKE', '%' . $item . '%')
+            ->orWhere('genre', 'LIKE', '%' . $item . '%');
+        })->get();
+
         return $search;
     }
 
     public function getAddress($id)
     {
-        $address = Address::where('id', $id)->get();
+        $address = Address::find($id)->get();
 
         return $address;
     }

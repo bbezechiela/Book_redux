@@ -164,7 +164,7 @@ h4 {
     margin-left: 10px; 
 }
 
-.product-price, .product-price, .action, .product-details {
+.product-price, .action, .product-details {
     display: flex;
     flex-direction: column;
     text-align: center;

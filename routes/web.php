@@ -183,8 +183,11 @@ Route::get('/reportedrentpost', [UserController::class, 'reportedRentPost']);
 
 Route::get('/reporteduser', [UserController::class, 'reportedUser']);
 
+Route::get('/searchitem/{item}', [UserController::class, 'search']);
+
+Route::get('/addtocart/{id}', [ListingController::class, 'addToCart']);
 
 // API's
-Route::get('/search/{item}', [UserController::class, 'search']);
+Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
@@ -93,6 +94,7 @@ class ListingController extends Controller
         $salePost = Books::create([
             'user_id' => $validated['user_id'],
             'status' => 'Sale',
+            'unit' => 'Available',
             'book_photo' => $validated['book_photo'],
             'title' => $validated['title'],
             'author' => $validated['author'],
@@ -147,6 +149,7 @@ class ListingController extends Controller
         $exchangePost = Books::create([
             'user_id' => $validated['user_id'],
             'status' => 'Exchange',
+            'unit' => 'Available',
             'book_photo' => $validated['book_photo'],
             'title' => $validated['title'],
             'author' => $validated['author'],
@@ -204,6 +207,7 @@ class ListingController extends Controller
         $rentPost = Books::create([
             'user_id' => $validated['user_id'],
             'status' => 'Rent',
+            'unit' => 'Available',
             'book_photo' => $validated['book_photo'],
             'title' => $validated['title'],
             'author' => $validated['author'],
@@ -556,6 +560,24 @@ class ListingController extends Controller
             return redirect()->route('mylist');
         } else {
             return "error bitch";
+        }
+    }
+
+    public function addToCart($id) {
+
+        $book = Books::find($id);
+        $book->update([
+            'unit' => 'AddedToCart'
+        ]);
+
+        $cart = Cart::create([
+            'user_id' => session('id'),
+            'product_id' => $id,
+            'status' => 'Pending'
+        ]);
+
+        if ($cart) {
+            return redirect('/home');
         }
     }
 }
