@@ -57,7 +57,7 @@
                     <label class="form-check-label" for="select-all">
                         <input class="form-check-input check-order" type="checkbox" value="" id="select-all">
                         Select all
-                        <span>(3 items)</span>
+                        {{-- <span>(3 items)</span> --}}
                     </label>
                 </h4>
             </div>
@@ -150,7 +150,7 @@
                 @endforeach
             </main>
             <!-- Sticky footer -->
-            <div class="footer">
+            <div class="footer fixed-bottom">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">

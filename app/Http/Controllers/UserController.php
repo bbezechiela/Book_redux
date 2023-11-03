@@ -283,10 +283,10 @@ class UserController extends Controller
         return view('users.message');
     }
 
-    public function searchResult()
-    {
-        return view('users.searchResult');
-    }
+    // public function searchResult()
+    // {
+    //     return view('users.searchResult');
+    // }
 
     public function userProfilePreview()
     {

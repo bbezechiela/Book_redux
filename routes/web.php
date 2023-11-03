@@ -53,7 +53,7 @@ Route::get('/unread', [UserController::class, 'unreadNotification']);
 
 Route::get('/messages', [UserController::class, 'message']);
 
-Route::get('/search', [UserController::class, 'searchResult']);
+// Route::get('/search', [UserController::class, 'searchResult']);
 
 Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']);
 
