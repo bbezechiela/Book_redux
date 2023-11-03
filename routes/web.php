@@ -187,6 +187,8 @@ Route::get('/searchitem/{item}', [UserController::class, 'search']);
 
 Route::get('/addtocart/{id}', [ListingController::class, 'addToCart']);
 
+Route::get('/deletecart/{id}', [ListingController::class, 'destroyCart']);
+
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 

@@ -67,6 +67,9 @@
                     <div class="price">Price</div>
                     <div class="action">Actions</div>
                 </div>
+                @php
+                    global $totalPrice;
+                @endphp
                 @foreach ($items->cart as $item)
                     {{-- <p>{{ $item->productRelation->title }}</p> --}}
                     @if ($item->productRelation->status == 'Exchange')
@@ -90,7 +93,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="product-price">₱{{ $item->productRelation->price }}</div>
+                                {{-- <div class="product-price">₱{{ $item->productRelation->price }}</div> --}}
                                 <div class="product-action">
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle move-button" type="button"
@@ -115,8 +118,8 @@
 
                             <div class="product-cart">
                                 <div class="book-details">
-                                    <input class="form-check-input check-order" type="checkbox" value=""
-                                        id="check-order">
+                                    <input class="form-check-input check-order" type="checkbox" name="items"
+                                        value="{{ $item->productRelation->price }}" id="check-order">
                                     <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
                                         alt="book" width="80px" height="110px">
                                     <div class="book-info">
@@ -125,7 +128,8 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="product-price flex-row">₱<span id="price">{{ $item->productRelation->price }}</span></div>
+                                <div class="product-price flex-row">₱<span
+                                        id="price">{{ $item->productRelation->price }}</span></div>
                                 <div class="product-action">
                                     <div class="dropdown">
                                         <button class="btn dropdown-toggle move-button" type="button"
@@ -135,10 +139,13 @@
                                             <li><a class="dropdown-item" href="#">Move to wish list</a></li>
                                         </ul>
                                     </div>
-                                    <button class="delete-button">Delete</button>
+                                    <a class="btn delete-button" href="/deletecart/{{ $item->id }}">Delete</a>
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $totalPrice += floatVal($item->productRelation->price);
+                        @endphp
                     @endif
                 @endforeach
             </main>
@@ -147,7 +154,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <p class="total-items">Total (<span>4 items</span>): <span class="total">₱544</span></p>
+                            {{-- <p class="total-items">Total (<span>4 items</span>): <span id="total" class="total">₱{{ $totalPrice }}.0</span></p> --}}
+                            <p class="total-items">Total (<span>4 items</span>): <span id="total"
+                                    class="total">₱0.00</span></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <a class="btn btn-primary checkout-button" href="/checkout">Checkout</a>
@@ -161,3 +170,64 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    var select_all = document.getElementById('select-all');
+    var prices = document.querySelectorAll('input[name="items"]');
+    var total = document.getElementById('total');
+    var totalPrice = 0.0;
+    var checkedValues = [];
+
+    for (var i = 0; i < prices.length; i++) {
+        prices[i].checked = false;
+    }
+
+    prices.forEach((checkbox) => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                checkedValues.push(this.value);
+                totalPrice += parseFloat(this.value);
+                total.textContent = '₱' + totalPrice + '.0';
+            } else if (totalPrice > 0.0) {
+                checkedValues.pop(this.value);
+                totalPrice -= parseFloat(this.value);
+                total.textContent = '₱' + totalPrice + '.0';
+                if (totalPrice <= 0.0) {
+                    total.textContent = '₱' + '0.00';
+                    totalPrice = 0.0;
+                }
+            }
+        });
+    });
+
+    select_all.addEventListener('change', () => {
+        if (select_all.checked) {
+            totalPrice = 0.0;
+            for (var i = 0; i < prices.length; i++) {
+                prices[i].checked = true;
+            }
+
+            prices.forEach((checkbox) => {                
+                if (checkbox.checked) {
+                    checkedValues.push(checkbox.value);
+                    totalPrice += parseFloat(checkbox.value);
+                    total.textContent = '₱' + totalPrice + '.0';
+                } else if (totalPrice > 0.0) {
+                    checkedValues.pop(checkbox.value);
+                    totalPrice -= parseFloat(checkbox.value);
+                    total.textContent = '₱' + totalPrice + '.0';
+                    if (totalPrice <= 0.0) {
+                        total.textContent = '₱' + '0.00';
+                        totalPrice = 0.0;
+                    }
+                }                
+            });
+        } else {
+            for (var i = 0; i < prices.length; i++) {
+                prices[i].checked = false;
+            }
+            total.textContent = '₱' + '0.00';
+            totalPrice = 0.0;
+        }
+    });
+</script>

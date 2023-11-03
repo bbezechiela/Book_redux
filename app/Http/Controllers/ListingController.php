@@ -580,4 +580,20 @@ class ListingController extends Controller
             return redirect('/home');
         }
     }
+
+    public function destroyCart($id) {
+        $item = Cart::find($id);
+        $book = Books::find($item->product_id);
+        
+        $item->delete();        
+        $book->update([
+            'unit' => 'Available'
+        ]);        
+
+        if ($item) {
+            return redirect('/cart');           
+        } else {
+            return 'error bitch';
+        }
+    }
 }
