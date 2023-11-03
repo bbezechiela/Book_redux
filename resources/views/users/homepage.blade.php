@@ -39,7 +39,8 @@
                         </span>
                         <div class="position-relevant">
                             <input id="search_input" class="form-control rounded-3" type="text" placeholder="Search">
-                            <div id="searches" class="position-absolute border bg-light w-100 p-2" style="cursor: pointer;">                                
+                            <div id="searches" class="position-absolute border bg-light w-100 p-2"
+                                style="cursor: pointer;">
                             </div>
                         </div>
                     </div>
@@ -76,19 +77,22 @@
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -109,19 +113,22 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -151,19 +158,22 @@
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -184,19 +194,22 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -551,19 +564,22 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $sale->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -594,11 +610,13 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
 
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -637,11 +655,13 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -649,7 +669,8 @@
                                                             class="fa fa-cart-plus" aria-hidden="true"
                                                             style="margin-right: 7px"></i>Add to Cart</a>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -679,19 +700,22 @@
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -712,19 +736,22 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -754,19 +781,22 @@
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -787,19 +817,22 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -1183,19 +1216,22 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $sale->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i 
-                                                            class="fa fa-cart-plus" aria-hidden="true"
-                                                            style="margin-right: 7px"></i>Add to
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -1225,11 +1261,13 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
 
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -1269,11 +1307,13 @@
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button>
+                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                                onclick="stopPropagation(event)" aria-hidden="true"
+                                                style="margin-right: 8px"></i></button>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
-                                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -1281,7 +1321,8 @@
                                                             class="fa fa-cart-plus" aria-hidden="true"
                                                             style="margin-right: 7px"></i>Add to Cart</a>
                                                 </li>
-                                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Wishlist</a></li>
                                             </ul>
@@ -1598,58 +1639,61 @@
     });
 
     search.addEventListener('input', () => {
-        if (search.value.trim().length > 1) {            
+        if (search.value.trim().length > 1) {
             const requestOptions = {
                 method: 'GET',
             };
-            
+
             fetch('/search/' + search.value.trim(), requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     searchContainer.style.display = 'inline';
                     searchContainer.innerHTML = '';
                     // console.log(result);
-                    result.forEach(data => {             
+                    result.forEach(data => {
                         // console.log(data);
-                        const suggestionElement = document.createElement('div');
-                        const searchedImage = document.createElement('img');
-                        const searchedContent = document.createElement('div');
-                        const titleText = document.createElement('p');
-                        const authorText = document.createElement('p');
+                        if (data.unit == 'Available') {
+                            const suggestionElement = document.createElement('div');
+                            const searchedImage = document.createElement('img');
+                            const searchedContent = document.createElement('div');
+                            const titleText = document.createElement('p');
+                            const authorText = document.createElement('p');
 
-                        // suggestionElement.textContent = data.title;
-                        suggestionElement.id = "searched-item";
-                        suggestionElement.className = 'row px-2';
+                            // suggestionElement.textContent = data.title;
+                            suggestionElement.id = "searched-item";
+                            suggestionElement.className = 'row px-2';
 
-                        searchedImage.src = '/images/books/' + data.book_photo;
-                        searchedImage.className = 'col-3 px-0 bg-light';
+                            searchedImage.src = '/images/books/' + data.book_photo;
+                            searchedImage.className = 'col-3 px-0 bg-light';
 
-                        searchedContent.className = 'col border';
-                        searchedContent.id = 'textContent';
+                            searchedContent.className = 'col border';
+                            searchedContent.id = 'textContent';
 
-                        titleText.className = 'm-0 fw-bold';
-                        titleText.id = 'searched-title';
-                        titleText.textContent = data.title;
+                            titleText.className = 'm-0 fw-bold';
+                            titleText.id = 'searched-title';
+                            titleText.textContent = data.title;
 
-                        authorText.id = 'searched-author';
-                        authorText.textContent = data.author;
-                        
-                        suggestionElement.addEventListener('click', () => {
-                            window.location.href = "/product/" + data.id +"/" + data.user_id;
-                            searchContainer.innerHTML = '';
-                        });
+                            authorText.id = 'searched-author';
+                            authorText.textContent = data.author;
 
-                        searchContainer.appendChild(suggestionElement);
-                        suggestionElement.appendChild(searchedImage);
-                        suggestionElement.appendChild(searchedContent);
-                        searchedContent.appendChild(titleText);
-                        searchedContent.appendChild(authorText);                        
+                            suggestionElement.addEventListener('click', () => {
+                                window.location.href = "/product/" + data.id + "/" + data
+                                    .user_id;
+                                searchContainer.innerHTML = '';
+                            });
+
+                            searchContainer.appendChild(suggestionElement);
+                            suggestionElement.appendChild(searchedImage);
+                            suggestionElement.appendChild(searchedContent);
+                            searchedContent.appendChild(titleText);
+                            searchedContent.appendChild(authorText);
+                        }
                     });
                 })
                 .catch(error => console.log('error', error));
         } else {
             searchContainer.style.display = 'none'
-            searchContainer.innerHTML = '';                    
+            searchContainer.innerHTML = '';
         }
     });
 
