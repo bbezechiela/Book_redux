@@ -41,7 +41,6 @@
 
 #howItWorks-head {
 	color: #003060;
-	/* border-bottom: 1px solid #003060; */
 }
 
 #howItWorks-header {
@@ -77,12 +76,10 @@
 
 #hints-head {
 	color: #003060;
-	/* border-bottom: 1px solid #061874; */
 }
 
 #aboutUs-head {	
 	color: #003060;
-	/* display: ; */
 }
 
 #hints-btn {
@@ -114,7 +111,6 @@ h3, h2 {
 /* sign.up.php */
 #create-acct {
 	color: #003060;
-	/* border-bottom: 1px solid #003060; */
 }
 
 .orange-design {
@@ -151,16 +147,43 @@ select:focus {
 	outline: none;
 }
 
-#username, #password{
-	border-top: 0;
-	border-left: 0;
-	border-right: 0;
-	border-bottom: 1px solid;
+#img-icon{
+	font-size: 7em;
 }
 
-/* #pass-tip {
+#pass-tip {
 	color: red;
-} */
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.form-control, #email{
+	color: #003060;
+}
+
+.form-control:focus{
+	border-color: #E55B13;
+	box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.form-outline {
+    position: relative;
+}
+
+.form-control:focus + .form-label,
+.form-control:valid + .form-label {
+    top: -20px; 
+    font-size: 12px; 
+    color: #555; 
+}
+
+.form-label {
+    position: absolute;
+    top: .4em;
+    left: 1em;
+    transition: 0.2s;
+    pointer-events: none;
+}
 
 .upload-btn {
 	border: 1px solid #003060;

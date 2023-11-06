@@ -111,8 +111,8 @@
                             <p class="text-total">Total Payment:<span class="product-total">P144</span></p>
                         </div>
                         <div class="button-group">
-                            <button type="button" class="btn btn-primary btn-sm cancel-button">Cancel Order</button>
-                            <button type="button" class="btn btn-primary btn-sm pending-button">Pending</button>
+                            <button type="button" class="btn btn-sm cancel-button">Cancel Order</button>
+                            <button type="button" class="btn btn-sm pending-button">Pending</button>
                         </div>
                     </div>
                 </div>

@@ -224,7 +224,7 @@
 }
 
 .arrange-button,
-.contact-button {
+.contact-button, .save-button, .track-button {
     color: #fff;
     background-color: #E55B13;
     border: 1px solid #E55B13;
@@ -232,7 +232,7 @@
 }
 
 .arrange-button:hover,
-.contact-button:hover {
+.contact-button:hover, .save-button:hover, .track-button:hover {
     color: #fff;
     background-color: #003060;
     border: 1px solid #003060;
@@ -316,6 +316,7 @@
 .confirm-button:hover {
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .change-btn {
@@ -431,3 +432,23 @@
 .input-group-text i{
     color: #003060;
 }
+
+.fs-12 {
+    font-size: 12px;
+  }
+  
+  .fs-15 {
+    font-size: 15px;
+  }
+  
+  .name {
+    margin-bottom: -2px;
+  }
+  
+  .receipt-details {
+    margin-top: 13px;
+  }
+
+  .shipping-address-text{
+    color: #E55B13;
+  }

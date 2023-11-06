@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('birthday');
             $table->string('gender');
             // $table->integer('age');
-            $table->string('interest');
+            $table->string('interest')->nullable();
             $table->string('username');
             $table->string('password');
             $table->text('profile_photo')->nullable();

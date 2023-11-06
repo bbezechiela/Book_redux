@@ -150,7 +150,7 @@
                             <p class="total-items">Total (<span>4 items</span>): <span class="total">₱544</span></p>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="btn btn-primary checkout-button" href="/checkout">Checkout</a>
+                            <a class="btn checkout-button" href="/checkout">Checkout</a>
                         </div>
                     </div>
                 </div>

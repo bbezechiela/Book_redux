@@ -540,7 +540,7 @@
 
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary report-button">Send Report</button>
+                        <button type="button" class="btn report-button">Send Report</button>
                     </div>
                 </div>
             </div>

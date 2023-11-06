@@ -343,7 +343,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary post-btn">Post</button>
+                        <button type="button" class="btn post-btn">Post</button>
                     </div>
                 </div>
             </div>

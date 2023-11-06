@@ -53,7 +53,8 @@
                             <div class="col-sm-12 col-md-4">
                                 <div class="dataTables_length" id="DataTables_Table_0_length">
                                     <label>Show
-                                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                        <select name="DataTables_Table_0_length" 
+                                        aria-controls="DataTables_Table_0"
                                             class="form-select drop-table">
                                             <option value="7">7</option>
                                             <option value="10">10</option>

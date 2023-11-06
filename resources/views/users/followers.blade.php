@@ -56,108 +56,108 @@
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/Eubert.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary">Remove</button>
+                        <button class="btn">Remove</button>
                     </div>
                 </div>
             </div>

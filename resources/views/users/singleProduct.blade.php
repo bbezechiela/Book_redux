@@ -93,12 +93,12 @@
                                 <p class="card-text"><small
                                         class="text-body-secondary">{{ $user_id->address }}</small>
                                 </p>
-                                <a href="#" class="btn btn-primary total-likes"><i
+                                <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a>
-                                <a href="#" class="btn btn-primary cart-button"><i class="fa fa-cart-plus"
+                                <a href="#" class="btn cart-button"><i class="fa fa-cart-plus"
                                         aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                <a href="#" class="btn btn-primary wishlist-button"><i class="fa fa-list-alt"
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
                                         aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
                             </div>
                         </div>
@@ -150,12 +150,12 @@
                                 <p class="card-text"><small
                                         class="text-body-secondary">{{ $user_id->address }}</small>
                                 </p>
-                                <a href="#" class="btn btn-primary total-likes"><i
+                                <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a>
-                                <a href="#" class="btn btn-primary cart-button"><i class="fa fa-cart-plus"
+                                <a href="#" class="btn cart-button"><i class="fa fa-cart-plus"
                                         aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                <a href="#" class="btn btn-primary wishlist-button"><i class="fa fa-list-alt"
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
                                         aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
                             </div>
                         </div>
@@ -234,29 +234,29 @@
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn btn-primary active d-block rate-button" role="button"
+                                <a href="#" class="btn active d-block rate-button" role="button"
                                     data-bs-toggle="button" aria-pressed="true"
                                     style="background-color: #003060; border-color: #003060;">All
                                     <span>(10)</span></a>
-                                <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                                <a href="#" class="btn d-block rate-button" role="button"
                                     data-bs-toggle="button">3 Star
                                     <span>(20)</span></a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                                <a href="#" class="btn d-block rate-button" role="button"
                                     data-bs-toggle="button" aria-pressed="true">5 Star <span>(100)</span></a>
-                                <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                                <a href="#" class="btn d-block rate-button" role="button"
                                     data-bs-toggle="button">2 Star
                                     <span>(20)</span></a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                                <a href="#" class="btn d-block rate-button" role="button"
                                     data-bs-toggle="button" aria-pressed="true">4 star <span>(10)</span></a>
-                                <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                                <a href="#" class="btn d-block rate-button" role="button"
                                     data-bs-toggle="button">1 Star
                                     <span>(59)</span></a>
                             </div>
@@ -337,7 +337,7 @@
                             <div class="card img-card" style="width: 20rem;">
                             <img src="../assets/yellow_book.png" class="card-img-top" alt="product"  width="100px" height="364px">
                             <div class="card-body text-center">
-                                <a href="#" class="btn btn-primary total-likes"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" style="margin-right: 8px"></i>100</a>
+                                <a href="#" class="btn total-likes"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true" style="margin-right: 8px"></i>100</a>
                             </div>
                             </div>
                         </div>
@@ -366,8 +366,8 @@
                                 <p class="card-text">Language: <span>English</span></p>
                                 <p class="card-text">Condition: <span>Like New</span></p>
                                 <p class="card-text">Product Description: <span>One of the most inspiring and impactful books ever written, The 7 Habits of Highly Effective People has captivated readers for nearly three decades. </span></p>
-                                <a href="#" class="btn btn-primary cart-button"><i class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                <a href="#" class="btn btn-primary wishlist-button"><i class="fa fa-list-alt" aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                                <a href="#" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
                             </div>
                             </div>
                         </div>
@@ -428,7 +428,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary report-button">Report</button>
+                    <button type="button" class="btn report-button">Report</button>
                 </div>
             </div>
         </div>

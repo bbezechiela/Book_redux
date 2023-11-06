@@ -40,7 +40,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/home');
+            return redirect('/userdashboard');
         } else {
             return view('users.login');
         }
@@ -49,20 +49,20 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/home');
+            return redirect('/survey');
         } else {
             return view('users.signup');
         }
     }
 
-    public function home()
+    public function explore()
     {
         if (session()->has('user')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
             $post = Books::all();
-            return view('users.homepage', ['post' => $post, 'user' => $user]);
+            return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
         } else {
@@ -206,7 +206,7 @@ class UserController extends Controller
                     'birthday' => 'required',
                     'gender' => 'required',
                     'age' => 'required',
-                    // 'interest' => 'required',
+                    'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
                     'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
@@ -237,7 +237,7 @@ class UserController extends Controller
                     'birthday' => 'required',
                     'gender' => 'required',
                     'age' => 'required',
-                    // 'interest' => 'required',
+                    'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
                     // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
@@ -370,6 +370,11 @@ class UserController extends Controller
         return view('users.refund');
     }
 
+    public function rentalTracking()
+    {
+        return view('users.rentalTracking');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -381,14 +386,14 @@ class UserController extends Controller
             'birthday' => 'required',
             'gender' => 'required',
             // 'age' => 'required',
-            'interest' => 'required',
+            // 'interest' => 'required',
             'username' => 'required',
             'password' => 'required',
             'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
         ]);
 
         $validated["password"] =  bcrypt($validated["password"]);
-        $validated["interest"] = implode(', ', $validated["interest"]);
+        // $validated["interest"] = implode(', ', $validated["interest"]);
 
         $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
         $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -409,7 +414,7 @@ class UserController extends Controller
                 'user' => $validated["username"],
                 'profile_pic' => $validated["profile_photo"]
             ]);
-            return redirect()->route('home');
+            return redirect()->route('explore');
         } else {
             return view('users.signup')->with('message', "Cannot sign up");
         }
@@ -438,7 +443,7 @@ class UserController extends Controller
                 'user' => $user["username"],
                 'profile_pic' => $user["profile_photo"]
             ]);
-            return redirect()->route('home');
+            return redirect()->route('userdashboard');
         } else {
             return view('users.login')->with('message', 'Incorrect username or password');
         }
@@ -674,6 +679,21 @@ class UserController extends Controller
         return view('admin.reportedUser');
     }
 
+    public function survey()
+    {
+        return view('users.survey');
+    }
+
+    
+    public function systemFeedback()
+    {
+        return view('users.systemFeedback');
+    }
+
+    public function userDashboard()
+    {
+        return view('users.userDashboard');
+    }
 
 
     // API's

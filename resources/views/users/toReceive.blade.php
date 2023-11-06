@@ -121,7 +121,7 @@
                                 class="fa fa-angle-right" aria-hidden="true"></i></button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm receive-button" disabled>Order
+                        <button type="button" class="btn btn-sm receive-button" disabled>Order
                             Received</button>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                                 aria-hidden="true"></i></button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm receive-button" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-sm receive-button" data-bs-toggle="modal"
                             data-bs-target="#order-received">Order
                             Received</button>
                     </div>
@@ -169,7 +169,7 @@
         <!-- Tracking Modal -->
         <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My Purchase
@@ -177,7 +177,45 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="tracking-details">
+                        <section>
+                            <div class="container py-3 h-10 mb-4">
+                              <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col">
+                                  <div class="card card-stepper" style="border-radius: 10px; border: none;">
+                                    <div class="card-body p-4">
+                                      <div class="d-flex justify-content-between align-items-center header-track">
+                                        <div class="d-flex flex-column">
+                                          <span class="lead fw-normal tracking-text">Your order has been delivered</span>
+                                          <span class="text-muted small tracking-text">by DHFL on 21 Jan, 2020</span>
+                                        </div>
+                                      </div>
+                                      {{-- <hr class="my-4"> --}}
+                                      <div class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                                        <span class="dot"></span>
+                                        <hr class="flex-fill track-line"><span class="dot"></span>
+                                        <hr class="flex-fill track-line"><span class="dot"></span>
+                                        <hr class="flex-fill track-line"><span class="dot"></span>
+                                        <hr class="flex-fill track-line"><span
+                                          class="d-flex justify-content-center align-items-center big-dot dot">
+                                          <i class="fa fa-check text-white"></i></span>
+                                      </div>
+                                      <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <div class="d-flex flex-column align-items-start tracking-text"><span>15 Mar</span><span class="tracking-description">Order placed</span>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center tracking-text"><span>15 Mar</span><span class="tracking-description">Preparing to ship</span></div>
+                                        <div class="d-flex flex-column justify-content-center align-items-center tracking-text"><span>15
+                                            Mar</span><span class="tracking-description">Your order has been shipped</span></div>
+                                        <div class="d-flex flex-column align-items-center tracking-text"><span>15 Mar</span><span class="tracking-description">Out for
+                                            delivery</span></div>
+                                        <div class="d-flex flex-column align-items-end tracking-text"><span>15 Mar</span><span class="tracking-description">Delivered</span></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </section>
+                        {{-- <div class="tracking-details">
                             <div class="tracking-number">
                                 <p>Tracking Number</p>
                                 <p>1234567890</p>
@@ -232,7 +270,7 @@
                                     <p>Order placed</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -256,7 +294,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                             data-bs-target="#return-refund">Return Refund</button>
-                        <button type="button" class="btn btn-primary confirm-btn">Confirm</button>
+                        <button type="button" class="btn confirm-btn">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -325,7 +363,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary request-btn">Send Request</button>
+                        <button type="button" class="btn request-btn">Send Request</button>
                     </div>
                 </div>
             </div>

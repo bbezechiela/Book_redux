@@ -100,7 +100,7 @@
                     <span class="text-secondary">
                         Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
                     </span> <br>
-                    <button id="save-btn" type="button" class="btn btn-primary btn-save">Save</button>
+                    <button id="save-btn" type="button" class="btn btn-save">Save</button>
                 </div>
             </form>
         </div>

@@ -118,7 +118,7 @@
                         <p class="cancelled-text">Cancelled by you</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@
                         <p class="cancelled-text">Cancelled by seller</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>

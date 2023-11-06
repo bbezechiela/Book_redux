@@ -52,8 +52,8 @@
         
         <div class="container-fluid py-0 px-4">
             <div class="row mt-3 justify-content-between">
-                <div class="col-4 d-flex flex-row">
-                    <h2 class="fw-bold" style="margin-right: 10px;">Wish List</h2>
+                <div class="col-4 d-flex flex-row page-title">
+                    <h2 class="fw-bold">Wish List</h2>
                     <button class="create-btn btn px-3 py-1 ms-2 d-flex align-items-center my-auto"
                         data-bs-toggle="modal" data-bs-target="#create-modal"><i class="fa fa-plus-circle"
                             aria-hidden="true" style="margin-right: 5px;"></i>Create Album</button>
@@ -445,7 +445,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-create">Create</button>
+                        <button type="button" class="btn btn-create">Create</button>
                     </div>
                 </div>
             </div>
@@ -474,8 +474,8 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-delete">Delete</button>
-                        <button type="button" class="btn btn-primary btn-update">Update</button>
+                        <button type="button" class="btn btn-delete">Delete</button>
+                        <button type="button" class="btn btn-update">Update</button>
                     </div>
                 </div>
             </div>

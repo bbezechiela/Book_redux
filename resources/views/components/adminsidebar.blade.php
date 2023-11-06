@@ -27,10 +27,10 @@
         <i class="fa fa-users d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Manage User</span>
     </a>
-    <a href="/orderdetails" class="btn nav-item d-flex flex-row w-100 px-5 py-0 myList-side-btn" style="white-space: nowrap">
+    {{-- <a href="/orderdetails" class="btn nav-item d-flex flex-row w-100 px-5 py-0 myList-side-btn" style="white-space: nowrap">
         <i class="fa fa-list-alt d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Order Details</span>
-    </a>
+    </a> --}}
     {{-- <a href="/managereviews" class="btn nav-item d-flex flex-row w-100 px-5 py-0" style="white-space: nowrap">
         <i class="fa fa-star-half-o d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Manage Reviews and Rating</span>
@@ -39,10 +39,10 @@
         <i class="fa fa-retweet d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Manage Return/Refund</span>
     </a>
-    <a href="/manageresources" class="btn nav-item d-flex flex-row w-100 px-5 py-0" style="white-space: nowrap">
+    {{-- <a href="/manageresources" class="btn nav-item d-flex flex-row w-100 px-5 py-0" style="white-space: nowrap">
         <i class="fa fa-sticky-note d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Manage Educational Resources</span>
-    </a>
+    </a> --}}
     <a href="/logout" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="fa fa-sign-out d-flex align-items-center" style="color: #003060;" aria-hidden="true"></i>
         <span class="nav-link">Logout</span>
