@@ -50,10 +50,10 @@
         <i class="fa fa-list-ul d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">My List</span>
     </a>
-    <a href="/mylikes" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    {{-- <a href="/mylikes" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="fa fa-thumbs-up d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">My Likes</span>
-    </a>
+    </a> --}}
     <a href="/feedback" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="fa fa-comments d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">System Feedback</span>

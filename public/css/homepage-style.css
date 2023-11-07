@@ -106,16 +106,16 @@ a:hover, h4 {
     align-items: center;
 }
 
-.add-button,
-.like-button {
+.add-button{
+/* .like-button { */
     color: #2D6092;
     background: none;
     border: none;
     padding: 0;
 }
 
-.add-button:hover,
-.like-button:hover {
+.add-button:hover{
+/* .like-button:hover { */
     color: #E55B13;
     background-color: transparent;
 }
