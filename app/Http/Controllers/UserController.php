@@ -141,20 +141,31 @@ class UserController extends Controller
     }
 
     public function checkout(Request $request)
-    {        
+    {
         // session()->put('items', $request->input('items'));
         // dd(session('items'));
         // $request->session()->forget('items');
         // dd(session('items'));   
         $order = $request->input('items');
-        $checkout = Cart::whereIn('id', $order)->with('productRelation.user')->get();
-        
-        return view('users.checkout', ['items' => $checkout]);
+        $checkout = Cart::whereIn('id', $order)->with('productRelation.user.address')->get();
+
+        $address = Users::with('address')->find(session('id'));
+        // $address = Users::where('id', session('id'))->with('address')->first();
+
+        return view('users.checkout', ['items' => $checkout, 'user' => $address]);
     }
 
-    public function deliveryAddress()
+    public function deliveryAddress(Request $request)
     {
-        return view('users.deliveryAddress');
+        if ($request->session()->has('user')) {
+            $address = Address::where('user_id', session('id'))->get();
+            // $address = Address::findOrFail(session('id'));
+            // return view('users.address', ['address' => $address]);
+            return view('users.deliveryAddress', ['address' => $address]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        // return view('users.deliveryAddress');
     }
 
     public function wishlist()
@@ -469,7 +480,7 @@ class UserController extends Controller
         }
     }
 
-    public function storeAddress(Request $request)
+    public function storeAddress(Request $request, $add)
     {
         if ($request->has('default_address')) {
             $validated = $request->validate([
@@ -496,7 +507,14 @@ class UserController extends Controller
                 'default_address' => $validated['default_address']
             ]);
 
-            if ($post_address) {
+            // if ($post_address) {
+            //     return redirect('addresses');
+            // } else {
+            //     return "error bitch";
+            // }
+            if ($post_address && $add == 'delivery') {
+                return redirect('/deliveryAddress');
+            } elseif ($post_address && $add == 'notDelivery') {
                 return redirect('addresses');
             } else {
                 return "error bitch";
@@ -525,7 +543,14 @@ class UserController extends Controller
                 // 'default_address' => $validated['default_address']
             ]);
 
-            if ($post_address) {
+            // if ($post_address) {
+            //     return redirect('addresses');
+            // } else {
+            //     return "error bitch";
+            // }
+            if ($post_address && $add == 'delivery') {
+                return redirect('/deliveryAddress');
+            } elseif ($post_address && $add == 'notDelivery') {
                 return redirect('addresses');
             } else {
                 return "error bitch";
@@ -533,7 +558,7 @@ class UserController extends Controller
         }
     }
 
-    public function updateAddress(Request $request, $id)
+    public function updateAddress(Request $request, $id, $add)
     {
         if ($request->has('default_address')) {
             $validated = $request->validate([
@@ -551,7 +576,14 @@ class UserController extends Controller
             $address = Address::find($id);
             $address->update($validated);
 
-            if ($address) {
+            // if ($address) {
+            //     return redirect('addresses');
+            // } else {
+            //     return "error bitch";
+            // }
+            if ($address && $add == 'delivery') {
+                return redirect('/deliveryAddress');
+            } elseif ($address && $add == 'notDelivery') {
                 return redirect('addresses');
             } else {
                 return "error bitch";
@@ -581,7 +613,14 @@ class UserController extends Controller
                 'default_address' => null
             ]);
 
-            if ($address) {
+            // if ($address) {
+            //     return redirect('addresses');
+            // } else {
+            //     return "error bitch";
+            // }
+            if ($address && $add == 'delivery') {
+                return redirect('/deliveryAddress');
+            } elseif ($address && $add == 'notDelivery') {
                 return redirect('addresses');
             } else {
                 return "error bitch";
@@ -589,23 +628,27 @@ class UserController extends Controller
         }
     }
 
-    public function destroyAddress($id) {
+    public function destroyAddress($id, $del)
+    {
         $address = Address::find($id);
         $address->delete();
 
-        if ($address) {
+        if ($address && $del == 'delivery') {
+            return redirect('/deliveryAddress');
+        } elseif ($address && $del == 'notDelivery') {
             return redirect('addresses');
         } else {
             return "error bitch";
         }
     }
 
-    public function search($item) {
+    public function search($item)
+    {
         // $search = Books::where('title', 'LIKE', '%' . $item . '%')->get();
-        $search = Books::where(function($query) use ($item){
+        $search = Books::where(function ($query) use ($item) {
             $query->where('title', 'LIKE', '%' . $item . '%')
-            ->orWhere('author', 'LIKE', '%' . $item . '%')
-            ->orWhere('genre', 'LIKE', '%' . $item . '%');
+                ->orWhere('author', 'LIKE', '%' . $item . '%')
+                ->orWhere('genre', 'LIKE', '%' . $item . '%');
         })->get();
 
         return view('users.search', ['items' => $search]);
@@ -684,11 +727,12 @@ class UserController extends Controller
 
 
     // API's
-    public function searchItem($item) {      
-        $search = Books::where(function($query) use ($item){
+    public function searchItem($item)
+    {
+        $search = Books::where(function ($query) use ($item) {
             $query->where('title', 'LIKE', '%' . $item . '%')
-            ->orWhere('author', 'LIKE', '%' . $item . '%')
-            ->orWhere('genre', 'LIKE', '%' . $item . '%');
+                ->orWhere('author', 'LIKE', '%' . $item . '%')
+                ->orWhere('genre', 'LIKE', '%' . $item . '%');
         })->get();
 
         return $search;

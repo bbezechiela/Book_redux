@@ -1,12 +1,15 @@
 :root {
-    /* --sidebar_width: 320px; */
+    --sidebar_width: 320px;
 }
 
+.addresses {
+    background-color: #2D6092;
+}
 .sidebar {
     position: fixed;
     background-color: #003060;
     color: #fff;
-    width: var(--sidebar_width);
+    /* width: var(--sidebar_width); */
 }
 
 .sidebarProfile {
@@ -226,3 +229,4 @@
 #list:hover {
     background-color: #2D6092;
 }
+

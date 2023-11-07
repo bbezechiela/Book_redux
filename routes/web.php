@@ -149,11 +149,11 @@ Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
 Route::post('/updatepassword', [UserController::class, 'updateUserPassword']);
 
-Route::post('/storeaddress', [UserController::class, 'storeAddress']);
+Route::post('/storeaddress/{add}', [UserController::class, 'storeAddress']);
 
-Route::post('/updateaddress/{id}', [UserController::class, 'updateAddress']);
+Route::post('/updateaddress/{id}/{add}', [UserController::class, 'updateAddress']);
 
-Route::get('/destroyaddress/{id}', [UserController::class, 'destroyAddress']);
+Route::get('/destroyaddress/{id}/{del}', [UserController::class, 'destroyAddress']);
 
 Route::get('/dashboard', [UserController::class, 'dashboard']);
 

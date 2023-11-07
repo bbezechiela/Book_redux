@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Checkout | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/checkout-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Checkout | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/checkout-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -22,8 +22,8 @@
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
-                    <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                            alt="Logo"></a>
+                    <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5"
+                            src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
@@ -54,7 +54,29 @@
             <div id="checkout" class="checkout-content mt-3 w-100">
                 <h4 class="text-center checkout_text mx-5 pb-2">Checkout</h4>
             </div>
-            <div class="delivery-address-container">
+            {{-- @if ($user->address->default_address == 'true') --}}
+
+            @foreach ($user->address as $user)
+                @if ($user->default_address == 'true')
+                    <div class="delivery-address-container">
+                        <h2 class="delivery-address-title">
+                            <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
+                            Address
+                        </h2>
+                        <div class="seller-details">
+                            <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
+                            <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
+                            <p class="address" style="margin-right: 15px;">{{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}</p>
+                            <p class="zipcode">{{ $user->postal_code }}</p>
+                        </div>
+                        <button class="change-button"><a href="/deliveryAddress">Change</a></button>
+                    </div>
+                @endif
+            @endforeach
+
+            {{-- @endif --}}
+
+            {{-- <div class="delivery-address-container">
                 <h2 class="delivery-address-title">
                     <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery Address
                 </h2>
@@ -65,7 +87,7 @@
                     <p class="zipcode">6500</p>
                 </div>
                 <button class="change-button"><a href="/deliveryAddress">Change</a></button>
-            </div>
+            </div> --}}
             <main class="product-list">
                 <div class="details-container">
                     <h1 class="product-details">Book Ordered</h1>
@@ -75,27 +97,29 @@
                     {{-- {{ $orders->productRelation->title }} --}}
                     <div class="order-cart">
                         <div class="name-cart">
-                            <a class="seller-name" href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                            <a class="seller-name"
+                                href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
                             <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
                         </div>
                         <div class="product-cart">
                             <div class="book-details">
-                                <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}" alt="book" width="80px" height="110px">
+                                <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}"
+                                    alt="book" width="80px" height="110px">
                                 <div class="book-info">
                                     <p class="book-title">{{ $orders->productRelation->title }}</p>
                                     <p class="mb-0 fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
                                 </div>
-                                <div class="product-price">₱<span class="price-list">{{ $orders->productRelation->price }}</span></div>
+                                <div class="product-price">₱<span
+                                        class="price-list">{{ $orders->productRelation->price }}</span></div>
                             </div>
                         </div>
                     </div>
-                    
-                @endforeach                
+                @endforeach
                 <div class="shipping-option">
                     <p class="txt-shipping-opt">Shipping Option:</p>
                     <div class="dropdown">
-                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle shipping-button" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle shipping-button"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Door-to-Door Delivery</button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Door-to-Door Delivery</a></li>
@@ -111,8 +135,8 @@
                 <div class="payment-container">
                     <h1 class="payment-details">Payment Method</h1>
                     <div class="dropdown">
-                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle payment-button" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle payment-button"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Cash on Delivery</button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Cash on Delivery</a></li>
@@ -122,7 +146,8 @@
                     </div>
                 </div>
                 <div class="summary">
-                    <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total" class="summary-merchandise-total">P244</span></p>
+                    <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
+                            class="summary-merchandise-total">P244</span></p>
                     <p>Shipping Total: <span class="summary-shipping-total">P50</span></p>
                     <p>Total Payment: <span class="summary-total">P294</span></p>
                 </div>
@@ -134,8 +159,8 @@
     </div>
 </body>
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
@@ -147,7 +172,7 @@
 
     prices.forEach(element => {
         // console.log(parseFloat(element.textContent));
-        totalPrice += parseFloat(element.textContent);        
+        totalPrice += parseFloat(element.textContent);
     });
     displayTotal.textContent = '₱' + totalPrice + '.0';
     totalItem.textContent = '(' + prices.length + ' item/s)';

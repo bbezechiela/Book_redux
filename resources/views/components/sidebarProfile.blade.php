@@ -15,7 +15,7 @@
     <a href="/mypurchase" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <span class="nav-link">My Purchase</span>
     </a>
-    <a href="/addresses" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/addresses" class="btn addresses nav-item d-flex flex-row w-100 px-5 py-0">
         <span class="nav-link">Addresses</span>
     </a>
     <a href="/changepassword" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">

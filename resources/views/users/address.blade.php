@@ -103,7 +103,7 @@
                             data-bs-toggle="modal" data-bs-target="#edit-address"><a href="#">Edit</a></button>
                         {{-- <button class="edit-button" id="edit-btn" onclick="edit_function({{ $receiver->id }})"><a
                                 href="#">Edit</a></button> --}}
-                        <a type="button" href="/destroyaddress/{{ $receiver->id }}" id="delete-btn" class="delete-button">Delete</a>
+                        <a type="button" href="/destroyaddress/{{ $receiver->id }}/notDelivering" id="delete-btn" class="delete-button">Delete</a>
                     </div>
                 </div>
             @endforeach
@@ -119,7 +119,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New Address</h1>
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
-                    <form action="/storeaddress" method="POST">
+                    <form action="/storeaddress/notDelivery" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="mb-3">
@@ -326,7 +326,7 @@
 
     edit_submit_btn.addEventListener('click', () => {
         var edit_form = document.getElementById('edit_form');
-        edit_form.action = "/updateaddress/" + edit_id.textContent;
+        edit_form.action = "/updateaddress/" + edit_id.textContent + '/notDelivery';
         // alert(edit_id.textContent);
     });
     // var edit_btn = document.getElementById('edit-btn');
