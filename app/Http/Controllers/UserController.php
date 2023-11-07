@@ -140,9 +140,16 @@ class UserController extends Controller
         return view('users.membersRenting');
     }
 
-    public function checkout()
-    {
-        return view('users.checkout');
+    public function checkout(Request $request)
+    {        
+        // session()->put('items', $request->input('items'));
+        // dd(session('items'));
+        // $request->session()->forget('items');
+        // dd(session('items'));   
+        $order = $request->input('items');
+        $checkout = Cart::whereIn('id', $order)->with('productRelation.user')->get();
+        
+        return view('users.checkout', ['items' => $checkout]);
     }
 
     public function deliveryAddress()

@@ -67,87 +67,97 @@
                     <div class="price">Price</div>
                     <div class="action">Actions</div>
                 </div>
-                @php
+                {{-- @php
                     global $totalPrice;
-                @endphp
-                @foreach ($items->cart as $item)
-                    {{-- <p>{{ $item->productRelation->title }}</p> --}}
-                    @if ($item->productRelation->status == 'Exchange')
-                        <div class="order-cart">
-                            <div class="name-cart">
-                                <a class="seller-name"
-                                    href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
-                                <button class="message-seller"><i class="fa fa-commenting"
-                                        aria-hidden="true"></i></button>
-                            </div>
+                @endphp --}}
+                <form id="form" action="/checkout">
+                    @csrf
+                    @foreach ($items->cart as $item)
+                        {{-- <p>{{ $item->productRelation->title }}</p> --}}
+                        @if ($item->productRelation->status == 'Exchange')
+                            <div class="order-cart">
+                                <div class="name-cart">
+                                    <a class="seller-name"
+                                        href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                    <button class="message-seller"><i class="fa fa-commenting"
+                                            aria-hidden="true"></i></button>
+                                </div>
 
-                            <div class="product-cart">
-                                <div class="book-details">
-                                    <input class="form-check-input check-order" type="checkbox" value=""
-                                        id="check-order">
-                                    <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
-                                        alt="book" width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="book-title">{{ $item->productRelation->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->productRelation->status }}
-                                        </p>
+                                <div class="product-cart">
+                                    <div class="book-details">
+                                        {{-- <input class="form-check-input check-order" type="checkbox" name="items"
+                                            value="{{ $item->productRelation->price }}" id="check-order"> --}}
+                                        <input class="form-check-input check-order" type="checkbox" name="items[]"
+                                            value="{{ $item->id }}" id="check-order">
+                                        <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
+                                            alt="book" width="80px" height="110px">
+                                        <div class="book-info">
+                                            <p class="book-title">{{ $item->productRelation->title }}</p>
+                                            <p class="mb-0 fw-bold interaction-type">
+                                                {{ $item->productRelation->status }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="product-price">₱{{ $item->productRelation->price }}</div> --}}
+                                    <div class="product-action">
+                                        <div class="dropdown">
+                                            <button class="btn dropdown-toggle move-button" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Move to likes</a></li>
+                                                <li><a class="dropdown-item" href="#">Move to wish list</a></li>
+                                            </ul>
+                                        </div>
+                                        <a href="/deletecart/{{ $item->id }}" class="delete-button">Delete</a>
                                     </div>
                                 </div>
-                                {{-- <div class="product-price">₱{{ $item->productRelation->price }}</div> --}}
-                                <div class="product-action">
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle move-button" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Move to likes</a></li>
-                                            <li><a class="dropdown-item" href="#">Move to wish list</a></li>
-                                        </ul>
-                                    </div>
-                                    <button class="delete-button">Delete</button>
+                            </div>
+                        @else
+                            <div class="order-cart">
+                                <div class="name-cart">
+                                    <a class="seller-name"
+                                        href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                    <button class="message-seller"><i class="fa fa-commenting"
+                                            aria-hidden="true"></i></button>
                                 </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="order-cart">
-                            <div class="name-cart">
-                                <a class="seller-name"
-                                    href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
-                                <button class="message-seller"><i class="fa fa-commenting"
-                                        aria-hidden="true"></i></button>
-                            </div>
 
-                            <div class="product-cart">
-                                <div class="book-details">
-                                    <input class="form-check-input check-order" type="checkbox" name="items"
-                                        value="{{ $item->productRelation->price }}" id="check-order">
-                                    <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
-                                        alt="book" width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="book-title">{{ $item->productRelation->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->productRelation->status }}
-                                        </p>
+                                <div class="product-cart">
+                                    <div class="book-details">
+                                        {{-- <input class="form-check-input check-order" type="checkbox" name="items"
+                                            value="{{ $item->productRelation->price }}" id="check-order"> --}}
+                                        <input class="form-check-input check-order" type="checkbox" name="items[]"
+                                            value="{{ $item->id }}" id="check-order">
+                                        <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
+                                            alt="book" width="80px" height="110px">
+                                        <div class="book-info">
+                                            <p class="book-title">{{ $item->productRelation->title }}</p>
+                                            <p class="mb-0 fw-bold interaction-type">
+                                                {{ $item->productRelation->status }}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product-price flex-row">₱<span
-                                        id="price">{{ $item->productRelation->price }}</span></div>
-                                <div class="product-action">
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle move-button" type="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Move to likes</a></li>
-                                            <li><a class="dropdown-item" href="#">Move to wish list</a></li>
-                                        </ul>
+                                    <div class="product-price flex-row">₱<span
+                                            id="{{ $item->id }}">{{ $item->productRelation->price }}</span></div>
+                                    <div class="product-action">
+                                        <div class="dropdown">
+                                            <button class="btn dropdown-toggle move-button" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Move to likes</a></li>
+                                                <li><a class="dropdown-item" href="#">Move to wish list</a></li>
+                                            </ul>
+                                        </div>
+                                        <a class="btn delete-button"
+                                            href="/deletecart/{{ $item->id }}">Delete</a>
                                     </div>
-                                    <a class="btn delete-button" href="/deletecart/{{ $item->id }}">Delete</a>
                                 </div>
                             </div>
-                        </div>
-                        @php
+                            {{-- @php
                             $totalPrice += floatVal($item->productRelation->price);
-                        @endphp
-                    @endif
-                @endforeach
+                        @endphp --}}
+                        @endif
+                    @endforeach
+                </form>
             </main>
             <!-- Sticky footer -->
             <div class="footer fixed-bottom">
@@ -159,7 +169,7 @@
                                     class="total">₱0.00</span></p>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="btn btn-primary checkout-button" href="/checkout">Checkout</a>
+                            <a id="checkout" class="btn btn-primary checkout-button">Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -172,8 +182,18 @@
 ])
 
 <script>
+    // checkout
+    var checkout = document.getElementById('checkout');
+
+    checkout.addEventListener('click', () => {
+        var form = document.getElementById('form');
+
+        form.submit();
+    })
+
+    // 
     var select_all = document.getElementById('select-all');
-    var prices = document.querySelectorAll('input[name="items"]');
+    var prices = document.querySelectorAll('input[name="items[]"]');
     var total = document.getElementById('total');
     var items = document.getElementById('items');
     var totalItems = 0;
@@ -187,14 +207,15 @@
     prices.forEach((checkbox) => {
         checkbox.addEventListener('change', function() {
             if (this.checked) {
-                checkedValues.push(this.value);
-                totalPrice += parseFloat(this.value);
+                // console.log(document.getElementById(this.value).textContent);
+                checkedValues.push(document.getElementById(this.value).textContent);
+                totalPrice += parseFloat(document.getElementById(this.value).textContent);
                 total.textContent = '₱' + totalPrice + '.0';
                 totalItems += 1;
                 items.textContent = totalItems;
             } else if (totalPrice > 0.0) {
-                checkedValues.pop(this.value);
-                totalPrice -= parseFloat(this.value);
+                checkedValues.pop(document.getElementById(this.value).textContent);
+                totalPrice -= parseFloat(document.getElementById(this.value).textContent);
                 total.textContent = '₱' + totalPrice + '.0';
                 totalItems -= 1;
                 items.textContent = totalItems;
@@ -210,25 +231,25 @@
         if (select_all.checked) {
             totalPrice = 0.0;
             for (var i = 0; i < prices.length; i++) {
-                prices[i].checked = true;                
+                prices[i].checked = true;
             }
 
-            prices.forEach((checkbox) => {                
+            prices.forEach((checkbox) => {
                 if (checkbox.checked) {
-                    checkedValues.push(checkbox.value);
-                    totalPrice += parseFloat(checkbox.value);
+                    checkedValues.push(document.getElementById(checkbox.value).textContent);
+                    totalPrice += parseFloat(document.getElementById(checkbox.value).textContent);
                     total.textContent = '₱' + totalPrice + '.0';
                     totalItems += 1;
                 } else if (totalPrice > 0.0) {
-                    checkedValues.pop(checkbox.value);
-                    totalPrice -= parseFloat(checkbox.value);
+                    checkedValues.pop(document.getElementById(checkbox.value).textContent);
+                    totalPrice -= parseFloat(document.getElementById(checkbox.value).textContent);
                     total.textContent = '₱' + totalPrice + '.0';
                     totalItems -= 1;
                     if (totalPrice <= 0.0) {
                         total.textContent = '₱' + '0.00';
                         totalPrice = 0.0;
                     }
-                }                
+                }
             });
 
             items.textContent = totalItems;

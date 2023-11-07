@@ -55,6 +55,7 @@ h4 {
     flex-direction: column;
     color: rgba(0, 0, 0, .8);
     padding-top: 20px;
+    margin-bottom: 70px;
 }
 
 .details-container {

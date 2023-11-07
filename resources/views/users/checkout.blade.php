@@ -71,40 +71,26 @@
                     <h1 class="product-details">Book Ordered</h1>
                     <h1 class="price">Price</h1>
                 </div>
-                <div class="order-cart">
-                    <div class="name-cart">
-                        <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                        <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                            <div class="book-info">
-                                <p class="book-title">City of Secrets</p>
-                                <p class="mb-0 fw-bold interaction-type">Sale</p>
+                @foreach ($items as $orders)
+                    {{-- {{ $orders->productRelation->title }} --}}
+                    <div class="order-cart">
+                        <div class="name-cart">
+                            <a class="seller-name" href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}" alt="book" width="80px" height="110px">
+                                <div class="book-info">
+                                    <p class="book-title">{{ $orders->productRelation->title }}</p>
+                                    <p class="mb-0 fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
+                                </div>
+                                <div class="product-price">₱<span class="price-list">{{ $orders->productRelation->price }}</span></div>
                             </div>
-                            <div class="product-price">P144</div>
                         </div>
                     </div>
-                </div>
-
-                <div class="order-cart">
-                    <div class="name-cart">
-                        <a class="seller-name" href="#"><span>Nestine Blackpink</span></a>
-                        <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                            <div class="book-info">
-                                <p class="book-title">Many Secrets</p>
-                                <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            </div>
-                            <div class="product-price">P100</div>
-                        </div>
-                    </div>
-                </div>
-
+                    
+                @endforeach                
                 <div class="shipping-option">
                     <p class="txt-shipping-opt">Shipping Option:</p>
                     <div class="dropdown">
@@ -119,8 +105,8 @@
                     <div class="shipping-price">P50</div>
                 </div>
                 <div class="order-total">
-                    <p>Order Total <span>(1 item):</span></p>
-                    <div class="total">P294</div>
+                    <p>Order Total <span id="total">(1 item):</span></p>
+                    <div id="total-price" class="total">₱294</div>
                 </div>
                 <div class="payment-container">
                     <h1 class="payment-details">Payment Method</h1>
@@ -136,8 +122,7 @@
                     </div>
                 </div>
                 <div class="summary">
-                    <p class="merchandise-subtotal">Merchandise Subtotal: <span
-                            class="summary-merchandise-total">P244</span></p>
+                    <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total" class="summary-merchandise-total">P244</span></p>
                     <p>Shipping Total: <span class="summary-shipping-total">P50</span></p>
                     <p>Total Payment: <span class="summary-total">P294</span></p>
                 </div>
@@ -152,3 +137,19 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    var prices = document.querySelectorAll('span[class="price-list"]');
+    var totalItem = document.getElementById('total');
+    var displayTotal = document.getElementById('total-price');
+    var mercha_total = document.getElementById('mer-total');
+    var totalPrice = 0.0;
+
+    prices.forEach(element => {
+        // console.log(parseFloat(element.textContent));
+        totalPrice += parseFloat(element.textContent);        
+    });
+    displayTotal.textContent = '₱' + totalPrice + '.0';
+    totalItem.textContent = '(' + prices.length + ' item/s)';
+    mercha_total.textContent = '₱' + totalPrice + '.0';
+</script>

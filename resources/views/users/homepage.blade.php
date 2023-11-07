@@ -87,7 +87,7 @@
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#"
+                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
                                                         onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
@@ -168,7 +168,7 @@
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#"
+                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
                                                         onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
@@ -204,7 +204,7 @@
                                                 <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#"
+                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
                                                         onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
                                                         Cart</a></li>
@@ -241,20 +241,25 @@
                                         {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span> --}}
                                         <div class="button-container">
                                             <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
-                                                    aria-hidden="true" style="margin-right: 8px"></i></button>
+                                                    onclick="stopPropagation(event)" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button>
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    onclick="stopPropagation(event)" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    <li><a class="dropdown-item"
+                                                            href="/addtocart/{{ $daily->id }}"
+                                                            onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
+                                                            Cart</a></li>
+                                                    <li><a class="dropdown-item" href="#"
+                                                            onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                                aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                            to
                                                             Wishlist</a></li>
                                                 </ul>
                                             </div>
@@ -275,20 +280,25 @@
                                         <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
                                             <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
-                                                    aria-hidden="true" style="margin-right: 8px"></i></button>
+                                                    onclick="stopPropagation(event)" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button>
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    onclick="stopPropagation(event)" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    <li><a class="dropdown-item"
+                                                            href="/addtocart/{{ $daily->id }}"
+                                                            onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
+                                                            Cart</a></li>
+                                                    <li><a class="dropdown-item" href="#"
+                                                            onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                                aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                            to
                                                             Wishlist</a></li>
                                                 </ul>
                                             </div>
@@ -1651,7 +1661,7 @@
                     searchContainer.innerHTML = '';
                     // console.log(result);
                     result.forEach(data => {
-                        // console.log(data);
+                        console.log(data);
                         if (data.unit == 'Available') {
                             const suggestionElement = document.createElement('div');
                             const searchedImage = document.createElement('img');

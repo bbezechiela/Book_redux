@@ -143,7 +143,7 @@ Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate'])
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
 
-Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'rentUpdate']);
+Route::post('/mylist/updateRent/{id}', [ListingController::class, 'rentUpdate']);
 
 Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
