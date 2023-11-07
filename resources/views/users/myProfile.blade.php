@@ -95,7 +95,7 @@
                     <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo"
                         required>
                     <label for="profileUpload" class="btn mx-auto mt-3 py-1 px-0 upload-btn">Upload</label>
-                    <button type="submit" class="btn btn-primary save-button" onclick="document.getElementById('form').submit()">Save</button>
+                    <button type="submit" class="btn save-button" onclick="document.getElementById('form').submit()">Save</button>
                 </div>
                 <div class="col mx-2 d-flex justify-content-center flex-column w-50">
                     <div class="mx-1 d-flex justify-content-center">

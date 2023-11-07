@@ -140,9 +140,9 @@
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Profile</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">First Name</th>
+                                                rowspan="1" colspan="1" style="width: 180px;">First Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Last Name</th>
+                                                rowspan="1" colspan="1" style="width: 180px;">Last Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"

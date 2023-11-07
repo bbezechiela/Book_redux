@@ -90,7 +90,7 @@
                         <p class="cancelled-text">Cancelled by you</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                         <p class="cancelled-text">Cancelled by buyer</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
                         <p class="cancelled-text">Cancelled by buyer</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
             </div>

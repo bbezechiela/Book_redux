@@ -152,7 +152,7 @@
                     <p>Total Payment: <span class="summary-total">P294</span></p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <button class="btn btn-primary place-order-button"><a href="">Place Order</a></button>
+                    <button class="btn place-order-button"><a href="">Place Order</a></button>
                 </div>
             </main>
         </div>

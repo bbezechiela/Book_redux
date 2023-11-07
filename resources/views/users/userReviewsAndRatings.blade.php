@@ -113,29 +113,29 @@
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn btn-primary active d-block rate-button" role="button"
+                            <a href="#" class="btn active d-block rate-button" role="button"
                                 data-bs-toggle="button" aria-pressed="true"
-                                style="background-color: #003060; border-color: #003060;">All
+                                style="background-color: #003060; border-color: #003060; color: #fff;">All
                                 <span>(10)</span></a>
-                            <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                            <a href="#" class="btn d-block rate-button" role="button"
                                 data-bs-toggle="button">3 Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                            <a href="#" class="btn d-block rate-button" role="button"
                                 data-bs-toggle="button" aria-pressed="true">5 Star <span>(100)</span></a>
-                            <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                            <a href="#" class="btn d-block rate-button" role="button"
                                 data-bs-toggle="button">2 Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                            <a href="#" class="btn d-block rate-button" role="button"
                                 data-bs-toggle="button" aria-pressed="true">4 star <span>(10)</span></a>
-                            <a href="#" class="btn btn-primary d-block rate-button" role="button"
+                            <a href="#" class="btn d-block rate-button" role="button"
                                 data-bs-toggle="button">1 Star
                                 <span>(59)</span></a>
                         </div>

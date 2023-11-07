@@ -86,11 +86,13 @@
     border-color: #E55B13;
     width: 10em;
     margin-top: 2.4em;
+    color: #fff;
 }
 
 .save-button:hover{
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .ratings {

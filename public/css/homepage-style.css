@@ -60,13 +60,13 @@
 }
 
 a,
-h4,
+h4:hover,
 p {
     color: #003060;
     text-decoration: none;
 }
 
-a:hover {
+a:hover, h4 {
     color: #E55B13;
     font-weight: bold;
 }

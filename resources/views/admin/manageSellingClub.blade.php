@@ -110,17 +110,17 @@
                                                 <input type="checkbox" class="form-check-input"></th>
                                             <th class="sorting sorting_asc" tabindex="0"
                                                 aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                style="width: 120px;">Posted by</th>
+                                                style="width: 180px;">Posted by</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Date</th>
+                                                rowspan="1" colspan="1" style="width: 100px;">Date</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Time</th>
+                                                rowspan="1" colspan="1" style="width: 100px;">Time</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Caption</th>
+                                                rowspan="1" colspan="1" style="width: 220px;">Caption</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 108px;">Image</th>
+                                                rowspan="1" colspan="1" style="width: 100px;">Image</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 144px;">Actions
+                                                rowspan="1" colspan="1" style="width: 100px;">Actions
                                             </th>
                                         </tr>
                                     </thead>

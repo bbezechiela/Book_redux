@@ -54,7 +54,7 @@
             </ul>
             <div id="del-address" class="del-address-content mt-3 w-100">
                 <h4 class="text-center del_address_text mx-5 pb-2">Delivery Address</h4>
-                <button class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
+                <button class="btn add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
                         class="fa fa-plus" aria-hidden="true"></i>Add new address</button>
             </div>
             {{-- <div class="del-address-container">
@@ -66,7 +66,7 @@
                 <button class="edit-button" data-bs-toggle="modal" data-bs-target="#edit-address"><a
                         href="#">Edit</a></button>
                 <div class="col-md-6 text-right sticky-button">
-                    <button class="btn btn-primary confirm-button">Confirm</button>
+                    <button class="btn confirm-button">Confirm</button>
                 </div>
             </div> --}}
             @foreach ($address as $receiver)

@@ -121,7 +121,7 @@
                                             book exchange that will happen on August 3, 2023 in Tacloban. You don’t want
                                             this to miss, don’t you? Tap in the join button so we can know who we will
                                             be expecting. See you there Taclobanons!</p>
-                                        <button class="btn btn-primary join-btn">Join</button>
+                                        <button class="btn join-btn">Join</button>
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary post-btn">Create</button>
+                        <button type="button" class="btn post-btn">Create</button>
                     </div>
                 </div>
             </div>

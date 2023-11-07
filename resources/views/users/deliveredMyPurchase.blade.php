@@ -120,7 +120,7 @@
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary submit-button">Submit</button>
+                        <button type="button" class="btn submit-button">Submit</button>
                     </div>
                 </div>
             </div>

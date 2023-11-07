@@ -1,5 +1,5 @@
 @include('partials.__header', [
-    'title' => 'Home | BookRedux',
+    'title' => 'Explore | BookRedux',
     'bootstrap_link' => '/bootstrap/bootstrap.min.css',
     'css_link' => '/css/homepage-style.css',
     'aos_link' => '/aos-master/dist/aos.css',
@@ -699,7 +699,7 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post->shuffle() as $daily)
                     @if ($daily->status == 'Exchange' && $daily->unit == 'Available')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; height: 280px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">
@@ -735,7 +735,7 @@
                             </div>
                         </div>
                     @elseif ($daily->unit == 'Available')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">
@@ -780,7 +780,7 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post->sortByDesc('created_at') as $daily)
                     @if ($daily->status == 'Exchange' && $daily->unit == 'Available')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; height: 280px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">
@@ -816,7 +816,7 @@
                             </div>
                         </div>
                     @elseif ($daily->unit == 'Available')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">
@@ -862,7 +862,7 @@
                 @foreach ($post as $recommended)
                     @if (preg_match('/' . $recommended->genre . ',?/i', $user->interest))
                         @if ($recommended->status == 'Exchange' && $daily->unit == 'Available')
-                            <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            <div class="card m-1 col-3 shadow" style="width: 220px; height: 280px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
                                     class="img mx-auto" alt="..." width="130px" height="170px">
@@ -896,7 +896,7 @@
                                 </div>
                             </div>
                         @elseif ($daily->unit == 'Available')
-                            <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            <div class="card m-1 col-3 shadow" style="width: 220px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
                                     class="img mx-auto" alt="..." width="130px" height="170px">
@@ -1215,7 +1215,7 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post as $sale)
                     @if ($sale->status == 'Sale')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; height: 280px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
                             <img src="{{ asset('images/books/' . $sale->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">
@@ -1260,7 +1260,7 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post as $exchange)
                     @if ($exchange->status == 'Exchange' && $daily->unit == 'Available')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; height: 280px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
                             <img src="{{ asset('images/books/' . $exchange->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">
@@ -1306,7 +1306,7 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post as $rent)
                     @if ($rent->status == 'Rent')
-                        <div class="card m-1 col-3 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        <div class="card m-1 col-3 shadow" style="width: 220px; height: 280px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $rent->id }}, {{ $rent->user_id }})">
                             <img src="{{ asset('images/books/' . $rent->book_photo) }}" class="img mx-auto p-2"
                                 alt="..." width="130px" height="170px">

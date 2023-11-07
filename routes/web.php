@@ -43,7 +43,7 @@ Route::get('/following', [UserController::class, 'following']);
 
 Route::get('/followers', [UserController::class, 'followers']);
 
-Route::get('/home', [UserController::class, 'home'])->name('home');
+Route::get('/explore', [UserController::class, 'explore'])->name('explore');
 
 Route::get('/notification', [UserController::class, 'notification']);
 
@@ -139,6 +139,8 @@ Route::get('/dropped', [UserController::class, 'dropped']);
 
 Route::get('/refund', [UserController::class, 'refund']);
 
+Route::get('/trackrental', [UserController::class, 'rentalTracking']);
+
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
@@ -182,6 +184,12 @@ Route::get('/reportedexchangepost', [UserController::class, 'reportedExchangePos
 Route::get('/reportedrentpost', [UserController::class, 'reportedRentPost']);
 
 Route::get('/reporteduser', [UserController::class, 'reportedUser']);
+
+Route::get('/survey', [UserController::class, 'survey']);
+
+Route::get('/feedback', [UserController::class, 'systemFeedback']);
+
+Route::get('/userdashboard', [UserController::class, 'userDashboard'])->name('userdashboard');
 
 Route::get('/searchitem/{item}', [UserController::class, 'search']);
 

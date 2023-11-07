@@ -112,11 +112,11 @@
                                             <div id="DataTables_Table_0_wrapper"
                                                 class="dataTables_wrapper dt-bootstrap5 no-footer" style="">
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-md-6">
+                                                    <div class="col-sm-12 col-md-4">
                                                         <div class="dataTables_length" id="DataTables_Table_0_length">
                                                             <label>Show
-                                                                <select name="DataTables_Table_0_length"
-                                                                    aria-controls="DataTables_Table_0"
+                                                                <select name="DataTables_Table_0_length" 
+                                                                aria-controls="DataTables_Table_0"
                                                                     class="form-select drop-table">
                                                                     <option value="7">7</option>
                                                                     <option value="10">10</option>
@@ -125,19 +125,38 @@
                                                                     <option value="75">75</option>
                                                                     <option value="100">100</option>
                                                                 </select>
-                                                                entries</label>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end">
-                                                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                                            <label>Search:<input type="search"
-                                                                    class="form-control search-table" placeholder=""
-                                                                    aria-controls="DataTables_Table_0">
+                                                                entries
                                                             </label>
                                                         </div>
                                                     </div>
+                                                    <div class="col-sm-12 col-md-4 dataTables_length">
+                                                        <label>Filter
+                                                            <div class="form-group">
+                                                                <select name="status" class="form-select status">
+                                                                    <option value="option1">Educational</option>
+                                                                    <option value="option2">Historical Fiction</option>
+                                                                    <option value="option1">Poetry & Prose</option>
+                                                                    <option value="option2">Self-Help</option>
+                                                                    <option value="option1">Romance & Saga</option>
+                                                                    <option value="option2">Science Fiction</option>
+                                                                    <option value="option1">Fantasy & Adventure</option>
+                                                                    <option value="option2">Young Adult</option>
+                                                                    <option value="option1">Mystery & Suspense</option>
+                                                                    <option value="option2">Crime & Thriller</option>
+                                                                    <option value="option1">Horror & Supernatural</option>
+                                                                    <option value="option2">Comedy & Satire</option>
+                                                                    <option value="option1">Non-Fiction & Biography</option>
+                                                                </select>
+                                                        </label>
+                                                    </div>
                                                 </div>
+                                                <div class="col-sm-12 col-md-4 d-flex justify-content-center justify-content-md-start">
+                                                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                                                        <label>Search:<input type="search" class="form-control search-table" placeholder=""
+                                                                aria-controls="DataTables_Table_0"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                 <table
                                                     class="datatables-basic table border-top dataTable no-footer dtr-column collapsed"
                                                     id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info"
@@ -152,28 +171,28 @@
                                                                 <input type="checkbox" class="form-check-input"></th>
                                                             <th class="sorting sorting_asc" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Image</th>
+                                                                colspan="1" style="width: 100px;">Image</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Title</th>
+                                                                colspan="1" style="width: 190px;">Title</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Price</th>
+                                                                colspan="1" style="width: 80px;">Price</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 108px;">Genre</th>
+                                                                colspan="1" style="width: 178px;">Genre</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 106px;">Author</th>
+                                                                colspan="1" style="width: 186px;">Author</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Edition</th>
+                                                                colspan="1" style="width: 130px;">Edition</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Language</th>
+                                                                colspan="1" style="width: 90px;">Language</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Condition
+                                                                colspan="1" style="width: 120px;">Condition
                                                             </th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
@@ -553,33 +572,33 @@
                                                             </th>
                                                             <th class="sorting sorting_asc" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Image</th>
+                                                                colspan="1" style="width: 100px;">Image</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Title</th>
+                                                                colspan="1" style="width: 190px;">Title</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 108px;">Genre</th>
+                                                                colspan="1" style="width: 180px;">Genre</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 106px;">Author</th>
+                                                                colspan="1" style="width: 160px;">Author</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Edition</th>
+                                                                colspan="1" style="width: 140px;">Edition</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Language</th>
+                                                                colspan="1" style="width: 90px;">Language</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Condition
+                                                                colspan="1" style="width: 100px;">Condition
                                                             </th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Exchange Preferences
+                                                                colspan="1" style="width: 230px;">Exchange Preferences
                                                             </th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Actions
+                                                                colspan="1" style="width: 100px;">Actions
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -963,41 +982,41 @@
                                                             </th>
                                                             <th class="sorting sorting_asc" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Image</th>
+                                                                colspan="1" style="width: 100px;">Image</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Title</th>
+                                                                colspan="1" style="width: 180px;">Title</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Rental Price</th>
+                                                                colspan="1" style="width: 130px;">Rental Price</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Security Deposit</th>
+                                                                colspan="1" style="width: 130px;">Security Deposit</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 108px;">Genre</th>
+                                                                colspan="1" style="width: 150px;">Genre</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 106px;">Author</th>
+                                                                colspan="1" style="width: 180px;">Author</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Edition</th>
+                                                                colspan="1" style="width: 100px;">Edition</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Language</th>
+                                                                colspan="1" style="width: 90px;">Language</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Condition
+                                                                colspan="1" style="width: 100px;">Condition
                                                             </th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Rental Duration</th>
+                                                                colspan="1" style="width: 180px;">Rental Duration</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 120px;">Terms & Condition</th>
+                                                                colspan="1" style="width: 270px;">Terms & Condition</th>
                                                             <th class="sorting" tabindex="0"
                                                                 aria-controls="DataTables_Table_0" rowspan="1"
-                                                                colspan="1" style="width: 144px;">Actions
+                                                                colspan="1" style="width: 100px;">Actions
                                                             </th>
                                                         </tr>
                                                     </thead>

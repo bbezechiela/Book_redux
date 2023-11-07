@@ -83,7 +83,7 @@
                 <h4>Address</h4>
                 <p>Manage your addresses</p>
             </div>
-            <button class="btn btn-primary add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
+            <button class="btn add-button" data-bs-toggle="modal" data-bs-target="#add-address"><i
                     class="fa fa-plus" aria-hidden="true"></i>Add new address</button>
 
             @foreach ($address as $receiver)
@@ -175,7 +175,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary close-button"
                                 data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary save-button">Save</button>
+                            <button type="submit" class="btn save-button">Save</button>
                         </div>
                     </form>
                 </div>
@@ -251,7 +251,7 @@
                             <button type="button" class="btn btn-secondary close-button"
                                 data-bs-dismiss="modal">Close</button>
                             <button type="submit" id="edit_form_submit"
-                                class="btn btn-primary save-button">Update</button>
+                                class="btn save-button">Update</button>
                         </div>
                     </form>
                 </div>

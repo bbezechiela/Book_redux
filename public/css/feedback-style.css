@@ -1,0 +1,77 @@
+/* :root {
+    --sidebar_width: 320px;
+} */
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+#home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .search-field {
+    border: none;
+    background-color: #fff;
+}
+
+.search-field {
+    margin-right: 2em;
+}
+
+.input-group-text i{
+    color: #003060;
+}
+
+.card{
+    color: #003060;
+}
+
+.card-header{
+    background-color: #003060;
+}
+
+.text-center i{
+    color: #003060;
+    margin-top: 1em;
+}
+
+.btn-submit{
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.btn-submit:hover{
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}

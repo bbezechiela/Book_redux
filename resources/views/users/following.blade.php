@@ -56,108 +56,108 @@
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Nestine Nicole Navarro</h3>
-                        <button class="btn btn-primary">Following</button>
+                        <button class="btn">Following</button>
                     </div>
                     <div class="profile-card">
                         <img src="/assets/nestine.png" alt="Profile Image" class="img-fluid rounded-circle">
                         <h3>Marie Tan Fernandez</h3>
-                        <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
+                        <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button>
                     </div>
                 </div>
             </div>
