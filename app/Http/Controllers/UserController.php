@@ -494,27 +494,68 @@ class UserController extends Controller
                 'default_address' => 'accepted'
             ]);
 
-            // dd($validated);
-            $post_address = Address::create([
-                'user_id' => session('id'),
-                'name' => $validated['name'],
-                'contact_number' => $validated['contact_number'],
-                'region' => $validated['region'],
-                'city_municipality' => $validated['city_municipality'],
-                'brgy_village' => $validated['brgy_village'],
-                'postal_code' => $validated['postal_code'],
-                'street_building_house' => $validated['street_building_house'],
-                'default_address' => $validated['default_address']
-            ]);
+            // dd($validated);            
 
-            // if ($post_address) {
-            //     return redirect('addresses');
-            // } else {
-            //     return "error bitch";
-            // }
+            $post_address = Address::where('default_address', 'true')->first();
+
             if ($post_address && $add == 'delivery') {
+                $post_address->update([
+                    'default_address' => null
+                ]);
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
                 return redirect('/deliveryAddress');
             } elseif ($post_address && $add == 'notDelivery') {
+                $post_address->update([
+                    'default_address' => null
+                ]);
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
+                // $post_address->update($validated);
+                return redirect('addresses');
+            } elseif ($add == 'delivery') {
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
+                return redirect('/deliveryAddress');
+            } elseif ($add == 'notDelivery') {
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
                 return redirect('addresses');
             } else {
                 return "error bitch";
@@ -543,11 +584,6 @@ class UserController extends Controller
                 // 'default_address' => $validated['default_address']
             ]);
 
-            // if ($post_address) {
-            //     return redirect('addresses');
-            // } else {
-            //     return "error bitch";
-            // }
             if ($post_address && $add == 'delivery') {
                 return redirect('/deliveryAddress');
             } elseif ($post_address && $add == 'notDelivery') {
@@ -573,17 +609,44 @@ class UserController extends Controller
             ]);
 
             // dd($validated);
-            $address = Address::find($id);
-            $address->update($validated);
+            // $address = Address::find($id);
+            // $address->update($validated);
+            // $address = Address::updateOrInsert(
+            //     ['default_address' => 'true'],
+            //     [
+            //         'user_id' => session('id'),
+            //         'name' => $validated['name'],
+            //         'contact_number' => $validated['contact_number'],
+            //         'region' => $validated['region'],
+            //         'city_municipality' => $validated['city_municipality'],
+            //         'brgy_village' => $validated['brgy_village'],
+            //         'postal_code' => $validated['postal_code'],
+            //         'street_building_house' => $validated['street_building_house']
+            //         // 'default_address' => $validated['default_address']
+            //     ]
+            // );
 
-            // if ($address) {
-            //     return redirect('addresses');
-            // } else {
-            //     return "error bitch";
-            // }
+            $address = Address::where('default_address', 'true')->first();
+
             if ($address && $add == 'delivery') {
+                $address->update(['default_address' => null]);
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+
                 return redirect('/deliveryAddress');
             } elseif ($address && $add == 'notDelivery') {
+                $address->update(['default_address' => null]);
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+                
+                return redirect('addresses');
+            } elseif ($add == 'delivery') {
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+                return redirect('/deliveryAddress');
+            } elseif ($add == 'notDelivery') {
+                $new_add = Address::find($id);
+                $new_add->update($validated);
                 return redirect('addresses');
             } else {
                 return "error bitch";
@@ -612,12 +675,7 @@ class UserController extends Controller
                 'street_building_house' => $validated['street_building_house'],
                 'default_address' => null
             ]);
-
-            // if ($address) {
-            //     return redirect('addresses');
-            // } else {
-            //     return "error bitch";
-            // }
+           
             if ($address && $add == 'delivery') {
                 return redirect('/deliveryAddress');
             } elseif ($address && $add == 'notDelivery') {
@@ -740,7 +798,7 @@ class UserController extends Controller
 
     public function getAddress($id)
     {
-        $address = Address::find($id)->get();
+        $address = Address::find($id);
 
         return $address;
     }

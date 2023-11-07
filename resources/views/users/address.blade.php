@@ -103,7 +103,7 @@
                             data-bs-toggle="modal" data-bs-target="#edit-address"><a href="#">Edit</a></button>
                         {{-- <button class="edit-button" id="edit-btn" onclick="edit_function({{ $receiver->id }})"><a
                                 href="#">Edit</a></button> --}}
-                        <a type="button" href="/destroyaddress/{{ $receiver->id }}/notDelivering" id="delete-btn" class="delete-button">Delete</a>
+                        <a type="button" href="/destroyaddress/{{ $receiver->id }}/notDelivery" id="delete-btn" class="delete-button">Delete</a>
                     </div>
                 </div>
             @endforeach
@@ -296,6 +296,7 @@
     // var delete_btn = document.getElementById('delete-btn');
 
     function edit_function(event) {
+        console.log(event);
         const requestOptions = {
             method: 'GET',
         };
@@ -303,23 +304,23 @@
         fetch('/getaddress/' + event, requestOptions)
             .then(response => response.json())
             .then(result => {
-                result.forEach(data => {
-                    // console.log(data);
-                    edit_id.textContent = data.id;
-                    edit_name.value = data.name;
-                    edit_contact.value = data.contact_number;
-                    edit_region.value = data.region;
-                    edit_city_municipality.value = data.city_municipality;
-                    edit_address.value = data.brgy_village;
-                    edit_postal_code.value = data.postal_code;
-                    edit_street.value = data.street_building_house;
+                // result.forEach(data => {
+                    console.log(result);
+                    edit_id.textContent = result.id;
+                    edit_name.value = result.name;
+                    edit_contact.value = result.contact_number;
+                    edit_region.value = result.region;
+                    edit_city_municipality.value = result.city_municipality;
+                    edit_address.value = result.brgy_village;
+                    edit_postal_code.value = result.postal_code;
+                    edit_street.value = result.street_building_house;
 
-                    if (data.default_address == "true") {
+                    if (result.default_address == "true") {
                         edit_default.checked = true;
                     } else {
                         edit_default.checked = false;
                     }
-                });
+                // });
             })
             .catch(error => console.log('error', error));
     }    

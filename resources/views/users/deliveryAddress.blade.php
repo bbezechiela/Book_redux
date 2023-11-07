@@ -282,23 +282,23 @@
         fetch('/getaddress/' + event, requestOptions)
             .then(response => response.json())
             .then(result => {
-                result.forEach(data => {
+                // result.forEach(data => {
                     // console.log(data);
-                    edit_id.textContent = data.id;
-                    edit_name.value = data.name;
-                    edit_contact.value = data.contact_number;
-                    edit_region.value = data.region;
-                    edit_city_municipality.value = data.city_municipality;
-                    edit_address.value = data.brgy_village;
-                    edit_postal_code.value = data.postal_code;
-                    edit_street.value = data.street_building_house;
+                    edit_id.textContent = result.id;
+                    edit_name.value = result.name;
+                    edit_contact.value = result.contact_number;
+                    edit_region.value = result.region;
+                    edit_city_municipality.value = result.city_municipality;
+                    edit_address.value = result.brgy_village;
+                    edit_postal_code.value = result.postal_code;
+                    edit_street.value = result.street_building_house;
 
-                    if (data.default_address == "true") {
+                    if (result.default_address == "true") {
                         edit_default.checked = true;
                     } else {
                         edit_default.checked = false;
                     }
-                });
+                // });
             })
             .catch(error => console.log('error', error));
     }    
