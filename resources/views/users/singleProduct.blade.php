@@ -93,9 +93,9 @@
                                 <p class="card-text"><small
                                         class="text-body-secondary">{{ $user_id->address }}</small>
                                 </p>
-                                <a href="#" class="btn total-likes"><i
+                                {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 7px"></i>100</a>
+                                        style="margin-right: 7px"></i>100</a> --}}
                                 <a href="#" class="btn cart-button"><i class="fa fa-cart-plus"
                                         aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
                                 <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
@@ -150,9 +150,9 @@
                                 <p class="card-text"><small
                                         class="text-body-secondary">{{ $user_id->address }}</small>
                                 </p>
-                                <a href="#" class="btn total-likes"><i
+                                {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 7px"></i>100</a>
+                                        style="margin-right: 7px"></i>100</a> --}}
                                 <a href="#" class="btn cart-button"><i class="fa fa-cart-plus"
                                         aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
                                 <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"

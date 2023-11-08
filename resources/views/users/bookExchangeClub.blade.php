@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card mb-3 card-cover">
-                        <div class="card-header selling-header">
+                        <div class="card-header exchange-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center card-dets">
                                     <div class="header-image"></div>

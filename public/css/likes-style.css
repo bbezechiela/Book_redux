@@ -13,7 +13,7 @@
     font-size: smaller;
 }
 
-#home-side-btn {
+.userdashboard-side-btn {
     background-color: #2D6092;
 }
 
@@ -34,7 +34,7 @@
     padding-left: var(--sidebar_width);
 }
 
-#likes {
+/* #likes {
     padding-top: 90px;
 }
 
@@ -44,17 +44,15 @@ h4{
     margin-left: 1em;
 }
 
-
 #book-title {
     color: #003060;
-
-}
+} */
 
 .card-text {
     font-size: smaller;
 }
 
-.price {
+/* .price {
     color: #E55B13;
 }
 
@@ -64,9 +62,9 @@ h4{
 
 .btn-card:hover {
     background-color: #E55B13;
-}
+} */
 
-.button-container {
+/* .button-container {
     display: flex;
     align-items: center;
 }
@@ -93,9 +91,9 @@ h4{
 
 .add-button::after {
     display: none;
-}
+} */
 
-.dropdown-menu .dropdown-item {
+/* .dropdown-menu .dropdown-item {
     color: #003060;
 }
 
@@ -104,7 +102,7 @@ h4{
     justify-content: center;
     align-items: center;
     margin-top: 10em;
-}
+} */
 
 .search-field:focus {
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;

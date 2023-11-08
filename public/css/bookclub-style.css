@@ -21,7 +21,11 @@
     font-size: smaller;
 }
 
-.home-side-btn {
+.sidebar-btn.active {
+    background-color: #2D6092;
+}
+
+.bookclub-side-btn {
     background-color: #2D6092;
 }
 
@@ -191,6 +195,22 @@
     padding: 70px;
     margin-top: 0;
     border: none;
+}
+
+.exchange-header {
+    background-image: url('../assets/header1.jpg');
+    padding: 70px;
+    margin-top: 0;
+    border: none;
+    background-size: contain;
+}
+
+.renting-header {
+    background-image: url('../assets/header2.jfif');
+    padding: 70px;
+    margin-top: 0;
+    border: none;
+    background-size: fill;
 }
 
 .card-body h6 {

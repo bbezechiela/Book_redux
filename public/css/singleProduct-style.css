@@ -42,7 +42,7 @@
     padding-left: var(--sidebar_width);
 }
 
-.total-likes {
+/* .total-likes {
     background-color: #fff;
     border-color: #003060;
     color: #003060;
@@ -52,7 +52,7 @@
 .total-likes:hover {
     background-color: #E55B13;
     border-color: #E55B13;
-}
+} */
 
 .book-details {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -94,12 +94,14 @@
 .cart-button {
     background-color: #E55B13;
     border-color: #E55B13;
+    color: #fff;
 }
 
 .wishlist-button:hover,
 .cart-button:hover {
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .check-report:checked {
@@ -114,11 +116,13 @@
 .report-button {
     background-color: #E55B13;
     border-color: #E55B13;
+    color: #fff;
 }
 
 .report-button:hover {
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .seller-details {
@@ -246,6 +250,7 @@
     margin-top: 1em;
     background-color: #E55B13;
     border-color: #E55B13;
+    color: #fff;
 }
 
 .rate-button span {
@@ -255,6 +260,7 @@
 .rate-button:hover {
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .customer-ratings {

@@ -1,7 +1,6 @@
 @include('partials.__header', [
 'title' => 'Admin Dashboard | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-// 'css_link' => '/css/core.css',
 'css_link' => '/css/dashboard-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
 ])

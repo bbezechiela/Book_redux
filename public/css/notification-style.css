@@ -13,8 +13,8 @@
     font-size: smaller;
 }
 
-.home-side-btn {
-    background-color: #2D6092;
+.selected-style i{
+    color: #E55B13;
 }
 
 .nav-link:hover {

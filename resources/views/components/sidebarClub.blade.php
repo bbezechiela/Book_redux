@@ -10,16 +10,30 @@
     </div>
 </div>
 <ul class="nav">
-    <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 home-side-btn">
+    <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('bookclub*')) active @endif" data-blade="bookClub">
         <span class="nav-link">My Wall</span>
     </a>
-    <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('sellingclub*')) active @endif" data-blade="bookSellingClub">
         <span class="nav-link">Book Selling Club</span>
     </a>
-    <a href="/exchangeclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/exchangeclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('exchangeclub*')) active @endif" data-blade="bookExchangeClub">
         <span class="nav-link">Book Exchange Club</span>
     </a>
-    <a href="/rentingclub" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/rentingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('rentingclub*')) active @endif" data-blade="bookRentingClub">
         <span class="nav-link">Book Renting Club</span>
     </a>
 </ul>
+
+<script>
+$(document).ready(function () {
+    $('.sidebar-btn').removeClass('active');
+
+    $('.sidebar-btn').each(function() {
+        if ($(this).attr('href') == window.location.pathname) {
+            $(this).addClass('active');
+        }
+    });
+});
+</script>
+
+
