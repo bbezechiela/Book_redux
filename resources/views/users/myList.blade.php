@@ -157,12 +157,12 @@
                                     {{ $book->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <a class="fw-bold p-0 edit-book" onclick="itemClicked('{{ $book->id }}')">Edit</a>
-                                    <div class="btns d-flex flex-row mb-2 dropdown">
+                                    {{-- <div class="btns d-flex flex-row mb-2 dropdown">
                                         <button
                                             class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center like-button"><i
                                                 class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                                 style="margin-right: 8px"></i>100</button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

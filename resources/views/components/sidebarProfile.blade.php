@@ -9,19 +9,19 @@
     </div>
 </div>
 <ul class="nav">
-    <a href="/myprofile" class="btn nav-item d-flex flex-row w-100 px-5 py-0 home-side-btn">
+    <a href="/myprofile" class="btn nav-item d-flex flex-row w-100 px-5 py-0 profile-side-btn">
         <span class="nav-link">Profile</span>
     </a>
-    <a href="/mypurchase" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/mypurchase" class="btn nav-item d-flex flex-row w-100 px-5 py-0 purchase-side-btn">
         <span class="nav-link">My Purchase</span>
     </a>
-    <a href="/addresses" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/addresses" class="btn nav-item d-flex flex-row w-100 px-5 py-0 addresses-side-btn">
         <span class="nav-link">Addresses</span>
     </a>
-    <a href="/changepassword" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/changepassword" class="btn nav-item d-flex flex-row w-100 px-5 py-0 password-side-btn">
         <span class="nav-link">Change Password</span>
     </a>
-    <a href="/reviewsandratings" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
+    <a href="/reviewsandratings" class="btn nav-item d-flex flex-row w-100 px-5 py-0 reviews-side-btn">
         <span class="nav-link">User Reviews and Ratings</span>
     </a>
 </ul>

@@ -1,7 +1,7 @@
 @include('partials.__header', [
     'title' => 'Explore | BookRedux',
     'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/homepage-style.css',
+    'css_link' => '/css/explore-style.css',
     'aos_link' => '/aos-master/dist/aos.css',
 ])
 

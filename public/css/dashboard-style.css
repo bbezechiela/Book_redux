@@ -13,11 +13,15 @@ body {
     width: var(--sidebar_width);
 }
 
+.adminsidebar i{
+    color: #003060;;
+}
+
 .profile-content {
     font-size: smaller;
 }
 
-.home-side-btn {
+.sidebar-btn.active, .sidebar-btn.active i, .sidebar-btn.active span {
     background-color: #2D6092;
     color: #fff;
 }
