@@ -59,6 +59,7 @@
             @foreach ($user->address as $user)
                 @if ($user->default_address == 'true')
                     <div class="delivery-address-container">
+                        <span id="address-id" hidden>{{ $user->id }}</span>
                         <h2 class="delivery-address-title">
                             <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
                             Address
@@ -83,6 +84,8 @@
                 </div>
                 @foreach ($items as $orders)
                     {{-- {{ $orders->productRelation->title }} --}}
+                    {{-- <span hidden>{{ $orders->user_id }}</span> --}}
+                    <span data="book-id" hidden>{{ $orders->product_id }}</span>
                     <div class="order-cart">
                         <div class="name-cart">
                             <a class="seller-name"
@@ -136,8 +139,8 @@
                 <div class="summary">
                     <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
                             class="summary-merchandise-total">P244</span></p>
-                    <p>Shipping Total: <span class="summary-shipping-total">P50</span></p>
-                    <p>Total Payment: <span class="summary-total">P294</span></p>
+                    <p>Shipping Total: <span class="summary-shipping-total">₱110</span></p>
+                    <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
                 </div>
                 <div class="col-md-6 text-right">
                     <button id="place-order" class="btn text-white place-order-button">Place Order</button>
@@ -156,6 +159,7 @@
     var totalItem = document.getElementById('total');
     var displayTotal = document.getElementById('total-price');
     var mercha_total = document.getElementById('mer-total');
+    var sum_total = document.getElementById('summary-total');
     var totalPrice = 0.0;
 
     prices.forEach(element => {
@@ -165,12 +169,30 @@
     displayTotal.textContent = '₱' + totalPrice + '.0';
     totalItem.textContent = '(' + prices.length + ' item/s)';
     mercha_total.textContent = '₱' + totalPrice + '.0';
+    sum_total.textContent = '₱' + parseFloat(totalPrice + 110.0) + '.0';
 
     // place order
-    var place_order = document.getElementById('place-order');
+    var place_order_btn = document.getElementById('place-order');
+    var address_id = document.getElementById('address-id');
+    var books = document.querySelectorAll('span[data="book-id"]');
+    // var shipping = docoment.getElementById('')
 
-    place_order.addEventListener('click', () => {
-        // alert('clicked');
+    var book_id = [];
+
+    place_order_btn.addEventListener('click', () => {
+        // alert(addres_id.textContent);
+        books.forEach(item => {
+            book_id.push(item.textContent);
+        });
+        // console.log(book_id);
+
+        const dataToSend = {
+            address_id: address_id.textContent,
+            book_id: book_id,
+            shipping_total: 110,
+            total_price: totalPrice
+        };
+        
         const csrf_token = '{{ csrf_token() }}';
         fetch('/placeorder', {
                 method: 'POST', // Specify the HTTP method as POST
@@ -179,13 +201,14 @@
                     'Content-Type': 'application/json', // Set the Content-Type header for JSON data
                     // Add any other headers you need
                 },
-                body: JSON.stringify({
-                    key: 'sample value'
-                }), // Your request body data
+                body: JSON.stringify(dataToSend), // Your request body data
             })
-            .then(response => response.json())
+            // .then(response => response.json())         
             .then(data => {
                 console.log(data);
+                if (data.redirected) {
+                    window.location.href = data.url;
+                }
             })
             .catch(error => {
                 console.log('error', error);

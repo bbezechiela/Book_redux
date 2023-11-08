@@ -13,14 +13,19 @@ class Orders extends Model
         return $this->belongsTo(Users::class, 'user_id');
     }
 
-    public function cart() {
-        return $this->belongsTo(Cart::class, 'cart_id');
+    public function address() {
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
+    public function items() {
+        return $this->hasMany(Order_Items::class, 'order_id');
+    }    
+
     protected $fillable = [
-        'user_id',
-        'cart_id',
+        'user_id',        
         'address_id',
-        'order_status'
+        'order_status',
+        'shipping_total',
+        'total_payment'
     ];
 }

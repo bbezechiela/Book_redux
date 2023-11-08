@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Books;
 use App\Models\Cart;
+use App\Models\Order_Items;
+use App\Models\Orders;
 use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Metadata\Uses;
 
 use function Laravel\Prompts\alert;
 
@@ -736,9 +739,31 @@ class UserController extends Controller
     }
 
     public function placeOrder(Request $request) {
-        $data = $request->input('key');
-        return response()->json(['message' => 'server received the shit']);
-        // return $data;
+        $address_id = $request->input('address_id');
+        $book_id = $request->input('book_id');
+        $shipping = $request->input('shipping_total');
+        $price = $request->input('total_price');
+
+        $order = Orders::create([
+            'user_id' => session('id'),
+            'address_id' => $address_id,
+            'order_status' => 'pending',
+            'shipping_total' => $shipping,
+            'total_payment' => $price
+        ]);
+
+        foreach ($book_id as $id) {
+            Order_Items::create([
+                'order_id' => $order->id,
+                'book_id' => $id
+            ]); 
+        }
+                
+        if ($order) {
+            return redirect('/explore');            
+        } else {
+            return response()->json(['message' => 'error bitch']);
+        }
     }
 
     public function dashboard()
