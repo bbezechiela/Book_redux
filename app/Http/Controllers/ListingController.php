@@ -577,7 +577,7 @@ class ListingController extends Controller
         ]);
 
         if ($cart) {
-            return redirect('/home');
+            return redirect('/explore');
         }
     }
 
