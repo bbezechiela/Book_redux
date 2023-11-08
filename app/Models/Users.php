@@ -13,6 +13,10 @@ class Users extends Model
         return $this->hasMany(Cart::class, 'user_id');
     }
 
+    public function orders() {
+        return $this->hasMany(Orders::class, 'order_id');
+    }
+
     public function address() {
         return $this->hasMany(Address::class, 'user_id');
     }

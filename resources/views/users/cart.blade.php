@@ -74,7 +74,7 @@
                     @csrf
                     @foreach ($items->cart as $item)
                         {{-- <p>{{ $item->productRelation->title }}</p> --}}
-                        @if ($item->productRelation->status == 'Exchange')
+                        @if ($item->productRelation->status == 'Exchange' && $item->status == 'Pending')
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"
@@ -112,7 +112,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @else
+                        @elseif ($item->status == 'Pending')
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"
@@ -181,17 +181,7 @@
     'aos_link' => '/aos-master/dist/aos.js',
 ])
 
-<script>
-    // checkout
-    var checkout = document.getElementById('checkout');
-
-    checkout.addEventListener('click', () => {
-        var form = document.getElementById('form');
-
-        form.submit();
-    })
-
-    // 
+<script>    
     var select_all = document.getElementById('select-all');
     var prices = document.querySelectorAll('input[name="items[]"]');
     var total = document.getElementById('total');
@@ -263,4 +253,20 @@
             items.textContent = totalItems;
         }
     });
+
+    // checkout
+    var checkout = document.getElementById('checkout');
+
+    checkout.addEventListener('click', () => {
+        var form = document.getElementById('form');
+
+        if (totalPrice == 0.0) {
+            // checkout.className = 'btn btn-outline-danger ';
+            alert('No selected item/s');
+        } else {
+            form.submit();
+        }
+        
+    });
+
 </script>

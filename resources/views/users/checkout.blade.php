@@ -5,9 +5,9 @@
     'aos_link' => '/aos-master/dist/aos.css',
 ])
 
-<head>
+{{-- <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+</head> --}}
 
 <body>
     <div id="body-container" class="container-fluid px-0">
@@ -66,7 +66,9 @@
                         <div class="seller-details">
                             <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
                             <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
-                            <p class="address" style="margin-right: 15px;">{{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}</p>
+                            <p class="address" style="margin-right: 15px;">
+                                {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
+                            </p>
                             <p class="zipcode">{{ $user->postal_code }}</p>
                         </div>
                         <button class="change-button"><a href="/deliveryAddress">Change</a></button>
@@ -74,20 +76,6 @@
                 @endif
             @endforeach
 
-            {{-- @endif --}}
-
-            {{-- <div class="delivery-address-container">
-                <h2 class="delivery-address-title">
-                    <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery Address
-                </h2>
-                <div class="seller-details">
-                    <p class="name" style="margin-right: 10px;">Nestine Nicole Navarro</p>
-                    <p class="contact" style="margin-right: 35px;">09054173103</p>
-                    <p class="address" style="margin-right: 15px;">Peerless Village, Bagacay, Tacloban City,</p>
-                    <p class="zipcode">6500</p>
-                </div>
-                <button class="change-button"><a href="/deliveryAddress">Change</a></button>
-            </div> --}}
             <main class="product-list">
                 <div class="details-container">
                     <h1 class="product-details">Book Ordered</h1>
@@ -152,7 +140,7 @@
                     <p>Total Payment: <span class="summary-total">P294</span></p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <button class="btn place-order-button"><a href="">Place Order</a></button>
+                    <button id="place-order" class="btn text-white place-order-button">Place Order</button>
                 </div>
             </main>
         </div>
@@ -177,4 +165,30 @@
     displayTotal.textContent = '₱' + totalPrice + '.0';
     totalItem.textContent = '(' + prices.length + ' item/s)';
     mercha_total.textContent = '₱' + totalPrice + '.0';
+
+    // place order
+    var place_order = document.getElementById('place-order');
+
+    place_order.addEventListener('click', () => {
+        // alert('clicked');
+        const csrf_token = '{{ csrf_token() }}';
+        fetch('/placeorder', {
+                method: 'POST', // Specify the HTTP method as POST
+                headers: {
+                    'X-CSRF-TOKEN': csrf_token,
+                    'Content-Type': 'application/json', // Set the Content-Type header for JSON data
+                    // Add any other headers you need
+                },
+                body: JSON.stringify({
+                    key: 'sample value'
+                }), // Your request body data
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.log('error', error);
+            });
+    });
 </script>

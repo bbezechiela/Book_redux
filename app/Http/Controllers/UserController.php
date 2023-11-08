@@ -49,7 +49,7 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/survey');
+            return redirect('/userDashboard');
         } else {
             return view('users.signup');
         }
@@ -142,17 +142,15 @@ class UserController extends Controller
 
     public function checkout(Request $request)
     {
-        // session()->put('items', $request->input('items'));
-        // dd(session('items'));
-        // $request->session()->forget('items');
-        // dd(session('items'));   
-        $order = $request->input('items');
-        $checkout = Cart::whereIn('id', $order)->with('productRelation.user.address')->get();
+        if ($request->session()->has('user')) {            
+            $order = $request->input('items');
+            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.address')->get();
 
-        $address = Users::with('address')->find(session('id'));
-        // $address = Users::where('id', session('id'))->with('address')->first();
-
-        return view('users.checkout', ['items' => $checkout, 'user' => $address]);
+            $address = Users::with('address')->find(session('id'));
+            return view('users.checkout', ['items' => $checkout, 'user' => $address]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function deliveryAddress(Request $request)
@@ -432,9 +430,29 @@ class UserController extends Controller
                 'user' => $validated["username"],
                 'profile_pic' => $validated["profile_photo"]
             ]);
-            return redirect()->route('explore');
+
+            return redirect('/survey');
+            // return redirect()->route('explore');
+            // if ($request->session()->has('user')) {
+            //     return redirect('/explore');
+            // } else {
+            //     return view('users.signup');
+            // }
         } else {
             return view('users.signup')->with('message', "Cannot sign up");
+        }
+    }
+
+    public function surveyInterest(Request $request) {
+        $validated = $request->validate(['interest' => 'required']);
+        $validated["interest"] = implode(', ', $validated["interest"]);
+
+        $user = Users::find(session('id'));
+        $user->update($validated);
+        if ($user) {
+            return redirect('/userdashboard');
+        } else {
+            return 'error bitch';
         }
     }
 
@@ -643,7 +661,7 @@ class UserController extends Controller
                 $address->update(['default_address' => null]);
                 $new_add = Address::find($id);
                 $new_add->update($validated);
-                
+
                 return redirect('addresses');
             } elseif ($add == 'delivery') {
                 $new_add = Address::find($id);
@@ -680,7 +698,7 @@ class UserController extends Controller
                 'street_building_house' => $validated['street_building_house'],
                 'default_address' => null
             ]);
-           
+
             if ($address && $add == 'delivery') {
                 return redirect('/deliveryAddress');
             } elseif ($address && $add == 'notDelivery') {
@@ -715,6 +733,12 @@ class UserController extends Controller
         })->get();
 
         return view('users.search', ['items' => $search]);
+    }
+
+    public function placeOrder(Request $request) {
+        $data = $request->input('key');
+        return response()->json(['message' => 'server received the shit']);
+        // return $data;
     }
 
     public function dashboard()
@@ -792,7 +816,7 @@ class UserController extends Controller
         return view('users.survey');
     }
 
-    
+
     public function systemFeedback()
     {
         return view('users.systemFeedback');

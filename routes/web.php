@@ -37,6 +37,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/signup', [UserController::class, 'signup']);
 
+Route::post('/interest', [UserController::class, 'surveyInterest']);
+
 Route::get('/sidebar', [UserController::class, 'sidebar']);
 
 Route::get('/following', [UserController::class, 'following']);
@@ -196,6 +198,8 @@ Route::get('/searchitem/{item}', [UserController::class, 'search']);
 Route::get('/addtocart/{id}', [ListingController::class, 'addToCart']);
 
 Route::get('/deletecart/{id}', [ListingController::class, 'destroyCart']);
+
+Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

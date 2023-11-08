@@ -224,7 +224,7 @@
                 <!-- card Recommended for you -->
                 @foreach ($post as $recommended)
                     @if (preg_match('/' . $recommended->genre . ',?/i', $user->interest))
-                        @if ($recommended->status == 'Exchange' && $daily->unit == 'Available')
+                        @if ($recommended->status == 'Exchange' && $recommended->unit == 'Available')
                             <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
@@ -246,7 +246,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $daily->id }}"
+                                                            href="/addtocart/{{ $recommended->id }}"
                                                             onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
@@ -262,7 +262,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($daily->unit == 'Available')
+                        @elseif ($recommended->unit == 'Available')
                             <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
@@ -284,7 +284,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu">
                                                     <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $daily->id }}"
+                                                            href="/addtocart/{{ $recommended->id }}"
                                                             onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
