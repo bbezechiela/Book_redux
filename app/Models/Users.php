@@ -9,12 +9,16 @@ class Users extends Model
 {
     use HasFactory;
 
+    public function books() {
+        return $this->hasMany(Books::class. 'user_id');
+    }
+
     public function cart() {
         return $this->hasMany(Cart::class, 'user_id');
     }
 
     public function orders() {
-        return $this->hasMany(Orders::class, 'order_id');
+        return $this->hasMany(Orders::class, 'user_id');
     }
 
     public function address() {

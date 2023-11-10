@@ -19,7 +19,9 @@ return new class extends Migration
             // $table->foreign('book_id')->references('id')->on('books');
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('address');
-            $table->string('order_status');            
+            $table->string('shipping_option');
+            $table->string('payment_method');
+            $table->string('order_status');
             $table->text('shipping_total');
             $table->text('total_payment');
             $table->timestamps();

@@ -52,7 +52,7 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/userDashboard');
+            return redirect('/userdashboard');
         } else {
             return view('users.signup');
         }
@@ -87,9 +87,10 @@ class UserController extends Controller
     public function cart()
     {
         // $user = Cart::where('user_id', session('id'))->with('productRelation.user')->get(); // also works        
-
+        // $item = Books::where(['user_id' => session('id'), 'unit' => "Added to Cart"])->with('user')->get();
         $user = Users::with('cart.productRelation.user')->find(session('id'));
         // $cartItems = $user->cart->with('productRelation')->get();
+        // dd($user);
         return view('users.cart', ['items' => $user]);
     }
 
@@ -279,7 +280,9 @@ class UserController extends Controller
 
     public function myPurchase()
     {
-        return view('users.myPurchase');
+        $order = Users::with('orders.items.book.user')->find(session('id'));
+        // dd($order);        
+        return view('users.myPurchase', ['user' => $order]);
     }
 
     public function notification()
@@ -371,7 +374,11 @@ class UserController extends Controller
 
     public function orders()
     {
-        return view('users.orders');
+        // $orders = Orders::where(['user_id' => session('id'), 'order_status' => 'pending'])->with('items.book.user')->first();        
+        // $order = Users::where('id', session('id'))->with('orders.items.book.user')->first();
+        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        // dd($order);
+        return view('users.orders', ['orders' => $order]);
     }
 
     public function delivered()
@@ -741,22 +748,32 @@ class UserController extends Controller
     public function placeOrder(Request $request) {
         $address_id = $request->input('address_id');
         $book_id = $request->input('book_id');
+        $option = $request->input('shipping_option');
+        $method = $request->input('payment_method');
         $shipping = $request->input('shipping_total');
         $price = $request->input('total_price');
 
         $order = Orders::create([
             'user_id' => session('id'),
             'address_id' => $address_id,
+            'shipping_option' => $option,
+            'payment_method' => $method,
             'order_status' => 'pending',
             'shipping_total' => $shipping,
             'total_payment' => $price
         ]);
 
+        $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
+
         foreach ($book_id as $id) {
-            Order_Items::create([
+            $orderItem = Order_Items::create([
                 'order_id' => $order->id,
                 'book_id' => $id
             ]); 
+
+            $orderItem->book->update([
+                'unit' => 'Ordered'
+            ]);
         }
                 
         if ($order) {

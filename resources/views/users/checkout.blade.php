@@ -108,7 +108,7 @@
                 @endforeach
                 <div class="shipping-option">
                     <p class="txt-shipping-opt">Shipping Option:</p>
-                    <div class="dropdown">
+                    {{-- <div class="dropdown">
                         <button class="btn btn--bs-primary-border-subtle dropdown-toggle shipping-button"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Door-to-Door Delivery</button>
@@ -116,7 +116,12 @@
                             <li><a class="dropdown-item" href="#">Door-to-Door Delivery</a></li>
                             <li><a class="dropdown-item" href="#">Personal Transaction</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
+                    <select id="shipping-option"
+                        class="btn shipping-button">
+                        <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
+                        <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
+                    </select>
                     <div class="shipping-price">P50</div>
                 </div>
                 <div class="order-total">
@@ -125,7 +130,12 @@
                 </div>
                 <div class="payment-container">
                     <h1 class="payment-details">Payment Method</h1>
-                    <div class="dropdown">
+                    <select id="payment-method" class="btn payment-button">
+                        <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
+                        <option class="fs-6" value="GCash">GCash</option>
+                        <option class="fs-6" value="Maya">Maya</option>
+                    </select>
+                    {{-- <div class="dropdown">
                         <button class="btn btn--bs-primary-border-subtle dropdown-toggle payment-button"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Cash on Delivery</button>
@@ -134,7 +144,7 @@
                             <li><a class="dropdown-item" href="#">GCash</a></li>
                             <li><a class="dropdown-item" href="#">Maya</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="summary">
                     <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
@@ -175,7 +185,8 @@
     var place_order_btn = document.getElementById('place-order');
     var address_id = document.getElementById('address-id');
     var books = document.querySelectorAll('span[data="book-id"]');
-    // var shipping = docoment.getElementById('')
+    var shipping_option = document.getElementById('shipping-option');
+    var payment_method = document.getElementById('payment-method');
 
     var book_id = [];
 
@@ -184,15 +195,17 @@
         books.forEach(item => {
             book_id.push(item.textContent);
         });
-        // console.log(book_id);
+        // console.log(shipping_option.value + ' ' + payment_method.value);
 
         const dataToSend = {
             address_id: address_id.textContent,
             book_id: book_id,
+            shipping_option: shipping_option.value,
+            payment_method: payment_method.value,
             shipping_total: 110,
             total_price: totalPrice
         };
-        
+
         const csrf_token = '{{ csrf_token() }}';
         fetch('/placeorder', {
                 method: 'POST', // Specify the HTTP method as POST

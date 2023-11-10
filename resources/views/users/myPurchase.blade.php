@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'My Purchase | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/myPurchase-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'My Purchase | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/myPurchase-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -15,7 +15,7 @@
         <x-sidebar />
     </div>
     <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
-        <x-sidebarProfile/>
+        <x-sidebarProfile />
     </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
@@ -88,40 +88,45 @@
                 </nav>
             </div>
         </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Pay</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Personal Transaction</p>
+        @foreach ($user->orders as $order)
+            @foreach ($order->items as $item)
+                <div class="order-cart">
+                    <div class="name-cart d-flex justify-content-between">
+                        <div>
+                            <a class="seller-name" href="#"><span>{{ $item->book->user->first_name . ' ' .  $item->book->user->last_name}}</span></a>
+                        </div>
+                        <span class="order-text me-5 mt-0">To Pay</span>
+                    </div>
+                    <div class="product-cart">
+                        <div class="book-details">
+                            <div class="left-section">
+                                <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
+                                <div class="book-info">
+                                    <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                                    <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                    <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                </div>
+                            </div>
+                            <div class="right-section">
+                                <div class="book-price">
+                                    <p class="product-price">₱{{ $item->book->price }}</p>
+                                    <p class="text-total">Total Payment:<span class="product-total">₱{{ $item->book->price }}</span></p>
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-sm cancel-button">Cancel Order</button>
+                                    <button type="button" class="btn btn-sm pending-button">{{ $item->order->order_status }}</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P144</span></p>
-                        </div>
-                        <div class="button-group">
-                            <button type="button" class="btn btn-sm cancel-button">Cancel Order</button>
-                            <button type="button" class="btn btn-sm pending-button">Pending</button>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
+            @endforeach
+        @endforeach
+
     </div>
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
