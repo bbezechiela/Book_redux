@@ -12,6 +12,10 @@ class Books extends Model
     public function user() {
         return $this->belongsTo(Users::class, 'user_id');
     }
+
+    public function item() {
+        return $this->hasOne(Order_Items::class, 'book_id');
+    }
     
     protected $fillable = [
         'user_id',

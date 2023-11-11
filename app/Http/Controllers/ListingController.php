@@ -567,7 +567,7 @@ class ListingController extends Controller
 
         $book = Books::find($id);
         $book->update([
-            'unit' => 'AddedToCart'
+            'unit' => 'Added to Cart'
         ]);
 
         $cart = Cart::create([
