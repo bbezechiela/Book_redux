@@ -47,7 +47,7 @@
         <div class="row min-vh-100 align-items-center">
             <div id="landing-title" class="col mx-3" data-aos="fade-right" data-aos-duration="2000">
                 <h1 class="mx-2" style="font-size: 70px;">Uncover New Stories, Trade Used Pages</h1>
-                <a id="signup-btn" href="/signup" class="btn fw-bold px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
+                <a id="signup-btn" href="/role" class="btn fw-bold px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
                     data-bs-placement="top" data-bs-title="Sign Up">Sign Up</a>
             </div>
             <div class="col mx-3 d-flex justify-content-center">

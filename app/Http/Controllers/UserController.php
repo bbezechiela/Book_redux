@@ -40,6 +40,11 @@ class UserController extends Controller
         return view('landing_page');
     }
 
+    public function role()
+    {
+        return view('role');
+    }
+
     public function login(Request $request)
     {
         if ($request->session()->has('user')) {
@@ -56,6 +61,41 @@ class UserController extends Controller
         } else {
             return view('users.signup');
         }
+    }
+
+    public function sellerSignup()
+    {
+        return view('bookseller.sellerSignup');
+    }
+
+    public function sellerDashboard()
+    {
+        return view('bookseller.sellerDashboard');
+    }
+
+    public function sellerMessage()
+    {
+        return view('bookseller.sellerMessage');
+    }
+
+    public function sellerNotification()
+    {
+        return view('bookseller.sellerNotification');
+    }
+    
+    public function feedback()
+    {
+        return view('bookseller.feedback');
+    }
+
+    public function listings()
+    {
+        return view('bookseller.listings');
+    }
+
+    public function profile()
+    {
+        return view('bookseller.profile');
     }
 
     public function explore()

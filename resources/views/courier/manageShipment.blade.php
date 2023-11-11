@@ -44,47 +44,90 @@
             <div class="details-container">
                 <div class="seller-details-box">
                     <label for="seller-details" class="form-label">Seller Details</label>
-                    <input type="text" class="form-control" id="seller-fullname"
-                        placeholder="Nestine Nicole Navarro"><br>
-                    <input type="text" class="form-control" id="seller-contact-number"
-                        placeholder="09097568923"><br>
-                    <input type="text" class="form-control" id="seller-address"
-                        placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban">
+                    <label for="seller-fullname">Nestine Nicole Navarro</label>
+                    {{-- <input type="text" class="form-control" id="seller-fullname"
+                        placeholder="Nestine Nicole Navarro"><br> --}}
+                    <label for="seller-contact-number">09097568923</label>
+                    {{-- <input type="text" class="form-control" id="seller-contact-number"
+                        placeholder="09097568923"><br> --}}
+                    <label for="seller-address">Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban</label>
+                    {{-- <input type="text" class="form-control" id="seller-address"
+                        placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban"> --}}
                 </div>
 
                 <div class="customer-details-box">
                     <label for="customer-details" class="form-label">Customer Details</label>
-                    <input type="text" class="form-control" id="customer-fullname"
-                        placeholder="Jennie BlackPink"><br>
-                    <input type text="text" class="form-control" id="customer-contact-number"
-                        placeholder="09129348884"><br>
-                    <input type="text" class="form-control" id="customer-address"
-                        placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban">
+                    <label for="customer-fullname">Jennie BlackPink</label>
+                    {{-- <input type="text" class="form-control" id="customer-fullname"
+                        placeholder="Jennie BlackPink"><br> --}}
+                    <label for="customer-contact-number">09129348884</label>
+                    {{-- <input type text="text" class="form-control" id="customer-contact-number"
+                        placeholder="09129348884"><br> --}}
+                    <label for="customer-address">Blk 33 Lot 52 Buhat Village, Diit, Tacloban</label>
+                    {{-- <input type="text" class="form-control" id="customer-address"
+                        placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban"> --}}
                 </div>
-            </div>
-
-            <div class="details-container">
                 <div class="package-details-box">
                     <label for="package-details" class="form-label">Package Description</label>
-                    <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
-                    <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
-                    <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
-                    <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
-                    <input type="text" class="form-control" id="payment-method"
-                        placeholder="Cash on Delivery">
+                    <label for="weight">Weight: 1 (kg)</label>
+                    <label for="width">Width: 5 cm</label>
+                    <label for="height">Height: 7 cm</label>
+                    <label for="length">Length: 7 cm</label>
+                    <label for="payment-method">Cash on Delivery</label>
+                    {{-- <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br> --}}
+                    {{-- <input type="text" class="form-control" id="width" placeholder="5 cm"><br> --}}
+                    {{-- <input type="text" class="form-control" id="height" placeholder="7 cm"><br> --}}
+                    {{-- <input type="text" class="form-control" id="length" placeholder="7 cm"><br> --}}
+                    {{-- <input type="text" class="form-control" id="payment-method" placeholder="Cash on Delivery"> --}}
                 </div>
 
                 <div class="product-details-box">
                     <label for="product-details" class="form-label">Product Details</label>
-                    <input type="text" class="form-control" id="order-date"
-                        placeholder="Order Date: 12/29/2023"><br>
-                    <input type text="text" class="form-control" id="order-number"
-                        placeholder="OD421376365"><br>
-                    <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
-                    <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
-                    <input type="text" class="form-control" id="price" placeholder="P100"><br>
-                    <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
+                    <label for="order-date">Order Date: 12/29/2023</label>
+                    {{-- <input type="text" class="form-control" id="order-date" placeholder="Order Date: 12/29/2023"><br> --}}
+                    <label for="order-number">OD421376365</label>
+                    {{-- <input type text="text" class="form-control" id="order-number" placeholder="OD421376365"><br> --}}
+                    <label for="book-title">"Maria Clara</label>
+                    {{-- <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br> --}}
+                    <label for="transaction-type">Sale</label>
+                    {{-- <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br> --}}
+                    <label for="price">P100</label>
+                    {{-- <input type="text" class="form-control" id="price" placeholder="P100"><br> --}}
+                    <label for="shipping-fee">P50</label>
+                    {{-- <input type="text" class="form-control" id="shipping-fee" placeholder="P50"> --}}
                 </div>
+            </div>
+
+            {{-- <div class="details-container">
+                <div class="package-details-box">
+                    <label for="package-details" class="form-label">Package Description</label><br>
+                    <label for="weight">Weight: 1 (kg)</label><br>
+                    <label for="width">Width: 5 cm</label><br>
+                    <label for="height">Height: 7 cm</label><br>
+                    <label for="length">Length: 7 cm</label><br>
+                    <label for="payment-method">Cash on Delivery</label> --}}
+                    {{-- <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br> --}}
+                    {{-- <input type="text" class="form-control" id="width" placeholder="5 cm"><br> --}}
+                    {{-- <input type="text" class="form-control" id="height" placeholder="7 cm"><br> --}}
+                    {{-- <input type="text" class="form-control" id="length" placeholder="7 cm"><br> --}}
+                    {{-- <input type="text" class="form-control" id="payment-method" placeholder="Cash on Delivery"> --}}
+                {{-- </div>
+
+                <div class="product-details-box">
+                    <label for="product-details" class="form-label">Product Details</label><br>
+                    <label for="order-date">Order Date: 12/29/2023</label><br> --}}
+                    {{-- <input type="text" class="form-control" id="order-date" placeholder="Order Date: 12/29/2023"><br> --}}
+                    {{-- <label for="order-number">OD421376365</label><br> --}}
+                    {{-- <input type text="text" class="form-control" id="order-number" placeholder="OD421376365"><br> --}}
+                    {{-- <label for="book-title">"Maria Clara</label><br> --}}
+                    {{-- <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br> --}}
+                    {{-- <label for="transaction-type">Sale</label><br> --}}
+                    {{-- <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br> --}}
+                    {{-- <label for="price">P100</label><br> --}}
+                    {{-- <input type="text" class="form-control" id="price" placeholder="P100"><br> --}}
+                    {{-- <label for="shipping-fee">P50</label> --}}
+                    {{-- <input type="text" class="form-control" id="shipping-fee" placeholder="P50"> --}}
+                {{-- </div> --}}
             </div>
         </div>
 

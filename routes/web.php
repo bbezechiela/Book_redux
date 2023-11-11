@@ -37,6 +37,8 @@ Route::get('/logout', [UserController::class, 'logout']);
 
 Route::get('/signup', [UserController::class, 'signup']);
 
+Route::get('/sellersignup', [UserController::class, 'sellerSignup']);
+
 Route::post('/interest', [UserController::class, 'surveyInterest']);
 
 Route::get('/sidebar', [UserController::class, 'sidebar']);
@@ -213,3 +215,17 @@ Route::get('/search/{item}', [UserController::class, 'searchItem']);
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
 
 Route::get('/shipment', [UserController::class, 'manageShipment']);
+
+Route::get('/role', [UserController::class, 'role']);
+
+Route::get('/sellerboard', [UserController::class, 'sellerDashboard']);
+
+Route::get('/sellermessage', [UserController::class, 'sellerMessage']);
+
+Route::get('/sellernotification', [UserController::class, 'sellerNotification']);
+
+Route::get('/systemfeedback', [UserController::class, 'feedback']);
+
+Route::get('/listings', [UserController::class, 'listings']);
+
+Route::get('/profile', [UserController::class, 'profile']);

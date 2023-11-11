@@ -1,28 +1,45 @@
-/* :root {
+:root {
     --sidebar_width: 320px;
-} */
+}
 
-.sidebar {
+body {
+    background-color: #fff;
+}
+
+.sellersidebar {
     position: fixed;
     background-color: #003060;
     color: #fff;
     width: var(--sidebar_width);
 }
 
+.sellersidebar i {
+    color: #fff;
+    ;
+}
+
 .profile-content {
     font-size: smaller;
 }
 
-.feedback-side-btn {
-    background-color: #2D6092;
+.sidebar-btn.active,
+.sidebar-btn.active i,
+.sidebar-btn.active span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
 }
 
 .nav-link:hover {
-    color: #fff;
+    color: #003060;
 }
 
 .nav-item:hover {
-    background-color: #2D6092;
+    background-color: #fff;
+    color: #003060;
 }
 
 .nav-link {
@@ -34,17 +51,18 @@
     padding-left: var(--sidebar_width);
 }
 
-.search-field:focus {
-    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #e7edf3;
+    border: 1px solid #003060;
 }
 
 .input-group-text,
-.search-field {
+.form-control {
     border: none;
     background-color: #fff;
 }
 
-.search-field {
+.form-control {
     margin-right: 2em;
 }
 

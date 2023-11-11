@@ -3,23 +3,30 @@
 }
 
 body {
-    background-color: #f6f9ff;
+    background-color: #fff;
 }
 
-.adminsidebar {
+.sellersidebar {
     position: fixed;
-    background-color: #fff;
+    background-color: #003060;
     color: #fff;
     width: var(--sidebar_width);
 }
 
-.adminsidebar i {
-    color: #003060;
+.sellersidebar i {
+    color: #fff;
     ;
 }
 
 .profile-content {
     font-size: smaller;
+}
+
+.sidebar-btn.active,
+.sidebar-btn.active i,
+.sidebar-btn.active span {
+    background-color: #fff;
+    color: #003060;
 }
 
 .top-nav {
@@ -30,15 +37,16 @@ body {
 }
 
 .nav-link:hover {
-    color: #fff;
+    color: #003060;
 }
 
 .nav-item:hover {
-    background-color: #2D6092;
+    background-color: #fff;
+    color: #003060;
 }
 
 .nav-link {
-    color: #003060;
+    color: #fff;
     font-size: 15px;
 }
 
@@ -47,7 +55,8 @@ body {
 }
 
 .form-control:focus {
-    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+    box-shadow: inset 0px 0px 0px 1px #e7edf3;
+    border: 1px solid #003060;
 }
 
 .input-group-text,
@@ -62,13 +71,6 @@ body {
 
 .input-group-text i {
     color: #003060;
-}
-
-.text-admin {
-    font-size: 24px;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #E55B13;
 }
 
 .selected-style i {
