@@ -231,7 +231,7 @@
                                 <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
                                 <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
                                 <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
-                                <input type="text" class="form-control" id="length" placeholder="7 cm">
+                                <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
                                 <input type="text" class="form-control" id="payment-method"
                                     placeholder="Cash on Delivery">
                             </div>

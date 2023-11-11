@@ -1,0 +1,148 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #f6f9ff;
+}
+
+.adminsidebar {
+    position: fixed;
+    background-color: #fff;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.adminsidebar i {
+    color: #003060;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.sidebar-btn.active,
+.sidebar-btn.active i,
+.sidebar-btn.active span {
+    background-color: #2D6092;
+    color: #fff;
+}
+
+.top-nav {
+    margin-left: 2em;
+    margin-right: 3em;
+    margin-top: 1em;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #003060;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text,
+.form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+.text-admin {
+    font-size: 24px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #E55B13;
+}
+
+.container {
+    margin-top: 3em;
+}
+
+.account-settings .user-profile img {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    margin-top: 5em;
+}
+
+.upload-btn {
+    border: 1px solid #003060;
+    color: #003060;
+    width: 7em;
+}
+
+.upload-btn:hover {
+    border: 1px solid #E55B13;
+    color: #E55B13;
+}
+
+.input-dets {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #003060;
+    margin-bottom: 1.3em;
+}
+
+.input-dets:focus{
+    border: none;
+    box-shadow: inset 0px 0px 0px 1px #E55B13;
+}
+
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+    color: #003060;
+    margin-left: 1.6em;
+    margin-right: 2.2em;
+}
+
+.text-dets {
+    color: #E55B13;
+}
+
+.btn-update {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.btn-update:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
+.button-alignment {
+    text-align: right;
+}

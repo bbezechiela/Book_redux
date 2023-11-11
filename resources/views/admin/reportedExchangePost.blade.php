@@ -26,15 +26,15 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
+                    <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
                                 width="35" height="35" class="rounded-5" style="margin-right: 2em;">

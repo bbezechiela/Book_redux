@@ -55,6 +55,10 @@ Route::get('/unread', [UserController::class, 'unreadNotification']);
 
 Route::get('/messages', [UserController::class, 'message']);
 
+Route::get('/adminmessages', [UserController::class, 'adminMessage']);
+
+Route::get('/adminnotification', [UserController::class, 'adminNotification']);
+
 // Route::get('/search', [UserController::class, 'searchResult']);
 
 Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']);
@@ -187,6 +191,8 @@ Route::get('/reportedrentpost', [UserController::class, 'reportedRentPost']);
 
 Route::get('/reporteduser', [UserController::class, 'reportedUser']);
 
+Route::get('/adminprofile', [UserController::class, 'adminProfile']);
+
 Route::get('/survey', [UserController::class, 'survey']);
 
 Route::get('/feedback', [UserController::class, 'systemFeedback']);
@@ -205,3 +211,5 @@ Route::post('/placeorder', [UserController::class, 'placeOrder']);
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
+
+Route::get('/shipment', [UserController::class, 'manageShipment']);

@@ -299,6 +299,17 @@ class UserController extends Controller
         return view('users.message');
     }
 
+    public function adminMessage()
+    {
+        return view('admin.adminMessage');
+    }
+
+    public function adminNotification()
+    {
+        return view('admin.adminNotification');
+    }
+
+
     // public function searchResult()
     // {
     //     return view('users.searchResult');
@@ -811,6 +822,12 @@ class UserController extends Controller
         return view('admin.reportedUser');
     }
 
+    public function adminProfile()
+    {
+        return view('admin.adminProfile');
+    }
+
+
     public function survey()
     {
         return view('users.survey');
@@ -826,7 +843,11 @@ class UserController extends Controller
     {
         return view('users.userDashboard');
     }
-
+    
+    public function manageShipment()
+    {
+    return view('courier.manageShipment');
+    }
 
     // API's
     public function searchItem($item)
@@ -847,3 +868,5 @@ class UserController extends Controller
         return $address;
     }
 }
+
+

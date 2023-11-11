@@ -1,7 +1,7 @@
 @include('partials.__header', [
-'title' => 'Admin Dashboard | BookRedux',
+'title' => 'Notification | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/dashboard-style.css',
+'css_link' => '/css/adminNotification-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
 ])
 
@@ -30,9 +30,9 @@
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/adminnotification"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px;"></i>
                         </button></a>
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
@@ -42,10 +42,37 @@
                 </div>
             </div>
         </ul>
-      
+        <div class="notification-page">
+            <div class="notification">
+                <div class="notification-details">
+                    <img src="../assets/nestine.png" alt="Profile Image">
+                    <div class="notification-text">
+                        <p class="notification-message">Marie Tan Fernandez liked your listing</p>
+                        <p class="date-time">2 hours ago</p>
+                    </div>
+                </div>
+            </div>
+            <div class="notification">
+                <div class="notification-details">
+                    <img src="../assets/nestine.png" alt="Profile Image">
+                    <div class="notification-text">
+                        <p class="notification-message">Some items in your wishlist are now available</p>
+                        <p class="date-time">10 hours ago</p>
+                    </div>
+                </div>
+            </div>
+            <div class="notification">
+                <div class="notification-details">
+                    <img src="../assets/nestine.png" alt="Profile Image">
+                    <div class="notification-text">
+                        <p class="notification-message">Order XSJAIOJANSZS is completed. Have you rated your purchase?</p>
+                        <p class="date-time">8/20/2023 10:11</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
