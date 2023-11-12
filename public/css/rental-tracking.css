@@ -1,20 +1,44 @@
-.sidebar {
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #fff;
+}
+
+.sellersidebar {
     position: fixed;
     background-color: #003060;
     color: #fff;
     width: var(--sidebar_width);
 }
 
+.sellersidebar i {
+    color: #fff;
+}
+
 .profile-content {
     font-size: smaller;
 }
 
+.sidebar-btn.active,
+.sidebar-btn.active i,
+.sidebar-btn.active span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
+}
+
 .nav-link:hover {
-    color: #fff;
+    color: #003060;
 }
 
 .nav-item:hover {
-    background-color: #2D6092;
+    background-color: #fff;
+    color: #003060;
 }
 
 .nav-link {
@@ -22,8 +46,8 @@
     font-size: 15px;
 }
 
-.myList-side-btn {
-    background-color: #2D6092;
+#content {
+    padding-left: var(--sidebar_width);
 }
 
 .search-field:focus {
@@ -43,7 +67,6 @@
 .input-group-text i {
     color: #003060;
 }
-
 
 .book-image img {
     width: 5em;

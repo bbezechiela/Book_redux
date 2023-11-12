@@ -49,20 +49,20 @@
                     <p class="my-0 text-center fs-6">Rental Period Tracking</p>
                 </a>
 
-                <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
+                <a href="/sellerorders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Orders</p>
                 </a>
 
-                <a href="/delivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
+                <a href="/sellerdelivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Delivered</p>
                 </a>
-                <a href="/dropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
+                <a href="/sellerdropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Dropped</p>
                 </a>
-                <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
+                <a href="/sellerrefund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Refund</p>
                 </a>
@@ -73,8 +73,8 @@
                 <div class="row justify-content-between mx-auto">
                     <div class="col-4 d-flex flex-row">
                         <h3 class="fw-bold">My List</h3>
-                        <button id="create-listing" class="create-btn btn px-3 ms-2 d-flex align-items-center h-75"><i
-                                class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>Create
+                        <button id="create-listing" class="create-btn btn px-3 ms-2 d-flex align-items-center h-75" data-bs-toggle="modal" data-bs-target="#createListingModal"><i
+                                class="fa fa-plus-circle" style="margin-right: 5px;"></i>Create
                             listing</button>
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
@@ -142,7 +142,7 @@
         </div>
         <!-- Modal -->
         {{-- create listing --}}
-        <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" id="createListingModal" data-bs-backdrop="static" 
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">

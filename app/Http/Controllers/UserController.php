@@ -447,9 +447,34 @@ class UserController extends Controller
         return view('users.refund');
     }
 
+    public function sellerOrders()
+    {
+        return view('bookseller.sellerOrders');
+    }
+
+    public function sellerDelivered()
+    {
+        return view('bookseller.sellerDelivered');
+    }
+
+    public function sellerDropped()
+    {
+        return view('bookseller.sellerDropped');
+    }
+
+    public function sellerRefund()
+    {
+        return view('bookseller.sellerRefund');
+    }
+
     public function rentalTracking()
     {
-        return view('users.rentalTracking');
+        return view('bookseller.rentalTracking');
+    }
+
+    public function reviewsRating()
+    {
+        return view('bookseller.reviewsRating');
     }
 
     public function store(Request $request)

@@ -9,29 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<div id="body-container" class="container-fluid px-0">
-    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar />
+<div id="body-container" class="container-fluid px-0 body">
+    <div id="sellersidebar" class="sellersidebar p-2 min-vh-100 shadow">
+        <x-sellersidebar />
     </div>
-
     <div id="content" class="pe-0 border content">
-        @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    @endforeach
-            </ul>
-        </div>
-        @endif
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-            <div class="w-100 d-flex mt-1 p-0">
-                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
+        <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
+            <div class="w-100 d-flex mt-1 p-1">
                 <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
@@ -42,22 +26,23 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/sellermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/sellernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
+                    <a href="/profile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="Profile">
+                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
                                 width="35" height="35" class="rounded-5" style="margin-right: 2em;">
                         </button></a>
                 </div>
             </div>
         </ul>
+
         <div class="card table-card">
             <div class="card-datatable table-responsive">
                 <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer" style="">

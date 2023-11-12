@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Orders | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/orders-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Orders | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/sellerOrders-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -10,22 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </head>
 
-<div id="body-container" class="container-fluid px-0">
-    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start d-print-none" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar />
+<div id="body-container" class="container-fluid px-0 body">
+    <div id="sellersidebar" class="sellersidebar p-2 min-vh-100 shadow">
+        <x-sellersidebar />
     </div>
-    <div id="content" class="border content">
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 d-print-none">
-            <div class="w-100 d-flex mt-2 p-0 d-print-none">
-                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
-                <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+    <div id="content" class="pe-0 border content">
+        <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
+            <div class="w-100 d-flex mt-1 p-1">
+                <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
-            <div class="position-absolute end-0 d-print-none">
+            <div class="position-absolute end-0">
                 <div class="d-flex">
                     <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
@@ -33,17 +27,17 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/sellermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/sellernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
+                    <a href="/profile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="Profile">
+                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
                                 width="35" height="35" class="rounded-5" style="margin-right: 2em;">
                         </button></a>
                 </div>
@@ -53,68 +47,66 @@
         <div class="card-body rating-details d-print-none">
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
-                    href="/orders">Orders</a>
+                    href="/sellerorders">Orders</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/delivered">Delivered</a>
+                    href="/sellerdelivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/dropped">Dropped</a>
+                    href="/sellerdropped">Dropped</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
+                    href="/sellerrefund">Refund</a>
             </nav>
         </div>
 
-        @foreach ($orders as $item)
-            {{-- @foreach ($item->items as $order) --}}
-                <div class="order-cart d-print-none">
-                    <div class="name-cart d-flex justify-content-between">
-                        <div>
-                            <a class="seller-name"
-                                href="#"><span>{{ $item->item->order->user->first_name . ' ' . $item->item->order->user->last_name }}</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="#"><span>Nestine Navarro</span></a>
+                    <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Order</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="../assets/brown_book.png" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">Maria Clara</p>
+                            <p class="mb-0 fw-bold interaction-type">Sale</p>
+                            <p class="payment-mode">Cash on Delivery</p>
                         </div>
-                        <span class="order-text me-5 mt-0">Order</span>
                     </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <div class="left-section">
-                                <img src="{{ asset('/images/books/' . $item->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="mb-0 book-title">{{ $item->title }}</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $item->status }}</p>
-                                    <p class="payment-mode">{{ $item->item->order->payment_method }}</p>
-                                </div>
-                            </div>
-                            <div class="right-section">
-                                <div class="book-price">
-                                    <p class="product-price">₱{{ $item->price }}</p>
-                                    {{-- <p class="text-total">Shipping Fee:<span class="fee-total">₱{{ $item->item->order->shipping_total }}</span></p> --}}
-                                    <p class="text-total">Total Payment:<span class="product-total">₱{{ $item->price }}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <div class="order-message">
-                                    <small class="text-body-secondary">Shipment details has been confirmed by the
-                                        courier</small>
-                                </div>
-                                <div class="button-group">
-                                    <button type="button" class="btn btn-sm view-button" data-bs-toggle="modal"
-                                        data-bs-target="#shipping-details">View shipping
-                                        details</button>
-                                </div>
-                            </div>
-                            <p class="order-ID">Order ID <span class="float-end me-5">#7649324789134</span></p>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱100</p>
+                            <p class="text-total">Shipping Fee:<span class="fee-total">₱125</span>
+                            </p>
+                            <p class="text-total">Total Payment:<span class="product-total">₱100</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                {{-- <p>{{ $item->title }}</p> --}}
-            {{-- @endforeach --}}
-        @endforeach
+                <div class="order">
+                    <div class="order-details">
+                        <div class="order-message">
+                            <small class="text-body-secondary">Shipment details has been confirmed by the
+                                courier</small>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-sm view-button" data-bs-toggle="modal"
+                                data-bs-target="#shipping-details">View shipping
+                                details</button>
+                        </div>
+                    </div>
+                    <p class="order-ID">Order ID <span class="float-end me-5">#7649324789134</span></p>
+                </div>
+            </div>
+        </div>
+        {{-- <p>{{ $item->title }}</p> --}}
+        {{-- @endforeach --}}
 
-
-        {{-- <div class="order-cart d-print-none">
+        <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
@@ -197,17 +189,16 @@
                     <p class="order-ID">Order ID <span class="float-end me-5">#7649324789134</span></p>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Arrange Shipment Modal -->
-        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Arrange Shipment</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="details-container">
@@ -249,10 +240,8 @@
                                     placeholder="Order Date: 12/29/2023"><br>
                                 <input type text="text" class="form-control" id="order-number"
                                     placeholder="OD421376365"><br>
-                                <input type="text" class="form-control" id="book-title"
-                                    placeholder="Maria Clara"><br>
-                                <input type="text" class="form-control" id="transaction-type"
-                                    placeholder="Sale"><br>
+                                <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                                <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
                                 <input type="text" class="form-control" id="price" placeholder="P100"><br>
                                 <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
                             </div>
@@ -266,8 +255,7 @@
                                     <p>You can drop off your parcel at any J&T Express Branch</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -278,8 +266,7 @@
                                     <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -290,8 +277,7 @@
                                     <p>You and the customer will arrange your transaction</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -343,8 +329,8 @@
                             <input type="text" class="form-control" id="fullname" placeholder="Fullname"
                                 style="margin-bottom: 20px; color: #003060;">
                             <label for="contact-number" class="form-label">Contact Number</label>
-                            <input type="text" class="form-control" id="contact-number"
-                                placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;">
+                            <input type="text" class="form-control" id="contact-number" placeholder="Contact Number"
+                                style="margin-bottom: 20px; color: #003060;">
                             <label for="address" class="form-label">Province, City, Barangay</label>
                             <div class="form-group">
                                 <select class="form-control form-select" aria-label="Select Address" placeholder=""
@@ -469,8 +455,8 @@
 </div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>

@@ -51,25 +51,6 @@ body {
     padding-left: var(--sidebar_width);
 }
 
-.form-control:focus {
-    box-shadow: inset 0px 0px 0px 1px #e7edf3;
-    border: 1px solid #003060;
-}
-
-.input-group-text,
-.form-control {
-    border: none;
-    background-color: #fff;
-}
-
-.form-control {
-    margin-right: 2em;
-}
-
-.input-group-text i {
-    color: #003060;
-}
-
 input,
 select,
 .modal,

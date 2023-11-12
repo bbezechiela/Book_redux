@@ -147,7 +147,17 @@ Route::get('/dropped', [UserController::class, 'dropped']);
 
 Route::get('/refund', [UserController::class, 'refund']);
 
+Route::get('/sellerorders', [UserController::class, 'sellerOrders']);
+
+Route::get('/sellerdelivered', [UserController::class, 'sellerDelivered']);
+
+Route::get('/sellerdropped', [UserController::class, 'sellerDropped']);
+
+Route::get('/sellerrefund', [UserController::class, 'sellerRefund']);
+
 Route::get('/trackrental', [UserController::class, 'rentalTracking']);
+
+Route::get('/reviews', [UserController::class, 'reviewsRating']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
 

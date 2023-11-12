@@ -18,7 +18,7 @@
         <i class="fa fa-list-ul d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">My Listings</span>
     </a>
-    <a href="/" class="btn nav-item d-flex flex-row w-100 px-5 py-0" data-blade="manageSellingClub" style="white-space: nowrap">
+    <a href="/reviews" class="btn nav-item d-flex flex-row w-100 px-5 py-0" data-blade="manageSellingClub" style="white-space: nowrap">
         <i class="fa fa-star-half-o d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">User Reviews and Rating</span>
     </a>
