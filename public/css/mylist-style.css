@@ -31,7 +31,7 @@
     padding-left: var(--sidebar_width);
 }
 
-.myList-side-btn {
+.mylist-side-btn {
     background-color: #2D6092;
 }
 
@@ -145,6 +145,7 @@ button,
 
 .update-btn{
     background-color: #E55B13;
+    margin-bottom: 2em;
 }
 
 .update-btn:hover{
@@ -154,6 +155,7 @@ button,
 .delete-btn{
     color: #E55B13; 
     border: 1px solid #E55B13;
+    margin-bottom: 2em;
 }
 
 .delete-btn:hover{
@@ -178,5 +180,23 @@ button,
 .input-group-text i{
     color: #003060;
 }
+
+a:hover {
+    color: #E55B13;
+    font-weight: bold;
+}
+
+.guidelines{
+    margin-top: 1em;
+    color: #E55B13;
+}
+
+.accordion-header button, .accordion-body, .accordion-button{
+    color: #003060;
+    font-size: 14px;
+}
+
+
+
 
 

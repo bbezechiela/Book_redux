@@ -13,7 +13,7 @@
     font-size: smaller;
 }
 
-#home-side-btn {
+.categories-side-btn {
     background-color: #2D6092;
 }
 
@@ -68,19 +68,20 @@
 }
 
 a,
-h4,
+h4:hover,
 p {
     color: #003060;
     text-decoration: none;
 }
 
-a:hover {
+a:hover, h4 {
     color: #E55B13;
     font-weight: bold;
 }
 
 .drpdwn-genre {
     color: #003060;
+    font-size: 12px;
 }
 
 .drpdwn-genre:hover {
@@ -168,6 +169,7 @@ a:hover {
 
 .dropdown-menu .dropdown-item {
     color: #003060;
+    font-size: 12px;
 }
 
 .pagination-container {

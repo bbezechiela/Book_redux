@@ -14,6 +14,9 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
+    <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
+        <x-sidebarProfile/>
+    </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
@@ -23,7 +26,7 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                <ul class="nav nav-underline">
+                {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
                     </li>
@@ -39,7 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -117,7 +120,7 @@
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
@@ -129,7 +132,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review
-                            User</h1>
+                            Seller</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -147,8 +150,6 @@
                                             <ul class="dropdown-menu">
                                                 <li><button class="dropdown-item" type="button">Sale</button></li>
                                                 <li><button class="dropdown-item" type="button">Exchange</button></li>
-                                                <li><button class="dropdown-item" type="button">Rent</button></li>
-                                                <li><button class="dropdown-item" type="button">Bought</button></li>
                                                 <li><button class="dropdown-item" type="button">Lent</button></li>
                                             </ul>
                                         </div>
@@ -205,7 +206,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary submit-button">Submit</button>
+                        <button type="button" class="btn submit-button">Submit</button>
                     </div>
                 </div>
             </div>

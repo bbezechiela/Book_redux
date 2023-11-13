@@ -106,75 +106,75 @@
                 </div>
         </ul>
         <!--  Educational -->
-        <div id="educational" class="mx-2 px-3">
-            <h4 id="educational-header">Educational</h4>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
-                <!-- card Educational -->
-                @foreach ($book as $educational)
-                    @if (preg_match('/Educational/i', $educational->genre))
-                        @if ($educational->status == "Exchange")
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
-                                        {{ $educational->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button>
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                                aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                                aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
-                                                </ul>
+        <div id="educational" class="mx-2 px-3">            
+                <h4 id="educational-header">Educational</h4>
+                <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+                    <!-- card Educational -->
+                    @foreach ($book as $educational)
+                        @if (preg_match('/Educational/i', $educational->genre))
+                            @if ($educational->status == "Exchange" && !empty($educational->genre))
+                                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
+                                    <div class="card-body py-0">
+                                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
+                                        <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
+                                            {{ $educational->genre }}</p>
+                                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                                            <div class="button-container">
+                                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                        style="margin-right: 8px"></i></button>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
+                                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
-                                        {{ $educational->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $educational->price }}</span>
-                                        <div class="button-container">
-                                            <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button>
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                                aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                                aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
-                                                </ul>
+                            @elseif (!empty($educational->genre))
+                                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
+                                    <div class="card-body py-0">
+                                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
+                                        <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
+                                            {{ $educational->genre }}</p>
+                                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                            <span class="fw-bold p-0">₱{{ $educational->price }}</span>
+                                            <div class="button-container">
+                                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                        style="margin-right: 8px"></i></button>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
+                                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif                            
-                    @endif
-                @endforeach                
+                            @endif                            
+                        @endif
+                    @endforeach                
             </div>
         </div>
         <div id="historical_fiction" class="mx-2 px-3">
@@ -183,7 +183,7 @@
                 <!-- card Historical Fiction -->
                 @foreach ($book as $historical_fiction)
                     @if (preg_match('/Historical Fiction/i', $historical_fiction->genre))
-                        @if ($historical_fiction->status == "Exchange")
+                        @if ($historical_fiction->status == "Exchange" && !empty($historical_fiction->genre))
                             <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                                 <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
                                 <div class="card-body py-0">
@@ -213,7 +213,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @else
+                        @elseif (!empty($historical_fiction->genre))
                             <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
                                 <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto" alt="..." width="130px" height="170px">
                                 <div class="card-body py-0">
@@ -243,6 +243,8 @@
                                     </div>
                                 </div>
                             </div>
+                        @else
+                            <h1>No books available</h1>
                         @endif                            
                     @endif
                 @endforeach                

@@ -48,6 +48,7 @@
                 </div>
             </div>
         </ul>
+        
         <div class="card-body rating-details">
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -73,7 +74,7 @@
                         <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
+                            <p class="mb-0 fw-bold interaction-type">Rent</p>
                             <p class="payment-mode">Cash on Delivery</p>
                         </div>
                     </div>
@@ -90,7 +91,9 @@
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-sm track-button" data-bs-toggle="modal"
+                            data-bs-target="#rental-period">Start Rental Period Tracking</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
             </div>
@@ -125,7 +128,7 @@
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
             </div>
@@ -160,7 +163,7 @@
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Customer</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
             </div>
@@ -172,7 +175,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rate and Review User</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rate and Review Customer</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -188,11 +191,9 @@
                                                 Interaction Type
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item" type="button">Sale</button></li>
+                                                <li><button class="dropdown-item" type="button">Bought</button></li>
                                                 <li><button class="dropdown-item" type="button">Exchange</button></li>
                                                 <li><button class="dropdown-item" type="button">Rent</button></li>
-                                                <li><button class="dropdown-item" type="button">Bought</button></li>
-                                                <li><button class="dropdown-item" type="button">Lent</button></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -246,7 +247,43 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary confirm-button">Submit</button>
+                        <button type="button" class="btn confirm-button">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rate and Review Modal -->
+        <div class="modal fade" id="rental-period" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Rental Period Tracking</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="end-date" id="end-date" class="form-control" placeholder="End Date"
+                            style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="start-date" id="start-date" class="form-control"
+                            placeholder="Start Date" style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Title"
+                            style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="rental-price" id="rental-price" class="form-control"
+                            placeholder="Rental Price" style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="deposit" id="deposit" class="form-control"
+                            placeholder="Security Deposit" style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="duration" id="duration" class="form-control" placeholder="Duration"
+                            style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="customer-name" id="customer-name" class="form-control"
+                            placeholder="Name" style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="contact" id="contact" class="form-control" placeholder="Contact Number"
+                            style="margin-bottom: 12px; color: #003060;">
+                        <input type="text" name="email" id="email" class="form-control" placeholder="Email"
+                            style="margin-bottom: 12px; color: #003060;">
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn confirm-button">Submit</button>
                     </div>
                 </div>
             </div>

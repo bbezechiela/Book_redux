@@ -13,14 +13,20 @@
         <h2 class="fw-bold text-center mb-5">Log In</h2>
         <form action="/loginprocess" method="post">
             @csrf
-            <input class="w-100 fs-5 mb-3 px-2" id="username" name="username" type="text" placeholder="Username">
-            <input class="w-100 fs-5 px-2" id="password" name="password" type="password" placeholder="Password">
+            <div class="form-outline mt-4">
+                <input type="text" id="username" name="username" class="form-control"/>
+                <label class="form-label" for="username">Username</label>
+            </div>
+            <div class="form-outline mt-4">
+                <input type="password" id="password" name="password" class="form-control"/>
+                <label class="form-label" for="password">Password</label>
+            </div>
             <input type="checkbox" id="show-password" class="ms-2">
             <label for="show-password">Show Password</label> <br>
             @if (isset($message))
                 <p class="text-danger text-center fw-bold mt-3">{{$message}}</p>
             @endif
-            <button class="btn mt-3 w-100 sign-up-btn mb-3 fw-bold" type="submit">Log in</button>
+            <button class="btn mt-3 w-100 sign-up-btn mb-3 fw-bold mt-5" type="submit">Log in</button>
         </form>
         <p class="mt-5 text-center">Don't have an account? <a href="/signup">Click here!</a></p>
     </div>
@@ -45,5 +51,27 @@
             document.getElementById("password").setAttribute('type', 'password');
             boolValue = 0;
         }
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const formInputs = document.querySelectorAll(".form-control");
+        formInputs.forEach(function(input) {
+            input.addEventListener("focus", function() {
+                const label = input.nextElementSibling;
+                label.style.top = "-20px";
+                label.style.fontSize = "12px";
+                label.style.color = "#555";
+            });
+            input.addEventListener("blur", function() {
+                if (input.value === "") {
+                    const label = input.nextElementSibling;
+                    label.style.top = ".4em";
+                    label.style.fontSize = "";
+                    label.style.color = "#003060";
+                }
+            });
+        });
     });
 </script>

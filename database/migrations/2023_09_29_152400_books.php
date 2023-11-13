@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('books', function(Blueprint $table) {
             $table->id();
             // $table->unsignedBigInteger('user_id');
-            $table->text('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('status');
+            $table->string('unit');
             $table->text('book_photo')->nullable();
             $table->string('title');
             $table->string('author');
@@ -23,7 +25,7 @@ return new class extends Migration
             $table->string('genre');
             $table->text('condition');
             $table->text('description');
-            $table->string('language');
+            $table->string('language');            
 
             $table->string('price')->nullable();
             $table->text('exchange_preferences')->nullable();

@@ -1,0 +1,184 @@
+/* :root {
+    --sidebar_width: 320px;
+} */
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.explore-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+#daily-discover,
+#featured,
+#recommended,
+#near_you,
+#for_sale,
+#for_exchange,
+#for_rent {
+    padding-top: 90px;
+}
+
+#daily-discover-header:hover,
+#featured-header:hover,
+#recommended-header:hover,
+#near-you-header:hover,
+#for-sale-header:hover,
+#for-exchange-header:hover,
+#for-rent-header:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.tabs{
+    font-size: 12px;
+}
+
+a,
+h4:hover,
+p {
+    color: #003060;
+    text-decoration: none;
+}
+
+a:hover, h4 {
+    color: #E55B13;
+    font-weight: bold;
+}
+
+#book-title {
+    color: #003060;
+
+}
+
+.card-text {
+    font-size: smaller;
+}
+
+.price {
+    color: #E55B13;
+}
+
+.btn-card {
+    border: 1px solid #E55B13;
+}
+
+.btn-card:hover {
+    background-color: #E55B13;
+}
+
+.daily-discovery-content {
+    display: none;
+}
+
+.daily_discovery_text {
+    color: #E55B13;
+    border-bottom: 3px solid #E55B13;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-button{
+/* .like-button { */
+    color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.add-button:hover{
+/* .like-button:hover { */
+    color: #E55B13;
+    background-color: transparent;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu .dropdown-item{
+    color: #003060;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em; 
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i{
+    color: #003060;
+}
+
+/* .search-result-text{
+    margin-left: 4em;
+    font-size: 20px;
+    margin-top: 3em;
+}
+
+.search-result-text i{
+    margin-right: 8px;
+}
+
+.search-result-text span{
+    color: #E55B13;
+} */
+
+#searched-item #textContent:hover {
+    background-color: #2D6092;
+}
+
+#searched-item #textContent:hover p {
+    /* background-color: #2D6092; */
+    /* font-weight: bold; */
+    color: #fff;
+    /* display: ; */
+}
+
+@media screen and (max-width: 576px) {
+    #logo {
+        display: none;
+    }
+}

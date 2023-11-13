@@ -1,19 +1,30 @@
-/* :root {
+:root {
     --sidebar_width: 320px;
-} */
+}
 
+.addresses {
+    background-color: #2D6092;
+}
 .sidebar {
     position: fixed;
     background-color: #003060;
     color: #fff;
+    /* width: var(--sidebar_width); */
+}
+
+.sidebarProfile {
+    position: fixed;
+    background-color: #003060;
+    color: #003060;
     width: var(--sidebar_width);
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
 .profile-content {
     font-size: smaller;
 }
 
-#home-side-btn {
+.addresses-side-btn {
     background-color: #2D6092;
 }
 
@@ -150,11 +161,13 @@
     background-color: #E55B13;
     border-color: #E55B13;
     width: 7em;
+    color: #fff;
 }
 
 .save-button:hover {
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .close-button {
@@ -208,3 +221,14 @@
 .input-group-text i{
     color: #003060;
 }
+
+.autocomplete {
+    background-color: #c7c6c6;
+    position: absolute;
+    cursor: pointer;    
+}
+
+#list:hover {
+    background-color: #2D6092;
+}
+

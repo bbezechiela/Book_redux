@@ -7,16 +7,20 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> --}}
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
 </head>
 
 <div id="body-container" class="container-fluid px-0">
-    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
+    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start d-print-none" tabindex="-1"
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
     <div id="content" class="border content">
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-            <div class="w-100 d-flex mt-2 p-0">
+        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 d-print-none">
+            <div class="w-100 d-flex mt-2 p-0 d-print-none">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
@@ -24,7 +28,7 @@
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
             </div>
-            <div class="position-absolute end-0">
+            <div class="position-absolute end-0 d-print-none">
                 <div class="d-flex">
                     <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
@@ -49,7 +53,7 @@
             </div>
         </ul>
 
-        <div class="card-body rating-details">
+        <div class="card-body rating-details d-print-none">
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
                     href="/orders">Orders</a>
@@ -62,7 +66,7 @@
             </nav>
         </div>
 
-        <div class="order-cart">
+        <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
@@ -83,6 +87,7 @@
                     <div class="right-section">
                         <div class="book-price">
                             <p class="product-price">P144</p>
+                            <p class="text-total">Shipping Fee:<span class="fee-total">P50</span></p>
                             <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
                         </div>
                     </div>
@@ -90,10 +95,12 @@
                 <div class="order">
                     <div class="order-details">
                         <div class="order-message">
-                            <small class="text-body-secondary">Waiting for courier to confirm shipment</small>
+                            <small class="text-body-secondary">Shipment details has been confirmed by the
+                                courier</small>
                         </div>
                         <div class="button-group">
-                            <button type="button" class="btn btn-primary btn-sm view-button">View shipping
+                            <button type="button" class="btn btn-sm view-button" data-bs-toggle="modal"
+                                data-bs-target="#shipping-details">View shipping
                                 details</button>
                         </div>
                     </div>
@@ -101,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div class="order-cart">
+        <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
@@ -133,8 +140,8 @@
                                 details</small>
                         </div>
                         <div class="button-group">
-                            <button type="button" class="btn btn-primary btn-sm decline-button">Decline</button>
-                            <button type="button" class="btn btn-primary btn-sm arrange-button" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-sm decline-button">Decline</button>
+                            <button type="button" class="btn btn-sm arrange-button" data-bs-toggle="modal"
                                 data-bs-target="#arrange-shipment">Arrange
                                 Shipment</button>
                         </div>
@@ -143,7 +150,7 @@
                 </div>
             </div>
         </div>
-        <div class="order-cart">
+        <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
@@ -171,13 +178,13 @@
                 <div class="order">
                     <div class="order-details">
                         <div class="order-message">
-                            <small class="text-body-secondary">To accept the order, arrange first the shipment
+                            <small class="text-body-secondary">Waiting for courier to confirm shipment
                                 details</small>
                         </div>
                         <div class="button-group">
-                            <button type="button" class="btn btn-primary btn-sm decline-button">Decline</button>
-                            <button type="button" class="btn btn-primary btn-sm arrange-button" data-bs-toggle="modal"
-                                data-bs-target="#arrange-shipment">Arrange
+                            <button type="button" class="btn btn-sm decline-button">Decline</button>
+                            <button type="button" class="btn btn-sm arrange-button" data-bs-toggle="modal"
+                                data-bs-target="#arrange-shipment" disabled>Arrange
                                 Shipment</button>
                         </div>
                     </div>
@@ -187,72 +194,122 @@
         </div>
 
         <!-- Arrange Shipment Modal -->
-        <div class="modal fade" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Arrange Shipment</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="drop-off-details">
-                            <i class="fa fa-dropbox" aria-hidden="true"></i>
-                            <div class="text-section">
-                                <h6>Drop off</h6>
-                                <p>You can drop off your parcel at any J&T Express Branch</p>
+                        <div class="details-container">
+                            <div class="seller-details-box">
+                                <label for="seller-details" class="form-label">Seller Details</label>
+                                <input type="text" class="form-control" id="seller-fullname"
+                                    placeholder="Nestine Nicole Navarro"><br>
+                                <input type="text" class="form-control" id="seller-contact-number"
+                                    placeholder="09097568923"><br>
+                                <input type="text" class="form-control" id="seller-address"
+                                    placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban">
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault"></label>
+
+                            <div class="customer-details-box">
+                                <label for="customer-details" class="form-label">Customer Details</label>
+                                <input type="text" class="form-control" id="customer-fullname"
+                                    placeholder="Jennie BlackPink"><br>
+                                <input type text="text" class="form-control" id="customer-contact-number"
+                                    placeholder="09129348884"><br>
+                                <input type="text" class="form-control" id="customer-address"
+                                    placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban">
                             </div>
                         </div>
-                        <div class="pickup-details">
-                            <i class="fa fa-truck" aria-hidden="true"></i>
-                            <div class="text-section">
-                                <h6>Pickup</h6>
-                                <p>J&T Express will collect parcel from your pickup address</p>
+
+                        <div class="details-container">
+                            <div class="package-details-box">
+                                <label for="package-details" class="form-label">Package Description</label>
+                                <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
+                                <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
+                                <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
+                                <input type="text" class="form-control" id="length" placeholder="7 cm">
+                                <input type="text" class="form-control" id="payment-method"
+                                    placeholder="Cash on Delivery">
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault"></label>
+
+                            <div class="product-details-box">
+                                <label for="product-details" class="form-label">Product Details</label>
+                                <input type="text" class="form-control" id="order-date"
+                                    placeholder="Order Date: 12/29/2023"><br>
+                                <input type text="text" class="form-control" id="order-number"
+                                    placeholder="OD421376365"><br>
+                                <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                                <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
+                                <input type="text" class="form-control" id="price" placeholder="P100"><br>
+                                <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
                             </div>
                         </div>
-                        <div class="pickup-address">
-                            <div class="text-section">
-                                <h6 class="mb-2">Pickup Address</h6>
-                                <p>Nestine Nicole Navarro</p>
-                                <p>09054173103</p>
-                                <p>Peerless Village, Bagacay, Tacloban City</p>
-                                <p>6500</p>
+
+                        <div class="details-container">
+                            <div class="drop-off-details">
+                                <i class="fa fa-dropbox" aria-hidden="true"></i>
+                                <div class="text-section">
+                                    <h6>Drop off</h6>
+                                    <p>You can drop off your parcel at any J&T Express Branch</p>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault"></label>
+                                </div>
                             </div>
-                            <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                                    href="#">Change</a></button>
-                        </div>
-                        <div class="pickup-date">
-                            <div class="text-section">
-                                <h6 class="mb-2">Pickup Date</h6>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="datepicker"
-                                        data-date-format="yyyy-mm-dd">
+                            <div class="pickup-details">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <div class="text-section">
+                                    <h6>Pickup</h6>
+                                    <p>J&T Express will collect parcel from your pickup address</p>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault"></label>
+                                </div>
+                            </div>
+                            <div class="personal-transaction-details">
+                                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                                <div class="text-section">
+                                    <h6>Personal Transaction</h6>
+                                    <p>You and the customer will arrange your transaction</p>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
                         </div>
-                        <div class="personal-transaction-details">
-                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                            <div class="text-section">
-                                <h6>Personal Transaction</h6>
-                                <p>You and the customer will arrange your transaction</p>
+                        <div class="details-container">
+                            <div class="pickup-address">
+                                <div class="text-section">
+                                    <h6 class="mb-2">Pickup Address</h6>
+                                    <p>Nestine Nicole Navarro</p>
+                                    <p>09054173103</p>
+                                    <p>Peerless Village, Bagacay, Tacloban City</p>
+                                    <p>6500</p>
+                                </div>
+                                <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                        href="#">Change</a></button>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault"></label>
+                            <div class="pickup-date">
+                                <div class="text-section">
+                                    <h6 class="mb-2">Pickup Date</h6>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="datepicker"
+                                            data-date-format="yyyy-mm-dd">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary confirm-button">Confirm</button>
+                        <button type="button" class="btn confirm-button">Confirm</button>
                         {{-- Clicking confirm button means you accept the order --}}
                     </div>
                 </div>
@@ -260,7 +317,8 @@
         </div>
 
         <!-- Edit Address Modal -->
-        <div class="modal fade" id="edit-address" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="edit-address" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -303,7 +361,92 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-button"
                             data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary save-button">Update</button>
+                        <button type="button" class="btn save-button">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping Details Modal -->
+        <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header d-print-none">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Shipping Details</h1>
+                    </div>
+                    <div class="modal-body d-print-block">
+                        <div class="container mt-5 mb-5">
+                            <div class="d-flex justify-content-center row">
+                                <div class="col-md-10">
+                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                            width="120">
+                                        {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
+                                        {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
+                                        <hr>
+                                        <div
+                                            class="d-flex flex-row justify-content-between align-items-center order-details">
+                                            <div><span class="d-block fs-12">Order date</span><span
+                                                    class="font-weight-bold">12 March 2020</span></div>
+                                            <div><span class="d-block fs-12">Order number</span><span
+                                                    class="font-weight-bold">OD44434324</span></div>
+                                            <div><span class="d-block fs-12">Payment method</span><span
+                                                    class="font-weight-bold">Cash on Delivery</span></div>
+                                            <div><span class="d-block fs-12">Shipping Address</span><span
+                                                    class="font-weight-bold shipping-address-text">Bagacay,
+                                                    Tacloban</span></div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between align-items-center product-details">
+                                            <div class="d-flex flex-row product-name-image">
+                                                <div class="d-flex flex-column justify-content-between ml-2">
+                                                    <div><span class="d-block font-weight-bold p-name">City of
+                                                            Secrets</span><span class="fs-12">Sale</span></div><span
+                                                        class="fs-12"></span>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h5>₱100</h5>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 amount row">
+                                            <div class="d-flex justify-content-center col-md-6"><img
+                                                    src="../assets/tracking.jfif" width="250" height="100"></div>
+                                            <div class="col-md-6">
+                                                <div class="billing">
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Subtotal</span><span class="font-weight-bold">₱100</span>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between mt-2"><span>Shipping
+                                                            fee</span><span class="font-weight-bold">₱40</span></div>
+                                                    <hr>
+                                                    <div class="d-flex justify-content-between mt-1"><span
+                                                            class="font-weight-bold">Total</span><span
+                                                            class="font-weight-bold shipping-address-text">₱140</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><span class="d-block">Complete Address</span><span
+                                            class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
+                                            Tacloban City</span>
+                                        <hr>
+                                        <div class="d-flex justify-content-between align-items-center footer">
+                                            <div class="thanks"><span class="d-block font-weight-bold">Thanks for
+                                                    shopping</span><span>BookRedux team</span></div>
+                                            {{-- <div class="d-flex flex-column justify-content-end align-items-end"><span class="d-block font-weight-bold">Need Help?</span><span>Call - 974493933</span></div> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-print-none">
+                        <button type="button" class="btn btn-secondary close-button"
+                            data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
+                                class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                        {{-- <button type="button" class="btn save-button">Update</button> --}}
                     </div>
                 </div>
             </div>
@@ -321,4 +464,10 @@
     $(document).ready(function() {
         $('#datepicker').datepicker();
     });
+</script>
+
+<script>
+    function myFunction() {
+        window.print();
+    }
 </script>

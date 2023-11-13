@@ -33,13 +33,13 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    <a href="/messages"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px;"></i>
                         </button></a>
                     <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
@@ -54,21 +54,22 @@
                 <div class="col-md-12">
                     <div class="card" id="chat3" style="border-radius: 5px;">
                         <div class="card-body">
-                            <div class="row min-vh-100 border">
+                            <div class="row min-vh-100">
                                 <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                     <div class="p-3">
-                                        <div class="input-group rounded mb-3">
-                                            <input type="search" class="form-control rounded" placeholder="Search"
-                                                aria-label="Search" aria-describedby="search-addon" />
-                                            <span class="input-group-text border-0" id="search-addon">
+                                        <div class="input-group rounded mb-3" id="searchOuterContainer">
+                                            <input type="search" id="searchInputContainer" class="form-control rounded" placeholder="Search"
+                                                aria-label="Search" aria-describedby="search-addon"/>
+                                            <span id="searchButton" class="input-group-text border-0" id="search-addon">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </span>
+                                            <div id="searchResult"></div>
                                         </div>
                                         {{-- shit --}}
-                                        <div class="your-scrollable-element overflow-y-auto">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="p-2 border-bottom">
-                                                    <a href="#!"
+                                        <div class="your-scrollable-element overflow-y-auto" id="conversationList">
+                                            <!-- <ul class="list-unstyled mb-0">
+                                                <li class="p-2 border-bottom"> -->
+                                                    <!-- <a href="#!"
                                                         class="d-flex justify-content-between text-decoration-none">
                                                         <div class="d-flex flex-row">
                                                             <div class="side-img">
@@ -87,182 +88,18 @@
                                                             <span
                                                                 class="badge bg-danger rounded-pill float-end">3</span>
                                                         </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2 border-bottom">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/Eubert.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Alexa Chung</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">5 mins ago</p>
-                                                            <span
-                                                                class="badge bg-danger rounded-pill float-end">2</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/osama.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Ben Smith</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2 border-bottom">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/nestine.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Danny McChain</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2 border-bottom">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/Eubert.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Kate Moss</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/osama.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Ben Smith</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2 border-bottom">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/nestine.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Marie Horwitz</p>
-                                                                <p class="small text-muted">Hello, Are you there?
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Just now</p>
-                                                            <span
-                                                                class="badge bg-danger rounded-pill float-end">3</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2 border-bottom">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/Eubert.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Kate Moss</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="p-2">
-                                                    <a href="#!"
-                                                        class="d-flex justify-content-between text-decoration-none">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="side-img">
-                                                                <img src="../assets/osama.png" alt="user_img"
-                                                                    class="d-flex align-self-center me-3 with-border">
-                                                                <span class="badge bg-success badge-dot"></span>
-                                                            </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0 name-msg">Ben Smith</p>
-                                                                <p class="small text-muted">Lorem ipsum dolor sit.
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                                    </a> -->
+                                                <!-- </li>
+                                            </ul> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 {{-- shit --}}
-                                <div class="col-md-6 col-lg-7 col-xl-8"> 
+                                <div class="col-md-6 col-lg-7 col-xl-8" style="border: 1px solid red"> 
                                     <div class="chat-about position-sticky top-0">
 
-                                        <h6 class="m-b-0">Kate Moss<button type="button" class="btn menu-btn"
+                                        <h6 class="m-b-0" id="receiverName"><button type="button" class="btn menu-btn"
                                                 data-bs-toggle="modal" data-bs-target="#profile-menu">
                                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                                             </button>
@@ -270,8 +107,8 @@
                                     </div>
                                     {{-- shit --}}
                                     <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
-                                        style="position: relative;">
-                                        <div class="d-flex flex-row justify-content-start body-img">
+                                        style="position: relative; border:1px solid black; height: 400px;" id="messageOuterContainer">
+                                        <!-- <div class="d-flex flex-row justify-content-start body-img">
                                             <img src="../assets/Eubert.png" alt="user_img"
                                                 style="width: 45px; height: 100%;">
                                             <div>
@@ -285,120 +122,23 @@
                                                     magna aliqua.</p>
                                                 <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
                                                     Aug 13</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-end body-img">
-                                            <div>
-                                                <p class="small p-2 me-3 mb-1 rounded-3 custom-message">Ut
-                                                    enim ad minim veniam,
-                                                    quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                    commodo consequat.</p>
-                                                <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                                </p>
-                                            </div>
-                                            <img src="../assets/osama.png" alt="user_img">
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-start body-img">
-                                            <img src="../assets/Eubert.png" alt="user_img"
-                                                style="width: 45px; height: 100%;">
-                                            <div>
-                                                <p class="small p-2 ms-3 mb-1 rounded-3"
-                                                    style="background-color: #fff; border: 1px solid #E55B13;">Duis
-                                                    aute
-                                                    irure
-                                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                                    fugiat nulla pariatur.
-                                                </p>
-                                                <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
-                                                    Aug 13</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-end body-img">
-                                            <div>
-                                                <p class="small p-2 me-3 mb-1 rounded-3 custom-message">
-                                                    Excepteur sint occaecat
-                                                    cupidatat
-                                                    non proident, sunt in culpa qui officia deserunt mollit anim id
-                                                    est laborum.</p>
-                                                <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                                </p>
-                                            </div>
-                                            <img src="../assets/osama.png" alt="user_img">
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-start body-img">
-                                            <img src="../assets/Eubert.png" alt="user_img"
-                                                style="width: 45px; height: 100%;">
-                                            <div>
-                                                <p class="small p-2 ms-3 mb-1 rounded-3"
-                                                    style="background-color: #fff; border: 1px solid #E55B13;">Lorem
-                                                    ipsum
-                                                    dolor
-                                                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et
-                                                    dolore
-                                                    magna aliqua.</p>
-                                                <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
-                                                    Aug 13</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-end body-img">
-                                            <div>
-                                                <p class="small p-2 me-3 mb-1 rounded-3 custom-message">Ut
-                                                    enim ad minim veniam,
-                                                    quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                    commodo consequat.</p>
-                                                <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                                </p>
-                                            </div>
-                                            <img src="../assets/osama.png" alt="user_img">
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-start body-img">
-                                            <img src="../assets/Eubert.png" alt="user_img"
-                                                style="width: 45px; height: 100%;">
-                                            <div>
-                                                <p class="small p-2 ms-3 mb-1 rounded-3"
-                                                    style="background-color: #fff; border: 1px solid #E55B13;">Lorem
-                                                    ipsum
-                                                    dolor
-                                                    sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et
-                                                    dolore
-                                                    magna aliqua.</p>
-                                                <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
-                                                    Aug 13</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-end body-img">
-                                            <div>
-                                                <p class="small p-2 me-3 mb-1 rounded-3 custom-message">Ut
-                                                    enim ad minim veniam,
-                                                    quis
-                                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                    commodo consequat.</p>
-                                                <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13
-                                                </p>
-                                            </div>
-                                            <img src="../assets/osama.png" alt="user_img">
-                                        </div>
-                                    </div>
+                                            </div> -->
+                                    </div> 
                                     <div
-                                        class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
-                                        <img src="../assets/osama.png" alt="user_img"
-                                            style="width: 40px; height: 100%; margin-right: 8px;">
-                                        <input type="textarea" class="form-control form-control-lg"
-                                            id="exampleFormControlInput2" style="font-size: 13px;"
+                                        id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img" style="border: 1px solid red;">
+                                        <!-- <img src="../assets/osama.png" alt="user_img"
+                                            style="width: 40px; height: 100%; margin-right: 8px;"> -->
+                                        <form method="post" id="messageForm">
+                                            @csrf
+                                            <input type="textarea" class="form-control form-control-lg" id="messageInputContainer" style="font-size: 13px;"
                                             placeholder="Type message">
-                                        <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
+
+                                            <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
                                                 aria-hidden="true"></i></a>
-                                        <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
-                                                aria-hidden="true"></i></a>
+                                            <button id="sendMessageButton" class="ms-3" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                        </form>
+                                        <!-- <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
+                                            aria-hidden="true"></i></a> -->
                                     </div>
                                 </div>
                             </div>
@@ -444,8 +184,8 @@
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center btn-menu">
-                            <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
-                                    style="margin-left: 10em;"></i></p>
+                            <a href="/userlistings" class="text-decoration-none"><p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
+                                style="margin-left: 10em;"></i></p></a>
                         </div>
                     </div>
                 </div>
@@ -540,12 +280,17 @@
 
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary report-button">Send Report</button>
+                        <button type="button" class="btn report-button">Send Report</button>
                     </div>
                 </div>
             </div>
         </div>
-
+        <script>
+            const current_username = "{{ session('user') }}";
+            const current_user_id = "{{ session('id') }}";
+            const csrfToken = "{{ csrf_token() }}";
+        </script>
+        <script src="{{ asset('js/messages.js') }}"></script>
     </div>
     @include('partials.__footer', [
         'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',

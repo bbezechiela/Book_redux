@@ -155,7 +155,8 @@
     margin-right: 2em;
 }
 
-.product-total {
+.product-total,
+.fee-total {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -224,7 +225,9 @@
 }
 
 .arrange-button,
-.contact-button {
+.contact-button,
+.save-button,
+.track-button {
     color: #fff;
     background-color: #E55B13;
     border: 1px solid #E55B13;
@@ -232,7 +235,9 @@
 }
 
 .arrange-button:hover,
-.contact-button:hover {
+.contact-button:hover,
+.save-button:hover,
+.track-button:hover {
     color: #fff;
     background-color: #003060;
     border: 1px solid #003060;
@@ -255,7 +260,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 2px 0px #98c0e7;
     border-radius: 3px;
     margin-bottom: 12px;
     width: 93%;
@@ -263,15 +268,10 @@
     margin-top: 2em;
     color: #003060;
     padding: 1em;
-    margin-left: 1em;
 }
 
-.drop-off-details {
-    margin-top: 3px;
-}
-
-.pickup-details {
-    margin-bottom: 1px;
+.pickup-details, .personal-transaction-details{
+    margin-left: 20px;
 }
 
 .pickup-address,
@@ -316,6 +316,7 @@
 .confirm-button:hover {
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .change-btn {
@@ -419,7 +420,8 @@
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text, .search-field {
+.input-group-text,
+.search-field {
     border: none;
     background-color: #fff;
 }
@@ -428,6 +430,54 @@
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i {
     color: #003060;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.name {
+    margin-bottom: -2px;
+}
+
+.receipt-details {
+    margin-top: 13px;
+}
+
+.shipping-address-text {
+    color: #E55B13;
+}
+
+.seller-details-box,
+.customer-details-box,
+.package-details-box,
+.product-details-box {
+    border: 1px dashed #98c0e7;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #003060;
+    flex: 1;
+}
+
+.customer-details-box, .product-details-box {
+    margin-left: 10px;
+}
+
+.seller-details-box label,
+.customer-details-box label,
+.package-details-box,
+.product-details-box {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
 }

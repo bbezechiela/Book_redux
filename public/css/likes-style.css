@@ -13,7 +13,7 @@
     font-size: smaller;
 }
 
-#home-side-btn {
+.userdashboard-side-btn {
     background-color: #2D6092;
 }
 
@@ -34,27 +34,25 @@
     padding-left: var(--sidebar_width);
 }
 
-#likes {
+/* #likes {
     padding-top: 90px;
 }
 
 h4{
-    color: #003060;
+    color: #E55B13;
     font-weight: bold;
     margin-left: 1em;
 }
 
-
 #book-title {
     color: #003060;
-
-}
+} */
 
 .card-text {
     font-size: smaller;
 }
 
-.price {
+/* .price {
     color: #E55B13;
 }
 
@@ -64,9 +62,9 @@ h4{
 
 .btn-card:hover {
     background-color: #E55B13;
-}
+} */
 
-.button-container {
+/* .button-container {
     display: flex;
     align-items: center;
 }
@@ -93,9 +91,9 @@ h4{
 
 .add-button::after {
     display: none;
-}
+} */
 
-.dropdown-menu .dropdown-item {
+/* .dropdown-menu .dropdown-item {
     color: #003060;
 }
 
@@ -104,7 +102,7 @@ h4{
     justify-content: center;
     align-items: center;
     margin-top: 10em;
-}
+} */
 
 .search-field:focus {
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
@@ -119,6 +117,30 @@ h4{
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i, .card-body p{
     color: #003060;
+}
+
+.container{
+    color: #003060;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+.card-body a{
+    background-color: #003060;
+    border-color: #003060;
+    width: 7em;
+    color: #fff;
+}
+
+.card-body a:hover{
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.dashboard-title{
+    color: #E55B13;
 }

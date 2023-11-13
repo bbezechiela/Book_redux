@@ -49,17 +49,11 @@
                 </div>
             </div>
         </ul>
-        {{-- <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
-            <div class="w-100 d-flex justify-content-between mt-1 p-0">
-                <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
-                <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
-            </div>
-        </ul> --}}
+        
         <div class="container-fluid py-0 px-4">
             <div class="row mt-3 justify-content-between">
-                <div class="col-4 d-flex flex-row">
-                    <h2 class="fw-bold" style="margin-right: 10px;">Wish List</h2>
+                <div class="col-4 d-flex flex-row page-title">
+                    <h2 class="fw-bold">Wish List</h2>
                     <button class="create-btn btn px-3 py-1 ms-2 d-flex align-items-center my-auto"
                         data-bs-toggle="modal" data-bs-target="#create-modal"><i class="fa fa-plus-circle"
                             aria-hidden="true" style="margin-right: 5px;"></i>Create Album</button>
@@ -451,7 +445,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-create">Create</button>
+                        <button type="button" class="btn btn-create">Create</button>
                     </div>
                 </div>
             </div>
@@ -480,8 +474,8 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-delete">Delete</button>
-                        <button type="button" class="btn btn-primary btn-update">Update</button>
+                        <button type="button" class="btn btn-delete">Delete</button>
+                        <button type="button" class="btn btn-update">Update</button>
                     </div>
                 </div>
             </div>

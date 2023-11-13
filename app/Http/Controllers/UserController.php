@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Books;
+use App\Models\Cart;
+use App\Models\Order_Items;
+use App\Models\Orders;
 use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Metadata\Uses;
 
 use function Laravel\Prompts\alert;
 
@@ -20,6 +25,16 @@ class UserController extends Controller
         return view('components.sidebar');
     }
 
+    public function following()
+    {
+        return view('users.following');
+    }
+
+    public function followers()
+    {
+        return view('users.followers');
+    }
+
     public function welcome()
     {
         return view('landing_page');
@@ -28,7 +43,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/home');
+            return redirect('/userdashboard');
         } else {
             return view('users.login');
         }
@@ -37,20 +52,20 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/home');
+            return redirect('/userDashboard');
         } else {
             return view('users.signup');
         }
     }
 
-    public function home()
+    public function explore()
     {
         if (session()->has('user')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
             $post = Books::all();
-            return view('users.homepage', ['post' => $post, 'user' => $user]);
+            return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
         } else {
@@ -67,22 +82,91 @@ class UserController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
-        
     }
 
     public function cart()
     {
-        return view('users.cart');
+        // $user = Cart::where('user_id', session('id'))->with('productRelation.user')->get(); // also works        
+
+        $user = Users::with('cart.productRelation.user')->find(session('id'));
+        // $cartItems = $user->cart->with('productRelation')->get();
+        return view('users.cart', ['items' => $user]);
     }
 
-    public function checkout()
+    public function bookClub()
     {
-        return view('users.checkout');
+        return view('users.bookClub');
     }
 
-    public function deliveryAddress()
+    public function bookSellingClub()
     {
-        return view('users.deliveryAddress');
+        return view('users.bookSellingClub');
+    }
+
+    public function bookExchangeClub()
+    {
+        return view('users.bookExchangeClub');
+    }
+
+    public function bookRentingClub()
+    {
+        return view('users.bookRentingClub');
+    }
+
+    public function eventsSelling()
+    {
+        return view('users.eventsSelling');
+    }
+
+    public function membersSelling()
+    {
+        return view('users.membersSelling');
+    }
+
+    public function eventsExchange()
+    {
+        return view('users.eventsExchange');
+    }
+
+    public function membersExchange()
+    {
+        return view('users.membersExchange');
+    }
+
+    public function eventsRenting()
+    {
+        return view('users.eventsRenting');
+    }
+
+    public function membersRenting()
+    {
+        return view('users.membersRenting');
+    }
+
+    public function checkout(Request $request)
+    {
+        if ($request->session()->has('user')) {            
+            $order = $request->input('items');
+            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.address')->get();
+
+            $address = Users::with('address')->find(session('id'));
+            return view('users.checkout', ['items' => $checkout, 'user' => $address]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+    }
+
+    public function deliveryAddress(Request $request)
+    {
+        if ($request->session()->has('user')) {
+            $address = Address::where('user_id', session('id'))->get();
+            // $address = Address::findOrFail(session('id'));
+            // return view('users.address', ['address' => $address]);
+            return view('users.deliveryAddress', ['address' => $address]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        // return view('users.deliveryAddress');
     }
 
     public function wishlist()
@@ -102,7 +186,6 @@ class UserController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
-        
     }
 
     // public function myList()
@@ -126,7 +209,72 @@ class UserController extends Controller
             return view('users.myProfile', ['user' => $user]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
-        }        
+        }
+    }
+
+    public function myProfileUpdate(Request $request)
+    {
+        if (session()->has('user')) {
+            if ($request->hasFile('profile_photo')) {
+                $validated = $request->validate([
+                    'first_name' => ['required', 'min:4'],
+                    'last_name' => ['required', 'min:4'],
+                    'email' => ['required', 'email'],
+                    'phone_number' => ['required', 'max:12'],
+                    'address' => ['required', 'min:4'],
+                    'birthday' => 'required',
+                    'gender' => 'required',
+                    'age' => 'required',
+                    'interest' => 'required',
+                    // 'username' => 'required',
+                    // 'password' => 'required',
+                    'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                ]);
+
+                $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('profile_photo')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
+                $validated["profile_photo"] = $fileNameToStore;
+
+                $user = Users::find(session('id'));
+                $user->update($validated);
+
+                if ($user) {
+                    return redirect('/myprofile');
+                } else {
+                    return 'error bitch';
+                }
+            } else {
+                $validated = $request->validate([
+                    'first_name' => ['required', 'min:4'],
+                    'last_name' => ['required', 'min:4'],
+                    'email' => ['required', 'email'],
+                    'phone_number' => ['required', 'max:12'],
+                    'address' => ['required', 'min:4'],
+                    'birthday' => 'required',
+                    'gender' => 'required',
+                    'age' => 'required',
+                    'interest' => 'required',
+                    // 'username' => 'required',
+                    // 'password' => 'required',
+                    // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                ]);
+
+                $user = Users::find(session('id'));
+                $user->update($validated);
+
+
+                if ($user) {
+                    return redirect('/myprofile');
+                } else {
+                    return 'error bitch';
+                }
+            }
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function myPurchase()
@@ -154,6 +302,26 @@ class UserController extends Controller
         return view('users.message');
     }
 
+    // public function searchResult()
+    // {
+    //     return view('users.searchResult');
+    // }
+
+    public function userProfilePreview()
+    {
+        return view('users.userProfilePreview');
+    }
+
+    public function previewReviews()
+    {
+        return view('users.previewReviews');
+    }
+
+    public function previewWishlist()
+    {
+        return view('users.previewWishlist');
+    }
+
     public function toReceive()
     {
         return view('users.toReceive');
@@ -174,21 +342,33 @@ class UserController extends Controller
         return view('users.refundMyPurchase');
     }
 
-    public function address()
+    public function address(Request $request)
     {
-        return view('users.address');
+        if ($request->session()->has('user')) {
+            $address = Address::where('user_id', session('id'))->get();
+            // $address = Address::findOrFail(session('id'));
+            return view('users.address', ['address' => $address]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        // return $address;
     }
 
-    public function changePassword()
+    public function changePassword(Request $request)
     {
-        return view('users.changePassword');
+        if ($request->session()->has('user')) {
+            $user = Users::find(session('id'));
+            return view('users.changePassword', ['user' => $user]);
+        } else {
+            return view('users.signup');
+        }
     }
 
     public function userReviewsAndRatings()
     {
         return view('users.userReviewsAndRatings');
     }
-    
+
     public function orders()
     {
         return view('users.orders');
@@ -209,6 +389,11 @@ class UserController extends Controller
         return view('users.refund');
     }
 
+    public function rentalTracking()
+    {
+        return view('users.rentalTracking');
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -216,18 +401,18 @@ class UserController extends Controller
             'last_name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'max:12'],
-            'address' => ['required', 'min:4'],
+            // 'address' => ['required', 'min:4'],
             'birthday' => 'required',
             'gender' => 'required',
-            'age' => 'required',
-            'interest' => 'required',
+            // 'age' => 'required',
+            // 'interest' => 'required',
             'username' => 'required',
             'password' => 'required',
             'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
         ]);
 
         $validated["password"] =  bcrypt($validated["password"]);
-        $validated["interest"] = implode(', ', $validated["interest"]);
+        // $validated["interest"] = implode(', ', $validated["interest"]);
 
         $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
         $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -244,13 +429,33 @@ class UserController extends Controller
                 'id' => $user->id,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
-                'address' => $validated["address"],
+                // 'address' => $validated["address"],
                 'user' => $validated["username"],
                 'profile_pic' => $validated["profile_photo"]
             ]);
-            return redirect()->route('home');
+
+            return redirect('/survey');
+            // return redirect()->route('explore');
+            // if ($request->session()->has('user')) {
+            //     return redirect('/explore');
+            // } else {
+            //     return view('users.signup');
+            // }
         } else {
             return view('users.signup')->with('message', "Cannot sign up");
+        }
+    }
+
+    public function surveyInterest(Request $request) {
+        $validated = $request->validate(['interest' => 'required']);
+        $validated["interest"] = implode(', ', $validated["interest"]);
+
+        $user = Users::find(session('id'));
+        $user->update($validated);
+        if ($user) {
+            return redirect('/userdashboard');
+        } else {
+            return 'error bitch';
         }
     }
 
@@ -273,13 +478,397 @@ class UserController extends Controller
                 'id' => $user["id"],
                 'first_name' => $user["first_name"],
                 'last_name' => $user["last_name"],
-                'address' => $user["address"],
+                // 'address' => $user["address"],
                 'user' => $user["username"],
                 'profile_pic' => $user["profile_photo"]
             ]);
-            return redirect()->route('home');
+            return redirect()->route('userdashboard');
         } else {
             return view('users.login')->with('message', 'Incorrect username or password');
         }
+    }
+
+    public function updateUserPassword(Request $request)
+    {
+        $validated = $request->validate([
+            'password' => 'required',
+            'new_password' => 'required',
+        ]);
+        $validated['new_password'] = bcrypt($validated['new_password']);
+
+        $user = Users::find(session('id'));
+
+        if ($user && Hash::check($validated["password"], $user->password)) {
+            $user->update(['password' => $validated["new_password"]]);
+            return view('users.changePassword', ['user' => $user]);
+        } else {
+            return "error bitch";
+        }
+    }
+
+    public function storeAddress(Request $request, $add)
+    {
+        if ($request->has('default_address')) {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required',
+                'default_address' => 'accepted'
+            ]);
+
+            // dd($validated);            
+
+            $post_address = Address::where('default_address', 'true')->first();
+
+            if ($post_address && $add == 'delivery') {
+                $post_address->update([
+                    'default_address' => null
+                ]);
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
+                return redirect('/deliveryAddress');
+            } elseif ($post_address && $add == 'notDelivery') {
+                $post_address->update([
+                    'default_address' => null
+                ]);
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
+                // $post_address->update($validated);
+                return redirect('addresses');
+            } elseif ($add == 'delivery') {
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
+                return redirect('/deliveryAddress');
+            } elseif ($add == 'notDelivery') {
+                $new_add = Address::create([
+                    'user_id' => session('id'),
+                    'name' => $validated['name'],
+                    'contact_number' => $validated['contact_number'],
+                    'region' => $validated['region'],
+                    'city_municipality' => $validated['city_municipality'],
+                    'brgy_village' => $validated['brgy_village'],
+                    'postal_code' => $validated['postal_code'],
+                    'street_building_house' => $validated['street_building_house'],
+                    'default_address' => $validated['default_address']
+                ]);
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        } else {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required'
+            ]);
+
+            // dd($validated);
+            $post_address = Address::create([
+                'user_id' => session('id'),
+                'name' => $validated['name'],
+                'contact_number' => $validated['contact_number'],
+                'region' => $validated['region'],
+                'city_municipality' => $validated['city_municipality'],
+                'brgy_village' => $validated['brgy_village'],
+                'postal_code' => $validated['postal_code'],
+                'street_building_house' => $validated['street_building_house'],
+                // 'default_address' => $validated['default_address']
+            ]);
+
+            if ($post_address && $add == 'delivery') {
+                return redirect('/deliveryAddress');
+            } elseif ($post_address && $add == 'notDelivery') {
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        }
+    }
+
+    public function updateAddress(Request $request, $id, $add)
+    {
+        if ($request->has('default_address')) {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required',
+                'default_address' => 'accepted'
+            ]);
+
+            // dd($validated);
+            // $address = Address::find($id);
+            // $address->update($validated);
+            // $address = Address::updateOrInsert(
+            //     ['default_address' => 'true'],
+            //     [
+            //         'user_id' => session('id'),
+            //         'name' => $validated['name'],
+            //         'contact_number' => $validated['contact_number'],
+            //         'region' => $validated['region'],
+            //         'city_municipality' => $validated['city_municipality'],
+            //         'brgy_village' => $validated['brgy_village'],
+            //         'postal_code' => $validated['postal_code'],
+            //         'street_building_house' => $validated['street_building_house']
+            //         // 'default_address' => $validated['default_address']
+            //     ]
+            // );
+
+            $address = Address::where('default_address', 'true')->first();
+
+            if ($address && $add == 'delivery') {
+                $address->update(['default_address' => null]);
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+
+                return redirect('/deliveryAddress');
+            } elseif ($address && $add == 'notDelivery') {
+                $address->update(['default_address' => null]);
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+
+                return redirect('addresses');
+            } elseif ($add == 'delivery') {
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+                return redirect('/deliveryAddress');
+            } elseif ($add == 'notDelivery') {
+                $new_add = Address::find($id);
+                $new_add->update($validated);
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        } else {
+            $validated = $request->validate([
+                'name' => 'required',
+                'contact_number' => 'required',
+                'region' => 'required',
+                'city_municipality' => 'required',
+                'brgy_village' => 'required',
+                'postal_code' => 'required',
+                'street_building_house' => 'required',
+            ]);
+
+            // dd($validated);
+            $address = Address::find($id);
+            $address->update([
+                // 'user_id' => session('id'),
+                'name' => $validated['name'],
+                'contact_number' => $validated['contact_number'],
+                'region' => $validated['region'],
+                'city_municipality' => $validated['city_municipality'],
+                'brgy_village' => $validated['brgy_village'],
+                'postal_code' => $validated['postal_code'],
+                'street_building_house' => $validated['street_building_house'],
+                'default_address' => null
+            ]);
+
+            if ($address && $add == 'delivery') {
+                return redirect('/deliveryAddress');
+            } elseif ($address && $add == 'notDelivery') {
+                return redirect('addresses');
+            } else {
+                return "error bitch";
+            }
+        }
+    }
+
+    public function destroyAddress($id, $del)
+    {
+        $address = Address::find($id);
+        $address->delete();
+
+        if ($address && $del == 'delivery') {
+            return redirect('/deliveryAddress');
+        } elseif ($address && $del == 'notDelivery') {
+            return redirect('addresses');
+        } else {
+            return "error bitch";
+        }
+    }
+
+    public function search($item)
+    {
+        // $search = Books::where('title', 'LIKE', '%' . $item . '%')->get();
+        $search = Books::where(function ($query) use ($item) {
+            $query->where('title', 'LIKE', '%' . $item . '%')
+                ->orWhere('author', 'LIKE', '%' . $item . '%')
+                ->orWhere('genre', 'LIKE', '%' . $item . '%');
+        })->get();
+
+        return view('users.search', ['items' => $search]);
+    }
+
+    public function placeOrder(Request $request) {
+        $address_id = $request->input('address_id');
+        $book_id = $request->input('book_id');
+        $shipping = $request->input('shipping_total');
+        $price = $request->input('total_price');
+
+        $order = Orders::create([
+            'user_id' => session('id'),
+            'address_id' => $address_id,
+            'order_status' => 'pending',
+            'shipping_total' => $shipping,
+            'total_payment' => $price
+        ]);
+
+        foreach ($book_id as $id) {
+            Order_Items::create([
+                'order_id' => $order->id,
+                'book_id' => $id
+            ]); 
+        }
+                
+        if ($order) {
+            return redirect('/explore');            
+        } else {
+            return response()->json(['message' => 'error bitch']);
+        }
+    }
+
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function manageResources()
+    {
+        return view('admin.manageResources');
+    }
+
+    public function manageRefund()
+    {
+        return view('admin.manageRefund');
+    }
+
+    public function manageReviews()
+    {
+        return view('admin.manageReviews');
+    }
+
+    public function manageUserAccounts()
+    {
+        return view('admin.manageUserAccounts');
+    }
+
+    public function manageRentingClub()
+    {
+        return view('admin.manageRentingClub');
+    }
+
+    public function manageSellingClub()
+    {
+        return view('admin.manageSellingClub');
+    }
+
+    public function manageExchangeClub()
+    {
+        return view('admin.manageExchangeClub');
+    }
+
+    public function manageUserListing()
+    {
+        return view('admin.manageUserListing');
+    }
+
+    public function reportedListing()
+    {
+        return view('admin.reportedListing');
+    }
+
+    public function reportedPost()
+    {
+        return view('admin.reportedPost');
+    }
+
+    public function reportedExchangePost()
+    {
+        return view('admin.reportedExchangePost');
+    }
+
+    public function reportedRentPost()
+    {
+        return view('admin.reportedRentPost');
+    }
+
+    public function reportedUser()
+    {
+        return view('admin.reportedUser');
+    }
+
+    public function survey()
+    {
+        return view('users.survey');
+    }
+
+
+    public function systemFeedback()
+    {
+        return view('users.systemFeedback');
+    }
+
+    public function userDashboard()
+    {
+        return view('users.userDashboard');
+    }
+
+
+    // API's
+    public function searchItem($item)
+    {
+        $search = Books::where(function ($query) use ($item) {
+            $query->where('title', 'LIKE', '%' . $item . '%')
+                ->orWhere('author', 'LIKE', '%' . $item . '%')
+                ->orWhere('genre', 'LIKE', '%' . $item . '%');
+        })->get();
+
+        return $search;
+    }
+
+    public function getAddress($id)
+    {
+        $address = Address::find($id);
+
+        return $address;
     }
 }

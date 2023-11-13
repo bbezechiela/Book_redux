@@ -14,6 +14,9 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
+    <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
+        <x-sidebarProfile/>
+    </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
@@ -23,7 +26,7 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                <ul class="nav nav-underline">
+                {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
                     </li>
@@ -39,7 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -115,7 +118,7 @@
                         <p class="cancelled-text">Cancelled by you</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>
@@ -149,7 +152,7 @@
                         <p class="cancelled-text">Cancelled by seller</p>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-primary btn-sm contact-button">Contact Seller</button>
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
                     </div>
                 </div>
             </div>

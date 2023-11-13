@@ -13,8 +13,8 @@
     font-size: smaller;
 }
 
-.home-side-btn {
-    background-color: #2D6092;
+.selected-style i{
+    color: #E55B13;
 }
 
 .nav-link:hover {
@@ -116,6 +116,10 @@
     color: #003060;
 }
 
+.modal-body a{
+    color: #E55B13;
+}
+
 .btn-close{
     font-size: 10px;
 }
@@ -152,11 +156,13 @@
     width: 10em;
     background-color: #E55B13;
     border-color: #E55B13;
+    color: #fff;
 }
 
 .report-button:hover{
     background-color: #003060;
     border-color: #003060;
+    color: #fff;
 }
 
 .search-field:focus {
@@ -171,4 +177,36 @@
 
 .input-group-text .field i{
     color: #003060;
+}
+
+/* mmessages */
+#messageOuterContainer {
+
+}
+
+/* ha search na approach */
+#messageCtn {
+    height: auto;
+    width: 250px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.messageRight {
+    color: blue;
+    float: right;
+    clear: both;
+}
+
+.messageLeft {
+    color: red;
+    float: left;
+    clear: both;
+}
+
+/* ha conversation list na approach */
+.conversationCtn {
+    height: 75px;
+    width: 250px;
+    border: 1px solid black;
 }
