@@ -15,7 +15,7 @@
         <x-sidebar />
     </div>
     <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
-        <x-sidebarProfile/>
+        <x-sidebarProfile />
     </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
@@ -87,13 +87,7 @@
                         href="#">Exchanger
                         Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Renter
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                         href="#">Buyer
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Lessor
                         Rating</a>
                 </nav>
             </div>
@@ -113,30 +107,27 @@
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn active d-block rate-button" role="button"
-                                data-bs-toggle="button" aria-pressed="true"
+                            <a href="#" class="btn active d-block rate-button" role="button" data-bs-toggle="button"
+                                aria-pressed="true"
                                 style="background-color: #003060; border-color: #003060; color: #fff;">All
                                 <span>(10)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button">3 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">3 Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button" aria-pressed="true">5 Star <span>(100)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button">2 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
+                                aria-pressed="true">5 Star <span>(100)</span></a>
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">2 Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button" aria-pressed="true">4 star <span>(10)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button">1 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
+                                aria-pressed="true">4 star <span>(10)</span></a>
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">1 Star
                                 <span>(59)</span></a>
                         </div>
                     </div>
@@ -164,7 +155,7 @@
                             <div class="row">
                                 <div class="col">
                                     <img src="../assets/bubble_bath.png" alt="Image 1" class="d-inline square-picture">
-                                    <img src="../assets/b2 1.png" alt="Image 2" class="d-inline square-picture">
+                                    <img src="../assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
                                     <img src="../assets/bubble_bath.png" alt="Image 3" class="d-inline square-picture">
                                 </div>
                             </div>
@@ -194,7 +185,7 @@
                             <div class="row">
                                 <div class="col">
                                     <img src="../assets/bubble_bath.png" alt="Image 1" class="d-inline square-picture">
-                                    <img src="../assets/b2 1.png" alt="Image 2" class="d-inline square-picture">
+                                    <img src="../assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
                                     <img src="../assets/bubble_bath.png" alt="Image 3" class="d-inline square-picture">
                                 </div>
                             </div>

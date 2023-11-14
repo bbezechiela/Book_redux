@@ -3,14 +3,7 @@ body {
 }
 
 .top-nav {
-    margin-right: 3em;
-    margin-top: 1em;
     border-radius: 5px 5px 5px 5px;
-    margin-left: 2em;
-}
-
-.form-control:focus {
-    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
 .input-group-text,
@@ -19,19 +12,12 @@ body {
     background-color: #fff;
 }
 
-.form-control {
-    margin-right: 2em;
-}
-
-.input-group-text i {
-    color: #003060;
-}
-
 .text-admin {
     font-size: 24px;
     margin-bottom: 0;
     font-weight: 600;
     color: #E55B13;
+    margin-right: 20em;
 }
 
 .ship-details {
@@ -42,13 +28,21 @@ body {
     border-radius: 3px;
     margin-top: 1em;
     margin-bottom: 2em;
-    padding: 2em;
+    padding: 1em;
+    padding-bottom: 3em;
     background-color: #e2e9f0;
+    font-size: 12px;
 }
 
 .container-fluid-wrapper {
     margin-left: 2em;
     margin-right: 3em;
+}
+
+h4{
+    color: #003060;
+    margin-top: 1.5em;
+    margin-left: 1em;
 }
 
 .seller-details-box,
@@ -62,10 +56,6 @@ body {
     flex: 1;
     margin-left: 10px;
 }
-
-/* .customer-details-box, .product-details-box {
-    margin-left: 10px;
-} */
 
 .seller-details-box label,
 .customer-details-box label,
@@ -91,7 +81,7 @@ a {
 .accept {
     color: #FFF;
     background: #44CC44;
-    padding: 10px 15px;
+    padding: 5px 15px;
     box-shadow: 0 4px 0 0 #2EA62E;
 }
 
@@ -103,11 +93,272 @@ a {
 .deny {
     color: #FFF;
     background: tomato;
-    padding: 10px 15px;
+    padding: 5px 15px;
     box-shadow: 0 4px 0 0 #CB4949;
 }
 
 .deny:hover {
     background: rgb(255, 147, 128);
     box-shadow: 0 4px 0 0 #EF8282;
+}
+
+.shipping-address-text {
+    color: #E55B13;
+}
+
+.upload-track-btn{
+    color: #E55B13;
+    font-size: 14px;
+    border: none;
+}
+
+.upload-track-btn:hover{
+    color: #003060;
+}
+
+.save-button{
+    background-color: #E55B13;
+    border-color: #E55B13;
+}
+
+.save-button:hover{
+    background-color: #003060;
+    border-color: #003060;
+}
+
+
+.row {
+    color: #003060;
+}
+
+#chat3 .form-control {
+    border-color: transparent;
+    color: #003060;
+}
+
+#chat3 .form-control:focus {
+    border-color: #E55B13;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.name-msg {
+    color: #003060;
+}
+
+.badge-dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left: 2.9rem;
+    margin-top: -.75rem;
+}
+
+.side-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.body-img img {
+    width: 45px;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.chat-about {
+    padding: 10px 0;
+    border-bottom: 2px solid #f4f7f6;
+    margin-bottom: 2em;
+    background-color: #fff;
+    z-index: 1000;
+    margin-top: 1em;
+}
+
+.chat-about i {
+    color: #003060;
+}
+
+.custom-message {
+    background-color: #fff;
+    border: 1px solid #003060;
+    color: #003060;
+}
+
+.fa-paper-plane{
+    color: #E55B13;
+}
+
+.with-border {
+    border: 2px outset #E55B13; 
+    border-radius: 50%; 
+    padding: 1px; 
+}
+
+.card{
+    box-shadow: 0px 4px 4px rgba(185, 184, 184, 0.25);
+    border: none;
+    margin-left: 1.3em;
+    margin-right: 2.2em;
+}
+
+.menu-btn{
+    text-decoration: none;
+    border: none;
+}
+
+.modal-body{
+    color: #003060;
+}
+
+.modal-body a{
+    color: #E55B13;
+}
+
+.btn-close{
+    font-size: 10px;
+}
+
+.menu, .menu input{
+    cursor: pointer;
+}
+
+.btn-menu:hover{
+    color: #E55B13;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.image-holder {
+    width: 9em;
+    margin-right: 10px;
+    border: 1px dashed #ccc;
+    color: #e4e4e4;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.image-holder i {
+    padding: 1em;
+    font-size: 20px;
+}
+
+.selected-style i{
+    color: #E55B13;
+}
+
+.notification {
+    box-shadow: 0px 1px 1px 2px #f0eded;
+    border-radius: 3px;
+    padding: 30px 20px;
+    width: 94%;
+    margin-left: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #003060;
+    background-color: #fff;
+}
+
+.notification-details {
+    display: flex;
+    align-items: center;
+}
+
+.notification-details img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notification-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-message {
+    font-weight: bold;
+    margin: 0;
+}
+
+.date-time {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+
+.container {
+    margin-top: 3em;
+}
+
+.account-settings .user-profile img {
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    margin-top: 5em;
+}
+
+.upload-btn {
+    border: 1px solid #003060;
+    color: #003060;
+    width: 7em;
+}
+
+.upload-btn:hover {
+    border: 1px solid #E55B13;
+    color: #E55B13;
+}
+
+.input-dets {
+    border: 1px solid #cfd1d8;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #ffffff;
+    color: #003060;
+    margin-bottom: 1.3em;
+}
+
+.input-dets:focus{
+    border: none;
+    box-shadow: inset 0px 0px 0px 1px #E55B13;
+}
+
+.card {
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+    color: #003060;
+    margin-left: 1.6em;
+    margin-right: 2.2em;
+}
+
+.text-dets {
+    color: #E55B13;
+}
+
+.btn-update {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.btn-update:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
+.button-alignment {
+    text-align: right;
 }

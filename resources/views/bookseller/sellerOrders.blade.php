@@ -243,6 +243,7 @@
                                 <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
                                 <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
                                 <input type="text" class="form-control" id="price" placeholder="P100"><br>
+                                <input type="text" class="form-control" id="deposit" placeholder="P0"><br>
                                 <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
                             </div>
                         </div>

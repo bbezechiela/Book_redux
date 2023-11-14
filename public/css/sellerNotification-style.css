@@ -22,17 +22,7 @@ body {
     font-size: smaller;
 }
 
-.sidebar-btn.active,
-.sidebar-btn.active i,
-.sidebar-btn.active span {
-    background-color: #fff;
-    color: #003060;
-}
-
 .top-nav {
-    margin-left: 2em;
-    margin-right: 3em;
-    margin-top: 1em;
     border-radius: 5px 5px 5px 5px;
 }
 
@@ -77,27 +67,6 @@ body {
     color: #E55B13;
 }
 
-.notification-nav {
-    box-shadow: 0px 1px 1px 2px #f0eded;
-    border-radius: 3px;
-    padding: 10px 20px;
-    width: 94%;
-    margin-left: 2em;
-    margin-top: 2em;
-}
-
-.nav-underline .nav-item .nav-link.active {
-    color: #E55B13;
-}
-
-.nav-underline .nav-item {
-    margin-right: 80px;
-}
-
-.custom-nav-link {
-    color: #003060;
-}
-
 .notification {
     box-shadow: 0px 1px 1px 2px #f0eded;
     border-radius: 3px;
@@ -109,10 +78,6 @@ body {
     justify-content: space-between;
     color: #003060;
     background-color: #fff;
-}
-
-.notification-page {
-    margin-top: 2em;
 }
 
 .notification-details {

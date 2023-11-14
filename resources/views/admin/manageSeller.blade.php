@@ -49,13 +49,13 @@
             <section class="section dashboard">
                 <div class="row">
                     <div class="col-xxl-4 col-md-6">
-                        <div class="card info-card users-card">
+                        <div class="card info-card reported-listing-card">
                             <div class="card-body">
-                                <h5 class="card-title">Total Users</h5>
+                                <h5 class="card-title">Total Sellers</h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <i class="fa fa-user-secret" aria-hidden="true"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>3,264</h6>
@@ -67,11 +67,11 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card reported-card">
                             <div class="filter view-reports">
-                                <a class="icon" href="/reporteduser">View Reported Users <i class="fa fa-angle-right"
+                                <a class="icon" href="/reportedseller">View Reported Sellers <i class="fa fa-angle-right"
                                         aria-hidden="true"></i></a>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Total Reported User</h5>
+                                <h5 class="card-title">Total Reported Sellers</h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -110,7 +110,7 @@
                                             <div class="form-group">
                                                 <select name="status" class="form-select status">
                                                     <option value="option1">All</option>
-                                                    <option value="option2">New Users</option>
+                                                    <option value="option2">New Sellers</option>
                                                 </select>
                                         </label>
                                     </div>
@@ -140,27 +140,24 @@
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Profile</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 180px;">First Name</th>
+                                                rowspan="1" colspan="1" style="width: 180px;">Owner Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 180px;">Last Name</th>
+                                                rowspan="1" colspan="1" style="width: 180px;">Business Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 108px;">Contact Number</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Gender</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Business
+                                                Address</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Birthday</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Date Registered</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Address</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Registration Number</th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1" style="width: 120px;">Business Permit</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Account Created</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Sold</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Bought</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Exchanged</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 144px;">Actions
                                             </th>
@@ -183,16 +180,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
@@ -228,16 +229,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
@@ -273,16 +278,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
@@ -318,16 +327,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
@@ -363,16 +376,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
@@ -408,16 +425,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
@@ -453,16 +474,20 @@
                                                 </div>
                                             </td>
                                             <td>Nestine Nicole</td>
-                                            <td>Navarro</td>
+                                            <td>Bookstore</td>
                                             <td>2002155@lnu.edu.ph</td>
                                             <td>09491229441</td>
-                                            <td>Female</td>
+                                            <td>Tacloban City</td>
                                             <td>12/29/2001</td>
-                                            <td>Bagacay, Tacloban</td>
-                                            <td>10/10/2023</td>
-                                            <td>5</td>
-                                            <td>7</td>
-                                            <td>8</td>
+                                            <td>7787989587433</td>
+                                            <td>
+                                                <div class="d-flex justify-content-start align-items-center book-image">
+                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                            src="../assets/permit.jfif" alt="Logo">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>10/10/2022</td>
                                             <td>
                                                 <div class="d-inline-block"><a href="javascript:;"
                                                         class="btn btn-sm btn-icon dropdown-toggle hide-arrow"

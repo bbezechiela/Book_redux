@@ -929,11 +929,20 @@ class UserController extends Controller
         return view('admin.reportedUser');
     }
 
+    public function reportedSeller()
+    {
+        return view('admin.reportedSeller');
+    }
+
     public function adminProfile()
     {
         return view('admin.adminProfile');
     }
 
+    public function manageSeller()
+    {
+        return view('admin.manageSeller');
+    }
 
     public function survey()
     {
@@ -956,6 +965,31 @@ class UserController extends Controller
     return view('courier.manageShipment');
     }
 
+    public function manageReturn()
+    {
+    return view('courier.manageReturn');
+    }
+
+    public function courierProfile()
+    {
+    return view('courier.courierProfile');
+    }
+
+    public function courierMessage()
+    {
+    return view('courier.courierMessage');
+    }
+
+    public function courierNotification()
+    {
+    return view('courier.courierNotification');
+    }
+
+    public function booksRented()
+    {
+    return view('users.booksRented');
+    }
+    
     // API's
     public function searchItem($item)
     {

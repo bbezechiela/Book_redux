@@ -22,9 +22,8 @@ body {
     font-size: smaller;
 }
 
-.sidebar-btn.active,
-.sidebar-btn.active i,
-.sidebar-btn.active span {
+.feedback-side-btn,
+.feedback-side-btn span {
     background-color: #fff;
     color: #003060;
 }

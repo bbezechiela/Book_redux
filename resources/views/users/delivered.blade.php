@@ -91,8 +91,6 @@
                             Rating and Review</button>
                     </div>
                     <div class="button-group">
-                        <button type="button" class="btn btn-sm track-button" data-bs-toggle="modal"
-                            data-bs-target="#rental-period">Start Rental Period Tracking</button>
                         <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                     </div>
                 </div>
