@@ -10,7 +10,7 @@
     <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
    
-    <div class="container">
+    <div class="container" data-aos="zoom-in-up" data-aos-duration="2000">
         <div class="row justify-content-center">
           <div class="col-12 col-sm-8 col-lg-6">
             <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
@@ -54,3 +54,7 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+  AOS.init();
+</script>

@@ -20,6 +20,7 @@
                     <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo" required>
                     <label for="profileUpload" class="btn w-100 w-50 mx-auto mt-3 py-0 px-0 upload-btn">Upload
                         Profile</label>
+                    <input type="text" name="type" value="General User" hidden>
                 </div>
             </div>
             <div class="row px-3 py-3 mx-3">

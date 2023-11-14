@@ -4,8 +4,8 @@
             width="65" height="65"></i>
 
     <div class="d-flex flex-column ms-2 text-white">
-        <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>
-        <span class="fw-regular">Central Book</span>
+        <span class="fw-bold">{{ session('business_name') }}</span>
+        <span class="fw-regular">{{ session('owner_name') }}</span>
     </div>
 </div>
 

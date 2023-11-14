@@ -56,7 +56,7 @@
             </div>
             {{-- @if ($user->address->default_address == 'true') --}}
 
-            @foreach ($user->address as $user)
+            @foreach ($user->addressUser as $user)
                 @if ($user->default_address == 'true')
                     <div class="delivery-address-container">
                         <span id="address-id" hidden>{{ $user->id }}</span>
@@ -117,8 +117,7 @@
                             <li><a class="dropdown-item" href="#">Personal Transaction</a></li>
                         </ul>
                     </div> --}}
-                    <select id="shipping-option"
-                        class="btn shipping-button">
+                    <select id="shipping-option" class="btn shipping-button">
                         <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
                         <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
                     </select>
@@ -128,28 +127,18 @@
                     <p>Order Total <span id="total">(1 item):</span></p>
                     <div id="total-price" class="total">₱294</div>
                 </div>
-                <div class="payment-container">
+                {{-- <div class="payment-container">
                     <h1 class="payment-details">Payment Method</h1>
                     <select id="payment-method" class="btn payment-button">
                         <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
                         <option class="fs-6" value="GCash">GCash</option>
                         <option class="fs-6" value="Maya">Maya</option>
-                    </select>
-                    {{-- <div class="dropdown">
-                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle payment-button"
-                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cash on Delivery</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Cash on Delivery</a></li>
-                            <li><a class="dropdown-item" href="#">GCash</a></li>
-                            <li><a class="dropdown-item" href="#">Maya</a></li>
-                        </ul>
-                    </div> --}}
-                </div>
+                    </select>                    
+                </div> --}}
                 <div class="summary">
                     <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
                             class="summary-merchandise-total">P244</span></p>
-                    <p>Shipping Total: <span class="summary-shipping-total">₱110</span></p>
+                    {{-- <p>Shipping Total: <span class="summary-shipping-total">₱110</span></p> --}}
                     <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
                 </div>
                 <div class="col-md-6 text-right">
@@ -179,7 +168,7 @@
     displayTotal.textContent = '₱' + totalPrice + '.0';
     totalItem.textContent = '(' + prices.length + ' item/s)';
     mercha_total.textContent = '₱' + totalPrice + '.0';
-    sum_total.textContent = '₱' + parseFloat(totalPrice + 110.0) + '.0';
+    sum_total.textContent = '₱' + parseFloat(totalPrice) + '.0';
 
     // place order
     var place_order_btn = document.getElementById('place-order');
@@ -201,9 +190,9 @@
             address_id: address_id.textContent,
             book_id: book_id,
             shipping_option: shipping_option.value,
-            payment_method: payment_method.value,
-            shipping_total: 110,
-            total_price: totalPrice
+            // payment_method: payment_method.value,
+            // shipping_total: 110,
+            total_price: totalPrice * 100
         };
 
         const csrf_token = '{{ csrf_token() }}';
@@ -214,17 +203,60 @@
                     'Content-Type': 'application/json', // Set the Content-Type header for JSON data
                     // Add any other headers you need
                 },
-                body: JSON.stringify(dataToSend), // Your request body data
+                body: JSON.stringify({
+                    data: dataToSend
+                }), // Your request body data
             })
-            // .then(response => response.json())         
+            .then(response => response.json())
             .then(data => {
-                console.log(data);
-                if (data.redirected) {
-                    window.location.href = data.url;
-                }
+                // console.log(data);
+                payment(data);
+                // if (data.redirected) {
+                //     window.location.href = data.url;
+                // }
             })
             .catch(error => {
                 console.log('error', error);
             });
     });
+
+    function payment(event) {
+        // console.log(event.response.total_price);
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'Content-Type': 'application/json',
+                authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
+            },
+            body: JSON.stringify({
+                data: {
+                    attributes: {
+                        send_email_receipt: false,
+                        show_description: true,
+                        show_line_items: true,
+                        cancel_url: document.URL,
+                        line_items: [{
+                            currency: 'PHP',
+                            amount: event.response.total_price,
+                            name: 'Book/s',
+                            quantity: 1
+                        }],
+                        payment_method_types: ['gcash', 'paymaya', 'card', 'grab_pay', 'dob', 'dob_ubp'],
+                        description: 'checkout payment',
+                        success_url: 'http://127.0.0.1:8000/successpayment'
+                    }
+                }
+            })
+        };
+
+        fetch('https://api.paymongo.com/v1/checkout_sessions', options)
+            .then(response => response.json())
+            .then(response => {
+                // console.log(response)
+                // window.open(response.data.attributes.checkout_url, '_blank');
+                window.location.href = response.data.attributes.checkout_url;
+            })
+            .catch(err => console.error(err));
+    }
 </script>

@@ -13,18 +13,26 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
-            $table->string('phone_number');
-            // $table->string('address');
-            $table->string('birthday');
-            $table->string('gender');
-            // $table->integer('age');
-            $table->string('interest')->nullable();
+            $table->string('type');
             $table->string('username');
             $table->string('password');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('email');
+            $table->string('phone_number');
+            $table->string('address')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('gender')->nullable();
+            // $table->integer('age');
+            $table->string('interest')->nullable();            
             $table->text('profile_photo')->nullable();
+
+            // seller
+            $table->string('owner_name')->nullable();
+            $table->string('registration_number')->nullable();
+            $table->string('business_name')->nullable();
+            $table->string('date_registered')->nullable();
+            $table->string('permit')->nullable();
             $table->timestamps();
         });
     }

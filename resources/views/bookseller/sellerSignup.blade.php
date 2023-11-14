@@ -1,15 +1,15 @@
 @include('partials.__header', [
-'title' => 'Seller Sign Up | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Seller Sign Up | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 <div class="container-fluid p-4">
     <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
     <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1" data-aos="fade-down" data-aos-duration="1500">
         Create Account</h1>
-    <form id="form" action="/register" method="post" enctype="multipart/form-data">
+    <form id="form" action="/registerseller" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container px-0 rounded rounded-2 shadow fillup-form signup-form" data-aos="zoom-in-right"
             data-aos-duration="1500">
@@ -17,9 +17,11 @@
                 <div class="col-12 col-md-3 px-5">
                     <img class="img mx-auto d-block rounded-circle border" id="img-icon" src="../assets/user.png"
                         alt="upload_profile" width="100" height="100">
-                    <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo" required>
+                    <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo"
+                        required>
                     <label for="profileUpload" class="btn w-100 w-50 mx-auto mt-3 py-0 px-0 upload-btn">Upload
                         Profile</label>
+                    <input type="text" name="type" value="Bookseller" hidden>
                 </div>
             </div>
             <div class="row px-3 py-3 mx-3">
@@ -37,7 +39,8 @@
                         <label class="form-label" for="address">Registered Business Address</label>
                     </div>
                     <div class="form-outline mt-4">
-                        <input type="number" id="registration_number" name="registration_number" class="form-control" required />
+                        <input type="text" id="registration_number" name="registration_number" class="form-control"
+                            required />
                         <label class="form-label" for="registration_number">Registration Number</label>
                     </div>
                     <div class="form-outline mt-4">
@@ -66,7 +69,7 @@
                         <label class="form-label" for="date_registered">Date Registered</label>
                     </div>
                     <div class="form-outline mt-4">
-                        <input class="form-control" type="file" id="permit" name="permit" multiple />
+                        <input class="form-control" type="file" id="permit" name="permit" accept="image/*" multiple />
                         <label for="permit" class="form-label">Business Permit</label>
                     </div>
                     <div class="form-outline mt-4">
@@ -92,8 +95,8 @@
 </div>
 </body>
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>

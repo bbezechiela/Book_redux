@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,11 @@ Route::post('/loginprocess', [UserController::class, 'login_process']);
 
 Route::get('/logout', [UserController::class, 'logout']);
 
+Route::get('/role', [UserController::class, 'role']);
+
 Route::get('/signup', [UserController::class, 'signup']);
 
-Route::get('/sellersignup', [UserController::class, 'sellerSignup']);
+Route::get('/sellersignup', [SellerController::class, 'sellerSignup']);
 
 Route::post('/interest', [UserController::class, 'surveyInterest']);
 
@@ -219,6 +222,8 @@ Route::get('/deletecart/{id}', [ListingController::class, 'destroyCart']);
 
 Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
+Route::get('/successpayment', [UserController::class, 'successOrder']);
+
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
@@ -226,9 +231,13 @@ Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
 
 Route::get('/shipment', [UserController::class, 'manageShipment']);
 
-Route::get('/role', [UserController::class, 'role']);
 
-Route::get('/sellerboard', [UserController::class, 'sellerDashboard']);
+
+
+// seller
+Route::post('/registerseller', [SellerController::class, 'store']);
+
+Route::get('/sellerboard', [SellerController::class, 'sellerDashboard']);
 
 Route::get('/sellermessage', [UserController::class, 'sellerMessage']);
 
