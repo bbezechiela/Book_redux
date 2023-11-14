@@ -100,7 +100,7 @@
                     <div class="product-cart">
                         <div class="book-details">
                             <div class="left-section">
-                                <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
+                                <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px" height="110px">
                                 <div class="book-info">
                                     <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                     <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
