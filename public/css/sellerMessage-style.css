@@ -13,23 +13,16 @@ body {
     width: var(--sidebar_width);
 }
 
-.sellersidebar i{
-    color: #fff;;
+.sellersidebar i {
+    color: #fff;
+    ;
 }
 
 .profile-content {
     font-size: smaller;
 }
 
-.sidebar-btn.active, .sidebar-btn.active i, .sidebar-btn.active span {
-    background-color: #fff;
-    color: #003060;
-}
-
 .top-nav {
-    margin-left: 2em;
-    margin-right: 3em;
-    margin-top: 1em;
     border-radius: 5px 5px 5px 5px;
 }
 
@@ -128,45 +121,46 @@ body {
     color: #003060;
 }
 
-.fa-paper-plane{
+.fa-paper-plane {
     color: #E55B13;
 }
 
 .with-border {
-    border: 2px outset #E55B13; 
-    border-radius: 50%; 
-    padding: 1px; 
+    border: 2px outset #E55B13;
+    border-radius: 50%;
+    padding: 1px;
 }
 
-.card{
+.card {
     box-shadow: 0px 4px 4px rgba(185, 184, 184, 0.25);
     border: none;
     margin-left: 1.3em;
     margin-right: 2.2em;
 }
 
-.menu-btn{
+.menu-btn {
     text-decoration: none;
     border: none;
 }
 
-.modal-body{
+.modal-body {
     color: #003060;
 }
 
-.modal-body a{
+.modal-body a {
     color: #E55B13;
 }
 
-.btn-close{
+.btn-close {
     font-size: 10px;
 }
 
-.menu, .menu input{
+.menu,
+.menu input {
     cursor: pointer;
 }
 
-.btn-menu:hover{
+.btn-menu:hover {
     color: #E55B13;
 }
 
@@ -190,6 +184,6 @@ body {
     font-size: 20px;
 }
 
-.selected-style i{
+.selected-style i {
     color: #E55B13;
 }

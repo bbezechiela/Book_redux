@@ -15,7 +15,6 @@ body {
 
 .sellersidebar i {
     color: #fff;
-    ;
 }
 
 .profile-content {
@@ -25,6 +24,11 @@ body {
 .sidebar-btn.active,
 .sidebar-btn.active i,
 .sidebar-btn.active span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.listing-side-btn, .listing-side-btn span {
     background-color: #fff;
     color: #003060;
 }

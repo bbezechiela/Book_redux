@@ -104,7 +104,7 @@
                                             <button class="btn dropdown-toggle move-button" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Move to likes</a></li>
+                                                {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
                                                 <li><a class="dropdown-item" href="#">Move to wish list</a></li>
                                             </ul>
                                         </div>
@@ -143,7 +143,7 @@
                                             <button class="btn dropdown-toggle move-button" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Move to likes</a></li>
+                                                {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
                                                 <li><a class="dropdown-item" href="#">Move to wish list</a></li>
                                             </ul>
                                         </div>

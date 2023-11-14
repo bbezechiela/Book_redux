@@ -239,3 +239,17 @@ Route::get('/systemfeedback', [UserController::class, 'feedback']);
 Route::get('/listings', [UserController::class, 'listings']);
 
 Route::get('/profile', [UserController::class, 'profile']);
+
+Route::get('/courierprofile', [UserController::class, 'courierProfile']);
+
+Route::get('/couriermessage', [UserController::class, 'courierMessage']);
+
+Route::get('/couriernotification', [UserController::class, 'courierNotification']);
+
+Route::get('/manageseller', [UserController::class, 'manageSeller']);
+
+Route::get('/reportedseller', [UserController::class, 'reportedSeller']);
+
+Route::get('/booksrented', [UserController::class, 'booksRented']);
+
+Route::get('/return', [UserController::class, 'manageReturn']);

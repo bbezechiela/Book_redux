@@ -81,14 +81,12 @@
                     <div class="ratings">
                         <p>Ratings <span class="rate">100</span></p>
                         <p>Books Bought <span class="bought">20</span></p>
-                        <p>Books Lent <span class="lent">120</span></p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="ratings">
                         <p>Books Sold <span class="sold">203</span></p>
                         <p>Books Exchanged <span class="exchange">59</span></p>
-                        <p>Books Rented <span class="rent">9</span></p>
                     </div>
                 </div>
             </div>

@@ -75,6 +75,8 @@
             </div>
             <div class="card-body nav-details">
                 <nav class="nav nav-pills flex-column flex-sm-row">
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                     href="/booksrented">Books Rented</a>
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="/mypurchase">To Pay</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"

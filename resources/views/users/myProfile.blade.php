@@ -163,12 +163,12 @@
                         <p>Books Exchanged <span class="exchange">59</span></p>
                     </div>
                 </div>
-                <div class="col">
+                {{-- <div class="col">
                     <div class="ratings">
                         <p>Books Lent <span class="sold">203</span></p>
                         <p>Books Rented <span class="rent">9</span></p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

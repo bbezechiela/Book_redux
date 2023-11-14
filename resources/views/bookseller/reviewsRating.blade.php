@@ -58,15 +58,6 @@
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="#">Seller Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Exchanger
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Renter
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Buyer
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                         href="#">Lessor
                         Rating</a>
                 </nav>

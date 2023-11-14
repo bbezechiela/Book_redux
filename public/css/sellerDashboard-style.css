@@ -21,7 +21,7 @@ body {
     font-size: smaller;
 }
 
-.sidebar-btn.active, .sidebar-btn.active i, .sidebar-btn.active span {
+.dashboard-side-btn, .dashboard-side-btn span {
     background-color: #fff;
     color: #003060;
 }

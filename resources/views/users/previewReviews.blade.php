@@ -81,14 +81,12 @@
                     <div class="ratings">
                         <p>Ratings <span class="rate">100</span></p>
                         <p>Books Bought <span class="bought">20</span></p>
-                        <p>Books Lent <span class="lent">120</span></p>
                     </div>
                 </div>
                 <div class="col">
                     <div class="ratings">
                         <p>Books Sold <span class="sold">203</span></p>
                         <p>Books Exchanged <span class="exchange">59</span></p>
-                        <p>Books Rented <span class="rent">9</span></p>
                     </div>
                 </div>
             </div>
@@ -116,13 +114,7 @@
                         href="#">Exchange
                         Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Rented
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                         href="#">Bought
-                        Rating</a>
-                    <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                        href="#">Lent
                         Rating</a>
                 </nav>
             </div>
@@ -195,7 +187,7 @@
                                 <div class="col">
                                     <img src="/assets/bubble_bath.png" alt="Image 1"
                                         class="d-inline square-picture">
-                                    <img src="/assets/b2 1.png" alt="Image 2" class="d-inline square-picture">
+                                    <img src="/assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
                                     <img src="/assets/bubble_bath.png" alt="Image 3"
                                         class="d-inline square-picture">
                                 </div>
@@ -228,7 +220,7 @@
                                 <div class="col">
                                     <img src="/assets/bubble_bath.png" alt="Image 1"
                                         class="d-inline square-picture">
-                                    <img src="/assets/b2 1.png" alt="Image 2" class="d-inline square-picture">
+                                    <img src="/assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
                                     <img src="/assets/bubble_bath.png" alt="Image 3"
                                         class="d-inline square-picture">
                                 </div>

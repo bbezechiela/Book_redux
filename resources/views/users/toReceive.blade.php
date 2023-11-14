@@ -15,7 +15,7 @@
         <x-sidebar />
     </div>
     <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
-        <x-sidebarProfile/>
+        <x-sidebarProfile />
     </div>
     <div id="content" class="border content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
@@ -76,6 +76,8 @@
             </div>
             <div class="card-body nav-details">
                 <nav class="nav nav-pills flex-column flex-sm-row">
+                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/booksrented">Books Rented</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/mypurchase">To Pay</a>
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
@@ -179,42 +181,57 @@
                     <div class="modal-body">
                         <section>
                             <div class="container py-3 h-10 mb-4">
-                              <div class="row d-flex justify-content-center align-items-center">
-                                <div class="col">
-                                  <div class="card card-stepper" style="border-radius: 10px; border: none;">
-                                    <div class="card-body p-4">
-                                      <div class="d-flex justify-content-between align-items-center header-track">
-                                        <div class="d-flex flex-column">
-                                          <span class="lead fw-normal tracking-text">Your order has been delivered</span>
-                                          <span class="text-muted small tracking-text">by DHFL on 21 Jan, 2020</span>
+                                <div class="row d-flex justify-content-center align-items-center">
+                                    <div class="col">
+                                        <div class="card card-stepper" style="border-radius: 10px; border: none;">
+                                            <div class="card-body p-4">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center header-track">
+                                                    <div class="d-flex flex-column">
+                                                        <span class="lead fw-normal tracking-text">Your order has been
+                                                            delivered</span>
+                                                        <span class="text-muted small tracking-text">by DHFL on 21 Jan,
+                                                            2020</span>
+                                                    </div>
+                                                </div>
+                                                {{-- <hr class="my-4"> --}}
+                                                <div
+                                                    class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                                                    <span class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span
+                                                        class="d-flex justify-content-center align-items-center big-dot dot">
+                                                        <i class="fa fa-check text-white"></i></span>
+                                                </div>
+                                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                                    <div class="d-flex flex-column align-items-start tracking-text">
+                                                        <span>15 Mar</span><span class="tracking-description">Order
+                                                            placed</span>
+                                                    </div>
+                                                    <div
+                                                        class="d-flex flex-column justify-content-center tracking-text">
+                                                        <span>15 Mar</span><span class="tracking-description">Preparing
+                                                            to ship</span></div>
+                                                    <div
+                                                        class="d-flex flex-column justify-content-center align-items-center tracking-text">
+                                                        <span>15
+                                                            Mar</span><span class="tracking-description">Your order has
+                                                            been shipped</span></div>
+                                                    <div class="d-flex flex-column align-items-center tracking-text">
+                                                        <span>15 Mar</span><span class="tracking-description">Out for
+                                                            delivery</span></div>
+                                                    <div class="d-flex flex-column align-items-end tracking-text">
+                                                        <span>15 Mar</span><span
+                                                            class="tracking-description">Delivered</span></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                      </div>
-                                      {{-- <hr class="my-4"> --}}
-                                      <div class="d-flex flex-row justify-content-between align-items-center align-content-center">
-                                        <span class="dot"></span>
-                                        <hr class="flex-fill track-line"><span class="dot"></span>
-                                        <hr class="flex-fill track-line"><span class="dot"></span>
-                                        <hr class="flex-fill track-line"><span class="dot"></span>
-                                        <hr class="flex-fill track-line"><span
-                                          class="d-flex justify-content-center align-items-center big-dot dot">
-                                          <i class="fa fa-check text-white"></i></span>
-                                      </div>
-                                      <div class="d-flex flex-row justify-content-between align-items-center">
-                                        <div class="d-flex flex-column align-items-start tracking-text"><span>15 Mar</span><span class="tracking-description">Order placed</span>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-center tracking-text"><span>15 Mar</span><span class="tracking-description">Preparing to ship</span></div>
-                                        <div class="d-flex flex-column justify-content-center align-items-center tracking-text"><span>15
-                                            Mar</span><span class="tracking-description">Your order has been shipped</span></div>
-                                        <div class="d-flex flex-column align-items-center tracking-text"><span>15 Mar</span><span class="tracking-description">Out for
-                                            delivery</span></div>
-                                        <div class="d-flex flex-column align-items-end tracking-text"><span>15 Mar</span><span class="tracking-description">Delivered</span></div>
-                                      </div>
                                     </div>
-                                  </div>
                                 </div>
-                              </div>
                             </div>
-                          </section>
+                        </section>
                         {{-- <div class="tracking-details">
                             <div class="tracking-number">
                                 <p>Tracking Number</p>

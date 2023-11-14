@@ -10,19 +10,19 @@
 </div>
 
 <ul class="nav">
-    <a href="/sellerboard" class="btn nav-item d-flex flex-row w-100 px-5 py-0" data-blade="dashboard">
+    <a href="/sellerboard" class="btn nav-item d-flex flex-row w-100 px-5 py-0 dashboard-side-btn" data-blade="dashboard">
         <i class="fa fa-tachometer d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Dashboard</span>
     </a>
-    <a href="/listings" class="btn nav-item d-flex flex-row w-100 px-5 py-0" data-blade="manageListing" style="white-space: nowrap">
+    <a href="/listings" class="btn nav-item d-flex flex-row w-100 px-5 py-0 listing-side-btn" data-blade="manageListing" style="white-space: nowrap">
         <i class="fa fa-list-ul d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">My Listings</span>
     </a>
-    <a href="/reviews" class="btn nav-item d-flex flex-row w-100 px-5 py-0" data-blade="manageSellingClub" style="white-space: nowrap">
+    <a href="/reviews" class="btn nav-item d-flex flex-row w-100 px-5 py-0 reviews-side-btn" data-blade="manageSellingClub" style="white-space: nowrap">
         <i class="fa fa-star-half-o d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">User Reviews and Rating</span>
     </a>
-    <a href="/systemfeedback" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0" data-blade="manageExchangeClub" style="white-space: nowrap">
+    <a href="/systemfeedback" class="btn nav-item d-flex flex-row w-100 px-5 py-0 feedback-side-btn" data-blade="manageExchangeClub" style="white-space: nowrap">
         <i class="fa fa-comments d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">System Feedback</span>
     </a>

@@ -53,7 +53,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title dashboard-title">List Book for Sale</h5>
                                     <p class="card-text">Create listings with details such as book title, author, condition, and pricing.</p>
-                                    <a href="/" class="btn">Sell</a>
+                                    <a href="/listings" class="btn">Sell</a>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title dashboard-title">List Book for Rent</h5>
                                     <p class="card-text">Create rental listings specifying the rental duration, rental pricing, and book details.</p>
-                                    <a href="/" class="btn">Rent</a>
+                                    <a href="/listings" class="btn">Rent</a>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title dashboard-title">View User Reviews</h5>
                                     <p class="card-text">View users experiences, opinions, and ratings, helping others make informed decisions.</p>
-                                    <a href="/" class="btn">View</a>
+                                    <a href="/reviews" class="btn">View</a>
                                 </div>
                             </div>
                         </div>

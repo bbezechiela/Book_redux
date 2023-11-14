@@ -23,9 +23,13 @@
         <i class="fa fa-window-restore d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage Book Renting Club</span>
     </a>
-    <a href="/manageuseraccounts" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('manageuseraccounts*')) active @endif" data-blade="manageuserAccounts style="white-space: nowrap">
+    <a href="/manageuseraccounts" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('manageuseraccounts*')) active @endif" data-blade="manageuserAccounts" style="white-space: nowrap">
         <i class="fa fa-users d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage User</span>
+    </a>
+    <a href="/manageseller" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('manageseller*')) active @endif" data-blade="managesellerAccounts" style="white-space: nowrap">
+        <i class="fa fa-user-secret d-flex align-items-center" aria-hidden="true"></i>
+        <span class="nav-link">Manage Bookseller</span>
     </a>
     {{-- <a href="/orderdetails" class="btn nav-item d-flex flex-row w-100 px-5 py-0 myList-side-btn" style="white-space: nowrap">
         <i class="fa fa-list-alt d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
