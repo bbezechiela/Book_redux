@@ -50,7 +50,7 @@
             <section class="section dashboard">
                 <div class="row">
                     <div class="row">
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-4 col-md-4">
                             <div class="card info-card users-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
@@ -79,7 +79,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-4 col-md-4">
                             <div class="card info-card listings-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -108,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-xl-12">
+                        <div class="col-xxl-4 col-md-4">
                             <div class="card info-card reported-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -139,7 +139,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-4 col-md-4">
                             <div class="card info-card post-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
@@ -168,7 +168,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-4 col-md-4">
                             <div class="card info-card reported-listing-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -197,7 +197,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-xl-12">
+                        <div class="col-xxl-4 col-md-4">
                             <div class="card info-card refund-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -212,7 +212,7 @@
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Return/Refund Request <span>| This Month</span></h5>
+                                    <h5 class="card-title">Refund Request <span>| This Month</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
