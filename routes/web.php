@@ -222,7 +222,11 @@ Route::get('/deletecart/{id}', [ListingController::class, 'destroyCart']);
 
 Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
-Route::get('/successpayment', [UserController::class, 'successOrder']);
+Route::get('/deleteorder/{id}', [UserController::class, 'deleteOrder']);
+
+Route::get('/successpayment/{id}', [UserController::class, 'successOrder']);
+
+Route::get('/orderreceived/{id}', [UserController::class, 'receivedOrder']);
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

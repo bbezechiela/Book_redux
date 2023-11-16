@@ -64,7 +64,8 @@
         </div>
 
         @foreach ($orders as $item)
-            {{-- @foreach ($item->items as $order) --}}
+            {{-- @foreach ($item->item as $order) --}}
+            @if ($item->item->order->order_status == 'pending')
                 <div class="order-cart d-print-none">
                     <div class="name-cart d-flex justify-content-between">
                         <div>
@@ -89,7 +90,8 @@
                                 <div class="book-price">
                                     <p class="product-price">₱{{ $item->price }}</p>
                                     {{-- <p class="text-total">Shipping Fee:<span class="fee-total">₱{{ $item->item->order->shipping_total }}</span></p> --}}
-                                    <p class="text-total">Total Payment:<span class="product-total">₱{{ $item->price }}</span></p>
+                                    <p class="text-total">Total Payment:<span
+                                            class="product-total">₱{{ $item->price }}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +111,9 @@
                         </div>
                     </div>
                 </div>
-                {{-- <p>{{ $item->title }}</p> --}}
+            @endif
+
+            {{-- <p>{{ $item->title }}</p> --}}
             {{-- @endforeach --}}
         @endforeach
 

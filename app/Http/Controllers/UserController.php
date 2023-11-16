@@ -369,12 +369,18 @@ class UserController extends Controller
 
     public function toReceive()
     {
-        return view('users.toReceive');
+        $order = Users::with('orders.items.book.user')->find(session('id'));
+        // dd($order);        
+        return view('users.toReceive', ['user' => $order]);
+        // return view('users.toReceive');
     }
 
     public function deliveredMyPurchase()
     {
-        return view('users.deliveredMyPurchase');
+        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        // dd($order);
+        return view('users.deliveredMyPurchase', ['orders' => $order]);
+        // return view('users.deliveredMyPurchase');
     }
 
     public function droppedMyPurchase()
@@ -423,9 +429,27 @@ class UserController extends Controller
         return view('users.orders', ['orders' => $order]);
     }
 
+    public function deleteOrder($id) {
+        $item = Order_Items::with('book')->find($id);
+        $book_update = $item->book->update(['unit' => 'Available']);
+        $item->delete();
+
+        if ($item) {
+            return redirect('/mypurchase');
+        } else {
+            return response()->json(['message' => 'error bitch']);
+        }
+
+        
+    }
+
     public function delivered()
     {
-        return view('users.delivered');
+        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        // dd($order);
+        return view('users.delivered', ['orders' => $order]);
+        // $order = Orders::where(['user_id' => session('id')])->with('items.book.user')->get();       
+        // return view('users.delivered', ['order' => $order]);
     }
 
     public function dropped()
@@ -831,62 +855,29 @@ class UserController extends Controller
     }
 
     public function placeOrder(Request $request) {
-        // $address_id = $request->input('address_id');
-        // $book_id = $request->input('book_id');
-        // $option = $request->input('shipping_option');
-        // $method = $request->input('payment_method');
+        $address_id = $request->input('address_id');
+        $book_id = $request->input('book_id');
+        $option = $request->input('shipping_option');
+        $method = $request->input('payment_method');
         // $shipping = $request->input('shipping_total');
-        // $price = $request->input('total_price');
-        $data = $request->input('data');
-        // dd($data);
-        $request->session()->put('data', $data);
-        return response()->json(['response' => $data]);
+        $price = $request->input('total_price');
+        // $data = $request->input('data');
+        // dd($address_id);
+        // $request->session()->put('data', $data);
+        // return response()->json(['response' => $address_id]);
 
-        // $order = Orders::create([
-        //     'user_id' => session('id'),
-        //     'address_id' => $address_id,
-        //     'shipping_option' => $option,
-        //     'payment_method' => $method,
-        //     'order_status' => 'pending',
-        //     'shipping_total' => $shipping,
-        //     'total_payment' => $price
-        // ]);
-
-        // $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
-
-        // foreach ($book_id as $id) {
-        //     $orderItem = Order_Items::create([
-        //         'order_id' => $order->id,
-        //         'book_id' => $id
-        //     ]); 
-
-        //     $orderItem->book->update([
-        //         'unit' => 'Ordered'
-        //     ]);
-        // }
-                
-        // if ($order) {
-        //     return redirect('/explore');            
-        // } else {
-        //     return response()->json(['message' => 'error bitch']);
-        // }
-    }
-
-    public function successOrder() {
-        // dd(session('data'));
-        $address_id = session('data')['address_id'];
-        $book_id = session('data')['book_id'];
-        $option = session('data')['shipping_option'];
-        $price = session('data')['total_price'];
-
-        // dd($book_id);
         $order = Orders::create([
             'user_id' => session('id'),
             'address_id' => $address_id,
-            'shipping_option' => $option,           
-            'order_status' => 'pending',            
+            'shipping_option' => $option,
+            'payment_method' => $method,
+            'order_status' => 'pending',
+            // 'shipping_total' => $shipping,
             'total_payment' => $price
         ]);
+
+        $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
+
         foreach ($book_id as $id) {
             $orderItem = Order_Items::create([
                 'order_id' => $order->id,
@@ -903,6 +894,30 @@ class UserController extends Controller
         } else {
             return response()->json(['message' => 'error bitch']);
         }
+    }
+
+    public function successOrder($id) {
+        $order = Orders::find($id);
+        // dd($order);
+        $order->update(['order_status' => 'paid']);
+
+        if ($order) {
+            return redirect('/mypurchase');
+        } else {
+            return response()->json(['error' => 'error']);
+        }
+        
+    }
+
+    public function receivedOrder($id) {
+        $order = Orders::find($id);
+        $order->update(['order_status' => 'received']);
+
+        if ($order) {
+            return redirect('/mypurchase');
+        } else {
+            return response()->json(['error' => 'error']);
+        }        
     }
 
     public function dashboard()

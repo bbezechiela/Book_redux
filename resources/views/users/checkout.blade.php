@@ -127,14 +127,15 @@
                     <p>Order Total <span id="total">(1 item):</span></p>
                     <div id="total-price" class="total">₱294</div>
                 </div>
-                {{-- <div class="payment-container">
+                <div class="payment-container">
                     <h1 class="payment-details">Payment Method</h1>
                     <select id="payment-method" class="btn payment-button">
                         <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
-                        <option class="fs-6" value="GCash">GCash</option>
-                        <option class="fs-6" value="Maya">Maya</option>
+                        <option class="fs-6" value="eWallet">eWallet</option>
+                        {{-- <option class="fs-6" value="GCash">GCash</option>
+                        <option class="fs-6" value="Maya">Maya</option> --}}
                     </select>                    
-                </div> --}}
+                </div>
                 <div class="summary">
                     <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
                             class="summary-merchandise-total">P244</span></p>
@@ -190,7 +191,7 @@
             address_id: address_id.textContent,
             book_id: book_id,
             shipping_option: shipping_option.value,
-            // payment_method: payment_method.value,
+            payment_method: payment_method.value,
             // shipping_total: 110,
             total_price: totalPrice * 100
         };
@@ -203,60 +204,61 @@
                     'Content-Type': 'application/json', // Set the Content-Type header for JSON data
                     // Add any other headers you need
                 },
-                body: JSON.stringify({
-                    data: dataToSend
-                }), // Your request body data
+                // body: JSON.stringify({
+                //     data: dataToSend
+                // }),
+                body: JSON.stringify(dataToSend), // Your request body data
             })
-            .then(response => response.json())
+            // .then(response => response.json())
             .then(data => {
-                // console.log(data);
-                payment(data);
-                // if (data.redirected) {
-                //     window.location.href = data.url;
-                // }
+                console.log(data);
+                // payment(data);
+                if (data.redirected) {
+                    window.location.href = data.url;
+                }
             })
             .catch(error => {
                 console.log('error', error);
             });
     });
 
-    function payment(event) {
-        // console.log(event.response.total_price);
-        const options = {
-            method: 'POST',
-            headers: {
-                accept: 'application/json',
-                'Content-Type': 'application/json',
-                authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
-            },
-            body: JSON.stringify({
-                data: {
-                    attributes: {
-                        send_email_receipt: false,
-                        show_description: true,
-                        show_line_items: true,
-                        cancel_url: document.URL,
-                        line_items: [{
-                            currency: 'PHP',
-                            amount: event.response.total_price,
-                            name: 'Book/s',
-                            quantity: 1
-                        }],
-                        payment_method_types: ['gcash', 'paymaya', 'card', 'grab_pay', 'dob', 'dob_ubp'],
-                        description: 'checkout payment',
-                        success_url: 'http://127.0.0.1:8000/successpayment'
-                    }
-                }
-            })
-        };
+    // function payment(event) {
+    //     // console.log(event.response.total_price);
+    //     const options = {
+    //         method: 'POST',
+    //         headers: {
+    //             accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //             authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
+    //         },
+    //         body: JSON.stringify({
+    //             data: {
+    //                 attributes: {
+    //                     send_email_receipt: false,
+    //                     show_description: true,
+    //                     show_line_items: true,
+    //                     cancel_url: document.URL,
+    //                     line_items: [{
+    //                         currency: 'PHP',
+    //                         amount: event.response.total_price,
+    //                         name: 'Book/s',
+    //                         quantity: 1
+    //                     }],
+    //                     payment_method_types: ['gcash', 'paymaya', 'card', 'grab_pay', 'dob', 'dob_ubp'],
+    //                     description: 'checkout payment',
+    //                     success_url: 'http://127.0.0.1:8000/successpayment'
+    //                 }
+    //             }
+    //         })
+    //     };
 
-        fetch('https://api.paymongo.com/v1/checkout_sessions', options)
-            .then(response => response.json())
-            .then(response => {
-                // console.log(response)
-                // window.open(response.data.attributes.checkout_url, '_blank');
-                window.location.href = response.data.attributes.checkout_url;
-            })
-            .catch(err => console.error(err));
-    }
+    //     fetch('https://api.paymongo.com/v1/checkout_sessions', options)
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             // console.log(response)
+    //             // window.open(response.data.attributes.checkout_url, '_blank');
+    //             window.location.href = response.data.attributes.checkout_url;
+    //         })
+    //         .catch(err => console.error(err));
+    // }
 </script>
