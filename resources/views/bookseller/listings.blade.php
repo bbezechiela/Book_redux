@@ -86,7 +86,7 @@
                             <option selected disabled></option>
                             <option value="All">All</option>
                             <option value="Sale">Sale</option>
-                            <option value="Exchange">Exchange</option>
+                            {{-- <option value="Exchange">Exchange</option> --}}
                             <option value="Rent">Rent</option>
                         </select>
                     </div>
@@ -154,7 +154,7 @@
                         <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">
                             <option value="Sale">Sale</option>
                             <option value="Sale">Sale</option>
-                            <option value="Exchange">Exchange</option>
+                            {{-- <option value="Exchange">Exchange</option> --}}
                             <option value="Rent">Rent</option>
                         </select>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"

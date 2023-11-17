@@ -134,7 +134,7 @@
                         <option class="fs-6" value="eWallet">eWallet</option>
                         {{-- <option class="fs-6" value="GCash">GCash</option>
                         <option class="fs-6" value="Maya">Maya</option> --}}
-                    </select>                    
+                    </select>
                 </div>
                 <div class="summary">
                     <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
@@ -182,44 +182,49 @@
 
     place_order_btn.addEventListener('click', () => {
         // alert(addres_id.textContent);
-        books.forEach(item => {
-            book_id.push(item.textContent);
-        });
-        // console.log(shipping_option.value + ' ' + payment_method.value);
-
-        const dataToSend = {
-            address_id: address_id.textContent,
-            book_id: book_id,
-            shipping_option: shipping_option.value,
-            payment_method: payment_method.value,
-            // shipping_total: 110,
-            total_price: totalPrice * 100
-        };
-
-        const csrf_token = '{{ csrf_token() }}';
-        fetch('/placeorder', {
-                method: 'POST', // Specify the HTTP method as POST
-                headers: {
-                    'X-CSRF-TOKEN': csrf_token,
-                    'Content-Type': 'application/json', // Set the Content-Type header for JSON data
-                    // Add any other headers you need
-                },
-                // body: JSON.stringify({
-                //     data: dataToSend
-                // }),
-                body: JSON.stringify(dataToSend), // Your request body data
-            })
-            // .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // payment(data);
-                if (data.redirected) {
-                    window.location.href = data.url;
-                }
-            })
-            .catch(error => {
-                console.log('error', error);
+        if (address_id == null) {
+            alert('No Current Default Address');
+        } else {
+            books.forEach(item => {
+                book_id.push(item.textContent);
             });
+            // console.log(shipping_option.value + ' ' + payment_method.value);
+
+            const dataToSend = {
+                address_id: address_id.textContent,
+                book_id: book_id,
+                shipping_option: shipping_option.value,
+                payment_method: payment_method.value,
+                // shipping_total: 110,
+                total_price: totalPrice * 100
+            };
+
+            const csrf_token = '{{ csrf_token() }}';
+            fetch('/placeorder', {
+                    method: 'POST', // Specify the HTTP method as POST
+                    headers: {
+                        'X-CSRF-TOKEN': csrf_token,
+                        'Content-Type': 'application/json', // Set the Content-Type header for JSON data
+                        // Add any other headers you need
+                    },
+                    // body: JSON.stringify({
+                    //     data: dataToSend
+                    // }),
+                    body: JSON.stringify(dataToSend), // Your request body data
+                })
+                // .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // payment(data);
+                    if (data.redirected) {
+                        window.location.href = data.url;
+                    }
+                })
+                .catch(error => {
+                    console.log('error', error);
+                });
+        }
+
     });
 
     // function payment(event) {
