@@ -613,7 +613,7 @@
                                 <p class="card-text mt-0 mb-2">{{ $exchange->author }}<br>
                                     {{ $exchange->genre }}</p>
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-
+                                    <span class="fw-bold p-0"></span>
                                     <div class="button-container">
                                         {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
                                                 aria-hidden="true" style="margin-right: 8px"></i></button> --}}

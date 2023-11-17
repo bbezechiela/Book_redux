@@ -78,7 +78,7 @@
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/booksrented">Books Rented</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/mypurchase">To Pay</a>
+                        href="/mypurchase">To Purchase</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         style="background-color: #003060;" aria-current="page" href="/toreceive">To
                         Receive</a>

@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'My Purchase | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/myPurchase-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'My Purchase | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/myPurchase-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -26,23 +26,6 @@
                 </button>
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                {{-- <ul class="nav nav-underline">
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/mypurchase">My Purchase</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/addresses">Addresses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
-                    </li>
-                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -78,7 +61,7 @@
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/booksrented">Books Rented</a>
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
-                        aria-current="page" href="/mypurchase">To Pay</a>
+                        aria-current="page" href="/mypurchase">To Purchase</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/toreceive">To Receive</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"

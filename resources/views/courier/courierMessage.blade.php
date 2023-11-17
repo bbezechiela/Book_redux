@@ -14,19 +14,20 @@
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>
+                <a href="/shipment"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Home">
+                        <i class="fa fa-area-chart" aria-hidden="true"
+                            style="font-size: 20px; margin-right: 20px;  color: #003060;">
+                            Manage Order</i>
+                    </button></a>
+                <a href="/return"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Return">
+                        <i class="fa fa-refresh" aria-hidden="true" style="font-size: 20px; color: #003060;"> Manage
+                            Return</i>
+                    </button></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    <a href="/shipment"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" data-bs-title="Home">
-                        <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                    </button></a>
                     <a href="/couriermessage"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px;"></i>
@@ -251,17 +252,13 @@
                                     </div>
                                 </div>
 
-                                {{-- shit --}}
                                 <div class="col-md-6 col-lg-7 col-xl-8">
                                     <div class="chat-about position-sticky top-0">
 
-                                        <h6 class="m-b-0">Kate Moss<button type="button" class="btn menu-btn"
-                                                data-bs-toggle="modal" data-bs-target="#profile-menu">
-                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        <h6 class="m-b-0">Kate Moss<button type="button" class="btn menu-btn">
                                             </button>
                                         </h6>
                                     </div>
-                                    {{-- shit --}}
                                     <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
                                         style="position: relative;">
                                         <div class="d-flex flex-row justify-content-start body-img">
@@ -395,38 +392,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- User Menu Modal -->
-        <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="side-img">
-                            <img src="../assets/osama.png" alt="user_img"
-                                class="d-flex align-self-center me-3 with-border">
-                        </div>
-                        <div class="pt-1">
-                            <p class="fw-bold mb-0 name-msg">Ben Smith</p>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex justify-content-between align-items-center mb-1 menu">
-                            <p>Mute</p>
-                            <label class="form-check form-switch m-0">
-                                <input class="form-check-input" type="checkbox" id="toggleUser">
-                            </label>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center btn-menu">
-                            <a href="/userlistings" class="text-decoration-none">
-                                <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
-                                        style="margin-left: 10em;"></i></p>
-                            </a>
                         </div>
                     </div>
                 </div>

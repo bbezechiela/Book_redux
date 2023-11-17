@@ -80,7 +80,7 @@
         </div>
         <div class="ratings-review">
             <div class="card-body rating-details-review">
-                <nav class="nav nav-pills flex-column flex-sm-row">
+                {{-- <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="#">Seller Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -89,7 +89,7 @@
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                         href="#">Buyer
                         Rating</a>
-                </nav>
+                </nav> --}}
             </div>
             <div class="container text-center review-rating-details">
                 <div class="row align-items-center">
@@ -139,7 +139,8 @@
                 <div class="d-flex align-items-center">
                     <img src="../assets/nestine.png" alt="seller image" class="customer-picture">
                     <div class="customer-ratings-info">
-                        <p>N******nnn <a href="" data-bs-toggle="modal" data-bs-target="#report">Report</a></p>
+                        <p>N******nnn</p>
+                        {{-- <p>N******nnn <a href="" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -169,7 +170,8 @@
                 <div class="d-flex align-items-center">
                     <img src="../assets/nestine.png" alt="seller image" class="customer-picture">
                     <div class="customer-ratings-info">
-                        <p>N******nnn <a href="#" data-bs-toggle="modal" data-bs-target="#report">Report</a></p>
+                        <p>N******nnn</p>
+                        {{-- <p>N******nnn <a href="#" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
