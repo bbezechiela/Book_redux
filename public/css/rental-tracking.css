@@ -71,33 +71,6 @@ body {
 .table-card {
     padding: 2em;
 }
-/* 
-.dataTables_length label, .dataTables_filter label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1em;
-}
-
-.drop-table:focus, .status:focus, .time:focus {
-    box-shadow: inset 0px 0px 0px 1px #003060;
-}
-
-div.dataTables_wrapper div.dataTables_paginate ul.pagination {
-    margin: 2px 0;
-    white-space: nowrap;
-    justify-content: flex-end
-}
-
-div.table-responsive>div.dataTables_wrapper>div.row {
-    margin: 0
-}
-
-div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-link {
-    padding: .625rem;
-    min-width: calc( 2rem + 0px );
-    font-size: .75rem;
-    line-height: 1
-} */
 
 .dataTable th, .dataTable td{
     color: #003060;

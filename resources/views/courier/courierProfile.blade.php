@@ -14,19 +14,19 @@
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>
+                <a href="/shipment"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="Home">
+                        <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px; margin-right: 20px;  color: #003060;">
+                            Manage Order</i>
+                    </button></a>
+                <a href="/return"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Return">
+                        <i class="fa fa-refresh" aria-hidden="true" style="font-size: 20px; color: #003060;"> Manage
+                            Return</i>
+                    </button></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    <a href="/shipment"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Home">
-                            <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
                     <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>

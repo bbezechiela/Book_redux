@@ -98,7 +98,8 @@
                                     alt="book" width="80px" height="110px">
                                 <div class="book-info">
                                     <p class="book-title">{{ $orders->productRelation->title }}</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
+                                    <p class="fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
+                                    <p class="mb-0 interaction-type">Security Deposit: <span>₱0</span></p>
                                 </div>
                                 <div class="product-price">₱<span
                                         class="price-list">{{ $orders->productRelation->price }}</span></div>
