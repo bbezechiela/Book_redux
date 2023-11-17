@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('shipping_option');
             $table->string('payment_method');
             $table->string('order_status');
-            $table->text('shipping_total');
+            // $table->text('shipping_total');
             $table->text('total_payment');
             $table->timestamps();
         });

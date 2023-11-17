@@ -28,7 +28,7 @@
             @endif
             <button class="btn mt-3 w-100 sign-up-btn mb-3 fw-bold mt-5" type="submit">Log in</button>
         </form>
-        <p class="mt-5 text-center">Don't have an account? <a href="/signup">Click here!</a></p>
+        <p class="mt-5 text-center">Don't have an account? <a href="/role">Click here!</a></p>
     </div>
 </div>
 </body>

@@ -182,7 +182,7 @@
                             <option value="Sale">Sale</option>
                             <option value="Sale">Sale</option>
                             <option value="Exchange">Exchange</option>
-                            <option value="Rent">Rent</option>
+                            {{-- <option value="Rent">Rent</option> --}}
                         </select>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>

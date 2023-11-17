@@ -9,6 +9,7 @@ use App\Models\Order_Items;
 use App\Models\Orders;
 use App\Models\User;
 use App\Models\Users;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Metadata\Uses;
@@ -61,16 +62,6 @@ class UserController extends Controller
         } else {
             return view('users.signup');
         }
-    }
-
-    public function sellerSignup()
-    {
-        return view('bookseller.sellerSignup');
-    }
-
-    public function sellerDashboard()
-    {
-        return view('bookseller.sellerDashboard');
     }
 
     public function sellerMessage()
@@ -188,9 +179,9 @@ class UserController extends Controller
     {
         if ($request->session()->has('user')) {            
             $order = $request->input('items');
-            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.address')->get();
+            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();
 
-            $address = Users::with('address')->find(session('id'));
+            $address = Users::with('addressUser')->find(session('id'));
             return view('users.checkout', ['items' => $checkout, 'user' => $address]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -288,7 +279,7 @@ class UserController extends Controller
                     return 'error bitch';
                 }
             } else {
-                $validated = $request->validate([
+                $validated = $request->validate([                    
                     'first_name' => ['required', 'min:4'],
                     'last_name' => ['required', 'min:4'],
                     'email' => ['required', 'email'],
@@ -378,12 +369,18 @@ class UserController extends Controller
 
     public function toReceive()
     {
-        return view('users.toReceive');
+        $order = Users::with('orders.items.book.user')->find(session('id'));
+        // dd($order);        
+        return view('users.toReceive', ['user' => $order]);
+        // return view('users.toReceive');
     }
 
     public function deliveredMyPurchase()
     {
-        return view('users.deliveredMyPurchase');
+        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        // dd($order);
+        return view('users.deliveredMyPurchase', ['orders' => $order]);
+        // return view('users.deliveredMyPurchase');
     }
 
     public function droppedMyPurchase()
@@ -432,9 +429,27 @@ class UserController extends Controller
         return view('users.orders', ['orders' => $order]);
     }
 
+    public function deleteOrder($id) {
+        $item = Order_Items::with('book')->find($id);
+        $book_update = $item->book->update(['unit' => 'Available']);
+        $item->delete();
+
+        if ($item) {
+            return redirect('/mypurchase');
+        } else {
+            return response()->json(['message' => 'error bitch']);
+        }
+
+        
+    }
+
     public function delivered()
     {
-        return view('users.delivered');
+        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        // dd($order);
+        return view('users.delivered', ['orders' => $order]);
+        // $order = Orders::where(['user_id' => session('id')])->with('items.book.user')->get();       
+        // return view('users.delivered', ['order' => $order]);
     }
 
     public function dropped()
@@ -480,6 +495,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'type' => 'required',
             'first_name' => ['required', 'min:4'],
             'last_name' => ['required', 'min:4'],
             'email' => ['required', 'email'],
@@ -493,6 +509,7 @@ class UserController extends Controller
             'password' => 'required',
             'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
         ]);
+        // dd($validated);
 
         $validated["password"] =  bcrypt($validated["password"]);
         // $validated["interest"] = implode(', ', $validated["interest"]);
@@ -510,6 +527,7 @@ class UserController extends Controller
         if ($user) {
             $request->session()->put([
                 'id' => $user->id,
+                'type' => $user->type,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 // 'address' => $validated["address"],
@@ -557,15 +575,30 @@ class UserController extends Controller
 
         $user = Users::where('username', $login["username"])->first();
         if ($user && Hash::check($login["password"], $user["password"])) {
-            $request->session()->put([
-                'id' => $user["id"],
-                'first_name' => $user["first_name"],
-                'last_name' => $user["last_name"],
-                // 'address' => $user["address"],
-                'user' => $user["username"],
-                'profile_pic' => $user["profile_photo"]
-            ]);
-            return redirect()->route('userdashboard');
+            if ($user->type == 'General User') {
+                $request->session()->put([
+                    'id' => $user["id"],
+                    'first_name' => $user["first_name"],
+                    'last_name' => $user["last_name"],
+                    // 'address' => $user["address"],
+                    'user' => $user["username"],
+                    'profile_pic' => $user["profile_photo"]
+                ]);
+                return redirect()->route('userdashboard');
+            } else if ($user->type == 'Bookseller') {
+                $request->session()->put([
+                    'id' => $user->id,
+                    'type' => $user->type,
+                    'owner_name' => $user->owner_name,
+                    'business_name' => $user->business_name,
+                    'address' => $user->address,
+                    'user' => $user->username,
+                    'profile_pic' => $user->profile_photo
+                ]);
+                
+                return redirect('/sellerboard');
+            }
+            
         } else {
             return view('users.login')->with('message', 'Incorrect username or password');
         }
@@ -826,8 +859,12 @@ class UserController extends Controller
         $book_id = $request->input('book_id');
         $option = $request->input('shipping_option');
         $method = $request->input('payment_method');
-        $shipping = $request->input('shipping_total');
+        // $shipping = $request->input('shipping_total');
         $price = $request->input('total_price');
+        // $data = $request->input('data');
+        // dd($address_id);
+        // $request->session()->put('data', $data);
+        // return response()->json(['response' => $address_id]);
 
         $order = Orders::create([
             'user_id' => session('id'),
@@ -835,7 +872,7 @@ class UserController extends Controller
             'shipping_option' => $option,
             'payment_method' => $method,
             'order_status' => 'pending',
-            'shipping_total' => $shipping,
+            // 'shipping_total' => $shipping,
             'total_payment' => $price
         ]);
 
@@ -857,6 +894,30 @@ class UserController extends Controller
         } else {
             return response()->json(['message' => 'error bitch']);
         }
+    }
+
+    public function successOrder($id) {
+        $order = Orders::find($id);
+        // dd($order);
+        $order->update(['order_status' => 'paid']);
+
+        if ($order) {
+            return redirect('/mypurchase');
+        } else {
+            return response()->json(['error' => 'error']);
+        }
+        
+    }
+
+    public function receivedOrder($id) {
+        $order = Orders::find($id);
+        $order->update(['order_status' => 'received']);
+
+        if ($order) {
+            return redirect('/mypurchase');
+        } else {
+            return response()->json(['error' => 'error']);
+        }        
     }
 
     public function dashboard()

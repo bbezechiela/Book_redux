@@ -21,22 +21,28 @@ class Users extends Model
         return $this->hasMany(Orders::class, 'user_id');
     }
 
-    public function address() {
+    public function addressUser() {
         return $this->hasMany(Address::class, 'user_id');
     }
 
     protected $fillable = [
+        'type',
+        'username',
+        'password',
         'first_name',
         'last_name',
         'email',
         'phone_number',
-        // 'address',
+        'address',
         'birthday',
         'gender',
         // 'age',
-        'interest',
-        'username',
-        'password',
-        'profile_photo'        
+        // 'interest',        
+        'profile_photo',
+        'owner_name',
+        'registration_number',
+        'business_name',
+        'date_registered',
+        'permit'        
     ];
 }
