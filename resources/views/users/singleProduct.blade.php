@@ -66,22 +66,24 @@
                                 <span> For {{ $book_id->status }}
                                     |</span> <span>{{ $book_id->genre }}</span>
                             </h6>
-                            <p class="card-text">
+                            {{-- <p class="card-text">
                                 Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
-                                <span class="inline-dropdown">
-                                    <button class="btn dropdown-toggle places-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Catbalogan
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Sample 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 3</a></li>
-                                    </ul>
-                                </span>
-                            </p>
+                            <span class="inline-dropdown">
+                                <button class="btn dropdown-toggle places-button" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Catbalogan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Sample 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 3</a></li>
+                                </ul>
+                            </span>
+                            </p> --}}
                             {{-- <p class="card-text">Shipping Fee <span
                                         style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
+                            <p class="card-text">Shipping Fee <span
+                                    style="font-weight: bold;">₱103</span></p>
                             <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
                             <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
                             <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
@@ -120,20 +122,20 @@
                                 <span>| For {{ $book_id->status }}
                                     |</span> <span>{{ $book_id->genre }}</span>
                             </h6>
-                            <p class="card-text">
+                            {{-- <p class="card-text">
                                 Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
-                                <span class="inline-dropdown">
-                                    <button class="btn dropdown-toggle places-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Catbalogan
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Sample 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 3</a></li>
-                                    </ul>
-                                </span>
-                            </p>
+                            <span class="inline-dropdown">
+                                <button class="btn dropdown-toggle places-button" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Catbalogan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Sample 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 3</a></li>
+                                </ul>
+                            </span>
+                            </p> --}}
                             <p class="card-text">Shipping Fee <span
                                     style="font-weight: bold;">₱{{ $book_id->price }}</span></p>
                             <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>

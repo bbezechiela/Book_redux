@@ -15,7 +15,7 @@
         <x-sidebar />
     </div>
 
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible">
                 <ul>
@@ -1786,8 +1786,8 @@
                         {{-- <input id="jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                         <label for="jrs">JRS Express</label><br> --}}
                         <input id="jt" class="ms-2" name="courier" type="radio"
-                            value="J&T Express">
-                        <label for="jt">J&T Express</label>
+                            value="JRS Express">
+                        <label for="jt">JRS Express</label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="shipping-save-btn"
@@ -1830,8 +1830,8 @@
                         {{-- <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                         <label for="edit-jrs">JRS Express</label><br> --}}
                         <input id="edit-jt" class="ms-2" name="courier" type="radio"
-                            value="J&T Express">
-                        <label for="edit-jt">J&T Express</label>
+                            value="JRS Express">
+                        <label for="edit-jt">JRS Express</label>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="edit-shipping-save-btn"
@@ -1917,7 +1917,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "J&T Express") {
+            if (courier.textContent == "JRS Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
@@ -1948,7 +1948,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "J&T Express") {
+            if (courier.textContent == "JRS Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
@@ -1983,7 +1983,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "J&T Express") {
+            if (courier.textContent == "JRS Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
