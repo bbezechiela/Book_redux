@@ -69,9 +69,9 @@
                                 <div class="card-foot price pb-3 d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">₱{{ $item->price }}</span> --}}
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 onclick="stopPropagation(event)" aria-hidden="true"
-                                                style="margin-right: 8px"></i></button>
+                                                style="margin-right: 8px"></i></button> --}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
                                                 onclick="stopPropagation(event)" type="button"
@@ -105,9 +105,9 @@
                                 <div class="card-foot price pb-3 d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $item->price }}</span>
                                     <div class="button-container">
-                                        <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
+                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
                                                 onclick="stopPropagation(event)" aria-hidden="true"
-                                                style="margin-right: 8px"></i></button>
+                                                style="margin-right: 8px"></i></button> --}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
                                                 onclick="stopPropagation(event)" type="button"

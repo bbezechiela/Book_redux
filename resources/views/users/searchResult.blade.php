@@ -61,8 +61,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -90,8 +90,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -119,8 +119,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -148,8 +148,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -177,8 +177,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -206,8 +206,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -235,8 +235,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -264,8 +264,8 @@
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">P100.00</span>
                             <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                        style="margin-right: 8px"></i></button> --}}
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle add-button" type="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
