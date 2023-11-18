@@ -1,6 +1,6 @@
 // const csrfTokenn = csrfToken;
-let lastMessageTimestamp = "1990-12-12 12:12:12";
-let lastConversationTimestamp = "1990-12-12 12:12:12";
+let lastMessageTimestamp = '1990-12-12 12:12:12';
+let lastConversationTimestamp = '1990-12-12 12:12:12';
 
 document.addEventListener('DOMContentLoaded', function() {
     // outer container it messages
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // checker if may sulod
                 if (responses.data.length > 0) {
                     lastConversationTimestamp = responses.data[responses.data.length - 1].created_at;
-                    //console.log(responses.data);
+                    console.log(responses.data);
                     showConversations(responses.data);
                 } else {
                     //console.log('waray pa conversations');
@@ -41,27 +41,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // show conversations
     function showConversations(responses) {
         responses.forEach(response => {
+            // split anay 
+            var stringToArr = response.conversation_name.split(',');
+            var checkedReceiverUsername = (stringToArr[0] === current_username) ? stringToArr[1] : stringToArr[0];
+
             const conversationCtn = document.createElement('div');
-            conversationCtn.textContent = response.conversation_name;
+            conversationCtn.textContent = checkedReceiverUsername;
             conversationCtn.id = 'conversationCtn';
             conversationCtn.classList.add('conversationCtn');
 
             conversationList.appendChild(conversationCtn);
-            
-            
+                              
             // add event listener
             conversationCtn.addEventListener('click', function() {
+                // outer container it form
+                const formOuterContainer = document.getElementById('formOuterContainer');
+                
+                // ay kalimot ig clear it innerHTML para dri mag utro utro it element tas dri man retain it value kada click it container
+                formOuterContainer.innerHTML = '';
+
                 messageOuterContainer.innerHTML = "";
-                document.getElementById('receiverName').textContent = response.conversation_name;
+
+                // split anay
+                var stringToArr = response.conversation_name.split(',');
+                if (stringToArr[0] === current_username) {
+                    var receiverUsername = stringToArr[1];
+                } else {
+                    var receiverUsername = stringToArr[0];
+                }
+
+                document.getElementById('receiverName').textContent = receiverUsername;
                 
                 const xhttp = new XMLHttpRequest();
                 
                 lastMessageTimestamp = '1990-12-12 12:12:12';
 
+                const form = document.createElement('form');
+                form.id = 'messageForm';
+                form.method = 'post';
+
+                const inputField = document.createElement('input');
+                inputField.id = 'messageInputContainer';
+                inputField.type = 'textarea';
+                inputField.placeholder = 'Type message...';
+
+                const submitButton = document.createElement('button');
+                submitButton.id = 'sendMessageButton';
+                submitButton.type = 'button';
+                submitButton.textContent = 'send...';
+
+                form.appendChild(inputField);
+                form.appendChild(submitButton);
+
+                formOuterContainer.appendChild(form);
+
                 function getMessages() {
                     // conversation name
-                    const conversation_name = response.conversation_name;
-                    xhttp.open('GET', `/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${conversation_name}`, true);
+                    // conversation_name = response.conversation_name;
+                    xhttp.open('GET', `/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`, true);
                     xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     
                     xhttp.onreadystatechange = function() {
@@ -85,14 +122,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 getMessages();
-                //setInterval(getMessages, 1500);
+                //setInterval(getMessages, 900);
 
                 document.getElementById('sendMessageButton').addEventListener('click', function() {
                     const message_content = document.getElementById('messageInputContainer').value;
 
                     // conversation name
-                    const conversation_name = response.conversation_name;
-                    console.log(conversation_name);
+                    // conversation_name = response.conversation_name;
+                    console.log(response.conversation_name);
     
                     // pag send message
                     const xhttp1 = new XMLHttpRequest();
@@ -115,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         current_username: current_username,
                         sender_id: current_user_id,
                         message_content: message_content,
-                        conversation_name: conversation_name,
+                        conversation_name: response.conversation_name,
                         conversation_id: response.conversation_id
                     });
                     

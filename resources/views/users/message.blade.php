@@ -129,15 +129,15 @@
                                         id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
                                         <!-- <img src="../assets/osama.png" alt="user_img"
                                             style="width: 40px; height: 100%; margin-right: 8px;"> -->
-                                        <form method="post" id="messageForm">
-                                            @csrf
+                                        <!-- <form method="post" id="messageForm"> -->
+                                            <!-- @csrf -->
                                             <!-- class='form-control form-control-lg' sulod ini ha text are -->
-                                            <input id="messageInputContainer" type="textarea" placeholder="Type message">
+                                            <!-- <input id="messageInputContainer" type="textarea" placeholder="Type message"> -->
 
-                                            <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
-                                                aria-hidden="true"></i></a>
-                                            <button id="sendMessageButton" class="ms-3" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                        </form>
+                                            <!-- <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip" -->
+                                                <!-- aria-hidden="true"></i></a> -->
+                                            <!-- <button id="sendMessageButton" class="ms-3" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button> -->
+                                        <!-- </form> -->
                                         <!-- <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
                                             aria-hidden="true"></i></a> -->
                                     </div>
