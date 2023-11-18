@@ -224,7 +224,7 @@ Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
 Route::get('/deleteorder/{id}', [UserController::class, 'deleteOrder']);
 
-Route::get('/successpayment/{id}', [UserController::class, 'successOrder']);
+Route::get('/successpayment', [UserController::class, 'successOrder']);
 
 Route::get('/orderreceived/{id}', [UserController::class, 'receivedOrder']);
 
@@ -233,7 +233,7 @@ Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
 
-Route::get('/shipment', [UserController::class, 'manageShipment']);
+
 
 
 
@@ -266,3 +266,5 @@ Route::get('/reportedseller', [UserController::class, 'reportedSeller']);
 Route::get('/booksrented', [UserController::class, 'booksRented']);
 
 Route::get('/return', [UserController::class, 'manageReturn']);
+
+Route::get('/shipment', [UserController::class, 'manageShipment']);

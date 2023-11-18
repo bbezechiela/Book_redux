@@ -115,8 +115,8 @@
                     </div> --}}
                     <div class="mx-1 d-flex justify-content-center form-group">
                         <select class="w-100 mt-4 fs-6 px-2 form-control form-select" name="gender" id="gender"
-                            style="margin-bottom: 12px; color: #003060;" value="{{ $user->gender }}" required>
-                            {{-- <option  disabled selected>Gender</option> --}}
+                            style="margin-bottom: 12px; color: #003060;" required>
+                            <option value="{{ $user->gender }}" >{{ $user->gender }}</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>

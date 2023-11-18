@@ -37,7 +37,7 @@ class Users extends Model
         'birthday',
         'gender',
         // 'age',
-        // 'interest',        
+        'interest',        
         'profile_photo',
         'owner_name',
         'registration_number',
