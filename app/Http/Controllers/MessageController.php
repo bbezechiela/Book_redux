@@ -23,7 +23,43 @@ class MessageController extends Controller
         }
     }
 
+    // send message from conversation approach
+    function sendMessageTwo(Request $request) {
+        $current_username = $request->json('');
+        $sender_id = $request->json('sender_id');
+        $message_content = $request->json('message_content');
+        $conversation_name = $request->json('conversation_name');
+        $conversation_id = $request->json('conversation_id');
 
+        // ig explode para mag bulag hira hin container it duwa na string
+        $arr = explode(',', $conversation_name);
+        $receiver_name = ($arr[0] === $current_username) ? strval($arr[1]) : strval($arr[0]);
+
+        // pag kuha receiver id
+        $receiverIdQuery = Users::where('username', $receiver_name)->get();
+
+        if ($receiverIdQuery) {
+            $receiver_id = $receiverIdQuery->first()->id;
+            
+            $messageInput = Messages::create([
+                'sender_id' => $sender_id,
+                'receiver_id' => $receiver_id,
+                'message_content' => $message_content,
+                'conversation_id' => $conversation_id
+            ]);
+
+            if ($messageInput) {
+                return response()->json(['message' => 'Message sent successfuly']);
+            } else {
+                return response()->json(['message' => 'Message was not sent successfuly']);
+            }
+
+        } else {
+            return response()->json(['message' => 'cant be found']);
+        }
+    }
+
+    // send message from search approach
     function sendMessage(Request $request) {
         $sender_id = $request->json('sender_id'); 
         $receiver_id = $request->json('receiver_id');
@@ -110,6 +146,23 @@ class MessageController extends Controller
             } else {
                 return response()->json(['message' => 'creation denied']);
             }
+        }
+    }
+
+    // delete conversation function
+    function deleteConversation(Request $request) {
+        $conversation_id = $request->query('conversation_id');
+    
+        $deleter = Conversations::find($conversation_id);
+
+        if ($deleter) {
+            $deleter->messages()->delete();
+
+            $deleter->delete();
+
+            return response()->json(['message' => 'deleted successfuly']);
+        } else {
+            return response()->json(['message' => 'cant find anything']);
         }
     }
 }

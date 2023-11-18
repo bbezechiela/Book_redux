@@ -205,6 +205,8 @@ Route::post('/placeorder', [UserController::class, 'placeOrder']);
 // message routes
 Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
 
+Route::post('/sendMessageTwo', [MessageController::class, 'sendMessageTwo']);
+
 Route::get('/getMessage', [MessageController::class, 'getMessage']);
 
 Route::get('/searchUser', [MessageController::class, 'searchUser']);
@@ -212,6 +214,10 @@ Route::get('/searchUser', [MessageController::class, 'searchUser']);
 Route::post('/conversations', [MessageController::class, 'createConversation']);
 
 Route::get('/getConversations', [MessageController::class, 'getConversations']);
+
+Route::middleware(['web'])->group(function() {
+    Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
+});
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

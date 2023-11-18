@@ -96,7 +96,7 @@
                                 </div>
 
                                 {{-- shit --}}
-                                <div class="col-md-6 col-lg-7 col-xl-8" style="border: 1px solid red"> 
+                                <div class="col-md-6 col-lg-7 col-xl-8" id="rightSectionOuterContainer"> 
                                     <div class="chat-about position-sticky top-0">
 
                                         <h6 class="m-b-0" id="receiverName"><button type="button" class="btn menu-btn"
@@ -106,8 +106,8 @@
                                         </h6>
                                     </div>
                                     {{-- shit --}}
-                                    <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
-                                        style="position: relative; border:1px solid black; height: 400px;" id="messageOuterContainer">
+                                    <div class="pt-3 pe-3 your-scrollable-element"
+                                        style="position: relative; height: 450px;" id="messageOuterContainer">
                                         <!-- <div class="d-flex flex-row justify-content-start body-img">
                                             <img src="../assets/Eubert.png" alt="user_img"
                                                 style="width: 45px; height: 100%;">
@@ -122,16 +122,17 @@
                                                     magna aliqua.</p>
                                                 <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
                                                     Aug 13</p>
-                                            </div> -->
+                                            </div>
+                                        </div> -->
                                     </div> 
                                     <div
-                                        id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img" style="border: 1px solid red;">
+                                        id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
                                         <!-- <img src="../assets/osama.png" alt="user_img"
                                             style="width: 40px; height: 100%; margin-right: 8px;"> -->
                                         <form method="post" id="messageForm">
                                             @csrf
-                                            <input type="textarea" class="form-control form-control-lg" id="messageInputContainer" style="font-size: 13px;"
-                                            placeholder="Type message">
+                                            <!-- class='form-control form-control-lg' sulod ini ha text are -->
+                                            <input id="messageInputContainer" type="textarea" placeholder="Type message">
 
                                             <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
                                                 aria-hidden="true"></i></a>
