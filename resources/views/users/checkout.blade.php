@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Checkout | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/checkout-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Checkout | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/checkout-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 {{-- <head>
@@ -22,8 +22,8 @@
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
-                    <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                            alt="Logo"></a>
+                    <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5"
+                            src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
@@ -57,24 +57,24 @@
             {{-- @if ($user->address->default_address == 'true') --}}
 
             @foreach ($user->addressUser as $user)
-            @if ($user->default_address == 'true')
-            <div class="delivery-address-container">
-                <span id="address-id" hidden>{{ $user->id }}</span>
-                <h2 class="delivery-address-title">
-                    <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
-                    Address
-                </h2>
-                <div class="seller-details">
-                    <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
-                    <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
-                    <p class="address" style="margin-right: 15px;">
-                        {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
-                    </p>
-                    <p class="zipcode">{{ $user->postal_code }}</p>
-                </div>
-                <button class="change-button"><a href="/deliveryAddress">Change</a></button>
-            </div>
-            @endif
+                @if ($user->default_address == 'true')
+                    <div class="delivery-address-container">
+                        <span id="address-id" hidden>{{ $user->id }}</span>
+                        <h2 class="delivery-address-title">
+                            <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
+                            Address
+                        </h2>
+                        <div class="seller-details">
+                            <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
+                            <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
+                            <p class="address" style="margin-right: 15px;">
+                                {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
+                            </p>
+                            <p class="zipcode">{{ $user->postal_code }}</p>
+                        </div>
+                        <button class="change-button"><a href="/deliveryAddress">Change</a></button>
+                    </div>
+                @endif
             @endforeach
             {{-- <div class="float-end">
                 <p class="mb-0 me-5 d-flex align-items-center">
@@ -88,34 +88,35 @@
 
             <main class="product-list">
                 <div class="details-container">
-                            <h1 class="product-details">Book Ordered</h1>
-                            <h1 class="price">Price</h1>
+                    <h1 class="product-details">Book Ordered</h1>
+                    <h1 class="price">Price</h1>
                 </div>
         </div>
         @foreach ($items as $orders)
-        {{-- {{ $orders->productRelation->title }} --}}
-        {{-- <span hidden>{{ $orders->user_id }}</span> --}}
-        <span data="book-id" hidden>{{ $orders->product_id }}</span>
-        <div class="order-cart">
-            <div class="name-cart">
-                <a class="seller-name"
-                    href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
-                <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}" alt="book"
-                        width="80px" height="110px">
-                    <div class="book-info">
-                        <p class="book-title">{{ $orders->productRelation->title }}</p>
-                        <p class="fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
-                        <p class="mb-0 interaction-type">Security Deposit: <span>₱0</span></p>
-                    </div>
-                    <div class="product-price">₱<span class="price-list">{{ $orders->productRelation->price }}</span>
+            {{-- {{ $orders->productRelation->title }} --}}
+            {{-- <span data="id" >{{ $orders->id }}</span> --}}
+            <span data="book-id" hidden>{{ $orders->product_id }}</span>
+            <div class="order-cart">
+                <div class="name-cart">
+                    <a class="seller-name"
+                        href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                    <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                </div>
+                <div class="product-cart">
+                    <div class="book-details">
+                        <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}" alt="book"
+                            width="80px" height="110px">
+                        <div class="book-info">
+                            <p class="book-title">{{ $orders->productRelation->title }}</p>
+                            <p class="fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
+                            <p class="mb-0 interaction-type">Security Deposit: <span>₱0</span></p>
+                        </div>
+                        <div class="product-price">₱<span
+                                class="price-list">{{ $orders->productRelation->price }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
         <div class="shipping-option">
             <p class="txt-shipping-opt">Shipping Option:</p>
@@ -161,12 +162,13 @@
     </div>
 </body>
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
-    var prices = document.querySelectorAll('span[class="price-list"]');
+    // console.log(document.querySelectorAll('span[data="status"]').textContent);
+    var prices = document.querySelectorAll('span[class="price-list"]');    
     var totalItem = document.getElementById('total');
     var displayTotal = document.getElementById('total-price');
     var mercha_total = document.getElementById('mer-total');
@@ -186,82 +188,107 @@
     var books = document.querySelectorAll('span[data="book-id"]');
     var shipping_option = document.getElementById('shipping-option');
     var payment_method = document.getElementById('payment-method');
+    var titles = document.querySelectorAll('p[class="book-title"]');
+    var book_titles = Array.from(titles, element => element.textContent).join(', ');
     var book_id = [];
+
     place_order_btn.addEventListener('click', () => {
-        // alert(addres_id.textContent);
-        books.forEach(item => {
-            book_id.push(item.textContent);
-        });
-        // console.log(shipping_option.value + ' ' + payment_method.value);
-        const dataToSend = {
-            address_id: address_id.textContent,
-            book_id: book_id,
-            shipping_option: shipping_option.value,
-            payment_method: payment_method.value,
-            // shipping_total: 110,
-            total_price: totalPrice * 100
-        };
-        const csrf_token = '{{ csrf_token() }}';
-        fetch('/placeorder', {
-                method: 'POST', // Specify the HTTP method as POST
-                headers: {
-                    'X-CSRF-TOKEN': csrf_token,
-                    'Content-Type': 'application/json', // Set the Content-Type header for JSON data
-                    // Add any other headers you need
-                },
-                // body: JSON.stringify({
-                //     data: dataToSend
-                // }),
-                body: JSON.stringify(dataToSend), // Your request body data
-            })
-            // .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                // payment(data);
-                if (data.redirected) {
-                    window.location.href = data.url;
+        // alert(orderNumber().toString());
+        if (payment_method.value == 'eWallet') {
+            // console.log(book_titles);
+            if (address_id == null) {
+                alert('No Current Default Address');
+            } else {
+                books.forEach(item => {
+                    book_id.push(item.textContent);
+                });
+                // console.log(shipping_option.value + ' ' + payment_method.value);
+
+                const dataToSend = {
+                    address_id: address_id.textContent,
+                    book_id: book_id,
+                    order_number: orderNumber().toString(),
+                    shipping_option: shipping_option.value,
+                    payment_method: payment_method.value,
+                    // shipping_total: 110,
+                    total_price: totalPrice * 100
+                };
+
+                const csrf_token = '{{ csrf_token() }}';
+                fetch('/placeorder', {
+                        method: 'POST', // Specify the HTTP method as POST
+                        headers: {
+                            'X-CSRF-TOKEN': csrf_token,
+                            'Content-Type': 'application/json', // Set the Content-Type header for JSON data
+                            // Add any other headers you need
+                        },
+                        // body: JSON.stringify({
+                        //     data: dataToSend
+                        // }),
+                        body: JSON.stringify({
+                            data: dataToSend
+                        }), // Your request body data
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        payment(data);
+                        // if (data.redirected) {
+                        //     window.location.href = data.url;
+                        // }
+                    })
+                    .catch(error => {
+                        console.log('error', error);
+                    });
+            }
+        }
+
+    });
+
+    function orderNumber() {
+        let now = Date.now().toString() // '1492341545873'
+        // pad with extra random digit
+        now += now + Math.floor(Math.random() * 5)
+        // format
+        return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('')
+    }
+
+    function payment(event) {
+        // console.log(event.response.total_price);
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'Content-Type': 'application/json',
+                authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
+            },
+            body: JSON.stringify({
+                data: {
+                    attributes: {
+                        send_email_receipt: false,
+                        show_description: true,
+                        show_line_items: true,
+                        cancel_url: document.URL,
+                        line_items: [{
+                            currency: 'PHP',
+                            amount: event.response.total_price,
+                            name: book_titles,
+                            quantity: 1
+                        }],
+                        payment_method_types: ['gcash', 'paymaya', 'grab_pay'],
+                        description: 'checkout payment',
+                        success_url: 'http://127.0.0.1:8000/successpayment'
+                    }
                 }
             })
-            .catch(error => {
-                console.log('error', error);
-            });
-    });
-    // function payment(event) {
-    //     // console.log(event.response.total_price);
-    //     const options = {
-    //         method: 'POST',
-    //         headers: {
-    //             accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //             authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
-    //         },
-    //         body: JSON.stringify({
-    //             data: {
-    //                 attributes: {
-    //                     send_email_receipt: false,
-    //                     show_description: true,
-    //                     show_line_items: true,
-    //                     cancel_url: document.URL,
-    //                     line_items: [{
-    //                         currency: 'PHP',
-    //                         amount: event.response.total_price,
-    //                         name: 'Book/s',
-    //                         quantity: 1
-    //                     }],
-    //                     payment_method_types: ['gcash', 'paymaya', 'card', 'grab_pay', 'dob', 'dob_ubp'],
-    //                     description: 'checkout payment',
-    //                     success_url: 'http://127.0.0.1:8000/successpayment'
-    //                 }
-    //             }
-    //         })
-    //     };
-    //     fetch('https://api.paymongo.com/v1/checkout_sessions', options)
-    //         .then(response => response.json())
-    //         .then(response => {
-    //             // console.log(response)
-    //             // window.open(response.data.attributes.checkout_url, '_blank');
-    //             window.location.href = response.data.attributes.checkout_url;
-    //         })
-    //         .catch(err => console.error(err));
-    // }
+        };
+        fetch('https://api.paymongo.com/v1/checkout_sessions', options)
+            .then(response => response.json())
+            .then(response => {
+                // console.log(response)
+                // window.open(response.data.attributes.checkout_url, '_blank');
+                window.location.href = response.data.attributes.checkout_url;
+            })
+            .catch(err => console.error(err));
+    }
 </script>

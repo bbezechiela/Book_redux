@@ -73,7 +73,7 @@ class UserController extends Controller
     {
         return view('bookseller.sellerNotification');
     }
-    
+
     public function feedback()
     {
         return view('bookseller.feedback');
@@ -177,7 +177,7 @@ class UserController extends Controller
 
     public function checkout(Request $request)
     {
-        if ($request->session()->has('user')) {            
+        if ($request->session()->has('user')) {
             $order = $request->input('items');
             $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();
 
@@ -253,11 +253,11 @@ class UserController extends Controller
                     'last_name' => ['required', 'min:4'],
                     'email' => ['required', 'email'],
                     'phone_number' => ['required', 'max:12'],
-                    'address' => ['required', 'min:4'],
+                    // 'address' => ['required', 'min:4'],
                     'birthday' => 'required',
                     'gender' => 'required',
-                    'age' => 'required',
-                    'interest' => 'required',
+                    // 'age' => 'required',
+                    // 'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
                     'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
@@ -279,16 +279,16 @@ class UserController extends Controller
                     return 'error bitch';
                 }
             } else {
-                $validated = $request->validate([                    
+                $validated = $request->validate([
                     'first_name' => ['required', 'min:4'],
                     'last_name' => ['required', 'min:4'],
                     'email' => ['required', 'email'],
                     'phone_number' => ['required', 'max:12'],
-                    'address' => ['required', 'min:4'],
+                    // 'address' => ['required', 'min:4'],
                     'birthday' => 'required',
                     'gender' => 'required',
-                    'age' => 'required',
-                    'interest' => 'required',
+                    // 'age' => 'required',
+                    // 'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
                     // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
@@ -429,7 +429,8 @@ class UserController extends Controller
         return view('users.orders', ['orders' => $order]);
     }
 
-    public function deleteOrder($id) {
+    public function deleteOrder($id)
+    {
         $item = Order_Items::with('book')->find($id);
         $book_update = $item->book->update(['unit' => 'Available']);
         $item->delete();
@@ -439,8 +440,6 @@ class UserController extends Controller
         } else {
             return response()->json(['message' => 'error bitch']);
         }
-
-        
     }
 
     public function delivered()
@@ -547,7 +546,8 @@ class UserController extends Controller
         }
     }
 
-    public function surveyInterest(Request $request) {
+    public function surveyInterest(Request $request)
+    {
         $validated = $request->validate(['interest' => 'required']);
         $validated["interest"] = implode(', ', $validated["interest"]);
 
@@ -595,10 +595,9 @@ class UserController extends Controller
                     'user' => $user->username,
                     'profile_pic' => $user->profile_photo
                 ]);
-                
+
                 return redirect('/sellerboard');
             }
-            
         } else {
             return view('users.login')->with('message', 'Incorrect username or password');
         }
@@ -854,25 +853,66 @@ class UserController extends Controller
         return view('users.search', ['items' => $search]);
     }
 
-    public function placeOrder(Request $request) {
-        $address_id = $request->input('address_id');
-        $book_id = $request->input('book_id');
-        $option = $request->input('shipping_option');
-        $method = $request->input('payment_method');
+    public function placeOrder(Request $request)
+    {
+        // $address_id = $request->input('address_id');
+        // $book_id = $request->input('book_id');
+        // $option = $request->input('shipping_option');
+        // $method = $request->input('payment_method');
         // $shipping = $request->input('shipping_total');
-        $price = $request->input('total_price');
-        // $data = $request->input('data');
+        // $price = $request->input('total_price');
+        $data = $request->input('data');
         // dd($address_id);
-        // $request->session()->put('data', $data);
-        // return response()->json(['response' => $address_id]);
+        $request->session()->put('data', $data);
+        return response()->json(['response' => $data]);
+
+        // $order = Orders::create([
+        //     'user_id' => session('id'),
+        //     'address_id' => $address_id,
+        //     'shipping_option' => $option,
+        //     'payment_method' => $method,
+        //     'order_status' => 'pending',
+        //     // 'shipping_total' => $shipping,
+        //     'total_payment' => $price
+        // ]);
+
+        // $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
+
+        // foreach ($book_id as $id) {
+        //     $orderItem = Order_Items::create([
+        //         'order_id' => $order->id,
+        //         'book_id' => $id
+        //     ]); 
+
+        //     $orderItem->book->update([
+        //         'unit' => 'Ordered'
+        //     ]);
+        // }
+
+        // if ($order) {
+        //     return redirect('/explore');            
+        // } else {
+        //     return response()->json(['message' => 'error bitch']);
+        // }
+    }
+
+    public function successOrder()
+    {
+        // dd(session('data'));
+        $address_id = session('data')['address_id'];
+        $book_id = session('data')['book_id'];
+        $order_num = session('data')['order_number'];
+        $option = session('data')['shipping_option'];
+        $method = session('data')['payment_method'];
+        $price = session('data')['total_price'];
 
         $order = Orders::create([
             'user_id' => session('id'),
             'address_id' => $address_id,
+            'order_number' => $order_num,
             'shipping_option' => $option,
             'payment_method' => $method,
             'order_status' => 'pending',
-            // 'shipping_total' => $shipping,
             'total_payment' => $price
         ]);
 
@@ -882,34 +922,32 @@ class UserController extends Controller
             $orderItem = Order_Items::create([
                 'order_id' => $order->id,
                 'book_id' => $id
-            ]); 
-
+            ]);
             $orderItem->book->update([
                 'unit' => 'Ordered'
             ]);
         }
-                
+
         if ($order) {
-            return redirect('/explore');            
+            session()->forget('data');
+            return redirect('/explore');
         } else {
             return response()->json(['message' => 'error bitch']);
         }
+        // $order = Orders::find($id);
+        // // dd($order);
+        // $order->update(['order_status' => 'paid']);
+
+        // if ($order) {
+        //     return redirect('/mypurchase');
+        // } else {
+        //     return response()->json(['error' => 'error']);
+        // }
+
     }
 
-    public function successOrder($id) {
-        $order = Orders::find($id);
-        // dd($order);
-        $order->update(['order_status' => 'paid']);
-
-        if ($order) {
-            return redirect('/mypurchase');
-        } else {
-            return response()->json(['error' => 'error']);
-        }
-        
-    }
-
-    public function receivedOrder($id) {
+    public function receivedOrder($id)
+    {
         $order = Orders::find($id);
         $order->update(['order_status' => 'received']);
 
@@ -917,7 +955,7 @@ class UserController extends Controller
             return redirect('/mypurchase');
         } else {
             return response()->json(['error' => 'error']);
-        }        
+        }
     }
 
     public function dashboard()
@@ -1020,37 +1058,39 @@ class UserController extends Controller
     {
         return view('users.userDashboard');
     }
-    
+
     public function manageShipment()
     {
-    return view('courier.manageShipment');
+        $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
+        
+        return view('courier.manageShipment', ['orders' => $orders]);
     }
 
     public function manageReturn()
     {
-    return view('courier.manageReturn');
+        return view('courier.manageReturn');
     }
 
     public function courierProfile()
     {
-    return view('courier.courierProfile');
+        return view('courier.courierProfile');
     }
 
     public function courierMessage()
     {
-    return view('courier.courierMessage');
+        return view('courier.courierMessage');
     }
 
     public function courierNotification()
     {
-    return view('courier.courierNotification');
+        return view('courier.courierNotification');
     }
 
     public function booksRented()
     {
-    return view('users.booksRented');
+        return view('users.booksRented');
     }
-    
+
     // API's
     public function searchItem($item)
     {
@@ -1070,5 +1110,3 @@ class UserController extends Controller
         return $address;
     }
 }
-
-

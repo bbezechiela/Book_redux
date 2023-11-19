@@ -140,8 +140,7 @@
                                     </div>
                                     <div class="button-group">
                                         <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
-                                        <button type="button" class="btn btn-sm pending-button"
-                                            onclick="pay({{ $item->order->id }})">Pay</button>
+                                        <button type="button" class="btn btn-sm pending-button">{{ $item->order->order_status }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -162,46 +161,46 @@
 <script>
     
 
-    function pay(id) {
-        var payment_price = document.getElementById('payment_' + id);
-        var title = document.getElementById('title_' + id);
-        // console.log(parseFloat(payment_price.textContent) + title.textContent);
+    // function pay(id) {
+    //     var payment_price = document.getElementById('payment_' + id);
+    //     var title = document.getElementById('title_' + id);
+    //     // console.log(parseFloat(payment_price.textContent) + title.textContent);
 
-        const options = {
-            method: 'POST',
-            headers: {
-                accept: 'application/json',
-                'Content-Type': 'application/json',
-                authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
-            },
-            body: JSON.stringify({
-                data: {
-                    attributes: {
-                        send_email_receipt: false,
-                        show_description: true,
-                        show_line_items: true,
-                        cancel_url: document.URL,
-                        line_items: [{
-                            currency: 'PHP',
-                            amount: parseFloat(payment_price.textContent) * 100,
-                            name: title.textContent + ' (Book)',
-                            quantity: 1
-                        }],
-                        payment_method_types: ['gcash', 'paymaya', 'grab_pay'],
-                        description: 'checkout payment',
-                        success_url: 'http://127.0.0.1:8000/successpayment/' + id
-                    }
-                }
-            })
-        };
+    //     const options = {
+    //         method: 'POST',
+    //         headers: {
+    //             accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //             authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
+    //         },
+    //         body: JSON.stringify({
+    //             data: {
+    //                 attributes: {
+    //                     send_email_receipt: false,
+    //                     show_description: true,
+    //                     show_line_items: true,
+    //                     cancel_url: document.URL,
+    //                     line_items: [{
+    //                         currency: 'PHP',
+    //                         amount: parseFloat(payment_price.textContent) * 100,
+    //                         name: title.textContent + ' (Book)',
+    //                         quantity: 1
+    //                     }],
+    //                     payment_method_types: ['gcash', 'paymaya', 'grab_pay'],
+    //                     description: 'checkout payment',
+    //                     success_url: 'http://127.0.0.1:8000/successpayment/' + id
+    //                 }
+    //             }
+    //         })
+    //     };
 
-        fetch('https://api.paymongo.com/v1/checkout_sessions', options)
-            .then(response => response.json())
-            .then(response => {
-                // console.log(response)
-                // window.open(response.data.attributes.checkout_url, '_blank');
-                window.location.href = response.data.attributes.checkout_url;
-            })
-            .catch(err => console.error(err));
-    }
+    //     fetch('https://api.paymongo.com/v1/checkout_sessions', options)
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             // console.log(response)
+    //             // window.open(response.data.attributes.checkout_url, '_blank');
+    //             window.location.href = response.data.attributes.checkout_url;
+    //         })
+    //         .catch(err => console.error(err));
+    // }
 </script>

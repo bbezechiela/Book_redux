@@ -97,7 +97,7 @@
                             {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a> --}}
-                            <a href="#" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true"
+                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true"
                                     style="margin-right: 7px"></i>Add to Cart</a>
                             <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
                                     style="margin-right: 7px"></i>Add to Wishlist</a>
@@ -152,7 +152,7 @@
                             {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a> --}}
-                            <a href="#" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true"
+                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true"
                                     style="margin-right: 7px"></i>Add to Cart</a>
                             <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
                                     style="margin-right: 7px"></i>Add to Wishlist</a>

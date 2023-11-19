@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Change Password | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/change-password-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Change Password | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/change-password-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>

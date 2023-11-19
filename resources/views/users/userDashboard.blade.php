@@ -96,7 +96,7 @@
                     <div class="card mb-5 mt-4 p-4 shadow">
                         <div class="card-body">
                             <h5 class="card-title dashboard-title">Browse a Book</h5>
-                            <p class="card-text">Explore our extensive library and uncover a wealth of literary treasures. Whether you're looking for classics or the latest bestsellers, there's something for everyone.</p>
+                            <p class="card-text">Explore our extensive library. Whether you're looking for classics or the latest bestsellers, there's something for everyone.</p>
                             <a href="/explore" class="btn">Browse</a>
                         </div>
                     </div>
