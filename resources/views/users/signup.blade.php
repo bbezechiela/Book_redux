@@ -1,10 +1,20 @@
 @include('partials.__header', [
-'title' => 'Sign Up | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Sign Up | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 <div class="container-fluid p-4">
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
     <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1" data-aos="fade-down" data-aos-duration="1500">
@@ -17,7 +27,8 @@
                 <div class="col-12 col-md-3 px-5">
                     <img class="img mx-auto d-block rounded-circle border" id="img-icon" src="../assets/user.png"
                         alt="upload_profile" width="100" height="100">
-                    <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo" required>
+                    <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo"
+                        required>
                     <label for="profileUpload" class="btn w-100 w-50 mx-auto mt-3 py-0 px-0 upload-btn">Upload
                         Profile</label>
                     <input type="text" name="type" value="General User" hidden>
@@ -126,8 +137,8 @@
 </div>
 </body>
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>

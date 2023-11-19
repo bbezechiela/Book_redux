@@ -193,6 +193,7 @@
     var book_id = [];
 
     place_order_btn.addEventListener('click', () => {
+        // alert(orderNumber().toString());
         if (payment_method.value == 'eWallet') {
             // console.log(book_titles);
             if (address_id == null) {
@@ -206,6 +207,7 @@
                 const dataToSend = {
                     address_id: address_id.textContent,
                     book_id: book_id,
+                    order_number: orderNumber().toString(),
                     shipping_option: shipping_option.value,
                     payment_method: payment_method.value,
                     // shipping_total: 110,
@@ -241,9 +243,15 @@
             }
         }
 
-
-
     });
+
+    function orderNumber() {
+        let now = Date.now().toString() // '1492341545873'
+        // pad with extra random digit
+        now += now + Math.floor(Math.random() * 5)
+        // format
+        return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('')
+    }
 
     function payment(event) {
         // console.log(event.response.total_price);

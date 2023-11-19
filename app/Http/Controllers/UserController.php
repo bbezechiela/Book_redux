@@ -901,6 +901,7 @@ class UserController extends Controller
         // dd(session('data'));
         $address_id = session('data')['address_id'];
         $book_id = session('data')['book_id'];
+        $order_num = session('data')['order_number'];
         $option = session('data')['shipping_option'];
         $method = session('data')['payment_method'];
         $price = session('data')['total_price'];
@@ -908,6 +909,7 @@ class UserController extends Controller
         $order = Orders::create([
             'user_id' => session('id'),
             'address_id' => $address_id,
+            'order_number' => $order_num,
             'shipping_option' => $option,
             'payment_method' => $method,
             'order_status' => 'pending',
@@ -1059,8 +1061,9 @@ class UserController extends Controller
 
     public function manageShipment()
     {
+        $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
         
-        return view('courier.manageShipment');
+        return view('courier.manageShipment', ['orders' => $orders]);
     }
 
     public function manageReturn()

@@ -15,7 +15,7 @@
         <x-sidebar />
     </div>
     {{-- <div id="content" class="border content"> Changes from me --}}
-        <div id="content" class="pe-0 border content" style="max-height: 50%">
+    <div id="content" class="pe-0 border content" style="max-height: 50%">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -58,8 +58,9 @@
                                 <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                     <div class="p-3">
                                         <div class="input-group rounded mb-3" id="searchOuterContainer">
-                                            <input type="search" id="searchInputContainer" class="form-control rounded" placeholder="Search"
-                                                aria-label="Search" aria-describedby="search-addon"/>
+                                            <input type="search" id="searchInputContainer" class="form-control rounded"
+                                                placeholder="Search" aria-label="Search"
+                                                aria-describedby="search-addon" />
                                             <span id="searchButton" class="input-group-text border-0" id="search-addon">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </span>
@@ -69,7 +70,7 @@
                                         <div class="your-scrollable-element overflow-y-auto" id="conversationList">
                                             <!-- <ul class="list-unstyled mb-0">
                                                 <li class="p-2 border-bottom"> -->
-                                                    <!-- <a href="#!"
+                                             {{-- <a href="#!"
                                                         class="d-flex justify-content-between text-decoration-none">
                                                         <div class="d-flex flex-row">
                                                             <div class="side-img">
@@ -88,27 +89,28 @@
                                                             <span
                                                                 class="badge bg-danger rounded-pill float-end">3</span>
                                                         </div>
-                                                    </a> -->
-                                                <!-- </li>
+                                                    </a>  --}}
+                                            <!-- </li>
                                             </ul> -->
                                         </div>
                                     </div>
                                 </div>
 
                                 {{-- shit --}}
-                                <div class="col-md-6 col-lg-7 col-xl-8" id="rightSectionOuterContainer"> 
+                                <div class="col-md-6 col-lg-7 col-xl-8" id="rightSectionOuterContainer">
                                     <div class="chat-about position-sticky top-0">
 
-                                        <h6 class="m-b-0" id="receiverName"><button type="button" class="btn menu-btn"
-                                                data-bs-toggle="modal" data-bs-target="#profile-menu">
+                                        <h6 class="m-b-0" id="receiverName"><button type="button"
+                                                class="btn menu-btn" data-bs-toggle="modal"
+                                                data-bs-target="#profile-menu">
                                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                                             </button>
                                         </h6>
                                     </div>
                                     {{-- shit --}}
-                                    <div class="pt-3 pe-3 your-scrollable-element"
+                                    {{-- <div class="pt-3 pe-3 your-scrollable-element"
                                         style="position: relative; height: 450px;" id="messageOuterContainer">
-                                        <!-- <div class="d-flex flex-row justify-content-start body-img">
+                                         <div class="d-flex flex-row justify-content-start body-img">
                                             <img src="../assets/Eubert.png" alt="user_img"
                                                 style="width: 45px; height: 100%;">
                                             <div>
@@ -123,20 +125,20 @@
                                                 <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM |
                                                     Aug 13</p>
                                             </div>
-                                        </div> -->
-                                    </div> 
-                                    <div
-                                        id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
+                                        </div>  --}}
+                                    </div>
+                                    <div id="formOuterContainer"
+                                        class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
                                         <!-- <img src="../assets/osama.png" alt="user_img"
                                             style="width: 40px; height: 100%; margin-right: 8px;"> -->
                                         <!-- <form method="post" id="messageForm"> -->
-                                            <!-- @csrf -->
-                                            <!-- class='form-control form-control-lg' sulod ini ha text are -->
-                                            <!-- <input id="messageInputContainer" type="textarea" placeholder="Type message"> -->
+                                        <!-- @csrf -->
+                                        <!-- class='form-control form-control-lg' sulod ini ha text are -->
+                                        <!-- <input id="messageInputContainer" type="textarea" placeholder="Type message"> -->
 
-                                            <!-- <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip" -->
-                                                <!-- aria-hidden="true"></i></a> -->
-                                            <!-- <button id="sendMessageButton" class="ms-3" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button> -->
+                                        <!-- <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip" -->
+                                        <!-- aria-hidden="true"></i></a> -->
+                                        <!-- <button id="sendMessageButton" class="ms-3" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button> -->
                                         <!-- </form> -->
                                         <!-- <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
                                             aria-hidden="true"></i></a> -->
@@ -178,15 +180,17 @@
                             </label>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
-                            <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i class="fa fa-caret-right"
-                                    aria-hidden="true" data-bs-toggle="modal" data-bs-target="#report-user"
-                                    style="margin-left: 12.5em;"></i>
+                            <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i
+                                    class="fa fa-caret-right" aria-hidden="true" data-bs-toggle="modal"
+                                    data-bs-target="#report-user" style="margin-left: 12.5em;"></i>
                             </p>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center btn-menu">
-                            <a href="/userlistings" class="text-decoration-none"><p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
-                                style="margin-left: 10em;"></i></p></a>
+                            <a href="/userlistings" class="text-decoration-none">
+                                <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
+                                        style="margin-left: 10em;"></i></p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -291,7 +295,7 @@
             const current_user_id = "{{ session('id') }}";
             const csrfToken = "{{ csrf_token() }}";
         </script>
-        <script src="{{ asset('js/messages.js') }}"></script>
+        <script src="{{ asset('/js/messages.js') }}"></script>
     </div>
     @include('partials.__footer', [
         'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
