@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
@@ -228,12 +229,27 @@ Route::get('/successpayment', [UserController::class, 'successOrder']);
 
 Route::get('/orderreceived/{id}', [UserController::class, 'receivedOrder']);
 
+// message routes
+Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
+
+Route::post('/sendMessageTwo', [MessageController::class, 'sendMessageTwo']);
+
+Route::get('/getMessage', [MessageController::class, 'getMessage']);
+
+Route::get('/searchUser', [MessageController::class, 'searchUser']);
+
+Route::post('/conversations', [MessageController::class, 'createConversation']);
+
+Route::get('/getConversations', [MessageController::class, 'getConversations']);
+
+Route::middleware(['web'])->group(function() {
+    Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
+});
+
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
-
-
 
 
 

@@ -26,6 +26,7 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
+<<<<<<< HEAD
                     <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
@@ -35,6 +36,17 @@
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
+=======
+                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Messages">
+                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                        </button></a>
+                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Notification">
+                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                        </button></a>
+                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
+>>>>>>> chammydady
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
                                 width="35" height="35" class="rounded-5" style="margin-right: 2em;">
@@ -50,7 +62,11 @@
             <section class="section dashboard">
                 <div class="row">
                     <div class="row">
+<<<<<<< HEAD
                         <div class="col-xxl-4 col-md-4">
+=======
+                        <div class="col-xxl-4 col-md-6">
+>>>>>>> chammydady
                             <div class="card info-card users-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
@@ -79,7 +95,11 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <div class="col-xxl-4 col-md-4">
+=======
+                        <div class="col-xxl-4 col-md-6">
+>>>>>>> chammydady
                             <div class="card info-card listings-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -108,7 +128,11 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <div class="col-xxl-4 col-md-4">
+=======
+                        <div class="col-xxl-4 col-xl-12">
+>>>>>>> chammydady
                             <div class="card info-card reported-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -139,7 +163,11 @@
                     </div>
 
                     <div class="row">
+<<<<<<< HEAD
                         <div class="col-xxl-4 col-md-4">
+=======
+                        <div class="col-xxl-4 col-md-6">
+>>>>>>> chammydady
                             <div class="card info-card post-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
@@ -197,7 +225,11 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <div class="col-xxl-4 col-md-4">
+=======
+                        <div class="col-xxl-4 col-xl-12">
+>>>>>>> chammydady
                             <div class="card info-card refund-card">
                                 <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
@@ -212,7 +244,11 @@
                                     </ul>
                                 </div>
                                 <div class="card-body">
+<<<<<<< HEAD
                                     <h5 class="card-title">Refund Request <span>| This Month</span></h5>
+=======
+                                    <h5 class="card-title">Return/Refund Request <span>| This Month</span></h5>
+>>>>>>> chammydady
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">

@@ -18,11 +18,15 @@ class Users extends Model
     }
 
     public function orders() {
-        return $this->hasMany(Orders::class, 'user_id');
+        return $this->hasMany(Orders::class, 'order_id');
     }
 
-    public function addressUser() {
+    public function address() {
         return $this->hasMany(Address::class, 'user_id');
+    }
+
+    function messages() {
+        return $this->hasMany(Messages::class, 'sender_id');
     }
 
     protected $fillable = [
@@ -33,7 +37,7 @@ class Users extends Model
         'last_name',
         'email',
         'phone_number',
-        'address',
+        // 'address',
         'birthday',
         'gender',
         // 'age',

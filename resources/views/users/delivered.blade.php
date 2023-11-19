@@ -48,7 +48,6 @@
                 </div>
             </div>
         </ul>
-
         <div class="card-body rating-details">
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -117,7 +116,7 @@
                         <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
+                            <p class="mb-0 fw-bold interaction-type">Rent</p>
                             <p class="payment-mode">Cash on Delivery</p>
                         </div>
                     </div>

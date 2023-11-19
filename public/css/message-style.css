@@ -178,3 +178,64 @@
 .input-group-text .field i{
     color: #003060;
 }
+
+/* mmessages */
+#messageOuterContainer {
+    border: 1px solid black;
+    border-radius: 15px;
+    overflow-y: scroll;
+}
+
+#messageInputContainer {
+    border: 1px solid black;
+    height: 50px;
+    width: 350px;
+    padding-left: 15px;
+    border-radius: 10px;
+}
+
+/* right section outer container */
+#rightSectionOuterContainer {
+    height: 650px;
+}
+
+/* ha search na approach */
+#messageCtn {
+    height: auto;
+    max-width: 500px;
+    border: 1px solid black; 
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.messageRight {
+    float: right;
+    clear: both;
+}
+
+.messageLeft {
+    margin-left: 15px;
+    float: left;
+    clear: both;
+}
+
+/* ha conversation list na approach */
+.conversationCtn {
+    height: 75px;
+    width: 350px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+#conversationList {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
