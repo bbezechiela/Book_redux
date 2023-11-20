@@ -246,13 +246,6 @@ Route::middleware(['web'])->group(function() {
     Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
 });
 
-// API's
-Route::get('/search/{item}', [UserController::class, 'searchItem']);
-
-Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
-
-
-
 
 // seller
 Route::post('/registerseller', [SellerController::class, 'store']);
@@ -284,3 +277,13 @@ Route::get('/booksrented', [UserController::class, 'booksRented']);
 Route::get('/return', [UserController::class, 'manageReturn']);
 
 Route::get('/shipment', [UserController::class, 'manageShipment']);
+
+
+// API's
+Route::get('/search/{item}', [UserController::class, 'searchItem']);
+
+Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
+
+Route::get('/getshipment/{id}', [UserController::class, 'getShipment']);
+
+Route::post('/acceptshipment', [UserController::class, 'acceptShipment']);

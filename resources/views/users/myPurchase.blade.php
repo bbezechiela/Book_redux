@@ -75,7 +75,7 @@
         </div>
         @foreach ($user->orders as $order)
             @foreach ($order->items as $item)
-                {{-- @if ($item->order->payment_method == 'Cash on Delivery' && $item->order->order_status == 'pending')
+                @if ($item->order->payment_method == 'Cash on Delivery' && $item->order->order_status == 'pending')
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
@@ -111,13 +111,12 @@
                             </div>
                         </div>
                     </div>
-                @els --}}
-                @if ($item->order->payment_method == 'eWallet' && $item->order->order_status == 'pending')
+                @elseif ($item->order->payment_method == 'eWallet' && $item->order->order_status == 'pending')
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $item->book->user->first_name . '/' . $item->book->user->last_name }}</span></a>
+                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">To Pay</span>
                         </div>
