@@ -66,7 +66,8 @@
                                 <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
                                 @foreach ($item->book->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
-                                        <label for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                                        <label
+                                            for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
                                     @endif
                                 @endforeach
 
@@ -75,8 +76,9 @@
                             <div class="customer-details-box">
                                 <label for="customer-details" class="form-label label-title">Customer Details</label>
                                 <label for="customer-fullname">{{ $order->address->name }}</label>
-                                <label for="customer-contact-number">{{ $order->user->phone_number }}</label>
-                                <label for="customer-address">{{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
+                                <label for="customer-contact-number">{{ $order->address->contact_number }}</label>
+                                <label
+                                    for="customer-address">{{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
                             </div>
                             <div class="package-details-box">
                                 <label for="package-details" class="form-label label-title">Package Description</label>
@@ -89,7 +91,7 @@
 
                             <div class="product-details-box">
                                 <label for="product-details" class="form-label label-title">Product Details</label>
-                                <label for="order-date">Order Date: {{ $order->created_at->format('d/m/Y') }}</label>
+                                <label for="order-date">Order Date: {{ $order->created_at->format('m/d/Y') }}</label>
                                 <label for="order-number">Order Number: {{ $order->order_number }}</label>
                                 <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
                                 <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
@@ -101,14 +103,16 @@
                                 <label for="product-details" class="form-label label-title">Shipping Details</label>
                                 <label for="order-date">Shipping: Pickup</label>
                                 <label for="pickup-date">Pickup Date: OD421376365</label>
-                                <label for="pickup-address">Pickup Address: {{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
+                                <label for="pickup-address">Pickup Address:
+                                    {{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
                             </div>
                         </div>
                         <center>
                             <br>
-                            <a href="#" class="btn accept" data-bs-toggle="modal"
-                                data-bs-target="#shipping-details">Accept
-                                <span class="fa fa-check"></span></a>
+                            <button type="button" class="btn accept" data-bs-toggle="modal"
+                                data-bs-target="#shipping-details"
+                                onclick="shipment({{ $order->id . ', ' . $item->id }})">Accept
+                                <span class="fa fa-check"></span></button>
                             <a href="#" class="deny btn">Decline <span class="fa fa-close"></span></a>
                         </center>
                     </div>
@@ -182,27 +186,32 @@
                                     <hr>
                                     <div
                                         class="d-flex flex-row justify-content-between align-items-center order-details">
+                                        <span id="order_id" hidden></span>
+                                        <span id="item_id" hidden></span>
                                         <div><span class="d-block fs-12">Order date</span><span
-                                                class="font-weight-bold">12 March 2020</span></div>
+                                                class="font-weight-bold" id="order-date">12 March 2020</span></div>
                                         <div><span class="d-block fs-12">Order number</span><span
-                                                class="font-weight-bold">OD44434324</span></div>
+                                                class="font-weight-bold" id="order-number">OD44434324</span></div>
                                         <div><span class="d-block fs-12">Payment method</span><span
-                                                class="font-weight-bold">Cash on Delivery</span></div>
+                                                class="font-weight-bold" id="payment-method">Cash on Delivery</span>
+                                        </div>
                                         <div><span class="d-block fs-12">Shipping Address</span><span
-                                                class="font-weight-bold shipping-address-text">Bagacay,
+                                                class="font-weight-bold shipping-address-text"
+                                                id="shipping-address">Bagacay,
                                                 Tacloban</span></div>
                                     </div>
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center product-details">
                                         <div class="d-flex flex-row product-name-image">
                                             <div class="d-flex flex-column justify-content-between ml-2">
-                                                <div><span class="d-block font-weight-bold p-name">City of
-                                                        Secrets</span><span class="fs-12">Sale</span></div><span
-                                                    class="fs-12"></span>
+                                                <div><span class="d-block font-weight-bold p-name"
+                                                        id="book-title">City of
+                                                        Secrets</span><span class="fs-12"
+                                                        id="book-status">Sale</span></div><span class="fs-12"></span>
                                             </div>
                                         </div>
                                         <div class="product-price">
-                                            <h5>₱100</h5>
+                                            <h5 id="book-price">₱100</h5>
                                         </div>
                                     </div>
                                     <div class="mt-5 amount row">
@@ -218,19 +227,23 @@
                                         <div class="col-md-6">
                                             <div class="billing">
                                                 <div class="d-flex justify-content-between">
-                                                    <span>Subtotal</span><span class="font-weight-bold">₱100</span>
+                                                    <span>Subtotal</span><span class="font-weight-bold"
+                                                        id="sub-total">₱100</span>
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-2"><span>Shipping
-                                                        fee</span><span class="font-weight-bold">₱40</span></div>
+                                                        fee</span><span class="font-weight-bold"
+                                                        id="shipping-fee">₱40</span></div>
                                                 <hr>
                                                 <div class="d-flex justify-content-between mt-1"><span
                                                         class="font-weight-bold">Total</span><span
-                                                        class="font-weight-bold shipping-address-text">₱140</span>
+                                                        class="font-weight-bold shipping-address-text"
+                                                        id="total">₱140</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div><span class="d-block">Complete Address</span><span
-                                        class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
+                                        class="font-weight-bold shipping-address-text" id="complete-address">Blk 33
+                                        Lot 52 Bagacay,
                                         Tacloban City</span>
                                     <hr>
                                     <div class="d-flex justify-content-between align-items-center footer">
@@ -246,7 +259,7 @@
                 <div class="modal-footer d-print-none">
                     <button type="button" class="btn btn-secondary close-button"
                         data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-primary hidden-print save-button">Save</button>
+                    <button class="btn btn-primary hidden-print save-button" id="save-btn">Save</button>
                 </div>
             </div>
         </div>
@@ -258,3 +271,94 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    var order_date = document.getElementById('order-date');
+    var order_number = document.getElementById('order-number');
+    var payment_method = document.getElementById('payment-method');
+    var shipping_address = document.getElementById('shipping-address');
+    var title = document.getElementById('book-title');
+    var status = document.getElementById('book-status');
+    var price = document.getElementById('book-price');
+    var sub_total = document.getElementById('sub-total');
+    var shipping = document.getElementById('shipping-fee');
+    var total_price = document.getElementById('total');
+    var address = document.getElementById('complete-address');
+    var tracking_image = document.getElementById('tracking_number');
+    var save_btn = document.getElementById('save-btn');
+    var id_order = document.getElementById('order_id');
+    var id_item = document.getElementById('item_id');
+    var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+        "November", "December"
+    ]
+
+    function shipment(order_id, item_id) {
+        // alert(id);
+        const requestMethod = {
+            method: 'GET'
+        };
+
+        fetch('/getshipment/' + order_id, requestMethod)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const date = new Date(data.created_at);
+
+                order_date.textContent = date.getDate() + " " + month[date.getMonth()] + " " + date.getFullYear();
+                order_number.textContent = data.order_number;
+                payment_method.textContent = data.payment_method;
+                shipping_address.textContent = data.address.brgy_village + ', ' + data.address.city_municipality;
+                // title.textContent = data.items[item_id].book.title;
+                data.items.forEach(element => {
+                    if (element.id == item_id) {
+                        title.textContent = element.book.title;
+                        status.textContent = element.book.status;
+                        price.textContent = '₱' + element.book.price;
+                        sub_total.textContent = '₱' + element.book.price;
+                        shipping.textContent = '₱130.0';
+                        total_price.textContent = '₱' + (parseFloat(element.book.price) + 130) + '.0';
+                    }
+                });
+                address.textContent = data.address.street_building_house + ', ' + data.address.brgy_village + ', ' +
+                    data.address.city_municipality + ', ' + data.address.postal_code + ', ' + data.address.region;
+                id_order.textContent = order_id;
+                id_item.textContent = item_id;
+            })
+            .catch(error => console.log(error));
+    }
+
+    tracking_image.addEventListener('change', () => {
+        var image = document.getElementById("img-icon");
+        image.src = URL.createObjectURL(event.target.files[0]);
+        // console.log(tracking_image.value);
+    });
+
+    
+    save_btn.addEventListener('click', () => {
+        var formData = new FormData();
+        formData.append('file', tracking_image.files[0]);
+        // formData.append('order_id', id_order.textContent);
+        formData.append('item_id', id_item.textContent);
+        fetch('/acceptshipment', {
+                method: 'POST', // Specify the HTTP method as POST
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    // 'Content-Type': 'application/json', // Set the Content-Type header for JSON data
+                    // Add any other headers you need
+                },
+                // body: JSON.stringify(formData),
+                body: formData,
+            })
+            // .then(response => response.json())
+            .then(data => {
+                // console.log(data);
+                if (data.redirected) {
+                    window.location.href = data.url;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    });
+</script>

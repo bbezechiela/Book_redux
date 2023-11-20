@@ -18,7 +18,7 @@ class Users extends Model
     }
 
     public function orders() {
-        return $this->hasMany(Orders::class, 'order_id');
+        return $this->hasMany(Orders::class, 'user_id');
     }
 
     public function addressUser() {

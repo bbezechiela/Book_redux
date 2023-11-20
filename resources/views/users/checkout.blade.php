@@ -133,7 +133,7 @@
                 <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
                 <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
             </select>
-            <div class="shipping-price">₱50</div>
+            {{-- <div class="shipping-price">₱130.0</div> --}}
         </div>
         <div class="order-total">
             <p>Order Total <span id="total">(1 item):</span></p>
@@ -151,7 +151,7 @@
         <div class="summary">
             <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
                     class="summary-merchandise-total">P244</span></p>
-            {{-- <p>Shipping Total: <span class="summary-shipping-total">₱110</span></p> --}}
+            <p>Shipping Total: <span class="summary-shipping-total">₱130.0</span></p>
             <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
         </div>
         <div class="col-md-6 text-right">
@@ -168,7 +168,7 @@
 
 <script>
     // console.log(document.querySelectorAll('span[data="status"]').textContent);
-    var prices = document.querySelectorAll('span[class="price-list"]');    
+    var prices = document.querySelectorAll('span[class="price-list"]');
     var totalItem = document.getElementById('total');
     var displayTotal = document.getElementById('total-price');
     var mercha_total = document.getElementById('mer-total');
@@ -181,7 +181,7 @@
     displayTotal.textContent = '₱' + totalPrice + '.0';
     totalItem.textContent = '(' + prices.length + ' item/s)';
     mercha_total.textContent = '₱' + totalPrice + '.0';
-    sum_total.textContent = '₱' + parseFloat(totalPrice) + '.0';
+    sum_total.textContent = '₱' + parseFloat(totalPrice + 130) + '.0';
     // place order
     var place_order_btn = document.getElementById('place-order');
     var address_id = document.getElementById('address-id');
@@ -194,7 +194,7 @@
 
     place_order_btn.addEventListener('click', () => {
         // alert(orderNumber().toString());
-        if (payment_method.value == 'eWallet') {
+        // if (payment_method.value == 'eWallet') {
             // console.log(book_titles);
             if (address_id == null) {
                 alert('No Current Default Address');
@@ -231,8 +231,13 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
-                        payment(data);
+                        // console.log(data.response.payment_method);
+                        if (data.response.payment_method == 'eWallet') {
+                            payment(data);
+                        } else if (data.response.payment_method == 'Cash on Delivery') {
+                            window.location.href = '/successpayment';
+                        }
+                        
                         // if (data.redirected) {
                         //     window.location.href = data.url;
                         // }
@@ -241,18 +246,13 @@
                         console.log('error', error);
                     });
             }
-        }
+        // } 
+        // else if (payment_method.value == 'Cash on Delivery') {
+        //     cons
+        // }
 
     });
-
-    function orderNumber() {
-        let now = Date.now().toString() // '1492341545873'
-        // pad with extra random digit
-        now += now + Math.floor(Math.random() * 5)
-        // format
-        return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('')
-    }
-
+  
     function payment(event) {
         // console.log(event.response.total_price);
         const options = {
@@ -270,11 +270,18 @@
                         show_line_items: true,
                         cancel_url: document.URL,
                         line_items: [{
-                            currency: 'PHP',
-                            amount: event.response.total_price,
-                            name: book_titles,
-                            quantity: 1
-                        }],
+                                currency: 'PHP',
+                                amount: event.response.total_price,
+                                name: book_titles,
+                                quantity: 1
+                            },
+                            {
+                                currency: 'PHP',
+                                amount: 13000,
+                                name: 'Shipping Fee',
+                                quantity: 1
+                            }
+                        ],
                         payment_method_types: ['gcash', 'paymaya', 'grab_pay'],
                         description: 'checkout payment',
                         success_url: 'http://127.0.0.1:8000/successpayment'
@@ -290,5 +297,14 @@
                 window.location.href = response.data.attributes.checkout_url;
             })
             .catch(err => console.error(err));
+    }
+
+
+    function orderNumber() {
+        let now = Date.now().toString() // '1492341545873'
+        // pad with extra random digit
+        now += now + Math.floor(Math.random() * 5)
+        // format
+        return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('')
     }
 </script>

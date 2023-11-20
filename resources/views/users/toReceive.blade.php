@@ -94,7 +94,7 @@
         </div>
         @foreach ($user->orders as $order)
             @foreach ($order->items as $item)
-                @if ($item->order->payment_method == 'Cash on Delivery')
+                @if ($item->order->payment_method == 'Cash on Delivery' && $item->order->order_status == 'paid')
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>

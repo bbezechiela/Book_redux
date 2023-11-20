@@ -311,6 +311,9 @@ class UserController extends Controller
 
     public function myPurchase()
     {
+        // $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
+
+        // return view('courier.manageShipment', ['orders' => $orders]);
         $order = Users::with('orders.items.book.user')->find(session('id'));
         // dd($order);        
         return view('users.myPurchase', ['user' => $order]);
@@ -377,7 +380,7 @@ class UserController extends Controller
 
     public function deliveredMyPurchase()
     {
-        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        $order = Books::where(['unit' => 'Ordered'])->with('item.order.user', 'user')->get();
         // dd($order);
         return view('users.deliveredMyPurchase', ['orders' => $order]);
         // return view('users.deliveredMyPurchase');
@@ -767,7 +770,7 @@ class UserController extends Controller
             //     ]
             // );
 
-            $address = Address::where('default_address', 'true')->first();
+            $address = Address::where(['user_id' => session('id'), 'default_address' => 'true'])->first();
 
             if ($address && $add == 'delivery') {
                 $address->update(['default_address' => null]);
@@ -1062,7 +1065,7 @@ class UserController extends Controller
     public function manageShipment()
     {
         $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
-        
+
         return view('courier.manageShipment', ['orders' => $orders]);
     }
 
@@ -1108,5 +1111,42 @@ class UserController extends Controller
         $address = Address::find($id);
 
         return $address;
+    }
+
+    public function getShipment($id)
+    {
+        // $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
+        $order = Orders::with('items.book.user.addressUser', 'address')->find($id);
+        // $order = Order_Items::with('book.user.orders.address')->find($id);
+        return $order;
+    }
+
+    public function acceptShipment(Request $request)
+    {
+        if ($request->hasFile('file')) {            
+            $item_id = $request->input('item_id');
+
+            $fileNameWithExt = $request->file('file')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $fileNameToStore = $fileName . '_' . time() . $extension;
+            $request->file('file')->move(public_path('images/bar_codes'), $fileNameToStore);
+            $bar_code = $fileNameToStore;
+
+            $order = Order_Items::with('order')->find($item_id);
+            $order->update([
+                'bar_code' => $bar_code,                
+            ]);
+            $order->order->update([
+                'order_status' => 'paid'
+            ]);
+
+            if ($order) {
+                // return response()->json(['code' => $order]);
+                return redirect('/shipment');
+            }            
+        } else {
+            return response()->json(['code' => 'no file']);
+        }
     }
 }

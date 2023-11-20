@@ -75,10 +75,10 @@
                     <p class="fs-3 order mx-auto fw-bold m-0">Order Status</p>
                 </div> --}}
 
-                <a href="/trackrental" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
+                {{-- <a href="/trackrental" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
                     <p class="my-0 text-center fs-6">Rental Period Tracking</p>
-                </a>
+                </a> --}}
 
                 <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                     <p class="my-0 text-center fw-bold fs-3">0</p>
