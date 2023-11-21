@@ -1121,6 +1121,11 @@ class UserController extends Controller
         return $order;
     }
 
+    public function getUser($id) {
+        $user = Users::find($id);
+        return $user;
+    }
+
     public function acceptShipment(Request $request)
     {
         if ($request->hasFile('file')) {            
