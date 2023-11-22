@@ -286,4 +286,8 @@ Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);
 
 Route::get('/getshipment/{id}', [UserController::class, 'getShipment']);
 
+Route::get('/getuser/{id}', [UserController::class, 'getUser']);
+
 Route::post('/acceptshipment', [UserController::class, 'acceptShipment']);
+
+Route::post('/ratepost', [UserController::class, 'ratePost']);

@@ -185,9 +185,7 @@
         tip.className += "ms-2 mb-3 fw-bold"
         tip.textContent = labels[strength - 1];
     });
-</script>
 
-<script>
     document.addEventListener("DOMContentLoaded", function() {
         const formInputs = document.querySelectorAll(".form-control");
         formInputs.forEach(function(input) {

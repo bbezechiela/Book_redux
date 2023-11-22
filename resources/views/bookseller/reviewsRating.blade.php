@@ -53,7 +53,7 @@
                 </li>
         </div>
         <div class="ratings-review">
-            <div class="card-body rating-details-review">
+            {{-- <div class="card-body rating-details-review">
                 <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="#">Seller Rating</a>
@@ -61,7 +61,7 @@
                         href="#">Lessor
                         Rating</a>
                 </nav>
-            </div>
+            </div> --}}
             <div class="container text-center review-rating-details">
                 <div class="row align-items-center">
                     <div class="col">

@@ -82,7 +82,7 @@
                     <div class="row">
                         <div class="col-xxl-4 col-md-4">
                             <div class="card info-card users-card">
-                                <div class="filter">
+                                {{-- <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
                                             class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" style="">
@@ -93,9 +93,9 @@
                                         <li><a class="dropdown-item" href="#">This Month</a></li>
                                         <li><a class="dropdown-item" href="#">This Year</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Orders for Sale <span>| This Month</span></h5>
+                                    <h5 class="card-title">Total Orders for Sale</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -110,7 +110,7 @@
 
                         <div class="col-xxl-4 col-md-4">
                             <div class="card info-card listings-card">
-                                <div class="filter">
+                                {{-- <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
                                             aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -121,9 +121,9 @@
                                         <li><a class="dropdown-item" href="#">This Month</a></li>
                                         <li><a class="dropdown-item" href="#">This Year</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Orders for Rent <span>| Today</span></h5>
+                                    <h5 class="card-title">Total Orders for Rent</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -138,7 +138,7 @@
 
                         <div class="col-xxl-4 col-md-4">
                             <div class="card info-card reported-card">
-                                <div class="filter">
+                                {{-- <div class="filter">
                                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
                                             aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -149,9 +149,9 @@
                                         <li><a class="dropdown-item" href="#">This Month</a></li>
                                         <li><a class="dropdown-item" href="#">This Year</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Listings <span>| This Year</span></h5>
+                                    <h5 class="card-title">Total Listings</h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">

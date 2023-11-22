@@ -1121,6 +1121,11 @@ class UserController extends Controller
         return $order;
     }
 
+    public function getUser($id) {
+        $user = Users::find($id);
+        return $user;
+    }
+
     public function acceptShipment(Request $request)
     {
         if ($request->hasFile('file')) {            
@@ -1148,5 +1153,26 @@ class UserController extends Controller
         } else {
             return response()->json(['code' => 'no file']);
         }
+    }
+
+    public function ratePost(Request $request) {
+        // $validated = $request->validate([
+        //     'item_id' => 'required',
+        //     'user_id' => 'required',
+        //     'rate_value' => 'required',
+        //     'condition_accuracy' => 'required',
+        //     'description_accuracy' => 'required',
+        //     'interaction' => 'required',
+        //     'description' => 'required',
+        //     'display_username' => 'required'
+        // ]);
+        // $item_id = $request->input('item_id');
+        // $user_id = $request->input('user_id');
+        // $rate_val = $request->input('rate_value');
+        // $condition_accu = $request->input('condition_accuracy');
+        $data = $request->all();
+
+        return response()->json($data);
+        // return $data;
     }
 }

@@ -9,7 +9,6 @@
     position: fixed;
     background-color: #003060;
     color: #fff;
-    /* width: var(--sidebar_width); */
 }
 
 .sidebarProfile {
@@ -66,7 +65,7 @@
     margin-bottom: 2em;
     padding: 0 20px;
     width: 94%;
-    margin-left: 3em;
+    /* margin-left: 2em; */
 }
 
 .address-details {
@@ -109,7 +108,7 @@
     background-color: #fff;
     border: 2px solid #003060;
     width: 12em;
-    margin-left: 3em;
+    /* margin-left: 3em; */
     margin-bottom: 2em;
 }
 
