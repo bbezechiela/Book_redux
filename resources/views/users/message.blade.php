@@ -57,18 +57,19 @@
                             <div class="row min-vh-100">
                                 <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
                                     <div class="p-3">
-                                        <div class="input-group rounded mb-3" id="searchOuterContainer">
-                                            <input type="search" id="searchInputContainer" class="form-control rounded" placeholder="Search"
-                                                aria-label="Search" aria-describedby="search-addon"/>
-                                            <span id="searchButton" class="input-group-text border-0" id="search-addon">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </span>
-                                            <div id="searchResult"></div>
+                                        <div id="searchOuterContainer">
+                                            <div id="searchInnerContainer">
+                                                <input type="search" id="searchInputContainer" placeholder="Search"
+                                                    aria-label="Search" aria-describedby="search-addon"/>
+                                                <span id="searchButton" >
+                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                         {{-- shit --}}
                                         <div class="your-scrollable-element overflow-y-auto" id="conversationList">
                                             <!-- <ul class="list-unstyled mb-0">
-                                                <li class="p-2 border-bottom"> -->
+                                                 <li class="p-2 border-bottom"> -->
                                                     <!-- <a href="#!"
                                                         class="d-flex justify-content-between text-decoration-none">
                                                         <div class="d-flex flex-row">
@@ -97,17 +98,18 @@
 
                                 {{-- shit --}}
                                 <div class="col-md-6 col-lg-7 col-xl-8" id="rightSectionOuterContainer"> 
-                                    <div class="chat-about position-sticky top-0">
+                                    <!-- <div class="chat-about position-sticky top-0"> -->
 
-                                        <h6 class="m-b-0" id="receiverName"><button type="button" class="btn menu-btn"
+                                        <div class="m-b-0" id="messagesHeaderContainer">
+                                            <!-- <button type="button" class="btn menu-btn"
                                                 data-bs-toggle="modal" data-bs-target="#profile-menu">
                                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                            </button>
-                                        </h6>
-                                    </div>
+                                            </button> -->
+                                        </div> 
+                                    <!-- </div> -->
                                     {{-- shit --}}
                                     <div class="pt-3 pe-3 your-scrollable-element"
-                                        style="position: relative; height: 450px;" id="messageOuterContainer">
+                                        style="position: relative; height: 450px;" id="messageOuterContainer"> 
                                         <!-- <div class="d-flex flex-row justify-content-start body-img">
                                             <img src="../assets/Eubert.png" alt="user_img"
                                                 style="width: 45px; height: 100%;">
@@ -126,7 +128,7 @@
                                         </div> -->
                                     </div> 
                                     <div
-                                        id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img">
+                                        id="formOuterContainer" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2 body-img"> 
                                         <!-- <img src="../assets/osama.png" alt="user_img"
                                             style="width: 40px; height: 100%; margin-right: 8px;"> -->
                                         <!-- <form method="post" id="messageForm"> -->
@@ -140,7 +142,7 @@
                                         <!-- </form> -->
                                         <!-- <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
                                             aria-hidden="true"></i></a> -->
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>

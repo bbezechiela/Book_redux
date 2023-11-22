@@ -13,19 +13,35 @@ class MessageController extends Controller
     function getConversations(Request $request) {
         $lastConversationTimestamp = $request->query('lastConversationTimestamp');
         $current_username = $request->query('current_username');
-        
+              
         $getter = Conversations::where('conversation_name', 'like', '%' . $current_username . '%')->where('created_at', '>', $lastConversationTimestamp)->get();
-    
-        if($getter) {
+
+        $receiverUsernames = [];
+
+        foreach ($getter as $conversation) {
+            $conversation_name = $conversation->conversation_name;
+        
+            $arr = explode(',', $conversation_name);
+            $receiver_username = ($arr[0] === $current_username) ? strval($arr[1]) : strval($arr[0]);
+        
+            $getterTwo = Users::select('profile_photo')->where('username', $receiver_username)->first();
+
+            $newKey = 'profile_photo';
+            $newValue = $getterTwo;
+
+            $conversation[$newKey] = $newValue;
+        }
+        
+        if($getter->isNotEmpty()) {
             return response()->json(['data' => $getter]);
-        } else {
-            return response()->json(['data' => 'No conversation']);
+        } else {            
+            return response()->json(['error' => 'No conversation']);
         }
     }
 
     // send message from conversation approach
     function sendMessageTwo(Request $request) {
-        $current_username = $request->json('');
+        $current_username = $request->json('current_username');
         $sender_id = $request->json('sender_id');
         $message_content = $request->json('message_content');
         $conversation_name = $request->json('conversation_name');
@@ -121,7 +137,7 @@ class MessageController extends Controller
         if ($getUsername) {
             return response()->json(['data' => $getUsername]);
         } else {
-            return response()->json(['data' => 'Theres no record']);
+            return response()->json(['error' => 'Theres no record']);
         }
     }
 
