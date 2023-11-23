@@ -59,6 +59,14 @@
     font-size: 12px;
 }
 
+.location-text{
+    color: #757575;
+}
+
+.location-text i{
+    margin-right: 8px;
+}
+
 a,
 h4:hover,
 p {

@@ -196,10 +196,10 @@ a {
 }
 
 .card{
-    box-shadow: 0px 4px 4px rgba(185, 184, 184, 0.25);
+    /* box-shadow: 0px 4px 4px rgba(185, 184, 184, 0.25); */
     border: none;
-    margin-left: 1.3em;
-    margin-right: 2.2em;
+    /* margin-left: 1.3em; */
+    /* margin-right: 2.2em; */
 }
 
 .menu-btn{
@@ -255,8 +255,8 @@ a {
     box-shadow: 0px 1px 1px 2px #f0eded;
     border-radius: 3px;
     padding: 30px 20px;
-    width: 94%;
-    margin-left: 2em;
+    /* width: 94%; */
+    /* margin-left: 2em; */
     display: flex;
     align-items: center;
     justify-content: space-between;
