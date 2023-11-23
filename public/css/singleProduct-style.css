@@ -217,6 +217,14 @@
     background-color: #E55B13;
 }
 
+.location-text{
+    color: #757575;
+}
+
+.location-text i{
+    margin-right: 8px;
+}
+
 .rating-details {
     /* max-width: 1500px; */
     margin-top: 3em;

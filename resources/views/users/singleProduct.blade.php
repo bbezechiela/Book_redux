@@ -92,8 +92,8 @@
                             </p>
                             <p class="card-text">Product Description: <span
                                     class="fw-bold">{{ $book_id->description }}</span></p>
-                            <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
-                            </p>
+                            <p class="card-text location-text"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
+                            
                             {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a> --}}
