@@ -7,6 +7,7 @@ use App\Models\Books;
 use App\Models\Cart;
 use App\Models\Order_Items;
 use App\Models\Orders;
+use App\Models\Reviews;
 use App\Models\User;
 use App\Models\Users;
 use Illuminate\Contracts\Session\Session;
@@ -380,7 +381,7 @@ class UserController extends Controller
 
     public function deliveredMyPurchase()
     {
-        $order = Books::where(['unit' => 'Ordered'])->with('item.order.user', 'user')->get();
+        $order = Books::where(['unit' => 'Ordered'])->with('item.order.user', 'user', 'item.ratedItem')->get();
         // dd($order);
         return view('users.deliveredMyPurchase', ['orders' => $order]);
         // return view('users.deliveredMyPurchase');
@@ -955,7 +956,7 @@ class UserController extends Controller
         $order->update(['order_status' => 'received']);
 
         if ($order) {
-            return redirect('/mypurchase');
+            return redirect('/toreceive');
         } else {
             return response()->json(['error' => 'error']);
         }
@@ -1121,14 +1122,15 @@ class UserController extends Controller
         return $order;
     }
 
-    public function getUser($id) {
+    public function getUser($id)
+    {
         $user = Users::find($id);
         return $user;
     }
 
     public function acceptShipment(Request $request)
     {
-        if ($request->hasFile('file')) {            
+        if ($request->hasFile('file')) {
             $item_id = $request->input('item_id');
 
             $fileNameWithExt = $request->file('file')->getClientOriginalName();
@@ -1140,7 +1142,7 @@ class UserController extends Controller
 
             $order = Order_Items::with('order')->find($item_id);
             $order->update([
-                'bar_code' => $bar_code,                
+                'bar_code' => $bar_code,
             ]);
             $order->order->update([
                 'order_status' => 'paid'
@@ -1149,30 +1151,42 @@ class UserController extends Controller
             if ($order) {
                 // return response()->json(['code' => $order]);
                 return redirect('/shipment');
-            }            
+            }
         } else {
             return response()->json(['code' => 'no file']);
         }
     }
 
-    public function ratePost(Request $request) {
-        // $validated = $request->validate([
-        //     'item_id' => 'required',
-        //     'user_id' => 'required',
-        //     'rate_value' => 'required',
-        //     'condition_accuracy' => 'required',
-        //     'description_accuracy' => 'required',
-        //     'interaction' => 'required',
-        //     'description' => 'required',
-        //     'display_username' => 'required'
-        // ]);
-        // $item_id = $request->input('item_id');
-        // $user_id = $request->input('user_id');
-        // $rate_val = $request->input('rate_value');
-        // $condition_accu = $request->input('condition_accuracy');
+    public function ratePost(Request $request)
+    {        
         $data = $request->all();
 
-        return response()->json($data);
-        // return $data;
+        $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
+
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $fileNameWithExt = $request->file($field)->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file($field)->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+                $request->file($field)->move(public_path('images/rate_images'), $fileNameToStore);
+
+                $data[$field] = $fileNameToStore;
+            }
+        }
+
+        $rate = Reviews::create($data);
+
+        if ($rate) {
+            return response()->json(['response' => 'review created']);
+        } else {
+            return response()->json(['response' => 'review failed']);
+        }           
+    }
+
+    public function getRating($id) {
+        $rating = Reviews::with('item.book.user')->find($id);
+        return $rating;
     }
 }

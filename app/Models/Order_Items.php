@@ -16,6 +16,10 @@ class Order_Items extends Model
         return $this->belongsTo(Books::class, 'book_id');
     }
 
+    public function ratedItem() {
+        return $this->hasOne(Reviews::class, 'item_id');
+    }
+
     protected $table = 'order_items';
 
     protected $fillable = [

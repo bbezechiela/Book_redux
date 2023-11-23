@@ -122,10 +122,18 @@
                         </div>
                         <div class="order-details">
                             <div class="order-message">
-                                <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                    data-bs-target="#rate-review"
-                                    onclick="ratingReview({{ $order->user->id }}, '{{ $order->status }}', {{ $order->item->id }})">Post
-                                    Rating and Review</button>
+                                @if (isset($order->item->ratedItem))
+                                    <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                        data-bs-target="#rate-review"
+                                        onclick="editRating({{ $order->item->ratedItem->id }}, {{ $order->item->id }})">Edit Rating and
+                                        Review</button>
+                                @else
+                                    <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                        data-bs-target="#rate-review"
+                                        onclick="ratingReview({{ $order->user->id }}, '{{ $order->status }}', {{ $order->item->id }})">Post
+                                        Rating and Review</button>
+                                @endif
+
                             </div>
                             <div class="button-group">
                                 <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
@@ -462,48 +470,28 @@
     //     img.style.height = '60px';
     // }
 
-    one_S.addEventListener('click', () => {
-        one_S.className = 'fa fa-star';
-        two_S.className = 'fa fa-star-o';
-        three_S.className = 'fa fa-star-o';
-        four_S.className = 'fa fa-star-o';
-        five_S.className = 'fa fa-star-o';
+    one_S.addEventListener('click', () => {        
+        star(1);
         rate_val = 1;
     });
 
     two_S.addEventListener('click', () => {
-        one_S.className = 'fa fa-star';
-        two_S.className = 'fa fa-star';
-        three_S.className = 'fa fa-star-o';
-        four_S.className = 'fa fa-star-o';
-        five_S.className = 'fa fa-star-o';
+        star(2);
         rate_val = 2;
     });
 
     three_S.addEventListener('click', () => {
-        one_S.className = 'fa fa-star';
-        two_S.className = 'fa fa-star';
-        three_S.className = 'fa fa-star';
-        four_S.className = 'fa fa-star-o';
-        five_S.className = 'fa fa-star-o';
+        star(3);
         rate_val = 3;
     });
 
     four_S.addEventListener('click', () => {
-        one_S.className = 'fa fa-star';
-        two_S.className = 'fa fa-star';
-        three_S.className = 'fa fa-star';
-        four_S.className = 'fa fa-star';
-        five_S.className = 'fa fa-star-o';
+        star(4);
         rate_val = 4;
     });
 
     five_S.addEventListener('click', () => {
-        one_S.className = 'fa fa-star';
-        two_S.className = 'fa fa-star';
-        three_S.className = 'fa fa-star';
-        four_S.className = 'fa fa-star';
-        five_S.className = 'fa fa-star';
+        star(5);
         rate_val = 5;
     });
 
@@ -514,7 +502,7 @@
         third_img.value = '';
         fourth_img.value = '';
         fifth_img.value = '';
-        
+
         document.getElementById('one-image').src = '';
         document.getElementById('two-image').src = '';
         document.getElementById('three-image').src = '';
@@ -526,7 +514,7 @@
         document.getElementById('three-image').style.width = '0px';
         document.getElementById('four-image').style.width = '0px';
         document.getElementById('five-image').style.width = '0px';
-        
+
 
         const request = {
             method: 'GET'
@@ -543,5 +531,66 @@
                 document.getElementById('item-id').textContent = item_id;
             })
             .catch(error => console.log(error));
+    }
+
+    function editRating(id, item_id) {
+        const request = {
+            method: 'GET'
+        };
+
+        fetch('/getrating/' + id, request)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);         
+                star(parseInt(data.rate_value));       
+                document.getElementById('user_img').src = 'images/profile_photos/' + data.item.book.user.profile_photo;
+                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data.item.book.user.last_name;
+                document.getElementById('username').textContent = data.item.book.user.username;
+                document.getElementById('interaction-type').textContent = data.item.book.status;
+                document.getElementById('item-id').textContent = item_id;
+                accu_cond.value = data.condition_accuracy;
+                accu_desc.value = data.description_accuracy;
+                interaction.value = data.interaction;
+                description.value = data.description;
+                
+                // alert(data.description_accuracy)
+                
+
+            })
+            .catch(err => console.log(err));
+    }
+
+    function star(rate) {
+        if (rate == 1) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star';
+        }
     }
 </script>

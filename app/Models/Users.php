@@ -25,6 +25,10 @@ class Users extends Model
         return $this->hasMany(Address::class, 'user_id');
     }
 
+    public function reviews() {
+        return $this->hasMany(Reviews::class, 'user_id');
+    }
+
     function messages() {
         return $this->hasMany(Messages::class, 'sender_id');
     }
