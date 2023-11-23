@@ -96,7 +96,7 @@ class UserController extends Controller
 
             // $users = Users::where();
             $user = Users::find(session('id'));
-            $post = Books::all();
+            $post = Books::with('user.addressUser')->get();
             return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
