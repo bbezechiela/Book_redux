@@ -11,18 +11,21 @@
 
 <body>
     <div id="body-container" class="container-fluid px-0">
-        <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-            aria-labelledby="offcanvasExampleLabel">
+        <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
             <x-sidebar />
         </div>
+        {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
+            aria-labelledby="offcanvasExampleLabel">
+            <x-sidebar />
+        </div> --}}
         <div id="content" class="pe-0 content">
-            <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+            <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
 
                 <div class="w-100 d-flex mt-1 p-0">
-                    <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                    {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
-                    </button>
+                    </button> --}}
                     <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5"
                             src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>
@@ -62,11 +65,11 @@
                 </h4>
             </div>
             <main class="product-list">
-                <div class="details-container">
+                {{-- <div class="details-container">
                     <div class="product-details">Product Details</div>
                     <div class="price">Price</div>
                     <div class="action">Actions</div>
-                </div>
+                </div> --}}
                 {{-- @php
                     global $totalPrice;
                 @endphp --}}

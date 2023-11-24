@@ -1,3 +1,7 @@
+:root {
+    --sidebar_width: 320px;
+}
+
 .sidebar {
     position: fixed;
     background-color: #003060;
@@ -209,6 +213,7 @@ h4 {
     background-color: #fff;
     padding: 20px;
     border-top: 2px solid #003060;
+    margin-left: var(--sidebar_width);
     /* display: flex; */
     /* align-items: end; */
 }

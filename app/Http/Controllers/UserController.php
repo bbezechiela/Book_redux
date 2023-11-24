@@ -49,7 +49,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/userdashboard');
+            return redirect('/explore');
         } else {
             return view('users.login');
         }
@@ -58,7 +58,7 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/userdashboard');
+            return redirect('/explore');
         } else {
             return view('users.signup');
         }
@@ -557,7 +557,7 @@ class UserController extends Controller
         $user = Users::find(session('id'));
         $user->update($validated);
         if ($user) {
-            return redirect('/userdashboard');
+            return redirect('/explore');
         } else {
             return 'error bitch';
         }
@@ -587,7 +587,7 @@ class UserController extends Controller
                     'user' => $user["username"],
                     'profile_pic' => $user["profile_photo"]
                 ]);
-                return redirect()->route('userdashboard');
+                return redirect()->route('explore');
             } else if ($user->type == 'Bookseller') {
                 $request->session()->put([
                     'id' => $user->id,
@@ -1057,10 +1057,10 @@ class UserController extends Controller
         return view('users.systemFeedback');
     }
 
-    public function userDashboard()
-    {
-        return view('users.userDashboard');
-    }
+    // public function userDashboard()
+    // {
+    //     return view('users.userDashboard');
+    // }
 
     public function manageShipment()
     {

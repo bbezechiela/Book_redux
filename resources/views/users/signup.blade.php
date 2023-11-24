@@ -59,7 +59,7 @@
 
                     <div class="mx-1 mt-3 d-flex justify-content-start">
                         <span class="text-secondary">
-                            Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                            Username Already Exist. Please try another username
                         </span>
                     </div>
                 </div>
@@ -82,50 +82,19 @@
                         <label class="form-label" for="password">Password</label>
                     </div>
                     <div class="mx-1 mt-3 d-flex justify-content-start">
-                        <input type="checkbox" id="show-password" class="ms-2">
-                        <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
-                                id="pass-tip"></span></label>
+                        <span class="text-secondary" style="white-space: nowrap;">
+                            Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                            <label type="checkbox" id="show-password"><span id="pass-tip"></span></label> 
+                        </span>
+                        
+                        {{-- <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
+                                id="pass-tip"></span></label>  --}}
+                                
                     </div>
                 </div>
             </div>
 
-            {{-- <div class="col container-fluid px-4 py-2">
-                    <p class="fw-bold">Kindly select genres that you are interested</p>
-                    <div class="row px-3">
-                        <div class="col-4">
-                            <input type="checkbox" name="interest[]" id="educational" value="Educational">
-                            <label for="educational">Educational</label><br>
-                            <input type="checkbox" name="interest[]" id="romance" value="Romance & Saga">
-                            <label for="romance">Romance & Saga</label><br>
-                            <input type="checkbox" name="interest[]" id="fantasy" value="Fantasy & Adventure">
-                            <label for="fantasy">Fantasy & Adventure</label><br>
-                            <input type="checkbox" name="interest[]" id="science" value="Science Fiction">
-                            <label for="science">Science Fiction</label><br>
-                            <input type="checkbox" name="interest[]" id="history" value="Historical Fiction">
-                            <label for="history">Historical Fiction</label>
-                        </div>
-                        <div class="col">
-                            <input type="checkbox" name="interest[]" id="mystery" value="Mystery & Suspense">
-                            <label for="mystery">Mystery & Suspense</label><br>
-                            <input type="checkbox" name="interest[]" id="youngAdult" value="Young Adult">
-                            <label for="youngAdult">Young Adult</label><br>
-                            <input type="checkbox" name="interest[]" id="non-fiction" value="Non-Fiction & Biography">
-                            <label for="non-fiction">Non-Fiction & Biography</label><br>
-                            <input type="checkbox" name="interest[]" id="horror" value="Horror & Supernatural">
-                            <label for="horror">Horror & Supernatural</label><br>
-                            <input type="checkbox" name="interest[]" id="comedy" value="Comedy & Satire">
-                            <label for="comedy">Comedy & Satire</label>
-                        </div>
-                        <div class="col-3">
-                            <input type="checkbox" name="interest[]" id="poetry" value="Poetry & Prose">
-                            <label for="poetry">Poetry & Prose</label><br>
-                            <input type="checkbox" name="interest[]" id="self-help" value="Self-Help">
-                            <label for="self-help">Self-Help</label><br>
-                            <input type="checkbox" name="interest[]" id="crime" value="Crime & Thriller">
-                            <label for="crime">Crime & Thriller</label>
-                        </div>
-                    </div>
-                </div>  --}}
+          
             <div class="mx-3 text-center px-4 py-2 mt-4">
                 <button type="submit" id="sign-up" class="sign-up-btn btn mx-auto w-25 h-25 fw-bold">Sign
                     Up</button>

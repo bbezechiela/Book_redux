@@ -10,19 +10,22 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0">
-    {{-- <div class="row mx-0"> --}}
-    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
+    <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
     </div>
+    {{-- <div class="row mx-0"> --}}
+    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
+        aria-labelledby="offcanvasExampleLabel">
+        <x-sidebar />
+    </div> --}}
     <div id="content" class="pe-0 border content">
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+        <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
 
             <div class="w-100 d-flex mt-1 p-0">
-                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
+                </button> --}}
                 <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
@@ -49,7 +52,7 @@
                 </div>
             </div>
         </ul>
-        
+
         <div class="container-fluid py-0 px-4">
             <div class="row mt-3 justify-content-between">
                 <div class="col-4 d-flex flex-row page-title">
@@ -70,7 +73,7 @@
                     </select>
                 </div> -->
             </div>
-            <div class="wishlist mx-4 mt-2 ml-7">
+            <div class="wishlist mt-2 ml-7 mb-5">
                 <h4>Nestine Wish List <button class="settings-button" data-bs-toggle="modal"
                         data-bs-target="#settings-modal"><i class="fa fa-cog" aria-hidden="true"></i></button></h4>
                 <div class="mx-3 pb-3 d-flex overflow-x-auto">
@@ -187,7 +190,7 @@
                 </div>
             </div>
             <!-- Another WIshlist -->
-            <div class="wishlist mx-4 mt-2 ml-7">
+            <div class="wishlist mt-2 ml-7 mb-5">
                 <h4>Eubert Wish List <button class="settings-button"><i class="fa fa-cog"
                             aria-hidden="true"></i></button></h4>
                 <div class="mx-3 pb-3 d-flex overflow-x-auto">
@@ -304,7 +307,7 @@
                 </div>
             </div>
             <!-- Another WIshlist -->
-            <div class="wishlist mx-4 mt-2 ml-7">
+            <div class="wishlist mt-2 ml-7 mb-5">
                 <h4>O'sama Wish List <button class="settings-button"><i class="fa fa-cog"
                             aria-hidden="true"></i></button></h4>
                 <div class="mx-3 pb-3 d-flex overflow-x-auto">
