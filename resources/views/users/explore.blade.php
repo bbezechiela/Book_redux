@@ -77,7 +77,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -119,7 +119,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -170,7 +170,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -212,7 +212,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -264,7 +264,7 @@
                                     @foreach ($recommended->user->addressUser as $address)
                                         @if ($address->default_address == 'true')
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                             </p>
                                         @endif
                                     @endforeach
@@ -310,7 +310,7 @@
                                     @foreach ($recommended->user->addressUser as $address)
                                         @if ($address->default_address == 'true')
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                             </p>
                                         @endif
                                     @endforeach
@@ -611,7 +611,7 @@
                                 @foreach ($sale->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -663,7 +663,7 @@
                                 @foreach ($exchange->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -714,7 +714,7 @@
                                 @foreach ($rent->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -765,7 +765,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -807,7 +807,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -858,7 +858,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -900,7 +900,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -953,7 +953,7 @@
                                     @foreach ($recommended->user->addressUser as $address)
                                         @if ($address->default_address == 'true')
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                             </p>
                                         @endif
                                     @endforeach
@@ -995,7 +995,7 @@
                                     @foreach ($recommended->user->addressUser as $address)
                                         @if ($address->default_address == 'true')
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                             </p>
                                         @endif
                                     @endforeach
@@ -1321,7 +1321,7 @@
                                 @foreach ($sale->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1372,7 +1372,7 @@
                                 @foreach ($exchange->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1424,7 +1424,7 @@
                                 @foreach ($rent->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region }}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
                                         </p>
                                     @endif
                                 @endforeach

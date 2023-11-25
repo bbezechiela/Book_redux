@@ -109,7 +109,7 @@ class UserController extends Controller
     {
         if (session()->has('user')) {
             $book = Books::find($id);
-            $user = Users::find($user_id);
+            $user = Users::with('addressUser')->find($user_id);
             return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');

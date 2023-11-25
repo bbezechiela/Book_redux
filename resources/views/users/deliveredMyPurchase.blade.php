@@ -125,7 +125,8 @@
                                 @if (isset($order->item->ratedItem))
                                     <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
                                         data-bs-target="#rate-review"
-                                        onclick="editRating({{ $order->item->ratedItem->id }}, {{ $order->item->id }})">Edit Rating and
+                                        onclick="editRating({{ $order->item->ratedItem->id }}, {{ $order->item->id }})">Edit
+                                        Rating and
                                         Review</button>
                                 @else
                                     <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
@@ -470,7 +471,7 @@
     //     img.style.height = '60px';
     // }
 
-    one_S.addEventListener('click', () => {        
+    one_S.addEventListener('click', () => {
         star(1);
         rate_val = 1;
     });
@@ -515,6 +516,18 @@
         document.getElementById('four-image').style.width = '0px';
         document.getElementById('five-image').style.width = '0px';
 
+        document.getElementById('one-image').style.height = '0px';
+        document.getElementById('two-image').style.height = '0px';
+        document.getElementById('three-image').style.height = '0px';
+        document.getElementById('four-image').style.height = '0px';
+        document.getElementById('five-image').style.height = '0px';
+
+        document.getElementById('first-plus').className = 'fa fa-plus';
+        document.getElementById('second-plus').className = 'fa fa-plus';
+        document.getElementById('three-plus').className = 'fa fa-plus';
+        document.getElementById('four-plus').className = 'fa fa-plus';
+        document.getElementById('five-plus').className = 'fa fa-plus';
+
 
         const request = {
             method: 'GET'
@@ -541,10 +554,12 @@
         fetch('/getrating/' + id, request)
             .then(response => response.json())
             .then(data => {
-                console.log(data);         
-                star(parseInt(data.rate_value));       
-                document.getElementById('user_img').src = 'images/profile_photos/' + data.item.book.user.profile_photo;
-                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data.item.book.user.last_name;
+                console.log(data);
+                star(parseInt(data.rate_value));
+                document.getElementById('user_img').src = 'images/profile_photos/' + data.item.book.user
+                    .profile_photo;
+                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data.item
+                    .book.user.last_name;
                 document.getElementById('username').textContent = data.item.book.user.username;
                 document.getElementById('interaction-type').textContent = data.item.book.status;
                 document.getElementById('item-id').textContent = item_id;
@@ -552,10 +567,42 @@
                 accu_desc.value = data.description_accuracy;
                 interaction.value = data.interaction;
                 description.value = data.description;
-                
-                // alert(data.description_accuracy)
-                
 
+                if (data.first_img != undefined) {
+                    document.getElementById('one-image').src = '/images/rate_images/' + data.first_img;
+                    document.getElementById('first-plus').className = 'fa p-0';
+                    document.getElementById('one-image').style.width = '60px';
+                    document.getElementById('one-image').style.height = '60px';
+                }
+
+                if (data.second_img != undefined) {
+                    document.getElementById('two-image').src = '/images/rate_images/' + data.second_img;
+                    document.getElementById('second-plus').className = 'fa p-0';
+                    document.getElementById('two-image').style.width = '60px';
+                    document.getElementById('two-image').style.height = '60px';
+                }
+
+                if (data.third_img != undefined) {
+                    document.getElementById('three-image').src = '/images/rate_images/' + data.third_img;
+                    document.getElementById('three-plus').className = 'fa p-0';
+                    document.getElementById('three-image').style.width = '60px';
+                    document.getElementById('three-image').style.height = '60px';
+                }
+
+                if (data.fourth_img != undefined) {
+                    document.getElementById('four-image').src = '/images/rate_images/' + data.fourth_img;
+                    document.getElementById('four-plus').className = 'fa p-0';
+                    document.getElementById('four-image').style.width = '60px';
+                    document.getElementById('four-image').style.height = '60px';
+                }
+
+                if (data.fifth_img != undefined) {
+                    document.getElementById('five-image').src = '/images/rate_images/' +  data.fifth_img;
+                    document.getElementById('five-plus').className = 'fa p-0';
+                    document.getElementById('five-image').style.width = '60px';
+                    document.getElementById('five-image').style.height = '60px';
+                    alert(data.description_accuracy)
+                }
             })
             .catch(err => console.log(err));
     }

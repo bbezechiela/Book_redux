@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Product | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/singleProduct-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Product | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/singleProduct-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -22,8 +22,8 @@
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
-                    <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="/assets/Book_Logo.png"
-                            alt="Logo"></a>
+                    <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5"
+                            src="/assets/Book_Logo.png" alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
@@ -52,21 +52,21 @@
                 </div>
             </ul>
             @if ($book_id->status == 'Exchange')
-            <div class="card mb-3 book-details mx-4">
-                <div class="row g-0">
-                    <div class="col-md-4 p-5">
-                        <img src="{{ asset('images/books/' . $book_id->book_photo) }}" class="img-fluid mx-auto rounded"
-                            alt="product" width="300px" height="564px">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
-                                    data-bs-target="#report">Report</a></h5>
-                            <h6 class="card-title"><span style="color: #E55B13; font-weight: bold;"></span>
-                                <span> For {{ $book_id->status }}
-                                    |</span> <span>{{ $book_id->genre }}</span>
-                            </h6>
-                            {{-- <p class="card-text">
+                <div class="card mb-3 book-details mx-4">
+                    <div class="row g-0">
+                        <div class="col-md-4 p-5">
+                            <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                class="img-fluid mx-auto rounded" alt="product" width="300px" height="564px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#report">Report</a></h5>
+                                <h6 class="card-title"><span style="color: #E55B13; font-weight: bold;"></span>
+                                    <span> For {{ $book_id->status }}
+                                        |</span> <span>{{ $book_id->genre }}</span>
+                                </h6>
+                                {{-- <p class="card-text">
                                 Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
                             <span class="inline-dropdown">
                                 <button class="btn dropdown-toggle places-button" type="button"
@@ -80,49 +80,55 @@
                                 </ul>
                             </span>
                             </p> --}}
-                            {{-- <p class="card-text">Shipping Fee <span
+                                {{-- <p class="card-text">Shipping Fee <span
                                         style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
-                            <p class="card-text">Shipping Fee <span
-                                    style="font-weight: bold;">₱103</span></p>
-                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
-                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
-                            </p>
-                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
-                            </p>
-                            <p class="card-text">Product Description: <span
-                                    class="fw-bold">{{ $book_id->description }}</span></p>
-                            <p class="card-text location-text"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
-                            
-                            {{-- <a href="#" class="btn total-likes"><i
+                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
+                                <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
+                                <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
+                                <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                                </p>
+                                <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                                </p>
+                                <p class="card-text">Product Description: <span
+                                        class="fw-bold">{{ $book_id->description }}</span></p>
+                                {{-- @foreach ($user_id->addressUser as $address) --}}
+                                {{-- @if ($address->default_address == 'true') --}}
+                                <p class="card-text location-text"><i class="fa fa-map-marker"
+                                        aria-hidden="true"></i>sample</p>
+                                {{-- @endif --}}
+                                {{-- @endforeach --}}
+
+
+                                {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a> --}}
-                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add to Cart</a>
-                            <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add to Wishlist</a>
+                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
+                                        class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                    Cart</a>
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
+                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @else
-            <div class="card mb-3 book-details mx-4">
-                <div class="row g-0">
-                    <div class="col-md-4 p-5">
-                        <img src="{{ asset('images/books/' . $book_id->book_photo) }}" class="img-fluid mx-auto rounded"
-                            alt="product" width="300px" height="564px">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
-                                    data-bs-target="#report">Report</a></h5>
-                            <h6 class="card-title"><span
-                                    style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
-                                </span>
-                                <span>| For {{ $book_id->status }}
-                                    |</span> <span>{{ $book_id->genre }}</span>
-                            </h6>
-                            {{-- <p class="card-text">
+                <div class="card mb-3 book-details mx-4">
+                    <div class="row g-0">
+                        <div class="col-md-4 p-5">
+                            <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                class="img-fluid mx-auto rounded" alt="product" width="300px" height="564px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $book_id->title }} <a href=""
+                                        data-bs-toggle="modal" data-bs-target="#report">Report</a></h5>
+                                <h6 class="card-title"><span
+                                        style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
+                                    </span>
+                                    <span>| For {{ $book_id->status }}
+                                        |</span> <span>{{ $book_id->genre }}</span>
+                                </h6>
+                                {{-- <p class="card-text">
                                 Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
                             <span class="inline-dropdown">
                                 <button class="btn dropdown-toggle places-button" type="button"
@@ -136,30 +142,36 @@
                                 </ul>
                             </span>
                             </p> --}}
-                            <p class="card-text">Shipping Fee <span
-                                    style="font-weight: bold;">₱{{ $book_id->price }}</span></p>
-                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
-                            </p>
-                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
-                            </p>
-                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
-                            </p>
-                            <p class="card-text">Product Description: <span
-                                    class="fw-bold">{{ $book_id->description }}</span></p>
-                            <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
-                            </p>
-                            {{-- <a href="#" class="btn total-likes"><i
+                                <p class="card-text">Shipping Fee <span
+                                        style="font-weight: bold;">₱{{ $book_id->price }}</span></p>
+                                <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
+                                <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
+                                </p>
+                                <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                                </p>
+                                <p class="card-text">Condition: <span
+                                        class="fw-bold">{{ $book_id->condition }}</span>
+                                </p>
+                                <p class="card-text">Product Description: <span
+                                        class="fw-bold">{{ $book_id->description }}</span></p>
+                                @foreach ($user_id->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}</p>
+                                    @endif
+                                @endforeach
+                                {{-- <a href="#" class="btn total-likes"><i
                                         class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                         style="margin-right: 7px"></i>100</a> --}}
-                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add to Cart</a>
-                            <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add to Wishlist</a>
+                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
+                                        class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add
+                                    to Cart</a>
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
+                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endif
 
             <div class="container text-center seller-details mx-4">
@@ -234,26 +246,30 @@
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn active d-block rate-button" role="button" data-bs-toggle="button"
-                                    aria-pressed="true" style="background-color: #003060; border-color: #003060;">All
+                                <a href="#" class="btn active d-block rate-button" role="button"
+                                    data-bs-toggle="button" aria-pressed="true"
+                                    style="background-color: #003060; border-color: #003060;">All
                                     <span>(10)</span></a>
-                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">3 Star
+                                <a href="#" class="btn d-block rate-button" role="button"
+                                    data-bs-toggle="button">3 Star
                                     <span>(20)</span></a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
-                                    aria-pressed="true">5 Star <span>(100)</span></a>
-                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">2 Star
+                                <a href="#" class="btn d-block rate-button" role="button"
+                                    data-bs-toggle="button" aria-pressed="true">5 Star <span>(100)</span></a>
+                                <a href="#" class="btn d-block rate-button" role="button"
+                                    data-bs-toggle="button">2 Star
                                     <span>(20)</span></a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
-                                    aria-pressed="true">4 star <span>(10)</span></a>
-                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">1 Star
+                                <a href="#" class="btn d-block rate-button" role="button"
+                                    data-bs-toggle="button" aria-pressed="true">4 star <span>(10)</span></a>
+                                <a href="#" class="btn d-block rate-button" role="button"
+                                    data-bs-toggle="button">1 Star
                                     <span>(59)</span></a>
                             </div>
                         </div>
@@ -384,31 +400,36 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Counterfeit and copyright
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Prohibited item
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Offensive or potentially offensive item
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Fraudulent listing
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Others
                         </label>
@@ -417,8 +438,7 @@
                         <label for="exampleFormControlTextarea1" class="form-label report-input"
                             style="color:#003060;">Description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="Please further elaborate on your selected reason" rows="7"
-                            style="color:#003060;"></textarea>
+                            placeholder="Please further elaborate on your selected reason" rows="7" style="color:#003060;"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -430,6 +450,6 @@
 </body>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
