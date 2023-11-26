@@ -1,5 +1,5 @@
 <div class="d-flex flex-row p-3 head-nav">
-    <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
+    <a href="/dashboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
 </div>
 
 <ul class="nav">
