@@ -13,7 +13,7 @@
     <div id="sellersidebar" class="sellersidebar p-2 min-vh-100 shadow">
         <x-sellersidebar />
     </div>
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <a href="/" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
@@ -26,14 +26,14 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/sellermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/sellermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/sellernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                        </button></a> --}}
+                    {{-- <a href="/sellernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
+                        </button></a> --}}
                     <a href="/profile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"

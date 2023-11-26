@@ -239,14 +239,19 @@
                                             <label class="col-md-4 control-label" for="filebutton1">Back Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="filebutton1" class="input-file form-control" type="file" style="margin-bottom: 12px;">
+                                                    <input id="filebutton1" name="filebutton1"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
                                                 </div>
                                             </div>
-                                
-                                            <label class="col-md-4 control-label" for="filebutton2" style="white-space: nowrap;">Content or Interior Photos</label>
+
+                                            <label class="col-md-4 control-label" for="filebutton2"
+                                                style="white-space: nowrap;">Content or Interior Photos</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton2" name="filebutton2" class="input-file form-control" type="file" style="margin-bottom: 12px;">
+                                                    <input id="filebutton2" name="filebutton2"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -662,6 +667,29 @@
                                 </label>
                             </div>
                             <div class="col">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-md-4 control-label" for="filebutton1">Back
+                                            Cover</label>
+                                        <div class="col-md-8">
+                                            <div class="input-file-wrapper">
+                                                <input id="filebutton1" name="filebutton1"
+                                                    class="input-file form-control" type="file"
+                                                    style="margin-bottom: 12px;">
+                                            </div>
+                                        </div>
+
+                                        <label class="col-md-4 control-label" for="filebutton2"
+                                            style="white-space: nowrap;">Content or Interior Photos</label>
+                                        <div class="col-md-8">
+                                            <div class="input-file-wrapper">
+                                                <input id="filebutton2" name="filebutton2"
+                                                    class="input-file form-control" type="file"
+                                                    style="margin-bottom: 12px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <select name="genre" id="" class="form-control form-select"
                                     style="margin-bottom: 12px; color: #003060;">
                                     <option>Genre</option>
@@ -1047,6 +1075,29 @@
 
                                 </div>
                                 <div class="col">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-md-4 control-label" for="filebutton1">Back
+                                                Cover</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton1" name="filebutton1"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+
+                                            <label class="col-md-4 control-label" for="filebutton2"
+                                                style="white-space: nowrap;">Content or Interior Photos</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton2" name="filebutton2"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <select name="genre" id="" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;">
                                         <option>Genre</option>
@@ -1451,7 +1502,7 @@
     {{-- update listing modal --}}
     <div class="modal fade" id="updateListingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Listing</h1>
@@ -1494,6 +1545,29 @@
 
                                 </div>
                                 <div class="col">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-md-4 control-label" for="filebutton1">Back
+                                                Cover</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton1" name="filebutton1"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+
+                                            <label class="col-md-4 control-label" for="filebutton2"
+                                                style="white-space: nowrap;">Content or Interior Photos</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton2" name="filebutton2"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <select name="genre" id="edit-sale-genre" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;">
                                         <option>Genre</option>
@@ -1586,6 +1660,29 @@
 
                             </div>
                             <div class="col">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-md-4 control-label" for="filebutton1">Back
+                                            Cover</label>
+                                        <div class="col-md-8">
+                                            <div class="input-file-wrapper">
+                                                <input id="filebutton1" name="filebutton1"
+                                                    class="input-file form-control" type="file"
+                                                    style="margin-bottom: 12px;">
+                                            </div>
+                                        </div>
+
+                                        <label class="col-md-4 control-label" for="filebutton2"
+                                            style="white-space: nowrap;">Content or Interior Photos</label>
+                                        <div class="col-md-8">
+                                            <div class="input-file-wrapper">
+                                                <input id="filebutton2" name="filebutton2"
+                                                    class="input-file form-control" type="file"
+                                                    style="margin-bottom: 12px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <select name="genre" id="edit-exchange-genre" class="form-control form-select"
                                     style="margin-bottom: 12px; color: #003060;">
                                     <option>Genre</option>
@@ -1676,6 +1773,29 @@
 
                                 </div>
                                 <div class="col">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-md-4 control-label" for="filebutton1">Back
+                                                Cover</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton1" name="filebutton1"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+
+                                            <label class="col-md-4 control-label" for="filebutton2"
+                                                style="white-space: nowrap;">Content or Interior Photos</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton2" name="filebutton2"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <select name="genre" id="edit-rent-genre" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;">
                                         <option>Genre</option>

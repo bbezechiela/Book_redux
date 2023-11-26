@@ -21,8 +21,8 @@
                 <input type="password" id="password" name="password" class="form-control"/>
                 <label class="form-label" for="password">Password</label>
             </div>
-            <input type="checkbox" id="show-password" class="ms-2">
-            <label for="show-password">Show Password</label> <br>
+            {{-- <input type="checkbox" id="show-password" class="ms-2">
+            <label for="show-password">Show Password</label> <br> --}}
             @if (isset($message))
                 <p class="text-danger text-center fw-bold mt-3">{{$message}}</p>
             @endif
