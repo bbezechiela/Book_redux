@@ -24,6 +24,10 @@
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
     </a>
+    <a href="/messages" class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
+        <i class="fa fa-envelope-o d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
+        <span class="nav-link">Messages</span>
+    </a>
     <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
         <i class="fa fa-users d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Book Club</span>

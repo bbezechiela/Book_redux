@@ -54,7 +54,7 @@ a::after {
     clear: both;
 }
 
-.book-status{
+.book-status {
     background-color: #E55B13;
     color: white;
 }
@@ -73,36 +73,25 @@ a::after {
     font-size: smaller;
 }
 
-.create-btn {
+.list-title{
+    white-space: nowrap;
+}
+
+.create-btn-exchange, .create-btn-sale {
+    white-space: nowrap;
     border: 1px solid #E55B13;
     color: #E55B13;
 }
 
-.create-btn:hover {
+.create-btn-exchange:hover, .create-btn-sale:hover {
     background-color: #E55B13;
     color: white;
 }
 
-.like-button {
-    color: #2D6092;
-    background: none;
-    border: none;
-    padding: 0;
-}
-
-.like-button:hover {
-    color: #E55B13;
-    background-color: transparent;
-}
-
-.like-button span{
-    font-size: 15px;
-}
-
-.interaction-type{
-    font-size: 1.25rem!important;
+.interaction-type {
+    font-size: 1.25rem !important;
     color: #003060;
-    background-color:azure;
+    background-color: azure;
 }
 
 .contents,
@@ -124,41 +113,28 @@ button,
     border: 1px solid #003060;
 }
 
-/* @media screen and (max-width: 556px) {
-    .interaction-type{
-        font-size: 1.25rem!important;
-        color: #003060;
-        background-color:azure;
-    }
-}
-
-@media screen and (min-width: 556px) {
-    .interaction-type{
-        font-size: 1.25rem!important;
-        color: #003060;
-        background-color:azure;
-    }
-} */
-.genre-text, .author-text, .title-text{
+.genre-text,
+.author-text,
+.title-text {
     white-space: nowrap;
 }
 
-.update-btn{
+.update-btn {
     background-color: #E55B13;
     margin-bottom: 2em;
 }
 
-.update-btn:hover{
+.update-btn:hover {
     background-color: #003060;
 }
 
-.delete-btn{
-    color: #E55B13; 
+.delete-btn {
+    color: #E55B13;
     border: 1px solid #E55B13;
     margin-bottom: 2em;
 }
 
-.delete-btn:hover{
+.delete-btn:hover {
     background-color: #003060;
     border: 1px solid #003060;
     color: #fff;
@@ -168,7 +144,8 @@ button,
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text, .search-field {
+.input-group-text,
+.search-field {
     border: none;
     background-color: #fff;
 }
@@ -177,7 +154,7 @@ button,
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i {
     color: #003060;
 }
 
@@ -186,17 +163,39 @@ a:hover {
     font-weight: bold;
 }
 
-.guidelines{
+.guidelines {
     margin-top: 1em;
     color: #E55B13;
 }
 
-.accordion-header button, .accordion-body, .accordion-button{
+.accordion-header button,
+.accordion-body,
+.accordion-button {
     color: #003060;
     font-size: 14px;
 }
 
+.py-profile .avatar {
+    padding: 0;
+}
 
-
-
-
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
+}

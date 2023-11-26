@@ -49,19 +49,31 @@
                         </span>
                         <input class="form-control rounded-3" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                        </button></a> --}}
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -76,7 +88,8 @@
                                         width="50" height="50">
                                     <div>
                                         <h5 class="mb-0">Book Exchange Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
+                                        <p class="mb-0">John Doe Buena<small class="text-muted"
+                                                style="margin-left: 10px;">12/29/2022 10:11</small>
                                         </p>
                                     </div>
                                 </div>
@@ -119,7 +132,8 @@
                                         width="50" height="50">
                                     <div>
                                         <h5 class="mb-0">Book Selling Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
+                                        <p class="mb-0">John Doe Buena<small class="text-muted"
+                                                style="margin-left: 10px;">12/29/2022 10:11</small>
                                         </p>
                                     </div>
                                 </div>
@@ -162,7 +176,8 @@
                                         width="50" height="50">
                                     <div>
                                         <h5 class="mb-0">Book Renting Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
+                                        <p class="mb-0">John Doe Buena<small class="text-muted"
+                                                style="margin-left: 10px;">12/29/2022 10:11</small>
                                         </p>
                                     </div>
                                 </div>
@@ -205,7 +220,8 @@
                                         width="50" height="50">
                                     <div>
                                         <h5 class="mb-0">Book Exchange Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
+                                        <p class="mb-0">John Doe Buena<small class="text-muted"
+                                                style="margin-left: 10px;">12/29/2022 10:11</small>
                                         </p>
                                     </div>
                                 </div>

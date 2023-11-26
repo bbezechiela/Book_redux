@@ -87,11 +87,11 @@
             </div> --}}
 
             <main class="product-list">
-                <div class="details-container">
+                {{-- <div class="details-container">
                     <h1 class="product-details">Book Ordered</h1>
                     <h1 class="price">Price</h1>
-                </div>
-        </div>
+                </div> --}}
+        {{-- </div> --}}
         @foreach ($items as $orders)
             {{-- {{ $orders->productRelation->title }} --}}
             {{-- <span data="id" >{{ $orders->id }}</span> --}}
@@ -109,7 +109,7 @@
                         <div class="book-info">
                             <p class="book-title">{{ $orders->productRelation->title }}</p>
                             <p class="fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
-                            <p class="mb-0 interaction-type">Security Deposit: <span>₱0</span></p>
+                            <p class="mb-0 interaction-type">Qty: <span>2</span></p>
                         </div>
                         <div class="product-price">₱<span
                                 class="price-list">{{ $orders->productRelation->price }}</span>

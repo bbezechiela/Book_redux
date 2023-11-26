@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Delivered | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/myPurchase-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Delivered | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/myPurchase-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -10,20 +10,24 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0">
-    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
+    <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
+        <x-sidebar />
+    </div>
+
+    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
     <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
         <x-sidebarProfile />
-    </div>
-    <div id="content" class="border content">
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+    </div> --}}
+    <div id="content" class="content">
+        <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
-                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
+                </button> --}}
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
                 {{-- <ul class="nav nav-underline">
@@ -52,19 +56,31 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                        </button></a> --}}
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -92,48 +108,48 @@
             </div>
         </div>
         @foreach ($orders as $order)
-            @if ($order->item->order->order_status == 'received' && $order->item->order->user_id == session('id'))
-                <div class="order-cart">
-                    <div class="name-cart d-flex justify-content-between">
-                        <div>
-                            <a class="seller-name"
-                                href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
+        @if ($order->item->order->order_status == 'received' && $order->item->order->user_id == session('id'))
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
+                </div>
+                <span class="order-text me-5 mt-0">Delivered</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('/images/books/' . $order->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $order->title }}</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                            <p class="payment-mode">{{ $order->item->order->payment_method }}</p>
                         </div>
-                        <span class="order-text me-5 mt-0">Delivered</span>
                     </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <div class="left-section">
-                                <img src="{{ asset('/images/books/' . $order->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="mb-0 book-title">{{ $order->title }}</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                    <p class="payment-mode">{{ $order->item->order->payment_method }}</p>
-                                </div>
-                            </div>
-                            <div class="right-section">
-                                <div class="book-price">
-                                    <p class="product-price">{{ $order->price }}</p>
-                                    <p class="text-total">Total Payment:<span
-                                            class="product-total">₱{{ $order->price }}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="order-details">
-                            <div class="order-message">
-                                <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                    data-bs-target="#rate-review"
-                                    onclick="ratingReview({{ $order->user->id }}, '{{ $order->status }}', {{ $order->item->id }})">Post
-                                    Rating and Review</button>
-                            </div>
-                            <div class="button-group">
-                                <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
-                            </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">{{ $order->price }}</p>
+                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-            @endif
+                <div class="order-details">
+                    <div class="order-message">
+                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                            data-bs-target="#rate-review"
+                            onclick="ratingReview({{ $order->user->id }}, '{{ $order->status }}', {{ $order->item->id }})">Post
+                            Rating and Review</button>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
         @endforeach
         <!-- Rate and Review Modal -->
         <div class="modal fade" id="rate-review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -143,8 +159,7 @@
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review
                             Seller</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -237,52 +252,53 @@
                                 </p>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..."></textarea>
+                                    <textarea class="form-control" id="description" rows="5"
+                                        placeholder="Enter your text here..."></textarea>
                                 </div>
                                 </p>
                                 <p>Photo:
-                                <div class="image-container">
-                                    <div class="image-holder">
-                                        <input id="first-img" type="file" accept="image/*" class="d-none">
-                                        <label for="first-img"><i id="first-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="one-image" class="fa fa-plus" alt=""></i></label>
+                                    <div class="image-container">
+                                        <div class="image-holder">
+                                            <input id="first-img" type="file" accept="image/*" class="d-none">
+                                            <label for="first-img"><i id="first-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="one-image" class="fa fa-plus" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="second-img" type="file" accept="image/*" class="d-none">
+                                            <label for="second-img"><i id="second-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="two-image" class="fa fa-plus" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="third-img" type="file" accept="image/*" class="d-none">
+                                            <label for="third-img"><i id="three-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="three-image" class="fa fa-plus" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="fourth-img" type="file" accept="image/*" class="d-none">
+                                            <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="four-image" class="fa fa-plus" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="fifth-img" type="file" accept="image/*" class="d-none">
+                                            <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="five-image" class="fa fa-plus" alt=""></i></label>
+                                        </div>
                                     </div>
-                                    <div class="image-holder">
-                                        <input id="second-img" type="file" accept="image/*" class="d-none">
-                                        <label for="second-img"><i id="second-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="two-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="third-img" type="file" accept="image/*" class="d-none">
-                                        <label for="third-img"><i id="three-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="three-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="fourth-img" type="file" accept="image/*" class="d-none">
-                                        <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="four-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="fifth-img" type="file" accept="image/*" class="d-none">
-                                        <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="five-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                </div>
                                 </p>
                                 <div class="col-4 d-flex justify-content-between show-text">
                                     <p>Show username on your rating/review</p>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="user-switch" value="true">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="user-switch"
+                                            value="true">
                                     </div>
                                 </div>
-                                <p class="username-text">Your username will be shown as <span
-                                        id="username">necxs</span></p>
+                                <p class="username-text">Your username will be shown as <span id="username">necxs</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -296,35 +312,30 @@
 </div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
     var rate_val = 0;
-
     var one_S = document.getElementById('one-star');
     var two_S = document.getElementById('two-star');
     var three_S = document.getElementById('three-star');
     var four_S = document.getElementById('four-star');
     var five_S = document.getElementById('five-star');
-
     var first_img = document.getElementById('first-img');
     var second_img = document.getElementById('second-img');
     var third_img = document.getElementById('third-img');
     var fourth_img = document.getElementById('fourth-img');
     var fifth_img = document.getElementById('fifth-img');
-
     var submit_btn = document.getElementById('submit-btn');
     var accu_cond = document.getElementById('condition-accuracy');
     var accu_desc = document.getElementById('condition-description');
     var interaction = document.getElementById('interaction');
     var description = document.getElementById('description');
     var check_username = document.getElementById('user-switch');
-
     submit_btn.addEventListener('click', () => {
         // console.log(rate_val + ' ' + accu_cond.value + ' ' + accu_desc.value + ' ' + interaction.value + ' ' + description.value + ' ' + check_username.checked);
-
         // let data = {
         //     item_id: document.getElementById('item-id').textContent,
         //     user_id: {{ session('id') }},
@@ -342,14 +353,17 @@
         // };
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
-        formData.append('user_id', {{ session('id') }});
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
         formData.append('rate_value', rate_val);
         formData.append('condition_accuracy', accu_cond.value);
         formData.append('description_accuracy', accu_desc.value);
         formData.append('interaction', interaction.value);
         formData.append('description', description.value);
         formData.append('display_username', check_username.checked);
-
         if (first_img.files.length > 0) {
             formData.append('first_img', first_img.files[0]);
         }
@@ -365,7 +379,6 @@
         if (fifth_img.files.length > 0) {
             formData.append('fifth_img', fifth_img.files[0]);
         }
-
         // console.log(formData);
         fetch('/ratepost', {
                 method: 'POST',
@@ -381,7 +394,6 @@
             })
             .catch(error => console.log(error));
     });
-
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -389,7 +401,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     // if (first_img.files.length > 0) {
     //     var img = document.getElementById('one-image');
     //     img.src = URL.createObjectURL(first_img.files[0]);
@@ -397,7 +408,6 @@
     //     img.style.width = '60px';
     //     img.style.height = '60px';
     // }
-
     second_img.addEventListener('change', () => {
         var img = document.getElementById('two-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -405,7 +415,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     // if (second_img.files.length > 0) {
     //     var img = document.getElementById('two-image');
     //     img.src = URL.createObjectURL(second_img.files[0]);
@@ -413,7 +422,6 @@
     //     img.style.width = '60px';
     //     img.style.height = '60px';
     // }
-
     third_img.addEventListener('change', () => {
         var img = document.getElementById('three-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -421,7 +429,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     // if (third_img.files.length > 0) {
     //     var img = document.getElementById('three-image');
     //     img.src = URL.createObjectURL(third_img.files[0]);
@@ -429,7 +436,6 @@
     //     img.style.width = '60px';
     //     img.style.height = '60px';
     // }
-
     fourth_img.addEventListener('change', () => {
         var img = document.getElementById('four-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -437,7 +443,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     // if (fourth_img.files.length > 0) {
     //     var img = document.getElementById('four-image');
     //     img.src = URL.createObjectURL(fourth_img.files[0]);
@@ -445,7 +450,6 @@
     //     img.style.width = '60px';
     //     img.style.height = '60px';
     // }
-
     fifth_img.addEventListener('change', () => {
         var img = document.getElementById('five-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -453,7 +457,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     // if (fifth_img.files.length > 0) {
     //     var img = document.getElementById('five-image');
     //     img.src = URL.createObjectURL(fifth_img.files[0]);
@@ -461,7 +464,6 @@
     //     img.style.width = '60px';
     //     img.style.height = '60px';
     // }
-
     one_S.addEventListener('click', () => {
         one_S.className = 'fa fa-star';
         two_S.className = 'fa fa-star-o';
@@ -470,7 +472,6 @@
         five_S.className = 'fa fa-star-o';
         rate_val = 1;
     });
-
     two_S.addEventListener('click', () => {
         one_S.className = 'fa fa-star';
         two_S.className = 'fa fa-star';
@@ -479,7 +480,6 @@
         five_S.className = 'fa fa-star-o';
         rate_val = 2;
     });
-
     three_S.addEventListener('click', () => {
         one_S.className = 'fa fa-star';
         two_S.className = 'fa fa-star';
@@ -488,7 +488,6 @@
         five_S.className = 'fa fa-star-o';
         rate_val = 3;
     });
-
     four_S.addEventListener('click', () => {
         one_S.className = 'fa fa-star';
         two_S.className = 'fa fa-star';
@@ -497,7 +496,6 @@
         five_S.className = 'fa fa-star-o';
         rate_val = 4;
     });
-
     five_S.addEventListener('click', () => {
         one_S.className = 'fa fa-star';
         two_S.className = 'fa fa-star';
@@ -514,24 +512,19 @@
         third_img.value = '';
         fourth_img.value = '';
         fifth_img.value = '';
-        
         document.getElementById('one-image').src = '';
         document.getElementById('two-image').src = '';
         document.getElementById('three-image').src = '';
         document.getElementById('four-image').src = '';
         document.getElementById('five-image').src = '';
-
         document.getElementById('one-image').style.width = '0px';
         document.getElementById('two-image').style.width = '0px';
         document.getElementById('three-image').style.width = '0px';
         document.getElementById('four-image').style.width = '0px';
         document.getElementById('five-image').style.width = '0px';
-        
-
         const request = {
             method: 'GET'
         };
-
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {

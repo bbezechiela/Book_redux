@@ -1,6 +1,6 @@
-/* :root {
+:root {
     --sidebar_width: 320px;
-} */
+}
 
 .sidebar {
     position: fixed;
@@ -270,7 +270,8 @@
     padding: 1em;
 }
 
-.pickup-details, .personal-transaction-details{
+.pickup-details,
+.personal-transaction-details {
     margin-left: 20px;
 }
 
@@ -465,7 +466,8 @@
     flex: 1;
 }
 
-.customer-details-box, .product-details-box {
+.customer-details-box,
+.product-details-box {
     margin-left: 10px;
 }
 
@@ -480,4 +482,29 @@
 .details-container {
     display: flex;
     justify-content: space-between;
+}
+
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
 }

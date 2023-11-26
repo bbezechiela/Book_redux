@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Orders | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/orders-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Orders | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/orders-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -11,17 +11,20 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0">
-    <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start d-print-none" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
+    <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
     </div>
-    <div id="content" class="border content">
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 d-print-none">
+    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start d-print-none" tabindex="-1"
+        aria-labelledby="offcanvasExampleLabel">
+        <x-sidebar />
+    </div> --}}
+    <div id="content" class="content">
+        <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4 d-print-none">
             <div class="w-100 d-flex mt-2 p-0 d-print-none">
-                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
+                </button> --}}
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
             </div>
@@ -33,19 +36,31 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                        </button></a> --}}
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -64,59 +79,59 @@
         </div>
 
         @foreach ($orders as $item)
-            {{-- @foreach ($item->item as $order) --}}
-            @if ($item->item->order->order_status == 'pending')
-                <div class="order-cart d-print-none">
-                    <div class="name-cart d-flex justify-content-between">
-                        <div>
-                            <a class="seller-name"
-                                href="#"><span>{{ $item->item->order->user->first_name . ' ' . $item->item->order->user->last_name }}</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+        {{-- @foreach ($item->item as $order) --}}
+        @if ($item->item->order->order_status == 'pending')
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="#"><span>{{ $item->item->order->user->first_name . ' ' . $item->item->order->user->last_name }}</span></a>
+                    <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Order</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('/images/books/' . $item->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $item->title }}</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $item->status }}</p>
+                            <p class="payment-mode">{{ $item->item->order->payment_method }}</p>
                         </div>
-                        <span class="order-text me-5 mt-0">Order</span>
                     </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <div class="left-section">
-                                <img src="{{ asset('/images/books/' . $item->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="mb-0 book-title">{{ $item->title }}</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $item->status }}</p>
-                                    <p class="payment-mode">{{ $item->item->order->payment_method }}</p>
-                                </div>
-                            </div>
-                            <div class="right-section">
-                                <div class="book-price">
-                                    <p class="product-price">₱{{ $item->price }}</p>
-                                    {{-- <p class="text-total">Shipping Fee:<span class="fee-total">₱{{ $item->item->order->shipping_total }}</span></p> --}}
-                                    <p class="text-total">Total Payment:<span
-                                            class="product-total">₱{{ $item->price }}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <div class="order-message">
-                                    <small class="text-body-secondary">Shipment details has been confirmed by the
-                                        courier</small>
-                                </div>
-                                <div class="button-group">
-                                    <button type="button" class="btn btn-sm view-button" data-bs-toggle="modal"
-                                        data-bs-target="#shipping-details">View shipping
-                                        details</button>
-                                </div>
-                            </div>
-                            <p class="order-ID">Order ID <span class="float-end me-5">#7649324789134</span></p>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $item->price }}</p>
+                            {{-- <p class="text-total">Shipping Fee:<span class="fee-total">₱{{ $item->item->order->shipping_total }}</span>
+                            </p> --}}
+                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $item->price }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-            @endif
+                <div class="order">
+                    <div class="order-details">
+                        <div class="order-message">
+                            <small class="text-body-secondary">Shipment details has been confirmed by the
+                                courier</small>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-sm view-button" data-bs-toggle="modal"
+                                data-bs-target="#shipping-details">View shipping
+                                details</button>
+                        </div>
+                    </div>
+                    <p class="order-ID">Order ID <span class="float-end me-5">#7649324789134</span></p>
+                </div>
+            </div>
+        </div>
+        @endif
 
-            {{-- <p>{{ $item->title }}</p> --}}
-            {{-- @endforeach --}}
+        {{-- <p>{{ $item->title }}</p> --}}
+        {{-- @endforeach --}}
         @endforeach
-
 
         {{-- <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
@@ -204,14 +219,13 @@
         </div> --}}
 
         <!-- Arrange Shipment Modal -->
-        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Arrange Shipment</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="details-container">
@@ -253,10 +267,8 @@
                                     placeholder="Order Date: 12/29/2023"><br>
                                 <input type text="text" class="form-control" id="order-number"
                                     placeholder="OD421376365"><br>
-                                <input type="text" class="form-control" id="book-title"
-                                    placeholder="Maria Clara"><br>
-                                <input type="text" class="form-control" id="transaction-type"
-                                    placeholder="Sale"><br>
+                                <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                                <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
                                 <input type="text" class="form-control" id="price" placeholder="P100"><br>
                                 <input type="text" class="form-control" id="deposit" placeholder="P0"><br>
                                 <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
@@ -271,8 +283,7 @@
                                     <p>You can drop off your parcel at any J&T Express Branch</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -283,8 +294,7 @@
                                     <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -295,8 +305,7 @@
                                     <p>You and the customer will arrange your transaction</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -348,8 +357,8 @@
                             <input type="text" class="form-control" id="fullname" placeholder="Fullname"
                                 style="margin-bottom: 20px; color: #003060;">
                             <label for="contact-number" class="form-label">Contact Number</label>
-                            <input type="text" class="form-control" id="contact-number"
-                                placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;">
+                            <input type="text" class="form-control" id="contact-number" placeholder="Contact Number"
+                                style="margin-bottom: 20px; color: #003060;">
                             <label for="address" class="form-label">Province, City, Barangay</label>
                             <div class="form-group">
                                 <select class="form-control form-select" aria-label="Select Address" placeholder=""
@@ -474,8 +483,8 @@
 </div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>

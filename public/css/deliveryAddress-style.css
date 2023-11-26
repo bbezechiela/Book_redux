@@ -5,19 +5,23 @@
 .addresses {
     background-color: #2D6092;
 }
-.sidebar {
-    position: fixed;
-    background-color: #003060;
-    color: #fff;
-}
 
-.sidebarProfile {
+.sidebar {
     position: fixed;
     background-color: #003060;
     color: #003060;
     width: var(--sidebar_width);
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
+
+/* 
+.sidebarProfile {
+    position: fixed;
+    background-color: #003060;
+    color: #003060;
+    width: var(--sidebar_width);
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+} */
 
 .profile-content {
     font-size: smaller;
@@ -78,7 +82,7 @@
 }
 
 .edit-button,
-.edit-button a{
+.edit-button a {
     color: #E55B13;
     background: none;
     border: none;
@@ -173,17 +177,17 @@
     width: 7em;
 }
 
-.address-container{
+.address-container {
     color: #003060;
     margin-top: 2em;
     margin-left: 2em;
 }
 
-.address-container .header{
+.address-container .header {
     margin-bottom: 2em;
 }
 
-.nav-underline{
+.nav-underline {
     margin-left: 7em;
 }
 
@@ -200,15 +204,16 @@
 }
 
 .button-container {
-    display: flex; 
-    gap: 10px; 
+    display: flex;
+    gap: 10px;
 }
 
 .search-field:focus {
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text, .search-field {
+.input-group-text,
+.search-field {
     border: none;
     background-color: #fff;
 }
@@ -217,17 +222,41 @@
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i {
     color: #003060;
 }
 
 .autocomplete {
     background-color: #c7c6c6;
     position: absolute;
-    cursor: pointer;    
+    cursor: pointer;
 }
 
 #list:hover {
     background-color: #2D6092;
 }
 
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
+}
