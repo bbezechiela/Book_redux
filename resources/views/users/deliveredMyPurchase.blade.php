@@ -331,66 +331,6 @@
     var description = document.getElementById('description');
     var check_username = document.getElementById('user-switch');
 
-    submit_btn.addEventListener('click', () => {
-        // console.log(rate_val + ' ' + accu_cond.value + ' ' + accu_desc.value + ' ' + interaction.value + ' ' + description.value + ' ' + check_username.checked);
-
-        // let data = {
-        //     item_id: document.getElementById('item-id').textContent,
-        //     user_id: {{ session('id') }},
-        //     rate_value: rate_val,
-        //     condition_accuracy: accu_cond.value,
-        //     description_accuracy: accu_desc.value,
-        //     interaction: interaction.value,
-        //     description: description.value,
-        //     display_username: check_username.checked,
-        //     // first_img:
-        //     // second_img:
-        //     // third_img:
-        //     // fourth_img:
-        //     // fifth_img:
-        // };
-        var formData = new FormData();
-        formData.append('item_id', document.getElementById('item-id').textContent);
-        formData.append('user_id', {{ session('id') }});
-        formData.append('rate_value', rate_val);
-        formData.append('condition_accuracy', accu_cond.value);
-        formData.append('description_accuracy', accu_desc.value);
-        formData.append('interaction', interaction.value);
-        formData.append('description', description.value);
-        formData.append('display_username', check_username.checked);
-
-        if (first_img.files.length > 0) {
-            formData.append('first_img', first_img.files[0]);
-        }
-        if (second_img.files.length > 0) {
-            formData.append('second_img', second_img.files[0]);
-        }
-        if (third_img.files.length > 0) {
-            formData.append('third_img', third_img.files[0]);
-        }
-        if (fourth_img.files.length > 0) {
-            formData.append('fourth_img', fourth_img.files[0]);
-        }
-        if (fifth_img.files.length > 0) {
-            formData.append('fifth_img', fifth_img.files[0]);
-        }
-
-        // console.log(formData);
-        fetch('/ratepost', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    // 'Content-type': 'application/json'
-                },
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => console.log(error));
-    });
-
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -398,14 +338,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
-    // if (first_img.files.length > 0) {
-    //     var img = document.getElementById('one-image');
-    //     img.src = URL.createObjectURL(first_img.files[0]);
-    //     document.getElementById('first-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // }
 
     second_img.addEventListener('change', () => {
         var img = document.getElementById('two-image');
@@ -415,14 +347,6 @@
         img.style.height = '60px';
     });
 
-    // if (second_img.files.length > 0) {
-    //     var img = document.getElementById('two-image');
-    //     img.src = URL.createObjectURL(second_img.files[0]);
-    //     document.getElementById('second-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // }
-
     third_img.addEventListener('change', () => {
         var img = document.getElementById('three-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -430,14 +354,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
-    // if (third_img.files.length > 0) {
-    //     var img = document.getElementById('three-image');
-    //     img.src = URL.createObjectURL(third_img.files[0]);
-    //     document.getElementById('three-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // }
 
     fourth_img.addEventListener('change', () => {
         var img = document.getElementById('four-image');
@@ -447,14 +363,6 @@
         img.style.height = '60px';
     });
 
-    // if (fourth_img.files.length > 0) {
-    //     var img = document.getElementById('four-image');
-    //     img.src = URL.createObjectURL(fourth_img.files[0]);
-    //     document.getElementById('four-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // }
-
     fifth_img.addEventListener('change', () => {
         var img = document.getElementById('five-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -462,14 +370,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
-    // if (fifth_img.files.length > 0) {
-    //     var img = document.getElementById('five-image');
-    //     img.src = URL.createObjectURL(fifth_img.files[0]);
-    //     document.getElementById('five-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // }
 
     one_S.addEventListener('click', () => {
         star(1);
@@ -497,7 +397,7 @@
     });
 
     function ratingReview(user_id, type, item_id) {
-        // alert(user_id + ' ' + item_id);
+
         first_img.value = '';
         second_img.value = '';
         third_img.value = '';
@@ -544,9 +444,18 @@
                 document.getElementById('item-id').textContent = item_id;
             })
             .catch(error => console.log(error));
+
+        submit_btn.id = 'submit-btn';
+        document.getElementById('submit-btn').textContent = 'Submit';
+
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            submit();
+        });            
     }
 
     function editRating(id, item_id) {
+        var review_id = 0;
+
         const request = {
             method: 'GET'
         };
@@ -555,10 +464,13 @@
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                review_id = data.id;
                 star(parseInt(data.rate_value));
+                rate_val = data.rate_value;
                 document.getElementById('user_img').src = 'images/profile_photos/' + data.item.book.user
                     .profile_photo;
-                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data.item
+                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data
+                    .item
                     .book.user.last_name;
                 document.getElementById('username').textContent = data.item.book.user.username;
                 document.getElementById('interaction-type').textContent = data.item.book.status;
@@ -566,7 +478,7 @@
                 accu_cond.value = data.condition_accuracy;
                 accu_desc.value = data.description_accuracy;
                 interaction.value = data.interaction;
-                description.value = data.description;
+                description.value = data.description;        
 
                 if (data.first_img != undefined) {
                     document.getElementById('one-image').src = '/images/rate_images/' + data.first_img;
@@ -597,7 +509,7 @@
                 }
 
                 if (data.fifth_img != undefined) {
-                    document.getElementById('five-image').src = '/images/rate_images/' +  data.fifth_img;
+                    document.getElementById('five-image').src = '/images/rate_images/' + data.fifth_img;
                     document.getElementById('five-plus').className = 'fa p-0';
                     document.getElementById('five-image').style.width = '60px';
                     document.getElementById('five-image').style.height = '60px';
@@ -605,7 +517,20 @@
                 }
             })
             .catch(err => console.log(err));
+
+        submit_btn.id = 'edit-btn';
+        document.getElementById('edit-btn').textContent = 'Edit';
+
+        // if (document.getElementById('edit-btn')) {
+
+        document.getElementById('edit-btn').addEventListener('click', () => {
+            edit(review_id);
+            // alert('edit btn');
+        });
+        // }
+
     }
+
 
     function star(rate) {
         if (rate == 1) {
@@ -640,4 +565,92 @@
             five_S.className = 'fa fa-star';
         }
     }
+
+    function submit() {
+        var formData = new FormData();
+        formData.append('item_id', document.getElementById('item-id').textContent);
+        formData.append('user_id', {{ session('id') }});
+        formData.append('rate_value', rate_val);
+        formData.append('condition_accuracy', accu_cond.value);
+        formData.append('description_accuracy', accu_desc.value);
+        formData.append('interaction', interaction.value);
+        formData.append('description', description.value);
+        formData.append('display_username', check_username.checked);
+
+        if (first_img.files.length > 0) {
+            formData.append('first_img', first_img.files[0]);
+        }
+        if (second_img.files.length > 0) {
+            formData.append('second_img', second_img.files[0]);
+        }
+        if (third_img.files.length > 0) {
+            formData.append('third_img', third_img.files[0]);
+        }
+        if (fourth_img.files.length > 0) {
+            formData.append('fourth_img', fourth_img.files[0]);
+        }
+        if (fifth_img.files.length > 0) {
+            formData.append('fifth_img', fifth_img.files[0]);
+        }
+
+        // console.log(formData);
+        fetch('/ratepost', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    // 'Content-type': 'application/json'
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => console.log(error));
+    }
+
+    function edit(id) {
+        var formData = new FormData();
+        formData.append('item_id', document.getElementById('item-id').textContent);
+        formData.append('user_id', {{ session('id') }});
+        formData.append('rate_value', rate_val);
+        formData.append('condition_accuracy', accu_cond.value);
+        formData.append('description_accuracy', accu_desc.value);
+        formData.append('interaction', interaction.value);
+        formData.append('description', description.value);
+        formData.append('display_username', check_username.checked);
+
+        if (first_img.files.length > 0) {
+            formData.append('first_img', first_img.files[0]);
+        }
+        if (second_img.files.length > 0) {
+            formData.append('second_img', second_img.files[0]);
+        }
+        if (third_img.files.length > 0) {
+            formData.append('third_img', third_img.files[0]);
+        }
+        if (fourth_img.files.length > 0) {
+            formData.append('fourth_img', fourth_img.files[0]);
+        }
+        if (fifth_img.files.length > 0) {
+            formData.append('fifth_img', fifth_img.files[0]);
+        }
+
+        // console.log(formData);
+        fetch('/updaterate/' + id, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    // 'Content-type': 'application/json'
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(error => console.log(error));
+    }
+    // });
 </script>

@@ -293,3 +293,5 @@ Route::get('/getrating/{id}', [UserController::class, 'getRating']);
 Route::post('/acceptshipment', [UserController::class, 'acceptShipment']);
 
 Route::post('/ratepost', [UserController::class, 'ratePost']);
+
+Route::post('/updaterate/{id}', [UserController::class, 'updateRate']);

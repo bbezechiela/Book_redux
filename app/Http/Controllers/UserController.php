@@ -1157,6 +1157,11 @@ class UserController extends Controller
         }
     }
 
+    public function getRating($id) {
+        $rating = Reviews::with('item.book.user')->find($id);
+        return $rating;
+    }
+
     public function ratePost(Request $request)
     {        
         $data = $request->all();
@@ -1185,8 +1190,31 @@ class UserController extends Controller
         }           
     }
 
-    public function getRating($id) {
-        $rating = Reviews::with('item.book.user')->find($id);
-        return $rating;
+    public function updateRate(Request $request, $id) {
+        $data = $request->all();
+
+        $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
+
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $fileNameWithExt = $request->file($field)->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file($field)->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+                $request->file($field)->move(public_path('images/rate_images'), $fileNameToStore);
+
+                $data[$field] = $fileNameToStore;
+            }
+        }
+
+        $update = Reviews::find($id);
+        $update->update($data);
+        if ($update) {
+            return response()->json(['response' => 'update succeed']);
+        } else {
+            return response()->json(['response' => 'update failed']);
+        }  
     }
+
 }
