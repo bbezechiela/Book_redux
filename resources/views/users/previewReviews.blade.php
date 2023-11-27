@@ -32,19 +32,32 @@
                         </span>
                         <input class="form-control rounded-3" type="text" placeholder="Search">
                     </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                        </button></a> --}}
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -134,30 +147,27 @@
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn active d-block rate-button" role="button"
-                                data-bs-toggle="button" aria-pressed="true"
+                            <a href="#" class="btn active d-block rate-button" role="button" data-bs-toggle="button"
+                                aria-pressed="true"
                                 style="background-color: #003060; border-color: #003060;  color: #fff;">All
                                 <span>(10)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button">3 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">3 Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button" aria-pressed="true">5 Star <span>(100)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button">2 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
+                                aria-pressed="true">5 Star <span>(100)</span></a>
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">2 Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button" aria-pressed="true">4 star <span>(10)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button"
-                                data-bs-toggle="button">1 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
+                                aria-pressed="true">4 star <span>(10)</span></a>
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">1 Star
                                 <span>(59)</span></a>
                         </div>
                     </div>
@@ -186,11 +196,9 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <img src="/assets/bubble_bath.png" alt="Image 1"
-                                        class="d-inline square-picture">
+                                    <img src="/assets/bubble_bath.png" alt="Image 1" class="d-inline square-picture">
                                     <img src="/assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
-                                    <img src="/assets/bubble_bath.png" alt="Image 3"
-                                        class="d-inline square-picture">
+                                    <img src="/assets/bubble_bath.png" alt="Image 3" class="d-inline square-picture">
                                 </div>
                             </div>
                         </div>
@@ -220,11 +228,9 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <img src="/assets/bubble_bath.png" alt="Image 1"
-                                        class="d-inline square-picture">
+                                    <img src="/assets/bubble_bath.png" alt="Image 1" class="d-inline square-picture">
                                     <img src="/assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
-                                    <img src="/assets/bubble_bath.png" alt="Image 3"
-                                        class="d-inline square-picture">
+                                    <img src="/assets/bubble_bath.png" alt="Image 3" class="d-inline square-picture">
                                 </div>
                             </div>
                         </div>
@@ -234,7 +240,7 @@
         </div>
     </div>
 
-    </div>
+</div>
 </div>
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',

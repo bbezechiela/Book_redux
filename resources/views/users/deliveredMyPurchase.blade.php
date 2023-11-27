@@ -46,20 +46,20 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    </div> --}}
+                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
+                        </button></a> --}}
                     <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"

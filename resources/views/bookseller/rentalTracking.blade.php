@@ -13,19 +13,19 @@
     <div id="sellersidebar" class="sellersidebar p-2 min-vh-100 shadow">
         <x-sellersidebar />
     </div>
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <a href="/sellerboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/sellermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>

@@ -20,12 +20,12 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/sellermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
@@ -45,7 +45,7 @@
         <main id="main" class="main">
             <section class="section dashboard">
                 <div class="container">
-                    <h4>Welcome <span>{{ session('first_name') . ' ' . session('last_name') }}</span>!</h4>
+                    <h4>Welcome <span>{{ session('owner_name')}}</span>!</h4>
                     <p>What do you want to do?</p>
                     <div class="row">
                         <div class="col-md-4">
