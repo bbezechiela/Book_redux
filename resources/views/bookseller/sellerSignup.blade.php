@@ -5,7 +5,7 @@
     'aos_link' => '/aos-master/dist/aos.css',
 ])
 <div class="container-fluid p-4">
-    <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
+    <a href="/sellerboard" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
     <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1" data-aos="fade-down" data-aos-duration="1500">
         Create Account</h1>
@@ -50,7 +50,7 @@
 
                     <div class="mx-1 mt-3 d-flex justify-content-start">
                         <span class="text-secondary">
-                            Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                            Username Already Exist. Please try another username
                         </span>
                     </div>
                 </div>
@@ -77,9 +77,13 @@
                         <label class="form-label" for="password">Password</label>
                     </div>
                     <div class="mx-1 mt-3 d-flex justify-content-start">
-                        <input type="checkbox" id="show-password" class="ms-2">
+                        <span class="text-secondary" style="white-space: nowrap;">
+                            Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                            <label type="checkbox" id="show-password"><span id="pass-tip"></span></label> 
+                        </span>
+                        {{-- <input type="checkbox" id="show-password" class="ms-2">
                         <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
-                                id="pass-tip"></span></label>
+                                id="pass-tip"></span></label> --}}
                     </div>
                 </div>
             </div>

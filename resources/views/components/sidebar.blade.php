@@ -7,15 +7,15 @@
         <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>
         <span class="profile-content"><a href="/followers" class="text-white text-decoration-none">2.9K Followers .</a><a href="/following" class="text-white text-decoration-none">500 Following</a></span>
     </div>
-    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    {{-- <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+        data-bs-dismiss="offcanvas" aria-label="Close"></button> --}}
 </div>
 
 <ul class="nav">
-    <a href="/userdashboard" class="btn nav-item d-flex flex-row w-100 px-5 py-0 userdashboard-side-btn">
+    {{-- <a href="/userdashboard" class="btn nav-item d-flex flex-row w-100 px-5 py-0 userdashboard-side-btn">
         <i class="fa fa-home d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Home</span>
-    </a>
+    </a> --}}
     <a href="/explore" class="btn nav-item d-flex flex-row w-100 px-5 py-0 explore-side-btn">
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Explore</span>
@@ -23,6 +23,10 @@
     <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
+    </a>
+    <a href="/messages" class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
+        <i class="fa fa-envelope-o d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
+        <span class="nav-link">Messages</span>
     </a>
     <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
         <i class="fa fa-users d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>

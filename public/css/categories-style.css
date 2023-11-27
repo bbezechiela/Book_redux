@@ -1,6 +1,6 @@
-/* :root {
+:root {
     --sidebar_width: 320px;
-} */
+}
 
 .sidebar {
     position: fixed;
@@ -74,7 +74,8 @@ p {
     text-decoration: none;
 }
 
-a:hover, h4 {
+a:hover,
+h4 {
     color: #E55B13;
     font-weight: bold;
 }
@@ -183,7 +184,8 @@ a:hover, h4 {
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text, .search-field {
+.input-group-text,
+.search-field {
     border: none;
     background-color: #fff;
 }
@@ -192,6 +194,31 @@ a:hover, h4 {
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i {
     color: #003060;
+}
+
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
 }

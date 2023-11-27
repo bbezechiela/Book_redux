@@ -341,3 +341,24 @@
 .input-group-text i{
     color: #003060;
 }
+
+.btn-link{
+    color: var(--bs-border-color);
+    border: 1px solid var(--bs-border-color);
+}
+
+.btn-link:hover{
+    color: #003060;
+}
+
+.btn-minus{
+    margin-left: 10px;
+}
+
+.btn-plus{
+    margin-right: 10px;
+}
+
+.form-control-mm {
+    width: 4em; 
+}

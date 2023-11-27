@@ -43,45 +43,46 @@
     padding-left: var(--sidebar_width);
 }
 
-.nav-underline{
+.nav-underline {
     margin-left: 7em;
 }
 
-.nav-underline .nav-item .nav-link.active{
+.nav-underline .nav-item .nav-link.active {
     color: #E55B13;
 }
 
 .nav-underline .nav-item {
-    margin-right: 20px; 
+    margin-right: 20px;
 }
 
-.custom-nav-link{
+.custom-nav-link {
     color: #003060;
 }
 
-.row{
+.row {
     color: #003060;
     margin-top: 2em;
 }
 
-.col-3, .col{
+.col-3,
+.col {
     margin-top: 2em;
     margin-bottom: 2em;
 }
 
-.upload-btn{
+.upload-btn {
     color: #a7a7a7;
     font-size: 14px;
     border: 1px solid #d3d3d3;
     width: 10em;
 }
 
-.upload-btn:hover{
+.upload-btn:hover {
     color: #a7a7a7;
     border: 1px solid #d3d3d3;
 }
 
-.save-button{
+.save-button {
     background-color: #E55B13;
     border-color: #E55B13;
     width: 10em;
@@ -89,7 +90,7 @@
     color: #fff;
 }
 
-.save-button:hover{
+.save-button:hover {
     background-color: #003060;
     border-color: #003060;
     color: #fff;
@@ -101,30 +102,30 @@
 }
 
 .rate {
-    margin-left: 100px; 
+    margin-left: 100px;
 }
 
-.bought{
+.bought {
     margin-left: 55px;
 }
 
-.lent{
+.lent {
     margin-left: 75px;
 }
 
-.sold{
+.sold {
     margin-left: 95px;
 }
 
-.exchange{
+.exchange {
     margin-left: 50px;
 }
 
-.rent{
+.rent {
     margin-left: 76px;
 }
 
-.ratings span{
+.ratings span {
     color: #E55B13;
 }
 
@@ -132,7 +133,8 @@
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text, .search-field {
+.input-group-text,
+.search-field {
     border: none;
     background-color: #fff;
 }
@@ -141,6 +143,57 @@
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i {
     color: #003060;
+}
+
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
+}
+
+.preferences-details{
+    margin-top: 2em;
+    color: #003060;
+}
+
+.preferences-details h2{
+    font-size: 20px;
+}
+
+.preferences-details h6{
+    font-size: 14px;
+}
+
+.btn-genre{
+    background-color: #fff;
+    box-shadow: inset 1px 2px 2px 2px #f5f3f0;
+    padding: 1em;
+    margin: 10px;
+    width: 20em;
+    color: #003060;
+}
+
+.btn-check:checked + .btn {
+    border: 2px solid #E55B13; 
 }
