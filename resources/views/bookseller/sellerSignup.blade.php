@@ -49,8 +49,8 @@
                     </div>
 
                     <div class="mx-1 mt-3 d-flex justify-content-start">
-                        <span class="text-secondary">
-                            Username Already Exist. Please try another username
+                        <span class="username-text">
+                            Username Already Exist. Please try another username.
                         </span>
                     </div>
                 </div>

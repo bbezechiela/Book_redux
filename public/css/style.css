@@ -214,6 +214,11 @@ select:focus {
 	border-right: 1px solid #DDDBDB;
 }
 
+.username-text{
+	color: #fff;
+	/* color: #992915; */
+}
+
 
 /* * {
 	font-family: "Inria Sans", sans-serif;

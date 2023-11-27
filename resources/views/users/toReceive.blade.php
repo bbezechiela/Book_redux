@@ -50,12 +50,12 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
@@ -126,6 +126,7 @@
                             height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                            <p class="mb-0 book-qty">2 Qty</p>
                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                             <p class="payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>
@@ -169,6 +170,7 @@
                             height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                            <p class="mb-0 book-qty">2 Qty</p>
                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                             <p class="payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>

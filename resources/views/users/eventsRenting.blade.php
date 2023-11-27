@@ -43,25 +43,37 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3" type="text" placeholder="Search">
-                    </div>
-                    <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    </div> --}}
+                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
                     <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                        </button></a> --}}
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -290,104 +302,109 @@
                 </div>
             </div>
         </div>
-<!-- Event Details Modal -->
-<div class="modal fade" id="eventdetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060">Event Details</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <!-- Left Column: Image Upload -->
-                <div class="col-md-6">
-                    <div class="text-center">
-                        <div class="mb-3">
-                            <img id="image-preview" src="../assets/b5.jfif" alt="Image Preview"
-                                class="img-fluid" style="max-width: 100%;">
-                        </div>
+        <!-- Event Details Modal -->
+        <div class="modal fade" id="eventdetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060">Event Details</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="card mt-3 card-participants">
-                        <div class="card-header joined-header">
-                            <p><span>100</span> Joined</p> 
-                        </div>
-                        <div class="card-body card-joined">
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3" width="50" height="50">
-                                <p class="mb-0">John Doe</p>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Left Column: Image Upload -->
+                            <div class="col-md-6">
+                                <div class="text-center">
+                                    <div class="mb-3">
+                                        <img id="image-preview" src="../assets/b5.jfif" alt="Image Preview"
+                                            class="img-fluid" style="max-width: 100%;">
+                                    </div>
+                                </div>
+                                <div class="card mt-3 card-participants">
+                                    <div class="card-header joined-header">
+                                        <p><span>100</span> Joined</p>
+                                    </div>
+                                    <div class="card-body card-joined">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="../assets/nestine.png" alt="Participant 1"
+                                                class="rounded-circle me-3" width="50" height="50">
+                                            <p class="mb-0">John Doe</p>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="../assets/nestine.png" alt="Participant 2"
+                                                class="rounded-circle me-3" width="50" height="50">
+                                            <p class="mb-0">Jane Smith</p>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="../assets/nestine.png" alt="Participant 1"
+                                                class="rounded-circle me-3" width="50" height="50">
+                                            <p class="mb-0">John Doe</p>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="../assets/nestine.png" alt="Participant 2"
+                                                class="rounded-circle me-3" width="50" height="50">
+                                            <p class="mb-0">Jane Smith</p>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="../assets/nestine.png" alt="Participant 1"
+                                                class="rounded-circle me-3" width="50" height="50">
+                                            <p class="mb-0">John Doe</p>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <img src="../assets/nestine.png" alt="Participant 2"
+                                                class="rounded-circle me-3" width="50" height="50">
+                                            <p class="mb-0">Jane Smith</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3" width="50" height="50">
-                                <p class="mb-0">Jane Smith</p>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3" width="50" height="50">
-                                <p class="mb-0">John Doe</p>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3" width="50" height="50">
-                                <p class="mb-0">Jane Smith</p>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="../assets/nestine.png" alt="Participant 1" class="rounded-circle me-3" width="50" height="50">
-                                <p class="mb-0">John Doe</p>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="../assets/nestine.png" alt="Participant 2" class="rounded-circle me-3" width="50" height="50">
-                                <p class="mb-0">Jane Smith</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
 
-                <!-- Right Column: Event Details -->
-                <div class="col-md-6">
-                    <div class="mb-3 event-dets">
-                        <input type="text" class="form-control" placeholder="Event Name" id="event-name">
-                    </div>
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="start-date" class="form-label">Start Date</label>
-                            <input type="date" class="form-control" id="start-date">
+                            <!-- Right Column: Event Details -->
+                            <div class="col-md-6">
+                                <div class="mb-3 event-dets">
+                                    <input type="text" class="form-control" placeholder="Event Name" id="event-name">
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <label for="start-date" class="form-label">Start Date</label>
+                                        <input type="date" class="form-control" id="start-date">
+                                    </div>
+                                    <div class="col">
+                                        <label for="start-time" class="form-label">Start Time</label>
+                                        <input type="time" class="form-control" id="start-time">
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col">
+                                        <label for="end-date" class="form-label">End Date</label>
+                                        <input type="date" class="form-control" id="end-date">
+                                    </div>
+                                    <div class="col">
+                                        <label for="end-time" class="form-label">End Time</label>
+                                        <input type="time" class="form-control" id="end-time">
+                                    </div>
+                                </div>
+                                <div class="mb-3 event-dets">
+                                    <select class="form-select" id="event-type">
+                                        <option>Event Type</option>
+                                        <option value="in-person">In Person</option>
+                                        <option value="virtual">Virtual</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 event-dets">
+                                    <textarea class="form-control" id="event-description" rows="6"
+                                        placeholder="Enter a description of the event..."></textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="start-time" class="form-label">Start Time</label>
-                            <input type="time" class="form-control" id="start-time">
-                        </div>
-                    </div>
-                    <div class="row g-3">
-                        <div class="col">
-                            <label for="end-date" class="form-label">End Date</label>
-                            <input type="date" class="form-control" id="end-date">
-                        </div>
-                        <div class="col">
-                            <label for="end-time" class="form-label">End Time</label>
-                            <input type="time" class="form-control" id="end-time">
-                        </div>
-                    </div>
-                    <div class="mb-3 event-dets">
-                        <select class="form-select" id="event-type">
-                            <option>Event Type</option>
-                            <option value="in-person">In Person</option>
-                            <option value="virtual">Virtual</option>
-                        </select>
-                    </div>
-                    <div class="mb-3 event-dets">
-                        <textarea class="form-control" id="event-description" rows="6"
-                            placeholder="Enter a description of the event..."></textarea>
                     </div>
                 </div>
             </div>
-        </div>
-</div>
-</div>
 
+        </div>
     </div>
-</div>
-@include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
-])
+    @include('partials.__footer', [
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+    ])

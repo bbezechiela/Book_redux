@@ -33,7 +33,7 @@
                             </span>
                             <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                         </div>
-                        <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                        {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                                 data-bs-placement="bottom" data-bs-title="Messages">
                                 <i class="fa fa-envelope-o" aria-hidden="true"
                                     style="font-size: 20px; color: #003060;"></i>
@@ -41,13 +41,25 @@
                         <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                                 data-bs-placement="bottom" data-bs-title="Notification">
                                 <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                            </button></a>
-                        <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Profile">
-                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                                    alt="notification" width="35" height="35" class="rounded-5"
-                                    style="margin-right: 2em;">
-                            </button></a>
+                            </button></a> --}}
+                        <ul class="nav py-profile justify-content-end">
+                            <li class="nav-item dropdown">
+                                <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                    class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                    <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                        alt="notification" width="35" height="35" class="rounded-5"
+                                        style="margin-right: 2em;">
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                    <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                    <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                    <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                    <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </ul>
@@ -109,9 +121,9 @@
                             </p> --}}
                             {{-- <p class="card-text">Shipping Fee <span
                                         style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
-                            <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
-                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
+                            <p class="card-text">Shipping Fee <span>₱103</span></p>
+                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
+                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span></p>
                             <div class="d-flex justify-content-start align-items-center mb-2">
                                 <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
                                     <p class="m-0" style="color: #003060;">Quantity: </p>
@@ -128,12 +140,19 @@
                                     <p class="card-text m-0" style="white-space: nowrap;">5 pieces available</p>
                                 </div>
                             </div>
-                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                            <p class="card-text">Language: <span>{{ $book_id->language }}</span>
                             </p>
-                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
+                            </p>
+                            <p class="card-text">Exchange Preferences: <span
+                                    >{{ $book_id->Preferences }}</span>
                             </p>
                             <p class="card-text">Product Description: <span
-                                    class="fw-bold">{{ $book_id->description }}</span></p>
+                                   >{{ $book_id->description }}</span></p>
+                            <p class="card-text fw-bold" style="color: #2D6092;"><i class="fa fa-info-circle" aria-hidden="true"
+                                    style="margin-right: 10px"></i>For a successful book exchange
+                                process, it is suggested that you first negotiate a deal with the exchanger by messaging
+                                them.</p>
                             <p class="card-text location-text"><i class="fa fa-map-marker"
                                     aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
 
@@ -207,10 +226,10 @@
                             </span>
                             </p> --}}
                             <p class="card-text">Shipping Fee <span
-                                    style="font-weight: bold;">₱{{ $book_id->price }}</span>
+                                    >₱{{ $book_id->price }}</span>
                             </p>
-                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
+                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
+                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
                             </p>
                             <div class="d-flex justify-content-start align-items-center mb-2">
                                 <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
@@ -228,12 +247,12 @@
                                     <p class="card-text m-0" style="white-space: nowrap;">5 pieces available</p>
                                 </div>
                             </div>
-                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                            <p class="card-text">Language: <span>{{ $book_id->language }}</span>
                             </p>
-                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
                             </p>
                             <p class="card-text">Product Description: <span
-                                    class="fw-bold">{{ $book_id->description }}</span></p>
+                                    >{{ $book_id->description }}</span></p>
                             <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
                             </p>
                             {{-- <a href="#" class="btn total-likes"><i
@@ -248,6 +267,24 @@
                 </div>
             </div>
             @endif
+
+            {{-- ADD ELSE IF FOR RENT PRODUCT PAGE 
+            DETAILS INCLUDE: 
+                Shipping fee
+                Photo
+                Front
+                Back
+                Genre
+                Condition
+                Rental Price
+                Security Deposit
+                Title
+                Author
+                Edition
+                Language
+                Rental Duration
+                Rental Terms and Condition
+                Description --}}
 
             <div class="container text-center seller-details mx-4">
                 <div class="row align-items-center">

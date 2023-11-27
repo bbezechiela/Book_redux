@@ -30,12 +30,12 @@
             </div>
             <div class="position-absolute end-0 d-print-none">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
@@ -97,6 +97,7 @@
                             height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">{{ $item->title }}</p>
+                            <p class="mb-0 book-qty">2 Qty</p>
                             <p class="mb-0 fw-bold interaction-type">{{ $item->status }}</p>
                             <p class="payment-mode">{{ $item->item->order->payment_method }}</p>
                         </div>
@@ -147,6 +148,7 @@
                         <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">City of Secrets</p>
+                            <p class="mb-0 book-qty">2 Qty</p>
                             <p class="mb-0 fw-bold interaction-type">Sale</p>
                             <p class="payment-mode">Personal Transaction</p>
                         </div>

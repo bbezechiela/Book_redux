@@ -97,7 +97,7 @@
     </ul>
     <div id="daily-discover" class="mx-5 px-5">
         <h4 id="daily-discover-header">Daily Discover</h4>
-        <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+        <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="flex: 0 0 auto;">
             <!-- card Daily Discover -->
             @foreach ($post->shuffle() as $daily)
             @if ($daily->status == 'Exchange' && $daily->unit == 'Available')
@@ -180,7 +180,7 @@
     </div>
     <div id="featured" class="mx-5 px-5">
         <h4 id="featured-header">Featured</h4>
-        <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+        <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="flex: 0 0 auto;">
             <!-- card Featured -->
             @foreach ($post->sortByDesc('created_at') as $daily)
             @if ($daily->status == 'Exchange' && $daily->unit == 'Available')
@@ -263,7 +263,7 @@
     </div>
     <div id="recommended" class="mx-5 px-5">
         <h4 id="recommended-header">Recommended for you</h4>
-        <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+        <div class="w-100mx-2 d-flex overflow-x-auto" style="flex: 0 0 auto;">
             <!-- card Recommended for you -->
             @foreach ($post as $recommended)
             @if (preg_match('/' . $recommended->genre . ',?/i', $user->interest))
@@ -596,7 +596,7 @@
         </div> --}}
     <div id="for_sale" class="mx-5 px-5">
         <h4 id="for-sale-header">For Sale</h4>
-        <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+        <div class="w-100mx-2 d-flex overflow-x-auto" style="flex: 0 0 auto;">
             <!-- card For Sale -->
             @foreach ($post->shuffle() as $sale)
             @if ($sale->status == 'Sale' && $sale->unit == 'Available')
@@ -643,7 +643,7 @@
     </div>
     <div id="for_exchange" class="mx-5 px-5">
         <h4 id="for-exchange-header">For Exchange</h4>
-        <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+        <div class="w-100mx-2 d-flex overflow-x-auto" style="flex: 0 0 auto;">
             <!-- card For Exchange -->
             @foreach ($post->shuffle() as $exchange)
             @if ($exchange->status == 'Exchange' && $exchange->unit == 'Available')
@@ -689,7 +689,7 @@
     </div>
     <div id="for_rent" class="mx-5 mb-4 px-5">
         <h4 id="for-rent-header">For Rent</h4>
-        <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+        <div class="w-100mx-2 d-flex overflow-x-auto" style="flex: 0 0 auto;">
             <!-- card For Rent -->
             @foreach ($post->shuffle() as $rent)
             @if ($rent->status == 'Rent' && $rent->unit == 'Available')

@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Manage Shipment | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/shipment-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Manage Shipment | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/shipment-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -10,7 +10,7 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0 body">
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>
@@ -41,82 +41,90 @@
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/couriernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/couriernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/courierprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                        </button></a> --}}
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/courierprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
         <div class="container-fluid-wrapper">
             <h4>Manage Order Shipment</h4>
             @foreach ($orders as $order)
-                @foreach ($order->items as $item)
-                    <div class="container-fluid ship-details">
-                        <div class="details-container">
-                            <div class="seller-details-box">
-                                <label for="seller-details" class="form-label label-title">Seller Details</label>
-                                <label
-                                    for="seller-fullname">{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</label>
-                                <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
-                                @foreach ($item->book->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <label
-                                            for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
-                                    @endif
-                                @endforeach
+            @foreach ($order->items as $item)
+            <div class="container-fluid ship-details">
+                <div class="details-container">
+                    <div class="seller-details-box">
+                        <label for="seller-details" class="form-label label-title">Seller Details</label>
+                        <label
+                            for="seller-fullname">{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</label>
+                        <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
+                        @foreach ($item->book->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <label
+                            for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                        @endif
+                        @endforeach
 
-                            </div>
-
-                            <div class="customer-details-box">
-                                <label for="customer-details" class="form-label label-title">Customer Details</label>
-                                <label for="customer-fullname">{{ $order->address->name }}</label>
-                                <label for="customer-contact-number">{{ $order->address->contact_number }}</label>
-                                <label
-                                    for="customer-address">{{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
-                            </div>
-                            <div class="package-details-box">
-                                <label for="package-details" class="form-label label-title">Package Description</label>
-                                <label for="weight">Weight: {{ $item->book->weight }} (kg)</label>
-                                <label for="width">Width: {{ $item->book->width }} (cm)</label>
-                                <label for="height">Height: {{ $item->book->height }} (cm)</label>
-                                <label for="length">Length: {{ $item->book->length }} (cm)</label>
-                                <label for="payment-method">Payment Method: {{ $order->payment_method }}</label>
-                            </div>
-
-                            <div class="product-details-box">
-                                <label for="product-details" class="form-label label-title">Product Details</label>
-                                <label for="order-date">Order Date: {{ $order->created_at->format('m/d/Y') }}</label>
-                                <label for="order-number">Order Number: {{ $order->order_number }}</label>
-                                <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
-                                <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
-                                <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
-                                <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
-                                <label for="shipping-fee">Shipping Fee: ₱{{ 0 }}</label>
-                            </div>
-                            <div class="product-details-box">
-                                <label for="product-details" class="form-label label-title">Shipping Details</label>
-                                <label for="order-date">Shipping: Pickup</label>
-                                <label for="pickup-date">Pickup Date: OD421376365</label>
-                                <label for="pickup-address">Pickup Address:
-                                    {{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
-                            </div>
-                        </div>
-                        <center>
-                            <br>
-                            <button type="button" class="btn accept" data-bs-toggle="modal"
-                                data-bs-target="#shipping-details"
-                                onclick="shipment({{ $order->id . ', ' . $item->id }})">Accept
-                                <span class="fa fa-check"></span></button>
-                            <a href="#" class="deny btn">Decline <span class="fa fa-close"></span></a>
-                        </center>
                     </div>
-                @endforeach
+
+                    <div class="customer-details-box">
+                        <label for="customer-details" class="form-label label-title">Customer Details</label>
+                        <label for="customer-fullname">{{ $order->address->name }}</label>
+                        <label for="customer-contact-number">{{ $order->address->contact_number }}</label>
+                        <label
+                            for="customer-address">{{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
+                    </div>
+                    <div class="package-details-box">
+                        <label for="package-details" class="form-label label-title">Package Description</label>
+                        <label for="weight">Weight: {{ $item->book->weight }} (kg)</label>
+                        <label for="width">Width: {{ $item->book->width }} (cm)</label>
+                        <label for="height">Height: {{ $item->book->height }} (cm)</label>
+                        <label for="length">Length: {{ $item->book->length }} (cm)</label>
+                        <label for="payment-method">Payment Method: {{ $order->payment_method }}</label>
+                    </div>
+
+                    <div class="product-details-box">
+                        <label for="product-details" class="form-label label-title">Product Details</label>
+                        <label for="order-date">Order Date: {{ $order->created_at->format('m/d/Y') }}</label>
+                        <label for="order-number">Order Number: {{ $order->order_number }}</label>
+                        <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
+                        <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
+                        <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
+                        <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
+                        <label for="shipping-fee">Shipping Fee: ₱{{ 0 }}</label>
+                    </div>
+                    <div class="product-details-box">
+                        <label for="product-details" class="form-label label-title">Shipping Details</label>
+                        <label for="order-date">Shipping: Pickup</label>
+                        <label for="pickup-date">Pickup Date: OD421376365</label>
+                        <label for="pickup-address">Pickup Address:
+                            {{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
+                    </div>
+                </div>
+                <center>
+                    <br>
+                    <button type="button" class="btn accept" data-bs-toggle="modal" data-bs-target="#shipping-details"
+                        onclick="shipment({{ $order->id . ', ' . $item->id }})">Accept
+                        <span class="fa fa-check"></span></button>
+                    <a href="#" class="deny btn">Decline <span class="fa fa-close"></span></a>
+                </center>
+            </div>
+            @endforeach
             @endforeach
         </div>
         {{-- <div class="container-fluid-wrapper">
@@ -170,8 +178,7 @@
     </div>
 
     <!-- Shipping Details Modal -->
-    <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header d-print-none">
@@ -188,8 +195,8 @@
                                         class="d-flex flex-row justify-content-between align-items-center order-details">
                                         <span id="order_id" hidden></span>
                                         <span id="item_id" hidden></span>
-                                        <div><span class="d-block fs-12">Order date</span><span
-                                                class="font-weight-bold" id="order-date">12 March 2020</span></div>
+                                        <div><span class="d-block fs-12">Order date</span><span class="font-weight-bold"
+                                                id="order-date">12 March 2020</span></div>
                                         <div><span class="d-block fs-12">Order number</span><span
                                                 class="font-weight-bold" id="order-number">OD44434324</span></div>
                                         <div><span class="d-block fs-12">Payment method</span><span
@@ -204,10 +211,10 @@
                                     <div class="d-flex justify-content-between align-items-center product-details">
                                         <div class="d-flex flex-row product-name-image">
                                             <div class="d-flex flex-column justify-content-between ml-2">
-                                                <div><span class="d-block font-weight-bold p-name"
-                                                        id="book-title">City of
-                                                        Secrets</span><span class="fs-12"
-                                                        id="book-status">Sale</span></div><span class="fs-12"></span>
+                                                <div><span class="d-block font-weight-bold p-name" id="book-title">City
+                                                        of
+                                                        Secrets</span><span class="fs-12" id="book-status">Sale</span>
+                                                </div><span class="fs-12"></span>
                                             </div>
                                         </div>
                                         <div class="product-price">
@@ -216,12 +223,11 @@
                                     </div>
                                     <div class="mt-5 amount row">
                                         <div class="d-flex justify-content-center col-md-6">
-                                            <input type="file" class="d-none" accept="image/*"
-                                                id="tracking_number" name="tracking_number" required>
+                                            <input type="file" class="d-none" accept="image/*" id="tracking_number"
+                                                name="tracking_number" required>
                                             <label for="tracking_number"
                                                 class="btn mx-auto mt-3 py-1 px-0 upload-track-btn">Upload</label>
-                                            <img src="../assets/tracking.jfif" width="250" height="100"
-                                                id="img-icon">
+                                            <img src="../assets/tracking.jfif" width="250" height="100" id="img-icon">
 
                                         </div>
                                         <div class="col-md-6">
@@ -257,8 +263,7 @@
 
                 </div>
                 <div class="modal-footer d-print-none">
-                    <button type="button" class="btn btn-secondary close-button"
-                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
                     <button class="btn btn-primary hidden-print save-button" id="save-btn">Save</button>
                 </div>
             </div>
@@ -268,8 +273,8 @@
 </div>
 </div>
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
@@ -297,13 +302,11 @@
         const requestMethod = {
             method: 'GET'
         };
-
         fetch('/getshipment/' + order_id, requestMethod)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
                 const date = new Date(data.created_at);
-
                 order_date.textContent = date.getDate() + " " + month[date.getMonth()] + " " + date.getFullYear();
                 order_number.textContent = data.order_number;
                 payment_method.textContent = data.payment_method;
@@ -326,14 +329,11 @@
             })
             .catch(error => console.log(error));
     }
-
     tracking_image.addEventListener('change', () => {
         var image = document.getElementById("img-icon");
         image.src = URL.createObjectURL(event.target.files[0]);
         // console.log(tracking_image.value);
     });
-
-    
     save_btn.addEventListener('click', () => {
         var formData = new FormData();
         formData.append('file', tracking_image.files[0]);
@@ -359,6 +359,5 @@
             .catch(error => {
                 console.log(error);
             });
-
     });
 </script>
