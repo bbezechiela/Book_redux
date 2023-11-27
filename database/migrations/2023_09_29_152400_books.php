@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('status');
             $table->string('unit');
             $table->text('book_photo')->nullable();
+            $table->text('back_cover')->nullable();
+            $table->text('interior_photo')->nullable();
             $table->string('title');
             $table->string('author');
             $table->string('edition');

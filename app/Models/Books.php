@@ -22,6 +22,8 @@ class Books extends Model
         'status',
         'unit',
         'book_photo',
+        'back_cover',
+        'interior_photo',
         'title',
         'author',
         'edition',

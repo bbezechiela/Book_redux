@@ -26,8 +26,8 @@ class ListingController extends Controller
         if (session()->has('user')) {
             $data = Books::where([
                 'user_id' => session('id'),
-                'status' => 'Sale'                
-                ])->orderBy('created_at', 'desc')->get();
+                'status' => 'Sale'
+            ])->orderBy('created_at', 'desc')->get();
 
             return view('users.myList', ['books' => $data, 'status' => 'Sale']);
         } else {
@@ -40,8 +40,8 @@ class ListingController extends Controller
         if (session()->has('user')) {
             $data = Books::where([
                 'user_id' => session('id'),
-                'status' => 'Exchange'                
-                ])->orderBy('created_at', 'desc')->get();
+                'status' => 'Exchange'
+            ])->orderBy('created_at', 'desc')->get();
 
             return view('users.myList', ['books' => $data, 'status' => 'Exchange']);
         } else {
@@ -54,8 +54,8 @@ class ListingController extends Controller
         if (session()->has('user')) {
             $data = Books::where([
                 'user_id' => session('id'),
-                'status' => 'Rent'                
-                ])->orderBy('created_at', 'desc')->get();
+                'status' => 'Rent'
+            ])->orderBy('created_at', 'desc')->get();
 
             return view('users.myList', ['books' => $data, 'status' => 'Rent']);
         } else {
@@ -68,6 +68,8 @@ class ListingController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'title' => ['required', 'min:4'],
             'author' => ['required', 'min:4'],
             'edition' => ['required', 'min:4'],
@@ -90,12 +92,28 @@ class ListingController extends Controller
         $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
         $validated['book_photo'] = $fileNameToStore;
 
+        $coverWithExt = $request->file('back_cover')->getClientOriginalName();
+        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
+        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+        $validated['back_cover'] = $coverNameToStore;
+
+        $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
+        $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
+        $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
+        $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
+        $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
+        $validated['interior_photo'] = $interiorNameToStore;
+
         // dd($validated);
         $salePost = Books::create([
             'user_id' => $validated['user_id'],
             'status' => 'Sale',
             'unit' => 'Available',
             'book_photo' => $validated['book_photo'],
+            'back_cover' => $validated["back_cover"],
+            'interior_photo' => $validated["interior_photo"],
             'title' => $validated['title'],
             'author' => $validated['author'],
             'edition' => $validated['edition'],
@@ -123,6 +141,8 @@ class ListingController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'title' => ['required', 'min:4'],
             'author' => ['required', 'min:4'],
             'edition' => ['required', 'min:4'],
@@ -145,12 +165,28 @@ class ListingController extends Controller
         $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
         $validated['book_photo'] = $fileNameToStore;
 
+        $coverWithExt = $request->file('back_cover')->getClientOriginalName();
+        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
+        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+        $validated['back_cover'] = $coverNameToStore;
+
+        $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
+        $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
+        $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
+        $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
+        $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
+        $validated['interior_photo'] = $interiorNameToStore;
+
         // dd($validated);
         $exchangePost = Books::create([
             'user_id' => $validated['user_id'],
             'status' => 'Exchange',
             'unit' => 'Available',
             'book_photo' => $validated['book_photo'],
+            'back_cover' => $validated["back_cover"],
+            'interior_photo' => $validated["interior_photo"],
             'title' => $validated['title'],
             'author' => $validated['author'],
             'edition' => $validated['edition'],
@@ -178,6 +214,8 @@ class ListingController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+            'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'title' => ['required', 'min:4'],
             'author' => ['required', 'min:4'],
             'edition' => ['required', 'min:4'],
@@ -203,12 +241,28 @@ class ListingController extends Controller
         $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
         $validated['book_photo'] = $fileNameToStore;
 
+        $coverWithExt = $request->file('back_cover')->getClientOriginalName();
+        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
+        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+        $validated['back_cover'] = $coverNameToStore;
+
+        $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
+        $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
+        $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
+        $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
+        $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
+        $validated['interior_photo'] = $interiorNameToStore;
+
         // dd($validated);
         $rentPost = Books::create([
             'user_id' => $validated['user_id'],
             'status' => 'Rent',
             'unit' => 'Available',
             'book_photo' => $validated['book_photo'],
+            'back_cover' => $validated["back_cover"],
+            'interior_photo' => $validated["interior_photo"],
             'title' => $validated['title'],
             'author' => $validated['author'],
             'edition' => $validated['edition'],
@@ -241,6 +295,8 @@ class ListingController extends Controller
                 // 'id' => 'required',
                 'user_id' => 'required',
                 'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
                 'title' => ['required', 'min:4'],
                 'author' => ['required', 'min:4'],
                 'edition' => ['required', 'min:4'],
@@ -263,12 +319,28 @@ class ListingController extends Controller
             $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
             $validated['book_photo'] = $fileNameToStore;
 
+            $coverWithExt = $request->file('back_cover')->getClientOriginalName();
+            $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+            $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
+            $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+            $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+            $validated['back_cover'] = $coverNameToStore;
+
+            $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
+            $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
+            $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
+            $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
+            $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
+            $validated['interior_photo'] = $interiorNameToStore;
+
             $post = Books::find($id);
             $post->update([
                 // 'id' => $validated['id'],
                 'user_id' => $validated['user_id'],
                 'status' => 'Sale',
                 'book_photo' => $validated['book_photo'],
+                'back_cover' => $validated["back_cover"],
+                'interior_photo' => $validated["interior_photo"],
                 'title' => $validated['title'],
                 'author' => $validated['author'],
                 'edition' => $validated['edition'],
@@ -552,7 +624,8 @@ class ListingController extends Controller
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $post = Books::find($id);
         $post->delete();
 
@@ -563,7 +636,8 @@ class ListingController extends Controller
         }
     }
 
-    public function addToCart($id) {
+    public function addToCart($id)
+    {
 
         $book = Books::find($id);
         $book->update([
@@ -581,17 +655,18 @@ class ListingController extends Controller
         }
     }
 
-    public function destroyCart($id) {
+    public function destroyCart($id)
+    {
         $item = Cart::find($id);
         $book = Books::find($item->product_id);
-        
-        $item->delete();        
+
+        $item->delete();
         $book->update([
             'unit' => 'Available'
-        ]);        
+        ]);
 
         if ($item) {
-            return redirect('/cart');           
+            return redirect('/cart');
         } else {
             return 'error bitch';
         }

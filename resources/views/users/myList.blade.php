@@ -201,8 +201,7 @@
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for </h1>
-                    <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">
-                        <option value="Sale">Sale</option>
+                    <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">                        
                         <option value="Sale">Sale</option>
                         <option value="Exchange">Exchange</option>
                         {{-- <option value="Rent">Rent</option> --}}
@@ -1541,8 +1540,7 @@
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
-                    <option value="Sale">Sale</option>
+                <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">                    
                     <option value="Sale">Sale</option>
                     <option value="Exchange">Exchange</option>
                     <option value="Rent">Rent</option>
@@ -1584,7 +1582,7 @@
                                                 Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="filebutton1"
+                                                    <input id="filebutton1" name="back_cover" accept="image/*"
                                                         class="input-file form-control" type="file"
                                                         style="margin-bottom: 12px;">
                                                 </div>
@@ -1594,7 +1592,7 @@
                                                 style="white-space: nowrap;">Content or Interior Photos</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton2" name="filebutton2"
+                                                    <input id="filebutton2" name="interior_photo" accept="image/*"
                                                         class="input-file form-control" type="file"
                                                         style="margin-bottom: 12px;">
                                                 </div>
@@ -1700,7 +1698,7 @@
                                             Cover</label>
                                         <div class="col-md-8">
                                             <div class="input-file-wrapper">
-                                                <input id="filebutton1" name="filebutton1"
+                                                <input id="filebutton1" name="back_cover" accept="image/*"
                                                     class="input-file form-control" type="file"
                                                     style="margin-bottom: 12px;">
                                             </div>
@@ -1710,7 +1708,7 @@
                                             style="white-space: nowrap;">Content or Interior Photos</label>
                                         <div class="col-md-8">
                                             <div class="input-file-wrapper">
-                                                <input id="filebutton2" name="filebutton2"
+                                                <input id="filebutton2" name="interior_photo" accept="image/*"
                                                     class="input-file form-control" type="file"
                                                     style="margin-bottom: 12px;">
                                             </div>
