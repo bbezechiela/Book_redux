@@ -214,8 +214,12 @@ class UserController extends Controller
     public function categories()
     {
         if (session()->has('user')) {
-            $book = Books::all();
-            return view('users.categories', ['book' => $book]);
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser')->get();
+            return view('users.categories', ['book' => $post, 'user' => $user]);
+
+            // $book = Books::all();
+            // return view('users.categories', ['book' => $book]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
