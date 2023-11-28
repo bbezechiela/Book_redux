@@ -155,6 +155,7 @@
                             <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
                             <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
                             <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
+                            <span id="stock_{{ $book->id }}" hidden>{{ $book->stock }}</span>
 
                             <span id="exchange_preferences_{{ $book->id }}"
                                 hidden>{{ $book->exchange_preferences }}</span>
@@ -1616,6 +1617,8 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
+                                    <input type="number" name="stock" id="edit-sale-stock" class="form-control"
+                                        placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
                                     <input type="text" name="price" id="edit-sale-price"
                                         class="form-control" placeholder="Price"
                                         style="margin-bottom: 12px; color: #003060;">
@@ -1726,13 +1729,14 @@
                                     <option value="Mystery & Suspense">Mystery & Suspense</option>
                                     <option value="Young Adult">Young Adult</option>
                                     <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
-                                    <option value="Horror & Supernatural">Horror & Supernatural</option>
-                                    va
+                                    <option value="Horror & Supernatural">Horror & Supernatural</option>                                    
                                     <option value="Comedy & Satire">Comedy & Satire</option>
                                     <option value="Poetry & Prose">Poetry & Prose</option>
                                     <option value="Self-Help">Self-Help</option>
                                     <option value="Crime & Thriller">Crime & Thriller</option>
                                 </select>
+                                <input type="number" name="stock" id="edit-exchange-stock" class="form-control"
+                                        placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
                                 <input type="text" name="edition" id="edit-exchange-edition"
                                     class="form-control" placeholder="Edition"
                                     style="margin-bottom: 12px; color: #003060;">
@@ -1844,6 +1848,8 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
+                                    <input type="number" name="stock" id="edit-rent-stock" class="form-control"
+                                        placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
                                     <select name="condition" id="edit-rent-condition"
                                         class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;">
@@ -2023,6 +2029,7 @@
         var author = document.getElementById('author_' + card);
         var edition = document.getElementById('edition_' + card);
         var genre = document.getElementById('genre_' + card);
+        var stock = document.getElementById('stock_' + card);
         var condition = document.getElementById('condition_' + card);
         var description = document.getElementById('description_' + card);
         var language = document.getElementById('language_' + card);
@@ -2047,6 +2054,7 @@
             // document.getElementById('edit-sale-image').value = img.getAttribute('data-filename');
             document.getElementById('edit-sale-book-image').src = img.src;
             document.getElementById('edit-sale-genre').value = genre.textContent.trim();
+            document.getElementById('edit-sale-stock').value = stock.textContent.trim();
             document.getElementById('edit-sale-price').value = price.textContent.trim();
             document.getElementById('edit-sale-condition').value = condition.textContent.trim();
             document.getElementById('edit-sale-language').value = language.textContent.trim();
@@ -2078,6 +2086,7 @@
             document.getElementById('edit-book-id').value = card;
             document.getElementById('edit-exchange-book-image').src = img.src;
             document.getElementById('edit-exchange-genre').value = genre.textContent.trim();
+            document.getElementById('edit-exchange-stock').value = stock.textContent.trim();
             document.getElementById('edit-exchange-condition').value = condition.textContent.trim();
             document.getElementById('edit-exchange-language').value = language.textContent.trim();
             document.getElementById('edit-exchange-title').value = title.textContent.trim();
@@ -2109,6 +2118,7 @@
             document.getElementById('edit-book-id').value = card;
             document.getElementById('edit-rent-book-image').src = img.src;
             document.getElementById('edit-rent-genre').value = genre.textContent.trim();
+            document.getElementById('edit-rent-stock').value = stock.textContent.trim();
             document.getElementById('edit-rent-condition').value = condition.textContent.trim();
             document.getElementById('edit-rent-rental-price').value = price.textContent.trim();
             document.getElementById('edit-rent-language').value = language.textContent.trim();
