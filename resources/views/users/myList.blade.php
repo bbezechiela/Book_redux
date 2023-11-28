@@ -202,7 +202,7 @@
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for </h1>
-                    <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">                        
+                    <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">
                         <option value="Sale">Sale</option>
                         <option value="Exchange">Exchange</option>
                         {{-- <option value="Rent">Rent</option> --}}
@@ -699,7 +699,7 @@
                                             </div>
                                         </div>
 
-                                        <label class="col-md-4 control-label" for="filebutton2" 
+                                        <label class="col-md-4 control-label" for="filebutton2"
                                             style="white-space: nowrap;">Content or Interior Photos</label>
                                         <div class="col-md-8">
                                             <div class="input-file-wrapper">
@@ -1055,15 +1055,15 @@
                                     </div>
                                     <div class="form-check" style="margin-top: 1em">
                                         <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault" />
-                                        <label class="form-check-label" for="flexCheckDefault">I have read and agree
+                                            id="exchangeDefault" />
+                                        <label class="form-check-label" for="exchangeDefault">I have read and agree
                                             to the listing terms and condition.</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="submit" id="submitButton" class="btn mx-auto w-25 text-white rounded-3"
+                            <button type="submit" id="submitExchangeButton" class="btn mx-auto w-25 text-white rounded-3"
                                 style="background-color: #E55B13;" disabled>List</button>
                         </div>
                     </form>
@@ -1541,7 +1541,7 @@
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">                    
+                <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
                     <option value="Sale">Sale</option>
                     <option value="Exchange">Exchange</option>
                     {{-- <option value="Rent">Rent</option> --}}
@@ -1617,8 +1617,9 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="number" name="stock" id="edit-sale-stock" class="form-control"
-                                        placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
+                                    <input type="number" name="stock" id="edit-sale-stock"
+                                        class="form-control" placeholder="Stock"
+                                        style="margin-bottom: 12px; color: #003060;">
                                     <input type="text" name="price" id="edit-sale-price"
                                         class="form-control" placeholder="Price"
                                         style="margin-bottom: 12px; color: #003060;">
@@ -1729,14 +1730,15 @@
                                     <option value="Mystery & Suspense">Mystery & Suspense</option>
                                     <option value="Young Adult">Young Adult</option>
                                     <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
-                                    <option value="Horror & Supernatural">Horror & Supernatural</option>                                    
+                                    <option value="Horror & Supernatural">Horror & Supernatural</option>
                                     <option value="Comedy & Satire">Comedy & Satire</option>
                                     <option value="Poetry & Prose">Poetry & Prose</option>
                                     <option value="Self-Help">Self-Help</option>
                                     <option value="Crime & Thriller">Crime & Thriller</option>
                                 </select>
-                                <input type="number" name="stock" id="edit-exchange-stock" class="form-control"
-                                        placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
+                                <input type="number" name="stock" id="edit-exchange-stock"
+                                    class="form-control" placeholder="Stock"
+                                    style="margin-bottom: 12px; color: #003060;">
                                 <input type="text" name="edition" id="edit-exchange-edition"
                                     class="form-control" placeholder="Edition"
                                     style="margin-bottom: 12px; color: #003060;">
@@ -1848,8 +1850,9 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="number" name="stock" id="edit-rent-stock" class="form-control"
-                                        placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
+                                    <input type="number" name="stock" id="edit-rent-stock"
+                                        class="form-control" placeholder="Stock"
+                                        style="margin-bottom: 12px; color: #003060;">
                                     <select name="condition" id="edit-rent-condition"
                                         class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;">
@@ -2405,9 +2408,12 @@
 
     exchange_btn.addEventListener('click', () => {
         list_category.value = "Exchange";
+        document.getElementById("sale").style.display = "none";
+        document.getElementById("exchange").style.display = "flex";
+        document.getElementById("rent").style.display = "none";
         createListingModal.show();
     });
-    
+
 
     list_category.addEventListener("change", function() {
         // console.log(String(list_category.value));
@@ -2463,6 +2469,11 @@
 <script>
     document.getElementById('flexCheckDefault').addEventListener('change', function() {
         var submitButton = document.getElementById('submitButton');
+        submitButton.disabled = !this.checked;
+    });
+
+    document.getElementById('exchangeDefault').addEventListener('change', function() {
+        var submitButton = document.getElementById('submitExchangeButton');
         submitButton.disabled = !this.checked;
     });
 </script>
