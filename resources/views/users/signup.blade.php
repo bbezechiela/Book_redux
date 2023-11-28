@@ -58,9 +58,10 @@
                     </div>
 
                     <div class="mx-1 mt-3 d-flex justify-content-start">
-                        <span class="username-text">
+                        {{-- <span class="username-text">
                             Username Already Exist. Please try another username.
-                        </span>
+                        </span> --}}
+                        <p id="response-message" class="text-danger fw-bold"></p>
                     </div>
                 </div>
                 <div class="col mx-2 d-flex fillup-form  justify-content-center flex-column w-50">
@@ -97,7 +98,7 @@
 
             <div class="mx-3 text-center px-4 py-2 mt-4">
                 {{-- @if (isset($message)) --}}
-                <p id="response-message" class="text-danger fw-bold"></p>
+                
                 {{-- @endif --}}
                 <button type="submit" id="sign-up" class="sign-up-btn btn mx-auto w-25 h-25 fw-bold">Sign
                     Up</button>

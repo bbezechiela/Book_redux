@@ -72,8 +72,37 @@
                 <div class="card mb-3 book-details mx-4">
                     <div class="row g-0">
                         <div class="col-md-4 p-5">
-                            <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
-                                class="img-fluid mx-auto rounded" alt="product" width="300px" height="564px">
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="10000">
+                                            <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                                class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                                height="564px">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
+                                                class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                                height="564px">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
+                                                class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                                height="564px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -84,65 +113,56 @@
                                         |</span> <span>{{ $book_id->genre }}</span>
                                 </h6>
                                 {{-- <p class="card-text">
-                                Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
-                            <span class="inline-dropdown">
-                                <button class="btn dropdown-toggle places-button" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Catbalogan
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Sample 1</a></li>
-                                    <li><a class="dropdown-item" href="#">Sample 2</a></li>
-                                    <li><a class="dropdown-item" href="#">Sample 3</a></li>
-                                </ul>
-                            </span>
-                            </p> --}}
+                                    Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
+                                <span class="inline-dropdown">
+                                    <button class="btn dropdown-toggle places-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Catbalogan
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Sample 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Sample 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Sample 3</a></li>
+                                    </ul>
+                                </span>
+                                </p> --}}
                                 {{-- <p class="card-text">Shipping Fee <span
-                                        style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
-                            <p class="card-text">Shipping Fee <span>₱103</span></p>
-                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span></p>
-                            <div class="d-flex justify-content-start align-items-center mb-2">
-                                <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                    <p class="m-0" style="color: #003060;">Quantity: </p>
-                                    <button class="btn btn-link btn-minus px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="fa fa-minus" aria-hidden="true"></i>
-                                    </button>
-                                    <input id="form1" min="0" name="quantity" value="2" type="number"
-                                        class="form-control form-control-mm" />
-                                    <button class="btn btn-link btn-plus px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                    <p class="card-text m-0" style="white-space: nowrap;">{{ $book_id->stock }} pieces available</p>
+                                            style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
+                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
+                                <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
+                                <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
+                                <div class="d-flex justify-content-start align-items-center mb-2">
+                                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
+                                        <p class="m-0" style="color: #003060;">Quantity: </p>
+                                        <button class="btn btn-link btn-minus px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                        <input id="form1" min="0" name="quantity" value="2" type="number"
+                                            class="form-control form-control-mm" />
+                                        <button class="btn btn-link btn-plus px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <p class="card-text m-0" style="white-space: nowrap;">5 pieces available</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <p class="card-text">Language: <span>{{ $book_id->language }}</span>
-                            </p>
-                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
-                            </p>
-                            <p class="card-text">Exchange Preferences: <span
-                                    >{{ $book_id->Preferences }}</span>
-                            </p>
-                            <p class="card-text">Product Description: <span
-                                   >{{ $book_id->description }}</span></p>
-                            <p class="card-text fw-bold" style="color: #2D6092;"><i class="fa fa-info-circle" aria-hidden="true"
-                                    style="margin-right: 10px"></i>For a successful book exchange
-                                process, it is suggested that you first negotiate a deal with the exchanger by messaging
-                                them.</p>
-                            <p class="card-text location-text"><i class="fa fa-map-marker"
-                                    aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
-
-
+                                <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                                </p>
+                                <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                                </p>
+                                <p class="card-text">Product Description: <span
+                                        class="fw-bold">{{ $book_id->description }}</span></p>
+                                <p class="card-text location-text"><i class="fa fa-map-marker"
+                                        aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
+    
                                 {{-- <a href="#" class="btn total-likes"><i
-                                        class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 7px"></i>100</a> --}}
-                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
-                                        class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                    Cart</a>
-                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
-                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                                            class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                            style="margin-right: 7px"></i>100</a> --}}
+                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
+                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                        style="margin-right: 7px"></i>Add to Wishlist</a>
                             </div>
                         </div>
                     </div>
@@ -151,13 +171,40 @@
                 <div class="card mb-3 book-details mx-4">
                     <div class="row g-0">
                         <div class="col-md-4 p-5">
-                            <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
-                                class="img-fluid mx-auto rounded" alt="product" width="300px" height="564px">
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                            class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                            height="564px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
+                                            class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                            height="564px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
+                                            class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                            height="564px">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $book_id->title }} <a href=""
-                                        data-bs-toggle="modal" data-bs-target="#report">Report</a></h5>
+                                <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#report">Report</a></h5>
                                 <h6 class="card-title"><span
                                         style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
                                     </span>
@@ -165,57 +212,56 @@
                                         |</span> <span>{{ $book_id->genre }}</span>
                                 </h6>
                                 {{-- <p class="card-text">
-                                Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
-                            <span class="inline-dropdown">
-                                <button class="btn dropdown-toggle places-button" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Catbalogan
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Sample 1</a></li>
-                                    <li><a class="dropdown-item" href="#">Sample 2</a></li>
-                                    <li><a class="dropdown-item" href="#">Sample 3</a></li>
-                                </ul>
-                            </span>
-                            </p> --}}
-                            <p class="card-text">Shipping Fee <span
-                                    >₱{{ $book_id->price }}</span>
-                            </p>
-                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
-                            </p>
-                            <div class="d-flex justify-content-start align-items-center mb-2">
-                                <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                    <p class="m-0" style="color: #003060;">Quantity: </p>
-                                    <button class="btn btn-link btn-minus px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <i class="fa fa-minus" aria-hidden="true"></i>
+                                    Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
+                                <span class="inline-dropdown">
+                                    <button class="btn dropdown-toggle places-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Catbalogan
                                     </button>
-                                    <input id="form1" min="0" name="quantity" value="2" type="number"
-                                        class="form-control form-control-mm" />
-                                    <button class="btn btn-link btn-plus px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </button>
-                                    <p class="card-text m-0" style="white-space: nowrap;">{{ $book_id->stock }} pieces available</p>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Sample 1</a></li>
+                                        <li><a class="dropdown-item" href="#">Sample 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Sample 3</a></li>
+                                    </ul>
+                                </span>
+                                </p> --}}
+                                <p class="card-text">Shipping Fee <span
+                                        style="font-weight: bold;">₱{{ $book_id->price }}</span>
+                                </p>
+                                <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
+                                <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
+                                </p>
+                                <div class="d-flex justify-content-start align-items-center mb-2">
+                                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
+                                        <p class="m-0" style="color: #003060;">Quantity: </p>
+                                        <button class="btn btn-link btn-minus px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                        <input id="form1" min="0" name="quantity" value="2" type="number"
+                                            class="form-control form-control-mm" />
+                                        <button class="btn btn-link btn-plus px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <p class="card-text m-0" style="white-space: nowrap;">5 pieces available</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <p class="card-text">Language: <span>{{ $book_id->language }}</span>
-                            </p>
-                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
-                            </p>
-                            <p class="card-text">Product Description: <span
-                                    >{{ $book_id->description }}</span></p>
-                            <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
-                            </p>
-                            {{-- <a href="#" class="btn total-likes"><i
-                                        class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 7px"></i>100</a> --}}
-                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
-                                        class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add
-                                    to Cart</a>
-                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
-                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
+                                <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                                </p>
+                                <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                                </p>
+                                <p class="card-text">Product Description: <span
+                                        class="fw-bold">{{ $book_id->description }}</span></p>
+                                <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
+                                </p>
+                                {{-- <a href="#" class="btn total-likes"><i
+                                            class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                            style="margin-right: 7px"></i>100</a> --}}
+                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
+                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                        style="margin-right: 7px"></i>Add to Wishlist</a>
                             </div>
                         </div>
                     </div>
