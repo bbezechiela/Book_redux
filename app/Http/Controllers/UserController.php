@@ -528,29 +528,34 @@ class UserController extends Controller
         $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
         $validated["profile_photo"] = $fileNameToStore;
 
+        $userExist = Users::where('username', $validated["username"])->get();
 
-        $user = Users::create($validated);
-
-        if ($user) {
-            $request->session()->put([
-                'id' => $user->id,
-                'type' => $user->type,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                // 'address' => $validated["address"],
-                'user' => $validated["username"],
-                'profile_pic' => $validated["profile_photo"]
-            ]);
-
-            return redirect('/survey');
-            // return redirect()->route('explore');
-            // if ($request->session()->has('user')) {
-            //     return redirect('/explore');
-            // } else {
-            //     return view('users.signup');
-            // }
+        if ($userExist) {
+            return view('users.signup')->with('message', "username exist already");
         } else {
-            return view('users.signup')->with('message', "Cannot sign up");
+            $user = Users::create($validated);
+
+            if ($user) {
+                $request->session()->put([
+                    'id' => $user->id,
+                    'type' => $user->type,
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    // 'address' => $validated["address"],
+                    'user' => $validated["username"],
+                    'profile_pic' => $validated["profile_photo"]
+                ]);
+
+                return redirect('/survey');
+                // return redirect()->route('explore');
+                // if ($request->session()->has('user')) {
+                //     return redirect('/explore');
+                // } else {
+                //     return view('users.signup');
+                // }
+            } else {
+                return view('users.signup')->with('message', "Cannot sign up");
+            }
         }
     }
 
@@ -582,6 +587,7 @@ class UserController extends Controller
         ]);
 
         $user = Users::where('username', $login["username"])->first();
+
         if ($user && Hash::check($login["password"], $user["password"])) {
             if ($user->type == 'General User') {
                 $request->session()->put([
@@ -608,7 +614,7 @@ class UserController extends Controller
             } else if ($user->type == 'Admin') {
                 $request->session()->put([
                     'id' => $user->id,
-                    'type' => $user->type,                    
+                    'type' => $user->type,
                     'address' => $user->address,
                     'user' => $user->username,
                     'profile_pic' => $user->profile_photo
@@ -1086,13 +1092,14 @@ class UserController extends Controller
         }
     }
 
-    public function getRating($id) {
+    public function getRating($id)
+    {
         $rating = Reviews::with('item.book.user')->find($id);
         return $rating;
     }
 
     public function ratePost(Request $request)
-    {        
+    {
         $data = $request->all();
 
         $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
@@ -1116,10 +1123,11 @@ class UserController extends Controller
             return response()->json(['response' => 'review created']);
         } else {
             return response()->json(['response' => 'review failed']);
-        }           
+        }
     }
 
-    public function updateRate(Request $request, $id) {
+    public function updateRate(Request $request, $id)
+    {
         $data = $request->all();
 
         $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
@@ -1143,7 +1151,6 @@ class UserController extends Controller
             return response()->json(['response' => 'update succeed']);
         } else {
             return response()->json(['response' => 'update failed']);
-        }  
+        }
     }
-
 }
