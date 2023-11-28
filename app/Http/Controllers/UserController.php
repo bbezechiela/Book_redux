@@ -531,7 +531,7 @@ class UserController extends Controller
         $userExist = Users::where('username', $validated["username"])->get();
 
         if ($userExist) {
-            return view('users.signup')->with('message', "username exist already");
+            return view('users.signup', ['message' => 'username already exist']);
         } else {
             $user = Users::create($validated);
 

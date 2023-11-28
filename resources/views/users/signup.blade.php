@@ -84,18 +84,21 @@
                     <div class="mx-1 mt-3 d-flex justify-content-start">
                         <span class="text-secondary" style="white-space: nowrap;">
                             Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
-                            <label type="checkbox" id="show-password"><span id="pass-tip"></span></label> 
+                            <label type="checkbox" id="show-password"><span id="pass-tip"></span></label>
                         </span>
-                        
+
                         {{-- <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
                                 id="pass-tip"></span></label>  --}}
-                                
+
                     </div>
                 </div>
             </div>
 
-          
+
             <div class="mx-3 text-center px-4 py-2 mt-4">
+                @if (isset($message))
+                    <p class="text-danger fw-bold">{{ $message }}</p>
+                @endif                
                 <button type="submit" id="sign-up" class="sign-up-btn btn mx-auto w-25 h-25 fw-bold">Sign
                     Up</button>
                 <p class="mt-2 text-black text-center">Already have an account? <a href="./login">Click
