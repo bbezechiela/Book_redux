@@ -262,11 +262,13 @@ class UserController extends Controller
                     'birthday' => 'required',
                     'gender' => 'required',
                     // 'age' => 'required',
-                    // 'interest' => 'required',
+                    'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
                     'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
                 ]);
+
+                $validated["interest"] = implode(', ', $validated["interest"]);
 
                 $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
                 $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -279,9 +281,10 @@ class UserController extends Controller
                 $user->update($validated);
 
                 if ($user) {
-                    return redirect('/myprofile');
+                    // return redirect('/myprofile');
+                    return view('users.myProfile', ['user' => $user, 'message' => 'Profile successfully updated']);
                 } else {
-                    return 'error bitch';
+                    return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
                 }
             } else {
                 $validated = $request->validate([
@@ -293,20 +296,22 @@ class UserController extends Controller
                     'birthday' => 'required',
                     'gender' => 'required',
                     // 'age' => 'required',
-                    // 'interest' => 'required',
+                    'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
                     // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
                 ]);
+                $validated["interest"] = implode(', ', $validated["interest"]);
 
                 $user = Users::find(session('id'));
                 $user->update($validated);
 
 
                 if ($user) {
-                    return redirect('/myprofile');
+                    // return redirect('/myprofile');
+                    return view('users.myProfile', ['user' => $user, 'message' => 'Profile successfully updated']);
                 } else {
-                    return 'error bitch';
+                    return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
                 }
             }
         } else {
@@ -639,9 +644,9 @@ class UserController extends Controller
 
         if ($user && Hash::check($validated["password"], $user->password)) {
             $user->update(['password' => $validated["new_password"]]);
-            return view('users.changePassword', ['user' => $user]);
+            return view('users.changePassword', ['user' => $user, 'message' => 'Password updated']);
         } else {
-            return "error bitch";
+            return view('users.changePassword', ['user' => $user, 'message' => 'Cannot update password']);
         }
     }
 

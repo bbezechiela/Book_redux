@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Change Password | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/change-password-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Change Password | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/change-password-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -28,8 +28,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
                 {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
@@ -85,14 +85,14 @@
             </div>
         </ul>
         @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <div class="alert alert-danger alert-dismissible">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                     @endforeach
-            </ul>
-        </div>
+                </ul>
+            </div>
         @endif
         <div class="change-password-container">
             <div class="header">
@@ -119,15 +119,41 @@
                     <button id="save-btn" type="button" class="btn btn-save">Save</button>
                 </div>
             </form>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                        <strong class="me-auto"></strong>
+                        <small>1 min ago</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    @if (isset($message) && $message == 'Password updated')
+                        <div class="toast-body fw-bold text-success">
+                            {{ $message }}
+                        </div>
+                    @elseif (isset($message))
+                        <div class="toast-body fw-bold text-danger">
+                            {{ $message }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ]);
 <script>
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast'));
+
+    @if (isset($message))
+        toastBootstrap.show()
+    @endif
+
     var pass = document.getElementById("new-password");
     var form = document.getElementById('form');
     var save_btn = document.getElementById('save-btn');
