@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\SellerController;
@@ -179,35 +180,35 @@ Route::post('/updateaddress/{id}/{add}', [UserController::class, 'updateAddress'
 
 Route::get('/destroyaddress/{id}/{del}', [UserController::class, 'destroyAddress']);
 
-Route::get('/dashboard', [UserController::class, 'dashboard']);
+Route::get('/dashboard', [AdminController::class, 'dashboard']);
 
-Route::get('/manageresources', [UserController::class, 'manageResources']);
+Route::get('/manageresources', [AdminController::class, 'manageResources']);
 
-Route::get('/managerefund', [UserController::class, 'manageRefund']);
+Route::get('/managerefund', [AdminController::class, 'manageRefund']);
 
-Route::get('/managereviews', [UserController::class, 'manageReviews']);
+Route::get('/managereviews', [AdminController::class, 'manageReviews']);
 
-Route::get('/manageuseraccounts', [UserController::class, 'manageUserAccounts']);
+Route::get('/manageuseraccounts', [AdminController::class, 'manageUserAccounts']);
 
-Route::get('/managerentingclub', [UserController::class, 'manageRentingClub']);
+Route::get('/managerentingclub', [AdminController::class, 'manageRentingClub']);
 
-Route::get('/managesellingclub', [UserController::class, 'manageSellingClub']);
+Route::get('/managesellingclub', [AdminController::class, 'manageSellingClub']);
 
-Route::get('/manageexchangeclub', [UserController::class, 'manageExchangeClub']);
+Route::get('/manageexchangeclub', [AdminController::class, 'manageExchangeClub']);
 
-Route::get('/manageuserlisting', [UserController::class, 'manageUserListing']);
+Route::get('/manageuserlisting', [AdminController::class, 'manageUserListing']);
 
-Route::get('/reportedlisting', [UserController::class, 'reportedListing']);
+Route::get('/reportedlisting', [AdminController::class, 'reportedListing']);
 
-Route::get('/reportedpost', [UserController::class, 'reportedPost']);
+Route::get('/reportedpost', [AdminController::class, 'reportedPost']);
 
-Route::get('/reportedexchangepost', [UserController::class, 'reportedExchangePost']);
+Route::get('/reportedexchangepost', [AdminController::class, 'reportedExchangePost']);
 
-Route::get('/reportedrentpost', [UserController::class, 'reportedRentPost']);
+Route::get('/reportedrentpost', [AdminController::class, 'reportedRentPost']);
 
-Route::get('/reporteduser', [UserController::class, 'reportedUser']);
+Route::get('/reporteduser', [AdminController::class, 'reportedUser']);
 
-Route::get('/adminprofile', [UserController::class, 'adminProfile']);
+Route::get('/adminprofile', [AdminController::class, 'adminProfile']);
 
 Route::get('/survey', [UserController::class, 'survey']);
 
@@ -268,7 +269,7 @@ Route::get('/couriermessage', [UserController::class, 'courierMessage']);
 
 Route::get('/couriernotification', [UserController::class, 'courierNotification']);
 
-Route::get('/manageseller', [UserController::class, 'manageSeller']);
+Route::get('/manageseller', [AdminController::class, 'manageSeller']);
 
 Route::get('/reportedseller', [UserController::class, 'reportedSeller']);
 

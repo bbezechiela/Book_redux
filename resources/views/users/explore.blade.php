@@ -109,8 +109,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
@@ -146,8 +151,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
@@ -192,8 +202,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
@@ -229,8 +244,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
@@ -276,8 +296,13 @@
                                     <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                    @foreach ($recommended->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span> --}}
                                         <div class="button-container">
@@ -316,8 +341,13 @@
                                     <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
                                     <p class="card-text mt-0 mb-2">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                    @foreach ($recommended->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
@@ -612,8 +642,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $sale->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $sale->author }}<br>
                                     {{ $sale->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $sale->price }}</span>
                                     <div class="button-container">
@@ -659,8 +694,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $exchange->author }}<br>
                                     {{ $exchange->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($exchange->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0"></span>
                                     <div class="button-container">
@@ -705,8 +745,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $rent->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $rent->author }}<br>
                                     {{ $rent->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($rent->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                     <div class="button-container">
@@ -751,8 +796,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
@@ -788,8 +838,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
@@ -834,8 +889,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-end align-items-center p-0">
                                     {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
                                     <div class="button-container">
@@ -871,8 +931,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
@@ -919,8 +984,13 @@
                                     <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
                                     <p class="card-text mt-0 mb-2">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                    @foreach ($recommended->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span> --}}
                                         <div class="button-container">
@@ -956,8 +1026,13 @@
                                     <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                    @foreach ($recommended->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
@@ -1277,8 +1352,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $sale->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $sale->author }}<br>
                                     {{ $sale->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($sale->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $sale->price }}</span>
                                     <div class="button-container">
@@ -1323,8 +1403,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $exchange->author }}<br>
                                     {{ $exchange->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($exchange->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
 
                                     <div class="button-container">
@@ -1370,8 +1455,13 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $rent->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $rent->author }}<br>
                                     {{ $rent->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>Bagacay, Tacloban</p>
+                                @foreach ($rent->user->addressUser as $address)
+                                    @if ($address->default_address == 'true')
+                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                        </p>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                     <div class="button-container">

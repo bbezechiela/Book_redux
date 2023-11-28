@@ -28,6 +28,7 @@ class Books extends Model
         'author',
         'edition',
         'genre',
+        'stock',
         'condition',
         'description',
         'language',

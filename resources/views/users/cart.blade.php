@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Cart | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/cart-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Cart | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/cart-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -26,8 +26,8 @@
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button> --}}
-                    <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                            alt="Logo"></a>
+                    <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                            src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
@@ -88,129 +88,138 @@
                 <form id="form" action="/checkout">
                     @csrf
                     @foreach ($items->cart as $item)
-                    {{-- <p>{{ $item->productRelation->title }}</p> --}}
-                    @if ($item->productRelation->status == 'Exchange' && $item->productRelation->unit == 'Added to
-                    Cart')
-                    <div class="order-cart">
-                        <div class="name-cart">
-                            <a class="seller-name"
-                                href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-                        </div>
+                        {{-- <p>{{ $item->productRelation->title }}</p> --}}
+                        @if (
+                            $item->productRelation->status == 'Exchange' &&
+                                $item->productRelation->unit ==
+                                    'Added to
+                                            Cart')
+                            <div class="order-cart">
+                                <div class="name-cart">
+                                    <a class="seller-name"
+                                        href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                    <button class="message-seller"><i class="fa fa-commenting"
+                                            aria-hidden="true"></i></button>
+                                </div>
 
-                        <div class="product-cart">
-                            <div class="book-details">
-                                {{-- <input class="form-check-input check-order" type="checkbox" name="items"
+                                <div class="product-cart">
+                                    <div class="book-details">
+                                        {{-- <input class="form-check-input check-order" type="checkbox" name="items"
                                             value="{{ $item->productRelation->price }}" id="check-order"> --}}
-                                <input class="form-check-input check-order" type="checkbox" name="items[]"
-                                    value="{{ $item->id }}" id="check-order">
-                                <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="book-title">{{ $item->productRelation->title }}</p>
-                                    <p class="mb-0 fw-bold interaction-type">
-                                        {{ $item->productRelation->status }}
-                                    </p>
+                                        <input class="form-check-input check-order" type="checkbox" name="items[]"
+                                            value="{{ $item->id }}" id="check-order">
+                                        <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
+                                            alt="book" width="80px" height="110px">
+                                        <div class="book-info">
+                                            <p class="book-title">{{ $item->productRelation->title }}</p>
+                                            <p class="mb-0 fw-bold interaction-type">
+                                                {{ $item->productRelation->status }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="product-price">₱{{ $item->productRelation->price }}
+                        </div> --}}
+                                    <div class="product-action">
+                                        <div class="dropdown">
+                                            <button class="btn dropdown-toggle move-button" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
+                                            <ul class="dropdown-menu">
+                                                {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
+                                                <li><a class="dropdown-item" href="#">Move to wish list</a></li>
+                                            </ul>
+                                        </div>
+                                        <a href="/deletecart/{{ $item->id }}" class="delete-button">Delete</a>
+                                    </div>
                                 </div>
                             </div>
-                            {{-- <div class="product-price">₱{{ $item->productRelation->price }}
-                        </div> --}}
-                        <div class="product-action">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle move-button" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">Move to</button>
-                                <ul class="dropdown-menu">
-                                    {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
-                                    <li><a class="dropdown-item" href="#">Move to wish list</a></li>
-                                </ul>
-                            </div>
-                            <a href="/deletecart/{{ $item->id }}" class="delete-button">Delete</a>
-                        </div>
-                    </div>
-        </div>
-        @elseif ($item->productRelation->unit == 'Added to Cart')
-        <div class="order-cart">
-            <div class="name-cart">
-                <a class="seller-name"
-                    href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
-                <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-            </div>
+                        @elseif ($item->productRelation->unit == 'Added to Cart')
+                            <div class="order-cart">
+                                <div class="name-cart">
+                                    <a class="seller-name"
+                                        href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                    <button class="message-seller"><i class="fa fa-commenting"
+                                            aria-hidden="true"></i></button>
+                                </div>
 
-            <div class="product-cart">
-                <div class="book-details">
-                    {{-- <input class="form-check-input check-order" type="checkbox" name="items"
+                                <div class="product-cart">
+                                    <div class="book-details">
+                                        {{-- <input class="form-check-input check-order" type="checkbox" name="items"
                                             value="{{ $item->productRelation->price }}" id="check-order"> --}}
-                    <input class="form-check-input check-order" type="checkbox" name="items[]" value="{{ $item->id }}"
-                        id="check-order">
-                    <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}" alt="book"
-                        width="80px" height="110px">
-                    <div class="book-info">
-                        <p class="book-title">{{ $item->productRelation->title }}</p>
-                        <p class="mb-2 fw-bold interaction-type">
-                            {{ $item->productRelation->status }}
-                        </p>
-                        <div class="product-price flex-row">₱<span
-                                id="{{ $item->id }}">{{ $item->productRelation->price }}</span></div>
+                                        <input class="form-check-input check-order" type="checkbox" name="items[]"
+                                            value="{{ $item->id }}" id="check-order">
+                                        <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
+                                            alt="book" width="80px" height="110px">
+                                        <div class="book-info">
+                                            <p class="book-title">{{ $item->productRelation->title }}</p>
+                                            <p class="mb-2 fw-bold interaction-type">
+                                                {{ $item->productRelation->status }}
+                                            </p>
+                                            <div class="product-price flex-row">₱<span
+                                                    id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
+                                            </div>
 
-                    </div>
-                </div>
-                {{-- <div class="product-price flex-row">₱<span
+                                        </div>
+                                    </div>
+                                    {{-- <div class="product-price flex-row">₱<span
                         id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
             </div> --}}
-            <div class="d-flex justify-content-start align-items-center">
-                <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                    <button class="btn btn-link btn-minus px-2"
-                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fa fa-minus" aria-hidden="true"></i>
-                    </button>
-                    <input id="form1" min="0" name="quantity" value="2" type="number"
-                        class="form-control form-control-mm" />
-                    <button class="btn btn-link btn-plus px-2"
-                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="total-price flex-row">₱<span id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
-            </div>
-            <div class="product-action">
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle move-button" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">Move to</button>
-                    <ul class="dropdown-menu">
-                        {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
-                        <li><a class="dropdown-item" href="#">Move to wish list</a></li>
-                    </ul>
-                </div>
-                <a class="btn delete-button" href="/deletecart/{{ $item->id }}">Delete</a>
-            </div>
-        </div>
-    </div>
-    {{-- @php
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
+                                            <button class="btn btn-link btn-minus px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                            </button>
+                                            <input id="form1" min="0" name="quantity" value="2"
+                                                type="number" class="form-control form-control-mm" />
+                                            <button class="btn btn-link btn-plus px-2"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="total-price flex-row">₱<span
+                                            id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
+                                    </div>
+                                    <div class="product-action">
+                                        <div class="dropdown">
+                                            <button class="btn dropdown-toggle move-button" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
+                                            <ul class="dropdown-menu">
+                                                {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
+                                                <li><a class="dropdown-item" href="#">Move to wish list</a></li>
+                                            </ul>
+                                        </div>
+                                        <a class="btn delete-button"
+                                            href="/deletecart/{{ $item->id }}">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- @php
                             $totalPrice += floatVal($item->productRelation->price);
                         @endphp --}}
-    @endif
-    @endforeach
-    </form>
-    </main>
-    <div class="footer fixed-bottom">
-        <div class="float-end">
-            <p class="mb-0 me-5 d-flex align-items-center">
-                {{-- <p class="total-items">Total (<span>4 items</span>): <span id="total" class="total">₱{{ $totalPrice }}.0</span>
+                        @endif
+                    @endforeach
+                </form>
+            </main>
+            <div class="footer fixed-bottom">
+                <div class="float-end">
+                    <p class="mb-0 me-5 d-flex align-items-center">
+                        {{-- <p class="total-items">Total (<span>4 items</span>): <span id="total" class="total">₱{{ $totalPrice }}.0</span>
             </p> --}}
-            <p class="total-items">Total (<span id="items">0</span> item/s): <span id="total" class="total">₱0.00</span>
-                <a id="checkout" class="btn btn-primary checkout-button">Checkout</a>
-            </p>
-            </p>
-        </div>
+                    <p class="total-items">Total (<span id="items">0</span> item/s): <span id="total"
+                            class="total">₱0.00</span>
+                        <a id="checkout" class="btn btn-primary checkout-button">Checkout</a>
+                    </p>
+                    </p>
+                </div>
 
-    </div>
+            </div>
 
 </body>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>

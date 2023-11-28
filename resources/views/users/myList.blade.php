@@ -277,7 +277,7 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="text" name="stock" id="stock-exchange" class="form-control"
+                                    <input type="number" name="stock" id="stock-exchange" class="form-control"
                                         placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
                                     <input type="text" name="price" id="price" class="form-control"
                                         id="list-name" placeholder="Price"
@@ -1543,7 +1543,7 @@
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">                    
                     <option value="Sale">Sale</option>
                     <option value="Exchange">Exchange</option>
-                    <option value="Rent">Rent</option>
+                    {{-- <option value="Rent">Rent</option> --}}
                 </select>
                 <input type="text" id="edit-book-id" name="id" hidden>
                 <!-- sale -->
@@ -1657,7 +1657,7 @@
                         <div class="modal-footer border-0">
                             <button type="button" id="sale-update"
                                 class="btn mx-auto w-25 text-white rounded-3 update-btn">Update</button>
-                            <form id="sale-form-delete  " method="POST">
+                            <form id="sale-form-delete" method="POST">
                                 @csrf
                                 <button type="button" id="sale-delete"
                                     class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>

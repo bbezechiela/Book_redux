@@ -74,6 +74,7 @@ class ListingController extends Controller
             'author' => ['required', 'min:4'],
             'edition' => ['required', 'min:4'],
             'genre' => ['required', 'min:2'],
+            'stock' => 'required',
             'condition' => 'required',
             'description' => ['required', 'min:4'],
             'language' => 'required',
@@ -118,6 +119,7 @@ class ListingController extends Controller
             'author' => $validated['author'],
             'edition' => $validated['edition'],
             'genre' => $validated['genre'],
+            'stock' => $validated["stock"],
             'condition' => $validated['condition'],
             'description' => $validated['description'],
             'language' => $validated['language'],
@@ -147,6 +149,7 @@ class ListingController extends Controller
             'author' => ['required', 'min:4'],
             'edition' => ['required', 'min:4'],
             'genre' => ['required', 'min:2'],
+            'stock' => 'required',
             'condition' => ['required', 'min:4'],
             'description' => ['required', 'min:4'],
             'language' => 'required',
@@ -191,6 +194,7 @@ class ListingController extends Controller
             'author' => $validated['author'],
             'edition' => $validated['edition'],
             'genre' => $validated['genre'],
+            'stock' => $validated["stock"],
             'condition' => $validated['condition'],
             'description' => $validated['description'],
             'language' => $validated['language'],
@@ -221,6 +225,7 @@ class ListingController extends Controller
             'edition' => ['required', 'min:4'],
             'genre' => ['required', 'min:2'],
             'condition' => 'required',
+            'stock' => 'required',
             'description' => ['required', 'min:4'],
             'language' => 'required',
             'weight' => 'required',
@@ -267,6 +272,7 @@ class ListingController extends Controller
             'author' => $validated['author'],
             'edition' => $validated['edition'],
             'genre' => $validated['genre'],
+            'stock' => $validated["stock"],
             'condition' => $validated['condition'],
             'description' => $validated['description'],
             'language' => $validated['language'],
@@ -301,6 +307,7 @@ class ListingController extends Controller
                 'author' => ['required', 'min:4'],
                 'edition' => ['required', 'min:4'],
                 'genre' => ['required', 'min:2'],
+                'stock' => 'required',
                 'condition' => 'required',
                 'description' => ['required', 'min:4'],
                 'language' => 'required',
@@ -345,6 +352,7 @@ class ListingController extends Controller
                 'author' => $validated['author'],
                 'edition' => $validated['edition'],
                 'genre' => $validated['genre'],
+                'stock' => $validated["stock"],
                 'condition' => $validated['condition'],
                 'description' => $validated['description'],
                 'language' => $validated['language'],
@@ -369,6 +377,7 @@ class ListingController extends Controller
                 'author' => ['required', 'min:4'],
                 'edition' => ['required', 'min:4'],
                 'genre' => ['required', 'min:2'],
+                'stock' => 'required',
                 'condition' => 'required',
                 'description' => ['required', 'min:4'],
                 'language' => 'required',
@@ -389,6 +398,7 @@ class ListingController extends Controller
                 'author' => $validated['author'],
                 'edition' => $validated['edition'],
                 'genre' => $validated['genre'],
+                'stock' => $validated["stock"],
                 'condition' => $validated['condition'],
                 'description' => $validated['description'],
                 'language' => $validated['language'],
@@ -627,9 +637,10 @@ class ListingController extends Controller
     public function destroy($id)
     {
         $post = Books::find($id);
+        $cart = Cart::where('product_id', $id)->delete();
         $post->delete();
 
-        if ($post) {
+        if ($post && $cart) {
             return redirect()->route('mylist');
         } else {
             return "error bitch";

@@ -88,7 +88,12 @@
                             <span class="input-group-text">
                                 <i class="fa fa-search"></i>
                             </span>
-                            <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
+                            <div class="position-relevant">
+                                <input id="search_input" class="form-control rounded-3" type="text" placeholder="Search">
+                                <div id="searches" class="position-absolute border bg-light w-100 p-2"
+                                    style="cursor: pointer;">
+                                </div>
+                            </div>
                         </div>
                         {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                                 data-bs-placement="bottom" data-bs-title="Messages">
@@ -4629,6 +4634,69 @@
     ])
 
     <script>
+        // search script
+    var search = document.getElementById('search_input');
+    var searchContainer = document.getElementById('searches');
+    if (search.value.trim().length < 1) {
+        searchContainer.style.display = 'none'
+    }
+    search.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            window.location.href = '/searchitem/' + search.value;
+        }
+    });
+    search.addEventListener('input', () => {
+        if (search.value.trim().length > 1) {
+            const requestOptions = {
+                method: 'GET',
+            };
+            fetch('/search/' + search.value.trim(), requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    searchContainer.style.display = 'inline';
+                    searchContainer.innerHTML = '';
+                    // console.log(result);
+                    result.forEach(data => {
+                        console.log(data);
+                        if (data.unit == 'Available') {
+                            const suggestionElement = document.createElement('div');
+                            const searchedImage = document.createElement('img');
+                            const searchedContent = document.createElement('div');
+                            const titleText = document.createElement('p');
+                            const authorText = document.createElement('p');
+                            // suggestionElement.textContent = data.title;
+                            suggestionElement.id = "searched-item";
+                            suggestionElement.className = 'row px-2';
+                            searchedImage.src = '/images/books/' + data.book_photo;
+                            searchedImage.className = 'col-3 px-0 bg-light';
+                            searchedContent.className = 'col border';
+                            searchedContent.id = 'textContent';
+                            titleText.className = 'm-0 fw-bold';
+                            titleText.id = 'searched-title';
+                            titleText.textContent = data.title;
+                            authorText.id = 'searched-author';
+                            authorText.textContent = data.author;
+                            suggestionElement.addEventListener('click', () => {
+                                window.location.href = "/product/" + data.id + "/" + data
+                                    .user_id;
+                                searchContainer.innerHTML = '';
+                            });
+                            searchContainer.appendChild(suggestionElement);
+                            suggestionElement.appendChild(searchedImage);
+                            suggestionElement.appendChild(searchedContent);
+                            searchedContent.appendChild(titleText);
+                            searchedContent.appendChild(authorText);
+                        }
+                    });
+                })
+                .catch(error => console.log('error', error));
+        } else {
+            searchContainer.style.display = 'none'
+            searchContainer.innerHTML = '';
+        }
+    });
+
+
         var sidebar_width = document.getElementById("sidebar").offsetWidth;
         var content_width = document.getElementById("content");
         var home_sidebar = document.getElementById("home-side-btn");
@@ -4670,7 +4738,7 @@
         var science_fiction_btn = document.getElementById("science-fiction-header");
         var fantasy_adventure_btn = document.getElementById("fantasy-adventure-header");
         var young_adult_btn = document.getElementById("young-adult-header");
-        var mystery_suspense_btn = document.getElementById("mystery-suspense-header");
+        // var mystery_suspense_btn = document.getElementById("mystery-suspense-header");
         var crime_thriller_btn = document.getElementById("crime-thriller-header");
         var horror_supernatural_btn = document.getElementById("horror-supernatural-header");
         var comedy_satire_btn = document.getElementById("comedy-satire-header");
@@ -4803,22 +4871,22 @@
             nonfiction_biography_cards.style.display = "none";
             document.getElementById("young-adult-content").style.display = "table";
         });
-        mystery_suspense_btn.addEventListener("click", function() {
-            educational_cards.style.display = "none";
-            historical_fiction_cards.style.display = "none";
-            poetry_prose_cards.style.display = "none";
-            self_help_cards.style.display = "none";
-            romance_saga_cards.style.display = "none";
-            science_fiction_cards.style.display = "none";
-            fantasy_adventure_cards.style.display = "none";
-            young_adult_cards.style.display = "none";
-            mystery_suspense_cards.style.display = "none";
-            crime_thriller_cards.style.display = "none";
-            horror_supernatural_cards.style.display = "none";
-            comedy_satire_cards.style.display = "none";
-            nonfiction_biography_cards.style.display = "none";
-            document.getElementById("mystery-suspense-content").style.display = "table";
-        });
+        // mystery_suspense_btn.addEventListener("click", function() {
+        //     educational_cards.style.display = "none";
+        //     historical_fiction_cards.style.display = "none";
+        //     poetry_prose_cards.style.display = "none";
+        //     self_help_cards.style.display = "none";
+        //     romance_saga_cards.style.display = "none";
+        //     science_fiction_cards.style.display = "none";
+        //     fantasy_adventure_cards.style.display = "none";
+        //     young_adult_cards.style.display = "none";
+        //     mystery_suspense_cards.style.display = "none";
+        //     crime_thriller_cards.style.display = "none";
+        //     horror_supernatural_cards.style.display = "none";
+        //     comedy_satire_cards.style.display = "none";
+        //     nonfiction_biography_cards.style.display = "none";
+        //     document.getElementById("mystery-suspense-content").style.display = "table";
+        // });
         crime_thriller_btn.addEventListener("click", function() {
             educational_cards.style.display = "none";
             historical_fiction_cards.style.display = "none";

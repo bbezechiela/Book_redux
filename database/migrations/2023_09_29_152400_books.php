@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             // $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status');
             $table->string('unit');
             $table->text('book_photo')->nullable();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('edition');
             $table->string('genre');
+            $table->unsignedBigInteger('stock');
             $table->text('condition');
             $table->text('description');
             $table->string('language');            
