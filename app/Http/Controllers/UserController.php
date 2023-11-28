@@ -531,7 +531,7 @@ class UserController extends Controller
         $userExist = Users::where('username', $validated["username"])->get();
 
         if ($userExist) {
-            return view('users.signup', ['message' => 'username already exist']);
+            return view('users.signup', ['message' => 'Username already exist']);
         } else {
             $user = Users::create($validated);
 
@@ -1031,6 +1031,16 @@ class UserController extends Controller
     }
 
     // API's
+    public function checkUsername($user) {
+        $checkuser = Users::where('username', $user)->first();
+        
+        if ($checkuser) {
+            return response()->json(['message' => 'already exist']);
+        } else {
+            return response()->json(['message' => 'not exist']);
+        }
+    }
+
     public function searchItem($item)
     {
         $search = Books::where(function ($query) use ($item) {

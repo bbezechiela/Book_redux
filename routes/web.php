@@ -281,6 +281,8 @@ Route::get('/shipment', [UserController::class, 'manageShipment']);
 
 
 // API's
+Route::get('/checkusername/{user}', [UserController::class, 'checkUsername']);
+
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
 Route::get('/getaddress/{id}', [UserController::class, 'getAddress']);

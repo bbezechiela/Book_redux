@@ -96,9 +96,9 @@
 
 
             <div class="mx-3 text-center px-4 py-2 mt-4">
-                @if (isset($message))
-                    <p class="text-danger fw-bold">{{ $message }}</p>
-                @endif                
+                {{-- @if (isset($message)) --}}
+                <p id="response-message" class="text-danger fw-bold"></p>
+                {{-- @endif --}}
                 <button type="submit" id="sign-up" class="sign-up-btn btn mx-auto w-25 h-25 fw-bold">Sign
                     Up</button>
                 <p class="mt-2 text-black text-center">Already have an account? <a href="./login">Click
@@ -120,10 +120,34 @@
     var boolValue = 0;
     var pass = document.getElementById("password");
     var submit_btn = document.getElementById("sign-up");
+    var username = document.getElementById('username');
+
+    username.addEventListener('input', () => {
+
+        if (username.value.length > 1) {
+            console.log(username.value);
+            const requestOptions = {
+                method: 'GET',
+            };
+            fetch('/checkusername/' + username.value, requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    if (result.message == 'not exist') {
+                        document.getElementById('response-message').textContent = '';
+                    } else {
+                        document.getElementById('response-message').textContent = username.value + ' ' + result.message;
+                    }
+                })
+                .catch(error => console.log(error));
+        }
+    });
+
     uploaded_image.addEventListener("change", function() {
         var image = document.getElementById("img-icon");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
+
     show_password.addEventListener("change", function() {
         if (boolValue == 0) {
             document.getElementById("password").setAttribute('type', 'text');
