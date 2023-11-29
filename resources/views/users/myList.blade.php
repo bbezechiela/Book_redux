@@ -1995,7 +1995,63 @@
             </div>
         </div>
     </div>
-
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="createLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                <strong class="me-auto"></strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            @if (session('createMessage') && session('createMessage') == 'Created successfully')
+                <div class="toast-body fw-bold text-success">
+                    {{ session('createMessage') }}                    
+                </div>
+            @elseif (session('createMessage'))
+                <div class="toast-body fw-bold text-danger">
+                    {{ session('createMessage') }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="deleteLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                <strong class="me-auto"></strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            @if (session('deleteMessage') && session('deleteMessage') == 'Deleted succesfully')
+                <div class="toast-body fw-bold text-success">
+                    {{ session('deleteMessage') }}
+                </div>
+            @elseif (session('deleteMessage'))
+                <div class="toast-body fw-bold text-danger">
+                    {{ session('deleteMessage') }}
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="updateLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                <strong class="me-auto"></strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            @if (session('updateMessage') == 'Updated successfully')
+                <div class="toast-body fw-bold text-success">
+                    {{ session('updateMessage') }}
+                </div>
+            @elseif (session('updateMessage'))
+                <div class="toast-body fw-bold text-danger">
+                    {{ session('updateMessage') }}
+                </div>
+            @endif
+        </div>
+    </div>
 </div>
 </div>
 
@@ -2004,6 +2060,19 @@
     'aos_link' => '/aos-master/dist/aos.js',
 ])
 <script>
+    // toast script
+    const deleteToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('deleteLiveToast'));
+    const createToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('createLiveToast'));
+    const updateToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('updateLiveToast'));
+
+    @if (session('deleteMessage'))
+        deleteToast.show()
+    @elseif (session('createMessage'))      
+        createToast.show()
+    @elseif (session('updateMessage'))
+        updateToast.show()
+    @endif
+
     // delete
     var sale_delete = document.getElementById('sale-delete');
     var exchange_delete = document.getElementById('exchange-delete');

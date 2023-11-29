@@ -683,7 +683,7 @@ class UserController extends Controller
                     'street_building_house' => $validated['street_building_house'],
                     'default_address' => $validated['default_address']
                 ]);
-                return redirect('/deliveryAddress');
+                return redirect('/deliveryAddress')->with('message', 'Address added successfully');
             } elseif ($post_address && $add == 'notDelivery') {
                 $post_address->update([
                     'default_address' => null
@@ -700,7 +700,7 @@ class UserController extends Controller
                     'default_address' => $validated['default_address']
                 ]);
                 // $post_address->update($validated);
-                return redirect('addresses');
+                return redirect('addresses')->with('message', 'Address added successfully');
             } elseif ($add == 'delivery') {
                 $new_add = Address::create([
                     'user_id' => session('id'),
@@ -713,7 +713,7 @@ class UserController extends Controller
                     'street_building_house' => $validated['street_building_house'],
                     'default_address' => $validated['default_address']
                 ]);
-                return redirect('/deliveryAddress');
+                return redirect('/deliveryAddress')->with('message', 'Address added successfully');
             } elseif ($add == 'notDelivery') {
                 $new_add = Address::create([
                     'user_id' => session('id'),
@@ -726,7 +726,7 @@ class UserController extends Controller
                     'street_building_house' => $validated['street_building_house'],
                     'default_address' => $validated['default_address']
                 ]);
-                return redirect('addresses');
+                return redirect('addresses')->with('message', 'Address added successfully');
             } else {
                 return "error bitch";
             }
@@ -755,9 +755,9 @@ class UserController extends Controller
             ]);
 
             if ($post_address && $add == 'delivery') {
-                return redirect('/deliveryAddress');
+                return redirect('/deliveryAddress')->with('message', 'Address added successfully');
             } elseif ($post_address && $add == 'notDelivery') {
-                return redirect('addresses');
+                return redirect('addresses')->with('message', 'Address added successfully');
             } else {
                 return "error bitch";
             }
@@ -809,7 +809,7 @@ class UserController extends Controller
                 $new_add = Address::find($id);
                 $new_add->update($validated);
 
-                return redirect('addresses');
+                return redirect('addresses')->with('message', 'Updated successfully');
             } elseif ($add == 'delivery') {
                 $new_add = Address::find($id);
                 $new_add->update($validated);
@@ -817,7 +817,7 @@ class UserController extends Controller
             } elseif ($add == 'notDelivery') {
                 $new_add = Address::find($id);
                 $new_add->update($validated);
-                return redirect('addresses');
+                return redirect('addresses')->with('message', 'Updated successfully');
             } else {
                 return "error bitch";
             }
@@ -849,7 +849,7 @@ class UserController extends Controller
             if ($address && $add == 'delivery') {
                 return redirect('/deliveryAddress');
             } elseif ($address && $add == 'notDelivery') {
-                return redirect('addresses');
+                return redirect('addresses')->with('message', 'Updated successfully');
             } else {
                 return "error bitch";
             }
@@ -864,7 +864,7 @@ class UserController extends Controller
         if ($address && $del == 'delivery') {
             return redirect('/deliveryAddress');
         } elseif ($address && $del == 'notDelivery') {
-            return redirect('addresses');
+            return redirect('addresses')->with('message', 'Deleted successfully');
         } else {
             return "error bitch";
         }

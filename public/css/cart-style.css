@@ -308,5 +308,7 @@ h4 {
 }
 
 .form-control-mm {
-    width: 3em;
+    width: 4em;    
+    margin-right: 0px;
+    margin-left: 0px;
 }

@@ -112,7 +112,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -154,7 +154,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -205,7 +205,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -247,7 +247,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -297,12 +297,12 @@
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
-                                        </p>
-                                    @endif
-                                @endforeach
+                                        @if ($address->default_address == 'true')
+                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                            </p>
+                                        @endif
+                                    @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span> --}}
                                         <div class="button-container">
@@ -342,12 +342,12 @@
                                     <p class="card-text mt-0 mb-2">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
-                                        </p>
-                                    @endif
-                                @endforeach
+                                        @if ($address->default_address == 'true')
+                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                            </p>
+                                        @endif
+                                    @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
@@ -645,7 +645,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -697,7 +697,7 @@
                                 @foreach ($exchange->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -748,7 +748,7 @@
                                 @foreach ($rent->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -799,7 +799,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -841,7 +841,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -892,7 +892,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -934,7 +934,7 @@
                                 @foreach ($daily->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -985,12 +985,12 @@
                                     <p class="card-text mt-0 mb-2">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
-                                        </p>
-                                    @endif
-                                @endforeach
+                                        @if ($address->default_address == 'true')
+                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                            </p>
+                                        @endif
+                                    @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span> --}}
                                         <div class="button-container">
@@ -1027,12 +1027,12 @@
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
-                                        </p>
-                                    @endif
-                                @endforeach
+                                        @if ($address->default_address == 'true')
+                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                            </p>
+                                        @endif
+                                    @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
@@ -1355,7 +1355,7 @@
                                 @foreach ($sale->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1406,7 +1406,7 @@
                                 @foreach ($exchange->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1458,7 +1458,7 @@
                                 @foreach ($rent->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality}}
+                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1493,6 +1493,21 @@
 
             </div>
         </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                @if (session('message'))
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('message') }}
+                    </div>                
+                @endif
+            </div>
+        </div>
         <!-- <div class="container-fluid"> -->
         {{-- <div class="d-flex h-100 w-100">
                     <iframe id="content-frame" class="flex-fill w-100 border" src="./homepage-content.php"
@@ -1509,6 +1524,12 @@
 ])
 
 <script>
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast'));
+
+    @if (session('message'))
+        toastBootstrap.show()
+    @endif
+
     function stopPropagation() {
         event.stopPropagation();
     }

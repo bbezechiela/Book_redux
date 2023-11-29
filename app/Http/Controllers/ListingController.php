@@ -132,9 +132,9 @@ class ListingController extends Controller
         ]);
 
         if ($salePost) {
-            return redirect()->route('mylist');
+            return redirect()->route('mylist')->with('createMessage', 'Created successfully');
         } else {
-            return "error bitch";
+            return redirect()->route('mylist')->with('createMessage', 'Error: Cannot list item');
         }
     }
 
@@ -207,9 +207,9 @@ class ListingController extends Controller
         ]);
 
         if ($exchangePost) {
-            return redirect()->route('mylist');
+            return redirect()->route('mylist')->with('createMessage', 'Created successfully');
         } else {
-            return "error bitch";
+            return redirect()->route('mylist')->with('createMessage', 'Error: Cannot list item');
         }
     }
 
@@ -288,9 +288,9 @@ class ListingController extends Controller
         ]);
 
         if ($rentPost) {
-            return redirect()->route('mylist');
+            return redirect()->route('mylist')->with('createMessage', 'Created successfully');
         } else {
-            return "error bitch";
+            return redirect()->route('mylist')->with('createMessage', 'Error: Cannot list item');
         }
     }
 
@@ -365,9 +365,9 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return redirect()->route('mylist');
+                return redirect()->route('mylist')->with('updateMessage', 'Updated successfully');
             } else {
-                return "error bitch";
+                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
             }
         } else {
             $validated = $request->validate([
@@ -411,9 +411,9 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return redirect()->route('mylist');
+                return redirect()->route('mylist')->with('updateMessage', 'Updated successfully');
             } else {
-                return "error bitch";
+                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
             }
         }
     }
@@ -471,9 +471,9 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return redirect()->route('mylist');
+                return redirect()->route('mylist')->with('updateMessage', 'Updated successfully');
             } else {
-                return "error bitch";
+                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
             }
         } else {
             $validated = $request->validate([
@@ -519,9 +519,9 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return redirect()->route('mylist');
+                return redirect()->route('mylist')->with('updateMessage', 'Updated successfully');
             } else {
-                return "error bitch";
+                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
             }
         }
     }
@@ -583,9 +583,9 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return redirect()->route('mylist');
+                return redirect()->route('mylist')->with('updateMessage', 'Updated successfully');
             } else {
-                return "error bitch";
+                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
             }
         } else {
             $validated = $request->validate([
@@ -635,9 +635,9 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return redirect()->route('mylist');
+                return redirect()->route('mylist')->with('updateMessage', 'Updated successfully');
             } else {
-                return "error bitch";
+                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
             }
         }
     }
@@ -648,10 +648,11 @@ class ListingController extends Controller
         $cart = Cart::where('product_id', $id)->delete();
         $post->delete();
 
-        if ($post && $cart) {
-            return redirect()->route('mylist');
+        if ($post) {
+            return redirect()->route('mylist')->with('deleteMessage', 'Deleted succesfully');
+            
         } else {
-            return "error bitch";
+            return redirect()->route('mylist')->with('deleteMessage', 'Cannot delete listing');                        
         }
     }
 
@@ -670,7 +671,7 @@ class ListingController extends Controller
         ]);
 
         if ($cart) {
-            return redirect('/explore');
+            return redirect('/explore')->with('message', 'Item added to cart');
         }
     }
 
@@ -685,7 +686,7 @@ class ListingController extends Controller
         ]);
 
         if ($item) {
-            return redirect('/cart');
+            return redirect('/cart')->with('message', 'Item deleted successfully');
         } else {
             return 'error bitch';
         }

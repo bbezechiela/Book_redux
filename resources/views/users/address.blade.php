@@ -266,7 +266,21 @@
                 </div>
             </div>
         </div>
-
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                @if (session('message'))
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('message') }}
+                    </div>                
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 
@@ -276,6 +290,12 @@
 ]);
 
 <script>
+    const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
+
+    @if (session('message'))
+        message.show()
+    @endif
+
     var address = document.getElementById('brgy');
     var region = document.getElementById('region');
     var city_municipality = document.getElementById('city_municipality')

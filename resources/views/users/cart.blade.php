@@ -93,7 +93,7 @@
                             $item->productRelation->status == 'Exchange' &&
                                 $item->productRelation->unit ==
                                     'Added to
-                                            Cart')
+                                                                    Cart')
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"
@@ -165,13 +165,13 @@
             </div> --}}
                                     <div class="d-flex justify-content-start align-items-center">
                                         <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                            <button class="btn btn-link btn-minus px-2"
+                                            <button type="button" class="btn btn-link btn-minus px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                             <input id="form1" min="0" name="quantity" value="2"
                                                 type="number" class="form-control form-control-mm" />
-                                            <button class="btn btn-link btn-plus px-2"
+                                            <button type="button" class="btn btn-link btn-plus px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
@@ -214,6 +214,22 @@
                 </div>
 
             </div>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                        <strong class="me-auto"></strong>
+                        <small>1 min ago</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                    @if (session('message'))
+                        <div class="toast-body fw-bold text-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
 
 </body>
 
@@ -223,6 +239,12 @@
 ])
 
 <script>
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast'));
+
+    @if (session('message'))
+        toastBootstrap.show()
+    @endif
+    
     var select_all = document.getElementById('select-all');
     var prices = document.querySelectorAll('input[name="items[]"]');
     var total = document.getElementById('total');
