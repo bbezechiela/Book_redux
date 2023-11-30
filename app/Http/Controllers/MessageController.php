@@ -54,7 +54,7 @@ class MessageController extends Controller
         // pag kuha receiver id
         $receiverIdQuery = Users::where('username', $receiver_name)->get();
 
-        if ($receiverIdQuery) {
+        if (!$receiverIdQuery->isEmpty()) {
             $receiver_id = $receiverIdQuery->first()->id;
             
             $messageInput = Messages::create([
@@ -71,7 +71,7 @@ class MessageController extends Controller
             }
 
         } else {
-            return response()->json(['message' => 'cant be found']);
+            return response()->json(['error' => 'cant be found']);
         }
     }
 
@@ -169,16 +169,18 @@ class MessageController extends Controller
     function deleteConversation(Request $request) {
         $conversation_id = $request->query('conversation_id');
     
-        $deleter = Conversations::find($conversation_id);
+        $deleter = Messages::where('conversation_id', $conversation_id);
+        $deleter->delete();
 
         if ($deleter) {
-            $deleter->messages()->delete();
+            $deleteConversation = Conversations::where('conversation_id', $conversation_id);
+            $deleteConversation->delete();
+            if ($deleteConversation) {
+                return response()->json(['message' => 'deleted successfuly messages pati an container']);
 
-            $deleter->delete();
-
-            return response()->json(['message' => 'deleted successfuly']);
+            }
         } else {
-            return response()->json(['message' => 'cant find anything']);
+            return response()->json(['error' => 'cant find anything']);
         }
     }
 }

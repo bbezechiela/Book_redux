@@ -14,40 +14,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // outer container it form
     const formOuterContainer = document.getElementById('formOuterContainer');
     
-    // search result
-    const searchResult = document.createElement('div');
-
     // show now conversation
     const showNoConversation = document.createElement('div');
 
+    // initial check ha conversation
+    let initialCheckDone = false;
+
     // get conversations function
     function getConversations() {
-        const xhttp = new XMLHttpRequest();
-
-        xhttp.open('GET', `/getConversations?lastConversationTimestamp=${lastConversationTimestamp}&current_username=${current_username}`, true);
-        xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-        xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                const responses = JSON.parse(this.responseText);
-                
-                // checker if may sulod
-                if (responses.data) {
-                    lastConversationTimestamp = responses.data[responses.data.length - 1].created_at;
-                    showConversations(responses.data);
-                } else {
-                    //console.log('waray pa conversations');
-                    zeroConversation();
+        fetch(`/getConversations?lastConversationTimestamp=${lastConversationTimestamp}&current_username=${current_username}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
                 }
-            }
-        }
-        
-        xhttp.send();
+                throw new Error('Error in getting messages');
+            })
+            .then(responses => {
+                if (responses.data) {
+                    try {
+                        lastConversationTimestamp = responses.data[responses.data.length - 1].created_at;
+                        initialCheckDone = true;
+                        showConversations(responses.data);
+                    } catch {
+                        // waray na conversation
+                    }
+                } else if (!initialCheckDone) {
+                    // console.log('no conversation found');
+                    zeroConversation();
+                    initialCheckDone = true;
+                }
+            })
+            .catch(error => console.log(error));
     }
     
     //bug here
     getConversations();
-    //setInterval(getConversations, 1200);
+    //setInterval(getConversations, 1500);
     
     // zero conversation
     function zeroConversation() {
@@ -119,10 +121,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 const receiver_photo = document.createElement('div');
                 receiver_photo.style.cssText = receiver_profile_pic_styles;
                 receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
+                
+                // conversation menu
+                const conversationMenu = document.createElement('div');
+                conversationMenu.textContent = '...';
+                conversationMenu.id = 'conversationMenu';
 
-                messagesHeaderCtn.appendChild(receiver_photo);
-                messagesHeaderCtn.appendChild(receiverName);
+                // anotherCtn
+                const anotherCtn = document.createElement('div');
+                anotherCtn.id = 'anotherCtn';
 
+                anotherCtn.appendChild(receiver_photo);
+                anotherCtn.appendChild(receiverName);
+
+                messagesHeaderCtn.appendChild(anotherCtn);
+                messagesHeaderCtn.appendChild(conversationMenu);
+                
                 // ay kalimot ig clear it innerHTML para dri mag utro utro it element tas dri man retain it value kada click it container
                 formOuterContainer.innerHTML = '';
 
@@ -147,28 +161,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // pag kuha mga messages
                 function getMessages() {
-                    const xhttp = new XMLHttpRequest();
-                    xhttp.open('GET', `/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`, true);
-                    xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState === 4 && this.status === 200) {
-                            const responses = JSON.parse(this.responseText);
-                             
-                            if (responses) {
+                    fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            }
+                            throw new Error('Error in getting messages');
+                        })
+                        .then(responses => {
+                            if (responses.data) {
                                 try {
                                     lastMessageTimestamp = responses.data[responses.data.length - 1].created_at;
                                     displayMessages(responses.data);
                                     console.log(responses.data);
-                                    console.log(response.conversation_name);
                                 } catch {
-                                    //console.log("waray bago na message");
+                                    // console.log('no new messages');
                                 }
                             }
-                        }
-                    }
-    
-                    xhttp.send();
+                        })
+                        .catch(error => console.log(error));
                 }
 
                 // display messages ha search na approach
@@ -211,73 +222,77 @@ document.addEventListener('DOMContentLoaded', function() {
                     // conversation name
                     // conversation_name = response.conversation_name;
                     console.log(response.conversation_name);
-    
-                    // pag send message
-                    const xhttp1 = new XMLHttpRequest();
-                            
-                    xhttp1.open('POST', '/sendMessageTwo', true);
-                    xhttp1.setRequestHeader('Content-Type', 'application/json');
-                    xhttp1.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-                
-                    xhttp1.onreadystatechange = function() {
-                        if (this.readyState === 4 && this.status === 200) {
-                            const response = JSON.parse(this.responseText);
-                            console.log(response.message);
-                            document.getElementById('messageForm').reset();
-                            getMessages();
-                        } else {
-                            console.log('failed an pag request');
-                        }
-                    } 
-                
-                    const data = JSON.stringify({
+                    
+                    const data = {
                         current_username: current_username,
                         sender_id: current_user_id,
                         message_content: message_content,
                         conversation_name: response.conversation_name,
                         conversation_id: response.conversation_id
-                    });
-                    
-                    xhttp1.send(data);
+                    };
+    
+                    // pag send message
+                    fetch('/sendMessageTwo', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: JSON.stringify(data),
+                    })
+                        .then(responses => {
+                            if (responses.ok) {
+                                return responses.json();
+                            }
+                            throw new Error('Sending message error');
+                        })
+                        .then(response => {
+                            //console.log(response);
+                            document.getElementById('messageForm').reset();
+                            getMessages();
+                        })
+                        .catch(error => console.log(error));
                 });    
-
+                
+                conversationMenu.addEventListener('click', function() {
+                    fetch(`/deleteConversation?conversation_id=${response.conversation_id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                    })
+                        .then(responses => {
+                            if (responses.ok) {
+                                return responses.json();
+                            }
+                            throw new Error('Error in deleting conversation');
+                        })
+                        .then(response => {
+                            console.log('Conversation deleted successfully');
+                            getConversations();
+                        })
+                        .catch(error => console.log(error));
+                });
             });
-            
-            // try pag pa work it pag delete gamit pag hold it container itself
-            // conversationCtn.addEventListener('touchstart', function() {
-            //     setTimeout(function() {
-            //         const xhttp = new XMLHttpRequest();
-            //         xhttp.open('DELETE', `/deleteConversation?conversation_id=${response.conversation_id}`, true);
-            //         xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            //         xhttp.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-            //         xhttp.onreadystatechange = function() {
-            //             if (this.readyState === 4 && this.status === 200) {
-            //                 const responses = JSON.parse(this.responseText);
-
-            //                 if (responses) {
-            //                     console.log(responses);
-            //                 }
-            //             }
-            //         }
-            //         console.log('na hold for 1.5sec');
-            //         xhttp.send();
-            //     }, 1500);
-            // });
-
-            // conversationCtn.addEventListener('touchend', function() {
-            //     // clearTimeout(timeout);
-            //     console.log('touch ended');            
-            // });
-
         });
     }
     
     // search function
     function searchUser(username) {
+        const searchResult = document.createElement('div');
+
+        //clear it outercontainer
         document.getElementById('searchInputContainer').value = "";
-        searchResult.classList.add('searchResult');
-        searchResult.innerHTML = "";
+       // searchResult.innerHTML = "";
         const searchOuterCtn = document.getElementById('searchOuterContainer');
+
+        if (searchOuterCtn.children.length >= 2) {
+            const secondChild = searchOuterCtn.children[1];
+
+            secondChild.remove();
+        } else {
+            console.log('waray child');
+        }
 
         const xhttp = new XMLHttpRequest();
         
@@ -287,12 +302,23 @@ document.addEventListener('DOMContentLoaded', function() {
         xhttp.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 const responses = JSON.parse(this.responseText);
-
-
+                
+                console.log(responses);
+                console.log(responses.data);
                 if (responses.data) {
-                    searchResult.textContent = responses.data.username;
-                    searchOuterCtn.appendChild(searchResult);
 
+                    searchResult.textContent = responses.data.username;
+                    console.log(searchResult.textContent);
+                    
+                    searchResult.style.display = 'block';
+                    searchResult.classList.add('searchResult');
+
+                    
+                    searchOuterCtn.appendChild(searchResult);
+                    
+                    if (searchOuterCtn && searchResult) {
+                        searchOuterCtn.removeChild(searchResult);
+                    }
                     const imgLocation = window.location.origin + '/images/profile_photos/' + responses.data.profile_photo;
 
                     const receiver_profile_pic_styles = `
@@ -305,9 +331,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     searchOuterCtn.appendChild(searchResult);
                     searchResult.addEventListener('click', function() {
-                        document.getElementById('rightSectionOuterContainer').style.visibility = 'visible';
-                        searchResult.style.display = 'none';
+                        const receiver_namee = responses.data.username;
+                        console.log(receiver_namee);
 
+                        const rightSectionOuterContainer = document.getElementById('rightSectionOuterContainer');
+                        rightSectionOuterContainer.style.visibility = 'visible';
+                        
+                        searchResult.remove();
                         // clear it outer container
                         messageOuterContainer.innerHTML = '';
 
@@ -315,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const messagesHeaderContainer = document.getElementById('messagesHeaderContainer');
                         messagesHeaderContainer.innerHTML = '';
                         messagesHeaderContainer.id = 'messagesHeaderContainer';
-                        
+
                         // receiver name
                         const receiverName = document.createElement('div');
                         receiverName.textContent = responses.data.username;
@@ -328,7 +358,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         messagesHeaderContainer.appendChild(receiver_photo);
                         messagesHeaderContainer.appendChild(receiverName);
-
 
                         // clear an outer container an kanan form para dri mag retain an mga elements
                         formOuterContainer.innerHTML = '';
@@ -356,18 +385,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         formOuterContainer.appendChild(form);
                         
-                        // messaga timestamp
+                        // message timestamp
                         lastMessageTimestamp = '1990-12-12 12:12:12';                        
                         
+                        // get message interval
+                        let messageInterval = 0;
+
+                        // clear anay it XMLHttpRequest
+                        let xhttp = null;
+
+                        function startMessageInterval() {
+                            // clear it existing na interval 
+                            clearInterval(messageInterval);
+
+                            messageInterval = setInterval(getMessages, 1500);
+                        }
+
+                        const receiver_username = responses.data.username;
+
+                        const convoName = current_username + ',' + receiver_username;
+
                         // pag kuha messages ha db based ha conversation id
                         function getMessages() {    
-                            const receiver_username = responses.data.username;
-
                             // conversation name para mayda niya reference hain it kuha.on
-                            const convoName = current_username + "," + receiver_username;
                             console.log(convoName);
+                           
+                            // check anay if mayda request
+                            if (xhttp) {
+                                xhttp.abort();
+                            }
                                                     
-                            const xhttp = new XMLHttpRequest();
+                            xhttp = new XMLHttpRequest();
                             
                             xhttp.open('GET', `/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${convoName}`, true);
                             xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -395,8 +443,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         };
 
                         // tawag an getMessages once maka click nat user ha search result
-                        // setInterval(getMessages, 1500); 
-                        getMessages();
+                        //setInterval(getMessages, 1500); 
+                        //getMessages();
+                        startMessageInterval();                        
 
                         // display messages ha search na approach
                         function displayMessages(responses) {
@@ -502,16 +551,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // search input container
     document.getElementById('searchButton').addEventListener('click', function() {
         var username = document.getElementById('searchInputContainer').value;
-
+        
         if (username == '') {
-            searchResult.style.display = 'none';
+            //searchResult.style.display = 'none';
             console.log('input something');
         } else {
             console.log('search input container data sent to search function');
             searchUser(username);
         }
-        username = '';
-        console.log(username);
+        username.innerHTML = '';
     });
 
 });

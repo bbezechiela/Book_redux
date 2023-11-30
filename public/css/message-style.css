@@ -239,10 +239,24 @@
 
 #messagesHeaderContainer {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     height: 70px;
-    max-width: 400px;
+    max-width: 100%;
+}
+
+#anotherCtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+/* conversation menu */
+#conversationMenu {
+    font-size: 30px;
+    font-weight: 500;
+    padding: 15px;
 }
 
 /* ha conversation list na approach */

@@ -202,7 +202,7 @@ Route::get('/deletecart/{id}', [ListingController::class, 'destroyCart']);
 
 Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
-// message routes
+// message routes, api's, backticks approach
 Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
 
 Route::post('/sendMessageTwo', [MessageController::class, 'sendMessageTwo']);
@@ -215,9 +215,7 @@ Route::post('/conversations', [MessageController::class, 'createConversation']);
 
 Route::get('/getConversations', [MessageController::class, 'getConversations']);
 
-Route::middleware(['web'])->group(function() {
-    Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
-});
+Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
