@@ -165,7 +165,7 @@
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
-                                            <input id="form1" min="0" max="{{ $item->productRelation->stock }}" name="quantity" value="0"
+                                            <input id="form1" min="0" max="{{ $item->productRelation->stock }}" name="qty[]" value="0"
                                                 type="number" class="form-control form-control-mm" />
                                             <button type="button" class="btn btn-link btn-plus px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">

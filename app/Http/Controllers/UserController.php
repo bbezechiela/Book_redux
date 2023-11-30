@@ -180,10 +180,15 @@ class UserController extends Controller
     {
         if ($request->session()->has('user')) {
             $order = $request->input('items');
-            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();
-
+            $qty = $request->input('qty');
+            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();            
             $address = Users::with('addressUser')->find(session('id'));
-            return view('users.checkout', ['items' => $checkout, 'user' => $address]);
+
+            // foreach ($checkout as $index => $item) {
+            //     echo $item->productRelation->title . ' ' . $qty[$index];
+            // }
+            
+            return view('users.checkout', ['items' => $checkout, 'user' => $address, 'qty' => $qty]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }

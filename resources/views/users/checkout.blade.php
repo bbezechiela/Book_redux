@@ -104,7 +104,7 @@
                     <h1 class="price">Price</h1>
                 </div> --}}
         {{-- </div> --}}
-        @foreach ($items as $orders)
+        @foreach ($items as $index => $orders)
             {{-- {{ $orders->productRelation->title }} --}}
             {{-- <span data="id" >{{ $orders->id }}</span> --}}
             <span data="book-id" hidden>{{ $orders->product_id }}</span>
@@ -118,10 +118,10 @@
                     <div class="book-details">
                         <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}" alt="book"
                             width="80px" height="110px">
-                        <div class="book-info">
+                        <div class="book-info">                            
                             <p class="book-title">{{ $orders->productRelation->title }}</p>
                             <p class="fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
-                            <p class="mb-0 interaction-type">Qty: <span>2</span></p>
+                            <p class="mb-0 interaction-type">Qty: <span>{{ $qty[$index] }}</span></p>
                         </div>
                         <div class="product-price">₱<span
                                 class="price-list">{{ $orders->productRelation->price }}</span>

@@ -134,7 +134,7 @@
                                 <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
                                 <div class="d-flex justify-content-start align-items-center mb-2">
                                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                        <p class="m-0" style="color: #003060;">Quantity: </p>
+                                        <p class="m-0" style="color: #003060;">Quantity: <span class="fw-bold">{{ $book_id->stock }} pieces available</span></p>
                                         {{-- <button class="btn btn-link btn-minus px-2"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i class="fa fa-minus" aria-hidden="true"></i>
@@ -144,9 +144,9 @@
                                         <button class="btn btn-link btn-plus px-2"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button> --}}
+                                        </button>
                                         <p class="card-text m-0" style="white-space: nowrap;">{{ $book_id->stock }}
-                                            pieces available</p>
+                                            pieces available</p> --}}
                                     </div>
                                 </div>
                                 <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
@@ -238,8 +238,9 @@
                                 </p>
                                 <div class="d-flex justify-content-start align-items-center mb-2">
                                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                        <p class="m-0" style="color: #003060;">Quantity: </p>
-                                        <button class="btn btn-link btn-minus px-2"
+                                        <p class="m-0" style="color: #003060;">Quantity: <span class="fw-bold">{{ $book_id->stock }}
+                                            pieces available</span></p>
+                                        {{-- <button class="btn btn-link btn-minus px-2"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                         </button>
@@ -250,7 +251,7 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                         <p class="card-text m-0" style="white-space: nowrap;"> {{ $book_id->stock }}
-                                            pieces available</p>
+                                            pieces available</p> --}}
                                     </div>
                                 </div>
                                 <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
