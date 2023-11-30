@@ -89,11 +89,7 @@
                     @csrf
                     @foreach ($items->cart as $item)
                         {{-- <p>{{ $item->productRelation->title }}</p> --}}
-                        @if (
-                            $item->productRelation->status == 'Exchange' &&
-                                $item->productRelation->unit ==
-                                    'Added to
-                                                                    Cart')
+                        @if ($item->productRelation->status == 'Exchange' && $item->user_id == session('id'))
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"
@@ -132,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($item->productRelation->unit == 'Added to Cart')
+                        @elseif ($item->user_id == session('id'))
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"
@@ -169,7 +165,7 @@
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
-                                            <input id="form1" min="0" name="quantity" value="2"
+                                            <input id="form1" min="0" max="{{ $item->productRelation->stock }}" name="quantity" value="0"
                                                 type="number" class="form-control form-control-mm" />
                                             <button type="button" class="btn btn-link btn-plus px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -177,7 +173,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="total-price flex-row">₱<span
+                                    <div class="total-price fw-bold flex-row">₱<span
                                             id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
                                     </div>
                                     <div class="product-action">

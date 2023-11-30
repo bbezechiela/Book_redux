@@ -16,6 +16,10 @@ class Books extends Model
     public function item() {
         return $this->hasOne(Order_Items::class, 'book_id');
     }
+
+    public function cart() {
+        return $this->hasMany(Cart::class, 'product_id');
+    }
     
     protected $fillable = [
         'user_id',

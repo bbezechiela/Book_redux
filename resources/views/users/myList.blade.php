@@ -201,11 +201,10 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for </h1>
-                    <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for <span id="listing-type" class="fw-bold"></span></h1>
+                    <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category" hidden>
                         <option value="Sale">Sale</option>
-                        <option value="Exchange">Exchange</option>
-                        {{-- <option value="Rent">Rent</option> --}}
+                        <option value="Exchange">Exchange</option>                        
                     </select>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -302,7 +301,7 @@
                                     <select name="language" class="form-control form-select" id=""
                                         style="margin-bottom: 12px; color: #003060;">
                                         <option>Language</option>
-                                        <option value="English" selected>English</option>
+                                        <option value="English">English</option>
                                     </select>
                                 </div>
                                 <input type="text" name="title" class="form-control" placeholder="Title"
@@ -750,7 +749,7 @@
                                 <select name="language" class="form-control form-select" id=""
                                     style="margin-bottom: 12px; color: #003060;">
                                     <option>Language</option>
-                                    <option value="English" selected>English</option>
+                                    <option value="English">English</option>
                                 </select>
                             </div>
                             <input type="text" name="title" class="form-control" placeholder="Title"
@@ -1167,7 +1166,7 @@
                                 <select name="language" class="form-control form-select" id=""
                                     style="margin-bottom: 12px; color: #003060;">
                                     <option>Language</option>
-                                    <option value="English" selected>English</option>
+                                    <option value="English">English</option>
                                 </select>
                                 <input type="text" name="rental_duration" class="form-control"
                                     placeholder="Rental Duration" style="margin-bottom: 12px; color: #003060;">
@@ -1643,7 +1642,7 @@
                                     <select name="language" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;" id="edit-sale-language">
                                         <option>Language</option>
-                                        <option value="English" selected>English</option>
+                                        <option value="English">English</option>
                                     </select>
                                 </div>
                                 <input type="text" id="edit-sale-title" name="title" class="form-control"
@@ -1761,7 +1760,7 @@
                                 <select name="language" class="form-control form-select"
                                     style="margin-bottom: 12px; color: #003060;" id="edit-exchange-language">
                                     <option>Language</option>
-                                    <option value="English" selected>English</option>
+                                    <option value="English">English</option>
                                 </select>
                             </div>
                             <input type="text" id="edit-exchange-title" name="title" class="form-control"
@@ -1886,7 +1885,7 @@
                                 <select name="language" class="form-control form-select"
                                     style="margin-bottom: 12px; color: #003060;" id="edit-rent-language">
                                     <option>Language</option>
-                                    <option value="English" selected>English</option>
+                                    <option value="English">English</option>
                                 </select>
                                 <input type="text" name="rental_duration" id="edit-rent-rental-duration"
                                     class="form-control" placeholder="Rental Duration"
@@ -2368,6 +2367,7 @@
     var rent_courier = document.getElementById('rent-courier');
     create_listing_btn.addEventListener('click', function() {
         list_category.value = 'Sale';
+        document.getElementById('listing-type').textContent = 'Sale';
         createListingModal.show();
     });
     back_btn.addEventListener("click", function() {
@@ -2477,6 +2477,7 @@
 
     exchange_btn.addEventListener('click', () => {
         list_category.value = "Exchange";
+        document.getElementById('listing-type').textContent = 'Exchange';
         document.getElementById("sale").style.display = "none";
         document.getElementById("exchange").style.display = "flex";
         document.getElementById("rent").style.display = "none";

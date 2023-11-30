@@ -96,7 +96,7 @@ class UserController extends Controller
 
             // $users = Users::where();
             $user = Users::find(session('id'));
-            $post = Books::with('user.addressUser')->get();
+            $post = Books::with('user.addressUser', 'cart')->get();            
             return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
@@ -533,7 +533,7 @@ class UserController extends Controller
         $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
         $validated["profile_photo"] = $fileNameToStore;
 
-        $userExist = Users::where('username', $validated["username"])->get();
+        $userExist = Users::where('username', $validated["username"])->first();
 
         if ($userExist) {
             return view('users.signup', ['message' => 'Username already exist']);

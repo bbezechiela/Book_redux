@@ -100,7 +100,9 @@
             <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
                 <!-- card Daily Discover -->
                 @foreach ($post->shuffle() as $daily)
-                    @if ($daily->status == 'Exchange' && $daily->unit == 'Available')
+                    @if (
+                        $daily->status == 'Exchange' &&
+                            ($daily->unit == 'Available' || ($daily->unit == 'Added to Cart' && $daily->user_id == session('id'))))
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -116,11 +118,17 @@
                                         </p>
                                     @endif
                                 @endforeach
-                                <div class="card-foot price d-flex justify-content-end align-items-center p-0">
-                                    {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
+                                @foreach ($daily->cart as $cart)
+                                    @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+                                        <div
+                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                            <span class="fw-bold p-0 text-success">Added to cart</span>
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
                                                 onclick="stopPropagation(event)" type="button"
@@ -134,7 +142,8 @@
                                                         Cart</a></li>
                                                 <li><a class="dropdown-item" href="#"
                                                         onclick="stopPropagation(event)"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                        to
                                                         Wishlist</a></li>
                                             </ul>
                                         </div>
@@ -142,7 +151,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ($daily->unit == 'Available')
+                    @elseif ($daily->unit == 'Available' || $daily->unit == 'Added to Cart')
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -158,11 +167,17 @@
                                         </p>
                                     @endif
                                 @endforeach
+                                @foreach ($daily->cart as $cart)
+                                    @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+                                        <div
+                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                            <span class="fw-bold p-0 text-success">Added to cart</span>
+                                        </div>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
                                                 onclick="stopPropagation(event)" type="button"
@@ -176,7 +191,8 @@
                                                         Cart</a></li>
                                                 <li><a class="dropdown-item" href="#"
                                                         onclick="stopPropagation(event)"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                        to
                                                         Wishlist</a></li>
                                             </ul>
                                         </div>
@@ -193,7 +209,9 @@
             <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
                 <!-- card Featured -->
                 @foreach ($post->sortByDesc('created_at') as $daily)
-                    @if ($daily->status == 'Exchange' && $daily->unit == 'Available')
+                    @if (
+                        $daily->status == 'Exchange' &&
+                            ($daily->unit == 'Available' || ($daily->unit == 'Added to Cart' && $daily->user_id == session('id'))))
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -209,11 +227,17 @@
                                         </p>
                                     @endif
                                 @endforeach
-                                <div class="card-foot price d-flex justify-content-end align-items-center p-0">
-                                    {{-- <span class="fw-bold p-0">P{{ $daily->price }}</span> --}}
+                                @foreach ($daily->cart as $cart)
+                                    @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+                                        <div
+                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                            <span class="fw-bold p-0 text-success">Added to cart</span>
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
                                                 onclick="stopPropagation(event)" type="button"
@@ -227,7 +251,8 @@
                                                         Cart</a></li>
                                                 <li><a class="dropdown-item" href="#"
                                                         onclick="stopPropagation(event)"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                        to
                                                         Wishlist</a></li>
                                             </ul>
                                         </div>
@@ -235,7 +260,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ($daily->unit == 'Available')
+                    @elseif ($daily->unit == 'Available' || $daily->unit == 'Added to Cart')
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -251,11 +276,17 @@
                                         </p>
                                     @endif
                                 @endforeach
+                                @foreach ($daily->cart as $cart)
+                                    @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+                                        <div
+                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                            <span class="fw-bold p-0 text-success">Added to cart</span>
+                                        </div>
+                                    @endif
+                                @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                     <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
                                                 onclick="stopPropagation(event)" type="button"
@@ -269,7 +300,8 @@
                                                         Cart</a></li>
                                                 <li><a class="dropdown-item" href="#"
                                                         onclick="stopPropagation(event)"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                        to
                                                         Wishlist</a></li>
                                             </ul>
                                         </div>
@@ -287,11 +319,14 @@
                 <!-- card Recommended for you -->
                 @foreach ($post as $recommended)
                     @if (preg_match('/' . $recommended->genre . ',?/i', $user->interest))
-                        @if ($recommended->status == 'Exchange' && $recommended->unit == 'Available')
+                        @if (
+                            $recommended->status == 'Exchange' &&
+                                ($recommended->unit == 'Available' ||
+                                    ($recommended->unit == 'Added to Cart' && $recommended->user_id == session('id'))))
                             <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
+                                    class="img mx-auto p-2" alt="..." width="130px" height="170px">
                                 <div class="card-body py-0">
                                     <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
@@ -303,11 +338,17 @@
                                             </p>
                                         @endif
                                     @endforeach
+                                    @foreach ($recommended->cart as $cart)
+                                        @if ($cart->user_id == session('id') && $cart->product_id == $recommended->id)
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0 text-success">Added to cart</span>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span> --}}
+                                        <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
-                                                    aria-hidden="true" style="margin-right: 8px"></i></button> --}}
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle add-button"
                                                     onclick="stopPropagation(event)" type="button"
@@ -332,14 +373,14 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($recommended->unit == 'Available')
+                        @elseif ($recommended->unit == 'Available' || $recommended->unit == 'Added to Cart')
                             <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
+                                    class="img mx-auto p-2" alt="..." width="130px" height="170px">
                                 <div class="card-body py-0">
                                     <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $recommended->author }}<br>
+                                    <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
                                         @if ($address->default_address == 'true')
@@ -348,11 +389,17 @@
                                             </p>
                                         @endif
                                     @endforeach
+                                    @foreach ($recommended->cart as $cart)
+                                        @if ($cart->user_id == session('id') && $cart->product_id == $recommended->id)
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0 text-success">Added to cart</span>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg"
-                                                    aria-hidden="true" style="margin-right: 8px"></i></button> --}}
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle add-button"
                                                     onclick="stopPropagation(event)" type="button"
@@ -382,258 +429,14 @@
                 @endforeach
             </div>
         </div>
-        {{-- <div id="near_you" class="mx-5 px-5">
-            <h4 id="near-you-header">Near you</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
-                <!-- card Near You -->
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">₱100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">₱100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div id="for_sale" class="mx-5 px-5">
             <h4 id="for-sale-header">For Sale</h4>
             <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
                 <!-- card For Sale -->
                 @foreach ($post->shuffle() as $sale)
-                    @if ($sale->status == 'Sale' && $sale->unit == 'Available')
+                    @if (
+                        $sale->status == 'Sale' &&
+                            ($sale->unit == 'Available' || ($sale->unit == 'Added to Cart' && $sale->user_id == session('id'))))
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
                             <img src="{{ asset('images/books/' . $sale->book_photo) }}" class="img mx-auto p-2"
@@ -642,37 +445,50 @@
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $sale->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $sale->author }}<br>
                                     {{ $sale->genre }}</p>
-                                @foreach ($daily->user->addressUser as $address)
+                                @foreach ($sale->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
                                                 aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                                         </p>
                                     @endif
                                 @endforeach
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">₱{{ $sale->price }}</span>
-                                    <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button"
-                                                onclick="stopPropagation(event)" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
-                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Cart</a></li>
-                                                <li><a class="dropdown-item" href="#"
-                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Wishlist</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                @if ($sale->cart->count() >= 0)
+                                    @foreach ($sale->cart as $cart)
+                                        @if ($cart->user_id == session('id') && $cart->product_id == $sale->id)
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0 text-success">Added to cart</span>
+                                            </div>
+                                        @else
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0">₱{{ $sale->price }}</span>
+                                                <div class="button-container">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle add-button"
+                                                            onclick="stopPropagation(event)" type="button"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item"
+                                                                    href="/addtocart/{{ $sale->id }}"
+                                                                    onclick="stopPropagation(event)"><i
+                                                                        class="fa fa-cart-plus" aria-hidden="true"
+                                                                        style="margin-right: 7px"></i>Add to
+                                                                    Cart</a></li>
+                                                            <li><a class="dropdown-item" href="#"
+                                                                    onclick="stopPropagation(event)"><i
+                                                                        class="fa fa-list-alt" aria-hidden="true"
+                                                                        style="margin-right: 7px"></i>Add to
+                                                                    Wishlist</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -701,30 +517,43 @@
                                         </p>
                                     @endif
                                 @endforeach
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0"></span>
-                                    <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button"
-                                                onclick="stopPropagation(event)" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
-                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Cart</a></li>
-                                                <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Wishlist</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                @if ($exchange->cart->count() >= 0)
+                                    @foreach ($exchange->cart as $cart)
+                                        @if ($cart->user_id == session('id') && $cart->product_id == $exchange->id)
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0 text-success">Added to cart</span>
+                                            </div>
+                                        @else
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0">₱{{ $exchange->price }}</span>
+                                                <div class="button-container">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle add-button"
+                                                            onclick="stopPropagation(event)" type="button"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item"
+                                                                    href="/addtocart/{{ $exchange->id }}"
+                                                                    onclick="stopPropagation(event)"><i
+                                                                        class="fa fa-cart-plus" aria-hidden="true"
+                                                                        style="margin-right: 7px"></i>Add to
+                                                                    Cart</a></li>
+                                                            <li><a class="dropdown-item" href="#"
+                                                                    onclick="stopPropagation(event)"><i
+                                                                        class="fa fa-list-alt" aria-hidden="true"
+                                                                        style="margin-right: 7px"></i>Add to
+                                                                    Wishlist</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -752,30 +581,43 @@
                                         </p>
                                     @endif
                                 @endforeach
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">₱{{ $rent->price }}</span>
-                                    <div class="button-container">
-                                        {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" onclick="stopPropagation(event)"
-                                                aria-hidden="true" style="margin-right: 8px"></i></button> --}}
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button"
-                                                onclick="stopPropagation(event)" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
-                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Cart</a></li>
-                                                <li><a class="dropdown-item" href="#"
-                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Wishlist</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                @if ($rent->cart->count() >= 0)
+                                    @foreach ($rent->cart as $cart)
+                                        @if ($cart->user_id == session('id') && $cart->product_id == $rent->id)
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0 text-success">Added to cart</span>
+                                            </div>
+                                        @else
+                                            <div
+                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                                <span class="fw-bold p-0">₱{{ $rent->price }}</span>
+                                                <div class="button-container">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle add-button"
+                                                            onclick="stopPropagation(event)" type="button"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item"
+                                                                    href="/addtocart/{{ $rent->id }}"
+                                                                    onclick="stopPropagation(event)"><i
+                                                                        class="fa fa-cart-plus" aria-hidden="true"
+                                                                        style="margin-right: 7px"></i>Add to
+                                                                    Cart</a></li>
+                                                            <li><a class="dropdown-item" href="#"
+                                                                    onclick="stopPropagation(event)"><i
+                                                                        class="fa fa-list-alt" aria-hidden="true"
+                                                                        style="margin-right: 7px"></i>Add to
+                                                                    Wishlist</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -1504,7 +1346,7 @@
                 @if (session('message'))
                     <div class="toast-body fw-bold text-success">
                         {{ session('message') }}
-                    </div>                
+                    </div>
                 @endif
             </div>
         </div>
