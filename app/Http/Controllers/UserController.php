@@ -935,6 +935,7 @@ class UserController extends Controller
         // dd(session('data'));
         $address_id = session('data')['address_id'];
         $book_id = session('data')['book_id'];
+        $qty = session('data')['qty'];
         $order_num = session('data')['order_number'];
         $option = session('data')['shipping_option'];
         $method = session('data')['payment_method'];
@@ -952,10 +953,11 @@ class UserController extends Controller
 
         $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
 
-        foreach ($book_id as $id) {
+        foreach ($book_id as $index => $id) {
             $orderItem = Order_Items::create([
                 'order_id' => $order->id,
-                'book_id' => $id
+                'book_id' => $id,
+                'qty' => $qty[$index]
             ]);
             $orderItem->book->update([
                 'unit' => 'Ordered'
@@ -967,17 +969,7 @@ class UserController extends Controller
             return redirect('/explore');
         } else {
             return response()->json(['message' => 'error bitch']);
-        }
-        // $order = Orders::find($id);
-        // // dd($order);
-        // $order->update(['order_status' => 'paid']);
-
-        // if ($order) {
-        //     return redirect('/mypurchase');
-        // } else {
-        //     return response()->json(['error' => 'error']);
-        // }
-
+        }       
     }
 
     public function receivedOrder($id)

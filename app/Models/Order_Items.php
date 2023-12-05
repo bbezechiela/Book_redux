@@ -25,6 +25,7 @@ class Order_Items extends Model
     protected $fillable = [
         'order_id',
         'book_id',
+        'qty',
         'bar_code'
     ];
 }
