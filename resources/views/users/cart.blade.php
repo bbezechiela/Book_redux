@@ -165,8 +165,9 @@
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
-                                            <input id="amm_{{ $item->id }}" min="0" max="{{ $item->productRelation->stock }}" name="qty[]" value="0"
-                                                type="number" class="form-control form-control-mm" />
+                                            <input id="amm_{{ $item->id }}" min="0"
+                                                max="{{ $item->productRelation->stock }}" name="qty[]"
+                                                value="0" type="number" class="form-control form-control-mm" />
                                             <button type="button" class="btn btn-link btn-plus px-2"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -240,7 +241,7 @@
     @if (session('message'))
         toastBootstrap.show()
     @endif
-    
+
     var select_all = document.getElementById('select-all');
     var prices = document.querySelectorAll('input[name="items[]"]');
     var total = document.getElementById('total');
@@ -256,7 +257,8 @@
             if (this.checked) {
                 // console.log(document.getElementById(this.value).textContent);
                 checkedValues.push(document.getElementById(this.value).textContent);
-                totalPrice += (parseFloat(document.getElementById(this.value).textContent) * parseFloat(document.getElementById('amm_' + this.value).value));                
+                totalPrice += (parseFloat(document.getElementById(this.value).textContent) * parseFloat(
+                    document.getElementById('amm_' + this.value).value));
                 total.textContent = '₱' + totalPrice + '.0';
                 totalItems += parseFloat(document.getElementById('amm_' + this.value).value);
                 items.textContent = totalItems;
@@ -286,17 +288,21 @@
             prices.forEach((checkbox) => {
                 if (checkbox.checked) {
                     checkedValues.push(document.getElementById(checkbox.value).textContent);
-                    totalPrice += parseFloat(document.getElementById(checkbox.value).textContent);
+                    totalPrice += (parseFloat(document.getElementById(checkbox.value).textContent) * parseFloat(document.getElementById('amm_' + checkbox.value).value));
                     total.textContent = '₱' + totalPrice + '.0';
-                    totalItems += 1;
+                    totalItems += parseFloat(document.getElementById('amm_' + checkbox.value).value);
                 } else if (totalPrice > 0.0) {
                     checkedValues.pop(document.getElementById(checkbox.value).textContent);
-                    totalPrice -= parseFloat(document.getElementById(checkbox.value).textContent);
+                    totalPrice -= (parseFloat(document.getElementById(checkbox.value).textContent) * parseFloat(document.getElementById('amm_' + checkbox.value).value));
                     total.textContent = '₱' + totalPrice + '.0';
-                    totalItems -= 1;
+                    totalItems -= parseFloat(document.getElementById('amm_' + checkbox.value).value);
                     if (totalPrice <= 0.0) {
-                        total.textContent = '₱' + '0.00';
-                        totalPrice = 0.0;
+                    total.textContent = '₱' + '0.00';
+                    totalPrice = 0.0;
+                    }
+                    if (totalItems <= 0) {
+                        totalItems = 0;
+                        items.textContent = totalItems;
                     }
                 }
             });
