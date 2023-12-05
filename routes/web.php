@@ -215,7 +215,9 @@ Route::post('/conversations', [MessageController::class, 'createConversation']);
 
 Route::get('/getConversations', [MessageController::class, 'getConversations']);
 
-Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
+Route::delete('/deleteConversationCtnBased', [MessageController::class, 'deleteConversationCtnBased']);
+
+Route::delete('/deleteConversationSearchBased', [MessageController::class, 'deleteConversationSearchBased']);
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

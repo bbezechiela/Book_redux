@@ -165,22 +165,46 @@ class MessageController extends Controller
         }
     }
 
-    // delete conversation function
-    function deleteConversation(Request $request) {
+    // delete conversation ctn based 
+    function deleteConversationCtnBased(Request $request) {
         $conversation_id = $request->query('conversation_id');
     
-        $deleter = Messages::where('conversation_id', $conversation_id);
-        $deleter->delete();
+        $deleteMessages = Messages::where('conversation_id', $conversation_id)->delete();
 
-        if ($deleter) {
-            $deleteConversation = Conversations::where('conversation_id', $conversation_id);
-            $deleteConversation->delete();
+        if ($deleteMessages) {
+            $deleteConversation = Conversations::where('conversation_id', $conversation_id)->delete();
             if ($deleteConversation) {
                 return response()->json(['message' => 'deleted successfuly messages pati an container']);
-
             }
         } else {
             return response()->json(['error' => 'cant find anything']);
         }
+    }
+
+    // delete conversation search based
+    function deleteConversationSearchBased(Request $request) {
+        $conversation_name = $request->query('conversation_name');
+
+        $explodeCtn = explode(',', $conversation_name);
+        sort($explodeCtn);
+        $implodeCtn = implode(',', $explodeCtn);
+
+        $getConversationId = Conversations::where('conversation_name', $implodeCtn)->first();
+
+        if ($getConversationId) {
+            $conversation_id = $getConversationId->conversation_id;
+            $deleteMessages = Messages::where('conversation_id', $conversation_id)->delete();
+
+            if ($deleteMessages) {
+                $deleteConversation = Conversations::where('conversation_id', $conversation_id)->delete();
+
+                    if ($deleteConversation) {
+                    return response()->json(['data' => 'deleted successfuly pati container']);
+                }
+            }
+        } else {
+            return response()->json(['error' => 'may error']);
+        }
+
     }
 }

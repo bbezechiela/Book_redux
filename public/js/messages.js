@@ -3,7 +3,7 @@ let lastMessageTimestamp = '1990-12-12 12:12:12';
 let lastConversationTimestamp = '1990-12-12 12:12:12';
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('rightSectionOuterContainer').style.visibility = 'hidden';
+    document.getElementById('rightSectionOuterContainer').style.display = 'none';
     
     // outercontainer it messages
     const messageOuterContainer = document.getElementById('messageOuterContainer');
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // add event listener
             conversationCtn.addEventListener('click', function() {
-                document.getElementById('rightSectionOuterContainer').style.visibility = 'visible';
+                document.getElementById('rightSectionOuterContainer').style.display = 'block';
 
                 lastMessageTimestamp = '1990-12-12 12:12:12';
                 
@@ -254,8 +254,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         .catch(error => console.log(error));
                 });    
                 
+                //deleteConversationCtnBased, event tikang ha conversation list na click
                 conversationMenu.addEventListener('click', function() {
-                    fetch(`/deleteConversation?conversation_id=${response.conversation_id}`, {
+                    fetch(`/deleteConversationCtnBased?conversation_id=${response.conversation_id}`, {
                         method: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': csrfToken
@@ -269,7 +270,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         })
                         .then(response => {
                             console.log('Conversation deleted successfully');
-                            getConversations();
+                            //getConversations();
+                            // remove conversation container after ma delete
+                            conversationCtn.remove();
+                            rightSectionOuterContainer.style.display = 'none';
                         })
                         .catch(error => console.log(error));
                 });
@@ -335,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log(receiver_namee);
 
                         const rightSectionOuterContainer = document.getElementById('rightSectionOuterContainer');
-                        rightSectionOuterContainer.style.visibility = 'visible';
+                        rightSectionOuterContainer.style.display = 'block';
                         
                         searchResult.remove();
                         // clear it outer container
@@ -345,6 +349,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         const messagesHeaderContainer = document.getElementById('messagesHeaderContainer');
                         messagesHeaderContainer.innerHTML = '';
                         messagesHeaderContainer.id = 'messagesHeaderContainer';
+
+                        // conversation menu
+                        const conversationMenu = document.createElement('div');
+                        conversationMenu.textContent = '...';
+                        conversationMenu.id = 'conversationMenu';
 
                         // receiver name
                         const receiverName = document.createElement('div');
@@ -356,8 +365,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         receiver_photo.style.cssText = receiver_profile_pic_styles;
                         receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
 
-                        messagesHeaderContainer.appendChild(receiver_photo);
-                        messagesHeaderContainer.appendChild(receiverName);
+                        // anotherCtn
+                        const anotherCtn = document.createElement('div');
+                        anotherCtn.id = 'anotherCtn';
+
+                        anotherCtn.appendChild(receiver_photo);
+                        anotherCtn.appendChild(receiverName);
+
+                        messagesHeaderContainer.appendChild(anotherCtn);
+                        messagesHeaderContainer.appendChild(conversationMenu);
 
                         // clear an outer container an kanan form para dri mag retain an mga elements
                         formOuterContainer.innerHTML = '';
@@ -394,6 +410,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // clear anay it XMLHttpRequest
                         let xhttp = null;
 
+                        // trying to solve asnyc communication nature problem
                         function startMessageInterval() {
                             // clear it existing na interval 
                             clearInterval(messageInterval);
@@ -536,9 +553,37 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
                             
                             xhttp.send(data);
-                        });                        
+                        });  
+
+
+                        // conversationMenu.addEventListener('click', function() {
+                        //     console.log('delete kuntaloy');
+                        // });
+
+                        // delete conversation search based 
+                        conversationMenu.addEventListener('click', function() {
+                            fetch(`/deleteConversationSearchBased?conversation_name=${convoName}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': csrfToken
+                                },
+                            })
+                            .then(responses => {
+                                if (responses) {
+                                    return responses.json();
+                                }
+                                throw new Error('Error in deleting conversation');
+                            })
+                            .then(response => {
+                                console.log(response);
+                                //getConversations();
+                                // remove conversation container after ma delete
+                                conversationCtn.remove();
+                                rightSectionOuterContainer.style.display = 'none';
+                            })
+                            .catch(error => console.log(error));
+                        });
                     });
-                
                 } else {
                     console.log('username does not exist');
                 }
