@@ -25,7 +25,7 @@
                         <i class="fa fa-refresh" aria-hidden="true" style="font-size: 20px;"> Manage
                             Return</i>
                     </button></a>
-                    <a href="/completedShipping"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    <a href="/completedShipping"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip" data-bs-placement="bottom"
                         data-bs-title="Completed">
                         <i class="fa fa-check-square-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Completed</i>
                     </button></a>
@@ -98,11 +98,6 @@
                         <label for="shipping-fee">Shipping Fee: P50</label>
                     </div>
                 </div>
-                <center>
-                    <br>
-                    <a href="#" class="btn accept">Accept
-                        <span class="fa fa-check"></span></a>
-                </center>
             </div>
         </div>
         <div class="container-fluid-wrapper">
@@ -141,11 +136,6 @@
                         <label for="shipping-fee">Shipping Fee: P50</label>
                     </div>
                 </div>
-                <center>
-                    <br>
-                    <a href="#" class="accept btn disabled-link">Accept
-                        <span class="fa fa-check"></span></a>
-                </center>
             </div>
         </div>
     </div>

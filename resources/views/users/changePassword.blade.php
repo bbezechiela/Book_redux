@@ -127,7 +127,7 @@
                         <small>1 min ago</small>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    @if (isset($message) && $message == 'Password updated')
+                    @if (isset($message) && $message == 'Password successfully updated.')
                         <div class="toast-body fw-bold text-success">
                             {{ $message }}
                         </div>

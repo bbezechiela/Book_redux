@@ -287,7 +287,7 @@ class UserController extends Controller
 
                 if ($user) {
                     // return redirect('/myprofile');
-                    return view('users.myProfile', ['user' => $user, 'message' => 'Profile successfully updated']);
+                    return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
                 }
@@ -314,7 +314,7 @@ class UserController extends Controller
 
                 if ($user) {
                     // return redirect('/myprofile');
-                    return view('users.myProfile', ['user' => $user, 'message' => 'Profile successfully updated']);
+                    return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
                 }
@@ -649,7 +649,7 @@ class UserController extends Controller
 
         if ($user && Hash::check($validated["password"], $user->password)) {
             $user->update(['password' => $validated["new_password"]]);
-            return view('users.changePassword', ['user' => $user, 'message' => 'Password updated']);
+            return view('users.changePassword', ['user' => $user, 'message' => 'Password successfully updated.']);
         } else {
             return view('users.changePassword', ['user' => $user, 'message' => 'Cannot update password']);
         }
@@ -705,7 +705,7 @@ class UserController extends Controller
                     'default_address' => $validated['default_address']
                 ]);
                 // $post_address->update($validated);
-                return redirect('addresses')->with('message', 'Address added successfully');
+                return redirect('addresses')->with('message', 'Success! The address has been added to your account successfully.');
             } elseif ($add == 'delivery') {
                 $new_add = Address::create([
                     'user_id' => session('id'),
@@ -718,7 +718,7 @@ class UserController extends Controller
                     'street_building_house' => $validated['street_building_house'],
                     'default_address' => $validated['default_address']
                 ]);
-                return redirect('/deliveryAddress')->with('message', 'Address added successfully');
+                return redirect('/deliveryAddress')->with('message', 'Success! The address has been added to your account successfully.');
             } elseif ($add == 'notDelivery') {
                 $new_add = Address::create([
                     'user_id' => session('id'),
@@ -731,7 +731,7 @@ class UserController extends Controller
                     'street_building_house' => $validated['street_building_house'],
                     'default_address' => $validated['default_address']
                 ]);
-                return redirect('addresses')->with('message', 'Address added successfully');
+                return redirect('addresses')->with('message', 'Success! The address has been added to your account successfully.');
             } else {
                 return "error bitch";
             }
@@ -760,9 +760,9 @@ class UserController extends Controller
             ]);
 
             if ($post_address && $add == 'delivery') {
-                return redirect('/deliveryAddress')->with('message', 'Address added successfully');
+                return redirect('/deliveryAddress')->with('message', 'Success! The address has been added to your account successfully.');
             } elseif ($post_address && $add == 'notDelivery') {
-                return redirect('addresses')->with('message', 'Address added successfully');
+                return redirect('addresses')->with('message', 'Success! The address has been added to your account successfully.');
             } else {
                 return "error bitch";
             }
@@ -814,7 +814,7 @@ class UserController extends Controller
                 $new_add = Address::find($id);
                 $new_add->update($validated);
 
-                return redirect('addresses')->with('message', 'Updated successfully');
+                return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
             } elseif ($add == 'delivery') {
                 $new_add = Address::find($id);
                 $new_add->update($validated);
@@ -822,7 +822,7 @@ class UserController extends Controller
             } elseif ($add == 'notDelivery') {
                 $new_add = Address::find($id);
                 $new_add->update($validated);
-                return redirect('addresses')->with('message', 'Updated successfully');
+                return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
             } else {
                 return "error bitch";
             }
@@ -854,7 +854,7 @@ class UserController extends Controller
             if ($address && $add == 'delivery') {
                 return redirect('/deliveryAddress');
             } elseif ($address && $add == 'notDelivery') {
-                return redirect('addresses')->with('message', 'Updated successfully');
+                return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
             } else {
                 return "error bitch";
             }
@@ -869,7 +869,7 @@ class UserController extends Controller
         if ($address && $del == 'delivery') {
             return redirect('/deliveryAddress');
         } elseif ($address && $del == 'notDelivery') {
-            return redirect('addresses')->with('message', 'Deleted successfully');
+            return redirect('addresses')->with('message', 'Address deletion confirmed. Your address has been successfully removed from the system.');
         } else {
             return "error bitch";
         }
@@ -947,7 +947,7 @@ class UserController extends Controller
             'order_number' => $order_num,
             'shipping_option' => $option,
             'payment_method' => $method,
-            'order_status' => 'pending',
+            'order_status' => 'Pending',
             'total_payment' => $price
         ]);
 
@@ -1002,7 +1002,7 @@ class UserController extends Controller
 
     public function manageShipment()
     {
-        $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
+        $orders = Orders::where('order_status', 'Pending')->with('items.book.user.addressUser')->get();
 
         return view('courier.manageShipment', ['orders' => $orders]);
     }
@@ -1027,6 +1027,11 @@ class UserController extends Controller
         return view('courier.courierNotification');
     }
 
+    public function complete()
+    {
+        return view('courier.complete');
+    }
+
     public function booksRented()
     {
         return view('users.booksRented');
@@ -1037,7 +1042,7 @@ class UserController extends Controller
         $checkuser = Users::where('username', $user)->first();
         
         if ($checkuser) {
-            return response()->json(['message' => 'already exist']);
+            return response()->json(['message' => 'Username already exists. Please choose a different username.']);
         } else {
             return response()->json(['message' => 'not exist']);
         }
@@ -1132,9 +1137,9 @@ class UserController extends Controller
         $rate = Reviews::create($data);
 
         if ($rate) {
-            return response()->json(['response' => 'review created']);
+            return response()->json(['response' => 'Review successfully created. Thank you for your feedback!']);
         } else {
-            return response()->json(['response' => 'review failed']);
+            return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
         }
     }
 
@@ -1160,9 +1165,9 @@ class UserController extends Controller
         $update = Reviews::find($id);
         $update->update($data);
         if ($update) {
-            return response()->json(['response' => 'update succeed']);
+            return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);
         } else {
-            return response()->json(['response' => 'update failed']);
+            return response()->json(['response' => 'Update review unsuccessful.']);
         }
     }
 }

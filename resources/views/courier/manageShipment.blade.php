@@ -21,8 +21,16 @@
                     </button></a>
                 <a href="/return"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
                         data-bs-title="Return">
-                        <i class="fa fa-refresh" aria-hidden="true" style="font-size: 20px; color: #003060;"> Manage
+                        <i class="fa fa-refresh" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Manage
                             Return</i>
+                    </button></a>
+                    <a href="/completedShipping"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Completed">
+                        <i class="fa fa-check-square-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Completed</i>
+                    </button></a>
+                    <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Messages">
+                        <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Messages</i>
                     </button></a>
             </div>
             <div class="position-absolute end-0">
@@ -37,10 +45,10 @@
                         data-bs-placement="bottom" data-bs-title="Home">
                         <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px;"></i>
                     </button></a> --}}
-                    <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
+                        </button></a> --}}
                     {{-- <a href="/couriernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>

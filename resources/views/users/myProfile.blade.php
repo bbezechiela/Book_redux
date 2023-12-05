@@ -155,7 +155,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="toast"
                             aria-label="Close"></button>
                     </div>
-                    @if (isset($message) && $message == 'Profile successfully updated')
+                    @if (isset($message) && $message == 'Update successful! Your profile has been successfully updated.')
                         <div class="toast-body fw-bold text-success">
                             {{ $message }}
                         </div>

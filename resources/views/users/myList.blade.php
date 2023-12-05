@@ -2002,7 +2002,7 @@
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            @if (session('createMessage') && session('createMessage') == 'Created successfully')
+            @if (session('createMessage') && session('createMessage') == 'Listing created successfully! Your listing has been recorded and is now live for viewing.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('createMessage') }}                    
                 </div>
@@ -2021,7 +2021,7 @@
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            @if (session('deleteMessage') && session('deleteMessage') == 'Deleted succesfully')
+            @if (session('deleteMessage') && session('deleteMessage') == 'Listing deleted successfully. Your request has been processed, and the specified listing has been removed.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('deleteMessage') }}
                 </div>
@@ -2040,7 +2040,7 @@
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            @if (session('updateMessage') == 'Updated successfully')
+            @if (session('updateMessage') == 'Update Confirmed: Your listing has been successfully updated.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('updateMessage') }}
                 </div>
@@ -2428,7 +2428,7 @@
     });
     shipping_save_btn.addEventListener('click', function() {
         if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
-            alert("please complete every fields");
+            alert("Please complete every fields");
         } else {
             if (jtRadio.checked) {
                 courier = jtRadio.value;

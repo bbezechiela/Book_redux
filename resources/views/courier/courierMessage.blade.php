@@ -25,13 +25,21 @@
                         <i class="fa fa-refresh" aria-hidden="true" style="font-size: 20px; color: #003060;"> Manage
                             Return</i>
                     </button></a>
+                    <a href="/completedShipping"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Completed">
+                        <i class="fa fa-check-square-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Completed</i>
+                    </button></a>
+                    <a href="/couriermessage"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Messages">
+                        <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Messages</i>
+                    </button></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <a href="/couriermessage"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
+                    {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px;"></i>
-                        </button></a>
+                        </button></a> --}}
                     {{-- <a href="/couriernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
