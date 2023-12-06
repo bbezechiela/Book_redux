@@ -2002,14 +2002,14 @@
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            @if (session('createMessage') && session('createMessage') == 'Listing created successfully! Your listing has been recorded and is now live for viewing.')
+            @if (session('createMessage') && session('createMessage') == 'Listing created successfully! Your information has been recorded and is now live for viewing.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('createMessage') }}                    
                 </div>
-            @elseif (session('createMessage'))
+            {{-- @elseif (session('createMessage'))
                 <div class="toast-body fw-bold text-danger">
                     {{ session('createMessage') }}
-                </div>
+                </div> --}}
             @endif
         </div>
     </div>

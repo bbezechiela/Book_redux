@@ -26,6 +26,7 @@ class Order_Items extends Model
         'order_id',
         'book_id',
         'qty',
-        'bar_code'
+        'bar_code',
+        'order_status'
     ];
 }

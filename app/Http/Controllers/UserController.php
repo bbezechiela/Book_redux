@@ -947,7 +947,7 @@ class UserController extends Controller
             'order_number' => $order_num,
             'shipping_option' => $option,
             'payment_method' => $method,
-            'order_status' => 'Pending',
+            // 'order_status' => 'Pending',
             'total_payment' => $price
         ]);
 
@@ -957,7 +957,8 @@ class UserController extends Controller
             $orderItem = Order_Items::create([
                 'order_id' => $order->id,
                 'book_id' => $id,
-                'qty' => $qty[$index]
+                'qty' => $qty[$index],
+                'order_status' => 'Pending'
             ]);
             $orderItem->book->update([
                 'unit' => 'Ordered'
@@ -1096,7 +1097,7 @@ class UserController extends Controller
             $order->update([
                 'bar_code' => $bar_code,
             ]);
-            $order->order->update([
+            $order->update([
                 'order_status' => 'paid'
             ]);
 
