@@ -144,20 +144,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.id = 'messageForm';
                 form.method = 'post';
                 
+                // input field design
+                const inputFieldCss = `
+                    width: 400px;
+                    border: 1px solid grey;
+                `;
+
                 const inputField = document.createElement('input');
                 inputField.id = 'messageInputContainer';
                 inputField.type = 'textarea';
                 inputField.placeholder = 'Type message...';
+                inputField.style.cssText = inputFieldCss;                
+
+                const submitButtonCss = `
+                    width: 120px;
+                    border: 1px solid grey;
+                    background-color: #003060;
+                    color: white;
+                `;
 
                 const submitButton = document.createElement('button');
                 submitButton.id = 'sendMessageButton';
                 submitButton.type = 'button';
                 submitButton.textContent = 'Send';
+                submitButton.style.cssText = submitButtonCss;
 
                 form.appendChild(inputField);
                 form.appendChild(submitButton);
-
                 formOuterContainer.appendChild(form);
+
                 
                 // pag kuha mga messages
                 function getMessages() {
@@ -314,7 +329,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     searchResult.textContent = responses.data.username;
                     console.log(searchResult.textContent);
                     
-                    searchResult.style.display = 'block';
                     searchResult.classList.add('searchResult');
 
                     
@@ -340,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         const rightSectionOuterContainer = document.getElementById('rightSectionOuterContainer');
                         rightSectionOuterContainer.style.display = 'block';
-                        
+
                         searchResult.remove();
                         // clear it outer container
                         messageOuterContainer.innerHTML = '';
@@ -585,7 +599,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     });
                 } else {
+                    // if waray user //searchResult //searchOuterCtn
                     console.log('username does not exist');
+
+                    searchResult.textContent = 'No user found';
+                    searchResult.classList.add('searchResult');
+
+                    searchOuterCtn.appendChild(searchResult);
                 }
             }
         }
