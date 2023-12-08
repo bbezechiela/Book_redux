@@ -110,7 +110,7 @@
         </div>
         @foreach ($user->orders as $order)
         @foreach ($order->items as $item)
-        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order->order_status == 'paid')
+        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'paid')
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -148,13 +148,13 @@
                     </div>
                     <div class="button-group">
                         <a class="btn btn-outline-primary btn-sm receive-button"
-                            href="/orderreceived/{{ $item->order->id }}">Order
+                            href="/orderreceived/{{ $item->id }}">Order
                             Received</a>
                     </div>
                 </div>
             </div>
         </div>
-        @elseif ($item->order->payment_method == 'eWallet' && $item->order->order_status == 'paid')
+        @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'paid')
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -192,7 +192,7 @@
                     </div>
                     <div class="button-group">
                         <a class="btn btn-outline-primary btn-sm receive-button"
-                            href="/orderreceived/{{ $item->order->id }}">Order
+                            href="/orderreceived/{{ $item->id }}">Order
                             Received</a>
                     </div>
                 </div>

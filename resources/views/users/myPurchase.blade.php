@@ -91,7 +91,7 @@
         </div>
         @foreach ($user->orders as $order)
         @foreach ($order->items as $item)
-        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order->order_status == 'pending')
+        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'Pending')
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -121,14 +121,14 @@
                         <div class="button-group">
                             <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
                             <button type="button"
-                                class="btn btn-sm pending-button">{{ $item->order->order_status }}</button>
+                                class="btn btn-sm pending-button">{{ $item->order_status }}</button>
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @elseif ($item->order->payment_method == 'eWallet' && $item->order->order_status == 'pending')
+        @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'Pending')
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -158,7 +158,7 @@
                         <div class="button-group">
                             <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
                             <button type="button"
-                                class="btn btn-sm pending-button">{{ $item->order->order_status }}</button>
+                                class="btn btn-sm pending-button">{{ $item->order_status }}</button>
                         </div>
                     </div>
                 </div>

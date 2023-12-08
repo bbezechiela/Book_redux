@@ -95,7 +95,7 @@
             </div>
         </div>
         @foreach ($orders as $order)
-            @if ($order->item->order->order_status == 'received' && $order->item->order->user_id == session('id'))
+            @if ($order->item->order_status == 'received' && $order->item->order->user_id == session('id'))
                 <div class="order-cart">
                     <div class="name-cart d-flex justify-content-between">
                         <div>

@@ -72,8 +72,8 @@
         </ul>
         <div class="container-fluid-wrapper">
             <h4>Manage Order Shipment</h4>
-            @foreach ($orders as $order)
-            @foreach ($order->items as $item)
+            @foreach ($orders as $item)
+            {{-- @foreach ($order->items as $item) --}}
             <div class="container-fluid ship-details">
                 <div class="details-container">
                     <div class="seller-details-box">
@@ -92,10 +92,9 @@
 
                     <div class="customer-details-box">
                         <label for="customer-details" class="form-label label-title">Customer Details</label>
-                        <label for="customer-fullname">{{ $order->address->name }}</label>
-                        <label for="customer-contact-number">{{ $order->address->contact_number }}</label>
-                        <label
-                            for="customer-address">{{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
+                        <label for="customer-fullname">{{ $item->order->address->name }}</label>
+                        <label for="customer-contact-number">{{ $item->order->address->contact_number }}</label>
+                        <label for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
                     </div>
                     <div class="package-details-box">
                         <label for="package-details" class="form-label label-title">Package Description</label>
@@ -103,13 +102,13 @@
                         <label for="width">Width: {{ $item->book->width }} (cm)</label>
                         <label for="height">Height: {{ $item->book->height }} (cm)</label>
                         <label for="length">Length: {{ $item->book->length }} (cm)</label>
-                        <label for="payment-method">Payment Method: {{ $order->payment_method }}</label>
+                        <label for="payment-method">Payment Method: {{ $item->order->payment_method }}</label>
                     </div>
 
                     <div class="product-details-box">
                         <label for="product-details" class="form-label label-title">Product Details</label>
-                        <label for="order-date">Order Date: {{ $order->created_at->format('m/d/Y') }}</label>
-                        <label for="order-number">Order Number: {{ $order->order_number }}</label>
+                        <label for="order-date">Order Date: {{ $item->order->created_at->format('m/d/Y') }}</label>
+                        <label for="order-number">Order Number: {{ $item->order->order_number }}</label>
                         <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
                         <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
                         <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
@@ -120,19 +119,18 @@
                         <label for="product-details" class="form-label label-title">Shipping Details</label>
                         <label for="order-date">Shipping: Pickup</label>
                         <label for="pickup-date">Pickup Date: OD421376365</label>
-                        <label for="pickup-address">Pickup Address:
-                            {{ $order->address->street_building_house . ', ' . $order->address->brgy_village . ', ' . $order->address->city_municipality . ', ' . $order->address->postal_code . ', ' . $order->address->region }}</label>
+                        <label for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
                     </div>
                 </div>
                 <center>
                     <br>
                     <button type="button" class="btn accept" data-bs-toggle="modal" data-bs-target="#shipping-details"
-                        onclick="shipment({{ $order->id . ', ' . $item->id }})">Accept
+                        onclick="shipment({{ $item->order->id . ', ' . $item->id }})">Accept
                         <span class="fa fa-check"></span></button>
                     <a href="#" class="deny btn">Decline <span class="fa fa-close"></span></a>
                 </center>
             </div>
-            @endforeach
+            {{-- @endforeach --}}
             @endforeach
         </div>
         {{-- <div class="container-fluid-wrapper">

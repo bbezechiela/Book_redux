@@ -960,8 +960,10 @@ class UserController extends Controller
                 'qty' => $qty[$index],
                 'order_status' => 'Pending'
             ]);
+            $stock = $orderItem->book->stock - $qty[$index];
             $orderItem->book->update([
-                'unit' => 'Ordered'
+                'unit' => 'Ordered',
+                'stock' => $stock
             ]);
         }
 
@@ -975,7 +977,7 @@ class UserController extends Controller
 
     public function receivedOrder($id)
     {
-        $order = Orders::find($id);
+        $order = Order_Items::find($id);
         $order->update(['order_status' => 'received']);
 
         if ($order) {
@@ -1003,7 +1005,8 @@ class UserController extends Controller
 
     public function manageShipment()
     {
-        $orders = Orders::where('order_status', 'Pending')->with('items.book.user.addressUser')->get();
+        // $orders = Orders::with('items.book.user.addressUser')->get();
+        $orders = Order_Items::where('order_status', 'Pending')->with('book.user.addressUser', 'order.address')->get();
 
         return view('courier.manageShipment', ['orders' => $orders]);
     }

@@ -100,9 +100,8 @@
             <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
                 <!-- card Daily Discover -->
                 @foreach ($post->shuffle() as $daily)
-                    @if (
-                        $daily->status == 'Exchange' &&
-                            ($daily->unit == 'Available' || ($daily->unit == 'Added to Cart' && $daily->user_id == session('id'))))
+                    {{-- @if ($daily->status == 'Exchange' && ($daily->unit == 'Available' || ($daily->unit == 'Added to Cart' && $daily->user_id == session('id')))) --}}
+                    @if ($daily->status == 'Exchange' && $daily->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -151,7 +150,8 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ($daily->unit == 'Available' || $daily->unit == 'Added to Cart')
+                    {{-- @elseif ($daily->unit == 'Available' || $daily->unit == 'Added to Cart') --}}
+                    @elseif ($daily->unit == 'Available' || $daily->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
