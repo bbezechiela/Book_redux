@@ -121,83 +121,114 @@
             <div class="row justify-content-between mx-auto">
                 <div class="col-4 d-flex flex-row">
                     <h3 class="fw-bold">Listings (Ikaw nala himo UI kay na error na an ak cocopyhan unta kay mayda na
-                        backend hahaha)</h3>
+                        backend hahaha) Adi nga naka comment is an kanan nakadto han explore - similar la adto an iya style didi na page</h3>
                 </div>
-                {{--
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <label class="fw-bold" for="sort">Sort by</label>
-                    <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort">
-                        <option selected disabled>{{ $status }}</option>
-                <option value="All">All</option>
-                <option value="Sale">Sale</option>
-                <option value="Exchange">Exchange</option>
-                <option value="Rent">Rent</option>
-                </select>
-            </div>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto"
-                style="height: 300px; margin-top: 2em;">
-                @foreach ($books as $book)
-                <div class="card col-3 m-1 shadow" style="width: 200px; flex: 0 0 auto;">
-                    <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
-                    <span id="user_{{ $book->id }}" hidden>{{ $book->post_user }}</span>
-                    <span id="edition_{{ $book->id }}" hidden>{{ $book->edition }}</span>
-                    <span id="condition_{{ $book->id }}" hidden>{{ $book->condition }}</span>
-                    <span id="description_{{ $book->id }}" hidden>{{ $book->description }}</span>
-                    <span id="language_{{ $book->id }}" hidden>{{ $book->language }}</span>
-                    <span id="weight_{{ $book->id }}" hidden>{{ $book->weight }}</span>
-                    <span id="width_{{ $book->id }}" hidden>{{ $book->width }}</span>
-                    <span id="height_{{ $book->id }}" hidden>{{ $book->height }}</span>
-                    <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
-                    <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
-                    <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
 
-                    <span id="exchange_preferences_{{ $book->id }}" hidden>{{ $book->exchange_preferences }}</span>
-
-                    <span id="rental_duration_{{ $book->id }}" hidden>{{ $book->rental_duration }}</span>
-                    <span id="rental_terms_and_condition_{{ $book->id }}"
-                        hidden>{{ $book->rental_terms_and_condition }}</span>
-                    <span id="security_deposit_{{ $book->id }}" hidden>{{ $book->security_deposit }}</span>
-
-                    <img id="photo_{{ $book->id }}" data-filename="{{ $book->book_photo }}"
-                        src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
-                        alt="{{ $book->book_photo }}" width="130px" height="170px">
-                    <div class="card-body py-0">
-                        <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
-                            {{ $book->title }}</p>
-                        <p id="author_{{ $book->id }}" class="card-text mt-0 mb-0 pb-0">
-                            {{ $book->author }}</p>
-                        <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-2 pt-0">
-                            {{ $book->genre }}</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">₱{{ $sale->price }}</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Cart</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a></li>
-                                    </ul>
+                {{-- <div id="daily-discover" class="mx-5 px-5">
+                    <h4 id="daily-discover-header">Listings</h4>
+                    <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                            <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
+                                alt="..." width="130px" height="170px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                                    {{ $daily->genre }}</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                @if ($address->default_address == 'true')
+                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                        aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                </p>
+                                @endif
+                                @endforeach
+                                @foreach ($daily->cart as $cart)
+                                @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <span class="fw-bold p-0 text-success">Added to cart</span>
+                                </div>
+                                @endif
+                                @endforeach
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
+                                    <div class="button-container">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                                        Cart</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                        to
+                                                        Wishlist</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
+                            <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
+                                alt="..." width="130px" height="170px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                                    {{ $daily->genre }}</p>
+                                @foreach ($daily->user->addressUser as $address)
+                                @if ($address->default_address == 'true')
+                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                                        aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                </p>
+                                @endif
+                                @endforeach
+                                @foreach ($daily->cart as $cart)
+                                @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <span class="fw-bold p-0 text-success">Added to cart</span>
+                                </div>
+                                @endif
+                                @endforeach
+                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
+                                    <div class="button-container">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle add-button"
+                                                onclick="stopPropagation(event)" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
+                                                        Cart</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="stopPropagation(event)"><i class="fa fa-list-alt"
+                                                            aria-hidden="true" style="margin-right: 7px"></i>Add
+                                                        to
+                                                        Wishlist</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
-                </div>
-                @endforeach
-            </div>
-        </div>--}}
+                </div>--}}
+            </div> 
+        </div>
     </div>
-</div>
-</div>
-@include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
-])
+    @include('partials.__footer', [
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+    ])

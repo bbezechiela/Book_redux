@@ -17,7 +17,7 @@
     @endif
     <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
-    <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1" data-aos="fade-down" data-aos-duration="1500">
+    <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1 mt-5" data-aos="fade-down" data-aos-duration="1500">
         Create Account</h1>
     <form id="form" action="/register" method="post" enctype="multipart/form-data">
         @csrf
@@ -82,15 +82,11 @@
                         <input type="password" id="password" name="password" class="form-control" required />
                         <label class="form-label" for="password">Password</label>
                     </div>
-                    <div class="mx-1 mt-3 d-flex justify-content-start">
-                        <span class="text-secondary" style="white-space: nowrap;">
+                    <div class="mx-1 mt-3 d-flex justify-content-start tip-text">
+                        <span class="text-secondary">
                             Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
                             <label type="checkbox" id="show-password"><span id="pass-tip"></span></label>
                         </span>
-
-                        {{-- <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
-                                id="pass-tip"></span></label>  --}}
-
                     </div>
                 </div>
             </div>

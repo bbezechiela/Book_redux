@@ -180,21 +180,20 @@ h4 {
     margin-top: 10em;
 }
 
-.search-field:focus {
+.form-control:focus {
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text,
-.search-field {
+.input-group-text, .form-control {
     border: none;
     background-color: #fff;
 }
 
-.search-field {
+.form-control {
     margin-right: 2em;
 }
 
-.input-group-text i {
+.input-group-text i{
     color: #003060;
 }
 

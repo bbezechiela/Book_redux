@@ -160,20 +160,6 @@ a:hover, h4 {
     color: #003060;
 }
 
-/* .search-result-text{
-    margin-left: 4em;
-    font-size: 20px;
-    margin-top: 3em;
-}
-
-.search-result-text i{
-    margin-right: 8px;
-}
-
-.search-result-text span{
-    color: #E55B13;
-} */
-
 #searched-item #textContent:hover {
     background-color: #2D6092;
 }

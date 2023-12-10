@@ -13,7 +13,7 @@
     <div id="adminsidebar" class="adminsidebar p-2 min-vh-100 shadow">
         <x-adminsidebar />
     </div>
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Admin</p>
@@ -30,10 +30,10 @@
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a>
-                    <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
+                        </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"

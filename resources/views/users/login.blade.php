@@ -8,7 +8,7 @@
 <div class="container-fluid px-0 py-3 d-flex min-vh-100">
     <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
         data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
-    <div class="mx-auto login-orange px-5 align-self-center py-2 rounded-3 shadow fillup-form" data-aos="zoom-in-up"
+    <div class="mx-auto login-orange px-5 align-self-center py-2 rounded-3 shadow fillup-form " data-aos="zoom-in-up"
         data-aos-duration="2000" style="width: 503px;">
         <h2 class="fw-bold text-center mb-5">Log In</h2>
         <form action="/loginprocess" method="post">

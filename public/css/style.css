@@ -23,6 +23,19 @@
 	text-decoration: underline;
 }
 
+#home h1 {
+	font-size: 60px;
+}
+
+#home {
+	margin-top: 5em;
+}
+
+.landing-gif img {
+	width: 80%;
+	height: 70%;
+}
+
 #landing-title {
 	border-left: 15px solid #E55B13;
 	color: #003060;
@@ -35,7 +48,7 @@
 }
 
 #signup-btn:hover {
-	background-color: #E55B13;	
+	background-color: #E55B13;
 	color: #fff;
 }
 
@@ -44,7 +57,8 @@
 }
 
 #howItWorks-header {
-	color: #414C68;;
+	color: #414C68;
+	;
 }
 
 .howItWorks-btn:hover {
@@ -58,16 +72,21 @@
 	border-bottom: 2px solid #003060;
 }
 
-#buying-page, #exchange-page, #renting-page, #donate-page {
+#buying-page,
+#exchange-page,
+#renting-page,
+#donate-page {
 	display: none;
 }
 
 .card-body {
 	color: #003060;
+	width: 18rem;
 }
 
-#num-text {
+#num-text span {
 	color: #E55B13;
+	text-decoration: none;
 }
 
 #howItWorks-num {
@@ -78,7 +97,7 @@
 	color: #003060;
 }
 
-#aboutUs-head {	
+#aboutUs-head {
 	color: #003060;
 }
 
@@ -100,7 +119,8 @@ p {
 	color: #003060;
 }
 
-h3, h2 {
+h3,
+h2 {
 	color: #003060;
 }
 
@@ -108,9 +128,106 @@ h3, h2 {
 	border: 1px solid #003060;
 }
 
+@media (max-width: 767px) {
+
+	.navbar {
+		padding: 10px 0;
+	}
+
+	.navbar-brand img {
+		width: 90px;
+	}
+
+	.navbar-toggler-icon {
+		font-size: 13px;
+	}
+
+	.navbar-nav {
+		margin-top: 8px;
+	}
+
+	.nav-item {
+		text-align: start;
+		margin-bottom: 10px;
+	}
+
+	#login-btn {
+		display: block;
+		margin-left: 1.4em;
+	}
+
+	#signup-btn {
+		font-size: 12px;
+		white-space: nowrap;
+	}
+
+	#home {
+		margin-top: 5em;
+	}
+
+	#home h1 {
+		font-size: 25px;
+	}
+
+	#landing-title h1 {
+		font-size: 14px;
+	}
+
+	#howItWorks h1 {
+		font-size: 18px;
+	}
+
+	#selling-page,
+	#buying-page,
+	#exchange-page {
+		font-size: 12px;
+	}
+
+	#renting-page {
+		font-size: 8px;
+	}
+
+	.card-body {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.card-title {
+		font-size: 12px;
+	}
+
+	.card-subtitle {
+		font-size: 8px;
+	}
+
+	.card-text {
+		font-size: 10px;
+	}
+
+	#hints-btn {
+		font-size: 10px;
+	}
+
+	#mission-vission h3 {
+		font-size: 15px;
+	}
+
+	#mission-vission p {
+		font-size: 12px;
+	}
+
+	.tip-text {
+		font-size: 10px;
+	}
+}
+
 /* sign.up.php */
 #create-acct {
 	color: #003060;
+}
+
+.tip-text {
+	white-space: nowrap;
 }
 
 .orange-design {
@@ -127,10 +244,11 @@ h3, h2 {
 }
 
 .fillup-form {
-	color: #003060;	
+	color: #003060;
 }
 
-input, select {
+input,
+select {
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
@@ -147,7 +265,7 @@ select:focus {
 	outline: none;
 }
 
-#img-icon{
+#img-icon {
 	font-size: 7em;
 }
 
@@ -157,32 +275,33 @@ select:focus {
 	white-space: nowrap;
 }
 
-.form-control, #email{
+.form-control,
+#email {
 	color: #003060;
 }
 
-.form-control:focus{
+.form-control:focus {
 	border-color: #E55B13;
 	box-shadow: inset 0px 0px 0px 1px transparent;
 }
 
 .form-outline {
-    position: relative;
+	position: relative;
 }
 
-.form-control:focus + .form-label,
-.form-control:valid + .form-label {
-    top: -20px; 
-    font-size: 12px; 
-    color: #555; 
+.form-control:focus+.form-label,
+.form-control:valid+.form-label {
+	top: -20px;
+	font-size: 12px;
+	color: #555;
 }
 
 .form-label {
-    position: absolute;
-    top: .4em;
-    left: 1em;
-    transition: 0.2s;
-    pointer-events: none;
+	position: absolute;
+	top: .4em;
+	left: 1em;
+	transition: 0.2s;
+	pointer-events: none;
 }
 
 .upload-btn {
@@ -196,7 +315,7 @@ select:focus {
 }
 
 .sign-up-btn {
-	background-color: #E55B13;	
+	background-color: #E55B13;
 	color: #fff;
 }
 
@@ -214,52 +333,6 @@ select:focus {
 	border-right: 1px solid #DDDBDB;
 }
 
-.username-text{
+.username-text {
 	color: #fff;
-	/* color: #992915; */
 }
-
-
-/* * {
-	font-family: "Inria Sans", sans-serif;
-}
-
-#home:hover {
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#guidelines:hover {
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#how-to-use:hover {
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#faqs:hover {
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#why-us:hover {
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#about-us:hover {
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#join:hover {
-	text-decoration: underline;
-	text-decoration-color: black;
-}
-
-.input_text {
-	border: 1px solid black;
-}
- */
