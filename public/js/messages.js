@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // initial check ha conversation
     let initialCheckDone = false;
 
+    // initialize current controller
+    let currentController = null;
+
     // get conversations function
     function getConversations() {
         fetch(`/getConversations?lastConversationTimestamp=${lastConversationTimestamp}&current_username=${current_username}`)
@@ -48,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     //bug here
-    getConversations();
-    //setInterval(getConversations, 1500);
+    //getConversations();
+    setInterval(getConversations, 1500);
     
     // zero conversation
     function zeroConversation() {
@@ -101,6 +104,19 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // add event listener
             conversationCtn.addEventListener('click', function() {
+                // checker if mayda last controller request
+                if (currentController) {
+                    currentController.abort();
+                    console.log('previous fetch request aborted');
+                } else {
+                    console.log('waray pa previous fetch request');
+                }
+
+                const controller = new AbortController();
+                const signal = controller.signal;
+                currentController = controller;
+
+                // pa show an right section or an conversation container between users
                 document.getElementById('rightSectionOuterContainer').style.display = 'block';
 
                 lastMessageTimestamp = '1990-12-12 12:12:12';
@@ -176,7 +192,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // pag kuha mga messages
                 function getMessages() {
-                    fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`)
+                    fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`, {
+                        method: 'GET',
+                        signal: signal
+                    })
                         .then(response => {
                             if (response.ok) {
                                 return response.json();
@@ -228,8 +247,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 //bug here
-                getMessages();
-                //setInterval(getMessages, 1500);
+                //getMessages();
+                setInterval(getMessages, 1500);
 
                 document.getElementById('sendMessageButton').addEventListener('click', function() {
                     const message_content = document.getElementById('messageInputContainer').value;
@@ -264,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         .then(response => {
                             //console.log(response);
                             document.getElementById('messageForm').reset();
-                            getMessages();
                         })
                         .catch(error => console.log(error));
                 });    
@@ -349,6 +367,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     searchOuterCtn.appendChild(searchResult);
                     searchResult.addEventListener('click', function() {
+                        // check if mayda previous fetch request if mayda ig aabort
+                        if (currentController) {
+                            currentController.abort();
+                            console.log('previous fetch request aborted "search approach"');
+                        } else {
+                            console.log('waray pa previous fetch request "search approach"');
+                        }
+
+                        const controller = new AbortController();
+                        const signal = controller.signal;
+                        currentController = controller;
+
                         const receiver_namee = responses.data.username;
                         console.log(receiver_namee);
 
@@ -418,20 +448,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         // message timestamp
                         lastMessageTimestamp = '1990-12-12 12:12:12';                        
                         
-                        // get message interval
-                        let messageInterval = 0;
-
-                        // clear anay it XMLHttpRequest
-                        let xhttp = null;
-
-                        // trying to solve asnyc communication nature problem
-                        function startMessageInterval() {
-                            // clear it existing na interval 
-                            clearInterval(messageInterval);
-
-                            messageInterval = setInterval(getMessages, 1500);
-                        }
-
                         const receiver_username = responses.data.username;
 
                         const convoName = current_username + ',' + receiver_username;
@@ -439,44 +455,36 @@ document.addEventListener('DOMContentLoaded', function() {
                         // pag kuha messages ha db based ha conversation id
                         function getMessages() {    
                             // conversation name para mayda niya reference hain it kuha.on
-                            console.log(convoName);
-                           
-                            // check anay if mayda request
-                            if (xhttp) {
-                                xhttp.abort();
-                            }
-                                                    
-                            xhttp = new XMLHttpRequest();
+                            // console.log(convoName);
                             
-                            xhttp.open('GET', `/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${convoName}`, true);
-                            xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                            
-                            xhttp.onreadystatechange = function() {
-                                if (this.readyState === 4 && this.status === 200) {
-                                    
-                                    const responses = JSON.parse(this.responseText);
-                                    if (Object.keys(responses).length > 0) {
+                            fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${convoName}`, {
+                                method: 'GET',
+                                signal: signal,
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('error in getting messages');
+                                    }
+                                })
+                                .then(responses => {
+                                    if (responses.data) {
                                         try {
                                             lastMessageTimestamp = responses.data[responses.data.length - 1].created_at;
-                                            console.log(lastMessageTimestamp);
+                                            // console.log(lastMessageTimestamp);
+                                            displayMessages(responses.data);
                                         } catch {
-                                            //console.log("waray bago na message");
+                                            // not getting any messages
                                         }
-                                        //console.log(responses);
-                                        displayMessages(responses.data);                
-                                    } else {
-                                        console.log('Nothing inside result set');
                                     }
-                                }
-                            }
-                            
-                            xhttp.send();
+                                })
+                                .catch(error => console.log(error));
                         };
 
                         // tawag an getMessages once maka click nat user ha search result
-                        //setInterval(getMessages, 1500); 
+                        setInterval(getMessages, 1500); 
                         //getMessages();
-                        startMessageInterval();                        
 
                         // display messages ha search na approach
                         function displayMessages(responses) {
@@ -503,11 +511,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                     messageOuterContainer.appendChild(messageInnerContainer);                            
                                 }
 
-
                                 messageOuterContainer.scrollTop = messageOuterContainer.scrollHeight;
                             });
                         }
-
 
                         // text area ha form
                         document.getElementById('sendMessageButton').addEventListener('click', function() {
@@ -528,8 +534,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                     const responses = JSON.parse(this.responseText);
                                     console.log(responses);
                                     // bugs here
-                                    getConversations();
-                                    getMessages();
+                                    // getConversations();
+                                    // getMessages();
                                     showNoConversation.style.display = 'none';
                                 } else {
                                     console.log('Post denied' + 'message');
