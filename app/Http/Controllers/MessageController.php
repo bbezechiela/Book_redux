@@ -13,19 +13,35 @@ class MessageController extends Controller
     function getConversations(Request $request) {
         $lastConversationTimestamp = $request->query('lastConversationTimestamp');
         $current_username = $request->query('current_username');
-        
+              
         $getter = Conversations::where('conversation_name', 'like', '%' . $current_username . '%')->where('created_at', '>', $lastConversationTimestamp)->get();
-    
-        if($getter) {
+
+        $receiverUsernames = [];
+
+        foreach ($getter as $conversation) {
+            $conversation_name = $conversation->conversation_name;
+        
+            $arr = explode(',', $conversation_name);
+            $receiver_username = ($arr[0] === $current_username) ? strval($arr[1]) : strval($arr[0]);
+        
+            $getterTwo = Users::select('profile_photo')->where('username', $receiver_username)->first();
+
+            $newKey = 'profile_photo';
+            $newValue = $getterTwo;
+
+            $conversation[$newKey] = $newValue;
+        }
+        
+        if($getter->isNotEmpty()) {
             return response()->json(['data' => $getter]);
-        } else {
-            return response()->json(['data' => 'No conversation']);
+        } else {            
+            return response()->json(['error' => 'No conversation']);
         }
     }
 
     // send message from conversation approach
     function sendMessageTwo(Request $request) {
-        $current_username = $request->json('');
+        $current_username = $request->json('current_username');
         $sender_id = $request->json('sender_id');
         $message_content = $request->json('message_content');
         $conversation_name = $request->json('conversation_name');
@@ -38,7 +54,7 @@ class MessageController extends Controller
         // pag kuha receiver id
         $receiverIdQuery = Users::where('username', $receiver_name)->get();
 
-        if ($receiverIdQuery) {
+        if (!$receiverIdQuery->isEmpty()) {
             $receiver_id = $receiverIdQuery->first()->id;
             
             $messageInput = Messages::create([
@@ -55,7 +71,7 @@ class MessageController extends Controller
             }
 
         } else {
-            return response()->json(['message' => 'cant be found']);
+            return response()->json(['error' => 'cant be found']);
         }
     }
 
@@ -121,7 +137,7 @@ class MessageController extends Controller
         if ($getUsername) {
             return response()->json(['data' => $getUsername]);
         } else {
-            return response()->json(['data' => 'Theres no record']);
+            return response()->json(['error' => 'Theres no record']);
         }
     }
 
@@ -149,20 +165,46 @@ class MessageController extends Controller
         }
     }
 
-    // delete conversation function
-    function deleteConversation(Request $request) {
+    // delete conversation ctn based 
+    function deleteConversationCtnBased(Request $request) {
         $conversation_id = $request->query('conversation_id');
     
-        $deleter = Conversations::find($conversation_id);
+        $deleteMessages = Messages::where('conversation_id', $conversation_id)->delete();
 
-        if ($deleter) {
-            $deleter->messages()->delete();
-
-            $deleter->delete();
-
-            return response()->json(['message' => 'deleted successfuly']);
+        if ($deleteMessages) {
+            $deleteConversation = Conversations::where('conversation_id', $conversation_id)->delete();
+            if ($deleteConversation) {
+                return response()->json(['message' => 'deleted successfuly messages pati an container']);
+            }
         } else {
-            return response()->json(['message' => 'cant find anything']);
+            return response()->json(['error' => 'cant find anything']);
         }
+    }
+
+    // delete conversation search based
+    function deleteConversationSearchBased(Request $request) {
+        $conversation_name = $request->query('conversation_name');
+
+        $explodeCtn = explode(',', $conversation_name);
+        sort($explodeCtn);
+        $implodeCtn = implode(',', $explodeCtn);
+
+        $getConversationId = Conversations::where('conversation_name', $implodeCtn)->first();
+
+        if ($getConversationId) {
+            $conversation_id = $getConversationId->conversation_id;
+            $deleteMessages = Messages::where('conversation_id', $conversation_id)->delete();
+
+            if ($deleteMessages) {
+                $deleteConversation = Conversations::where('conversation_id', $conversation_id)->delete();
+
+                    if ($deleteConversation) {
+                    return response()->json(['data' => 'deleted successfuly pati container']);
+                }
+            }
+        } else {
+            return response()->json(['error' => 'may error']);
+        }
+
     }
 }

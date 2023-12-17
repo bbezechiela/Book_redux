@@ -231,6 +231,7 @@ Route::get('/successpayment', [UserController::class, 'successOrder']);
 Route::get('/orderreceived/{id}', [UserController::class, 'receivedOrder']);
 
 // message routes
+// message routes, api's, backticks approach
 Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
 
 Route::post('/sendMessageTwo', [MessageController::class, 'sendMessageTwo']);
@@ -243,9 +244,9 @@ Route::post('/conversations', [MessageController::class, 'createConversation']);
 
 Route::get('/getConversations', [MessageController::class, 'getConversations']);
 
-Route::middleware(['web'])->group(function() {
-    Route::delete('/deleteConversation', [MessageController::class, 'deleteConversation']);
-});
+Route::delete('/deleteConversationCtnBased', [MessageController::class, 'deleteConversationCtnBased']);
+
+Route::delete('/deleteConversationSearchBased', [MessageController::class, 'deleteConversationSearchBased']);
 
 
 // seller
