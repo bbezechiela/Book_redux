@@ -336,6 +336,9 @@ body {
 }
 
 #bodyCtn {
+    /* changes kanan ellipsis */
+    position: relative;
+    /*  */
     height: 800px;
     display: flex;
     justify-content: space-around;
@@ -397,4 +400,50 @@ body {
     display: flex; 
     justify-content: flex-start;
     align-items: center;
+}
+
+/* ellipsis */
+.ellipsisPopUp {
+    height: inherit;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popUpInnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.popUpOuterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    width: inherit;
+}
+
+.popUpButtonCtn {
+    height: 100px;
+    width: inherit;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.popUpMessage {
+    font-size: 23px;
+    text-align: center;
 }
