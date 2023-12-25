@@ -450,7 +450,9 @@ class UserController extends Controller
     public function deleteOrder($id)
     {
         $item = Order_Items::with('book')->find($id);
-        $book_update = $item->book->update(['unit' => 'Available']);
+        $qty = intval($item->qty) + intval($item->book->stock);        
+
+        $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
         $item->delete();
 
         if ($item) {
@@ -671,12 +673,13 @@ class UserController extends Controller
 
             // dd($validated);            
 
-            $post_address = Address::where('default_address', 'true')->first();
+            $post_address = Address::where(['user_id' => session('id'), 'default_address' => 'true'])->first();
 
             if ($post_address && $add == 'delivery') {
                 $post_address->update([
                     'default_address' => null
                 ]);
+
                 $new_add = Address::create([
                     'user_id' => session('id'),
                     'name' => $validated['name'],

@@ -1392,7 +1392,7 @@
                     // console.log(result);
                     result.forEach(data => {
                         console.log(data);
-                        if (data.unit == 'Available') {
+                        if (data.stock > 0) {
                             const suggestionElement = document.createElement('div');
                             const searchedImage = document.createElement('img');
                             const searchedContent = document.createElement('div');
