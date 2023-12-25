@@ -5,6 +5,10 @@ let lastConversationTimestamp = '1990-12-12 12:12:12';
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('rightSectionOuterContainer').style.display = 'none';
     
+    // ellipsis pop out
+    const ellipsisPopUp = document.getElementById('ellipsisPopUp');
+    ellipsisPopUp.style.display = 'none';
+
     // outercontainer it messages
     const messageOuterContainer = document.getElementById('messageOuterContainer');
     
@@ -50,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.log(error));
     }
     
-    //bug here
     //getConversations();
     setInterval(getConversations, 1500);
     
@@ -287,14 +290,69 @@ document.addEventListener('DOMContentLoaded', function() {
                         .catch(error => console.log(error));
                 });    
                 
-                //deleteConversationCtnBased, event tikang ha conversation list na click
+                //delete Conversation Ctn Based. 'event tikang ha conversation list na click'
                 conversationMenu.addEventListener('click', function() {
-                    fetch(`/deleteConversationCtnBased?conversation_id=${response.conversation_id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken
-                        },
-                    })
+                    // ellipsis changes
+                    ellipsisPopUp.style.display = 'block';
+                    
+                    // elements ha ellipsis
+                    const popUpOuterContainer = document.createElement('div');
+                    popUpOuterContainer.classList.add('popUpOuterContainer');
+
+                    const popUpInnerContainer = document.createElement('div');
+                    popUpInnerContainer.classList.add('popUpInnerContainer');
+
+                    const popUpMessage = document.createElement('div');
+                    popUpMessage.textContent = 'Are you sure you want to delete this conversation?';
+                    popUpMessage.classList.add('popUpMessage');
+                    
+                    const buttonCss = `
+                        height: 65px;
+                        width: 150px;
+                        font-size: 18px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        background-color: #003060;
+                        color: white;
+                    `;
+
+                    const yesButton = document.createElement('div');
+                    yesButton.type = 'button';
+                    yesButton.textContent = 'Yes';
+                    yesButton.style.cssText = buttonCss;
+
+                    const noButton = document.createElement('div');
+                    noButton.type = 'button';
+                    noButton.textContent = 'No';
+                    noButton.style.cssText = buttonCss;
+
+                    const popUpButtonCtn = document.createElement('div');
+                    popUpButtonCtn.classList.add('popUpButtonCtn');
+
+                    popUpButtonCtn.appendChild(yesButton);
+                    popUpButtonCtn.appendChild(noButton);
+
+                    // append an mga elements ha inner popup container
+                    popUpInnerContainer.appendChild(popUpMessage);
+                    popUpInnerContainer.appendChild(popUpButtonCtn);
+
+                    // append an inner pop up ha outer popup
+                    popUpOuterContainer.appendChild(popUpInnerContainer);
+
+                    // append ha pinaka outer
+                    ellipsisPopUp.appendChild(popUpOuterContainer);
+                    ellipsisPopUp.classList.add('ellipsisPopUp');
+
+                    // yes button if clicked
+                    yesButton.addEventListener('click', function() {
+                        fetch(`/deleteConversationCtnBased?conversation_id=${response.conversation_id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                        })
                         .then(responses => {
                             if (responses.ok) {
                                 return responses.json();
@@ -303,12 +361,30 @@ document.addEventListener('DOMContentLoaded', function() {
                         })
                         .then(response => {
                             console.log('Conversation deleted successfully');
-                            //getConversations();
+
                             // remove conversation container after ma delete
                             conversationCtn.remove();
                             rightSectionOuterContainer.style.display = 'none';
+                            ellipsisPopUp.style.display = 'none';
                         })
                         .catch(error => console.log(error));
+                    });
+                    
+                    // no button if clicked
+                    noButton.addEventListener('click', () => {
+                        ellipsisPopUp.style.display = 'none';
+                    });
+
+                    // pag mag click outer container an kanan pop up
+                    ellipsisPopUp.addEventListener('click', () => {
+                        ellipsisPopUp.style.display = 'none';
+                        ellipsisPopUp.innerHTML = '';
+                    });
+
+                    popUpInnerContainer.addEventListener('click', function(event) {
+                        // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
+                        event.stopPropagation();
+                    });
                 });
             });
         });
@@ -580,28 +656,100 @@ document.addEventListener('DOMContentLoaded', function() {
                         //     console.log('delete kuntaloy');
                         // });
 
-                        // delete conversation search based 
+                        
+                        //delete Conversation Ctn Based. 'event tikang ha conversation list na click'
                         conversationMenu.addEventListener('click', function() {
-                            fetch(`/deleteConversationSearchBased?conversation_name=${convoName}`, {
-                                method: 'DELETE',
-                                headers: {
-                                    'X-CSRF-TOKEN': csrfToken
-                                },
-                            })
-                            .then(responses => {
-                                if (responses) {
-                                    return responses.json();
-                                }
-                                throw new Error('Error in deleting conversation');
-                            })
-                            .then(response => {
-                                console.log(response);
-                                //getConversations();
-                                // remove conversation container after ma delete
-                                conversationCtn.remove();
-                                rightSectionOuterContainer.style.display = 'none';
-                            })
-                            .catch(error => console.log(error));
+                            // ellipsis changes
+                            ellipsisPopUp.style.display = 'block';
+                            
+                            // elements ha ellipsis
+                            const popUpOuterContainer = document.createElement('div');
+                            popUpOuterContainer.classList.add('popUpOuterContainer');
+
+                            const popUpInnerContainer = document.createElement('div');
+                            popUpInnerContainer.classList.add('popUpInnerContainer');
+
+                            const popUpMessage = document.createElement('div');
+                            popUpMessage.textContent = 'Are you sure you want to delete this conversation?';
+                            popUpMessage.classList.add('popUpMessage');
+                            
+                            const buttonCss = `
+                                height: 65px;
+                                width: 150px;
+                                font-size: 18px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 10px;
+                                background-color: #003060;
+                                color: white;
+                            `;
+
+                            const yesButton = document.createElement('div');
+                            yesButton.type = 'button';
+                            yesButton.textContent = 'Yes';
+                            yesButton.style.cssText = buttonCss;
+
+                            const noButton = document.createElement('div');
+                            noButton.type = 'button';
+                            noButton.textContent = 'No';
+                            noButton.style.cssText = buttonCss;
+
+                            const popUpButtonCtn = document.createElement('div');
+                            popUpButtonCtn.classList.add('popUpButtonCtn');
+
+                            popUpButtonCtn.appendChild(yesButton);
+                            popUpButtonCtn.appendChild(noButton);
+
+                            // append an mga elements ha inner popup container
+                            popUpInnerContainer.appendChild(popUpMessage);
+                            popUpInnerContainer.appendChild(popUpButtonCtn);
+
+                            // append an inner pop up ha outer popup
+                            popUpOuterContainer.appendChild(popUpInnerContainer);
+
+                            // append ha pinaka outer
+                            ellipsisPopUp.appendChild(popUpOuterContainer);
+                            ellipsisPopUp.classList.add('ellipsisPopUp');
+
+                            // yes button if clicked
+                            yesButton.addEventListener('click', function() {
+                                fetch(`/deleteConversationSearchBased?conversation_name=${convoName}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': csrfToken
+                                    },
+                                })
+                                .then(responses => {
+                                    if (responses.ok) {
+                                        return responses.json();
+                                    }
+                                    throw new Error('Error in deleting conversation');
+                                })
+                                .then(response => {
+                                    console.log('Conversation deleted successfully',  response);
+
+                                    rightSectionOuterContainer.style.display = 'none';
+                                    ellipsisPopUp.style.display = 'none';
+                                })
+                                .catch(error => console.log(error));
+                            });
+                            
+                            // no button if clicked
+                            noButton.addEventListener('click', () => {
+                                ellipsisPopUp.style.display = 'none';
+                            });
+
+                            // pag mag click outer container an kanan pop up
+                            ellipsisPopUp.addEventListener('click', () => {
+                                ellipsisPopUp.style.display = 'none';
+                                ellipsisPopUp.innerHTML = '';
+                            });
+
+                            popUpInnerContainer.addEventListener('click', function(event) {
+                                // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
+                                event.stopPropagation();
+                            });
                         });
                     });
                 } else {
@@ -632,5 +780,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         username.innerHTML = '';
     });
-
 });
