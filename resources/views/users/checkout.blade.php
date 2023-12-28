@@ -11,8 +11,7 @@
 
 <body>
     <div id="body-container" class="container-fluid px-0">
-        <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-            aria-labelledby="offcanvasExampleLabel">
+        <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
             <x-sidebar />
         </div>
         <div id="content" class="border content">
@@ -168,12 +167,26 @@
                     <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <button id="place-order" class="btn text-white place-order-button">Place Order</button>
+                    <button id="place-order" class="btn text-white place-order-button" data-bs-toggle="modal"
+                        data-bs-target="#messageModal">Place Order</button>
                 </div>
             </main>
         </div>
     </div>
 </body>
+<!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">           
+            <div class="modal-body text-center">
+                <h3 class="fw-bold fs-2" style="color: #003060;">Please Wait</h3>
+                <p style="color: #003060;">You'll be redirected to another page.</p>
+                <img class="img  mt-2" src="../assets/loading.gif" width="50" alt="loading gif">                
+            </div>            
+        </div>
+    </div>
+</div>
+
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',

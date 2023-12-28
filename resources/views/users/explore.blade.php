@@ -151,7 +151,7 @@
                             </div>
                         </div>
                     {{-- @elseif ($daily->unit == 'Available' || $daily->unit == 'Added to Cart') --}}
-                    @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
+                    @elseif ($daily->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -258,7 +258,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
+                    @elseif ($daily->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -368,7 +368,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($recommended->unit == 'Available' || ($recommended->stock > 0))
+                        @elseif ($recommended->stock > 0)
                             <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
@@ -664,7 +664,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
+                    @elseif ($daily->stock > 0)
                         <div class="card m-1 pb-4 col-3 shadow" style="width: 220px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -757,7 +757,7 @@
                                 </div>
                             </div>
                         </div>
-                    @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
+                    @elseif ($daily->stock > 0)
                         <div class="card m-1 pb-4 col-3 shadow" style="width: 220px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
@@ -851,7 +851,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($recommended->unit == 'Available' || ($recommended->stock > 0))
+                        @elseif ($recommended->stock > 0)
                             <div class="card m-1 pb-4 col-3 shadow"
                                 style="width: 220px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
@@ -897,282 +897,7 @@
                     @endif
                 @endforeach
             </div>
-        </div>
-        {{-- <!-- NEAR YOU CONTENT -->
-        <div id="near-you-content" class="daily-discovery-content mt-3 w-100">
-            <h4 class="text-center daily_discovery_text mx-5 pb-2">NEAR YOU</h4>
-            <div class="row justify-content-center mx-5 mb-4">
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..."
-                        width="130px" height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..."
-                        width="130px" height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..."
-                        width="130px" height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto p-2" alt="..." width="130px"
-                        height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto p-2" alt="..."
-                        width="130px" height="170px">
-                    <div class="card-body py-0">
-                        <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
-                        <p class="card-text mt-0 mb-2">Marie Fernandez <br>
-                            Self Help</p>
-                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                            <span class="fw-bold p-0">P100.00</span>
-                            <div class="button-container">
-                                <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                        style="margin-right: 8px"></i></button>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#"><i class="fa fa-list-alt"
-                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                Wishlist</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination-container">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div> --}}
+        </div>        
         <!-- FOR SALE CONTENT -->
         <div id="for-sale-content" class="daily-discovery-content mt-3 w-100">
             <h4 class="text-center daily_discovery_text mx-5 pb-2">FOR SALE</h4>
