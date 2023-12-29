@@ -180,6 +180,7 @@ Route::post('/updateaddress/{id}/{add}', [UserController::class, 'updateAddress'
 
 Route::get('/destroyaddress/{id}/{del}', [UserController::class, 'destroyAddress']);
 
+// Admin
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
 
 Route::get('/manageresources', [AdminController::class, 'manageResources']);
@@ -209,6 +210,10 @@ Route::get('/reportedrentpost', [AdminController::class, 'reportedRentPost']);
 Route::get('/reporteduser', [AdminController::class, 'reportedUser']);
 
 Route::get('/adminprofile', [AdminController::class, 'adminProfile']);
+
+Route::post('/updateprofile', [AdminController::class, 'updateProfile']);
+
+
 
 Route::get('/survey', [UserController::class, 'survey']);
 

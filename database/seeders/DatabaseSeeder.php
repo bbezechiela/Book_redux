@@ -59,5 +59,17 @@ class DatabaseSeeder extends Seeder
                 'password' => $users['password']
             ]);
         }
+
+        DB::table('users')->insert([
+            'type' => 'Admin',
+            'first_name' => 'FirstAdmin',
+            'last_name' => 'FirstAdmin',
+            'email' => 'admin@admin.com',
+            'phone_number' => '09169452347',
+            'birthday' => '2003-03-12',
+            'gender' => 'Male',
+            'username' => 'admin',
+            'password' => bcrypt('admin')
+        ]);
     }
 }
