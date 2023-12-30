@@ -167,7 +167,7 @@
                 </div>
             </div>
 
-            <div class="container text-center preferences-details border-bottom border-2">
+            <div class="container text-center preferences-details">
                 <h2>What genres are you most interested in?</h2>
                 <small>Select all that apply</small>
                 <div class="row px-3">
@@ -259,7 +259,7 @@
     </div>
 </div>
 
-<div class="container text-center seller-details">
+{{-- <div class="container text-center seller-details">
     <div class="row align-items-center">
         <div class="col">
             <div class="ratings">
@@ -272,15 +272,15 @@
                 <p>Books Sold <span class="sold">203</span></p>
                 <p>Books Exchanged <span class="exchange">59</span></p>
             </div>
-        </div>
+        </div> --}}
         {{-- <div class="col">
                     <div class="ratings">
                         <p>Books Lent <span class="sold">203</span></p>
                         <p>Books Rented <span class="rent">9</span></p>
                     </div>
                 </div> --}}
-    </div>
-</div>
+    {{-- </div>
+</div> --}}
 </div>
 </div>
 
