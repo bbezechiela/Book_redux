@@ -70,6 +70,8 @@ Route::get('/adminnotification', [UserController::class, 'adminNotification']);
 
 Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']);
 
+Route::get('/listingdetails', [UserController::class, 'productDetailsPreview']);
+
 Route::get('/cart', [UserController::class, 'cart']);
 
 Route::get('/bookclub', [UserController::class, 'bookClub']);

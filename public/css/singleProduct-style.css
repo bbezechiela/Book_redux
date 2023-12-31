@@ -132,6 +132,7 @@
     border-top-left-radius: var(--bs-border-radius) !important;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #003060;
+    padding: 1em;
 }
 
 .circle-picture {
@@ -227,7 +228,7 @@
 
 .rating-details {
     /* max-width: 1500px; */
-    margin-top: 3em;
+    /* margin-top: 3em; */
     color: #003060;
     margin-left: 1.5em;
 }

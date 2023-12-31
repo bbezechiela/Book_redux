@@ -91,8 +91,7 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h6>Book Selling Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
-                                        data-bs-toggle="modal" data-bs-target="#createpost"></i></h6>
+                                <h6>Book Selling Club</h6>
                                 <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
                                     style="height: 2em">
                             </div>

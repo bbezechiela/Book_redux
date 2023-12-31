@@ -116,6 +116,11 @@ class UserController extends Controller
         }
     }
 
+    public function productDetailsPreview()
+    {
+        return view('admin.productDetailsPreview');
+    }
+
     public function cart()
     {
         // $user = Cart::where('user_id', session('id'))->with('productRelation.user')->get(); // also works        
