@@ -96,7 +96,7 @@ class UserController extends Controller
 
             // $users = Users::where();
             $user = Users::find(session('id'));
-            $post = Books::with('user.addressUser', 'cart')->get();            
+            $post = Books::with('user.addressUser', 'cart')->get();
             return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
@@ -186,13 +186,13 @@ class UserController extends Controller
         if ($request->session()->has('user')) {
             $order = $request->input('items');
             $qty = $request->input('qty');
-            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();            
+            $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();
             $address = Users::with('addressUser')->find(session('id'));
 
             // foreach ($checkout as $index => $item) {
             //     echo $item->productRelation->title . ' ' . $qty[$index];
             // }
-            
+
             return view('users.checkout', ['items' => $checkout, 'user' => $address, 'qty' => $qty]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -455,7 +455,9 @@ class UserController extends Controller
     public function deleteOrder($id)
     {
         $item = Order_Items::with('book')->find($id);
-        $book_update = $item->book->update(['unit' => 'Available']);
+        $qty = intval($item->qty) + intval($item->book->stock);
+
+        $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
         $item->delete();
 
         if ($item) {
@@ -676,12 +678,13 @@ class UserController extends Controller
 
             // dd($validated);            
 
-            $post_address = Address::where('default_address', 'true')->first();
+            $post_address = Address::where(['user_id' => session('id'), 'default_address' => 'true'])->first();
 
             if ($post_address && $add == 'delivery') {
                 $post_address->update([
                     'default_address' => null
                 ]);
+
                 $new_add = Address::create([
                     'user_id' => session('id'),
                     'name' => $validated['name'],
@@ -956,7 +959,7 @@ class UserController extends Controller
             'total_payment' => $price
         ]);
 
-        $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
+        // $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
 
         foreach ($book_id as $index => $id) {
             $orderItem = Order_Items::create([
@@ -965,11 +968,15 @@ class UserController extends Controller
                 'qty' => $qty[$index],
                 'order_status' => 'Pending'
             ]);
+
             $stock = $orderItem->book->stock - $qty[$index];
             $orderItem->book->update([
                 'unit' => 'Ordered',
                 'stock' => $stock
             ]);
+
+            $cart = Cart::where(['product_id' => $id, 'user_id' => session('id')])->first();
+            $cart->delete();
         }
 
         if ($order) {
@@ -977,7 +984,7 @@ class UserController extends Controller
             return redirect('/explore');
         } else {
             return response()->json(['message' => 'error bitch']);
-        }       
+        }
     }
 
     public function receivedOrder($id)
@@ -1047,9 +1054,10 @@ class UserController extends Controller
     }
 
     // API's
-    public function checkUsername($user) {
+    public function checkUsername($user)
+    {
         $checkuser = Users::where('username', $user)->first();
-        
+
         if ($checkuser) {
             return response()->json(['message' => 'Username already exists. Please choose a different username.']);
         } else {

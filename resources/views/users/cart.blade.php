@@ -89,7 +89,7 @@
                     @csrf
                     @foreach ($items->cart as $item)
                         {{-- <p>{{ $item->productRelation->title }}</p> --}}
-                        @if ($item->productRelation->status == 'Exchange' && $item->user_id == session('id'))
+                        @if ($item->productRelation->status == 'Exchange' && $item->user_id == session('id') && $item->productRelation->unit == 'Added to Cart')
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"
@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif ($item->user_id == session('id'))
+                        @elseif ($item->user_id == session('id') && $item->productRelation->unit == 'Added to Cart')
                             <div class="order-cart">
                                 <div class="name-cart">
                                     <a class="seller-name"

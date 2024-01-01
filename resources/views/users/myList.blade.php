@@ -174,18 +174,16 @@
                                     {{ $book->title }}</p>
                                 <p id="author_{{ $book->id }}" class="card-text mt-0 mb-0 pb-0">
                                     {{ $book->author }}</p>
-                                <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-2 pt-0">
+                                <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
                                     {{ $book->genre }}</p>
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <a class="fw-bold p-0 edit-book"
-                                        onclick="itemClicked('{{ $book->id }}')">Edit</a>
-                                    {{-- <div class="btns d-flex flex-row mb-2 dropdown">
-                                        <button
-                                            class="btn btn-card p-1 rounded-circle me-1 d-flex justify-content-center align-items-center like-button"><i
-                                                class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                style="margin-right: 8px"></i>100</button>
-                                    </div> --}}
-                                </div>
+                                @if ($book->stock == 0)
+                                    <p class="text-danger fw-bold">Sold Out</p>
+                                @else
+                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                        <a class="fw-bold p-0 edit-book"
+                                            onclick="itemClicked('{{ $book->id }}')">Edit</a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @endforeach
@@ -201,10 +199,11 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for <span id="listing-type" class="fw-bold"></span></h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add listing for <span id="listing-type"
+                            class="fw-bold"></span></h1>
                     <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category" hidden>
                         <option value="Sale">Sale</option>
-                        <option value="Exchange">Exchange</option>                        
+                        <option value="Exchange">Exchange</option>
                     </select>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1062,8 +1061,9 @@
                             </div>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="submit" id="submitExchangeButton" class="btn mx-auto w-25 text-white rounded-3"
-                                style="background-color: #E55B13;" disabled>List</button>
+                            <button type="submit" id="submitExchangeButton"
+                                class="btn mx-auto w-25 text-white rounded-3" style="background-color: #E55B13;"
+                                disabled>List</button>
                         </div>
                     </form>
                 </div>
@@ -2002,11 +2002,13 @@
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            @if (session('createMessage') && session('createMessage') == 'Listing created successfully! Your information has been recorded and is now live for viewing.')
+            @if (session('createMessage') &&
+                    session('createMessage') ==
+                        'Listing created successfully! Your information has been recorded and is now live for viewing.')
                 <div class="toast-body fw-bold text-success">
-                    {{ session('createMessage') }}                    
+                    {{ session('createMessage') }}
                 </div>
-            {{-- @elseif (session('createMessage'))
+                {{-- @elseif (session('createMessage'))
                 <div class="toast-body fw-bold text-danger">
                     {{ session('createMessage') }}
                 </div> --}}
@@ -2021,7 +2023,9 @@
                 <small>1 min ago</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            @if (session('deleteMessage') && session('deleteMessage') == 'Listing deleted successfully. Your request has been processed, and the specified listing has been removed.')
+            @if (session('deleteMessage') &&
+                    session('deleteMessage') ==
+                        'Listing deleted successfully. Your request has been processed, and the specified listing has been removed.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('deleteMessage') }}
                 </div>
@@ -2066,7 +2070,7 @@
 
     @if (session('deleteMessage'))
         deleteToast.show()
-    @elseif (session('createMessage'))      
+    @elseif (session('createMessage'))
         createToast.show()
     @elseif (session('updateMessage'))
         updateToast.show()

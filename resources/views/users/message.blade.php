@@ -426,6 +426,10 @@
         {{-- Original Frontend --}}
 
         <div id='bodyCtn'>
+    
+        <div id='bodyCtn'>
+            <!-- pop out for ellipsis-->
+            <div id='ellipsisPopUp'></div>
             <div id='leftSectionOuterContainer'>
                 <div id="searchOuterContainer">
                     <div id="searchInnerContainer">
