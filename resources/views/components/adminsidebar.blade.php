@@ -15,8 +15,14 @@
         <i class="fa fa-th-list d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage User Listings</span>
     </a>
+    <a href="/adminmessages"
+        class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('adminMessage*')) active @endif"
+        data-blade="adminMessage" style="white-space: nowrap">
+        <i class="fa fa-envelope-o d-flex align-items-center" aria-hidden="true"></i>
+        <span class="nav-link">Messages</span>
+    </a>
     <a href="/managesellingclub"
-        class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if (Request::is('managesellingclub*')) active @endif"
+        class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('managesellingclub*')) active @endif"
         data-blade="manageSellingClub" style="white-space: nowrap">
         <i class="fa fa-linode d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage Book Selling Club</span>
@@ -75,7 +81,6 @@
 <script>
     $(document).ready(function() {
         $('.sidebar-btn').removeClass('active');
-
         $('.sidebar-btn').each(function() {
             if ($(this).attr('href') == window.location.pathname) {
                 $(this).addClass('active');

@@ -99,8 +99,9 @@
                                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
+                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#report">Report Post</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -143,8 +144,9 @@
                                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
+                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#report">Report Post</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -187,8 +189,9 @@
                                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
+                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#report">Report Post</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -231,8 +234,9 @@
                                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
+                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
+                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#report">Report Post</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -349,6 +353,97 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Report Modal -->
+<div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Select a
+                    Reason</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Nudity
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Violence
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Offensive or potentially offensive post
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Harrassment
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Suicide or self-injury
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        False information
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Spam
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Hate speech
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Involves a child
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Terrorism
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Others
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label report-input"
+                        style="color:#003060;">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                        placeholder="Please further elaborate on your selected reason" rows="7"
+                        style="color:#003060;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn report-button">Report</button>
             </div>
         </div>
     </div>

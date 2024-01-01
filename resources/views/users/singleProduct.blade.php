@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Product | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/singleProduct-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Product | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/singleProduct-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -22,8 +22,8 @@
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </button>
-                    <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                            src="/assets/Book_Logo.png" alt="Logo"></a>
+                    <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="/assets/Book_Logo.png"
+                            alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
@@ -70,113 +70,11 @@
                 </div>
             </ul>
             @if ($book_id->status == 'Exchange')
-                <div class="card mb-3 book-details mx-4">
-                    <div class="row g-0">
-                        <div class="col-md-4 p-5">
-                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active" data-bs-interval="10000">
-                                            <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
-                                                class="img-fluid mx-auto rounded d-block mx-auto" alt="product"
-                                                width="300px" height="564px">
-                                        </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
-                                                class="img-fluid mx-auto rounded d-block mx-auto" alt="product"
-                                                width="300px" height="564px">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
-                                                class="img-fluid mx-auto rounded d-block mx-auto" alt="product"
-                                                width="300px" height="564px">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
-                                        data-bs-target="#report">Report</a></h5>
-                                <h6 class="card-title"><span style="color: #E55B13; font-weight: bold;"></span>
-                                    <span> For {{ $book_id->status }}
-                                        |</span> <span>{{ $book_id->genre }}</span>
-                                </h6>
-                                {{-- <p class="card-text">
-                                    Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
-                                <span class="inline-dropdown">
-                                    <button class="btn dropdown-toggle places-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Catbalogan
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Sample 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 3</a></li>
-                                    </ul>
-                                </span>
-                                </p> --}}
-                                {{-- <p class="card-text">Shipping Fee <span
-                                            style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
-                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
-                                <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                                <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
-                                <div class="d-flex justify-content-start align-items-center mb-2">
-                                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                        <p class="m-0" style="color: #003060;">Quantity: <span class="fw-bold">{{ $book_id->stock }} pieces available</span></p>
-                                        {{-- <button class="btn btn-link btn-minus px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="fa fa-minus" aria-hidden="true"></i>
-                                        </button>
-                                        <input id="form1" min="0" name="quantity" value="0" type="number"
-                                            class="form-control form-control-mm" />
-                                        <button class="btn btn-link btn-plus px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                        <p class="card-text m-0" style="white-space: nowrap;">{{ $book_id->stock }}
-                                            pieces available</p> --}}
-                                    </div>
-                                </div>
-                                <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
-                                </p>
-                                <p class="card-text">Condition: <span
-                                        class="fw-bold">{{ $book_id->condition }}</span>
-                                </p>
-                                <p class="card-text">Product Description: <span
-                                        class="fw-bold">{{ $book_id->description }}</span></p>
-                                <p class="card-text location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
-
-                                {{-- <a href="#" class="btn total-likes"><i
-                                            class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                            style="margin-right: 7px"></i>100</a> --}}
-                                <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
-                                        class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add
-                                    to Cart</a>
-                                <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
-                                        aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @else
-                <div class="card mb-3 book-details mx-4">
-                    <div class="row g-0">
-                        <div class="col-md-4 p-5">
-                            <div id="carouselExampleDark" class="carousel carousel-dark slide"
-                                data-bs-ride="carousel">
+            <div class="card mb-3 book-details mx-4">
+                <div class="row g-0">
+                    <div class="col-md-4 p-5">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" data-bs-interval="10000">
                                         <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
@@ -194,53 +92,155 @@
                                             width="300px" height="564px">
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $book_id->title }} <a href=""
-                                        data-bs-toggle="modal" data-bs-target="#report">Report</a></h5>
-                                <h6 class="card-title"><span
-                                        style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
-                                    </span>
-                                    <span>| For {{ $book_id->status }}
-                                        |</span> <span>{{ $book_id->genre }}</span>
-                                </h6>
-                                {{-- <p class="card-text">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
+                                    data-bs-target="#report">Report</a></h5>
+                            <h6 class="card-title"><span style="color: #E55B13; font-weight: bold;"></span>
+                                <span> For {{ $book_id->status }}
+                                    |</span> <span>{{ $book_id->genre }}</span>
+                            </h6>
+                            {{-- <p class="card-text">
                                     Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
-                                <span class="inline-dropdown">
-                                    <button class="btn dropdown-toggle places-button" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Catbalogan
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Sample 1</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Sample 3</a></li>
-                                    </ul>
+                            <span class="inline-dropdown">
+                                <button class="btn dropdown-toggle places-button" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Catbalogan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Sample 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 3</a></li>
+                                </ul>
+                            </span>
+                            </p> --}}
+                            {{-- <p class="card-text">Shipping Fee <span
+                                            style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
+                            <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
+                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
+                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
+                            <div class="d-flex justify-content-start align-items-center mb-2">
+                                <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
+                                    <p class="m-0" style="color: #003060;">Quantity: <span
+                                            class="fw-bold">{{ $book_id->stock }} pieces available</span></p>
+                                    {{-- <button class="btn btn-link btn-minus px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                        <input id="form1" min="0" name="quantity" value="0" type="number"
+                                            class="form-control form-control-mm" />
+                                        <button class="btn btn-link btn-plus px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <p class="card-text m-0" style="white-space: nowrap;">{{ $book_id->stock }}
+                                    pieces available</p> --}}
+                                </div>
+                            </div>
+                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                            </p>
+                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                            </p>
+                            <p class="card-text">Product Description: <span
+                                    class="fw-bold">{{ $book_id->description }}</span></p>
+                            <p class="card-text location-text"><i class="fa fa-map-marker"
+                                    aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
+
+                            {{-- <a href="#" class="btn total-likes"><i
+                                            class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                            style="margin-right: 7px"></i>100</a> --}}
+                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
+                                    aria-hidden="true" style="margin-right: 7px"></i>Add
+                                to Cart</a>
+                            <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                    style="margin-right: 7px"></i>Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div class="card mb-3 book-details mx-4">
+                <div class="row g-0">
+                    <div class="col-md-4 p-5">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="10000">
+                                    <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                        class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                        height="564px">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
+                                        class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                        height="564px">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
+                                        class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
+                                        height="564px">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
+                                    data-bs-target="#report">Report</a></h5>
+                            <h6 class="card-title"><span
+                                    style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
                                 </span>
-                                </p> --}}
-                                <p class="card-text">Shipping Fee <span
-                                        style="font-weight: bold;">₱{{ $book_id->price }}</span>
-                                </p>
-                                <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                                <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
-                                </p>
-                                <div class="d-flex justify-content-start align-items-center mb-2">
-                                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                        <p class="m-0" style="color: #003060;">Quantity: <span class="fw-bold">{{ $book_id->stock }}
+                                <span>| For {{ $book_id->status }}
+                                    |</span> <span>{{ $book_id->genre }}</span>
+                            </h6>
+                            {{-- <p class="card-text">
+                                    Shipping From <span style="font-weight: bold;">{{ $user_id->address }} to</span>
+                            <span class="inline-dropdown">
+                                <button class="btn dropdown-toggle places-button" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Catbalogan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Sample 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Sample 3</a></li>
+                                </ul>
+                            </span>
+                            </p> --}}
+                            <p class="card-text">Shipping Fee <span
+                                    style="font-weight: bold;">₱{{ $book_id->price }}</span>
+                            </p>
+                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
+                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
+                            </p>
+                            <div class="d-flex justify-content-start align-items-center mb-2">
+                                <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
+                                    <p class="m-0" style="color: #003060;">Quantity: <span
+                                            class="fw-bold">{{ $book_id->stock }}
                                             pieces available</span></p>
-                                        {{-- <button class="btn btn-link btn-minus px-2"
+                                    {{-- <button class="btn btn-link btn-minus px-2"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i class="fa fa-minus" aria-hidden="true"></i>
                                         </button>
@@ -251,34 +251,31 @@
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                         <p class="card-text m-0" style="white-space: nowrap;"> {{ $book_id->stock }}
-                                            pieces available</p> --}}
-                                    </div>
+                                    pieces available</p> --}}
                                 </div>
-                                <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
-                                </p>
-                                <p class="card-text">Condition: <span
-                                        class="fw-bold">{{ $book_id->condition }}</span>
-                                </p>
-                                <p class="card-text">Product Description: <span
-                                        class="fw-bold">{{ $book_id->description }}</span></p>
-                                <p class="card-text"><small
-                                        class="text-body-secondary">{{ $user_id->address }}</small>
-                                </p>
-
-                                @if ($book_id->unit == 'Added to Cart' && $book_id->user_id == session('id'))
-                                    <p class="fs-3 fw-bold text-success">Item added to Cart</p>
-                                @else
-                                    <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
-                                            class="fa fa-cart-plus" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add to Cart</a>
-                                    <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt"
-                                            aria-hidden="true" style="margin-right: 7px"></i>Add to Wishlist</a>
-                                @endif
-
                             </div>
+                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                            </p>
+                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                            </p>
+                            <p class="card-text">Product Description: <span
+                                    class="fw-bold">{{ $book_id->description }}</span></p>
+                            <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
+                            </p>
+
+                            @if ($book_id->unit == 'Added to Cart' && $book_id->user_id == session('id'))
+                            <p class="fs-3 fw-bold text-success">Item added to Cart</p>
+                            @else
+                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
+                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                            <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                    style="margin-right: 7px"></i>Add to Wishlist</a>
+                            @endif
+
                         </div>
                     </div>
                 </div>
+            </div>
             @endif
 
             {{-- ADD ELSE IF FOR RENT PRODUCT PAGE 
@@ -303,13 +300,11 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="d-flex align-items-center">
-                            {{-- <div class="circle-picture"></div> --}}
                             <img src="{{ asset('images/profile_photos/' . $user_id->profile_photo) }}"
                                 alt="seller image" class="circle-picture">
                             <div class="user-info">
                                 <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
                                 <p>2K followers . 400 following</p>
-                                {{-- <p>Lives in {{ $user_id->address }}</p> --}}
                                 <button class="message-button"><i class="fa fa-envelope"
                                         aria-hidden="true"></i>Message</button>
                                 <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye"
@@ -318,7 +313,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    {{-- <div class="col">
                         <div class="ratings">
                             <p>Ratings <span class="rate">100</span></p>
                             <p>Books Bought <span class="bought">20</span></p>
@@ -331,14 +326,22 @@
                             <p>Books Exchanged <span class="exchange">59</span></p>
                             <p>Books Rented <span class="rent">9</span></p>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
             <div class="ratings-review">
                 <div class="card-body rating-details">
-                    <h5 class="card-title">User Ratings and Reviews</h5>
-                    {{-- <nav class="nav nav-pills flex-column flex-sm-row">
+                    {{-- <h5 class="card-title">
+                        <p>{{ $user_id->first_name . ' ' . $user_id->last_name }} Ratings and Reviews <button
+                                class="message-button"><i class="fa fa-envelope"
+                                    aria-hidden="true"></i>Message</button><a href="/userlistings"
+                                class="view-profile-button"><button class="view-profile-button"><i class="fa fa-eye"
+                                        aria-hidden="true"></i>View
+                                    Profile</button></a>
+                        </p> --}}
+
+                        {{-- <nav class="nav nav-pills flex-column flex-sm-row">
                         <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                             aria-current="page" href="#">Seller Rating</a>
                         <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -371,30 +374,31 @@
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn active d-block rate-button" role="button"
-                                    data-bs-toggle="button" aria-pressed="true"
-                                    style="background-color: #003060; border-color: #003060;">All
+                                <a href="#" class="btn active d-block rate-button" role="button" data-bs-toggle="button"
+                                    aria-pressed="true" style="background-color: #003060; border-color: #003060;">All
                                     <span>(10)</span></a>
-                                <a href="#" class="btn d-block rate-button" role="button"
-                                    data-bs-toggle="button">3 Star
+                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">3
+                                    Star
                                     <span>(20)</span></a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn d-block rate-button" role="button"
-                                    data-bs-toggle="button" aria-pressed="true">5 Star <span>(100)</span></a>
-                                <a href="#" class="btn d-block rate-button" role="button"
-                                    data-bs-toggle="button">2 Star
+                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
+                                    aria-pressed="true">5 Star
+                                    <span>(100)</span></a>
+                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">2
+                                    Star
                                     <span>(20)</span></a>
                             </div>
                         </div>
                         <div class="col">
                             <div class="ratings">
-                                <a href="#" class="btn d-block rate-button" role="button"
-                                    data-bs-toggle="button" aria-pressed="true">4 star <span>(10)</span></a>
-                                <a href="#" class="btn d-block rate-button" role="button"
-                                    data-bs-toggle="button">1 Star
+                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
+                                    aria-pressed="true">4 star
+                                    <span>(10)</span></a>
+                                <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">1
+                                    Star
                                     <span>(59)</span></a>
                             </div>
                         </div>
@@ -520,41 +524,37 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Select a Reason</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Select a
+                        Reason</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value=""
-                            id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Counterfeit and copyright
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value=""
-                            id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Prohibited item
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value=""
-                            id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Offensive or potentially offensive item
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value=""
-                            id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Fraudulent listing
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input check-report" type="checkbox" value=""
-                            id="flexCheckDefault">
+                        <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
                             Others
                         </label>
@@ -563,7 +563,8 @@
                         <label for="exampleFormControlTextarea1" class="form-label report-input"
                             style="color:#003060;">Description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="Please further elaborate on your selected reason" rows="7" style="color:#003060;"></textarea>
+                            placeholder="Please further elaborate on your selected reason" rows="7"
+                            style="color:#003060;"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -575,8 +576,8 @@
 </body>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>

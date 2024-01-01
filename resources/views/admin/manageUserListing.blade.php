@@ -26,10 +26,14 @@
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
                     </div>
-                    <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    {{-- <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
+                        </button></a> --}}
+                    {{-- <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Notification">
+                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
+                        </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
@@ -509,6 +513,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                                 <div class="tab-pane fade" id="rent" role="tabpanel"
                                     aria-labelledby="rent-tab">
@@ -738,10 +743,10 @@
                         </div>
                     </div>
                 </div>
-                {{-- </div>
-    </section> --}}
-        </main>
     </div>
+    </section>
+    </main>
+</div>
 </div>
 <script>
     var sale_btn = document.getElementById('sale-tab');

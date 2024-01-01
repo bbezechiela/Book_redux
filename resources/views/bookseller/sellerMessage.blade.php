@@ -16,7 +16,8 @@
     <div id="content" class="pe-0 border content">
         <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
-                <a href="/sellerboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
+                <a href="/sellerboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -57,7 +58,6 @@
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </span>
                                         </div>
-                                        {{-- shit --}}
                                         <div class="your-scrollable-element overflow-y-auto">
                                             <ul class="list-unstyled mb-0">
                                                 <li class="p-2 border-bottom">
@@ -415,11 +415,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="d-flex justify-content-between align-items-center mb-1 menu">
+                        {{-- <div class="d-flex justify-content-between align-items-center mb-1 menu">
                             <p>Mute</p>
                             <label class="form-check form-switch m-0">
                                 <input class="form-check-input" type="checkbox" id="toggleUser">
                             </label>
+                        </div>
+                        <hr> --}}
+                        <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
+                            <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i class="fa fa-caret-right"
+                                    aria-hidden="true" data-bs-toggle="modal" data-bs-target="#report-user"
+                                    style="margin-left: 12.5em;"></i>
+                            </p>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between align-items-center btn-menu">
@@ -434,8 +441,95 @@
         </div>
     </div>
 
-</div>
-@include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
-])
+    <!-- Report Modal -->
+    <div class="modal fade" id="report-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="report-details">
+                        <div class="reasons">
+                            <p>Please select
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Prohibited Item
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Scam
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Counterfeit
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Offensive chat messages/images/videos
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Data privacy violation
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Others
+                                    </label>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleTextarea" class="form-label">Description:</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="5"
+                                placeholder="Please elaborate on your selected reason"></textarea>
+                        </div>
+                        <div class="supporting-images">
+                            <p>Supporting Images:
+                                <div class="image-container">
+                                    <div class="image-holder">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="image-holder">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="image-holder">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="image-holder">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="image-holder">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn report-button">Send Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @include('partials.__footer', [
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
+    ])

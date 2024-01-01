@@ -21,6 +21,11 @@ body {
     font-size: smaller;
 }
 
+.sidebar-btn.active, .sidebar-btn.active i, .sidebar-btn.active span {
+    background-color: #2D6092;
+    color: #fff;
+}
+
 .top-nav {
     margin-left: 2em;
     margin-right: 3em;
