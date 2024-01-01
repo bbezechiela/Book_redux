@@ -213,6 +213,20 @@ Route::get('/adminprofile', [AdminController::class, 'adminProfile']);
 
 Route::post('/updateprofile', [AdminController::class, 'updateProfile']);
 
+Route::get('/newUserToday', [AdminController::class, 'getNewUsersToday']);
+
+Route::get('/newUserThisMonth', [AdminController::class, 'getNewUsersThisMonth']);
+
+Route::get('/newUserThisYear', [AdminController::class, 'getNewUsersThisYear']);
+
+Route::get('/newListingToday', [AdminController::class, 'getNewListingToday']);
+
+Route::get('/newListingThisMonth', [AdminController::class, 'getNewListingThisMonth']);
+
+Route::get('/newListingThisYear', [AdminController::class, 'getNewListingThisYear']);
+
+Route::get('/deleteuserlisting/{id}', [AdminController::class, 'deleteUserListing']);
+
 
 
 Route::get('/survey', [UserController::class, 'survey']);

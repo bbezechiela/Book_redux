@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Books;
 use App\Models\Users;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,7 +12,14 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $CurrDay = Carbon::now()->day;
+        $CurrMon = Carbon::now()->month;
+        $CurrYr = Carbon::now()->year;
+
+        $CountCurrUser = Users::whereMonth('created_at', $CurrMon)->count();
+        $CountCurrListing = Books::whereDay('created_at', $CurrDay)->count();
+
+        return view('admin.dashboard', compact('CountCurrUser', 'CountCurrListing'));
     }
 
     public function manageResources()
@@ -50,7 +59,8 @@ class AdminController extends Controller
 
     public function manageUserListing()
     {
-        return view('admin.manageUserListing');
+        $user = Books::all();
+        return view('admin.manageUserListing', ['user' => $user]);
     }
 
     public function reportedListing()
@@ -153,5 +163,68 @@ class AdminController extends Controller
                 }
             }
         }
+    }
+
+    public function deleteUserListing($id) {
+        $listing = Books::with('item')->find($id);
+        $listing->item()->delete();
+        $listing->delete();
+
+        if ($listing) {
+            return redirect('/manageuserlisting');
+        } else {
+            return redirect('/manageuserlisting')->with('error', 'Cannot delete Item');
+        }    
+    }
+
+
+
+    // API's
+    public function getNewUsersToday()
+    {
+        $CurrentDay = Carbon::now()->day;
+        $CountCurrentUser = Users::whereDay('created_at', $CurrentDay)->count();
+
+        return $CountCurrentUser;
+    }
+
+    public function getNewUsersThisMonth()
+    {
+        $CurrentMonth = Carbon::now()->month;
+        $CountCurrentUser = Users::whereMonth('created_at', $CurrentMonth)->count();
+
+        return $CountCurrentUser;
+    }
+
+    public function getNewUsersThisYear()
+    {
+        $CurrentYear = Carbon::now()->year;
+        $CountCurrentUser = Users::whereYear('created_at', $CurrentYear)->count();
+
+        return $CountCurrentUser;
+    }
+
+    public function getNewListingToday()
+    {
+        $CurrentDay = Carbon::now()->day;
+        $CountCurrentUser = Books::whereDay('created_at', $CurrentDay)->count();
+
+        return $CountCurrentUser;
+    }
+
+    public function getNewListingThisMonth()
+    {
+        $CurrentMonth = Carbon::now()->month;
+        $CountCurrentUser = Books::whereMonth('created_at', $CurrentMonth)->count();
+
+        return $CountCurrentUser;
+    }
+
+    public function getNewListingThisYear()
+    {
+        $CurrentYear = Carbon::now()->year;
+        $CountCurrentUser = Books::whereYear('created_at', $CurrentYear)->count();
+
+        return $CountCurrentUser;
     }
 }
