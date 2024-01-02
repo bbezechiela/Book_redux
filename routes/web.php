@@ -219,6 +219,8 @@ Route::delete('/deleteConversationCtnBased', [MessageController::class, 'deleteC
 
 Route::delete('/deleteConversationSearchBased', [MessageController::class, 'deleteConversationSearchBased']);
 
+Route::get('/fullnameGetter', [MessageController::class, 'fullnameGetter']);
+
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
