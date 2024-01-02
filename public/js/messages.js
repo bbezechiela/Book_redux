@@ -166,10 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                     color: white;
                                 `;
             
-                                const yesButton = document.createElement('div');
-                                yesButton.type = 'button';
-                                yesButton.textContent = 'Yes';
-                                yesButton.style.cssText = buttonCss;
+                                const yesButtonn = document.createElement('div');
+                                yesButtonn.type = 'button';
+                                yesButtonn.textContent = 'Yes';
+                                yesButtonn.style.cssText = buttonCss;
             
                                 const noButton = document.createElement('div');
                                 noButton.type = 'button';
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 const popUpButtonCtn = document.createElement('div');
                                 popUpButtonCtn.classList.add('popUpButtonCtn');
             
-                                popUpButtonCtn.appendChild(yesButton);
+                                popUpButtonCtn.appendChild(yesButtonn);
                                 popUpButtonCtn.appendChild(noButton);
             
                                 // append an mga elements ha inner popup container
@@ -193,40 +193,46 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ellipsisPopUp.appendChild(popUpOuterContainer);
                                 ellipsisPopUp.classList.add('ellipsisPopUp');
             
+                                const conversationID = response.conversation_id;
+
+                                console.log(conversationID);
                                 // yes button if clicked
-                                yesButton.addEventListener('click', function() {
-                                    fetch(`/deleteConversationCtnBased?conversation_id=${response.conversation_id}`, {
+                                yesButtonn.addEventListener('click', function () {
+                                    console.log(conversationID);
+                                    fetch(`/deleteConversationCtnBased?conversation_id=${conversationID}`, {
                                         method: 'DELETE',
                                         headers: {
                                             'X-CSRF-TOKEN': csrfToken
                                         },
                                     })
-                                    .then(responses => {
-                                        if (responses.ok) {
-                                            return responses.json();
-                                        }
-                                        throw new Error('Error in deleting conversation');
-                                    })
-                                    .then(response => {
-                                        //console.log(response.data.data.conversation_id);
-                                        console.log(response);
-
-                                        // remove conversation container after ma delete
-                                        conversationCtn.remove();
-                                        rightSectionOuterContainer.style.display = 'none';
-                                        ellipsisPopUp.style.display = 'none';
-                                        lastConversationTimestamp = '1990-12-12 12:12:12';
-                                        conversationList.innerHTML = '';
-                                        
-                                        // ig initialize utro an checker ha getconversation ha false, an variable na initialCheckDone
-                                        initialCheckDone = false;
-                                    })
-                                    .catch(error => console.log(error));
+                                        .then(responses => {
+                                            if (responses.ok) {
+                                                return responses.json();
+                                            }
+                                            throw new Error('Error in deleting conversation');
+                                        })
+                                        .then(response => {
+                                            //console.log(response.data.data.conversation_id);
+                                            console.log(response);
+    
+                                            // remove conversation container after ma delete
+                                            conversationCtn.remove();
+                                            rightSectionOuterContainer.style.display = 'none';
+                                            ellipsisPopUp.style.display = 'none';
+                                            lastConversationTimestamp = '1990-12-12 12:12:12';
+                                            conversationList.innerHTML = '';
+                                            
+                                            // ig initialize utro an checker ha getconversation ha false, an variable na initialCheckDone
+                                            initialCheckDone = false;
+                                            popUpOuterContainer.remove();
+                                        })
+                                        .catch(error => console.log(error));
                                 });
                                 
                                 // no button if clicked
                                 noButton.addEventListener('click', () => {
                                     ellipsisPopUp.style.display = 'none';
+                                    popUpOuterContainer.remove();
                                 });
             
                                 // pag mag click outer container an kanan pop up
@@ -239,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
                                     event.stopPropagation();
                                 });
+
                             });
                             
                             // stop bubble it events ha conversation list na menu button 
@@ -346,7 +353,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                                 // pag kuha mga messages
                                 function getMessages() {
-                                    console.log(response.conversation_name);
                                     fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`, {
                                         method: 'GET',
                                         signal: signal
@@ -522,6 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 
                                                 // ig initialize utro an checker ha getconversation ha false, an variable na initialCheckDone
                                                 initialCheckDone = false;
+                                                popUpOuterContainer.remove();
                                         })
                                         .catch(error => console.log(error));
                                     });
@@ -529,6 +536,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     // no button if clicked
                                     noButton.addEventListener('click', () => {
                                         ellipsisPopUp.style.display = 'none';
+                                        popUpOuterContainer.remove();
                                     });
                 
                                     // pag mag click outer container an kanan pop up
@@ -935,6 +943,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
                                     // reasign hin value para an initalchecker
                                     initialCheckDone = true;
+                                    popUpOuterContainer.remove();
                                 })
                                 .catch(error => console.log(error));
                             });
@@ -942,6 +951,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             // no button if clicked
                             noButton.addEventListener('click', () => {
                                 ellipsisPopUp.style.display = 'none';
+                                popUpOuterContainer.remove();
                             });
             
                             // pag mag click outer container an kanan pop up
