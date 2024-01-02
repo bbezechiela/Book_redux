@@ -228,7 +228,7 @@
                                                                             aria-expanded="false"></a>
                                                                         <ul class="dropdown-menu dropdown-menu-end m-0"
                                                                             style="">
-                                                                            <li><a href="javascript:;"
+                                                                            <li><a href="/listingdetails/{{ $sale->id }}"
                                                                                     class="dropdown-item">Details</a>
                                                                             </li>
                                                                             <div class="dropdown-divider"></div>

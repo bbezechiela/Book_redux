@@ -9,6 +9,14 @@ class Address extends Model
 {
     use HasFactory;
 
+    public function user() {
+        return $this->belongsTo(Users::class, 'user_id');
+    }
+
+    public function orders() {
+        return $this->hasMany(Orders::class, 'address_id');
+    }
+
     protected $table = 'address';
 
     protected $fillable = [

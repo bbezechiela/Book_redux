@@ -10,14 +10,15 @@ class Order_Items extends Model
     use HasFactory;
 
     public function order() {
-        return $this->belongsTo(Orders::class, 'order_id');
+        return $this->belongsTo(Orders::class, 'order_id')->withDefault();
     }
+    
     public function book() {
         return $this->belongsTo(Books::class, 'book_id');
     }
 
     public function ratedItem() {
-        return $this->hasOne(Reviews::class, 'item_id');
+        return $this->hasMany(Reviews::class, 'item_id');
     }
 
     protected $table = 'order_items';

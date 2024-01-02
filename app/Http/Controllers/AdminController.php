@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Books;
 use App\Models\Users;
 use Carbon\Carbon;
@@ -39,7 +40,8 @@ class AdminController extends Controller
 
     public function manageUserAccounts()
     {
-        return view('admin.manageUserAccounts');
+        $user = Users::all();
+        return view('admin.manageUserAccounts', ['users' => $user]);
     }
 
     public function manageRentingClub()
@@ -104,6 +106,16 @@ class AdminController extends Controller
         return view('admin.manageSeller');
     }
 
+
+    public function productDetailsPreview($id)
+    {
+        $book = Books::with('user')->find($id);
+        $address = Address::where('user_id', $book->user_id)->first();
+
+        return view('admin.productDetailsPreview', ['book_id' => $book, 'user_id' => $address]);
+    }
+
+
     public function updateProfile(Request $request)
     {
         // dd($request->all());
@@ -114,8 +126,16 @@ class AdminController extends Controller
                     'first_name' => $request["first_name"],
                     'last_name' => $request["last_name"],
                     'email' => $request["email"],
-                    'phone_number' => $request["phone_number"]
+                    'phone_number' => $request["phone_number"],
+                    'profile_photo' => $request["profile_photo"]
                 ]);
+
+                session()->put([
+                    'first_name' => $request["first_name"],
+                    'last_name' => $request["last_name"],
+                    'profile_pic' => $request["profile_photo"]
+                ]);
+
                 return redirect('/adminprofile')->with('success', 'Profile updated successfully');
             } else {
                 if (Hash::check($request["curr_pass"], $user->password)) {
@@ -126,6 +146,13 @@ class AdminController extends Controller
                         'phone_number' => $request["phone_number"],
                         'password' => bcrypt($request["password"])
                     ]);
+
+                    session()->put([
+                        'first_name' => $request["first_name"],
+                        'last_name' => $request["last_name"],
+                        // 'profile_pic' => $user->profile_photo
+                    ]);
+
                     return redirect('/adminprofile')->with('success', 'Profile updated successfully');
                 } else {
                     return redirect('/adminprofile')->with('message', 'Your current password do not match');
@@ -175,6 +202,36 @@ class AdminController extends Controller
         } else {
             return redirect('/manageuserlisting')->with('error', 'Cannot delete Item');
         }    
+    }
+
+    public function deleteAccount($id) {        
+        $user = Users::with('addressUser.orders', 'orders.items.ratedItem')->find($id);        
+        foreach ($user->addressUser as $address) {            
+            foreach($address->orders as $order) {
+                $order->update([
+                    'user_id' => null,
+                    'address_id' => null
+                ]);
+            }
+            $address->delete();
+        }
+
+        foreach ($user->orders as $order) {
+            foreach ($order->items as $item) {
+                foreach($item->ratedItem as $rated) {
+                    $rated->delete();
+                }
+                $item->delete();
+            }
+            $order->delete();
+        }
+        $user->delete();
+
+        if ($user) {
+            return redirect('/manageuseraccounts');
+        } else {
+            return redirect('/manageuseraccounts')->with('error', 'Cannot delete Account');
+        }
     }
 
 

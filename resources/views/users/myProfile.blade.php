@@ -12,14 +12,7 @@
 <div id="body-container" class="container-fluid px-0">
     <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
-    </div>
-    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar />
-    </div> --}}
-    {{-- <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
-        <x-sidebarProfile/>
-    </div> --}}
+    </div>    
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">

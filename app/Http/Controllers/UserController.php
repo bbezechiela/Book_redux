@@ -122,11 +122,6 @@ class UserController extends Controller
         }
     }
 
-    public function productDetailsPreview()
-    {
-        return view('admin.productDetailsPreview');
-    }
-
     public function cart()
     {
         // $user = Cart::where('user_id', session('id'))->with('productRelation.user')->get(); // also works        
@@ -296,8 +291,12 @@ class UserController extends Controller
                 $user = Users::find(session('id'));
                 $user->update($validated);
 
-                if ($user) {
-                    // return redirect('/myprofile');
+                if ($user) {                   
+                    session()->put([
+                        'first_name' => $user->first_name,
+                        'last_name' => $user->last_name,
+                        'profile_pic' => $user->profile_photo
+                    ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
@@ -325,6 +324,10 @@ class UserController extends Controller
 
                 if ($user) {
                     // return redirect('/myprofile');
+                    session()->put([
+                        'first_name' => $user->first_name,
+                        'last_name' => $user->last_name,                        
+                    ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
@@ -450,10 +453,8 @@ class UserController extends Controller
     }
 
     public function orders()
-    {
-        // $orders = Orders::where(['user_id' => session('id'), 'order_status' => 'pending'])->with('items.book.user')->first();        
-        // $order = Users::where('id', session('id'))->with('orders.items.book.user')->first();
-        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+    {        
+        $order = Books::where('user_id', session('id'))->has('item.order.user')->get();
         // dd($order);
         return view('users.orders', ['orders' => $order]);
     }

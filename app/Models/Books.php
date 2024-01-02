@@ -4,23 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Books extends Model
 {
     use HasFactory;
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(Users::class, 'user_id');
     }
 
-    public function item() {
-        return $this->hasOne(Order_Items::class, 'book_id');
+    public function item()
+    {
+        return $this->hasOne(Order_Items::class, 'book_id')->withDefault();
     }
 
-    public function cart() {
+    public function cart()
+    {
         return $this->hasMany(Cart::class, 'product_id');
     }
-    
+
     protected $fillable = [
         'user_id',
         'status',

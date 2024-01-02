@@ -170,10 +170,10 @@
                         @if ($book_id->unit == 'Added to Cart' && $book_id->user_id == session('id'))
                         <p class="fs-3 fw-bold text-success">Item added to Cart</p>
                         @else
-                        <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
+                        {{-- <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
                                 aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
                         <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
-                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                style="margin-right: 7px"></i>Add to Wishlist</a> --}}
                         @endif
 
                     </div>
@@ -204,10 +204,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('images/profile_photos/' . $user_id->profile_photo) }}" alt="seller image"
+                        <img src="{{ asset('images/profile_photos/' . $book_id->user->profile_photo) }}" alt="seller image"
                             class="circle-picture">
                         <div class="user-info">
-                            <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
+                            <p>{{ $book_id->user->first_name . ' ' . $book_id->user->last_name }}</p>
                             <p>2K followers . 400 following</p>
                             <button class="message-button"><i class="fa fa-envelope"
                                     aria-hidden="true"></i>Message</button>

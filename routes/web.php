@@ -70,7 +70,7 @@ Route::get('/adminnotification', [UserController::class, 'adminNotification']);
 
 Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']);
 
-Route::get('/listingdetails', [UserController::class, 'productDetailsPreview']);
+Route::get('/listingdetails/{id}', [AdminController::class, 'productDetailsPreview']);
 
 Route::get('/cart', [UserController::class, 'cart']);
 
@@ -228,6 +228,8 @@ Route::get('/newListingThisMonth', [AdminController::class, 'getNewListingThisMo
 Route::get('/newListingThisYear', [AdminController::class, 'getNewListingThisYear']);
 
 Route::get('/deleteuserlisting/{id}', [AdminController::class, 'deleteUserListing']);
+
+Route::get('/deleteaccount/{id}', [AdminController::class, 'deleteAccount']);
 
 
 
