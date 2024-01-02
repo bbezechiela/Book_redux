@@ -128,14 +128,21 @@ class MessageController extends Controller
         }      
     }
 
-    // search user function
+    // search user function (I MADE SOME CHANGES. IT CAN NOW SEARCH USER BY USERNAME, FNAME, & LNAME)
     function searchUser(Request $request) {
+    
         $username = $request->query('username');
+        $first_name = $request->query('first_name');
+        $last_name = $request->query('last_name');
 
         $getUsername = Users::where('username', "=", $username)->first();
+        $getFirst_name = Users::where('first_name', "=", $first_name)->first();
+        $getLast_name = Users::where('last_name', "=", $last_name)->first();
 
         if ($getUsername) {
             return response()->json(['data' => $getUsername]);
+            return response()->json(['data' => $getFirst_name]);
+            return response()->json(['data' => $getLast_name]);
         } else {
             return response()->json(['error' => 'Theres no record']);
         }

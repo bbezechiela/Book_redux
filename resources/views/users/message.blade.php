@@ -98,14 +98,14 @@
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                        <div class="pt-1">
+                                                        {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Just now</p>
                                                             <span
                                                                 class="badge bg-danger rounded-pill float-end">3</span>
-                                                        </div>
+                                                        </div> --}}
                                                     </a>
                                                 </li>
-                                                <li class="p-2 border-bottom">
+                                                {{-- <li class="p-2 border-bottom">
                                                     <a href="#!"
                                                         class="d-flex justify-content-between text-decoration-none">
                                                         <div class="d-flex flex-row">
@@ -119,13 +119,13 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">5 mins ago</p>
                                                             <span
                                                                 class="badge bg-danger rounded-pill float-end">2</span>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2">
                                                     <a href="#!"
@@ -141,11 +141,11 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2 border-bottom">
                                                     <a href="#!"
@@ -161,11 +161,11 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2 border-bottom">
                                                     <a href="#!"
@@ -181,11 +181,11 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2">
                                                     <a href="#!"
@@ -201,11 +201,11 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2 border-bottom">
                                                     <a href="#!"
@@ -221,13 +221,13 @@
                                                                 <p class="small text-muted">Hello, Are you there?
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Just now</p>
                                                             <span
                                                                 class="badge bg-danger rounded-pill float-end">3</span>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2 border-bottom">
                                                     <a href="#!"
@@ -243,11 +243,11 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                {{-- </a>
                                                 </li>
                                                 <li class="p-2">
                                                     <a href="#!"
@@ -263,11 +263,11 @@
                                                                 <p class="small text-muted">Lorem ipsum dolor sit.
                                                                 </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="pt-1">
+                                                        </div> --}}
+                                                {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
-                                                        </div>
-                                                    </a>
+                                                        </div> --}}
+                                                </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -410,8 +410,8 @@
                                         <input type="textarea" class="form-control form-control-lg"
                                             id="exampleFormControlInput2" style="font-size: 13px;"
                                             placeholder="Type message">
-                                        <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
-                                                aria-hidden="true"></i></a>
+                                        {{-- <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
+                                                aria-hidden="true"></i></a> --}}
                                         <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
                                                 aria-hidden="true"></i></a>
                                     </div>
@@ -426,49 +426,52 @@
         {{-- Original Frontend --}}
 
         <div id='bodyCtn'>
-    
-        <div id='bodyCtn'>
-            <!-- pop out for ellipsis-->
-            <div id='ellipsisPopUp'></div>
-            <div id='leftSectionOuterContainer'>
-                <div id="searchOuterContainer">
-                    <div id="searchInnerContainer">
-                        <input type="search" id="searchInputContainer" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" />
-                        <span id="searchButton">
-                            <i class="fa fa-search" aria-hidden="true" style='color: white;'></i>
-                        </span>
+
+            <div id='bodyCtn'>
+                <!-- pop out for ellipsis-->
+                <div id='ellipsisPopUp'></div>
+                <div id='leftSectionOuterContainer'>
+                    <div id="searchOuterContainer">
+                        <div id="searchInnerContainer">
+                            <input type="search" id="searchInputContainer" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <span id="searchButton">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                        </div>
                     </div>
+
+                    <div id="conversationList"></div>
                 </div>
 
-                <div id="conversationList"></div>
-            </div>
-
-            <div id="rightSectionOuterContainer">
-                <div id="rightSectionInnerContainer">
-                    <div id="messagesHeaderContainer"></div>
-                    <div id="messageOuterContainer"></div>
-                    <div id="formOuterContainer"></div>
+                <div id="rightSectionOuterContainer">
+                    <div id="rightSectionInnerContainer">
+                        <div id="messagesHeaderContainer">
+                        </div>
+                        
+                        <div id="messageOuterContainer"></div>
+                        <div id="formOuterContainer"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- User Menu Modal -->
-        <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="side-img">
-                            <img src="../assets/osama.png" alt="user_img"
-                                class="d-flex align-self-center me-3 with-border">
+            <!-- User Menu Modal -->
+            <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="side-img">
+                                <img src="../assets/osama.png" alt="user_img"
+                                    class="d-flex align-self-center me-3 with-border">
+                            </div>
+                            <div class="pt-1">
+                                <p class="fw-bold mb-0 name-msg">Ben Smith</p>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="pt-1">
-                            <p class="fw-bold mb-0 name-msg">Ben Smith</p>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="d-flex justify-content-between align-items-center mb-1 menu">
+                        <div class="modal-body">
+                            {{-- <div class="d-flex justify-content-between align-items-center mb-1 menu">
                         <p>Mute</p>
                         <label class="form-check form-switch m-0">
                             <input class="form-check-input" type="checkbox" id="toggleUser">
@@ -480,121 +483,127 @@
                             <input class="form-check-input" type="checkbox" id="toggleBlock">
                         </label>
                     </div> --}}
-                        <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
-                            <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i class="fa fa-caret-right"
-                                    aria-hidden="true" data-bs-toggle="modal" data-bs-target="#report-user"
-                                    style="margin-left: 12.5em;"></i>
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center btn-menu">
-                            <a href="/userlistings" class="text-decoration-none">
-                                <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
-                                        style="margin-left: 10em;"></i></p>
-                            </a>
+                            <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
+                                <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i
+                                        class="fa fa-caret-right" aria-hidden="true" data-bs-toggle="modal"
+                                        data-bs-target="#report-user" style="margin-left: 12.5em;"></i>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
+                                <p data-bs-toggle="modal" data-bs-target="#report-user">Delete Conversation<i
+                                        class="fa fa-caret-right" aria-hidden="true" data-bs-toggle="modal"
+                                        data-bs-target="#report-user" style="margin-left: 6.5em;"></i>
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center btn-menu">
+                                <a href="/userlistings" class="text-decoration-none">
+                                    <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
+                                            style="margin-left: 10em;"></i></p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Report Modal -->
-    <div class="modal fade" id="report-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="report-details">
-                        <div class="reasons">
-                            <p>Please select
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Prohibited Item
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Scam
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Counterfeit
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Offensive chat messages/images/videos
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Data privacy violation
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Others
-                                    </label>
-                                </div>
-                            </p>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleTextarea" class="form-label">Description:</label>
-                            <textarea class="form-control" id="exampleTextarea" rows="5"
-                                placeholder="Please elaborate on your selected reason"></textarea>
-                        </div>
-                        <div class="supporting-images">
-                            <p>Supporting Images:
-                                <div class="image-container">
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </p>
-                        </div>
-
+        <!-- Report Modal -->
+        <div class="modal fade" id="report-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn report-button">Send Report</button>
+                    <div class="modal-body">
+                        <div class="report-details">
+                            <div class="reasons">
+                                <p>Please select
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Prohibited Item
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Scam
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Counterfeit
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Offensive chat messages/images/videos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Data privacy violation
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Others
+                                        </label>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleTextarea" class="form-label">Description:</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="5"
+                                    placeholder="Please elaborate on your selected reason"></textarea>
+                            </div>
+                            <div class="supporting-images">
+                                <p>Supporting Images:
+                                    <div class="image-container">
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn report-button">Send Report</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <script>
+                const current_username = "{{ session('user') }}";
+                const current_user_id = "{{ session('id') }}";
+                const csrfToken = "{{ csrf_token() }}";
+            </script>
+            <script src="{{ asset('/js/messages.js') }}"></script>
         </div>
-        <script>
-            const current_username = "{{ session('user') }}";
-            const current_user_id = "{{ session('id') }}";
-            const csrfToken = "{{ csrf_token() }}";
-        </script>
-        <script src="{{ asset('/js/messages.js') }}"></script>
-    </div>
-    @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
-    ])
+        @include('partials.__footer', [
+        'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+        'aos_link' => '/aos-master/dist/aos.js',
+        ])
 
-    {{-- changes have made --}}
+        {{-- changes have made --}}
