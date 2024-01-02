@@ -3,7 +3,7 @@ let lastMessageTimestamp = '1990-12-12 12:12:12';
 let lastConversationTimestamp = '1990-12-12 12:12:12';
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('rightSectionOuterContainer').style.display = 'none';
+    // document.getElementById('rightSectionOuterContainer').style.display = 'none';
     
     // ellipsis pop out
     const ellipsisPopUp = document.getElementById('ellipsisPopUp');
@@ -83,9 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const receiver_profile_pic_styles = `
                 min-height: 50px;
                 min-width: 50px;
-                border-radius: 15px;
+                border-radius: 50%;
+                border: 2px outset #E55B13;
+                padding: 1px;
                 background-size: cover;
                 background-repeat: no-repeat;
+                color: #003060;
             `;
 
             // para ma apply an mga styles
@@ -163,23 +166,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.id = 'messageForm';
                 form.method = 'post';
                 
-                // input field design
                 const inputFieldCss = `
-                    width: 400px;
-                    border: 1px solid grey;
+                    border: 1px solid transparent;
                 `;
 
                 const inputField = document.createElement('input');
                 inputField.id = 'messageInputContainer';
                 inputField.type = 'textarea';
                 inputField.placeholder = 'Type message...';
-                inputField.style.cssText = inputFieldCss;                
+                inputField.style.cssText = inputFieldCss;         
+                
+                inputField.style.borderColor = 'transparent';
+                inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
 
+                inputField.addEventListener('focus', function() {
+                    inputField.style.borderColor = '#E55B13';
+                    inputField.style.boxShadow = 'inset 0px 0px 0px 1px #E55B13';
+                });
+
+                inputField.addEventListener('blur', function() {
+                    inputField.style.borderColor = 'transparent';
+                    inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
+                });
+                
                 const submitButtonCss = `
-                    width: 120px;
-                    border: 1px solid grey;
-                    background-color: #003060;
-                    color: white;
+                    background-color: #F8F9FA;
+                    color: #003060;
+                    font-size: 13px;
                 `;
 
                 const submitButton = document.createElement('button');
@@ -191,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.appendChild(inputField);
                 form.appendChild(submitButton);
                 formOuterContainer.appendChild(form);
-
                 
                 // pag kuha mga messages
                 function getMessages() {
@@ -307,9 +319,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     popUpMessage.classList.add('popUpMessage');
                     
                     const buttonCss = `
-                        height: 65px;
-                        width: 150px;
-                        font-size: 18px;
+                        height: 50px;
+                        width: 100px;
+                        font-size: 15px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -364,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                             // remove conversation container after ma delete
                             conversationCtn.remove();
-                            rightSectionOuterContainer.style.display = 'none';
+                            // rightSectionOuterContainer.style.display = 'none';
                             ellipsisPopUp.style.display = 'none';
                         })
                         .catch(error => console.log(error));
@@ -398,6 +410,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('searchInputContainer').value = "";
        // searchResult.innerHTML = "";
         const searchOuterCtn = document.getElementById('searchOuterContainer');
+       
 
         if (searchOuterCtn.children.length >= 2) {
             const secondChild = searchOuterCtn.children[1];
@@ -436,9 +449,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     const receiver_profile_pic_styles = `
                         min-height: 50px;
                         min-width: 50px;
-                        border-radius: 15px;
+                        border-radius: 50%;
+                        border: 2px outset #E55B13;
+                        padding: 1px;
                         background-size: cover;
                         background-repeat: no-repeat;
+                        color: #003060;
                     `;
                     
                     searchOuterCtn.appendChild(searchResult);
@@ -511,6 +527,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         inputField.type = 'textarea';
                         inputField.placeholder = 'Type message...';
 
+                        inputField.style.borderColor = 'transparent';
+                        inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
+
+                        inputField.addEventListener('focus', function() {
+                        inputField.style.borderColor = '#E55B13';
+                        inputField.style.boxShadow = 'inset 0px 0px 0px 1px #E55B13';
+                        });
+
+                        inputField.addEventListener('blur', function() {
+                        inputField.style.borderColor = 'transparent';
+                        inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
+                        });
+
                         const submitButton = document.createElement('button');
                         submitButton.id = 'sendMessageButton';
                         submitButton.type = 'button';
@@ -520,9 +549,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         form.appendChild(submitButton);
 
                         formOuterContainer.appendChild(form);
-                        
                         // message timestamp
-                        lastMessageTimestamp = '1990-12-12 12:12:12';                        
+                        lastMessageTimestamp = '1990-12-12 12:12:12';    
+                    
                         
                         const receiver_username = responses.data.username;
 
