@@ -50,7 +50,13 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('user')) {
-            return redirect('/explore');
+            if (session('type') == "General User") {
+                return redirect('/explore');
+            } else if (session('type') == "Admin") {
+                return redirect('/dashboard');
+            } else if (session('type') == "Bookseller") {
+                return redirect('/sellerboard');
+            } 
         } else {
             return view('users.login');
         }
@@ -611,7 +617,7 @@ class UserController extends Controller
                     'id' => $user["id"],
                     'first_name' => $user["first_name"],
                     'last_name' => $user["last_name"],
-                    // 'address' => $user["address"],
+                    'type' => $user->type,
                     'user' => $user["username"],
                     'profile_pic' => $user["profile_photo"]
                 ]);

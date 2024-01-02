@@ -59,20 +59,20 @@
                                         <li class="dropdown-header text-start">
                                             <h6>Filter</h6>
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                        <li><a id="new_user_today" class="dropdown-item btn">Today</a></li>
+                                        <li><a id="new_user_this_month" class="dropdown-item btn">This Month</a></li>
+                                        <li><a id="new_user_this_year" class="dropdown-item btn">This Year</a></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">New Users <span>| This Month</span></h5>
+                                    <h5 class="card-title">New Users <span id="new_user_header">| This Month</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="fa fa-users" aria-hidden="true"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6 id="new_user">{{ $CountCurrUser }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -88,20 +88,20 @@
                                         <li class="dropdown-header text-start">
                                             <h6>Filter</h6>
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                                        <li><a id="new_listing_today" class="dropdown-item btn">Today</a></li>
+                                        <li><a id="new_listing_this_month" class="dropdown-item btn">This Month</a></li>
+                                        <li><a id="new_listing_this_year" class="dropdown-item btn">This Year</a></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">New Listings <span>| Today</span></h5>
+                                    <h5 class="card-title">New Listings <span id="new_listing_header">| Today</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                             <i class="fa fa-th-list" aria-hidden="true"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>3,264</h6>
+                                            <h6 id="new_listing">{{ $CountCurrListing }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -266,3 +266,100 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    var newUserToday = document.getElementById('new_user_today');
+    var newUserThisMonth = document.getElementById('new_user_this_month');
+    var newUserThisYear = document.getElementById('new_user_this_year');
+
+    var newListingToday = document.getElementById('new_listing_today');
+    var newListingThisMonth = document.getElementById('new_listing_this_month');
+    var newListingThisYear = document.getElementById('new_listing_this_year');
+
+    var newUserHeader = document.getElementById('new_user_header');
+    var newListingHeader = document.getElementById('new_listing_header');
+
+    newUserToday.addEventListener('click', () => {
+        newUserHeader.textContent = '| Today';        
+
+        fetch('/newUserToday', {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('new_user').textContent = result;
+        })
+        .catch(error => console.error(error));
+    });
+
+    newUserThisMonth.addEventListener('click', () => {
+        newUserHeader.textContent = '| This Month';
+        
+        fetch('/newUserThisMonth', {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('new_user').textContent = result;
+        })
+        .catch(error => console.error(error));
+    });
+
+    newUserThisYear.addEventListener('click', () => {
+        newUserHeader.textContent = '| This Year';
+        
+        fetch('/newUserThisYear', {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('new_user').textContent = result;
+        })
+        .catch(error => console.error(error));
+    });
+
+    newListingToday.addEventListener('click', () => {
+        newListingHeader.textContent = '| Today';
+        
+        fetch('/newListingToday', {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('new_listing').textContent = result;
+        })
+        .catch(error => console.error(error));
+    });
+
+    newListingThisMonth.addEventListener('click', () => {
+        newListingHeader.textContent = '| This Month';
+        
+        fetch('/newListingThisMonth', {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('new_listing').textContent = result;
+        })
+        .catch(error => console.error(error));
+    });
+
+    newListingThisYear.addEventListener('click', () => {
+        newListingHeader.textContent = '| This Year';
+        
+        fetch('/newListingThisYear', {
+            method: "GET"
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('new_listing').textContent = result;
+        })
+        .catch(error => console.error(error));
+    });
+</script>
