@@ -942,7 +942,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     conversationList.innerHTML = '';
             
                                     // reasign hin value para an initalchecker
-                                    initialCheckDone = true;
+                                    initialCheckDone = false;
                                     popUpOuterContainer.remove();
                                 })
                                 .catch(error => console.log(error));
@@ -971,10 +971,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // if waray user //searchResult //searchOuterCtn
                     console.log('username does not exist');
             
-                    searchResult.textContent = 'No user found';
-                    searchResult.classList.add('searchResult');
+                    searchResultOuterCtn.textContent = 'No user found';
+                    searchResultOuterCtn.classList.add('searchResultOuterCtn');
             
-                    searchOuterCtn.appendChild(searchResult);
+                    searchOuterCtn.appendChild(searchResultOuterCtn);
                 }
             })
             .catch(error => console.log(error));
