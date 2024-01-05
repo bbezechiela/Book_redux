@@ -3,6 +3,7 @@
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookClubController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -220,6 +221,11 @@ Route::delete('/deleteConversationCtnBased', [MessageController::class, 'deleteC
 Route::delete('/deleteConversationSearchBased', [MessageController::class, 'deleteConversationSearchBased']);
 
 Route::get('/fullnameGetter', [MessageController::class, 'fullnameGetter']);
+
+// book club routes, api's
+Route::get('/sellingClubMemberChecker', [BookClubController::class, 'sellingClubMemberChecker']);
+
+Route::post('/createBookSellingClub', [BookClubController::class, 'createBookSellingClub']);
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

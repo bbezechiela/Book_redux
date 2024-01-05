@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --sidebar_width: 320px;
 }
@@ -388,3 +393,4 @@
 .member-header {
     font-weight: bold;
 }
+

@@ -407,6 +407,13 @@
             </div>
         </div>
     </div>
+    <script> 
+        const current_user_id = "{{ session('id'); }}";
+        const csrf_token = "{{ csrf_token(); }}";
+    </script>
+
+    <script src="{{ asset('js/book_club.js'); }}"></script>
+
 </div>
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
