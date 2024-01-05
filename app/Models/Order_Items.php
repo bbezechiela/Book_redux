@@ -28,6 +28,8 @@ class Order_Items extends Model
         'book_id',
         'qty',
         'bar_code',
-        'order_status'
+        'order_status',
+        'shipping_status',
+        'pickup_date'
     ];
 }

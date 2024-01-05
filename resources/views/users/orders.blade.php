@@ -7,7 +7,7 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> --}}
 </head>
 
 <div id="body-container" class="container-fluid px-0">
@@ -79,7 +79,7 @@
         </div>
 
         @foreach ($orders as $order)
-            @if ($order->user_id == session('id') && $order->stock > 0)
+            @if ($order->user_id == session('id') && $order->item->order_status == 'Pending')
                 <div class="order-cart d-print-none">
                     <div class="name-cart d-flex justify-content-between">
                         <div>
@@ -117,9 +117,9 @@
                                 </div>
                                 <div class="button-group">
                                     <button type="button" class="btn btn-sm decline-button">Decline</button>
-                                    <button type="button" class="btn btn-sm arrange-button" data-bs-toggle="modal"
-                                        data-bs-target="#arrange-shipment">Arrange
-                                        Shipment</button>
+                                    <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
+                                        data-bs-toggle="modal" onclick="arrangeShipment({{ $order->id }})"
+                                        data-bs-target="#arrange-shipment">Arrange Shipment</button>
                                 </div>
                             </div>
                             {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
@@ -135,13 +135,14 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Arrange Shipment</h1>
+                        <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Arrange Shipment</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="details-container">
                             <div class="seller-details-box">
+                                <input type="text" class="d-none" id="item_id">
                                 <label for="seller-details" class="form-label">Seller Details</label>
                                 <input type="text" class="form-control" id="seller-fullname"
                                     placeholder="Nestine Nicole Navarro"><br>
@@ -177,73 +178,74 @@
                                 <label for="product-details" class="form-label">Product Details</label>
                                 <input type="text" class="form-control" id="order-date"
                                     placeholder="Order Date: 12/29/2023"><br>
-                                <input type text="text" class="form-control" id="order-number"
-                                    placeholder="OD421376365"><br>
+                                {{-- <input type text="text" class="form-control" id="order-number"
+                                    placeholder="OD421376365"><br> --}}
                                 <input type="text" class="form-control" id="book-title"
                                     placeholder="Maria Clara"><br>
                                 <input type="text" class="form-control" id="transaction-type"
                                     placeholder="Sale"><br>
                                 <input type="text" class="form-control" id="price" placeholder="P100"><br>
-                                <input type="text" class="form-control" id="deposit" placeholder="P0"><br>
+                                {{-- <input type="text" class="form-control" id="deposit" placeholder="P0"><br> --}}
                                 <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
                             </div>
                         </div>
 
                         <div class="details-container">
-                            <div class="drop-off-details">
+                            <label class="drop-off-details" for="drop_off" onclick="hidePickupContent()">
                                 <i class="fa fa-dropbox" aria-hidden="true"></i>
                                 <div class="text-section">
-                                    <h6>Drop off</h6>
+                                    <h6 class="fw-bold">Drop off</h6>
                                     <p>You can drop off your parcel at any J&T Express Branch</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault"></label>
+                                    <input class="form-check-input" type="radio" value="Drop off"
+                                        name="transaction_type" id="drop_off">
+                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
                                 </div>
-                            </div>
-                            <div class="pickup-details">
+                            </label>
+                            <label class="pickup-details" for="pick_up">
                                 <i class="fa fa-truck" aria-hidden="true"></i>
                                 <div class="text-section">
-                                    <h6>Pickup</h6>
+                                    <h6 class="fw-bold">Pickup</h6>
                                     <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault"></label>
+                                    <input class="form-check-input" type="radio" value="Pickup"
+                                        name="transaction_type" id="pick_up">
+                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
                                 </div>
-                            </div>
-                            <div class="personal-transaction-details">
+                            </label>
+                            <label class="personal-transaction-details" for="personal_transaction"
+                                onclick="hidePickupContent()">
                                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
                                 <div class="text-section">
-                                    <h6>Personal Transaction</h6>
+                                    <h6 class="fw-bold">Personal Transaction</h6>
                                     <p>You and the customer will arrange your transaction</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault"></label>
+                                    <input class="form-check-input" type="radio" value="Personal Transaction"
+                                        name="transaction_type" id="personal_transaction">
+                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
                                 </div>
-                            </div>
+                            </label>
                         </div>
-                        <div class="details-container">
+                        <div class="details-container d-none" id="details">
                             <div class="pickup-address">
                                 <div class="text-section">
-                                    <h6 class="mb-2">Pickup Address</h6>
-                                    <p>Nestine Nicole Navarro</p>
-                                    <p>09054173103</p>
-                                    <p>Peerless Village, Bagacay, Tacloban City</p>
-                                    <p>6500</p>
+                                    <h6 class="mb-2 fw-bold">Pickup Address</h6>
+                                    <p id="pickup-name">Nestine Nicole Navarro</p>
+                                    <p id="pickup-phone">09054173103</p>
+                                    <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
+                                    <p id="pickup-postal">6500</p>
                                 </div>
-                                <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                                        href="#">Change</a></button>
+                                {{-- <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                        href="#">Change</a></button> --}}
                             </div>
                             <div class="pickup-date">
                                 <div class="text-section">
-                                    <h6 class="mb-2">Pickup Date</h6>
+                                    <h6 class="mb-2 fw-bold">Pickup Date</h6>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="datepicker"
+                                        <input type="date" class="form-control" id="pickup-date"
                                             data-date-format="yyyy-mm-dd">
                                     </div>
                                 </div>
@@ -252,7 +254,7 @@
 
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn confirm-button">Confirm</button>
+                        <button type="button" id="confirm-btn" class="btn confirm-button">Confirm</button>
                         {{-- Clicking confirm button means you accept the order --}}
                     </div>
                 </div>
@@ -403,14 +405,184 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
-
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{-- <script>
     $(document).ready(function() {
         $('#datepicker').datepicker();
     });
-</script>
+</script> --}}
 
 <script>
+    var id = document.getElementById('item_id');
+    var seller_name = document.getElementById('seller-fullname');
+    var seller_contact_num = document.getElementById('seller-contact-number');
+    var seller_add = document.getElementById('seller-address');
+
+    var customer_name = document.getElementById('customer-fullname');
+    var customer_contact_num = document.getElementById('customer-contact-number');
+    var customer_add = document.getElementById('customer-address');
+
+    var weight = document.getElementById('weight');
+    var width = document.getElementById('width');
+    var height = document.getElementById('height');
+    var length = document.getElementById('length');
+    var payment = document.getElementById('payment-method');
+
+    var order_date = document.getElementById('order-date');
+    var book_title = document.getElementById('book-title');
+    var trans_type = document.getElementById('transaction-type');
+    var price = document.getElementById('price');
+    var deposit = document.getElementById('deposit');
+    var shipping = document.getElementById('shipping-fee');
+
+    var pickup = document.querySelector('label[class="pickup-details"]');
+    var pickup_date = document.getElementById('pickup-date');
+    var pickup_name = document.getElementById('pickup-name');
+    var pickup_phone = document.getElementById('pickup-phone');
+    var pickup_address = document.getElementById('pickup-address');
+    var pickup_postal = document.getElementById('pickup-postal');
+
+    var confirm_btn = document.getElementById('confirm-btn');
+
+    pickup.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (!document.getElementById('pick_up').checked) {
+            document.getElementById('pick_up').checked = true;
+            displayPickupContent();
+        }
+    });
+
+    const csrf_token = '{{ csrf_token() }}';
+    confirm_btn.addEventListener('click', () => {
+        if (document.getElementById('drop_off').checked) {
+            fetch('/sellerconfirm', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrf_token,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: id.value,
+                        shipping_status: document.getElementById('drop_off').value
+                    })
+                })
+                // .then(response => response.json())
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error(error));
+
+        } else if (document.getElementById('pick_up').checked) {
+            if (pickup_date.value == '') {
+                alert('Please set your pickup date');
+            } else {
+                fetch('/sellerconfirm', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrf_token,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: id.value,
+                        shipping_status: document.getElementById('pick_up').value,
+                        pickup_date: pickup_date.value
+                    }),
+                })
+                // .then(response => response.json())
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error(error));
+            }            
+
+        } else if (document.getElementById('personal_transaction').checked) {
+            fetch('/sellerconfirm', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrf_token,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: id.value,
+                        shipping_status: document.getElementById('personal_transaction').value
+                    }),
+                })
+                // .then(response => response.json())
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error(error));
+
+        }
+    });
+
+    function arrangeShipment(book_id) {
+        fetch('/getorderdetails/' + book_id, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result.user.address_user.forEach(address => {
+                    if (address.default_address == 'true') {
+                        seller_name.value = address.name;
+                        seller_contact_num.value = address.contact_number;
+                        seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
+                            address.brgy_village + ', ' + address.city_municipality;
+
+                        pickup_name.textContent = address.name;
+                        pickup_phone.textContent = address.seller_contact_num;
+                        pickup_address.textContent = address.brgy_village + ', ' + address
+                            .city_municipality + ', ' + address.region;
+                        pickup_postal.textContent = address.postal_code;
+                    }
+                });
+
+                id.value = result.item.id;
+                customer_name.value = result.item.order.address.name;
+                customer_contact_num.value = result.item.order.user.phone_number;
+                customer_add.value = result.item.order.address.region + ', ' + result.item.order.address
+                    .street_building_house + ', ' + result.item.order.address.brgy_village + ', ' + result.item
+                    .order.address.city_municipality + ', ' + result.item.order.address.postal_code;
+
+                weight.value = result.weight;
+                width.value = result.width;
+                height.value = result.height;
+                length.value = result.length;
+                payment.value = result.item.order.payment_method;
+
+                var date = new Date(result.item.order.created_at);
+
+                // order_date.value = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
+                order_date.value = date.toLocaleDateString();
+                book_title.value = result.title;
+                trans_type.value = result.status;
+                price.value = result.price;
+                shipping.value = '₱130.00';
+
+                if (document.getElementById('pick_up').checked) {
+                    displayPickupContent();
+                }
+            })
+            .catch(error => console.error(error));
+    }
+
+    function hidePickupContent() {
+        var detailContent = document.getElementById('details');
+        detailContent.className = 'details-container d-none';
+    }
+
+    function displayPickupContent() {
+        var detailContent = document.getElementById('details');
+        detailContent.className = 'details-container';
+    }
+
     function myFunction() {
         window.print();
     }

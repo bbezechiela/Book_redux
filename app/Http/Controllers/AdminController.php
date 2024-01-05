@@ -127,13 +127,13 @@ class AdminController extends Controller
                     'last_name' => $request["last_name"],
                     'email' => $request["email"],
                     'phone_number' => $request["phone_number"],
-                    'profile_photo' => $request["profile_photo"]
+                    // 'profile_photo' => $request["profile_photo"]
                 ]);
 
                 session()->put([
                     'first_name' => $request["first_name"],
                     'last_name' => $request["last_name"],
-                    'profile_pic' => $request["profile_photo"]
+                    // 'profile_pic' => $request["profile_photo"]
                 ]);
 
                 return redirect('/adminprofile')->with('success', 'Profile updated successfully');
@@ -173,6 +173,12 @@ class AdminController extends Controller
                     'email' => $request["email"],
                     'phone_number' => $request["phone_number"]
                 ]);
+
+                session()->put([
+                    'first_name' => $request["first_name"],
+                    'last_name' => $request["last_name"],
+                    'profile_pic' => $fileNameToStore,
+                ]);
                 return redirect('/adminprofile')->with('success', 'Profile updated successfully');
             } else {
                 if (Hash::check($request["curr_pass"], $user->password)) {
@@ -184,6 +190,13 @@ class AdminController extends Controller
                         'phone_number' => $request["phone_number"],
                         'password' => bcrypt($request["password"])
                     ]);
+
+                    session()->put([
+                        'first_name' => $request["first_name"],
+                        'last_name' => $request["last_name"],
+                        'profile_pic' => $fileNameToStore,
+                    ]);
+                    
                     return redirect('/adminprofile')->with('success', 'Profile updated successfully');
                 } else {
                     return redirect('/adminprofile')->with('message', 'Your current password do not match');

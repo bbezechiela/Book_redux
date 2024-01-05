@@ -903,46 +903,11 @@ class UserController extends Controller
     }
 
     public function placeOrder(Request $request)
-    {
-        // $address_id = $request->input('address_id');
-        // $book_id = $request->input('book_id');
-        // $option = $request->input('shipping_option');
-        // $method = $request->input('payment_method');
-        // $shipping = $request->input('shipping_total');
-        // $price = $request->input('total_price');
+    {    
         $data = $request->input('data');
         // dd($address_id);
         $request->session()->put('data', $data);
         return response()->json(['response' => $data]);
-
-        // $order = Orders::create([
-        //     'user_id' => session('id'),
-        //     'address_id' => $address_id,
-        //     'shipping_option' => $option,
-        //     'payment_method' => $method,
-        //     'order_status' => 'pending',
-        //     // 'shipping_total' => $shipping,
-        //     'total_payment' => $price
-        // ]);
-
-        // $cart = Cart::where('user_id', session('id'))->update(['status' => 'Ordered']);
-
-        // foreach ($book_id as $id) {
-        //     $orderItem = Order_Items::create([
-        //         'order_id' => $order->id,
-        //         'book_id' => $id
-        //     ]); 
-
-        //     $orderItem->book->update([
-        //         'unit' => 'Ordered'
-        //     ]);
-        // }
-
-        // if ($order) {
-        //     return redirect('/explore');            
-        // } else {
-        //     return response()->json(['message' => 'error bitch']);
-        // }
     }
 
     public function successOrder()
@@ -988,7 +953,7 @@ class UserController extends Controller
 
         if ($order) {
             session()->forget('data');
-            return redirect('/explore');
+            return redirect('/mypurchase')->with('message', 'Item ordered successfully');
         } else {
             return response()->json(['message' => 'error bitch']);
         }
@@ -1025,7 +990,7 @@ class UserController extends Controller
     public function manageShipment()
     {
         // $orders = Orders::with('items.book.user.addressUser')->get();
-        $orders = Order_Items::where('order_status', 'Pending')->with('book.user.addressUser', 'order.address')->get();
+        $orders = Order_Items::where('order_status', 'Confirmed by seller')->with('book.user.addressUser', 'order.address')->get();
 
         return view('courier.manageShipment', ['orders' => $orders]);
     }
@@ -1060,6 +1025,9 @@ class UserController extends Controller
         return view('users.booksRented');
     }
 
+
+
+    
     // API's
     public function checkUsername($user)
     {
@@ -1192,6 +1160,40 @@ class UserController extends Controller
             return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);
         } else {
             return response()->json(['response' => 'Update review unsuccessful.']);
+        }
+    }
+
+    public function getOrderDetails($id) {
+        $order = Books::with('item.order.user', 'item.order.address', 'user.addressUser')->find($id);
+
+        return $order;
+    }
+
+    public function confirmOrder(Request $request) {
+        $order = Order_Items::find($request['id']);        
+
+        if ($request->input('shipping_status') == 'Drop off') {            
+            $order->update([
+                'order_status' => 'Confirmed by seller',
+                'shipping_status' => $request->input('shipping_status')                
+            ]);
+
+            return redirect('/mypurchase');
+        } else if ($request->input('shipping_status') == 'Personal Transaction') {            
+            $order->update([
+                'order_status' => 'Confirmed by seller',
+                'shipping_status' => $request->input('shipping_status')                
+            ]);
+
+            return redirect('/mypurchase');
+        } else if ($request->input('shipping_status') == 'Pickup') {    
+            $order->update([
+                'order_status' => 'Confirmed by seller',
+                'shipping_status' => $request->input('shipping_status'),
+                'pickup_date' => $request->input('pickup_date')
+            ]);
+
+            return redirect('/mypurchase');
         }
     }
 }

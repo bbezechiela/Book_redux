@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('qty');
             $table->text('bar_code')->nullable();
             $table->string('order_status');
+            $table->string('shipping_status')->nullable();
+            $table->string('pickup_date')->nullable();
             $table->timestamps();
         });
     }

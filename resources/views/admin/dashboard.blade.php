@@ -36,7 +36,7 @@
                         </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
+                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}?v={{ time() }}" alt="profile"
                                 width="35" height="35" class="rounded-5" style="margin-right: 2em;">
                         </button></a>
                 </div>
