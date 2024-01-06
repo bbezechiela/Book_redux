@@ -20,12 +20,12 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
@@ -132,9 +132,9 @@
                                             <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
                                                 rowspan="1" colspan="1" style="width: 18px;" data-col="1" aria-label="">
                                                 <input type="checkbox" class="form-check-input"></th>
-                                            <th class="sorting sorting_asc" tabindex="0"
+                                            {{-- <th class="sorting sorting_asc" tabindex="0"
                                                 aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                style="width: 120px;">ID</th>
+                                                style="width: 120px;">ID</th> --}}
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Username</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
@@ -168,9 +168,9 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            <td class="sorting_1">
+                                            {{-- <td class="sorting_1">
                                                 #5765753487
-                                            </td>
+                                            </td> --}}
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -217,9 +217,9 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            <td class="sorting_1">
+                                            {{-- <td class="sorting_1">
                                                 #5765753487
-                                            </td>
+                                            </td> --}}
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -315,9 +315,9 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            <td class="sorting_1">
+                                            {{-- <td class="sorting_1">
                                                 #5765753487
-                                            </td>
+                                            </td> --}}
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -364,9 +364,9 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            <td class="sorting_1">
+                                            {{-- <td class="sorting_1">
                                                 #5765753487
-                                            </td>
+                                            </td> --}}
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -413,9 +413,9 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            <td class="sorting_1">
+                                            {{-- <td class="sorting_1">
                                                 #5765753487
-                                            </td>
+                                            </td> --}}
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -462,9 +462,9 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            <td class="sorting_1">
+                                            {{-- <td class="sorting_1">
                                                 #5765753487
-                                            </td>
+                                            </td> --}}
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">

@@ -53,7 +53,7 @@ h4 {
 .product-list {
     display: flex;
     flex-direction: column;
-    color: rgba(0, 0, 0, .8);
+    color: #003060;
     padding-top: 20px;
     margin-bottom: 70px;
 }

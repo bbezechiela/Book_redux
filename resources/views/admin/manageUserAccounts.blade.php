@@ -20,12 +20,12 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
@@ -168,12 +168,12 @@
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Account Created
                                             </th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                            {{-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Sold</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Bought</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Exchanged</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Exchanged</th> --}}
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 144px;">Actions
                                             </th>
@@ -207,9 +207,9 @@
                                                     <td>{{ $user->birthday }}</td>
                                                     {{-- <td>{{ $user->address }}</td> --}}
                                                     <td>{{ $user->created_at }}</td>
-                                                    <td>5</td>
+                                                    {{-- <td>5</td>
                                                     <td>7</td>
-                                                    <td>8</td>
+                                                    <td>8</td> --}}
                                                     <td>
                                                         <div class="d-inline-block"><a href="javascript:;"
                                                                 class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
