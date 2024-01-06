@@ -138,11 +138,11 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -187,11 +187,11 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -244,11 +244,11 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -292,11 +292,11 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -350,11 +350,11 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -398,11 +398,11 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -456,10 +456,10 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -516,10 +516,10 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -575,10 +575,10 @@
                                             onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                 aria-hidden="true" style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -608,7 +608,7 @@
                         {{ $daily->genre }}</p>
                     @foreach ($daily->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -629,10 +629,10 @@
                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -650,7 +650,7 @@
                         {{ $daily->genre }}</p>
                     @foreach ($daily->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -671,10 +671,10 @@
                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -701,7 +701,7 @@
                         {{ $daily->genre }}</p>
                     @foreach ($daily->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -722,10 +722,10 @@
                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -743,7 +743,7 @@
                         {{ $daily->genre }}</p>
                     @foreach ($daily->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -764,10 +764,10 @@
                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -795,7 +795,7 @@
                         {{ $recommended->genre }}</p>
                     @foreach ($recommended->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -834,7 +834,7 @@
                         {{ $recommended->genre }}</p>
                     @foreach ($recommended->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -883,7 +883,7 @@
                         {{ $sale->genre }}</p>
                     @foreach ($sale->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -904,10 +904,10 @@
                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
                                             Cart</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -934,7 +934,7 @@
                         {{ $exchange->genre }}</p>
                     @foreach ($exchange->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -985,7 +985,7 @@
                         {{ $rent->genre }}</p>
                     @foreach ($rent->user->addressUser as $address)
                     @if ($address->default_address == 'true')
-                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i class="fa fa-map-marker"
                             aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
                     </p>
                     @endif
@@ -1005,10 +1005,10 @@
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add to
-                                            Wishlist</a></li>
+                                            Wishlist</a></li> --}}
                                 </ul>
                             </div>
                         </div>

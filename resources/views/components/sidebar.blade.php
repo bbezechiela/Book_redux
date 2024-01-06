@@ -37,10 +37,10 @@
                 class="img"></i>
         <span class="nav-link">Interactive Trading</span>
     </a> --}}
-    <a href="/wishlist" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0 wishlist-side-btn">
+    {{-- <a href="/wishlist" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0 wishlist-side-btn">
         <i class="fa fa-list-alt d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Wish List</span>
-    </a>
+    </a> --}}
     {{-- <a href="#" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="/assets/book_shelf-icon.png" alt="home icon" width="20"
                 class="img"></i>

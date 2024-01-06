@@ -27,7 +27,7 @@
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
-                        <div class="input-group mt-1" style="height: 2em">
+                        {{-- <div class="input-group mt-1" style="height: 2em">
                             <span class="input-group-text">
                                 <i class="fa fa-search"></i>
                             </span>
@@ -38,7 +38,7 @@
                                     style="cursor: pointer;">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                                 data-bs-placement="bottom" data-bs-title="Messages">
                                 <i class="fa fa-envelope-o" aria-hidden="true"
@@ -130,12 +130,12 @@
                             {{-- <p class="card-text">Shipping Fee <span
                                             style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
                             <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
-                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span></p>
+                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
+                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span></p>
                             <div class="d-flex justify-content-start align-items-center mb-2">
                                 <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                    <p class="m-0" style="color: #003060;">Quantity: <span
-                                            class="fw-bold">{{ $book_id->stock }} pieces available</span></p>
+                                    <p class="m-0" style="color: #003060;">Quantity: <span>{{ $book_id->stock }} pieces
+                                            available</span></p>
                                     {{-- <button class="btn btn-link btn-minus px-2"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                             <i class="fa fa-minus" aria-hidden="true"></i>
@@ -150,23 +150,27 @@
                                     pieces available</p> --}}
                                 </div>
                             </div>
-                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                            <p class="card-text">Language: <span>{{ $book_id->language }}</span>
                             </p>
-                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
                             </p>
-                            <p class="card-text">Product Description: <span
-                                    class="fw-bold">{{ $book_id->description }}</span></p>
+                            <p class="card-text">Exchange Preferences: <span>{{ $book_id->exchange_preferences }}</span>
+                            </p>
+                            <p class="card-text">Product Description: <span>{{ $book_id->description }}</span></p>
                             <p class="card-text location-text"><i class="fa fa-map-marker"
                                     aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
 
                             {{-- <a href="#" class="btn total-likes"><i
                                             class="fa fa-thumbs-up fa-lg" aria-hidden="true"
                                             style="margin-right: 7px"></i>100</a> --}}
-                            <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
-                                    aria-hidden="true" style="margin-right: 7px"></i>Add
-                                to Cart</a>
-                            <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add to Wishlist</a>
+                            {{-- <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
+                                class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add
+                            to Cart</a> --}}
+                            <a href="#" class="btn cart-button"><i class="fa fa-exchange" aria-hidden="true"
+                                    style="margin-right: 7px"></i>Initiate Exchange
+                            </a>
+                            {{-- <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                    style="margin-right: 7px"></i>Add to Wishlist</a> --}}
                         </div>
                     </div>
                 </div>
@@ -232,13 +236,12 @@
                             <p class="card-text">Shipping Fee <span
                                     style="font-weight: bold;">₱{{ $book_id->price }}</span>
                             </p>
-                            <p class="card-text">Author: <span class="fw-bold">{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span class="fw-bold">{{ $book_id->edition }}</span>
+                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
+                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
                             </p>
                             <div class="d-flex justify-content-start align-items-center mb-2">
                                 <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                    <p class="m-0" style="color: #003060;">Quantity: <span
-                                            class="fw-bold">{{ $book_id->stock }}
+                                    <p class="m-0" style="color: #003060;">Quantity: <span>{{ $book_id->stock }}
                                             pieces available</span></p>
                                     {{-- <button class="btn btn-link btn-minus px-2"
                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
@@ -254,12 +257,11 @@
                                     pieces available</p> --}}
                                 </div>
                             </div>
-                            <p class="card-text">Language: <span class="fw-bold">{{ $book_id->language }}</span>
+                            <p class="card-text">Language: <span>{{ $book_id->language }}</span>
                             </p>
-                            <p class="card-text">Condition: <span class="fw-bold">{{ $book_id->condition }}</span>
+                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
                             </p>
-                            <p class="card-text">Product Description: <span
-                                    class="fw-bold">{{ $book_id->description }}</span></p>
+                            <p class="card-text">Product Description: <span>{{ $book_id->description }}</span></p>
                             <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
                             </p>
 
@@ -268,8 +270,8 @@
                             @else
                             <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
                                     aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                            <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add to Wishlist</a>
+                            {{-- <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                    style="margin-right: 7px"></i>Add to Wishlist</a> --}}
                             @endif
 
                         </div>
@@ -334,14 +336,13 @@
                 <div class="card-body rating-details">
                     {{-- <h5 class="card-title">
                         <p>{{ $user_id->first_name . ' ' . $user_id->last_name }} Ratings and Reviews <button
-                                class="message-button"><i class="fa fa-envelope"
-                                    aria-hidden="true"></i>Message</button><a href="/userlistings"
-                                class="view-profile-button"><button class="view-profile-button"><i class="fa fa-eye"
-                                        aria-hidden="true"></i>View
-                                    Profile</button></a>
-                        </p> --}}
+                        class="message-button"><i class="fa fa-envelope" aria-hidden="true"></i>Message</button><a
+                        href="/userlistings" class="view-profile-button"><button class="view-profile-button"><i
+                                class="fa fa-eye" aria-hidden="true"></i>View
+                            Profile</button></a>
+                    </p> --}}
 
-                        {{-- <nav class="nav nav-pills flex-column flex-sm-row">
+                    {{-- <nav class="nav nav-pills flex-column flex-sm-row">
                         <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                             aria-current="page" href="#">Seller Rating</a>
                         <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"

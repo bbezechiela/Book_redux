@@ -156,10 +156,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -189,10 +189,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -234,10 +234,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -268,10 +268,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -314,10 +314,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -347,10 +347,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -391,10 +391,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -424,10 +424,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -468,10 +468,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -501,10 +501,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -546,10 +546,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -580,10 +580,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -626,10 +626,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -660,10 +660,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -704,10 +704,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -737,10 +737,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -783,10 +783,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -817,10 +817,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -862,10 +862,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -896,10 +896,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -941,10 +941,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -975,10 +975,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -1020,10 +1020,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -1054,10 +1054,10 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Cart</a>
                                                     </li>
-                                                    <li><a class="dropdown-item" href="#"><i
+                                                    {{-- <li><a class="dropdown-item" href="#"><i
                                                                 class="fa fa-list-alt" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>

@@ -116,14 +116,14 @@
                                     {{-- <div class="product-price">₱{{ $item->productRelation->price }}
                         </div> --}}
                                     <div class="product-action">
-                                        <div class="dropdown">
+                                        {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle move-button" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu"> --}}
                                                 {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
-                                                <li><a class="dropdown-item" href="#">Move to wish list</a></li>
+                                                {{-- <li><a class="dropdown-item" href="#">Move to wish list</a></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                         <a href="/deletecart/{{ $item->id }}" class="delete-button">Delete</a>
                                     </div>
                                 </div>
@@ -178,14 +178,14 @@
                                             id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
                                     </div>
                                     <div class="product-action">
-                                        <div class="dropdown">
+                                        {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle move-button" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu"> --}}
                                                 {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
-                                                <li><a class="dropdown-item" href="#">Move to wish list</a></li>
+                                                {{-- <li><a class="dropdown-item" href="#">Move to wish list</a></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                         <a class="btn delete-button"
                                             href="/deletecart/{{ $item->id }}">Delete</a>
                                     </div>
