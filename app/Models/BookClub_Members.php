@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BookClub extends Model
+class BookClub_Members extends Model
 {
     use HasFactory;
 
+    // model was created incase there's any necessary methods needed to interact with the table
+
     protected $fillable = [
-        'book_club_name'
+        'club_id',
+        'user_id'
     ];
 }

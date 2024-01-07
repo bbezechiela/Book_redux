@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\BookClub;
+use App\Models\BookClub_Moderators;
 use Illuminate\Http\Request;
 
 class BookClubController extends Controller
 {
-    //lets gow
+    // lets gow
     // selling club member checker
     function sellingClubMemberChecker(Request $request) {
         $currentUserId = $request->query('currentUserId');
@@ -35,10 +36,35 @@ class BookClubController extends Controller
         ]);
 
         if ($creation) {
-            return response->json('data', 'successfull ' + $creation);
+            return response()->json(['data' => 'creation success', $creation]);
         } else {
-            return response->json('error', 'creation failed'); 
+            return response()->json('error', 'creation failed'); 
         }
+    }
+
+    // admin checker
+    function adminChecker(Request $request) {
+        $current_user_id = $request->query('currentUserId');
+
+        // temporary, pero ig split anay it column moderators
+        $checker = Users::where('id', '=', $current_user_id)->get();
+
+        if ($checker->count() > 0) {
+            return response()->json(['data' => $checker]);
+        } else {
+            return response()->json(['error' => 'User not admin']);
+        } 
+    }
+
+    // moderator adder
+    function addModerators(Request $request) {
+        $user_id = $request->json('user_id');
+
+        $adder = BookClub_Moderators::create([
+            
+        ]);
 
     }
+
+
 }
