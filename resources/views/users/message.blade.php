@@ -66,7 +66,7 @@
         </ul>
 
         {{-- Original Frontend --}}
-        <div class="container-fluid">
+        {{-- <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" id="chat3" style="border-radius: 5px;">
@@ -98,13 +98,13 @@
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                        {{-- <div class="pt-1">
+                                                        <div class="pt-1">
                                                             <p class="small text-muted mb-1">Just now</p>
                                                             <span
                                                                 class="badge bg-danger rounded-pill float-end">3</span>
-                                                        </div> --}}
+                                                        </div>
                                                     </a>
-                                                </li>
+                                                </li> --}}
                                                 {{-- <li class="p-2 border-bottom">
                                                     <a href="#!"
                                                         class="d-flex justify-content-between text-decoration-none">
@@ -267,14 +267,14 @@
                                                 {{-- <div class="pt-1">
                                                             <p class="small text-muted mb-1">Yesterday</p>
                                                         </div> --}}
-                                                </a>
+                                                {{-- </a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- shit --}}
-                                <div class="col-md-6 col-lg-7 col-xl-8">
+                                {{-- <div class="col-md-6 col-lg-7 col-xl-8">
                                     <div class="chat-about position-sticky top-0">
 
                                         <h6 class="m-b-0">Kate Moss<button type="button" class="btn menu-btn"
@@ -284,7 +284,7 @@
                                         </h6>
                                     </div>
                                     {{-- shit --}}
-                                    <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
+                                    {{-- <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
                                         style="position: relative;">
                                         <div class="d-flex flex-row justify-content-start body-img">
                                             <img src="../assets/Eubert.png" alt="user_img"
@@ -409,9 +409,7 @@
                                             style="width: 40px; height: 100%; margin-right: 8px;">
                                         <input type="textarea" class="form-control form-control-lg"
                                             id="exampleFormControlInput2" style="font-size: 13px;"
-                                            placeholder="Type message">
-                                        {{-- <a class="ms-1 text-muted" href="#!"><i class="fa fa-paperclip"
-                                                aria-hidden="true"></i></a> --}}
+                                            placeholder="Type message">                                        
                                         <a class="ms-3" href="#!"><i class="fa fa-paper-plane"
                                                 aria-hidden="true"></i></a>
                                     </div>
@@ -421,7 +419,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}} 
 
         {{-- Original Frontend --}}
 

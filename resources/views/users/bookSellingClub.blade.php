@@ -114,6 +114,10 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- pag create book club para ha specific na admin -->
+                    <div id='createSellingClubOuterCtn'></div>
+
                     <div class="card mt-5 mb-3 card-post">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
@@ -424,6 +428,13 @@
             </div>
         </div>
     </div>
+    <script> 
+        const current_user_id = "{{ session('id'); }}";
+        const csrf_token = "{{ csrf_token(); }}";
+    </script>
+
+    <script src="{{ asset('js/book_club.js'); }}"></script>
+
 </div>
 <!-- Report Modal -->
 <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

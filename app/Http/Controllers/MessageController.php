@@ -179,9 +179,10 @@ class MessageController extends Controller
         $deleteMessages = Messages::where('conversation_id', $conversation_id)->delete();
 
         if ($deleteMessages) {
+            $deletedConvo = Conversations::where('conversation_id', $conversation_id)->get();
             $deleteConversation = Conversations::where('conversation_id', $conversation_id)->delete();
             if ($deleteConversation) {
-                return response()->json(['message' => 'deleted successfuly messages pati an container']);
+                return response()->json(['data' => $deletedConvo]);
             }
         } else {
             return response()->json(['error' => 'cant find anything']);
@@ -212,6 +213,18 @@ class MessageController extends Controller
         } else {
             return response()->json(['error' => 'may error']);
         }
+    }
 
+    // full name getter
+    function fullnameGetter(Request $request) {
+        $receiverUsername = $request->query('receiverUsername');
+
+        $getter = Users::select('first_name', 'last_name')->where('username', $receiverUsername)->first();
+        
+        if ($getter) {
+            return response()->json(['data' => $getter]);   
+        } else {
+            return response()->json(['error' => 'cant find user']);
+        }
     }
 }

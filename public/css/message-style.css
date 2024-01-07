@@ -295,10 +295,16 @@
 }
 
 /* conversation menu */
-#conversationMenu {
+.conversationMenu {
     font-size: 30px;
     font-weight: 500;
-    padding: 15px;
+    height: 40px;
+    width: 50px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .py-profile .avatar {
@@ -332,7 +338,7 @@
     width: 330px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
     border-radius: 15px;
     margin: 15px 0 0 0;
     padding-left: 15px;
@@ -422,18 +428,19 @@ body {
 }
 
 /* search result */
-.searchResult {
-    height: 60px;
+.searchResultOuterCtn {
+    height: 80px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     border-radius: 10px;
     z-index: 2;
     background-color: white;
-    opacity: 1;
+    /* opacity: 1; */
     position: absolute;
     border: 1px solid grey;
+    padding-left: 15px;
 }
 
 #formOuterContainer {
@@ -488,4 +495,18 @@ body {
 .popUpMessage {
     font-size: 23px;
     text-align: center;
+}
+
+/* username_fullname conversation list approach */
+.username_fullname_ctn_list {
+    min-width: 170px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    flex-direction: column;
+}
+
+/* username_fullname search approach*/
+.username_fullname_ctn_search {
+    padding-left:  10px;
 }

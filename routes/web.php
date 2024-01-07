@@ -5,6 +5,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookClubController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -304,6 +305,17 @@ Route::get('/booksrented', [UserController::class, 'booksRented']);
 Route::get('/return', [UserController::class, 'manageReturn']);
 
 Route::get('/shipment', [UserController::class, 'manageShipment']);
+
+Route::get('/fullnameGetter', [MessageController::class, 'fullnameGetter']);
+
+// book club routes, api's
+Route::get('/sellingClubMemberChecker', [BookClubController::class, 'sellingClubMemberChecker']);
+
+Route::post('/createBookSellingClub', [BookClubController::class, 'createBookSellingClub']);
+
+Route::get('/adminChecker', [BookClubController::class, 'adminChecker']);
+
+Route::post('/addModerators', [BookClubController::class, 'addModerators']);
 
 
 // API's

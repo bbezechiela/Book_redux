@@ -3,8 +3,8 @@ let lastMessageTimestamp = '1990-12-12 12:12:12';
 let lastConversationTimestamp = '1990-12-12 12:12:12';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // document.getElementById('rightSectionOuterContainer').style.display = 'none';
-    
+    document.getElementById('rightSectionOuterContainer').style.display = 'none';
+
     // ellipsis pop out
     const ellipsisPopUp = document.getElementById('ellipsisPopUp');
     ellipsisPopUp.style.display = 'none';
@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let initialCheckDone = false;
 
     // initialize current controller
+    // para inin an ha pag cancel it fetch request
     let currentController = null;
 
     // get conversations function
@@ -38,17 +39,20 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(responses => {
                 if (responses.data) {
-                    try {
-                        lastConversationTimestamp = responses.data[responses.data.length - 1].created_at;
-                        initialCheckDone = true;
-                        showConversations(responses.data);
-                    } catch {
-                        // waray na conversation
-                    }
+                    // may try catch ini dinhi keep in mind
+                    lastConversationTimestamp = responses.data[responses.data.length - 1].created_at;
+
+                    initialCheckDone = true;
+
+                    // show conversation
+                    showConversations(responses.data);
+                    console.log('trying pag get conversations');
+
                 } else if (!initialCheckDone) {
                     // console.log('no conversation found');
                     zeroConversation();
                     initialCheckDone = true;
+                    console.log('trytrytry');
                 }
             })
             .catch(error => console.log(error));
@@ -72,339 +76,494 @@ document.addEventListener('DOMContentLoaded', function() {
             // split anay 
             var stringToArr = response.conversation_name.split(',');
             var checkedReceiverUsername = (stringToArr[0] === current_username) ? stringToArr[1] : stringToArr[0];
-            
+
+            // gawas la conversationCtn para ma access an event
             const conversationCtn = document.createElement('div');
             conversationCtn.id = 'conversationCtn';
             conversationCtn.classList.add('conversationCtn');
 
-            const receiver_profile_pic = document.createElement('div');
-            const imgLocation = window.location.origin + '/images/profile_photos/' + response.profile_photo.profile_photo;
-
-            const receiver_profile_pic_styles = `
-                min-height: 50px;
-                min-width: 50px;
-                border-radius: 50%;
-                border: 2px outset #E55B13;
-                padding: 1px;
-                background-size: cover;
-                background-repeat: no-repeat;
-                color: #003060;
-            `;
-
-            // para ma apply an mga styles
-            receiver_profile_pic.style.cssText = receiver_profile_pic_styles;
-            // url an image depende kun hinut user tas it ira image
-            receiver_profile_pic.style.backgroundImage = 'url("' + imgLocation + '")'; 
-
-            // image name checker
-            //console.log(response.profile_photo.profile_photo);
-
-            const receiver_name = document.createElement('div');
-            receiver_name.textContent = checkedReceiverUsername;
-            receiver_name.style.paddingLeft = '15px';
-
-            conversationCtn.appendChild(receiver_profile_pic);
-            conversationCtn.appendChild(receiver_name);
-            
-            conversationList.appendChild(conversationCtn);
-            
-            // add event listener
-            conversationCtn.addEventListener('click', function() {
-                // checker if mayda last controller request
-                if (currentController) {
-                    currentController.abort();
-                    console.log('previous fetch request aborted');
-                } else {
-                    console.log('waray pa previous fetch request');
-                }
-
-                const controller = new AbortController();
-                const signal = controller.signal;
-                currentController = controller;
-
-                // pa show an right section or an conversation container between users
-                document.getElementById('rightSectionOuterContainer').style.display = 'block';
-
-                lastMessageTimestamp = '1990-12-12 12:12:12';
-                
-                messageOuterContainer.innerHTML = '';
-
-                // message header container
-                const messagesHeaderCtn = document.getElementById('messagesHeaderContainer');
-                messagesHeaderCtn.innerHTML = '';
-                messagesHeaderCtn.id = 'messagesHeaderContainer';
-
-                // receiver name
-                const receiverName = document.createElement('div');
-                receiverName.textContent =  checkedReceiverUsername;
-                receiverName.style.paddingLeft = '15px';
-                
-                // receiver photo
-                const receiver_photo = document.createElement('div');
-                receiver_photo.style.cssText = receiver_profile_pic_styles;
-                receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
-                
-                // conversation menu
-                const conversationMenu = document.createElement('div');
-                conversationMenu.textContent = '...';
-                conversationMenu.id = 'conversationMenu';
-
-                // anotherCtn
-                const anotherCtn = document.createElement('div');
-                anotherCtn.id = 'anotherCtn';
-
-                anotherCtn.appendChild(receiver_photo);
-                anotherCtn.appendChild(receiverName);
-
-                messagesHeaderCtn.appendChild(anotherCtn);
-                messagesHeaderCtn.appendChild(conversationMenu);
-                
-                // ay kalimot ig clear it innerHTML para dri mag utro utro it element tas dri man retain it value kada click it container
-                formOuterContainer.innerHTML = '';
-
-                const form = document.createElement('form');
-                form.id = 'messageForm';
-                form.method = 'post';
-                
-                const inputFieldCss = `
-                    border: 1px solid transparent;
-                `;
-
-                const inputField = document.createElement('input');
-                inputField.id = 'messageInputContainer';
-                inputField.type = 'textarea';
-                inputField.placeholder = 'Type message...';
-                inputField.style.cssText = inputFieldCss;         
-                
-                inputField.style.borderColor = 'transparent';
-                inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
-
-                inputField.addEventListener('focus', function() {
-                    inputField.style.borderColor = '#E55B13';
-                    inputField.style.boxShadow = 'inset 0px 0px 0px 1px #E55B13';
-                });
-
-                inputField.addEventListener('blur', function() {
-                    inputField.style.borderColor = 'transparent';
-                    inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
-                });
-                
-                const submitButtonCss = `
-                    background-color: #F8F9FA;
-                    color: #003060;
-                    font-size: 13px;
-                `;
-
-                const submitButton = document.createElement('button');
-                submitButton.id = 'sendMessageButton';
-                submitButton.type = 'button';
-                submitButton.textContent = 'Send';
-                submitButton.style.cssText = submitButtonCss;
-
-                form.appendChild(inputField);
-                form.appendChild(submitButton);
-                formOuterContainer.appendChild(form);
-                
-                // pag kuha mga messages
-                function getMessages() {
-                    fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`, {
-                        method: 'GET',
-                        signal: signal
+            //  fullname getter
+            function fullnameGetter() {
+                fetch(`/fullnameGetter?receiverUsername=${checkedReceiverUsername}`, {
+                    method: 'GET',
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } 
+                        throw new Error('may error line 88');
                     })
-                        .then(response => {
-                            if (response.ok) {
-                                return response.json();
-                            }
-                            throw new Error('Error in getting messages');
-                        })
-                        .then(responses => {
-                            if (responses.data) {
-                                try {
-                                    lastMessageTimestamp = responses.data[responses.data.length - 1].created_at;
-                                    displayMessages(responses.data);
-                                    console.log(responses.data);
-                                } catch {
-                                    // console.log('no new messages');
-                                }
-                            }
-                        })
-                        .catch(error => console.log(error));
-                }
+                    .then(responses => {
+                        if (responses.data) {
+                            // checker
+                            console.log(responses.data.first_name);
 
-                // display messages ha search na approach
-                function displayMessages(responses) {
-                    responses.forEach(response => {
-                        const messageInnerContainer = document.createElement('div');
-                        messageInnerContainer.classList.add('messageInnerContainer');
+                            // receiver container
+                            const receiver_profile_pic = document.createElement('div');
+                            
+                            // receiver img location
+                            const imgLocation = window.location.origin + '/images/profile_photos/' + response.profile_photo.profile_photo;
+                
+                            // receiver profile pic styles 
+                            const receiver_profile_pic_styles = `
+                                min-height: 50px;
+                                min-width: 50px;
+                                border-radius: 15px;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                            `;
+                
+                            // para ma apply an mga styles
+                            receiver_profile_pic.style.cssText = receiver_profile_pic_styles;
+                            // url an image depende kun hinut user tas it ira image
+                            receiver_profile_pic.style.backgroundImage = 'url("' + imgLocation + '")'; 
+                
+                            // image name checker
+                            //console.log(response.profile_photo.profile_photo);
+                
+                            const receiver_username = document.createElement('div');
+                            receiver_username.textContent = checkedReceiverUsername;
+                            
+                            const receiver_fullname = document.createElement('div');
+                            receiver_fullname.textContent = "(" + responses.data.first_name + " " + responses.data.last_name + ")";
+                
+                            // username tas fullname container 
+                            const username_fullname_ctn = document.createElement('div');
+                            username_fullname_ctn.classList.add('username_fullname_ctn_list');
+                            username_fullname_ctn.appendChild(receiver_username);
+                            username_fullname_ctn.appendChild(receiver_fullname);
 
-                        const messageCtn = document.createElement('div');
-                        messageCtn.textContent = response.message_content;
-                        messageCtn.id = "messageCtn";
-                        
-                        const messageReceiverPhoto = document.createElement('div');
-                        messageReceiverPhoto.style.cssText = receiver_profile_pic_styles;
-                        messageReceiverPhoto.style.backgroundImage = 'url("' + imgLocation +'")';
+                            // conversation list menu button
+                            const conversationListMenu = document.createElement('div');
+                            conversationListMenu.textContent = '...';
+                            conversationListMenu.classList.add('conversationMenu');
 
-                        if (response.sender_id == current_user_id) {
-                            messageCtn.classList.add('messageRight');
-                            messageOuterContainer.appendChild(messageCtn);
-                        } else {
-                            messageInnerContainer.classList.add('messageLeft');
-                            messageCtn.classList.add('messageCtnLeft');
-                            messageInnerContainer.appendChild(messageReceiverPhoto);
-                            messageInnerContainer.appendChild(messageCtn);
-                            messageOuterContainer.appendChild(messageInnerContainer);                            
-                        }
+                            //delete Conversation List  Based. 'event tikang ha conversation list na click'
+                            conversationListMenu.addEventListener('click', function() {
+                                // ellipsis changes
+                                ellipsisPopUp.style.display = 'block';
+                                
+                                // elements ha ellipsis
+                                const popUpOuterContainer = document.createElement('div');
+                                popUpOuterContainer.classList.add('popUpOuterContainer');
+            
+                                const popUpInnerContainer = document.createElement('div');
+                                popUpInnerContainer.classList.add('popUpInnerContainer');
+            
+                                const popUpMessage = document.createElement('div');
+                                popUpMessage.textContent = 'Are you sure you want to delete this conversation?';
+                                popUpMessage.classList.add('popUpMessage');
+                                
+                                const buttonCss = `
+                                    height: 65px;
+                                    width: 150px;
+                                    font-size: 18px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    border-radius: 10px;
+                                    background-color: #003060;
+                                    color: white;
+                                `;
+            
+                                const yesButtonn = document.createElement('div');
+                                yesButtonn.type = 'button';
+                                yesButtonn.textContent = 'Yes';
+                                yesButtonn.style.cssText = buttonCss;
+            
+                                const noButton = document.createElement('div');
+                                noButton.type = 'button';
+                                noButton.textContent = 'No';
+                                noButton.style.cssText = buttonCss;
+            
+                                const popUpButtonCtn = document.createElement('div');
+                                popUpButtonCtn.classList.add('popUpButtonCtn');
+            
+                                popUpButtonCtn.appendChild(yesButtonn);
+                                popUpButtonCtn.appendChild(noButton);
+            
+                                // append an mga elements ha inner popup container
+                                popUpInnerContainer.appendChild(popUpMessage);
+                                popUpInnerContainer.appendChild(popUpButtonCtn);
+            
+                                // append an inner pop up ha outer popup
+                                popUpOuterContainer.appendChild(popUpInnerContainer);
+            
+                                // append ha pinaka outer
+                                ellipsisPopUp.appendChild(popUpOuterContainer);
+                                ellipsisPopUp.classList.add('ellipsisPopUp');
+            
+                                const conversationID = response.conversation_id;
 
-
-                        messageOuterContainer.scrollTop = messageOuterContainer.scrollHeight;
-                    });
-                }
-
-                //bug here
-                //getMessages();
-                setInterval(getMessages, 1500);
-
-                document.getElementById('sendMessageButton').addEventListener('click', function() {
-                    const message_content = document.getElementById('messageInputContainer').value;
-
-                    // conversation name
-                    // conversation_name = response.conversation_name;
-                    console.log(response.conversation_name);
-                    
-                    const data = {
-                        current_username: current_username,
-                        sender_id: current_user_id,
-                        message_content: message_content,
-                        conversation_name: response.conversation_name,
-                        conversation_id: response.conversation_id
-                    };
+                                console.log(conversationID);
+                                // yes button if clicked
+                                yesButtonn.addEventListener('click', function () {
+                                    console.log(conversationID);
+                                    fetch(`/deleteConversationCtnBased?conversation_id=${conversationID}`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            'X-CSRF-TOKEN': csrfToken
+                                        },
+                                    })
+                                        .then(responses => {
+                                            if (responses.ok) {
+                                                return responses.json();
+                                            }
+                                            throw new Error('Error in deleting conversation');
+                                        })
+                                        .then(response => {
+                                            //console.log(response.data.data.conversation_id);
+                                            console.log(response);
     
-                    // pag send message
-                    fetch('/sendMessageTwo', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': csrfToken,
-                        },
-                        body: JSON.stringify(data),
-                    })
-                        .then(responses => {
-                            if (responses.ok) {
-                                return responses.json();
-                            }
-                            throw new Error('Sending message error');
-                        })
-                        .then(response => {
-                            //console.log(response);
-                            document.getElementById('messageForm').reset();
-                        })
-                        .catch(error => console.log(error));
-                });    
+                                            // remove conversation container after ma delete
+                                            conversationCtn.remove();
+                                            rightSectionOuterContainer.style.display = 'none';
+                                            ellipsisPopUp.style.display = 'none';
+                                            lastConversationTimestamp = '1990-12-12 12:12:12';
+                                            conversationList.innerHTML = '';
+                                            
+                                            // ig initialize utro an checker ha getconversation ha false, an variable na initialCheckDone
+                                            initialCheckDone = false;
+                                            popUpOuterContainer.remove();
+                                        })
+                                        .catch(error => console.log(error));
+                                });
+                                
+                                // no button if clicked
+                                noButton.addEventListener('click', () => {
+                                    ellipsisPopUp.style.display = 'none';
+                                    popUpOuterContainer.remove();
+                                });
+            
+                                // pag mag click outer container an kanan pop up
+                                ellipsisPopUp.addEventListener('click', () => {
+                                    ellipsisPopUp.style.display = 'none';
+                                    ellipsisPopUp.innerHTML = '';
+                                });
+            
+                                popUpInnerContainer.addEventListener('click', function(event) {
+                                    // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
+                                    event.stopPropagation();
+                                });
+
+                            });
+                            
+                            // stop bubble it events ha conversation list na menu button 
+                            conversationListMenu.addEventListener('click', function(event) {
+                                event.stopPropagation();
+                            });
+
+                            // appending elements ha conversation container
+                            conversationCtn.appendChild(receiver_profile_pic);
+                            conversationCtn.appendChild(username_fullname_ctn);
+                            conversationCtn.appendChild(conversationListMenu);
+                            
+                            // appeding child ha conversation list
+                            conversationList.appendChild(conversationCtn);
+                            
+                            // add event listener
+                            conversationCtn.addEventListener('click', function() {
+                                console.log(response.conversation_id);
+                                
+                                // checker if mayda last controller request
+                                if (currentController) {
+                                    currentController.abort();
+                                    console.log('previous fetch request aborted');
+                                } else {
+                                    console.log('waray pa previous fetch request');
+                                }
                 
-                //delete Conversation Ctn Based. 'event tikang ha conversation list na click'
-                conversationMenu.addEventListener('click', function() {
-                    // ellipsis changes
-                    ellipsisPopUp.style.display = 'block';
+                                const controller = new AbortController();
+                                const signal = controller.signal;
+                                currentController = controller;
+                
+                                // pa show an right section or an conversation container between users
+                                document.getElementById('rightSectionOuterContainer').style.display = 'block';
+                
+                                lastMessageTimestamp = '1990-12-12 12:12:12';
+                                
+                                messageOuterContainer.innerHTML = '';
+                                
+                                // message header container
+                                const messagesHeaderCtn = document.getElementById('messagesHeaderContainer');
+                                messagesHeaderCtn.innerHTML = '';
+                                messagesHeaderCtn.id = 'messagesHeaderContainer';
+                
+                                // receiver name
+                                const receiverName = document.createElement('div');
+                                receiverName.textContent =  checkedReceiverUsername;
+                                receiverName.style.paddingLeft = '15px';
+                                
+                                // receiver photo
+                                const receiver_photo = document.createElement('div');
+                                receiver_photo.style.cssText = receiver_profile_pic_styles;
+                                receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
+                                
+                                // conversation menu
+                                const conversationMenu = document.createElement('div');
+                                conversationMenu.textContent = '...';
+                                conversationMenu.id = 'conversationMenu';
+                                conversationMenu.classList.add('conversationMenu');
+
+                                // anotherCtn
+                                const anotherCtn = document.createElement('div');
+                                anotherCtn.id = 'anotherCtn';
+                
+                                anotherCtn.appendChild(receiver_photo);
+                                anotherCtn.appendChild(receiverName);
+                
+                                messagesHeaderCtn.appendChild(anotherCtn);
+                                messagesHeaderCtn.appendChild(conversationMenu);
+                                
+                                // ay kalimot ig clear it innerHTML para dri mag utro utro it element tas dri man retain it value kada click it container
+                                formOuterContainer.innerHTML = '';
+                
+                                const form = document.createElement('form');
+                                form.id = 'messageForm';
+                                form.method = 'post';
+                                
+                                // input field design
+                                const inputFieldCss = `
+                                    width: 400px;
+                                    border: 1px solid grey;
+                                `;
+                
+                                const inputField = document.createElement('input');
+                                inputField.id = 'messageInputContainer';
+                                inputField.type = 'textarea';
+                                inputField.placeholder = 'Type message...';
+                                inputField.style.cssText = inputFieldCss;                
+                
+                                const submitButtonCss = `
+                                    width: 120px;
+                                    border: 1px solid grey;
+                                    background-color: #003060;
+                                    color: white;
+                                `;
+                
+                                const submitButton = document.createElement('button');
+                                submitButton.id = 'sendMessageButton';
+                                submitButton.type = 'button';
+                                submitButton.textContent = 'Send';
+                                submitButton.style.cssText = submitButtonCss;
+                
+                                form.appendChild(inputField);
+                                form.appendChild(submitButton);
+                                formOuterContainer.appendChild(form);
+                
+                                // pag kuha mga messages
+                                function getMessages() {
+                                    fetch(`/getMessage?lastMessageTimestamp=${lastMessageTimestamp}&conversationName=${response.conversation_name}`, {
+                                        method: 'GET',
+                                        signal: signal
+                                    })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                return response.json();
+                                            }
+                                            throw new Error('Error in getting messages');
+                                        })
+                                        .then(responses => {
+                                            if (responses.data) {
+                                                try {
+                                                    lastMessageTimestamp = responses.data[responses.data.length - 1].created_at;
+                                                    displayMessages(responses.data);
+                                                    console.log(responses.data);
+                                                } catch {
+                                                    // console.log('no new messages');
+                                                }
+                                            }
+                                        })
+                                        .catch(error => console.log(error));
+                                }
+                
+                                // display messages ha search na approach
+                                function displayMessages(responses) {
+                                    responses.forEach(response => {
+                                        const messageInnerContainer = document.createElement('div');
+                                        messageInnerContainer.classList.add('messageInnerContainer');
+                
+                                        const messageCtn = document.createElement('div');
+                                        messageCtn.textContent = response.message_content;
+                                        messageCtn.id = "messageCtn";
+                                        
+                                        const messageReceiverPhoto = document.createElement('div');
+                                        messageReceiverPhoto.style.cssText = receiver_profile_pic_styles;
+                                        messageReceiverPhoto.style.backgroundImage = 'url("' + imgLocation +'")';
+                
+                                        if (response.sender_id == current_user_id) {
+                                            messageCtn.classList.add('messageRight');
+                                            messageOuterContainer.appendChild(messageCtn);
+                                        } else {
+                                            messageInnerContainer.classList.add('messageLeft');
+                                            messageCtn.classList.add('messageCtnLeft');
+                                            messageInnerContainer.appendChild(messageReceiverPhoto);
+                                            messageInnerContainer.appendChild(messageCtn);
+                                            messageOuterContainer.appendChild(messageInnerContainer);                            
+                                        }
+                
+                                        messageOuterContainer.scrollTop = messageOuterContainer.scrollHeight;
+                                    });
+                                }
+                
+                                //getMessages();
+                                setInterval(getMessages, 500);
+                
+                                document.getElementById('sendMessageButton').addEventListener('click', function() {
+                                    const message_content = document.getElementById('messageInputContainer').value;
+                
+                                    // conversation name
+                                    // conversation_name = response.conversation_name;
+                                    console.log(response.conversation_name);
+                                    
+                                    const data = {
+                                        current_username: current_username,
+                                        sender_id: current_user_id,
+                                        message_content: message_content,
+                                        conversation_name: response.conversation_name,
+                                        conversation_id: response.conversation_id
+                                    };
                     
-                    // elements ha ellipsis
-                    const popUpOuterContainer = document.createElement('div');
-                    popUpOuterContainer.classList.add('popUpOuterContainer');
-
-                    const popUpInnerContainer = document.createElement('div');
-                    popUpInnerContainer.classList.add('popUpInnerContainer');
-
-                    const popUpMessage = document.createElement('div');
-                    popUpMessage.textContent = 'Are you sure you want to delete this conversation?';
-                    popUpMessage.classList.add('popUpMessage');
+                                    // pag send message
+                                    fetch('/sendMessageTwo', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': csrfToken,
+                                        },
+                                        body: JSON.stringify(data),
+                                    })
+                                        .then(responses => {
+                                            if (responses.ok) {
+                                                return responses.json();
+                                            }
+                                            throw new Error('Sending message error');
+                                        })
+                                        .then(response => {
+                                            //console.log(response);
+                                            document.getElementById('messageForm').reset();
+                                        })
+                                        .catch(error => console.log(error));
+                                });    
+                                
+                                //delete Conversation Ctn Based. 'event tikang ha conversation list na click'
+                                conversationMenu.addEventListener('click', function() {
+                                    // ellipsis changes
+                                    ellipsisPopUp.style.display = 'block';
+                                    
+                                    // elements ha ellipsis
+                                    const popUpOuterContainer = document.createElement('div');
+                                    popUpOuterContainer.classList.add('popUpOuterContainer');
+                
+                                    const popUpInnerContainer = document.createElement('div');
+                                    popUpInnerContainer.classList.add('popUpInnerContainer');
+                
+                                    const popUpMessage = document.createElement('div');
+                                    popUpMessage.textContent = 'Are you sure you want to delete this conversation?';
+                                    popUpMessage.classList.add('popUpMessage');
+                                    
+                                    const buttonCss = `
+                                        height: 65px;
+                                        width: 150px;
+                                        font-size: 18px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        border-radius: 10px;
+                                        background-color: #003060;
+                                        color: white;
+                                    `;
+                
+                                    const yesButton = document.createElement('div');
+                                    yesButton.type = 'button';
+                                    yesButton.textContent = 'Yes';
+                                    yesButton.style.cssText = buttonCss;
+                
+                                    const noButton = document.createElement('div');
+                                    noButton.type = 'button';
+                                    noButton.textContent = 'No';
+                                    noButton.style.cssText = buttonCss;
+                
+                                    const popUpButtonCtn = document.createElement('div');
+                                    popUpButtonCtn.classList.add('popUpButtonCtn');
+                
+                                    popUpButtonCtn.appendChild(yesButton);
+                                    popUpButtonCtn.appendChild(noButton);
+                
+                                    // append an mga elements ha inner popup container
+                                    popUpInnerContainer.appendChild(popUpMessage);
+                                    popUpInnerContainer.appendChild(popUpButtonCtn);
+                
+                                    // append an inner pop up ha outer popup
+                                    popUpOuterContainer.appendChild(popUpInnerContainer);
+                
+                                    // append ha pinaka outer
+                                    ellipsisPopUp.appendChild(popUpOuterContainer);
+                                    ellipsisPopUp.classList.add('ellipsisPopUp');
+                
+                                    // yes button if clicked
+                                    yesButton.addEventListener('click', function() {
+                                        console.log(response.conversation_id);
+                                        fetch(`/deleteConversationCtnBased?conversation_id=${response.conversation_id}`, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                'X-CSRF-TOKEN': csrfToken
+                                            },
+                                        })
+                                        .then(responses => {
+                                            if (responses.ok) {
+                                                return responses.json();
+                                            }
+                                            throw new Error('Error in deleting conversation');
+                                        })
+                                        .then(response => {
+                                                console.log('Conversation deleted successfully', response);
                     
-                    const buttonCss = `
-                        height: 50px;
-                        width: 100px;
-                        font-size: 15px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 10px;
-                        background-color: #003060;
-                        color: white;
-                    `;
-
-                    const yesButton = document.createElement('div');
-                    yesButton.type = 'button';
-                    yesButton.textContent = 'Yes';
-                    yesButton.style.cssText = buttonCss;
-
-                    const noButton = document.createElement('div');
-                    noButton.type = 'button';
-                    noButton.textContent = 'No';
-                    noButton.style.cssText = buttonCss;
-
-                    const popUpButtonCtn = document.createElement('div');
-                    popUpButtonCtn.classList.add('popUpButtonCtn');
-
-                    popUpButtonCtn.appendChild(yesButton);
-                    popUpButtonCtn.appendChild(noButton);
-
-                    // append an mga elements ha inner popup container
-                    popUpInnerContainer.appendChild(popUpMessage);
-                    popUpInnerContainer.appendChild(popUpButtonCtn);
-
-                    // append an inner pop up ha outer popup
-                    popUpOuterContainer.appendChild(popUpInnerContainer);
-
-                    // append ha pinaka outer
-                    ellipsisPopUp.appendChild(popUpOuterContainer);
-                    ellipsisPopUp.classList.add('ellipsisPopUp');
-
-                    // yes button if clicked
-                    yesButton.addEventListener('click', function() {
-                        fetch(`/deleteConversationCtnBased?conversation_id=${response.conversation_id}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRF-TOKEN': csrfToken
-                            },
-                        })
-                        .then(responses => {
-                            if (responses.ok) {
-                                return responses.json();
-                            }
-                            throw new Error('Error in deleting conversation');
-                        })
-                        .then(response => {
-                            console.log('Conversation deleted successfully');
-
-                            // remove conversation container after ma delete
-                            conversationCtn.remove();
-                            // rightSectionOuterContainer.style.display = 'none';
-                            ellipsisPopUp.style.display = 'none';
-                        })
-                        .catch(error => console.log(error));
-                    });
-                    
-                    // no button if clicked
-                    noButton.addEventListener('click', () => {
-                        ellipsisPopUp.style.display = 'none';
-                    });
-
-                    // pag mag click outer container an kanan pop up
-                    ellipsisPopUp.addEventListener('click', () => {
-                        ellipsisPopUp.style.display = 'none';
-                        ellipsisPopUp.innerHTML = '';
-                    });
-
-                    popUpInnerContainer.addEventListener('click', function(event) {
-                        // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
-                        event.stopPropagation();
-                    });
-                });
-            });
+                                                // remove conversation container after ma delete
+                                                conversationCtn.remove();
+                                                rightSectionOuterContainer.style.display = 'none';
+                                                ellipsisPopUp.style.display = 'none';
+                                                lastConversationTimestamp = '1990-12-12 12:12:12';
+                                                conversationList.innerHTML = '';
+                                                
+                                                // ig initialize utro an checker ha getconversation ha false, an variable na initialCheckDone
+                                                initialCheckDone = false;
+                                                popUpOuterContainer.remove();
+                                        })
+                                        .catch(error => console.log(error));
+                                    });
+                                    
+                                    // no button if clicked
+                                    noButton.addEventListener('click', () => {
+                                        ellipsisPopUp.style.display = 'none';
+                                        popUpOuterContainer.remove();
+                                    });
+                
+                                    // pag mag click outer container an kanan pop up
+                                    ellipsisPopUp.addEventListener('click', () => {
+                                        ellipsisPopUp.style.display = 'none';
+                                        ellipsisPopUp.innerHTML = '';
+                                    });
+                
+                                    popUpInnerContainer.addEventListener('click', function(event) {
+                                        // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
+                                        event.stopPropagation();
+                                    });
+                                });
+                            });
+                        } else {
+                            console.log('waray na fefetch na full name ha user')
+                        }
+                    })
+                    .catch(error => console.log(error));
+            }
+            fullnameGetter();
         });
     }
     
     // search function
     function searchUser(username) {
-        const searchResult = document.createElement('div');
+        const searchResultOuterCtn = document.createElement('div');
 
         //clear it outercontainer
         document.getElementById('searchInputContainer').value = "";
@@ -420,32 +579,31 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('waray child');
         }
 
-        const xhttp = new XMLHttpRequest();
-        
-        xhttp.open('GET', `/searchUser?username=${username}`, true);
-        xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        
-        xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                const responses = JSON.parse(this.responseText);
-                
-                console.log(responses);
-                console.log(responses.data);
+        if (currentController) {
+            currentController.abort();
+            console.log('previous request stopped');
+        } else {
+            console.log('no previous request')
+        }
+
+        const controller = new AbortController();
+        const signal = controller.signal;
+        currentController = controller;
+
+        fetch(`/searchUser?username=${username}`, {
+            method: 'GET',
+            signal: signal
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('error');
+            })
+            .then(responses => {
                 if (responses.data) {
-
-                    searchResult.textContent = responses.data.username;
-                    console.log(searchResult.textContent);
-                    
-                    searchResult.classList.add('searchResult');
-
-                    
-                    searchOuterCtn.appendChild(searchResult);
-                    
-                    if (searchOuterCtn && searchResult) {
-                        searchOuterCtn.removeChild(searchResult);
-                    }
                     const imgLocation = window.location.origin + '/images/profile_photos/' + responses.data.profile_photo;
-
+            
                     const receiver_profile_pic_styles = `
                         min-height: 50px;
                         min-width: 50px;
@@ -456,9 +614,37 @@ document.addEventListener('DOMContentLoaded', function() {
                         background-repeat: no-repeat;
                         color: #003060;
                     `;
+            
+                    // elements ha result set
+                    const searchResultPicture = document.createElement('div');
+                    const searchResultUsername = document.createElement('div');
+                    const searchResultFullname = document.createElement('div');
+            
+                    searchResultPicture.style.cssText = receiver_profile_pic_styles;
+                    searchResultPicture.style.backgroundImage = 'url("' + imgLocation + '")';
+            
+                    searchResultUsername.textContent = responses.data.username;
+            
+                    const username_fullname_ctn_search = document.createElement('div');
+                    searchResultFullname.textContent = '(' + responses.data.first_name + ' ' + responses.data.last_name + ')';
+            
+                    username_fullname_ctn_search.appendChild(searchResultUsername);
+                    username_fullname_ctn_search.appendChild(searchResultFullname);
+                    username_fullname_ctn_search.classList.add('username_fullname_ctn_search');
+            
+                    searchResultOuterCtn.appendChild(searchResultPicture);
+                    searchResultOuterCtn.appendChild(username_fullname_ctn_search);
+            
+                    searchResultOuterCtn.classList.add('searchResultOuterCtn');
+            
+                    searchOuterCtn.appendChild(searchResultOuterCtn);
                     
-                    searchOuterCtn.appendChild(searchResult);
-                    searchResult.addEventListener('click', function() {
+                    if (searchOuterCtn && searchResultOuterCtn) {
+                        searchOuterCtn.removeChild(searchResultOuterCtn);
+                    }
+                    
+                    searchOuterCtn.appendChild(searchResultOuterCtn);
+                    searchResultOuterCtn.addEventListener('click', function() {
                         // check if mayda previous fetch request if mayda ig aabort
                         if (currentController) {
                             currentController.abort();
@@ -466,97 +652,99 @@ document.addEventListener('DOMContentLoaded', function() {
                         } else {
                             console.log('waray pa previous fetch request "search approach"');
                         }
-
+            
                         const controller = new AbortController();
                         const signal = controller.signal;
                         currentController = controller;
-
+            
                         const receiver_namee = responses.data.username;
                         console.log(receiver_namee);
-
+            
                         const rightSectionOuterContainer = document.getElementById('rightSectionOuterContainer');
                         rightSectionOuterContainer.style.display = 'block';
-
-                        searchResult.remove();
+            
+                        searchResultOuterCtn.remove();
                         // clear it outer container
                         messageOuterContainer.innerHTML = '';
-
+            
                         // message header container
                         const messagesHeaderContainer = document.getElementById('messagesHeaderContainer');
                         messagesHeaderContainer.innerHTML = '';
                         messagesHeaderContainer.id = 'messagesHeaderContainer';
-
+            
                         // conversation menu
                         const conversationMenu = document.createElement('div');
                         conversationMenu.textContent = '...';
+                        conversationMenu.classList.add('conversationMenu')
                         conversationMenu.id = 'conversationMenu';
-
+            
                         // receiver name
                         const receiverName = document.createElement('div');
                         receiverName.textContent = responses.data.username;
                         receiverName.style.paddingLeft = '15px';
-
+            
                         // receiver photo
                         const receiver_photo = document.createElement('div');
                         receiver_photo.style.cssText = receiver_profile_pic_styles;
                         receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
-
+            
                         // anotherCtn
                         const anotherCtn = document.createElement('div');
                         anotherCtn.id = 'anotherCtn';
-
+            
                         anotherCtn.appendChild(receiver_photo);
                         anotherCtn.appendChild(receiverName);
-
+            
                         messagesHeaderContainer.appendChild(anotherCtn);
                         messagesHeaderContainer.appendChild(conversationMenu);
-
+            
                         // clear an outer container an kanan form para dri mag retain an mga elements
                         formOuterContainer.innerHTML = '';
-
+            
                         //console.log(jsonArr);
-                        searchResult.textContent = null;
+                        searchResultOuterCtn.textContent = null;
                         
                         // create form, input, submitButton
                         const form = document.createElement('form');
                         form.id = 'messageForm';
                         form.method = 'post';
-                        
+            
+                        const inputFieldCss = `
+                            width: 400px;
+                            border: 1px solid grey;
+                        `;
+            
                         const inputField = document.createElement('input');
                         inputField.id = 'messageInputContainer';
                         inputField.type = 'textarea';
                         inputField.placeholder = 'Type message...';
-
-                        inputField.style.borderColor = 'transparent';
-                        inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
-
-                        inputField.addEventListener('focus', function() {
-                        inputField.style.borderColor = '#E55B13';
-                        inputField.style.boxShadow = 'inset 0px 0px 0px 1px #E55B13';
-                        });
-
-                        inputField.addEventListener('blur', function() {
-                        inputField.style.borderColor = 'transparent';
-                        inputField.style.boxShadow = 'inset 0px 0px 0px 1px transparent';
-                        });
-
+                        inputField.style.cssText = inputFieldCss;
+            
+                        const submitButtonCss = `
+                            width: 120px;
+                            color: white;
+                            background-color: #003060;
+                            border: 1px solid grey;
+                        `;
+            
                         const submitButton = document.createElement('button');
                         submitButton.id = 'sendMessageButton';
                         submitButton.type = 'button';
                         submitButton.textContent = 'Send';
-
+                        submitButton.style.cssText = submitButtonCss;
+            
                         form.appendChild(inputField);
                         form.appendChild(submitButton);
-
+            
                         formOuterContainer.appendChild(form);
                         // message timestamp
                         lastMessageTimestamp = '1990-12-12 12:12:12';    
                     
                         
                         const receiver_username = responses.data.username;
-
+            
                         const convoName = current_username + ',' + receiver_username;
-
+            
                         // pag kuha messages ha db based ha conversation id
                         function getMessages() {    
                             // conversation name para mayda niya reference hain it kuha.on
@@ -586,17 +774,17 @@ document.addEventListener('DOMContentLoaded', function() {
                                 })
                                 .catch(error => console.log(error));
                         };
-
+            
                         // tawag an getMessages once maka click nat user ha search result
                         setInterval(getMessages, 1500); 
                         //getMessages();
-
+            
                         // display messages ha search na approach
                         function displayMessages(responses) {
                             responses.forEach(response => {
                                 const messageInnerContainer = document.createElement('div');
                                 messageInnerContainer.classList.add('messageInnerContainer');
-
+            
                                 const messageCtn = document.createElement('div');
                                 messageCtn.textContent = response.message_content;
                                 messageCtn.id = "messageCtn";
@@ -604,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 const messageReceiverPhoto = document.createElement('div');
                                 messageReceiverPhoto.style.cssText = receiver_profile_pic_styles;
                                 messageReceiverPhoto.style.backgroundImage = 'url("' + imgLocation +'")';
-
+            
                                 if (response.sender_id == current_user_id) {
                                     messageCtn.classList.add('messageRight');
                                     messageOuterContainer.appendChild(messageCtn);
@@ -615,11 +803,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                     messageInnerContainer.appendChild(messageCtn);
                                     messageOuterContainer.appendChild(messageInnerContainer);                            
                                 }
-
+            
                                 messageOuterContainer.scrollTop = messageOuterContainer.scrollHeight;
                             });
                         }
-
+            
                         // text area ha form
                         document.getElementById('sendMessageButton').addEventListener('click', function() {
                             const messageValue = document.getElementById('messageInputContainer').value;
@@ -633,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             xhttp1.open('POST', '/conversations', true);
                             xhttp1.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                             xhttp1.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-    
+            
                             xhttp1.onreadystatechange = function() {
                                 if (this.readyState === 4 && this.status === 200) {
                                     const responses = JSON.parse(this.responseText);
@@ -646,7 +834,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     console.log('Post denied' + 'message');
                                 }
                             }
-    
+            
                             const conversation_data = JSON.stringify({
                                 conversation_name: conversation_name 
                             });
@@ -679,13 +867,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             
                             xhttp.send(data);
                         });  
-
-
-                        // conversationMenu.addEventListener('click', function() {
-                        //     console.log('delete kuntaloy');
-                        // });
-
-                        
+            
                         //delete Conversation Ctn Based. 'event tikang ha conversation list na click'
                         conversationMenu.addEventListener('click', function() {
                             // ellipsis changes
@@ -694,10 +876,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             // elements ha ellipsis
                             const popUpOuterContainer = document.createElement('div');
                             popUpOuterContainer.classList.add('popUpOuterContainer');
-
+            
                             const popUpInnerContainer = document.createElement('div');
                             popUpInnerContainer.classList.add('popUpInnerContainer');
-
+            
                             const popUpMessage = document.createElement('div');
                             popUpMessage.textContent = 'Are you sure you want to delete this conversation?';
                             popUpMessage.classList.add('popUpMessage');
@@ -713,34 +895,34 @@ document.addEventListener('DOMContentLoaded', function() {
                                 background-color: #003060;
                                 color: white;
                             `;
-
+            
                             const yesButton = document.createElement('div');
                             yesButton.type = 'button';
                             yesButton.textContent = 'Yes';
                             yesButton.style.cssText = buttonCss;
-
+            
                             const noButton = document.createElement('div');
                             noButton.type = 'button';
                             noButton.textContent = 'No';
                             noButton.style.cssText = buttonCss;
-
+            
                             const popUpButtonCtn = document.createElement('div');
                             popUpButtonCtn.classList.add('popUpButtonCtn');
-
+            
                             popUpButtonCtn.appendChild(yesButton);
                             popUpButtonCtn.appendChild(noButton);
-
+            
                             // append an mga elements ha inner popup container
                             popUpInnerContainer.appendChild(popUpMessage);
                             popUpInnerContainer.appendChild(popUpButtonCtn);
-
+            
                             // append an inner pop up ha outer popup
                             popUpOuterContainer.appendChild(popUpInnerContainer);
-
+            
                             // append ha pinaka outer
                             ellipsisPopUp.appendChild(popUpOuterContainer);
                             ellipsisPopUp.classList.add('ellipsisPopUp');
-
+            
                             // yes button if clicked
                             yesButton.addEventListener('click', function() {
                                 fetch(`/deleteConversationSearchBased?conversation_name=${convoName}`, {
@@ -756,10 +938,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                     throw new Error('Error in deleting conversation');
                                 })
                                 .then(response => {
-                                    console.log('Conversation deleted successfully',  response);
-
+                                    console.log('Conversation deleted successfully', response);
+            
                                     rightSectionOuterContainer.style.display = 'none';
                                     ellipsisPopUp.style.display = 'none';
+                                    lastConversationTimestamp = '1990-12-12 12:12:12';
+                                    conversationList.innerHTML = '';
+            
+                                    // reasign hin value para an initalchecker
+                                    initialCheckDone = false;
+                                    popUpOuterContainer.remove();
                                 })
                                 .catch(error => console.log(error));
                             });
@@ -767,33 +955,33 @@ document.addEventListener('DOMContentLoaded', function() {
                             // no button if clicked
                             noButton.addEventListener('click', () => {
                                 ellipsisPopUp.style.display = 'none';
+                                popUpOuterContainer.remove();
                             });
-
+            
                             // pag mag click outer container an kanan pop up
                             ellipsisPopUp.addEventListener('click', () => {
                                 ellipsisPopUp.style.display = 'none';
                                 ellipsisPopUp.innerHTML = '';
                             });
-
+            
                             popUpInnerContainer.addEventListener('click', function(event) {
                                 // stopPropagation dri gin aallow na mag bubble up it handlers from child to parent/root element
                                 event.stopPropagation();
                             });
                         });
                     });
+
                 } else {
                     // if waray user //searchResult //searchOuterCtn
                     console.log('username does not exist');
-
-                    searchResult.textContent = 'No user found';
-                    searchResult.classList.add('searchResult');
-
-                    searchOuterCtn.appendChild(searchResult);
+            
+                    searchResultOuterCtn.textContent = 'No user found';
+                    searchResultOuterCtn.classList.add('searchResultOuterCtn');
+            
+                    searchOuterCtn.appendChild(searchResultOuterCtn);
                 }
-            }
-        }
-
-        xhttp.send();
+            })
+            .catch(error => console.log(error));
     }
 
     // search input container

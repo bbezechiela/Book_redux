@@ -356,6 +356,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/book_club.js') }}"></script>
 </div>
 
 <!-- Report Modal -->
