@@ -13,13 +13,6 @@
     <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
     </div>
-    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar />
-    </div>
-    <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
-        <x-sidebarProfile />
-    </div> --}}
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
@@ -29,40 +22,9 @@
                 </button> --}}
                 <a href="/" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
-                {{-- <ul class="nav nav-underline">
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/mypurchase">My Purchase</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/addresses">Addresses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
-                    </li>
-                </ul> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
                     <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
@@ -95,57 +57,68 @@
             </div>
         </div>
         @foreach ($orders as $order)
-            @if ($order->item->order_status == 'received' && $order->item->order->user_id == session('id'))
-                <div class="order-cart">
-                    <div class="name-cart d-flex justify-content-between">
-                        <div>
-                            <a class="seller-name"
-                                href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
+            @foreach ($order->items as $item)
+                @if ($item->order_status == 'received')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
-                        <span class="order-text me-5 mt-0">Delivered</span>
-                    </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <div class="left-section">
-                                <img src="{{ asset('/images/books/' . $order->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="mb-0 book-title">{{ $order->title }}</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                    <p class="payment-mode">{{ $order->item->order->payment_method }}</p>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="payment-mode">{{ $order->payment_method }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">{{ $item->book->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
+                                        </p> <br>
+                                        <p class="text-total fw-bold">Total Payment:<span
+                                                class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="right-section">
-                                <div class="book-price">
-                                    <p class="product-price">{{ $order->price }}</p>
-                                    <p class="text-total">Total Payment:<span
-                                            class="product-total">₱{{ $order->price }}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="order-details">
-                            <div class="order-message">
-                                @if (isset($order->item->ratedItem))
-                                    <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                        data-bs-target="#rate-review"
-                                        onclick="editRating({{ $order->item->ratedItem->id }}, {{ $order->item->id }})">Edit
-                                        Rating and
-                                        Review</button>
-                                @else
-                                    <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                        data-bs-target="#rate-review"
-                                        onclick="ratingReview({{ $order->user->id }}, '{{ $order->status }}', {{ $order->item->id }})">Post
-                                        Rating and Review</button>
-                                @endif
+                            <div class="order-details">
+                                <div class="order-message">
+                                    {{-- {{$item->ratedItem->count()}} --}}
+                                    {{-- @foreach ($item->ratedItem as $review) --}}
+                                    @if ($item->ratedItem->count() > 0)
+                                        @foreach ($item->ratedItem as $review)
+                                            <button type="button" class="post-btn-delivered" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit Rating and Review</button>
+                                        @endforeach                                        
+                                    @else
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="ratingReview({{ $item->book->user->id }}, '{{ $order->status }}', {{ $item->id }})">Post Rating and Review</button>
+                                    @endif
+                                    {{-- @endforeach --}}
+                                    {{-- @if (isset($item->ratedItem))
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="editRating({{ $item->ratedItem->id }}, {{ $item->id }})">Edit
+                                            Rating and
+                                            Review</button>
+                                    @else
+                                        
+                                    @endif --}}
 
-                            </div>
-                            <div class="button-group">
-                                <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif
+                @endif
+            @endforeach
         @endforeach
         <!-- Rate and Review Modal -->
         <div class="modal fade" id="rate-review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -155,8 +128,7 @@
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review
                             Seller</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -453,7 +425,7 @@
 
         document.getElementById('submit-btn').addEventListener('click', () => {
             submit();
-        });            
+        });
     }
 
     function editRating(id, item_id) {
@@ -481,7 +453,7 @@
                 accu_cond.value = data.condition_accuracy;
                 accu_desc.value = data.description_accuracy;
                 interaction.value = data.interaction;
-                description.value = data.description;        
+                description.value = data.description;
 
                 if (data.first_img != undefined) {
                     document.getElementById('one-image').src = '/images/rate_images/' + data.first_img;
