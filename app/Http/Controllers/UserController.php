@@ -477,7 +477,8 @@ class UserController extends Controller
 
     public function delivered()
     {
-        $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        // $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
+        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user')->get();
         // dd($order);
         return view('users.delivered', ['orders' => $order]);
         // $order = Orders::where(['user_id' => session('id')])->with('items.book.user')->get();       
