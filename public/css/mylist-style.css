@@ -7,7 +7,7 @@
     position: fixed;
     background-color: #003060;
     color: #fff;
-    width: var(--sidebar_width);
+    width: 320px;
 }
 
 .profile-content {
@@ -28,7 +28,7 @@
 }
 
 #content {
-    padding-left: var(--sidebar_width);
+    padding-left: 320px;
 }
 
 .mylist-side-btn {
