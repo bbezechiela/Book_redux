@@ -15,7 +15,7 @@
         <x-sidebar />
     </div>
 
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         @if ($errors->any())
         <div class="alert alert-danger alert-dismissible">
             <ul>
