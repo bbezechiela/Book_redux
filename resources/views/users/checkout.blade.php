@@ -151,7 +151,7 @@
                 <div class="summary">
                     <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
                             class="summary-merchandise-total">P244</span></p>
-                    <p>Shipping Total: <span class="summary-shipping-total">₱130.0</span></p>
+                    <p>Shipping Total: <span class="summary-shipping-total" id="shipping-total">₱130.0</span></p>
                     <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
                 </div>
                 <div class="col-md-6 text-right">
@@ -336,8 +336,8 @@
     }
 
     shipping_option.addEventListener('mousedown', () => {
-        shipping_choices[0].textContent += ' = ₱130.00';
-        shipping_choices[1].textContent += ' = ₱0.00';
+        shipping_choices[0].textContent = 'Door-to-Door Delivery = ₱130.00';
+        shipping_choices[1].textContent = 'Personal Transaction = ₱0.00';
     });
 
     shipping_option.addEventListener('blur', () => {
@@ -348,11 +348,13 @@
     shipping_choices[0].addEventListener('click', () => {
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
+        document.getElementById('shipping-total').textContent = '₱130.00';
     });
 
     shipping_choices[1].addEventListener('click', () => {
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
+        document.getElementById('shipping-total').textContent = '₱0.00';
     });
 
     function orderNumber() {
