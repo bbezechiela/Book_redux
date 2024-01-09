@@ -77,50 +77,53 @@
         </div>
 
         @foreach ($orders as $order)
-            @if ($order->item->order_status == 'received')
-                <div class="order-cart">
-                    <div class="name-cart d-flex justify-content-between">
-                        <div>
-                            <a class="seller-name"
-                                href="#"><span>{{ $order->item->order->user->first_name . ' ' . $order->item->order->user->last_name }}</span></a>
+            @foreach ($order->item as $item)
+                @if ($item->order_status == 'received')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="#"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
-                        <span class="order-text me-5 mt-0">Delivered</span>
-                    </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <div class="left-section">
-                                <img src="{{ asset('/images/books/' . $order->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="mb-0 book-title">{{ $order->title }}</p>
-                                    <p class="mb-0 book-qty">2 Qty</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                    <p class="payment-mode">{{ $order->item->order->payment_method }}</p>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $order->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $order->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->payment_method }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $order->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span> <br>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">₱{{ $order->price + 130 }}</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="right-section">
-                                <div class="book-price">
-                                    <p class="product-price">₱{{ $order->price }}</p>
-                                    <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
-                                    <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price + 130}}</span>
-                                    </p>
+                            <div class="order-details">
+                                <div class="order-message">
+                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                        data-bs-target="#rate-review">Post
+                                        Rating and Review</button>
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="order-details">
-                            <div class="order-message">
-                                <button type="button" class="post-btn" data-bs-toggle="modal"
-                                    data-bs-target="#rate-review">Post
-                                    Rating and Review</button>
-                            </div>
-                            <div class="button-group">
-                                <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            @endif
-        @endforeach        
+                @endif
+            @endforeach
+        @endforeach
 
         <!-- Rate and Review Modal -->
         <div class="modal fade" id="rate-review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
