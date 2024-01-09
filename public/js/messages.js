@@ -3,7 +3,7 @@ let lastMessageTimestamp = '1990-12-12 12:12:12';
 let lastConversationTimestamp = '1990-12-12 12:12:12';
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('rightSectionOuterContainer').style.display = 'none';
+    // document.getElementById('rightSectionOuterContainer').style.display = 'none';
 
     // ellipsis pop out
     const ellipsisPopUp = document.getElementById('ellipsisPopUp');
@@ -108,7 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             const receiver_profile_pic_styles = `
                                 min-height: 50px;
                                 min-width: 50px;
-                                border-radius: 15px;
+                                border-radius: 50%;
+                                border: 2px outset #E55B13;
+                                padding: 1px;
                                 background-size: cover;
                                 background-repeat: no-repeat;
                             `;
@@ -217,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
                                             // remove conversation container after ma delete
                                             conversationCtn.remove();
-                                            rightSectionOuterContainer.style.display = 'none';
+                                            // rightSectionOuterContainer.style.display = 'none';
                                             ellipsisPopUp.style.display = 'none';
                                             lastConversationTimestamp = '1990-12-12 12:12:12';
                                             conversationList.innerHTML = '';
@@ -324,8 +326,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 
                                 // input field design
                                 const inputFieldCss = `
-                                    width: 400px;
-                                    border: 1px solid grey;
+                                    width: 850px;
+                                    border: 1px solid #003060;
                                 `;
                 
                                 const inputField = document.createElement('input');
@@ -335,8 +337,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 inputField.style.cssText = inputFieldCss;                
                 
                                 const submitButtonCss = `
-                                    width: 120px;
-                                    border: 1px solid grey;
+                                    width: 150px;
+                                    border: 1px solid #003060;
                                     background-color: #003060;
                                     color: white;
                                 `;

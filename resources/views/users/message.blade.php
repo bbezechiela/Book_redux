@@ -18,7 +18,7 @@
         <x-sidebar />
     </div> --}}
     {{-- <div id="content" class="border content"> Changes from me --}}
-    <div id="content" class="pe-0 border content" style="max-height: 50%">
+    <div id="content" class="pe-0 content" style="max-height: 50%">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
