@@ -122,7 +122,7 @@
                                             details</small>
                                     </div>
                                     <div class="button-group">
-                                        <button type="button" class="btn btn-sm decline-button">Decline</button>
+                                        <button type="button" class="btn btn-sm decline-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Decline</button>
                                         <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                             data-bs-toggle="modal"
                                             onclick="arrangeShipment({{ $order->id . ', ' . $item->id }})"
@@ -466,7 +466,21 @@
                 </div>
             </div>
         </div>
-
+        {{-- alert modal --}}
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body px-3">
+                        <p class="fs-4">Are you sure you want to cancel you order?</p>
+                        <div class="text-center">
+                            <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
