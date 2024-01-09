@@ -183,8 +183,6 @@ Route::post('/updateaddress/{id}/{add}', [UserController::class, 'updateAddress'
 
 Route::get('/destroyaddress/{id}/{del}', [UserController::class, 'destroyAddress']);
 
-Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
-
 // Admin
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
 
@@ -345,3 +343,7 @@ Route::post('/ratepost', [UserController::class, 'ratePost']);
 Route::post('/updaterate/{id}', [UserController::class, 'updateRate']);
 
 Route::post('/sellerconfirm', [UserController::class, 'confirmOrder']);
+
+Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
+
+Route::get('/viewshipping/{id}', [UserController::class, 'viewShipping']);

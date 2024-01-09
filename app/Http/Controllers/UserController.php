@@ -418,7 +418,8 @@ class UserController extends Controller
 
     public function droppedMyPurchase()
     {
-        return view('users.droppedMyPurchase');
+        $order = Users::with('orders.items.book.user')->find(session('id'));
+        return view('users.droppedMyPurchase', ['items' => $order]);
     }
 
     public function refundMyPurchase()
@@ -455,8 +456,8 @@ class UserController extends Controller
 
     public function orders()
     {        
-        $order = Books::where('user_id', session('id'))->has('item.order.user')->get();
-        // dd($order);
+        $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
+        // dd($order);        
         return view('users.orders', ['orders' => $order]);
     }
 
@@ -466,9 +467,10 @@ class UserController extends Controller
         $qty = intval($item->qty) + intval($item->book->stock);
 
         $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
-        $item->delete();
+        $item_update = $item->update(['order_status' => 'dropped']);
+        
 
-        if ($item) {
+        if ($item_update) {
             return redirect('/mypurchase');
         } else {
             return response()->json(['message' => 'error bitch']);
@@ -1199,5 +1201,11 @@ class UserController extends Controller
 
             return redirect('/mypurchase');
         }
+    }
+
+    public function viewShipping($id) {
+        $order = Books::with('item.order.user', 'item.order.address', 'user.addressUser')->find($id);
+
+        return $order;
     }
 }

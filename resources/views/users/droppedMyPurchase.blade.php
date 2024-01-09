@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Dropped | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/myPurchase-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Dropped | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/myPurchase-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -28,8 +28,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
                 {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
@@ -107,42 +107,50 @@
                 </nav>
             </div>
         </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Dropped</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 book-qty">2 Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
+
+        @foreach ($items->orders as $order)
+            @foreach ($order->items as $item)
+                @if ($item->order_status == 'dropped')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name" href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">Dropped</span>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="payment-mode">{{ $order->payment_method }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span></p> <br>
+                                        <p class="text-total fw-bold">Total Payment:<span class="product-total fw-bold">₱{{ $item->book->price + 130 . '.0' }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-message">
+                                    {{-- <p class="cancelled-text">Cancelled by you</p> --}}
+                                </div>
+                                <div class="button-group">
+                                    <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <p class="cancelled-text">Cancelled by you</p>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="order-cart">
+                @endif
+            @endforeach
+        @endforeach
+        {{-- <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
@@ -176,11 +184,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])

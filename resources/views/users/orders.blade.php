@@ -79,59 +79,119 @@
         </div>
 
         @foreach ($orders as $order)
-            @if ($order->user_id == session('id') && $order->item->order_status == 'Pending')
-                <div class="order-cart d-print-none">
-                    <div class="name-cart d-flex justify-content-between">
-                        <div>
-                            <a class="seller-name"
-                                href="#"><span>{{ $order->item->order->user->first_name . ' ' . $order->item->order->user->last_name }}</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+            @foreach ($order->item as $item)
+                @if ($item->order_status == 'Pending')
+                    {{-- {{ $item->order->user->first_name }} --}}
+                    <div class="order-cart d-print-none">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="#"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <button class="message-seller"><i class="fa fa-commenting"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                            <span class="order-text me-5 mt-0">Order</span>
                         </div>
-                        <span class="order-text me-5 mt-0">Order</span>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $order->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $order->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
+                                        </p> <br>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">₱{{ $order->price }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order">
+                                <div class="order-details">
+                                    <div class="order-message">
+                                        <small class="text-body-secondary">To accept the order, arrange first the
+                                            shipment
+                                            details</small>
+                                    </div>
+                                    <div class="button-group">
+                                        <button type="button" class="btn btn-sm decline-button">Decline</button>
+                                        <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
+                                            data-bs-toggle="modal"
+                                            onclick="arrangeShipment({{ $order->id . ', ' . $item->id }})"
+                                            data-bs-target="#arrange-shipment">Arrange Shipment</button>
+                                    </div>
+                                </div>
+                                {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-cart">
-                        <div class="book-details">
-                            <div class="left-section">
-                                <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book"
-                                    width="80px" height="110px">
-                                <div class="book-info">
-                                    <p class="mb-0 book-title">{{ $order->title }}</p>
-                                    <p class="mb-0 book-qty">{{ $order->item->qty }} Qty</p>
-                                    <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                    <p class="payment-mode">{{ $order->item->order->shipping_option }}</p>
-                                </div>
+                @elseif ($item->order_status == 'paid')
+                    <div class="order-cart d-print-none">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="#"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <button class="message-seller"><i class="fa fa-commenting"
+                                        aria-hidden="true"></i></button>
                             </div>
-                            <div class="right-section">
-                                <div class="book-price">
-                                    <p class="product-price">₱{{ $order->price }}</p>
-                                    <p class="text-total">Total Payment:<span
-                                            class="product-total">₱{{ $order->price }}</span></p>
-                                </div>
-                            </div>
+                            <span class="order-text me-5 mt-0">Order</span>
                         </div>
-                        <div class="order">
-                            <div class="order-details">
-                                <div class="order-message">
-                                    <small class="text-body-secondary">To accept the order, arrange first the shipment
-                                        details</small>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $order->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                    </div>
                                 </div>
-                                <div class="button-group">
-                                    <button type="button" class="btn btn-sm decline-button">Decline</button>
-                                    <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                        data-bs-toggle="modal" onclick="arrangeShipment({{ $order->id }})"
-                                        data-bs-target="#arrange-shipment">Arrange Shipment</button>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $order->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
+                                        </p> <br>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">₱{{ $order->price }}</span></p>
+                                    </div>
                                 </div>
                             </div>
-                            {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
+                            <div class="order">
+                                <div class="order-details">
+                                    <div class="order-message">
+                                        {{-- <small class="text-body-secondary">To accept the order, arrange first the
+                                            shipment
+                                            details</small> --}}
+                                    </div>
+                                    <div class="button-group">
+                                        {{-- <button type="button" class="btn btn-sm decline-button">Decline</button> --}}
+                                        <button id="arrange_shipment" type="button"
+                                            class="btn btn-sm arrange-button" data-bs-toggle="modal"
+                                            onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
+                                            data-bs-target="#shipping-details">View Shipping Details</button>
+                                    </div>
+                                </div>
+                                {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endif
+                @endif
+            @endforeach
         @endforeach
 
         <!-- Arrange Shipment Modal -->
-        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -332,12 +392,14 @@
                                         <div
                                             class="d-flex flex-row justify-content-between align-items-center order-details">
                                             <div><span class="d-block fs-12">Order date</span><span
-                                                    class="font-weight-bold">12 March 2020</span></div>
-                                            <div><span class="d-block fs-12">Order number</span><span
-                                                    class="font-weight-bold">OD44434324</span></div>
+                                                    id="detail-order-date" class="font-weight-bold">12 March
+                                                    2020</span></div>
+                                            {{-- <div><span class="d-block fs-12">Order number</span><span id="detail-order-number" class="font-weight-bold">OD44434324</span></div> --}}
                                             <div><span class="d-block fs-12">Payment method</span><span
-                                                    class="font-weight-bold">Cash on Delivery</span></div>
+                                                    id="detail-payment-method" class="font-weight-bold">Cash on
+                                                    Delivery</span></div>
                                             <div><span class="d-block fs-12">Shipping Address</span><span
+                                                    id="detail-shipping-address"
                                                     class="font-weight-bold shipping-address-text">Bagacay,
                                                     Tacloban</span></div>
                                         </div>
@@ -345,34 +407,41 @@
                                         <div class="d-flex justify-content-between align-items-center product-details">
                                             <div class="d-flex flex-row product-name-image">
                                                 <div class="d-flex flex-column justify-content-between ml-2">
-                                                    <div><span class="d-block font-weight-bold p-name">City of
-                                                            Secrets</span><span class="fs-12">Sale</span></div><span
-                                                        class="fs-12"></span>
+                                                    <div>
+                                                        <span id="detail-title"
+                                                            class="d-block font-weight-bold p-name">City of
+                                                            Secrets</span>
+                                                        <span id="detail-status" class="fs-12">Sale</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="product-price">
-                                                <h5>₱100</h5>
+                                                <h5 id="detail-price">₱100</h5>
                                             </div>
                                         </div>
                                         <div class="mt-5 amount row">
                                             <div class="d-flex justify-content-center col-md-6"><img
-                                                    src="../assets/tracking.jfif" width="250" height="100">
+                                                    id="detail-barcode" src="../assets/tracking.jfif" width="250"
+                                                    height="100">
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="billing">
                                                     <div class="d-flex justify-content-between">
-                                                        <span>Subtotal</span><span class="font-weight-bold">₱100</span>
+                                                        <span>Subtotal</span><span id="detail-subtotal"
+                                                            class="font-weight-bold">₱100</span>
                                                     </div>
                                                     <div class="d-flex justify-content-between mt-2"><span>Shipping
-                                                            fee</span><span class="font-weight-bold">₱40</span></div>
+                                                            fee</span><span id="detail-shipping-fee"
+                                                            class="font-weight-bold">₱130.00</span></div>
                                                     <hr>
                                                     <div class="d-flex justify-content-between mt-1"><span
-                                                            class="font-weight-bold">Total</span><span
+                                                            class="font-weight-bold">Total</span>
+                                                        <span id="detail-total"
                                                             class="font-weight-bold shipping-address-text">₱140</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><span class="d-block">Complete Address</span><span
+                                        </div><span class="d-block">Complete Address</span><span id="detail-address"
                                             class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
                                             Tacloban City</span>
                                         <hr>
@@ -441,8 +510,18 @@
     var pickup_phone = document.getElementById('pickup-phone');
     var pickup_address = document.getElementById('pickup-address');
     var pickup_postal = document.getElementById('pickup-postal');
-
     var confirm_btn = document.getElementById('confirm-btn');
+
+    var detail_order_date = document.getElementById('detail-order-date');
+    var detail_payment_method = document.getElementById('detail-payment-method');
+    var detail_shipping_address = document.getElementById('detail-shipping-address');
+    var detail_title = document.getElementById('detail-title');
+    var detail_status = document.getElementById('detail-status');
+    var detail_price = document.getElementById('detail-price');
+    var detail_barcode = document.getElementById('detail-barcode');
+    var detail_subtotal = document.getElementById('detail-subtotal');
+    var detail_total = document.getElementById('detail-total');
+    var detail_address = document.getElementById('detail-address');
 
     pickup.addEventListener('click', (event) => {
         event.preventDefault();
@@ -479,25 +558,25 @@
                 alert('Please set your pickup date');
             } else {
                 fetch('/sellerconfirm', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': csrf_token,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: id.value,
-                        shipping_status: document.getElementById('pick_up').value,
-                        pickup_date: pickup_date.value
-                    }),
-                })
-                // .then(response => response.json())
-                .then(response => {
-                    if (response.redirected) {
-                        window.location.reload();
-                    }
-                })
-                .catch(error => console.error(error));
-            }            
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrf_token,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: id.value,
+                            shipping_status: document.getElementById('pick_up').value,
+                            pickup_date: pickup_date.value
+                        }),
+                    })
+                    // .then(response => response.json())
+                    .then(response => {
+                        if (response.redirected) {
+                            window.location.reload();
+                        }
+                    })
+                    .catch(error => console.error(error));
+            }
 
         } else if (document.getElementById('personal_transaction').checked) {
             fetch('/sellerconfirm', {
@@ -522,7 +601,7 @@
         }
     });
 
-    function arrangeShipment(book_id) {
+    function arrangeShipment(book_id, item_id) {
         fetch('/getorderdetails/' + book_id, {
                 method: 'GET'
             })
@@ -544,20 +623,27 @@
                     }
                 });
 
-                id.value = result.item.id;
-                customer_name.value = result.item.order.address.name;
-                customer_contact_num.value = result.item.order.user.phone_number;
-                customer_add.value = result.item.order.address.region + ', ' + result.item.order.address
-                    .street_building_house + ', ' + result.item.order.address.brgy_village + ', ' + result.item
-                    .order.address.city_municipality + ', ' + result.item.order.address.postal_code;
+                var item_created;
+                result.item.forEach(item => {
+                    if (item.id == item_id) {
+                        id.value = item.id;
+                        customer_name.value = item.order.address.name;
+                        customer_contact_num.value = item.order.user.phone_number;
+                        customer_add.value = item.order.address.region + ', ' + item.order.address
+                            .street_building_house + ', ' + item.order.address.brgy_village + ', ' + item
+                            .order.address.city_municipality + ', ' + item.order.address.postal_code;
+                        payment.value = item.order.payment_method;
+                        item_created = item.order.created_at;
+                    }
+                });
 
                 weight.value = result.weight;
                 width.value = result.width;
                 height.value = result.height;
                 length.value = result.length;
-                payment.value = result.item.order.payment_method;
 
-                var date = new Date(result.item.order.created_at);
+
+                var date = new Date(item_created);
 
                 // order_date.value = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
                 order_date.value = date.toLocaleDateString();
@@ -571,6 +657,35 @@
                 }
             })
             .catch(error => console.error(error));
+    }
+
+    function viewShipping(book_id, item_id) {
+        fetch('/viewshipping/' + book_id, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                var item_updated;
+                result.item.forEach(item => {
+                    if (item.id == item_id) {                        
+                        item_updated = item.updated_at;
+                        detail_payment_method.textContent = item.order.payment_method;
+                        detail_shipping_address.textContent = item.order.address.brgy_village + ', ' + item.order.address.city_municipality;
+                        detail_barcode.src = 'images/bar_codes/' + item.bar_code;
+                        detail_address.textContent = item.order.address.street_building_house + ' ' + item.order.address.brgy_village + ', ' + item.order.address.city_municipality;
+                    }
+                });
+                var date = new Date(item_updated);
+                detail_order_date.textContent = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
+                detail_title.textContent = result.title;
+                detail_status.textContent = result.status;
+                detail_price.textContent = '₱' + result.price;
+                detail_subtotal.textContent = '₱' + result.price;
+                detail_total.textContent = '₱' + (parseFloat(result.price) + parseFloat(130)) + '.0';                
+            })
+            .catch(error => console.error(error));
+
     }
 
     function hidePickupContent() {

@@ -119,8 +119,8 @@
                                                 class="product-total">₱{{ $item->book->price }}</span></p>
                                     </div>
                                     <div class="button-group">
-                                        <a class="btn btn-sm cancel-button"
-                                            href="/deleteorder/{{ $item->id }}">Cancel Order</a>
+                                        {{-- <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a> --}}
+                                        <a class="btn btn-sm cancel-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="assignLink({{ $item->id }})">Cancel Order</a>
                                         <button type="button"
                                             class="btn btn-sm pending-button">{{ $item->order_status }}</button>
 
@@ -159,8 +159,8 @@
                                                 class="product-total">{{ $item->book->price }}</span></p>
                                     </div>
                                     <div class="button-group">
-                                        <a class="btn btn-sm cancel-button"
-                                            href="/deleteorder/{{ $item->id }}">Cancel Order</a>
+                                        {{-- <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a> --}}
+                                        <a class="btn btn-sm cancel-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="assignLink({{ $item->id }})">Cancel Order</a>
                                         <button type="button"
                                             class="btn btn-sm pending-button">{{ $item->order_status }}</button>
                                     </div>
@@ -171,8 +171,24 @@
                 @endif
             @endforeach
         @endforeach
-
     </div>
+    {{-- alert modal --}}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body px-3">
+                    <p class="fs-4">Are you sure you want to cancel you order?</p>
+                    <div class="text-center">
+                        <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- toast --}}
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -184,7 +200,7 @@
             @if (session('message'))
                 <div class="toast-body fw-bold text-success">
                     {{ session('message') }}
-                </div>                
+                </div>
             @endif
         </div>
     </div>
@@ -236,6 +252,16 @@
     //         })
     //         .catch(err => console.error(err));
     // }
+
+    var confirm_redirection_btn = document.getElementById('confirm-redirection');
+
+    // confirm_redirection_btn.addEventListener('click', () => {
+    //     alert(confirm_redirection_btn.href);
+    // });
+
+    function assignLink(id) {
+        confirm_redirection_btn.href = /deleteorder/ + id;
+    }
 
     const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
 

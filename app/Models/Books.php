@@ -17,7 +17,7 @@ class Books extends Model
 
     public function item()
     {
-        return $this->hasOne(Order_Items::class, 'book_id')->withDefault();
+        return $this->hasMany(Order_Items::class, 'book_id');
     }
 
     public function cart()

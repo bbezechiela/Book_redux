@@ -10,7 +10,7 @@ class Order_Items extends Model
     use HasFactory;
 
     public function order() {
-        return $this->belongsTo(Orders::class, 'order_id')->withDefault();
+        return $this->belongsTo(Orders::class, 'order_id');
     }
     
     public function book() {
