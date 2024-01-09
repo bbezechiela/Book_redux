@@ -132,8 +132,8 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span></p> <br>
-                                        <p class="text-total fw-bold">Total Payment:<span class="product-total fw-bold">₱{{ $item->book->price + 130 . '.0' }}</span></p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
+                                        <p class="text-total fw-bold">Total Payment:<span class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
                                     </div>
                                 </div>
                             </div>

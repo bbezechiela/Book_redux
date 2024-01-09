@@ -100,7 +100,7 @@
                 </div>
                 <span class="order-text me-5 mt-0">To Purchase</span>
             </div>
-            <div class="product-cart">
+            {{-- <div class="product-cart">
                 <div class="book-details">
                     <div class="left-section">
                         <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
@@ -110,7 +110,7 @@
                             <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                             <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                        </div>
+                        </div> --}}
                         <div class="product-cart">
                             <div class="book-details">
                                 <div class="left-section">
@@ -126,8 +126,9 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
                                         <p class="text-total">Total Payment:<span
-                                                class="product-total">₱{{ $item->book->price }}</span></p>
+                                                class="product-total">₱{{ $item->book->price + 130 }}</span></p>
                                     </div>
                                     <div class="button-group">
                                         {{-- <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel
@@ -195,9 +196,9 @@
                                     class="btn btn-sm pending-button">{{ $item->order_status }}</button>
                             </div>
                         </div> --}}
-                    </div>
-                </div>
-            </div>
+                    {{-- </div> --}}
+                {{-- </div>
+            </div> --}}
             @endif
             @endforeach
             @endforeach
