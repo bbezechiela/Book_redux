@@ -231,6 +231,11 @@ Route::get('/adminChecker', [BookClubController::class, 'adminChecker']);
 
 Route::post('/addModerators', [BookClubController::class, 'addModerators']);
 
+Route::get('/moderatorChecker', [BookClubController::class, 'moderatorChecker']);
+
+Route::post('/addMembers', [BookClubController::class, 'addMembers']);
+
+Route::post('/joinRequest', [BookClubController::class, 'joinRequest']);
 
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

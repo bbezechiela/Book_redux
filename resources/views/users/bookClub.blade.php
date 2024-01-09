@@ -336,7 +336,7 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/book_club.js') }}"></script>
+    <script src="{{ asset('js/book_club_mywall.js') }}"></script>
 </div>
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
