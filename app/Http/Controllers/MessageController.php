@@ -32,7 +32,7 @@ class MessageController extends Controller
             $conversation[$newKey] = $newValue;
         }
         
-        if($getter->isNotEmpty()) {
+        if ($getter->isNotEmpty()) {
             return response()->json(['data' => $getter]);
         } else {            
             return response()->json(['error' => 'No conversation']);

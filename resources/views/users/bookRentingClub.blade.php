@@ -423,6 +423,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/book_renting_club.js'); }}"></script>
 </div>
 <!-- Report Modal -->
 <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
