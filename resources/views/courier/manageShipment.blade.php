@@ -37,25 +37,7 @@
                     </button></a>
             </div>
             <div class="position-absolute end-0">
-                <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/shipment"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" data-bs-title="Home">
-                        <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px;"></i>
-                    </button></a> --}}
-                    {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
-                    {{-- <a href="/couriernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
+                <div class="d-flex">                    
                     <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"

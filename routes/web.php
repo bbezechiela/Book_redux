@@ -333,7 +333,7 @@ Route::get('/getrating/{id}', [UserController::class, 'getRating']);
 
 Route::post('/acceptshipment', [UserController::class, 'acceptShipment']);
 
-Route::post('/completedShipping', [UserController::class, 'complete']);
+Route::get('/completedShipping', [UserController::class, 'complete']);
 
 Route::post('/ratepost', [UserController::class, 'ratePost']);
 

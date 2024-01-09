@@ -109,8 +109,8 @@
                         </div>
                         <div class="order-details">
                             <div class="order-message">
-                                {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
-                                    data-bs-target="#rate-review">Reviews</button> --}}
+                                <button type="button" class="post-btn" data-bs-toggle="modal"
+                                    data-bs-target="#rate-review">Reviews</button>
                             </div>
                             <div class="button-group">
                                 <button type="button" class="btn btn-sm contact-button">Contact Customer</button>

@@ -65,44 +65,32 @@
             <div id="checkout" class="checkout-content mt-3 w-100">
                 <h4 class="text-center checkout_text mx-5 pb-2">Checkout</h4>
             </div>
-            {{-- @if ($user->address->default_address == 'true') --}}
-
-            @foreach ($user->addressUser as $user)
-                @if ($user->default_address == 'true')
-                    <div class="delivery-address-container">
-                        <span id="address-id" hidden>{{ $user->id }}</span>
-                        <h2 class="delivery-address-title">
-                            <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
-                            Address
-                        </h2>
-                        <div class="seller-details">
-                            <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
-                            <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
-                            <p class="address" style="margin-right: 15px;">
-                                {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
-                            </p>
-                            <p class="zipcode">{{ $user->postal_code }}</p>
+            @if ($user->addressUser->count() > 0)
+                @foreach ($user->addressUser as $user)
+                    @if ($user->default_address == 'true')
+                        <div class="delivery-address-container">
+                            <span id="address-id" hidden>{{ $user->id }}</span>
+                            <h2 class="delivery-address-title">
+                                <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
+                                Address
+                            </h2>
+                            <div class="seller-details">
+                                <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
+                                <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
+                                <p class="address" style="margin-right: 15px;">
+                                    {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
+                                </p>
+                                <p class="zipcode">{{ $user->postal_code }}</p>
+                            </div>
+                            <button class="change-button"><a href="/deliveryAddress">Change</a></button>
                         </div>
-                        <button class="change-button"><a href="/deliveryAddress">Change</a></button>
-                    </div>
-                @endif
-            @endforeach
-            {{-- <div class="float-end">
-                <p class="mb-0 me-5 d-flex align-items-center">
-                </p>
-            </div> --}}
-            {{-- <div class="footer fixed-bottom">
-                <div class="container"> --}}
-
-            {{-- </div>
-            </div> --}}
+                    @endif
+                @endforeach
+            @else
+                <a href="/addresses" class="btn">Add Delivery Address</a>
+            @endif
 
             <main class="product-list">
-                {{-- <div class="details-container">
-                    <h1 class="product-details">Book Ordered</h1>
-                    <h1 class="price">Price</h1>
-                </div> --}}
-                {{-- </div> --}}
                 @foreach ($items as $index => $orders)
                     {{-- {{ $orders->productRelation->title }} --}}
                     {{-- <span data="id" >{{ $orders->id }}</span> --}}
@@ -175,14 +163,15 @@
     </div>
 </body>
 <!-- Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="messageModal" tabindex="-1" data-bs-backdrop="static"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">           
+        <div class="modal-content">
             <div class="modal-body text-center">
                 <h3 class="fw-bold fs-2" style="color: #003060;">Please Wait</h3>
                 <p style="color: #003060;">You'll be redirected to another page.</p>
-                <img class="img  mt-2" src="../assets/loading.gif" width="50" alt="loading gif">                
-            </div>            
+                <img class="img  mt-2" src="../assets/loading.gif" width="50" alt="loading gif">
+            </div>
         </div>
     </div>
 </div>

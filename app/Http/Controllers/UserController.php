@@ -1019,7 +1019,9 @@ class UserController extends Controller
 
     public function complete()
     {
-        return view('courier.complete');
+        $orders = Order_Items::where('order_status', 'received')->with('book.user.addressUser', 'order.address', 'order.user')->get();
+
+        return view('courier.complete', ['items' => $orders]);
     }
 
     public function booksRented()
