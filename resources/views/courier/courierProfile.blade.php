@@ -10,7 +10,7 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0 body">
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>
@@ -29,10 +29,10 @@
                         data-bs-title="Completed">
                         <i class="fa fa-check-square-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Completed</i>
                     </button></a>
-                    <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
                         data-bs-title="Messages">
                         <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060; margin-right: 20px;">  Messages</i>
-                    </button></a>
+                    </button></a> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">

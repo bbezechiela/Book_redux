@@ -326,8 +326,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 
                                 // input field design
                                 const inputFieldCss = `
-                                    width: 850px;
-                                    border: 1px solid #003060;
+                                    width: 920px;
+                                    border: 1px solid #F8F9FA;
+                                    background-color: #F8F9FA;
+                                    color: #003060;
                                 `;
                 
                                 const inputField = document.createElement('input');
@@ -337,9 +339,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 inputField.style.cssText = inputFieldCss;                
                 
                                 const submitButtonCss = `
-                                    width: 150px;
-                                    border: 1px solid #003060;
-                                    background-color: #003060;
+                                    width: 100px;
+                                    border: 1px solid #E55B13;
+                                    background-color: #E55B13;
                                     color: white;
                                 `;
                 
@@ -712,8 +714,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         form.method = 'post';
             
                         const inputFieldCss = `
-                            width: 400px;
-                            border: 1px solid grey;
+                        width: 920px;
+                        border: 1px solid #F8F9FA;
+                        background-color: #F8F9FA;
+                        color: #003060;
                         `;
             
                         const inputField = document.createElement('input');
@@ -723,10 +727,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         inputField.style.cssText = inputFieldCss;
             
                         const submitButtonCss = `
-                            width: 120px;
+                            width: 100px;
                             color: white;
-                            background-color: #003060;
-                            border: 1px solid grey;
+                            border: 1px solid #E55B13;
+                            background-color: #E55B13;
                         `;
             
                         const submitButton = document.createElement('button');
