@@ -111,43 +111,69 @@
                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                             <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱{{ $item->book->price }}</p>
-                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
-                            <p class="text-total">Total Payment:<span
-                                    class="product-total">₱{{ $item->book->price + 130 }}</span></p>
-                        </div>
-                        <div class="button-group">
-                            <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
-                            <button type="button" class="btn btn-sm pending-button">{{ $item->order_status }}</button>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                                        <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">₱{{ $item->book->price }}</span></p>
+                                    </div>
+                                    <div class="button-group">
+                                        {{-- <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a> --}}
+                                        <a class="btn btn-sm cancel-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="assignLink({{ $item->id }})">Cancel Order</a>
+                                        <button type="button"
+                                            class="btn btn-sm pending-button">{{ $item->order_status }}</button>
 
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'Pending')
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Pay</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
-                            height="110px">
-                        <div class="book-info">
-                            <p id="title_{{ $item->order->id }}" class="mb-0 book-title">
-                                {{ $item->book->title }}</p>
-                            <p class="mb-0 book-price">2 Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'Pending')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">To Pay</span>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p id="title_{{ $item->order->id }}" class="mb-0 book-title">
+                                            {{ $item->book->title }}</p>
+                                        <p class="mb-0 book-price">2 Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Total Payment: ₱<span
+                                                id="payment_{{ $item->order->id }}"
+                                                class="product-total">{{ $item->book->price }}</span></p>
+                                    </div>
+                                    <div class="button-group">
+                                        {{-- <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a> --}}
+                                        <a class="btn btn-sm cancel-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="assignLink({{ $item->id }})">Cancel Order</a>
+                                        <button type="button"
+                                            class="btn btn-sm pending-button">{{ $item->order_status }}</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="right-section">
@@ -167,8 +193,24 @@
         @endif
         @endforeach
         @endforeach
-
     </div>
+    {{-- alert modal --}}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body px-3">
+                    <p class="fs-4">Are you sure you want to cancel you order?</p>
+                    <div class="text-center">
+                        <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- toast --}}
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -178,9 +220,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             @if (session('message'))
-            <div class="toast-body fw-bold text-success">
-                {{ session('message') }}
-            </div>
+                <div class="toast-body fw-bold text-success">
+                    {{ session('message') }}
+                </div>
             @endif
         </div>
     </div>
@@ -232,6 +274,17 @@
     //         })
     //         .catch(err => console.error(err));
     // }
+
+    var confirm_redirection_btn = document.getElementById('confirm-redirection');
+
+    // confirm_redirection_btn.addEventListener('click', () => {
+    //     alert(confirm_redirection_btn.href);
+    // });
+
+    function assignLink(id) {
+        confirm_redirection_btn.href = /deleteorder/ + id;
+    }
+
     const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
     @if(session('message'))
     message.show()

@@ -128,7 +128,7 @@
                             <li><a class="dropdown-item" href="#">Door-to-Door Delivery</a></li>
                             <li><a class="dropdown-item" href="#">Personal Transaction</a></li>
                         </ul>
-                    </div> --}}
+                    </div> --}}                    
                     <select id="shipping-option" class="btn shipping-button">
                         <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
                         <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
@@ -184,7 +184,7 @@
 <script>
     // console.log(document.querySelectorAll('span[data="status"]').textContent);
     var prices = document.querySelectorAll('span[class="price-list"]');
-    var item_qty = document.querySelectorAll('span[class="qty"]');
+    var item_qty = document.querySelectorAll('span[class="qty"]');    
     var totalItem = document.getElementById('total');
     var displayTotal = document.getElementById('total-price');
     var mercha_total = document.getElementById('mer-total');
@@ -209,6 +209,7 @@
     var address_id = document.getElementById('address-id');
     var books = document.querySelectorAll('span[data="book-id"]');
     var shipping_option = document.getElementById('shipping-option');
+    var shipping_choices = document.querySelectorAll('option[class="fs-5"]')
     var payment_method = document.getElementById('payment-method');
     var titles = document.querySelectorAll('p[class="book-title"]');
     var book_titles = Array.from(titles, element => element.textContent).join(', ');
@@ -334,6 +335,25 @@
             .catch(err => console.error(err));
     }
 
+    shipping_option.addEventListener('mousedown', () => {
+        shipping_choices[0].textContent += ' = ₱130.00';
+        shipping_choices[1].textContent += ' = ₱0.00';
+    });
+
+    shipping_option.addEventListener('blur', () => {
+        shipping_choices[0].textContent = 'Door-to-Door Delivery';
+        shipping_choices[1].textContent = 'Personal Transaction';
+    });
+
+    shipping_choices[0].addEventListener('click', () => {
+        shipping_choices[0].textContent = 'Door-to-Door Delivery';
+        shipping_choices[1].textContent = 'Personal Transaction';
+    });
+
+    shipping_choices[1].addEventListener('click', () => {
+        shipping_choices[0].textContent = 'Door-to-Door Delivery';
+        shipping_choices[1].textContent = 'Personal Transaction';
+    });
 
     function orderNumber() {
         let now = Date.now().toString() // '1492341545873'
