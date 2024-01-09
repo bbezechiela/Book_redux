@@ -101,7 +101,7 @@
                             <div class="right-section">
                                 <div class="book-price">
                                     <p class="product-price">₱{{ $order->price }}</p>
-                                    <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span> <br>
+                                    <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
                                     <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price + 130}}</span>
                                     </p>
                                 </div>
@@ -110,7 +110,8 @@
                         <div class="order-details">
                             <div class="order-message">
                                 <button type="button" class="post-btn" data-bs-toggle="modal"
-                                    data-bs-target="#rate-review">Reviews</button>
+                                    data-bs-target="#rate-review">Post
+                                    Rating and Review</button>
                             </div>
                             <div class="button-group">
                                 <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
@@ -138,7 +139,7 @@
                                     <img src="../assets/nestine.png" alt="seller image" class="circle-picture">
                                     <div class="name-interaction">
                                         <p>Nestine Nicole Navarro</p>
-                                        <div class="dropdown">
+                                        {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
                                                 Interaction Type
@@ -149,7 +150,7 @@
                                                 </li>
                                                 <li><button class="dropdown-item" type="button">Rent</button></li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

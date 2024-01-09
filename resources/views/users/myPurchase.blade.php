@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'My Purchase | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/myPurchase-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'My Purchase | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/myPurchase-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -28,8 +28,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                        src="../assets/Book_Logo.png" alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -90,86 +90,82 @@
             </div>
         </div>
         @foreach ($user->orders as $order)
-            @foreach ($order->items as $item)
-                @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'Pending')
-                    <div class="order-cart">
-                        <div class="name-cart d-flex justify-content-between">
-                            <div>
-                                <a class="seller-name"
-                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                            </div>
-                            <span class="order-text me-5 mt-0">To Pay</span>
+        @foreach ($order->items as $item)
+        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'Pending')
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                </div>
+                <span class="order-text me-5 mt-0">To Pay</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                            <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                            <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>
-                        <div class="product-cart">
-                            <div class="book-details">
-                                <div class="left-section">
-                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
-                                        width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                                    </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">₱{{ $item->book->price }}</p>
-                                        <p class="text-total">Total Payment:<span
-                                                class="product-total">₱{{ $item->book->price }}</span></p>
-                                    </div>
-                                    <div class="button-group">
-                                        <a class="btn btn-sm cancel-button"
-                                            href="/deleteorder/{{ $item->id }}">Cancel Order</a>
-                                        <button type="button"
-                                            class="btn btn-sm pending-button">{{ $item->order_status }}</button>
+                    </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $item->book->price }}</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
+                            <p class="text-total">Total Payment:<span
+                                    class="product-total">₱{{ $item->book->price + 130 }}</span></p>
+                        </div>
+                        <div class="button-group">
+                            <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
+                            <button type="button" class="btn btn-sm pending-button">{{ $item->order_status }}</button>
 
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'Pending')
-                    <div class="order-cart">
-                        <div class="name-cart d-flex justify-content-between">
-                            <div>
-                                <a class="seller-name"
-                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                            </div>
-                            <span class="order-text me-5 mt-0">To Pay</span>
-                        </div>
-                        <div class="product-cart">
-                            <div class="book-details">
-                                <div class="left-section">
-                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
-                                        width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p id="title_{{ $item->order->id }}" class="mb-0 book-title">
-                                            {{ $item->book->title }}</p>
-                                        <p class="mb-0 book-price">2 Qty</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
-                                    </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">₱{{ $item->book->price }}</p>
-                                        <p class="text-total">Total Payment: ₱<span
-                                                id="payment_{{ $item->order->id }}"
-                                                class="product-total">{{ $item->book->price }}</span></p>
-                                    </div>
-                                    <div class="button-group">
-                                        <a class="btn btn-sm cancel-button"
-                                            href="/deleteorder/{{ $item->id }}">Cancel Order</a>
-                                        <button type="button"
-                                            class="btn btn-sm pending-button">{{ $item->order_status }}</button>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
+        </div>
+        @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'Pending')
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                </div>
+                <span class="order-text me-5 mt-0">To Pay</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p id="title_{{ $item->order->id }}" class="mb-0 book-title">
+                                {{ $item->book->title }}</p>
+                            <p class="mb-0 book-price">2 Qty</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>
                     </div>
-                @endif
-            @endforeach
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $item->book->price }}</p>
+                            <p class="text-total">Total Payment: ₱<span id="payment_{{ $item->order->id }}"
+                                    class="product-total">{{ $item->book->price }}</span></p>
+                        </div>
+                        <div class="button-group">
+                            <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
+                            <button type="button" class="btn btn-sm pending-button">{{ $item->order_status }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @endforeach
         @endforeach
 
     </div>
@@ -182,17 +178,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             @if (session('message'))
-                <div class="toast-body fw-bold text-success">
-                    {{ session('message') }}
-                </div>                
+            <div class="toast-body fw-bold text-success">
+                {{ session('message') }}
+            </div>
             @endif
         </div>
     </div>
 </div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
@@ -236,10 +232,8 @@
     //         })
     //         .catch(err => console.error(err));
     // }
-
     const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
-
-    @if (session('message'))
-        message.show()
+    @if(session('message'))
+    message.show()
     @endif
 </script>

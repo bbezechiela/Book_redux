@@ -10,7 +10,7 @@
 </head>
 
 <body id="body-container" class="container-fluid px-0 body">
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>

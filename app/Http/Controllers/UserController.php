@@ -295,6 +295,7 @@ class UserController extends Controller
                     session()->put([
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
+                        'username' => $user->username, 
                         'profile_pic' => $user->profile_photo
                     ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
@@ -326,7 +327,8 @@ class UserController extends Controller
                     // return redirect('/myprofile');
                     session()->put([
                         'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,                        
+                        'last_name' => $user->last_name,    
+                        'username' => $user->username,                     
                     ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
@@ -567,6 +569,7 @@ class UserController extends Controller
                     'type' => $user->type,
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
+                    'username' => $user->username, 
                     // 'address' => $validated["address"],
                     'user' => $validated["username"],
                     'profile_pic' => $validated["profile_photo"]
@@ -620,6 +623,7 @@ class UserController extends Controller
                     'id' => $user["id"],
                     'first_name' => $user["first_name"],
                     'last_name' => $user["last_name"],
+                    'username' => $user["username"], 
                     'type' => $user->type,
                     'user' => $user["username"],
                     'profile_pic' => $user["profile_photo"]

@@ -127,8 +127,9 @@
                     </div>
                     <div class="right-section">
                         <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
+                            <p class="product-price">₱144</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
+                            <p class="text-total">Total Payment:<span class="product-total">₱194</span></p>
                         </div>
                     </div>
                 </div>
@@ -162,8 +163,9 @@
                     </div>
                     <div class="right-section">
                         <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
+                            <p class="product-price">₱144</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
+                            <p class="text-total">Total Payment:<span class="product-total">₱194</span></p>
                         </div>
                     </div>
                 </div>

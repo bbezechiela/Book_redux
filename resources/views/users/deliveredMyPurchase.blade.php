@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Delivered | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/myPurchase-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Delivered | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/myPurchase-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -25,11 +25,23 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -57,68 +69,74 @@
             </div>
         </div>
         @foreach ($orders as $order)
-            @foreach ($order->items as $item)
-                @if ($item->order_status == 'received')
-                    <div class="order-cart">
-                        <div class="name-cart d-flex justify-content-between">
-                            <div>
-                                <a class="seller-name"
-                                    href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
-                            </div>
-                            <span class="order-text me-5 mt-0">Delivered</span>
+        @foreach ($order->items as $item)
+        @if ($item->order_status == 'received')
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                </div>
+                <span class="order-text me-5 mt-0">Delivered</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                            <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                            <p class="payment-mode">{{ $order->payment_method }}</p>
                         </div>
-                        <div class="product-cart">
-                            <div class="book-details">
-                                <div class="left-section">
-                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
-                                        width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $order->payment_method }}</p>
-                                    </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
-                                        </p> <br>
-                                        <p class="text-total fw-bold">Total Payment:<span
-                                                class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="order-details">
-                                <div class="order-message">
-                                    {{-- {{$item->ratedItem->count()}} --}}
-                                    {{-- @foreach ($item->ratedItem as $review) --}}
-                                    @if ($item->ratedItem->count() > 0)
-                                        @foreach ($item->ratedItem as $review)
-                                            <button type="button" class="post-btn-delivered" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit Rating and Review</button>
-                                        @endforeach                                        
-                                    @else
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="ratingReview({{ $item->book->user->id }}, '{{ $order->status }}', {{ $item->id }})">Post Rating and Review</button>
-                                    @endif
-                                    {{-- @endforeach --}}
-                                    {{-- @if (isset($item->ratedItem))
+                    </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $item->book->price }}</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
+                            </p> <br>
+                            <p class="text-total">Total Payment:<span
+                                    class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-details">
+                    <div class="order-message">
+                        {{-- {{$item->ratedItem->count()}} --}}
+                        {{-- @foreach ($item->ratedItem as $review) --}}
+                        @if ($item->ratedItem->count() > 0)
+                        @foreach ($item->ratedItem as $review)
+                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                            data-bs-target="#rate-review" onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                            Rating and Review</button>
+                        @endforeach
+                        @else
+                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                            data-bs-target="#rate-review"
+                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $order->status }}', {{ $item->id }})">Post
+                            Rating and Review</button>
+                        @endif
+                        {{-- @endforeach --}}
+                        {{-- @if (isset($item->ratedItem))
                                         <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
                                             data-bs-target="#rate-review"
                                             onclick="editRating({{ $item->ratedItem->id }}, {{ $item->id }})">Edit
-                                            Rating and
-                                            Review</button>
-                                    @else
-                                        
-                                    @endif --}}
+                        Rating and
+                        Review</button>
+                        @else
 
-                                </div>
-                                <div class="button-group">
-                                    <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
-                                </div>
-                            </div>
-                        </div>
+                        @endif --}}
+
                     </div>
-                @endif
-            @endforeach
+                    <div class="button-group">
+                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+        @endforeach
         @endforeach
         <!-- Rate and Review Modal -->
         <div class="modal fade" id="rate-review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -138,8 +156,8 @@
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Nestine Nicole Navarro</p>
-                                        <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
-                                            Type</span>
+                                        {{-- <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
+                                            Type</span> --}}
                                         {{-- <div class="dropdown interaction-drpdwn">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -221,52 +239,53 @@
                                 </p>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..."></textarea>
+                                    <textarea class="form-control" id="description" rows="5"
+                                        placeholder="Enter your text here..."></textarea>
                                 </div>
                                 </p>
                                 <p>Photo:
-                                <div class="image-container">
-                                    <div class="image-holder">
-                                        <input id="first-img" type="file" accept="image/*" class="d-none">
-                                        <label for="first-img"><i id="first-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="one-image" class="fa fa-plus" alt=""></i></label>
+                                    <div class="image-container">
+                                        <div class="image-holder">
+                                            <input id="first-img" type="file" accept="image/*" class="d-none">
+                                            <label for="first-img"><i id="first-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="one-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="second-img" type="file" accept="image/*" class="d-none">
+                                            <label for="second-img"><i id="second-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="two-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="third-img" type="file" accept="image/*" class="d-none">
+                                            <label for="third-img"><i id="three-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="three-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="fourth-img" type="file" accept="image/*" class="d-none">
+                                            <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="four-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="fifth-img" type="file" accept="image/*" class="d-none">
+                                            <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="five-image" alt=""></i></label>
+                                        </div>
                                     </div>
-                                    <div class="image-holder">
-                                        <input id="second-img" type="file" accept="image/*" class="d-none">
-                                        <label for="second-img"><i id="second-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="two-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="third-img" type="file" accept="image/*" class="d-none">
-                                        <label for="third-img"><i id="three-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="three-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="fourth-img" type="file" accept="image/*" class="d-none">
-                                        <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="four-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="fifth-img" type="file" accept="image/*" class="d-none">
-                                        <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="five-image" class="fa fa-plus" alt=""></i></label>
-                                    </div>
-                                </div>
                                 </p>
                                 <div class="col-4 d-flex justify-content-between show-text">
                                     <p>Show username on your rating/review</p>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="user-switch" value="true">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="user-switch"
+                                            value="true">
                                     </div>
                                 </div>
-                                <p class="username-text">Your username will be shown as <span
-                                        id="username">necxs</span></p>
+                                <p class="username-text">Your username will be shown as <span id="username">necxs</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -280,32 +299,28 @@
 </div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
     var rate_val = 0;
-
     var one_S = document.getElementById('one-star');
     var two_S = document.getElementById('two-star');
     var three_S = document.getElementById('three-star');
     var four_S = document.getElementById('four-star');
     var five_S = document.getElementById('five-star');
-
     var first_img = document.getElementById('first-img');
     var second_img = document.getElementById('second-img');
     var third_img = document.getElementById('third-img');
     var fourth_img = document.getElementById('fourth-img');
     var fifth_img = document.getElementById('fifth-img');
-
     var submit_btn = document.getElementById('submit-btn');
     var accu_cond = document.getElementById('condition-accuracy');
     var accu_desc = document.getElementById('condition-description');
     var interaction = document.getElementById('interaction');
     var description = document.getElementById('description');
     var check_username = document.getElementById('user-switch');
-
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -313,7 +328,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     second_img.addEventListener('change', () => {
         var img = document.getElementById('two-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -321,7 +335,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     third_img.addEventListener('change', () => {
         var img = document.getElementById('three-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -329,7 +342,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     fourth_img.addEventListener('change', () => {
         var img = document.getElementById('four-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -337,7 +349,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     fifth_img.addEventListener('change', () => {
         var img = document.getElementById('five-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -345,69 +356,56 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     one_S.addEventListener('click', () => {
         star(1);
         rate_val = 1;
     });
-
     two_S.addEventListener('click', () => {
         star(2);
         rate_val = 2;
     });
-
     three_S.addEventListener('click', () => {
         star(3);
         rate_val = 3;
     });
-
     four_S.addEventListener('click', () => {
         star(4);
         rate_val = 4;
     });
-
     five_S.addEventListener('click', () => {
         star(5);
         rate_val = 5;
     });
 
     function ratingReview(user_id, type, item_id) {
-
         first_img.value = '';
         second_img.value = '';
         third_img.value = '';
         fourth_img.value = '';
         fifth_img.value = '';
-
         document.getElementById('one-image').src = '';
         document.getElementById('two-image').src = '';
         document.getElementById('three-image').src = '';
         document.getElementById('four-image').src = '';
         document.getElementById('five-image').src = '';
-
         document.getElementById('one-image').style.width = '0px';
         document.getElementById('two-image').style.width = '0px';
         document.getElementById('three-image').style.width = '0px';
         document.getElementById('four-image').style.width = '0px';
         document.getElementById('five-image').style.width = '0px';
-
         document.getElementById('one-image').style.height = '0px';
         document.getElementById('two-image').style.height = '0px';
         document.getElementById('three-image').style.height = '0px';
         document.getElementById('four-image').style.height = '0px';
         document.getElementById('five-image').style.height = '0px';
-
         document.getElementById('first-plus').className = 'fa fa-plus';
         document.getElementById('second-plus').className = 'fa fa-plus';
         document.getElementById('three-plus').className = 'fa fa-plus';
         document.getElementById('four-plus').className = 'fa fa-plus';
         document.getElementById('five-plus').className = 'fa fa-plus';
-
-
         const request = {
             method: 'GET'
         };
-
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {
@@ -419,10 +417,8 @@
                 document.getElementById('item-id').textContent = item_id;
             })
             .catch(error => console.log(error));
-
         submit_btn.id = 'submit-btn';
         document.getElementById('submit-btn').textContent = 'Submit';
-
         document.getElementById('submit-btn').addEventListener('click', () => {
             submit();
         });
@@ -430,11 +426,9 @@
 
     function editRating(id, item_id) {
         var review_id = 0;
-
         const request = {
             method: 'GET'
         };
-
         fetch('/getrating/' + id, request)
             .then(response => response.json())
             .then(data => {
@@ -454,35 +448,30 @@
                 accu_desc.value = data.description_accuracy;
                 interaction.value = data.interaction;
                 description.value = data.description;
-
                 if (data.first_img != undefined) {
                     document.getElementById('one-image').src = '/images/rate_images/' + data.first_img;
                     document.getElementById('first-plus').className = 'fa p-0';
                     document.getElementById('one-image').style.width = '60px';
                     document.getElementById('one-image').style.height = '60px';
                 }
-
                 if (data.second_img != undefined) {
                     document.getElementById('two-image').src = '/images/rate_images/' + data.second_img;
                     document.getElementById('second-plus').className = 'fa p-0';
                     document.getElementById('two-image').style.width = '60px';
                     document.getElementById('two-image').style.height = '60px';
                 }
-
                 if (data.third_img != undefined) {
                     document.getElementById('three-image').src = '/images/rate_images/' + data.third_img;
                     document.getElementById('three-plus').className = 'fa p-0';
                     document.getElementById('three-image').style.width = '60px';
                     document.getElementById('three-image').style.height = '60px';
                 }
-
                 if (data.fourth_img != undefined) {
                     document.getElementById('four-image').src = '/images/rate_images/' + data.fourth_img;
                     document.getElementById('four-plus').className = 'fa p-0';
                     document.getElementById('four-image').style.width = '60px';
                     document.getElementById('four-image').style.height = '60px';
                 }
-
                 if (data.fifth_img != undefined) {
                     document.getElementById('five-image').src = '/images/rate_images/' + data.fifth_img;
                     document.getElementById('five-plus').className = 'fa p-0';
@@ -492,20 +481,15 @@
                 }
             })
             .catch(err => console.log(err));
-
         submit_btn.id = 'edit-btn';
         document.getElementById('edit-btn').textContent = 'Edit';
-
         // if (document.getElementById('edit-btn')) {
-
         document.getElementById('edit-btn').addEventListener('click', () => {
             edit(review_id);
             // alert('edit btn');
         });
         // }
-
     }
-
 
     function star(rate) {
         if (rate == 1) {
@@ -544,14 +528,17 @@
     function submit() {
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
-        formData.append('user_id', {{ session('id') }});
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
         formData.append('rate_value', rate_val);
         formData.append('condition_accuracy', accu_cond.value);
         formData.append('description_accuracy', accu_desc.value);
         formData.append('interaction', interaction.value);
         formData.append('description', description.value);
         formData.append('display_username', check_username.checked);
-
         if (first_img.files.length > 0) {
             formData.append('first_img', first_img.files[0]);
         }
@@ -567,7 +554,6 @@
         if (fifth_img.files.length > 0) {
             formData.append('fifth_img', fifth_img.files[0]);
         }
-
         // console.log(formData);
         fetch('/ratepost', {
                 method: 'POST',
@@ -588,14 +574,17 @@
     function edit(id) {
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
-        formData.append('user_id', {{ session('id') }});
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
         formData.append('rate_value', rate_val);
         formData.append('condition_accuracy', accu_cond.value);
         formData.append('description_accuracy', accu_desc.value);
         formData.append('interaction', interaction.value);
         formData.append('description', description.value);
         formData.append('display_username', check_username.checked);
-
         if (first_img.files.length > 0) {
             formData.append('first_img', first_img.files[0]);
         }
@@ -611,7 +600,6 @@
         if (fifth_img.files.length > 0) {
             formData.append('fifth_img', fifth_img.files[0]);
         }
-
         // console.log(formData);
         fetch('/updaterate/' + id, {
                 method: 'POST',
