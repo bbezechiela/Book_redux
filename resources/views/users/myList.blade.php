@@ -83,6 +83,22 @@
                 <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
         </ul> --}}
+    @php
+        $order_amount = 0;
+        $delivered_amount = 0;
+        $dropped_amount = 0;
+        foreach ($books as $orders) {
+            foreach ($orders->item as $item) {
+                if ($item->order_status == 'Pending') {
+                    $order_amount++;
+                } elseif ($item->order_status == 'received') {
+                    $delivered_amount++;
+                } elseif ($item->order_status == 'dropped') {
+                    $dropped_amount++;
+                }
+            }
+        }
+    @endphp
     <div class="container-fuid pt-3 px-3">
         <div class="row border mx-2 mt-3 p-3 shadow rounded">
             <div class="col d-flex align-items-center">
@@ -95,16 +111,16 @@
                 </a> --}}
 
             <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
                 <p class="my-0 text-center fs-6">Orders</p>
             </a>
 
             <a href="/delivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $delivered_amount }}</p>
                 <p class="my-0 text-center fs-6">Delivered</p>
             </a>
             <a href="/dropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $dropped_amount }}</p>
                 <p class="my-0 text-center fs-6">Dropped</p>
             </a>
             <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
