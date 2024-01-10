@@ -15,12 +15,12 @@
             <x-sidebar />
         </div>
         <div id="content" class="border content">
-            <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+            <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
                 <div class="w-100 d-flex mt-2 p-0">
-                    <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                    {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
-                    </button>
+                    </button> --}}
                     <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
                             src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>

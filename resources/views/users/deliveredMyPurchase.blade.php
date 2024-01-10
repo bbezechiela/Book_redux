@@ -239,31 +239,31 @@
                                         <input id="first-img" type="file" accept="image/*" class="d-none">
                                         <label for="first-img"><i id="first-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="one-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="one-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="second-img" type="file" accept="image/*" class="d-none">
                                         <label for="second-img"><i id="second-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="two-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="two-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="third-img" type="file" accept="image/*" class="d-none">
                                         <label for="third-img"><i id="three-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="three-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="three-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="fourth-img" type="file" accept="image/*" class="d-none">
                                         <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="four-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="four-image"  alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="fifth-img" type="file" accept="image/*" class="d-none">
                                         <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="five-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="five-image"  alt=""></i></label>
                                     </div>
                                 </div>
                                 </p>

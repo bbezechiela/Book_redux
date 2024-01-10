@@ -306,8 +306,8 @@
                                 alt="seller image" class="circle-picture">
                             <div class="user-info">
                                 <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
-                                <p>2K followers . 400 following</p>
-                                <button class="message-button"><i class="fa fa-envelope"
+                                {{-- <p>2K followers . 400 following</p> --}}
+                                <button class="message-button" data-username="{{ $user_id->username }}"><i class="fa fa-envelope"
                                         aria-hidden="true"></i>Message</button>
                                 <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye"
                                             aria-hidden="true"></i>View
@@ -315,15 +315,18 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col">
-                        <div class="ratings">
-                            <p>Ratings <span class="rate">100</span></p>
-                            <p>Books Bought <span class="bought">20</span></p>
-                            <p>Books Lent <span class="lent">120</span></p>
-                        </div>
-                    </div>
                     <div class="col">
                         <div class="ratings">
+                            {{-- <p>Username<span class="rate">{{ $user_id->username}}</span></p> --}}
+                            <p>Liked genres:<span class="exchange">{{ $user_id->interest}}</span></p>
+                            {{-- <p>Ratings <span class="rate">100</span></p>
+                            <p>Books Bought <span class="bought">20</span></p>
+                            <p>Books Lent <span class="lent">120</span></p> --}}
+                        </div>
+                    </div>
+                    {{-- <div class="col">
+                        <div class="ratings">
+                            <p>Phone Number <span class="rate">{{ $user_id->phone_number}}</span></p>
                             <p>Books Sold <span class="sold">203</span></p>
                             <p>Books Exchanged <span class="exchange">59</span></p>
                             <p>Books Rented <span class="rent">9</span></p>
@@ -641,6 +644,24 @@
         } else {
             searchContainer.style.display = 'none'
             searchContainer.innerHTML = '';
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const messageButtons = document.querySelectorAll('.message-button');
+
+        messageButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const username = button.dataset.username;
+                redirectToMessaging(username);
+            });
+        });
+
+        function redirectToMessaging(username) {
+            const messagingUrl = `/messages?user=${username}`;
+            window.location.href = messagingUrl;
         }
     });
 </script>
