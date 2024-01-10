@@ -63,7 +63,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
+                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
@@ -94,15 +94,17 @@
                                     {{-- @foreach ($item->ratedItem as $review) --}}
                                     @if ($item->ratedItem->count() > 0)
                                         @foreach ($item->ratedItem as $review)
-                                            <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                                data-bs-target="#rate-review"
-                                                onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
-                                                Rating and Review</button>
+                                            @if ($review->item_id == $item->id)
+                                                <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                                    data-bs-target="#rate-review"
+                                                    onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                                                    Rating and Review</button>
+                                            @endif
                                         @endforeach
                                     @else
                                         <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
                                             data-bs-target="#rate-review"
-                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $order->status }}', {{ $item->id }})">Post
+                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
                                             Rating and Review</button>
                                     @endif
                                     {{-- @endforeach --}}
@@ -134,7 +136,7 @@
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review
                             Seller</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        <button type="button" id="close-btn" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -313,6 +315,8 @@
     var description = document.getElementById('description');
     var check_username = document.getElementById('user-switch');
 
+    var close_btn = document.getElementById('close-btn');
+
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -379,7 +383,7 @@
     });
 
     function ratingReview(user_id, type, item_id) {
-
+        submit_btn.disabled = false;
         first_img.value = '';
         second_img.value = '';
         third_img.value = '';
@@ -418,7 +422,7 @@
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
                 document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
                 document.getElementById('username').textContent = data.username;
@@ -430,12 +434,13 @@
         submit_btn.id = 'submit-btn';
         document.getElementById('submit-btn').textContent = 'Submit';
 
-        document.getElementById('submit-btn').addEventListener('click', () => {
-            submit();
-        });
+        document.getElementById('submit-btn').addEventListener('click', submitBtn);
     }
 
+    var id_edit_btn = 0;
+
     function editRating(id, item_id) {
+        submit_btn.disabled = false;
         var review_id = 0;
 
         const request = {
@@ -445,7 +450,7 @@
         fetch('/getrating/' + id, request)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 review_id = data.id;
                 star(parseInt(data.rate_value));
                 rate_val = data.rate_value;
@@ -503,52 +508,41 @@
         submit_btn.id = 'edit-btn';
         document.getElementById('edit-btn').textContent = 'Edit';
 
-        // if (document.getElementById('edit-btn')) {
-
-        document.getElementById('edit-btn').addEventListener('click', () => {
-            edit(review_id);
-            // alert('edit btn');
-        });
-        // }
+        id_edit_btn = id;
+        document.getElementById('edit-btn').addEventListener('click', editBtn);
 
     }
 
+    function submitBtn() {
+        submit();
+    }
 
-    function star(rate) {
-        if (rate == 1) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star-o';
-            three_S.className = 'fa fa-star-o';
-            four_S.className = 'fa fa-star-o';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 2) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star-o';
-            four_S.className = 'fa fa-star-o';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 3) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star';
-            four_S.className = 'fa fa-star-o';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 4) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star';
-            four_S.className = 'fa fa-star';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 5) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star';
-            four_S.className = 'fa fa-star';
-            five_S.className = 'fa fa-star';
+    function editBtn() {
+        edit(id_edit_btn);
+    }
+
+    close_btn.addEventListener('click', () => {
+
+        if (document.getElementById('submit-btn') == null) {
+            document.getElementById('edit-btn').removeEventListener('click', editBtn);
+            star(0);
+            accu_cond.value = '1/10';
+            accu_desc.value = '1/10';
+            interaction.value = '1/10';
+            description.value = '';
+        } else {
+            document.getElementById('submit-btn').removeEventListener('click', submitBtn);
+            star(0);
+            star(0);
+            accu_cond.value = '1/10';
+            accu_desc.value = '1/10';
+            interaction.value = '1/10';
+            description.value = '';
         }
-    }
+    });
 
     function submit() {
+        document.getElementById('submit-btn').disabled = true;
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
         formData.append('user_id', {{ session('id') }});
@@ -593,6 +587,7 @@
     }
 
     function edit(id) {
+        document.getElementById('edit-btn').disabled = true;
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
         formData.append('user_id', {{ session('id') }});
@@ -636,4 +631,45 @@
             .catch(error => console.log(error));
     }
     // });
+
+
+    function star(rate) {
+        if (rate == 0) {
+            one_S.className = 'fa fa-star-o';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 1) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star';
+        }
+    }
 </script>
