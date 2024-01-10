@@ -293,94 +293,26 @@
                 </div>
 
                 <!-- For Exchange Card -->
-                <div class="col-lg-4">
+                <div id="for_exchange" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">For Exchange</h5>
+                                <h5 id="for-exchange-header" class="mb-0 daily_discovery_text">For Exchange</h5>
                                 <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
                             </div>
                         </div>
-                        <div class="card-body">
+                        @foreach ($post->shuffle() as $exchange)
+                        <div class="card-body" onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
+                                <img src="{{ asset('images/books/' . $exchange->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
+                                    <h6 class="mb-0">{{ $exchange->title }}</h6>
+                                    <p class="mb-0">For {{ $exchange->status }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -527,141 +459,139 @@
     'aos_link' => '/aos-master/dist/aos.js',
     ])
 
-<script>
-    var first_img = document.getElementById('first-img');
-    var second_img = document.getElementById('second-img');
-    var third_img = document.getElementById('third-img');
-    var fourth_img = document.getElementById('fourth-img');
-    var fifth_img = document.getElementById('fifth-img');
-
-    var post_btn = document.getElementById('post-btn');
-    var clubname = document.getElementById('clubname');
-    var caption = document.getElementById('caption-text');
-
-    first_img.addEventListener('change', () => {
-        var img = document.getElementById('one-image');
-        img.src = URL.createObjectURL(event.target.files[0]);
-        document.getElementById('first-plus').className = 'fa p-0';
-        img.style.width = '60px';
-        img.style.height = '60px';
-    });
-
-    second_img.addEventListener('change', () => {
-        var img = document.getElementById('two-image');
-        img.src = URL.createObjectURL(event.target.files[0]);
-        document.getElementById('second-plus').className = 'fa p-0';
-        img.style.width = '60px';
-        img.style.height = '60px';
-    });
-
-    third_img.addEventListener('change', () => {
-        var img = document.getElementById('three-image');
-        img.src = URL.createObjectURL(event.target.files[0]);
-        document.getElementById('three-plus').className = 'fa p-0';
-        img.style.width = '60px';
-        img.style.height = '60px';
-    });
-
-    fourth_img.addEventListener('change', () => {
-        var img = document.getElementById('four-image');
-        img.src = URL.createObjectURL(event.target.files[0]);
-        document.getElementById('four-plus').className = 'fa p-0';
-        img.style.width = '60px';
-        img.style.height = '60px';
-    });
-
-    fifth_img.addEventListener('change', () => {
-        var img = document.getElementById('five-image');
-        img.src = URL.createObjectURL(event.target.files[0]);
-        document.getElementById('five-plus').className = 'fa p-0';
-        img.style.width = '60px';
-        img.style.height = '60px';
-    });
-
-    function post(user_id) {
-
-        first_img.value = '';
-        second_img.value = '';
-        third_img.value = '';
-        fourth_img.value = '';
-        fifth_img.value = '';
-
-        document.getElementById('one-image').src = '';
-        document.getElementById('two-image').src = '';
-        document.getElementById('three-image').src = '';
-        document.getElementById('four-image').src = '';
-        document.getElementById('five-image').src = '';
-
-        document.getElementById('one-image').style.width = '0px';
-        document.getElementById('two-image').style.width = '0px';
-        document.getElementById('three-image').style.width = '0px';
-        document.getElementById('four-image').style.width = '0px';
-        document.getElementById('five-image').style.width = '0px';
-
-        document.getElementById('one-image').style.height = '0px';
-        document.getElementById('two-image').style.height = '0px';
-        document.getElementById('three-image').style.height = '0px';
-        document.getElementById('four-image').style.height = '0px';
-        document.getElementById('five-image').style.height = '0px';
-
-        const request = {
-            method: 'GET'
-        };
-
-        fetch('/getuser/' + user_id, request)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
-                document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
-            })
-            .catch(error => console.log(error));
-
-        post_btn.id = 'post-btn';
-        document.getElementById('post-btn').textContent = 'Post';
-
-        document.getElementById('post-btn').addEventListener('click', () => {
-            post();
+    <script>
+        var first_img = document.getElementById('first-img');
+        var second_img = document.getElementById('second-img');
+        var third_img = document.getElementById('third-img');
+        var fourth_img = document.getElementById('fourth-img');
+        var fifth_img = document.getElementById('fifth-img');
+        var post_btn = document.getElementById('post-btn');
+        var clubname = document.getElementById('clubname');
+        var caption = document.getElementById('caption-text');
+        first_img.addEventListener('change', () => {
+            var img = document.getElementById('one-image');
+            img.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById('first-plus').className = 'fa p-0';
+            img.style.width = '60px';
+            img.style.height = '60px';
         });
-    }
+        second_img.addEventListener('change', () => {
+            var img = document.getElementById('two-image');
+            img.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById('second-plus').className = 'fa p-0';
+            img.style.width = '60px';
+            img.style.height = '60px';
+        });
+        third_img.addEventListener('change', () => {
+            var img = document.getElementById('three-image');
+            img.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById('three-plus').className = 'fa p-0';
+            img.style.width = '60px';
+            img.style.height = '60px';
+        });
+        fourth_img.addEventListener('change', () => {
+            var img = document.getElementById('four-image');
+            img.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById('four-plus').className = 'fa p-0';
+            img.style.width = '60px';
+            img.style.height = '60px';
+        });
+        fifth_img.addEventListener('change', () => {
+            var img = document.getElementById('five-image');
+            img.src = URL.createObjectURL(event.target.files[0]);
+            document.getElementById('five-plus').className = 'fa p-0';
+            img.style.width = '60px';
+            img.style.height = '60px';
+        });
 
+        function post(user_id) {
+            first_img.value = '';
+            second_img.value = '';
+            third_img.value = '';
+            fourth_img.value = '';
+            fifth_img.value = '';
+            document.getElementById('one-image').src = '';
+            document.getElementById('two-image').src = '';
+            document.getElementById('three-image').src = '';
+            document.getElementById('four-image').src = '';
+            document.getElementById('five-image').src = '';
+            document.getElementById('one-image').style.width = '0px';
+            document.getElementById('two-image').style.width = '0px';
+            document.getElementById('three-image').style.width = '0px';
+            document.getElementById('four-image').style.width = '0px';
+            document.getElementById('five-image').style.width = '0px';
+            document.getElementById('one-image').style.height = '0px';
+            document.getElementById('two-image').style.height = '0px';
+            document.getElementById('three-image').style.height = '0px';
+            document.getElementById('four-image').style.height = '0px';
+            document.getElementById('five-image').style.height = '0px';
+            const request = {
+                method: 'GET'
+            };
+            fetch('/getuser/' + user_id, request)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
+                })
+                .catch(error => console.log(error));
+            post_btn.id = 'post-btn';
+            document.getElementById('post-btn').textContent = 'Post';
+            document.getElementById('post-btn').addEventListener('click', () => {
+                post();
+            });
+        }
 
-    function post() {
-        var formData = new FormData();
-        formData.append('user_id', {{ session('id') }});
-        formData.append('clubname', clubname.value);
-        formData.append('caption', caption.value);
+        function post() {
+            var formData = new FormData();
+            formData.append('user_id', {
+                {
+                    session('id')
+                }
+            });
+            formData.append('clubname', clubname.value);
+            formData.append('caption', caption.value);
+            if (first_img.files.length > 0) {
+                formData.append('first_img', first_img.files[0]);
+            }
+            if (second_img.files.length > 0) {
+                formData.append('second_img', second_img.files[0]);
+            }
+            if (third_img.files.length > 0) {
+                formData.append('third_img', third_img.files[0]);
+            }
+            if (fourth_img.files.length > 0) {
+                formData.append('fourth_img', fourth_img.files[0]);
+            }
+            if (fifth_img.files.length > 0) {
+                formData.append('fifth_img', fifth_img.files[0]);
+            }
+            // console.log(formData);
+            fetch('/ratepost', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        // 'Content-type': 'application/json'
+                    },
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    window.location.reload();
+                })
+                .catch(error => console.log(error));
+        }
+    </script>
 
-        if (first_img.files.length > 0) {
-            formData.append('first_img', first_img.files[0]);
-        }
-        if (second_img.files.length > 0) {
-            formData.append('second_img', second_img.files[0]);
-        }
-        if (third_img.files.length > 0) {
-            formData.append('third_img', third_img.files[0]);
-        }
-        if (fourth_img.files.length > 0) {
-            formData.append('fourth_img', fourth_img.files[0]);
-        }
-        if (fifth_img.files.length > 0) {
-            formData.append('fifth_img', fifth_img.files[0]);
-        }
-
-        // console.log(formData);
-        fetch('/ratepost', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    // 'Content-type': 'application/json'
-                },
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                window.location.reload();
-            })
-            .catch(error => console.log(error));
-    }
+<script>
+    function clickedPost(id, user_id) {
+        window.location.href = "/product/" + id + "/" + user_id;
+    };
+    var for_exchange_cards = document.getElementById("for_exchange");
+    var for_exchange_btn = document.getElementById("for-exchange-header");
+    // for_exchange_btn.addEventListener("click", function() {
+    //     for_exchange_cards.style.display = "none";
+    // });
 </script>

@@ -91,8 +91,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h6 id="clubname">Book Selling Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
-                                        data-bs-toggle="modal" data-bs-target="#createpost"></i></h6>
+                                <h6 id="clubname">Book Selling Club<i class="btn fa fa-pencil-square-o"
+                                        aria-hidden="true" data-bs-toggle="modal" data-bs-target="#createpost"></i></h6>
                                 <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
                                     style="height: 2em">
                             </div>
@@ -297,94 +297,26 @@
                 </div>
 
                 <!-- For Sale Card -->
-                <div class="col-lg-4">
+                <div id="for_sale" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">For Sale</h5>
+                                <h5 id="for-sale-header" class="mb-0 daily_discovery_text">For Sale</h5>
                                 <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
                             </div>
                         </div>
-                        <div class="card-body">
+                        @foreach ($post->shuffle() as $sale)
+                        <div class="card-body" onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
+                                <img src="{{ asset('images/books/' . $sale->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
+                                    <h6 class="mb-0">{{ $sale->title }}</h6>
+                                    <p class="mb-0">For {{ $sale->status }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -407,32 +339,27 @@
                             <div class="image-holder">
                                 <input id="first-img" type="file" accept="image/*" class="d-none">
                                 <label for="first-img"><i id="first-plus" class="fa fa-plus" aria-hidden="true"
-                                        style="cursor: pointer;"><img src="" id="one-image" 
-                                            alt=""></i></label>
+                                        style="cursor: pointer;"><img src="" id="one-image" alt=""></i></label>
                             </div>
                             <div class="image-holder">
                                 <input id="second-img" type="file" accept="image/*" class="d-none">
                                 <label for="second-img"><i id="second-plus" class="fa fa-plus" aria-hidden="true"
-                                        style="cursor: pointer;"><img src="" id="two-image" 
-                                            alt=""></i></label>
+                                        style="cursor: pointer;"><img src="" id="two-image" alt=""></i></label>
                             </div>
                             <div class="image-holder">
                                 <input id="third-img" type="file" accept="image/*" class="d-none">
                                 <label for="third-img"><i id="three-plus" class="fa fa-plus" aria-hidden="true"
-                                        style="cursor: pointer;"><img src="" id="three-image"
-                                            alt=""></i></label>
+                                        style="cursor: pointer;"><img src="" id="three-image" alt=""></i></label>
                             </div>
                             <div class="image-holder">
                                 <input id="fourth-img" type="file" accept="image/*" class="d-none">
                                 <label for="fourth-img"><i id="four-plus" class="fa fa-plus" aria-hidden="true"
-                                        style="cursor: pointer;"><img src="" id="four-image" 
-                                            alt=""></i></label>
+                                        style="cursor: pointer;"><img src="" id="four-image" alt=""></i></label>
                             </div>
                             <div class="image-holder">
                                 <input id="fifth-img" type="file" accept="image/*" class="d-none">
                                 <label for="fifth-img"><i id="five-plus" class="fa fa-plus" aria-hidden="true"
-                                        style="cursor: pointer;"><img src="" id="five-image" 
-                                            alt=""></i></label>
+                                        style="cursor: pointer;"><img src="" id="five-image" alt=""></i></label>
                             </div>
                         </div>
                     </div>
@@ -552,11 +479,9 @@
     var third_img = document.getElementById('third-img');
     var fourth_img = document.getElementById('fourth-img');
     var fifth_img = document.getElementById('fifth-img');
-
     var post_btn = document.getElementById('post-btn');
     var clubname = document.getElementById('clubname');
     var caption = document.getElementById('caption-text');
-
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -564,7 +489,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     second_img.addEventListener('change', () => {
         var img = document.getElementById('two-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -572,7 +496,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     third_img.addEventListener('change', () => {
         var img = document.getElementById('three-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -580,7 +503,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     fourth_img.addEventListener('change', () => {
         var img = document.getElementById('four-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -588,7 +510,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     fifth_img.addEventListener('change', () => {
         var img = document.getElementById('five-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -598,35 +519,29 @@
     });
 
     function post(user_id) {
-
         first_img.value = '';
         second_img.value = '';
         third_img.value = '';
         fourth_img.value = '';
         fifth_img.value = '';
-
         document.getElementById('one-image').src = '';
         document.getElementById('two-image').src = '';
         document.getElementById('three-image').src = '';
         document.getElementById('four-image').src = '';
         document.getElementById('five-image').src = '';
-
         document.getElementById('one-image').style.width = '0px';
         document.getElementById('two-image').style.width = '0px';
         document.getElementById('three-image').style.width = '0px';
         document.getElementById('four-image').style.width = '0px';
         document.getElementById('five-image').style.width = '0px';
-
         document.getElementById('one-image').style.height = '0px';
         document.getElementById('two-image').style.height = '0px';
         document.getElementById('three-image').style.height = '0px';
         document.getElementById('four-image').style.height = '0px';
         document.getElementById('five-image').style.height = '0px';
-
         const request = {
             method: 'GET'
         };
-
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {
@@ -635,22 +550,22 @@
                 document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
             })
             .catch(error => console.log(error));
-
         post_btn.id = 'post-btn';
         document.getElementById('post-btn').textContent = 'Post';
-
         document.getElementById('post-btn').addEventListener('click', () => {
             post();
         });
     }
 
-
     function post() {
         var formData = new FormData();
-        formData.append('user_id', {{ session('id') }});
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
         formData.append('clubname', clubname.value);
         formData.append('caption', caption.value);
-
         if (first_img.files.length > 0) {
             formData.append('first_img', first_img.files[0]);
         }
@@ -666,7 +581,6 @@
         if (fifth_img.files.length > 0) {
             formData.append('fifth_img', fifth_img.files[0]);
         }
-
         // console.log(formData);
         fetch('/ratepost', {
                 method: 'POST',
@@ -683,4 +597,15 @@
             })
             .catch(error => console.log(error));
     }
+</script>
+
+<script>
+    function clickedPost(id, user_id) {
+        window.location.href = "/product/" + id + "/" + user_id;
+    };
+    var for_sale_cards = document.getElementById("for_sale");
+    var for_sale_btn = document.getElementById("for-sale-header");
+    // for_sale_btn.addEventListener("click", function() {
+    //     for_sale_cards.style.display = "none";
+    // });
 </script>

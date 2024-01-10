@@ -263,94 +263,26 @@
                 </div>
 
                 <!-- Daily Discover Card -->
-                <div class="col-lg-4">
+                <div id="daily-discover" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">Daily Discover</h5>
+                                <h5 id="daily-discover-header" class="mb-0">Daily Discover</h5>
                                 <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
                             </div>
                         </div>
-                        <div class="card-body">
+                        @foreach ($post->shuffle() as $daily)
+                        <div class="card-body" onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
+                                <img src="{{ asset('images/books/' . $daily->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
+                                    <h6 id="book-title" class="mb-0">{{ $daily->title }}</h6>
+                                    <p class="mb-0">For {{ $daily->status }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -453,3 +385,15 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    function clickedPost(id, user_id) {
+        window.location.href = "/product/" + id + "/" + user_id;
+    };
+    var daily_discover_cards = document.getElementById("daily-discover");
+    var daily_discover_btn = document.getElementById("daily-discover-header");
+    daily_discover_btn.addEventListener("click", function() {
+        // alert("bitch");
+        daily_discover_cards.style.display = "none";
+    });
+</script>
