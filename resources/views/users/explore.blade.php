@@ -126,7 +126,8 @@
                                     @endif
                                 @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
+                                    <span class="fw-bold p-0">For Exchange</span>
+                                    {{-- <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
@@ -138,15 +139,15 @@
                                                 <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
                                                         onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Cart</a></li>
+                                                        Cart</a></li> --}}
                                                 {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
                                             Wishlist</a></li> --}}
-                                            </ul>
+                                            {{-- </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -234,7 +235,8 @@
                                     @endif
                                 @endforeach
                                 <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
+                                    <span class="fw-bold p-0">For Exchange</span>
+                                    {{-- <span class="fw-bold p-0">₱{{ $daily->price }}</span>
                                     <div class="button-container">
                                         <div class="dropdown">
                                             <button class="btn btn-secondary dropdown-toggle add-button"
@@ -246,15 +248,15 @@
                                                 <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
                                                         onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
                                                             aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Cart</a></li>
+                                                        Cart</a></li> --}}
                                                 {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
                                             Wishlist</a></li> --}}
-                                            </ul>
+                                            {{-- </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -342,7 +344,8 @@
                                         @endif
                                     @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
+                                        <span class="fw-bold p-0">For Exchange</span>
+                                        {{-- <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
                                         <div class="button-container">
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle add-button"
@@ -356,15 +359,15 @@
                                                             onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
+                                                            Cart</a></li> --}}
                                                     {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                                 class="fa fa-list-alt" aria-hidden="true"
                                                 style="margin-right: 7px"></i>Add
                                             to
                                             Wishlist</a></li> --}}
-                                                </ul>
+                                                {{-- </ul>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -517,7 +520,8 @@
                                         @endif
                                     @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $exchange->price }}</span>
+                                        <span class="fw-bold p-0">For Exchange</span>
+                                        {{-- <span class="fw-bold p-0">₱{{ $exchange->price }}</span>
                                         <div class="button-container">
                                             <div class="dropdown">
                                                 <button class="btn btn-secondary dropdown-toggle add-button"
@@ -531,15 +535,15 @@
                                                             onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
+                                                            Cart</a></li> --}}
                                                     {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
                                         class="fa fa-list-alt" aria-hidden="true"
                                         style="margin-right: 7px"></i>Add to
                                     Wishlist</a></li> --}}
-                                                </ul>
+                                                {{-- </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 @endif
                             </div>
                         </div>

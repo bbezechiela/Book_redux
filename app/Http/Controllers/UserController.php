@@ -598,7 +598,8 @@ class UserController extends Controller
         $user = Users::find(session('id'));
         $user->update($validated);
         if ($user) {
-            return redirect('/explore');
+            // return redirect('/explore');
+            return redirect('/addresses');
         } else {
             return 'error bitch';
         }

@@ -107,7 +107,7 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
                                         </p> <br>
                                         <p class="text-total">Total Payment:<span
                                                 class="product-total">₱{{ $order->price }}</span></p>
@@ -159,7 +159,7 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
                                         </p> <br>
                                         <p class="text-total">Total Payment:<span
                                                 class="product-total">₱{{ $order->price }}</span></p>
@@ -432,7 +432,7 @@
                                                     </div>
                                                     <div class="d-flex justify-content-between mt-2"><span>Shipping
                                                             fee</span><span id="detail-shipping-fee"
-                                                            class="font-weight-bold">₱130.00</span></div>
+                                                            class="font-weight-bold">₱130</span></div>
                                                     <hr>
                                                     <div class="d-flex justify-content-between mt-1"><span
                                                             class="font-weight-bold">Total</span>
@@ -472,7 +472,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body px-3">
-                        <p class="fs-4">Are you sure you want to cancel you order?</p>
+                        <p class="fs-4">Are you sure you want to decline the order of the buyer?</p>
                         <div class="text-center">
                             <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -664,7 +664,7 @@
                 book_title.value = result.title;
                 trans_type.value = result.status;
                 price.value = result.price;
-                shipping.value = '₱130.00';
+                shipping.value = '₱130';
 
                 if (document.getElementById('pick_up').checked) {
                     displayPickupContent();

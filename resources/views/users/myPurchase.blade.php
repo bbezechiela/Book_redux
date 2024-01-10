@@ -137,7 +137,7 @@
                                             data-bs-target="#staticBackdrop"
                                             onclick="assignLink({{ $item->id }})">Cancel Order</a>
                                         <button type="button"
-                                            class="btn btn-sm pending-button">{{ $item->order_status }}</button>
+                                            class="btn btn-sm pending-button" disabled>{{ $item->order_status }}</button>
 
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@
                                                         data-bs-target="#staticBackdrop"
                                                         onclick="assignLink({{ $item->id }})">Cancel Order</a>
                                                     <button type="button"
-                                                        class="btn btn-sm pending-button">{{ $item->order_status }}</button>
+                                                        class="btn btn-sm pending-button" disabled>{{ $item->order_status }}</button>
                                                 </div>
                                             </div>
                                         </div>
