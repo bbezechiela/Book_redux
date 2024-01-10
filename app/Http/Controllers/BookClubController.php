@@ -158,4 +158,66 @@ class BookClubController extends Controller
         
 
     }
+
+    // public function getPost($id)
+    // {
+    //     $post = BookClub::with('item.book.user')->find($id);
+    //     return $rating;
+    // }
+
+    public function createPost(Request $request)
+    {
+        $data = $request->all();
+
+        $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
+
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $fileNameWithExt = $request->file($field)->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file($field)->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+                $request->file($field)->move(public_path('images/rate_images'), $fileNameToStore);
+
+                $data[$field] = $fileNameToStore;
+            }
+        }
+
+        $post = BookClub::create($data);
+
+        if ($post) {
+            return response()->json(['response' => 'Post successfully created.']);
+        } else {
+            return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
+        }
+    }
+
+    // public function updateRate(Request $request, $id)
+    // {
+    //     $data = $request->all();
+
+    //     $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
+
+    //     foreach ($imageFields as $field) {
+    //         if ($request->hasFile($field)) {
+    //             $fileNameWithExt = $request->file($field)->getClientOriginalName();
+    //             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    //             $extension = $request->file($field)->getClientOriginalExtension();
+    //             $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+    //             $request->file($field)->move(public_path('images/rate_images'), $fileNameToStore);
+
+    //             $data[$field] = $fileNameToStore;
+    //         }
+    //     }
+
+    //     $update = Reviews::find($id);
+    //     $update->update($data);
+    //     if ($update) {
+    //         return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);
+    //     } else {
+    //         return response()->json(['response' => 'Update review unsuccessful.']);
+    //     }
+    // }
 }

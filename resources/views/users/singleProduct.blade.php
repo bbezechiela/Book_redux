@@ -307,7 +307,7 @@
                             <div class="user-info">
                                 <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
                                 {{-- <p>2K followers . 400 following</p> --}}
-                                <button class="message-button"><i class="fa fa-envelope"
+                                <button class="message-button" data-username="{{ $user_id->username }}"><i class="fa fa-envelope"
                                         aria-hidden="true"></i>Message</button>
                                 <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye"
                                             aria-hidden="true"></i>View
@@ -644,6 +644,24 @@
         } else {
             searchContainer.style.display = 'none'
             searchContainer.innerHTML = '';
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const messageButtons = document.querySelectorAll('.message-button');
+
+        messageButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const username = button.dataset.username;
+                redirectToMessaging(username);
+            });
+        });
+
+        function redirectToMessaging(username) {
+            const messagingUrl = `/messages?user=${username}`;
+            window.location.href = messagingUrl;
         }
     });
 </script>
