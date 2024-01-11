@@ -9,13 +9,18 @@ class BookClub_Events extends Model
 {
     use HasFactory;
 
+    protected $table = 'book_club_events';
+
     protected $fillable = [
         'club_id',
+        'user_id',
         'name',
-        'location',
-        'date',
-        'time',
+        'type',
+        'start_date',
+        'end_date',
+        'start_time',
+        'end_time',
         'description',
-        'image_path'
+        // 'image_path'
     ];
 }
