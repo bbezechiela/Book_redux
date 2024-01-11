@@ -1181,6 +1181,7 @@ class UserController extends Controller
             }
         }
 
+        // return response()->json(['response' => $data]);
         $rate = Reviews::create($data);
 
         if ($rate) {
@@ -1208,11 +1209,13 @@ class UserController extends Controller
                 $data[$field] = $fileNameToStore;
             }
         }
+        
 
         $update = Reviews::find($id);
         $update->update($data);
         if ($update) {
             return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);
+            // return response()->json(['response' => $data]);
         } else {
             return response()->json(['response' => 'Update review unsuccessful.']);
         }
