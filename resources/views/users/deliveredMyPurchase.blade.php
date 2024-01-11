@@ -145,8 +145,8 @@
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Nestine Nicole Navarro</p>
-                                        <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
-                                            Type</span>
+                                        {{-- <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
+                                            Type</span> --}}
                                         {{-- <div class="dropdown interaction-drpdwn">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -180,7 +180,7 @@
                                 <span id="item-id" hidden></span>
                                 <p>Accuracy of Condition:
                                     {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-accuracy">
+                                    <select class="btn" name="" id="condition-accuracy" required>
                                         {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
@@ -196,7 +196,7 @@
                                 </p>
                                 <p>Accuracy of Description:
                                     {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-description">
+                                    <select class="btn" name="" id="condition-description" required>
                                         {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
@@ -212,7 +212,7 @@
                                 </p>
                                 <p>Interaction:
                                     {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="interaction">
+                                    <select class="btn" name="" id="interaction" required>
                                         {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
@@ -228,13 +228,13 @@
                                 </p>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..."></textarea>
+                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..." required></textarea>
                                 </div>
                                 </p>
                                 <p>Photo:
                                 <div class="image-container">
                                     <div class="image-holder">
-                                        <input id="first-img" type="file" accept="image/*" class="d-none">
+                                        <input id="first-img" type="file" accept="image/*" class="d-none" required>
                                         <label for="first-img"><i id="first-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
                                                     id="one-image" alt=""></i></label>
