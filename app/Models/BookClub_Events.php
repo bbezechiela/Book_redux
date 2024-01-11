@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BookClub_Moderators extends Model
+class BookClub_Events extends Model
 {
     use HasFactory;
 
-    // model was created incase theres any necessary methods needed to interact with the table
-
-    protected $table = 'book_club_moderators';
-
     protected $fillable = [
         'club_id',
-        'user_id'
+        'name',
+        'location',
+        'date',
+        'time',
+        'description',
+        'image_path'
     ];
 }

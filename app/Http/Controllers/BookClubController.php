@@ -4,129 +4,67 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\BookClub;
-use App\Models\BookClub_Moderators;
 use App\Models\BookClub_Members;
 use App\Models\BookClub_Join_Requests;
+use App\Models\BookClub_Events;
 use Illuminate\Http\Request;
 
 class BookClubController extends Controller
 {
-    // lets gow
-    // selling club member checker
-    function sellingClubMemberChecker(Request $request) {
-        $currentUserId = $request->query('currentUserId');
+    // lets gow  
+    // create event
+    function createEvent(Request $request) {
+        $current_bookclub_name = $request->json('current_bookClub_name');
+        $current_user_id = $request->json('current_user_id');
 
-        $checker = BookClub_Members::where('user_id', '=', $currentUserId)->get();
+        $validated = $request->validate([
+            'event_name' => 'required|max:255',
+            'event_type' => 'required',
+            'event_start_date' => 'required|date|before:event_end_date',
+            'event_end_date' => 'required|date|after:event_start_date',
+            'event_start_time' => 'required|date_format:H:i',
+            'event_end_time' => 'required|date_format:H:i',
+            'event_description' => 'required|255',
+            'event_image_upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+        ]);      
 
-        if ($checker->count() > 0) {
-            return response()->json(['data' => 'Current user is a member of this club']);
-        } else {
-            return response()->json(['error' => 'Current user is not a member of this club']);
-        }
-    }   
+        $club_finder = BookClub::where('book_club_name', '=', $current_bookclub_name)->first();
+        $user_finder = Users::where('id', '=', $current_user_id)->first();
 
-    // selling club creation
-    function createBookSellingClub(Request $request) {
-        $clubName = $request->json('bookClubName');
-        $clubModerator = $request->json('sellingClubModerators');
-        $clubMembers = $request->json('sellingClubMembers');
-
-        $creation = BookClub::create([
-            'book_club_name' => $clubName,
-            'book_club_moderators' => $clubModerator,
-            'book_club_members' => $clubMembers,
-        ]);
-
-        if ($creation) {
-            return response()->json(['data' => 'creation success', $creation]);
-        } else {
-            return response()->json('error', 'creation failed'); 
-        }
-    }
-
-    // admin checker
-    function adminChecker(Request $request) {
-        $current_user_id = $request->query('currentUserId');
-
-        // temporary, pero ig split anay it column moderators
-        $checker = Users::where('id', '=', $current_user_id)->get();
-
-        if ($checker->count() > 0) {
-            return response()->json(['data' => $checker]);
-        } else {
-            return response()->json(['error' => 'User not admin']);
-        } 
-    }
-
-    // moderator checker || member checker
-    function moderatorChecker(Request $request) {
-        $current_user_id = $request->query('currentUserId');
-
-        $checker = BookClub_Moderators::where('user_id', '=', $current_user_id)->get();
-
-        if ($checker->count() > 0) {
-            return response()->json(['data' => $checker]);
-        }  else {
-            return response()->json(['error' => 'Moderator Checker Error']);
-        }
-    }
-
-    // moderator adder
-    function addModerators(Request $request) {
-        $club_name = $request->json('club_name');
-        $user_id = $request->json('user_id');
-
-        $club_finder = BookClub::where('book_club_name', '=', $club_name)->get();
-        $user_finder = Users::where('id', '=', $user_id)->get();
+        $fileNameWithExt = $request->file('event_image_upload')->getClientOriginalName();
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $fileExtension = $request->file('event_image_upload')->getClientOriginalExtension();
+        $fileNameToStore = $fileName . '_' . time() . $fileExtension;
+        $request->file('event_image_upload')->move(public_path('images/profile_photos'), $fileNameToStore);
+        $validated['event_image_upload'] = $fileNameToStore;
 
         if ($club_finder->count() > 0 && $user_finder->count() > 0) {
-            foreach ($club_finder as $club) {
-                $club_id = $club->book_club_id;
-            }
+            $club_id = $club_finder->book_club_id;
 
-            $adder = BookClub_Moderators::create([ 
+            $adder = BookClub_Events::create([ 
                 'club_id' => $club_id,
-                'user_id' => $user_id
+                'user_id' => $current_user_id,
+                'name' => $validated['event_name'],
+                'type' => $validated['event_type'],
+                'start_date' => $validated['event_start_date'],
+                'end_date' => $validated['event_end_date'],
+                'start_time' => $validated['event_start_time'],
+                'end_time' => $validated['event_end_time'],
+                'description' => $validated['event_description'],
+                'image_path' => $validated['event_image_upload']
             ]);
 
             if ($adder) {
-                return response()->json(['data' => 'Moderator Added Successfully']);
+                return response()->json(['data' => 'Event successfully created']);
             } else {
-                return response()->json(['error' => 'Error on adding a moderator']);
+                return response()->json(['error' => 'Cant create event.']);
             }
         } else {
-            return response()->json(['error' => 'Cant find book club or user']);
+            return response()->json(['error' => 'Error on finding club or user']);
         }
     }
 
-    // member adder
-    function addMembers(Request $request) {
-        $club_name = $request->json('club_name');
-        $current_user_id = $request->json('user_id');
 
-        $club_finder = BookClub::where('book_club_name', '=', $club_name)->get();
-        $user_finder = Users::where('id', '=', $current_user_id)->get();
-
-        if ($club_finder->count() > 0  && $user_finder->count() > 0) {
-            foreach ($club_finder as $club) {
-                $club_id = $club->book_club_id;
-            }
-
-            $adder = BookClub_Members::create([
-                'club_id' => $club_id,
-                'user_id' => $current_user_id
-            ]);
-
-            if ($adder) {
-                return response()->json(['data' => 'Member Added Successfully']);
-            } else {
-                return response()->json(['error' => 'Error on Adding Member']);
-            }
-        } else {
-            return response()->json(['error' => 'Cant find book club or user']);
-        }
-    }
-    
     // book club join request
     function joinRequest(Request $request) {
         $current_user_id = $request->json('currentUserId');
@@ -155,7 +93,33 @@ class BookClubController extends Controller
         } else {
             return response()->json(['error' => 'Cant the book club']);
         }
-        
-
     }
+
+    // book club join request getter
+    function joinRequestGetter(Request $request) {
+        $request_status = $request->query('request_status');
+    
+        $request_checker = BookClub_Join_Requests::where('request_status', '=', $request_status)->get();
+
+        if ($request_checker->count() > 0) {
+            // iterate ha model collection
+            foreach($request_checker as $join_request) {
+                $user_id_getter = $join_request->user_id;
+                $club_id_getter = $join_request->book_club_id;
+            }
+
+            // user and club checker
+            $user_checker = Users::where('id', '=', $user_id_getter)->first();
+            $club_checker = BookClub::where('book_club_id', '=', $club_id_getter)->first();
+            if ($user_checker->count() > 0 && $club_checker->count() > 0) {
+                return response()->json(['data' => $request_checker, 'user_info' => $user_checker, 'club_info' => $club_checker]);
+            } else {
+                return response()->json(['error' => 'problem might be in user checker or club checker']);
+            }
+        } else {
+            return response()->json(['error' => 'failed to fetch requests']);
+        }
+    }
+
 }
+

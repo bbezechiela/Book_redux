@@ -103,7 +103,8 @@
                     </div>
                     
                     <!-- pag create book club para ha specific na admin -->
-                    <div id='createSellingClubOuterCtn'></div>
+                    <div id='demo'></div>
+                    <div> asd</div>
 
                     <div class="card mt-5 mb-3 card-post">
                         <div class="card-header">
