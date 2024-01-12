@@ -349,12 +349,14 @@
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
         document.getElementById('shipping-total').textContent = '₱130.00';
+        sum_total.textContent = '₱' + parseFloat(totalPrice + 130) + '.0';
     });
 
     shipping_choices[1].addEventListener('click', () => {
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
         document.getElementById('shipping-total').textContent = '₱0.00';
+        sum_total.textContent = '₱' + parseFloat(totalPrice) + '.0';
     });
 
     function orderNumber() {

@@ -147,8 +147,8 @@
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Nestine Nicole Navarro</p>
-                                        {{-- <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
-                                            Type</span> --}}
+                                        <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
+                                            Type</span>
                                         {{-- <div class="dropdown interaction-drpdwn">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -236,7 +236,8 @@
                                 <p>Photo:
                                 <div class="image-container">
                                     <div class="image-holder">
-                                        <input id="first-img" type="file" accept="image/*" class="d-none" required>
+                                        <input id="first-img" type="file" accept="image/*" class="d-none"
+                                            required>
                                         <label for="first-img"><i id="first-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
                                                     id="one-image" alt=""></i></label>
@@ -257,13 +258,13 @@
                                         <input id="fourth-img" type="file" accept="image/*" class="d-none">
                                         <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="four-image"  alt=""></i></label>
+                                                    id="four-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="fifth-img" type="file" accept="image/*" class="d-none">
                                         <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="five-image"  alt=""></i></label>
+                                                    id="five-image" alt=""></i></label>
                                     </div>
                                 </div>
                                 </p>
@@ -285,6 +286,20 @@
                 </div>
             </div>
         </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div id="toast-message" class="toast-body fw-bold text-success">
+                    {{ 'test' }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -294,6 +309,8 @@
 ])
 
 <script>
+    const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
+
     var rate_val = 0;
 
     var one_S = document.getElementById('one-star');
@@ -429,7 +446,7 @@
                 document.getElementById('interaction-type').textContent = type;
                 document.getElementById('item-id').textContent = item_id;
             })
-            .catch(error => console.log(error));
+            .catch(error => console.error(error));
 
         submit_btn.id = 'submit-btn';
         document.getElementById('submit-btn').textContent = 'Submit';
@@ -503,7 +520,7 @@
                     alert(data.description_accuracy)
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
 
         submit_btn.id = 'edit-btn';
         document.getElementById('edit-btn').textContent = 'Edit';
@@ -580,8 +597,11 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                window.location.reload();
+                document.getElementById('toast-message').textContent = data.response;
+                message.show()
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
             })
             .catch(error => console.log(error));
     }
@@ -624,9 +644,12 @@
                 body: formData,
             })
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                window.location.reload();
+            .then(data => {                
+                document.getElementById('toast-message').textContent = data.response;
+                message.show()
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
             })
             .catch(error => console.log(error));
     }

@@ -122,7 +122,8 @@
                                             details</small>
                                     </div>
                                     <div class="button-group">
-                                        <button type="button" class="btn btn-sm decline-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Decline</button>
+                                        <button type="button" class="btn btn-sm decline-button" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">Decline</button>
                                         <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                             data-bs-toggle="modal"
                                             onclick="arrangeShipment({{ $order->id . ', ' . $item->id }})"
@@ -238,8 +239,8 @@
                                 <label for="product-details" class="form-label">Product Details</label>
                                 <input type="text" class="form-control" id="order-date"
                                     placeholder="Order Date: 12/29/2023"><br>
-                                {{-- <input type text="text" class="form-control" id="order-number"
-                                    placeholder="OD421376365"><br> --}}
+                                <input type text="text" class="form-control" id="order-number"
+                                    placeholder="OD421376365"><br>
                                 <input type="text" class="form-control" id="book-title"
                                     placeholder="Maria Clara"><br>
                                 <input type="text" class="form-control" id="transaction-type"
@@ -298,8 +299,8 @@
                                     <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
                                     <p id="pickup-postal">6500</p>
                                 </div>
-                                {{-- <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                                        href="#">Change</a></button> --}}
+                                <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                        href="#">Change</a></button>
                             </div>
                             <div class="pickup-date">
                                 <div class="text-section">
@@ -330,8 +331,20 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Address</h1>
                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
+                    <h6 class="ms-3 mt-4 fw-bold" style="color: #003060; margin-bottom: -10px;">Select Address:</h6>
+                    <div id="address-modal" class="modal-body mt-0">
+                        <label class="pickup-address" for="address-id">
+                            <div class="text-section">
+                                <p id="pickup-name">Nestine Nicole Navarro</p>
+                                <p id="pickup-phone">09054173103</p>
+                                <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
+                                <p id="pickup-postal">6500</p>
+                            </div>
+                            {{-- <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                    href="#">Change</a></button> --}}
+                            <input type="radio" id="address-id" name="address_id">
+                        </label>
+                        {{-- <div class="mb-3">
                             <label for="fullname" class="form-label">Fullname</label>
                             <input type="text" class="form-control" id="fullname" placeholder="Fullname"
                                 style="margin-bottom: 20px; color: #003060;">
@@ -361,12 +374,13 @@
                                 style="margin-bottom: 50px; color: #E55B13; margin-left: 8px;">
                                 Set as default address
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary close-button"
-                            data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn save-button">Update</button>
+                        <button type="button" class="btn btn-secondary close-button" data-bs-toggle="modal"
+                            data-bs-target="#arrange-shipment">Close</button>
+                        <button type="button" id="update-address" class="btn save-button" data-bs-toggle="modal"
+                            data-bs-target="#arrange-shipment">Update</button>
                     </div>
                 </div>
             </div>
@@ -467,8 +481,8 @@
             </div>
         </div>
         {{-- alert modal --}}
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body px-3">
@@ -497,6 +511,7 @@
 
 <script>
     var id = document.getElementById('item_id');
+    var address_modal = document.getElementById('address-modal');
     var seller_name = document.getElementById('seller-fullname');
     var seller_contact_num = document.getElementById('seller-contact-number');
     var seller_add = document.getElementById('seller-address');
@@ -528,6 +543,7 @@
 
     var detail_order_date = document.getElementById('detail-order-date');
     var detail_payment_method = document.getElementById('detail-payment-method');
+    var detail_order_number = document.getElementById('order-number');
     var detail_shipping_address = document.getElementById('detail-shipping-address');
     var detail_title = document.getElementById('detail-title');
     var detail_status = document.getElementById('detail-status');
@@ -536,6 +552,10 @@
     var detail_subtotal = document.getElementById('detail-subtotal');
     var detail_total = document.getElementById('detail-total');
     var detail_address = document.getElementById('detail-address');
+
+    var address_update_btn = document.getElementById('update-address');
+    var selected_adress;
+    var id_book;
 
     pickup.addEventListener('click', (event) => {
         event.preventDefault();
@@ -580,6 +600,7 @@
                         body: JSON.stringify({
                             id: id.value,
                             shipping_status: document.getElementById('pick_up').value,
+                            pickup_address_id: selected_adress,
                             pickup_date: pickup_date.value
                         }),
                     })
@@ -614,8 +635,10 @@
 
         }
     });
-
+    
     function arrangeShipment(book_id, item_id) {
+        address_modal.innerHTML = '';
+        id_book = book_id;
         fetch('/getorderdetails/' + book_id, {
                 method: 'GET'
             })
@@ -623,18 +646,67 @@
             .then(result => {
                 // console.log(result);
                 result.user.address_user.forEach(address => {
-                    if (address.default_address == 'true') {
+                    if (address.id == parseInt(selected_adress)) {                        
                         seller_name.value = address.name;
                         seller_contact_num.value = address.contact_number;
                         seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
                             address.brgy_village + ', ' + address.city_municipality;
 
                         pickup_name.textContent = address.name;
-                        pickup_phone.textContent = address.seller_contact_num;
+                        pickup_phone.textContent = address.contact_number;
+                        pickup_address.textContent = address.brgy_village + ', ' + address
+                            .city_municipality + ', ' + address.region;
+                        pickup_postal.textContent = address.postal_code;
+                    } else if (address.default_address == 'true') {
+                        // selected_adress = address.id;
+                        seller_name.value = address.name;
+                        seller_contact_num.value = address.contact_number;
+                        seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
+                            address.brgy_village + ', ' + address.city_municipality;
+
+                        pickup_name.textContent = address.name;
+                        pickup_phone.textContent = address.contact_number;
                         pickup_address.textContent = address.brgy_village + ', ' + address
                             .city_municipality + ', ' + address.region;
                         pickup_postal.textContent = address.postal_code;
                     }
+                    var address_label = document.createElement('label');
+                    var address_text_section = document.createElement('div');
+                    var add_pickup_name = document.createElement('p');
+                    var add_pickup_phone = document.createElement('p');
+                    var add_pickup_address = document.createElement('p');
+                    var add_pickup_postal = document.createElement('p');
+                    var address_radio = document.createElement('input');
+
+                    address_label.className = 'pickup-address mb-2';
+                    address_label.htmlFor = 'id_' + address.id;
+
+                    address_text_section.className = 'text-section';
+
+                    // add_pickup_name.id = 'pickup-name';
+                    // add_pickup_name.className = 'fw-bold';
+                    // add_pickup_phone.id = 'pickup-phone';
+                    // add_pickup_address.id = 'pickup-address';
+                    // add_pickup_postal.id = 'pickup-postal';
+
+                    address_radio.id = 'id_' + address.id;
+                    address_radio.type = 'radio';
+                    address_radio.name = 'address_id';
+                    address_radio.value = address.id;
+
+                    add_pickup_name.textContent = address.name;
+                    add_pickup_phone.textContent = address.contact_number;
+                    add_pickup_address.textContent = address.brgy_village + ', ' + address
+                        .city_municipality + ', ' + address.region;
+                    add_pickup_postal.textContent = address.postal_code;
+
+                    address_modal.appendChild(address_label);
+                    address_label.appendChild(address_text_section);
+                    address_text_section.appendChild(add_pickup_name);
+                    address_text_section.appendChild(add_pickup_phone);
+                    address_text_section.appendChild(add_pickup_address);
+                    address_text_section.appendChild(add_pickup_postal);
+                    address_label.appendChild(address_radio);
                 });
 
                 var item_created;
@@ -642,6 +714,7 @@
                     if (item.id == item_id) {
                         id.value = item.id;
                         customer_name.value = item.order.address.name;
+                        detail_order_number.value = item.order.order_number;
                         customer_contact_num.value = item.order.user.phone_number;
                         customer_add.value = item.order.address.region + ', ' + item.order.address
                             .street_building_house + ', ' + item.order.address.brgy_village + ', ' + item
@@ -669,9 +742,43 @@
                 if (document.getElementById('pick_up').checked) {
                     displayPickupContent();
                 }
+
             })
             .catch(error => console.error(error));
     }
+
+    address_update_btn.addEventListener('click', () => {
+        var address_selection = document.querySelectorAll('input[name="address_id"]');
+        address_selection.forEach(add_id => {
+            if (add_id.checked == true) {
+                selected_adress = add_id.value
+            }
+        });
+        // alert(selected_adress);
+        fetch('/getorderdetails/' + id_book, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result.user.address_user.forEach(address => {
+                    if (address.id == selected_adress) {
+                        selected_adress = address.id;
+                        seller_name.value = address.name;
+                        seller_contact_num.value = address.contact_number;
+                        seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
+                            address.brgy_village + ', ' + address.city_municipality;
+
+                        pickup_name.textContent = address.name;
+                        pickup_phone.textContent = address.contact_number;
+                        pickup_address.textContent = address.brgy_village + ', ' + address
+                            .city_municipality + ', ' + address.region;
+                        pickup_postal.textContent = address.postal_code;
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+    });
 
     function viewShipping(book_id, item_id) {
         fetch('/viewshipping/' + book_id, {
@@ -682,21 +789,27 @@
                 // console.log(result);
                 var item_updated;
                 result.item.forEach(item => {
-                    if (item.id == item_id) {                        
+                    if (item.id == item_id) {
                         item_updated = item.updated_at;
                         detail_payment_method.textContent = item.order.payment_method;
-                        detail_shipping_address.textContent = item.order.address.brgy_village + ', ' + item.order.address.city_municipality;
+                        detail_shipping_address.textContent = item.order.address.brgy_village + ', ' + item
+                            .order.address.city_municipality;
                         detail_barcode.src = 'images/bar_codes/' + item.bar_code;
-                        detail_address.textContent = item.order.address.street_building_house + ' ' + item.order.address.brgy_village + ', ' + item.order.address.city_municipality;
+                        detail_address.textContent = item.order.address.street_building_house + ' ' + item
+                            .order.address.brgy_village + ', ' + item.order.address.city_municipality;
                     }
                 });
                 var date = new Date(item_updated);
-                detail_order_date.textContent = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
+                detail_order_date.textContent = date.toLocaleDateString('en-US', {
+                    month: 'long',
+                    year: 'numeric',
+                    day: 'numeric'
+                });
                 detail_title.textContent = result.title;
                 detail_status.textContent = result.status;
                 detail_price.textContent = '₱' + result.price;
                 detail_subtotal.textContent = '₱' + result.price;
-                detail_total.textContent = '₱' + (parseFloat(result.price) + parseFloat(130)) + '.0';                
+                detail_total.textContent = '₱' + (parseFloat(result.price) + parseFloat(130)) + '.0';
             })
             .catch(error => console.error(error));
 

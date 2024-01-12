@@ -1044,7 +1044,7 @@ class UserController extends Controller
     public function manageShipment()
     {
         // $orders = Orders::with('items.book.user.addressUser')->get();
-        $orders = Order_Items::where('order_status', 'Confirmed by seller')->with('book.user.addressUser', 'order.address')->get();
+        $orders = Order_Items::where('order_status', 'Confirmed by seller')->with('book.user.addressUser', 'order.address', 'address')->get();
 
         return view('courier.manageShipment', ['orders' => $orders]);
     }
@@ -1186,6 +1186,7 @@ class UserController extends Controller
         $rate = Reviews::create($data);
 
         if ($rate) {
+            // return redirect('/delivered-mypurchase')->with('message', 'Review successfully created. Thank you for your feedback!');
             return response()->json(['response' => 'Review successfully created. Thank you for your feedback!']);
         } else {
             return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
@@ -1215,8 +1216,8 @@ class UserController extends Controller
         $update = Reviews::find($id);
         $update->update($data);
         if ($update) {
-            return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);
-            // return response()->json(['response' => $data]);
+            // return redirect('delivered-mypurchase')->with(['message' => 'Update confirmed: Your review has been successfully updated.']);
+            return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);            
         } else {
             return response()->json(['response' => 'Update review unsuccessful.']);
         }
@@ -1249,6 +1250,7 @@ class UserController extends Controller
             $order->update([
                 'order_status' => 'Confirmed by seller',
                 'shipping_status' => $request->input('shipping_status'),
+                'pickup_address_id' => $request->input('pickup_address_id'),
                 'pickup_date' => $request->input('pickup_date')
             ]);
 

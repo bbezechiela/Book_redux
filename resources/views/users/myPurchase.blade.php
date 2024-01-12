@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'My Purchase | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/myPurchase-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'My Purchase | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/myPurchase-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -28,8 +28,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -90,17 +90,19 @@
             </div>
         </div>
         @foreach ($user->orders as $order)
-        @foreach ($order->items as $item)
-        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'Pending')
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Purchase</span>
-            </div>
-            {{-- <div class="product-cart">
+            @foreach ($order->items as $item)
+                @if (
+                    $item->order->payment_method == 'Cash on Delivery' &&
+                        ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">To Purchase</span>
+                        </div>
+                        {{-- <div class="product-cart">
                 <div class="book-details">
                     <div class="left-section">
                         <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
@@ -126,7 +128,8 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p>
+                                        <br>
                                         <p class="text-total">Total Payment:<span
                                                 class="product-total">₱{{ $item->book->price + 130 }}</span></p>
                                     </div>
@@ -136,12 +139,12 @@
                                         <a class="btn btn-sm cancel-button" data-bs-toggle="modal"
                                             data-bs-target="#staticBackdrop"
                                             onclick="assignLink({{ $item->id }})">Cancel Order</a>
-                                        <button type="button"
-                                            class="btn btn-sm pending-button" disabled>{{ $item->order_status }}</button>
+                                        <button type="button" class="btn btn-sm pending-button"
+                                            disabled>{{ $item->order_status }}</button>
 
                                     </div>
                                 </div>
-                                @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'Pending')
+                            @elseif ($item->order->payment_method == 'eWallet' && ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
                                 <div class="order-cart">
                                     <div class="name-cart d-flex justify-content-between">
                                         <div>
@@ -177,8 +180,8 @@
                                                     <a class="btn btn-sm cancel-button" data-bs-toggle="modal"
                                                         data-bs-target="#staticBackdrop"
                                                         onclick="assignLink({{ $item->id }})">Cancel Order</a>
-                                                    <button type="button"
-                                                        class="btn btn-sm pending-button" disabled>{{ $item->order_status }}</button>
+                                                    <button type="button" class="btn btn-sm pending-button"
+                                                        disabled>{{ $item->order_status }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,102 +199,102 @@
                                     class="btn btn-sm pending-button">{{ $item->order_status }}</button>
                             </div>
                         </div> --}}
-                    {{-- </div> --}}
-                {{-- </div>
+                                {{-- </div> --}}
+                                {{-- </div>
             </div> --}}
-            @endif
+                @endif
             @endforeach
-            @endforeach
-        </div>
-        {{-- alert modal --}}
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body px-3">
-                        <p class="fs-4">Are you sure you want to cancel you order?</p>
-                        <div class="text-center">
-                            <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        </div>
+        @endforeach
+    </div>
+    {{-- alert modal --}}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body px-3">
+                    <p class="fs-4">Are you sure you want to cancel you order?</p>
+                    <div class="text-center">
+                        <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        {{-- toast --}}
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
-                    <strong class="me-auto"></strong>
-                    <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                @if (session('message'))
+    {{-- toast --}}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                <strong class="me-auto"></strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            @if (session('message'))
                 <div class="toast-body fw-bold text-success">
                     {{ session('message') }}
                 </div>
-                @endif
-            </div>
+            @endif
         </div>
     </div>
+</div>
 
-    @include('partials.__footer', [
+@include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
-    ])
+])
 
-    <script>
-        // function pay(id) {
-        //     var payment_price = document.getElementById('payment_' + id);
-        //     var title = document.getElementById('title_' + id);
-        //     // console.log(parseFloat(payment_price.textContent) + title.textContent);
-        //     const options = {
-        //         method: 'POST',
-        //         headers: {
-        //             accept: 'application/json',
-        //             'Content-Type': 'application/json',
-        //             authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
-        //         },
-        //         body: JSON.stringify({
-        //             data: {
-        //                 attributes: {
-        //                     send_email_receipt: false,
-        //                     show_description: true,
-        //                     show_line_items: true,
-        //                     cancel_url: document.URL,
-        //                     line_items: [{
-        //                         currency: 'PHP',
-        //                         amount: parseFloat(payment_price.textContent) * 100,
-        //                         name: title.textContent + ' (Book)',
-        //                         quantity: 1
-        //                     }],
-        //                     payment_method_types: ['gcash', 'paymaya', 'grab_pay'],
-        //                     description: 'checkout payment',
-        //                     success_url: 'http://127.0.0.1:8000/successpayment/' + id
-        //                 }
-        //             }
-        //         })
-        //     };
-        //     fetch('https://api.paymongo.com/v1/checkout_sessions', options)
-        //         .then(response => response.json())
-        //         .then(response => {
-        //             // console.log(response)
-        //             // window.open(response.data.attributes.checkout_url, '_blank');
-        //             window.location.href = response.data.attributes.checkout_url;
-        //         })
-        //         .catch(err => console.error(err));
-        // }
-        var confirm_redirection_btn = document.getElementById('confirm-redirection');
-        // confirm_redirection_btn.addEventListener('click', () => {
-        //     alert(confirm_redirection_btn.href);
-        // });
-        function assignLink(id) {
-            confirm_redirection_btn.href = /deleteorder/ + id;
-        }
-        const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
-        @if(session('message'))
+<script>
+    // function pay(id) {
+    //     var payment_price = document.getElementById('payment_' + id);
+    //     var title = document.getElementById('title_' + id);
+    //     // console.log(parseFloat(payment_price.textContent) + title.textContent);
+    //     const options = {
+    //         method: 'POST',
+    //         headers: {
+    //             accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //             authorization: 'Basic c2tfdGVzdF9nOGZHd3NqYkJYNnY2aVVHWGJLQWlyeUw6'
+    //         },
+    //         body: JSON.stringify({
+    //             data: {
+    //                 attributes: {
+    //                     send_email_receipt: false,
+    //                     show_description: true,
+    //                     show_line_items: true,
+    //                     cancel_url: document.URL,
+    //                     line_items: [{
+    //                         currency: 'PHP',
+    //                         amount: parseFloat(payment_price.textContent) * 100,
+    //                         name: title.textContent + ' (Book)',
+    //                         quantity: 1
+    //                     }],
+    //                     payment_method_types: ['gcash', 'paymaya', 'grab_pay'],
+    //                     description: 'checkout payment',
+    //                     success_url: 'http://127.0.0.1:8000/successpayment/' + id
+    //                 }
+    //             }
+    //         })
+    //     };
+    //     fetch('https://api.paymongo.com/v1/checkout_sessions', options)
+    //         .then(response => response.json())
+    //         .then(response => {
+    //             // console.log(response)
+    //             // window.open(response.data.attributes.checkout_url, '_blank');
+    //             window.location.href = response.data.attributes.checkout_url;
+    //         })
+    //         .catch(err => console.error(err));
+    // }
+    var confirm_redirection_btn = document.getElementById('confirm-redirection');
+    // confirm_redirection_btn.addEventListener('click', () => {
+    //     alert(confirm_redirection_btn.href);
+    // });
+    function assignLink(id) {
+        confirm_redirection_btn.href = /deleteorder/ + id;
+    }
+    const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
+    @if (session('message'))
         message.show()
-        @endif
-    </script>
+    @endif
+</script>

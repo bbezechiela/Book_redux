@@ -17,6 +17,10 @@ class Order_Items extends Model
         return $this->belongsTo(Books::class, 'book_id');
     }
 
+    public function address() {
+        return $this->belongsTo(Address::class, 'pickup_address_id');
+    }
+
     public function ratedItem() {
         return $this->hasMany(Reviews::class, 'item_id');
     }
@@ -30,6 +34,7 @@ class Order_Items extends Model
         'bar_code',
         'order_status',
         'shipping_status',
+        'pickup_address_id',
         'pickup_date'
     ];
 }

@@ -16,11 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('book_id')->references('id')->on('books');            
             $table->unsignedBigInteger('qty');
             $table->text('bar_code')->nullable();
             $table->string('order_status');
             $table->string('shipping_status')->nullable();
+            $table->unsignedBigInteger('pickup_address_id')->nullable();
+            $table->foreign('pickup_address_id')->references('id')->on('address');
             $table->string('pickup_date')->nullable();
             $table->timestamps();
         });

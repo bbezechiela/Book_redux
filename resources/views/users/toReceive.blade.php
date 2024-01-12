@@ -126,7 +126,7 @@
                             height="110px">
                         <div class="book-info">
                             <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                            <p class="mb-0 book-qty">2 Qty</p>
+                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                             <p class="payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>
