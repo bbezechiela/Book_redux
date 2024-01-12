@@ -10,11 +10,14 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0 body">
+    <div id="couriersidebar" class="couriersidebar p-2 min-vh-100 shadow">
+        <x-couriersidebar />
+    </div>
     <div id="content" class="pe-0 content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>
-                <a href="/shipment"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
+                {{-- <a href="/shipment"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" data-bs-title="Home">
                         <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px; margin-right: 20px;">
                             Manage Order</i>
@@ -29,7 +32,7 @@
                         data-bs-placement="bottom" data-bs-title="Completed">
                         <i class="fa fa-check-square-o" aria-hidden="true"
                             style="font-size: 20px; color: #003060; margin-right: 20px;"> Completed</i>
-                    </button></a>
+                    </button></a> --}}
                 {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" data-bs-title="Messages">
                         <i class="fa fa-envelope-o" aria-hidden="true"
@@ -37,90 +40,95 @@
                     </button></a> --}}
             </div>
             <div class="position-absolute end-0">
-                <div class="d-flex">                    
-                    <ul class="nav py-profile justify-content-end">
+                <div class="d-flex">
+                    <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                        <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
+                            width="35" height="35" class="rounded-5" style="margin-right: 2em;">
+                    </a>
+                    {{-- <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
                                 <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                                    alt="notification" width="35" height="35" class="rounded-5"
-                                    style="margin-right: 2em;">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/courierprofile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
+                    alt="notification" width="35" height="35" class="rounded-5"
+                    style="margin-right: 2em;">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/courierprofile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
-                </div>
+                    </li>
+        </ul> --}}
+    </div>
+</div>
+</ul>
+<div class="container-fluid-wrapper">
+    <h4>Manage Order Shipment</h4>
+    @foreach ($orders as $item)
+    {{-- @foreach ($order->items as $item) --}}
+    <div class="container-fluid ship-details">
+        <div class="details-container">
+            <div class="seller-details-box">
+                <label for="seller-details" class="form-label label-title">Seller Details</label>
+                <label
+                    for="seller-fullname">{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</label>
+                <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
+                @foreach ($item->book->user->addressUser as $address)
+                @if ($address->default_address == 'true')
+                <label
+                    for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                @endif
+                @endforeach
+
             </div>
-        </ul>
-        <div class="container-fluid-wrapper">
-            <h4>Manage Order Shipment</h4>
-            @foreach ($orders as $item)
-            {{-- @foreach ($order->items as $item) --}}
-            <div class="container-fluid ship-details">
-                <div class="details-container">
-                    <div class="seller-details-box">
-                        <label for="seller-details" class="form-label label-title">Seller Details</label>
-                        <label
-                            for="seller-fullname">{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</label>
-                        <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
-                        @foreach ($item->book->user->addressUser as $address)
-                        @if ($address->default_address == 'true')
-                        <label
-                            for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
-                        @endif
-                        @endforeach
 
-                    </div>
-
-                    <div class="customer-details-box">
-                        <label for="customer-details" class="form-label label-title">Customer Details</label>
-                        <label for="customer-fullname">{{ $item->order->address->name }}</label>
-                        <label for="customer-contact-number">{{ $item->order->address->contact_number }}</label>
-                        <label
-                            for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
-                    </div>
-                    <div class="package-details-box">
-                        <label for="package-details" class="form-label label-title">Package Description</label>
-                        <label for="weight">Weight: {{ $item->book->weight }} (kg)</label>
-                        <label for="width">Width: {{ $item->book->width }} (cm)</label>
-                        <label for="height">Height: {{ $item->book->height }} (cm)</label>
-                        <label for="length">Length: {{ $item->book->length }} (cm)</label>
-                        <label for="payment-method">Payment Method: {{ $item->order->payment_method }}</label>
-                    </div>
-
-                    <div class="product-details-box">
-                        <label for="product-details" class="form-label label-title">Product Details</label>
-                        <label for="order-date">Order Date: {{ $item->order->created_at->format('m/d/Y') }}</label>
-                        <label for="order-number">Order Number: {{ $item->order->order_number }}</label>
-                        <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
-                        <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
-                        <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
-                        <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
-                        <label for="shipping-fee">Shipping Fee: ₱{{ 0 }}</label>
-                    </div>
-                    <div class="product-details-box">
-                        <label for="product-details" class="form-label label-title">Shipping Details</label>
-                        <label for="order-date">Shipping: Pickup</label>
-                        <label for="pickup-date">Pickup Date: OD421376365</label>
-                        <label
-                            for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
-                    </div>
-                </div>
-                <center>
-                    <br>
-                    <button type="button" class="btn accept" data-bs-toggle="modal" data-bs-target="#shipping-details"
-                        onclick="shipment({{ $item->order->id . ', ' . $item->id }})">Accept
-                        <span class="fa fa-check"></span></button>
-                    <a href="#" class="deny btn">Decline <span class="fa fa-close"></span></a>
-                </center>
+            <div class="customer-details-box">
+                <label for="customer-details" class="form-label label-title">Customer Details</label>
+                <label for="customer-fullname">{{ $item->order->address->name }}</label>
+                <label for="customer-contact-number">{{ $item->order->address->contact_number }}</label>
+                <label
+                    for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
             </div>
-            {{-- @endforeach --}}
-            @endforeach
+            <div class="package-details-box">
+                <label for="package-details" class="form-label label-title">Package Description</label>
+                <label for="weight">Weight: {{ $item->book->weight }} (kg)</label>
+                <label for="width">Width: {{ $item->book->width }} (cm)</label>
+                <label for="height">Height: {{ $item->book->height }} (cm)</label>
+                <label for="length">Length: {{ $item->book->length }} (cm)</label>
+                <label for="payment-method">Payment Method: {{ $item->order->payment_method }}</label>
+            </div>
+
+            <div class="product-details-box">
+                <label for="product-details" class="form-label label-title">Product Details</label>
+                <label for="order-date">Order Date: {{ $item->order->created_at->format('m/d/Y') }}</label>
+                <label for="order-number">Order Number: {{ $item->order->order_number }}</label>
+                <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
+                <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
+                <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
+                <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
+                <label for="shipping-fee">Shipping Fee: ₱{{ 0 }}</label>
+            </div>
+            <div class="product-details-box">
+                <label for="product-details" class="form-label label-title">Shipping Details</label>
+                <label for="order-date">Shipping: Pickup</label>
+                <label for="pickup-date">Pickup Date: 12/29/2023</label>
+                <label
+                    for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
+            </div>
         </div>
-        {{-- <div class="container-fluid-wrapper">
+        <center>
+            <br>
+            <button type="button" class="btn accept" data-bs-toggle="modal" data-bs-target="#shipping-details"
+                onclick="shipment({{ $item->order->id . ', ' . $item->id }})">Accept
+                <span class="fa fa-check"></span></button>
+            <a href="#" class="deny btn">Decline <span class="fa fa-close"></span></a>
+        </center>
+    </div>
+    {{-- @endforeach --}}
+    @endforeach
+</div>
+{{-- <div class="container-fluid-wrapper">
             <div class="container-fluid ship-details">
                 <div class="details-container">
                     <div class="seller-details-box">
@@ -168,102 +176,101 @@
                 </center>
             </div>
         </div> --}}
-    </div>
+</div>
 
-    <!-- Shipping Details Modal -->
-    <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header d-print-none">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Shipping Details</h1>
-                </div>
-                <div class="modal-body d-print-block" style="color: #003060;">
-                    <div class="container mt-5 mb-5">
-                        <div class="d-flex justify-content-center row">
-                            <div class="col-md-10">
-                                <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
-                                        width="120">
-                                    <hr>
-                                    <div
-                                        class="d-flex flex-row justify-content-between align-items-center order-details">
-                                        <span id="order_id" hidden></span>
-                                        <span id="item_id" hidden></span>
-                                        <div><span class="d-block fs-12">Order date</span><span class="font-weight-bold"
-                                                id="order-date">12 March 2020</span></div>
-                                        <div><span class="d-block fs-12">Order number</span><span
-                                                class="font-weight-bold" id="order-number">OD44434324</span></div>
-                                        <div><span class="d-block fs-12">Payment method</span><span
-                                                class="font-weight-bold" id="payment-method">Cash on Delivery</span>
-                                        </div>
-                                        <div><span class="d-block fs-12">Shipping Address</span><span
-                                                class="font-weight-bold shipping-address-text"
-                                                id="shipping-address">Bagacay,
-                                                Tacloban</span></div>
+<!-- Shipping Details Modal -->
+<div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-print-none">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Shipping Details</h1>
+            </div>
+            <div class="modal-body d-print-block" style="color: #003060;">
+                <div class="container mt-5 mb-5">
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-10">
+                            <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                    width="120">
+                                <hr>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <span id="order_id" hidden></span>
+                                    <span id="item_id" hidden></span>
+                                    <div><span class="d-block fs-12">Order date</span><span class="font-weight-bold"
+                                            id="order-date">12 March 2020</span></div>
+                                    <div><span class="d-block fs-12">Order number</span><span class="font-weight-bold"
+                                            id="order-number">OD44434324</span></div>
+                                    <div><span class="d-block fs-12">Payment method</span><span class="font-weight-bold"
+                                            id="payment-method">Cash on Delivery</span>
                                     </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between align-items-center product-details">
-                                        <div class="d-flex flex-row product-name-image">
-                                            <div class="d-flex flex-column justify-content-between ml-2">
-                                                <div><span class="d-block font-weight-bold p-name" id="book-title">City
-                                                        of
-                                                        Secrets</span><span class="fs-12" id="book-status">Sale</span>
-                                                </div><span class="fs-12"></span>
-                                            </div>
-                                        </div>
-                                        <div class="product-price">
-                                            <h5 id="book-price">₱100</h5>
+                                    <div><span class="d-block fs-12">Shipping Address</span><span
+                                            class="font-weight-bold shipping-address-text"
+                                            id="shipping-address">Bagacay,
+                                            Tacloban</span></div>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center product-details">
+                                    <div class="d-flex flex-row product-name-image">
+                                        <div class="d-flex flex-column justify-content-between ml-2">
+                                            <div><span class="d-block font-weight-bold p-name" id="book-title">City
+                                                    of
+                                                    Secrets</span><span class="fs-12" id="book-status">Sale</span>
+                                            </div><span class="fs-12"></span>
                                         </div>
                                     </div>
-                                    <div class="mt-5 amount row">
-                                        <div class="d-flex justify-content-center col-md-6">
-                                            <input type="file" class="d-none" accept="image/*" id="tracking_number"
-                                                name="tracking_number" required>
-                                            <label for="tracking_number"
-                                                class="btn mx-auto mt-3 py-1 px-0 upload-track-btn">Upload</label>
-                                            <img src="" width="250" height="100" id="img-icon">
-                                            {{-- <img src="../assets/tracking.jfif" width="250" height="100"
+                                    <div class="product-price">
+                                        <h5 id="book-price">₱100</h5>
+                                    </div>
+                                </div>
+                                <div class="mt-5 amount row">
+                                    <div class="d-flex justify-content-center col-md-6">
+                                        <input type="file" class="d-none" accept="image/*" id="tracking_number"
+                                            name="tracking_number" required>
+                                        <label for="tracking_number"
+                                            class="btn mx-auto mt-3 py-1 px-0 upload-track-btn">Upload</label>
+                                        <img src="" width="250" height="100" id="img-icon">
+                                        {{-- <img src="../assets/tracking.jfif" width="250" height="100"
                                                 id="img-icon"> --}}
 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="billing">
-                                                <div class="d-flex justify-content-between">
-                                                    <span>Subtotal</span><span class="font-weight-bold"
-                                                        id="sub-total">₱100</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between mt-2"><span>Shipping
-                                                        fee</span><span class="font-weight-bold"
-                                                        id="shipping-fee">₱40</span></div>
-                                                <hr>
-                                                <div class="d-flex justify-content-between mt-1"><span
-                                                        class="font-weight-bold">Total</span><span
-                                                        class="font-weight-bold shipping-address-text"
-                                                        id="total">₱140</span>
-                                                </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="billing">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Subtotal</span><span class="font-weight-bold"
+                                                    id="sub-total">₱100</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2"><span>Shipping
+                                                    fee</span><span class="font-weight-bold"
+                                                    id="shipping-fee">₱40</span></div>
+                                            <hr>
+                                            <div class="d-flex justify-content-between mt-1"><span
+                                                    class="font-weight-bold">Total</span><span
+                                                    class="font-weight-bold shipping-address-text"
+                                                    id="total">₱140</span>
                                             </div>
                                         </div>
-                                    </div><span class="d-block">Complete Address</span><span
-                                        class="font-weight-bold shipping-address-text" id="complete-address">Blk 33
-                                        Lot 52 Bagacay,
-                                        Tacloban City</span>
-                                    <hr>
-                                    <div class="d-flex justify-content-between align-items-center footer">
-                                        <div class="thanks"><span class="d-block font-weight-bold">Thanks for
-                                                shopping</span><span>BookRedux team</span></div>
                                     </div>
+                                </div><span class="d-block">Complete Address</span><span
+                                    class="font-weight-bold shipping-address-text" id="complete-address">Blk 33
+                                    Lot 52 Bagacay,
+                                    Tacloban City</span>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center footer">
+                                    <div class="thanks"><span class="d-block font-weight-bold">Thanks for
+                                            shopping</span><span>BookRedux team</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </div>
-                <div class="modal-footer d-print-none">
-                    <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
-                    <button class="btn btn-primary hidden-print save-button" id="save-btn">Save</button>
-                </div>
+            </div>
+            <div class="modal-footer d-print-none">
+                <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary hidden-print save-button" id="save-btn">Save</button>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 </div>

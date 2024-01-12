@@ -2,6 +2,56 @@ body {
     background-color: #fff;
 }
 
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #fff;
+}
+
+.couriersidebar {
+    position: fixed;
+    background-color: #012141;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.couriersidebar i{
+    color: #fff;;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.sidebar-btn.active, .sidebar-btn.active span  {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-link:hover {
+    color: #003060;
+}
+
+.nav-item:hover {
+    background-color: #fff;
+    color: #003060;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
 .top-nav {
     border-radius: 5px 5px 5px 5px;
 }
@@ -24,13 +74,13 @@ body {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 1px 1px 0px #003060;
     border-radius: 3px;
     margin-top: 1em;
     margin-bottom: 2em;
     padding: 1em;
     padding-bottom: 3em;
-    background-color: #e2e9f0;
+    background-color: #f8fbfd;
     font-size: 12px;
 }
 
@@ -80,26 +130,28 @@ a {
 
 .accept {
     color: #FFF;
-    background: #44CC44;
+    background: #E55B13;
     padding: 5px 15px;
-    box-shadow: 0 4px 0 0 #2EA62E;
+    box-shadow: 0 4px 0 0 #E55B13;
 }
 
 .accept:hover {
+    color: #FFF;
     background: #6FE76F;
     box-shadow: 0 4px 0 0 #7ED37E;
 }
 
 .deny {
     color: #FFF;
-    background: tomato;
+    background: #003060;
     padding: 5px 15px;
-    box-shadow: 0 4px 0 0 #CB4949;
+    box-shadow: 0 4px 0 0 #003060;
 }
 
 .deny:hover {
-    background: rgb(255, 147, 128);
-    box-shadow: 0 4px 0 0 #EF8282;
+    color: #FFF;
+    background: tomato;
+    box-shadow: 0 4px 0 0 tomato;
 }
 
 .shipping-address-text {
