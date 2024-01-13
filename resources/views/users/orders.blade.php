@@ -377,7 +377,7 @@
                                             <div><span class="d-block fs-12">Order date</span><span
                                                     id="detail-order-date" class="font-weight-bold">12 March
                                                     2020</span></div>
-                                            {{-- <div><span class="d-block fs-12">Order number</span><span id="detail-order-number" class="font-weight-bold">OD44434324</span></div> --}}
+                                            <div><span class="d-block fs-12">Order number</span><span id="detail-order-number" class="font-weight-bold">OD44434324</span></div>
                                             <div><span class="d-block fs-12">Payment method</span><span
                                                     id="detail-payment-method" class="font-weight-bold">Cash on
                                                     Delivery</span></div>
@@ -512,7 +512,7 @@
 
     var detail_order_date = document.getElementById('detail-order-date');
     var detail_payment_method = document.getElementById('detail-payment-method');
-    var detail_order_number = document.getElementById('order-number');
+    var detail_order_number = document.getElementById('detail-order-number');
     var detail_shipping_address = document.getElementById('detail-shipping-address');
     var detail_title = document.getElementById('detail-title');
     var detail_status = document.getElementById('detail-status');
@@ -770,6 +770,7 @@
                     if (item.id == item_id) {
                         item_updated = item.updated_at;
                         detail_payment_method.textContent = item.order.payment_method;
+                        detail_order_number.textContent = item.order.order_number;
                         detail_shipping_address.textContent = item.order.address.brgy_village + ', ' + item
                             .order.address.city_municipality;
                         detail_barcode.src = 'images/bar_codes/' + item.bar_code;
