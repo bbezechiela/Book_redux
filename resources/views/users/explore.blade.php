@@ -202,6 +202,9 @@
                             </div>
                         </div>
                     @endif
+                    @if ($loop->iteration == 10)
+                        @break
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -309,6 +312,9 @@
                                 </div>
                             </div>
                         </div>
+                    @endif
+                    @if ($loop->iteration == 10)
+                        @break
                     @endif
                 @endforeach
             </div>
@@ -424,6 +430,9 @@
                             </div>
                         @endif
                     @endif
+                    @if ($loop->iteration == 10)
+                        @break
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -484,6 +493,9 @@
                                 @endif
                             </div>
                         </div>
+                    @endif
+                    @if ($loop->iteration == 10)
+                        @break
                     @endif
                 @endforeach
 
@@ -548,6 +560,9 @@
                             </div>
                         </div>
                     @endif
+                    @if ($loop->iteration == 10)
+                        @break
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -608,6 +623,9 @@
                                 @endif
                             </div>
                         </div>
+                    @endif
+                    @if ($loop->iteration == 10)
+                        @break
                     @endif
                 @endforeach
             </div>
