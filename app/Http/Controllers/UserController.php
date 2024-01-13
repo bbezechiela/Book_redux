@@ -114,7 +114,7 @@ class UserController extends Controller
     public function singleProduct($id, $user_id)
     {
         if (session()->has('user')) {
-            $book = Books::find($id);
+            $book = Books::with('item.ratedItem.user')->find($id);
             $user = Users::with('addressUser')->find($user_id);
             return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
         } else {
@@ -518,6 +518,21 @@ class UserController extends Controller
 
         if ($item_update) {
             return redirect('/mypurchase');
+        } else {
+            return response()->json(['message' => 'error bitch']);
+        }
+    }
+
+    public function declineOrder($id) {
+        $item = Order_Items::with('book')->find($id);
+        $qty = intval($item->qty) + intval($item->book->stock);
+
+        $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
+        $item_update = $item->update(['order_status' => 'dropped']);
+        
+
+        if ($item_update) {
+            return redirect('/orders');
         } else {
             return response()->json(['message' => 'error bitch']);
         }

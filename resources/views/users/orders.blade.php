@@ -122,7 +122,7 @@
                                             details</small>
                                     </div>
                                     <div class="button-group">
-                                        <button type="button" class="btn btn-sm decline-button" data-bs-toggle="modal"
+                                        <button type="button" id="decline-btn" class="btn btn-sm decline-button" data-bs-toggle="modal" onclick="declineItem({{ $item->id }})"
                                             data-bs-target="#staticBackdrop">Decline</button>
                                         <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                             data-bs-toggle="modal"
@@ -344,37 +344,6 @@
                                     href="#">Change</a></button> --}}
                             <input type="radio" id="address-id" name="address_id">
                         </label>
-                        {{-- <div class="mb-3">
-                            <label for="fullname" class="form-label">Fullname</label>
-                            <input type="text" class="form-control" id="fullname" placeholder="Fullname"
-                                style="margin-bottom: 20px; color: #003060;">
-                            <label for="contact-number" class="form-label">Contact Number</label>
-                            <input type="text" class="form-control" id="contact-number"
-                                placeholder="Contact Number" style="margin-bottom: 20px; color: #003060;">
-                            <label for="address" class="form-label">Province, City, Barangay</label>
-                            <div class="form-group">
-                                <select class="form-control form-select" aria-label="Select Address" placeholder=""
-                                    style="color: #003060; margin-bottom: 20px;">
-                                    <option value="public">To be continue</option>
-                                    <option value="private">To be continue</option>
-                                </select>
-                            </div>
-                            <label for="postal-code" class="form-label">Postal Code</label>
-                            <input type="text" class="form-control" id="postal-code" placeholder="Postal Code"
-                                style="margin-bottom: 20px; color: #003060;">
-                            <label for="street" class="form-label">Street Name, Building, House No.</label>
-                            <input type="text" class="form-control" id="street"
-                                placeholder="Street Name, Building, House No."
-                                style="margin-bottom: 50px; color: #003060;">
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input default-address" type="checkbox" value=""
-                                id="default-address">
-                            <label class="form-check-label" for="default-address"
-                                style="margin-bottom: 50px; color: #E55B13; margin-left: 8px;">
-                                Set as default address
-                            </label>
-                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-button" data-bs-toggle="modal"
@@ -556,6 +525,15 @@
     var address_update_btn = document.getElementById('update-address');
     var selected_adress;
     var id_book;
+    var decline_btn = document.getElementById('decline-btn');
+    var confirm_decline_btn = document.getElementById('confirm-redirection');
+
+    function declineItem(id) {        
+        confirm_decline_btn.href = '/declineorder/' + id;
+    }
+    // decline_btn.addEventListener('click', () => {
+        // confirm_decline_btn.href = 
+    // });
 
     pickup.addEventListener('click', (event) => {
         event.preventDefault();

@@ -250,6 +250,8 @@ Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
 Route::get('/deleteorder/{id}', [UserController::class, 'deleteOrder']);
 
+Route::get('/declineorder/{id}', [UserController::class, 'declineOrder']);
+
 Route::get('/successpayment', [UserController::class, 'successOrder']);
 
 Route::get('/orderreceived/{id}', [UserController::class, 'receivedOrder']);

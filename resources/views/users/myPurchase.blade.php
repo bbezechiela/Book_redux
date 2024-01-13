@@ -291,7 +291,7 @@
     //     alert(confirm_redirection_btn.href);
     // });
     function assignLink(id) {
-        confirm_redirection_btn.href = /deleteorder/ + id;
+        confirm_redirection_btn.href = '/deleteorder/' + id;
     }
     const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
     @if (session('message'))
