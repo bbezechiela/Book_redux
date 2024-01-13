@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Categories | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/categories-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Categories | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/categories-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -23,8 +23,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                        src="../assets/Book_Logo.png" alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
                 <div class="dropdown">
                     <a class="btn dropdown-toggle drpdwn-genre" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">Educational</a>
@@ -89,7 +89,8 @@
                                 <i class="fa fa-search"></i>
                             </span>
                             <div class="position-relevant">
-                                <input id="search_input" class="form-control rounded-3" type="text" placeholder="Search">
+                                <input id="search_input" class="form-control rounded-3" type="text"
+                                    placeholder="Search">
                                 <div id="searches" class="position-absolute border bg-light w-100 p-2"
                                     style="cursor: pointer;">
                                 </div>
@@ -104,7 +105,7 @@
                                 data-bs-placement="bottom" data-bs-title="Notification">
                                 <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                             </button></a> --}}
-                        <ul class="nav py-profile justify-content-end">
+                        <ul class="nav py-profile justify-content-end" style="margin-left: 2em">
                             <li class="nav-item dropdown">
                                 <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                     class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
@@ -127,945 +128,1139 @@
                 </div>
         </ul>
         <!--  Educational -->
-        <div id="educational" class="mx-2 px-3">
+        <div id="educational" class="mx-5 px-5">
             <h4 id="educational-header">Educational</h4>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
                 <!-- card Educational -->
                 @foreach ($book as $educational)
-                    @if (preg_match('/Educational/i', $educational->genre))
-                        @if ($educational->status == 'Exchange' && $educational->unit == 'Available' && !empty($educational->genre))
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto"
-                                    alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
-                                        {{ $educational->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                        style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (!empty($educational->genre) && $educational->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto"
-                                    alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
-                                        {{ $educational->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $educational->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                        style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Educational/i', $educational->genre))
+                @if ($educational->status == 'Exchange' && $educational->unit == 'Available' &&
+                !empty($educational->genre))
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $educational->author }}
+                            {{ $educational->genre }}</p>
+                        @foreach ($educational->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                        style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif (!empty($educational->genre) && $educational->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $educational->author }}
+                            {{ $educational->genre }}</p>
+                        @foreach ($educational->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $educational->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                        style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="historical_fiction" class="mx-2 px-3">
+        <div id="historical_fiction" class="mx-5 px-5">
             <h4 id="historical-fiction-header">Historical Fiction</h4>
-            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
                 <!-- card Historical Fiction -->
                 @foreach ($book as $historical_fiction)
-                    @if (preg_match('/Historical Fiction/i', $historical_fiction->genre))
-                        @if ($historical_fiction->status == 'Exchange' && $historical_fiction->unit == 'Available' && !empty($historical_fiction->genre))
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $historical_fiction->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $historical_fiction->author }}<br>
-                                        {{ $historical_fiction->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif (!empty($historical_fiction->genre) && $historical_fiction->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $historical_fiction->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $historical_fiction->author }}<br>
-                                        {{ $historical_fiction->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $historical_fiction->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                            <h1>No books available</h1>
+                @if (preg_match('/Historical Fiction/i', $historical_fiction->genre))
+                @if ($historical_fiction->status == 'Exchange' && $historical_fiction->unit == 'Available' &&
+                !empty($historical_fiction->genre))
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $historical_fiction->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}
+                            {{ $historical_fiction->genre }}</p>
+                        @foreach ($historical_fiction->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif (!empty($historical_fiction->genre) && $historical_fiction->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $historical_fiction->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}
+                            {{ $historical_fiction->genre }}</p>
+                        @foreach ($exchange->user->addressUser as $address)
+                        @if ($historical_fiction->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $historical_fiction->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <h1>No books available</h1>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="poetry_prose" class="mx-2 px-3">
+        <div id="poetry_prose" class="mx-5 px-5">
             <h4 id="poetry-prose-header">Poetry & Prose</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Poetry & Prose -->
                 @foreach ($book as $poetry_prose)
-                    @if (preg_match('/Poetry & Prose/i', $poetry_prose->genre))
-                        @if ($poetry_prose->status == 'Exchange' && $poetry_prose->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $poetry_prose->author }}<br>
-                                        {{ $poetry_prose->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($poetry_prose->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $poetry_prose->author }}<br>
-                                        {{ $poetry_prose->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $poetry_prose->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Poetry & Prose/i', $poetry_prose->genre))
+                @if ($poetry_prose->status == 'Exchange' && $poetry_prose->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}
+                            {{ $poetry_prose->genre }}</p>
+                        @foreach ($poetry_prose->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($poetry_prose->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}
+                            {{ $poetry_prose->genre }}</p>
+                        @foreach ($poetry_prose->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $poetry_prose->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="self_help" class="mx-2 px-3">
+        <div id="self_help" class="mx-5 px-5">
             <h4 id="self-help-header">Self-Help</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Self-Help -->
                 @foreach ($book as $self_help)
-                    @if (preg_match('/Self-Help/i', $self_help->genre))
-                        @if ($self_help->status == 'Exchange' && $self_help->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto"
-                                    alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $self_help->author }}<br>
-                                        {{ $self_help->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($self_help->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto"
-                                    alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $self_help->author }}<br>
-                                        {{ $self_help->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $self_help->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Self-Help/i', $self_help->genre))
+                @if ($self_help->status == 'Exchange' && $self_help->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}
+                            {{ $self_help->genre }}</p>
+                        @foreach ($self_help->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($self_help->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}
+                            {{ $self_help->genre }}</p>
+                        @foreach ($self_help->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $self_help->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="romance_saga" class="mx-2 px-3">
+        <div id="romance_saga" class="mx-5 px-5">
             <h4 id="romance-saga-header">Romance & Saga</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Romance & Saga -->
                 @foreach ($book as $romance_saga)
-                    @if (preg_match('/Romance & Saga/i', $romance_saga->genre))
-                        @if ($romance_saga->status == 'Exchange' && $romance_saga->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $romance_saga->author }}<br>
-                                        {{ $romance_saga->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($romance_saga->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $romance_saga->author }}<br>
-                                        {{ $romance_saga->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $romance_saga->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Romance & Saga/i', $romance_saga->genre))
+                @if ($romance_saga->status == 'Exchange' && $romance_saga->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}
+                            {{ $romance_saga->genre }}</p>
+                        @foreach ($romance_saga->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($romance_saga->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}
+                            {{ $romance_saga->genre }}</p>
+                        @foreach ($romance_saga->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $romance_saga->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="science_fiction" class="mx-2 px-3">
+        <div id="science_fiction" class="mx-5 px-5">
             <h4 id="science-fiction-header">Science Fiction</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Science Fiction -->
                 @foreach ($book as $science_fiction)
-                    @if (preg_match('/Science Fiction/i', $science_fiction->genre))
-                        @if ($science_fiction->status == 'Exchange' && $science_fiction->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-2">{{ $science_fiction->author }}<br>
-                                        {{ $science_fiction->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($science_fiction->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-2">{{ $science_fiction->author }}<br>
-                                        {{ $science_fiction->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $science_fiction->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Science Fiction/i', $science_fiction->genre))
+                @if ($science_fiction->status == 'Exchange' && $science_fiction->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}
+                            {{ $science_fiction->genre }}</p>
+                        @foreach ($science_fiction->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($science_fiction->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}
+                            {{ $science_fiction->genre }}</p>
+                        @foreach ($science_fiction->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $science_fiction->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
 
             </div>
         </div>
-        <div id="fantasy_adventure" class="mx-2 mb-4 px-3">
+        <div id="fantasy_adventure" class="mx-5 px-5">
             <h4 id="fantasy-adventure-header">Fantasy & Adventure</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Fantasy & Adventure -->
                 @foreach ($book as $fantasy_adventure)
-                    @if (preg_match('/Fantasy & Adventure/i', $fantasy_adventure->genre))
-                        @if ($fantasy_adventure->status == 'Exchange' && $fantasy_adventure->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $fantasy_adventure->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $fantasy_adventure->author }}<br>
-                                        {{ $fantasy_adventure->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($fantasy_adventure->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $fantasy_adventure->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $fantasy_adventure->author }}<br>
-                                        {{ $fantasy_adventure->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $fantasy_adventure->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Fantasy & Adventure/i', $fantasy_adventure->genre))
+                @if ($fantasy_adventure->status == 'Exchange' && $fantasy_adventure->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $fantasy_adventure->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}
+                            {{ $fantasy_adventure->genre }}</p>
+                        @foreach ($fantasy_adventure->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($fantasy_adventure->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $fantasy_adventure->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}
+                            {{ $fantasy_adventure->genre }}</p>
+                        @foreach ($fantasy_adventure->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $fantasy_adventure->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="young_adult" class="mx-2 px-3">
+        <div id="young_adult" class="mx-5 px-5">
             <h4 id="young-adult-header">Young Adult</h4>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Young Adult -->
                 @foreach ($book as $young_adult)
-                    @if (preg_match('/Young Adult/i', $young_adult->genre))
-                        @if ($young_adult->status == 'Exchange' && $young_adult->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $young_adult->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $young_adult->author }}<br>
-                                        {{ $young_adult->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($young_adult->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $young_adult->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $young_adult->author }}<br>
-                                        {{ $young_adult->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $young_adult->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Young Adult/i', $young_adult->genre))
+                @if ($young_adult->status == 'Exchange' && $young_adult->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}
+                            {{ $young_adult->genre }}</p>
+                        @foreach ($young_adult->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($young_adult->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}
+                            {{ $young_adult->genre }}</p>
+                        @foreach ($young_adult->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $young_adult->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
 
             </div>
         </div>
-        <div id="crime_thriller" class="mx-2 px-3">
+        <div id="crime_thriller" class="mx-5 px-5">
             <h4 id="crime-thriller-header">Crime & Thriller</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Crime & Thriller -->
                 @foreach ($book as $crime_thriller)
-                    @if (preg_match('/Crime & Thriller/i', $crime_thriller->genre))
-                        @if ($crime_thriller->status == 'Exchange' && $crime_thriller->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-2">{{ $crime_thriller->author }}<br>
-                                        {{ $crime_thriller->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($crime_thriller->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-2">{{ $crime_thriller->author }}<br>
-                                        {{ $crime_thriller->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $crime_thriller->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Crime & Thriller/i', $crime_thriller->genre))
+                @if ($crime_thriller->status == 'Exchange' && $crime_thriller->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}
+                            {{ $crime_thriller->genre }}</p>
+                        @foreach ($crime_thriller->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($crime_thriller->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}
+                            {{ $crime_thriller->genre }}</p>
+                        @foreach ($crime_thriller->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $crime_thriller->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="horror_supernatural" class="mx-2 px-3">
+        <div id="horror_supernatural" class="mx-5 px-5">
             <h4 id="horror-supernatural-header">Horror & Supernatural</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Horror & Supernatural -->
                 @foreach ($book as $horror_supernatural)
-                    @if (preg_match('/Horror & Supernatural/i', $horror_supernatural->genre))
-                        @if ($horror_supernatural->status == 'Exchange' && $horror_supernatural->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $horror_supernatural->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $horror_supernatural->author }}<br>
-                                        {{ $horror_supernatural->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($horror_supernatural->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $horror_supernatural->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $horror_supernatural->author }}<br>
-                                        {{ $horror_supernatural->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $horror_supernatural->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Horror & Supernatural/i', $horror_supernatural->genre))
+                @if ($horror_supernatural->status == 'Exchange' && $horror_supernatural->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $horror_supernatural->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}
+                            {{ $horror_supernatural->genre }}</p>
+                        @foreach ($horror_supernatural->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($horror_supernatural->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $horror_supernatural->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}
+                            {{ $horror_supernatural->genre }}</p>
+                        @foreach ($horror_supernatural->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $horror_supernatural->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="comedy_satire" class="mx-2 px-3">
+        <div id="comedy_satire" class="mx-5 px-5">
             <h4 id="comedy-satire-header">Comedy & Satire</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Comedy & Satire-->
                 @foreach ($book as $comedy_satire)
-                    @if (preg_match('/Comedy & Satire/i', $comedy_satire->genre))
-                        @if ($comedy_satire->status == 'Exchange' && $comedy_satire->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-2">{{ $comedy_satire->author }}<br>
-                                        {{ $comedy_satire->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($comedy_satire->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-2">{{ $comedy_satire->author }}<br>
-                                        {{ $comedy_satire->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $comedy_satire->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Comedy & Satire/i', $comedy_satire->genre))
+                @if ($comedy_satire->status == 'Exchange' && $comedy_satire->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}
+                            {{ $comedy_satire->genre }}</p>
+                        @foreach ($comedy_satire->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($comedy_satire->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}
+                            {{ $comedy_satire->genre }}</p>
+                        @foreach ($comedy_satire->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $comedy_satire->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
-        <div id="nonfiction_biography" class="mx-2 px-3">
+        <div id="nonfiction_biography" class="mx-5 px-5">
             <h4 id="nonfiction-biography-header">Non-Fiction & Biography</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Non-Fiction & Biography -->
                 @foreach ($book as $nonfiction_biography)
-                    @if (preg_match('/Non-Fiction & Biography/i', $nonfiction_biography->genre))
-                        @if ($nonfiction_biography->status == 'Exchange' && $nonfiction_biography->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $nonfiction_biography->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $nonfiction_biography->author }}<br>
-                                        {{ $nonfiction_biography->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        {{-- <span class="fw-bold p-0">P100.00</span> --}}
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($nonfiction_biography->unit == 'Available')
-                            <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
-                                <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}"
-                                    class="img mx-auto" alt="..." width="130px" height="170px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">
-                                        {{ $nonfiction_biography->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $nonfiction_biography->author }}<br>
-                                        {{ $nonfiction_biography->genre }}</p>
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $nonfiction_biography->price }}</span>
-                                        <div class="button-container">
-                                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
-                                                    style="margin-right: 8px"></i></button> --}}
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Cart</a>
-                                                    </li>
-                                                    {{-- <li><a class="dropdown-item" href="#"><i
-                                                                class="fa fa-list-alt" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
-                                                    </li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                @if (preg_match('/Non-Fiction & Biography/i', $nonfiction_biography->genre))
+                @if ($nonfiction_biography->status == 'Exchange' && $nonfiction_biography->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $nonfiction_biography->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}
+                            {{ $nonfiction_biography->genre }}</p>
+                        @foreach ($nonfiction_biography->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
                         @endif
-                    @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($nonfiction_biography->unit == 'Available')
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto"
+                        alt="..." width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">
+                            {{ $nonfiction_biography->title }}</p>
+                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}
+                            {{ $nonfiction_biography->genre }}</p>
+                        @foreach ($nonfiction_biography->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $nonfiction_biography->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
                 @endforeach
             </div>
         </div>
@@ -1074,8 +1269,7 @@
             <h4 class="text-center educational_text mx-5 pb-2">EDUCATIONAL</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1105,8 +1299,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1136,8 +1329,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1167,8 +1359,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1198,8 +1389,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1229,8 +1419,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1260,8 +1449,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1291,8 +1479,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1349,8 +1536,7 @@
             <h4 class="text-center historical_fiction_text mx-5 pb-2">HISTORICAL FICTION</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1380,8 +1566,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1411,8 +1596,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1442,8 +1626,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1473,8 +1656,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1504,8 +1686,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1535,8 +1716,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1566,8 +1746,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1615,8 +1794,7 @@
             <h4 class="text-center poetry_prose_text mx-5 pb-2">POETRY & PROSE</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1646,8 +1824,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1677,8 +1854,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1708,8 +1884,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1739,8 +1914,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1770,8 +1944,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1801,8 +1974,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1832,8 +2004,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1890,8 +2061,7 @@
             <h4 class="text-center self_help_text mx-5 pb-2">SELF-HELP</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1921,8 +2091,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1952,8 +2121,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -1983,8 +2151,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2014,8 +2181,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2045,8 +2211,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2076,8 +2241,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2107,8 +2271,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2165,8 +2328,7 @@
             <h4 class="text-center romance_saga_text mx-5 pb-2">ROMANCE & SAGA</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2196,8 +2358,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2227,8 +2388,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2258,8 +2418,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2289,8 +2448,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2320,8 +2478,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2351,8 +2508,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2382,8 +2538,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2440,8 +2595,7 @@
             <h4 class="text-center science_fiction_text mx-5 pb-2">SCIENCE FICTION</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2471,8 +2625,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2502,8 +2655,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2533,8 +2685,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2564,8 +2715,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2595,8 +2745,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2626,8 +2775,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2657,8 +2805,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2715,8 +2862,7 @@
             <h4 class="text-center fantasy_adventure_text mx-5 pb-2">FANTASY & ADVENTURE</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2746,8 +2892,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2777,8 +2922,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2808,8 +2952,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2839,8 +2982,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2870,8 +3012,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2901,8 +3042,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2932,8 +3072,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -2990,8 +3129,7 @@
             <h4 class="text-center young_adult_text mx-5 pb-2">YOUNG ADULT</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3021,8 +3159,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3052,8 +3189,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3083,8 +3219,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3114,8 +3249,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3145,8 +3279,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3176,8 +3309,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3207,8 +3339,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3265,8 +3396,7 @@
             <h4 class="text-center mystery_suspense_text mx-5 pb-2">MYSTERY & SUSPENSE</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3296,8 +3426,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3327,8 +3456,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3358,8 +3486,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3389,8 +3516,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3420,8 +3546,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3451,8 +3576,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3482,8 +3606,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3531,8 +3654,7 @@
             <h4 class="text-center crime_thriller_text mx-5 pb-2">CRIME & THRILLER</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3562,8 +3684,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3593,8 +3714,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3624,8 +3744,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3655,8 +3774,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3686,8 +3804,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3717,8 +3834,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3748,8 +3864,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3806,8 +3921,7 @@
             <h4 class="text-center horror_supernatural_text mx-5 pb-2">HORROR & SUPERNATURAL</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3837,8 +3951,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3868,8 +3981,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3899,8 +4011,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3930,8 +4041,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3961,8 +4071,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -3992,8 +4101,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4023,8 +4131,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4081,8 +4188,7 @@
             <h4 class="text-center comedy_satire_text mx-5 pb-2">COMEDY & SATIRE</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4112,8 +4218,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4143,8 +4248,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4174,8 +4278,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4205,8 +4308,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4236,8 +4338,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4267,8 +4368,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4298,8 +4398,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4356,8 +4455,7 @@
             <h4 class="text-center nonfiction_biography_text mx-5 pb-2">NON-FICTION & BIOGRAPHY</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4387,8 +4485,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4418,8 +4515,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4449,8 +4545,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4480,8 +4575,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4511,8 +4605,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4542,8 +4635,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_limits.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4573,8 +4665,7 @@
                     </div>
                 </div>
                 <div class="card col-3 m-1 shadow" style="width: 200px;">
-                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px"
-                        height="170px">
+                    <img src="../assets/city_of_secrets.png" class="img mx-auto" alt="..." width="130px" height="170px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">City of Secrets</p>
                         <p class="card-text mt-0 mb-2">Marie Fernandez <br>
@@ -4629,74 +4720,73 @@
     </div>
 
     @include('partials.__footer', [
-        'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-        'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
     ])
 
     <script>
         // search script
-    var search = document.getElementById('search_input');
-    var searchContainer = document.getElementById('searches');
-    if (search.value.trim().length < 1) {
-        searchContainer.style.display = 'none'
-    }
-    search.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.keyCode === 13) {
-            window.location.href = '/searchitem/' + search.value;
-        }
-    });
-    search.addEventListener('input', () => {
-        if (search.value.trim().length > 1) {
-            const requestOptions = {
-                method: 'GET',
-            };
-            fetch('/search/' + search.value.trim(), requestOptions)
-                .then(response => response.json())
-                .then(result => {
-                    searchContainer.style.display = 'inline';
-                    searchContainer.innerHTML = '';
-                    // console.log(result);
-                    result.forEach(data => {
-                        console.log(data);
-                        if (data.unit == 'Available') {
-                            const suggestionElement = document.createElement('div');
-                            const searchedImage = document.createElement('img');
-                            const searchedContent = document.createElement('div');
-                            const titleText = document.createElement('p');
-                            const authorText = document.createElement('p');
-                            // suggestionElement.textContent = data.title;
-                            suggestionElement.id = "searched-item";
-                            suggestionElement.className = 'row px-2';
-                            searchedImage.src = '/images/books/' + data.book_photo;
-                            searchedImage.className = 'col-3 px-0 bg-light';
-                            searchedContent.className = 'col border';
-                            searchedContent.id = 'textContent';
-                            titleText.className = 'm-0 fw-bold';
-                            titleText.id = 'searched-title';
-                            titleText.textContent = data.title;
-                            authorText.id = 'searched-author';
-                            authorText.textContent = data.author;
-                            suggestionElement.addEventListener('click', () => {
-                                window.location.href = "/product/" + data.id + "/" + data
-                                    .user_id;
-                                searchContainer.innerHTML = '';
-                            });
-                            searchContainer.appendChild(suggestionElement);
-                            suggestionElement.appendChild(searchedImage);
-                            suggestionElement.appendChild(searchedContent);
-                            searchedContent.appendChild(titleText);
-                            searchedContent.appendChild(authorText);
-                        }
-                    });
-                })
-                .catch(error => console.log('error', error));
-        } else {
+        var search = document.getElementById('search_input');
+        var searchContainer = document.getElementById('searches');
+        if (search.value.trim().length < 1) {
             searchContainer.style.display = 'none'
-            searchContainer.innerHTML = '';
         }
-    });
-
-
+        search.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.keyCode === 13) {
+                window.location.href = '/searchitem/' + search.value;
+            }
+        });
+        search.addEventListener('input', () => {
+            if (search.value.trim().length > 1) {
+                const requestOptions = {
+                    method: 'GET',
+                };
+                fetch('/search/' + search.value.trim(), requestOptions)
+                    .then(response => response.json())
+                    .then(result => {
+                        searchContainer.style.display = 'inline';
+                        searchContainer.innerHTML = '';
+                        // console.log(result);
+                        result.forEach(data => {
+                            console.log(data);
+                            if (data.unit == 'Available') {
+                                const suggestionElement = document.createElement('div');
+                                const searchedImage = document.createElement('img');
+                                const searchedContent = document.createElement('div');
+                                const titleText = document.createElement('p');
+                                const authorText = document.createElement('p');
+                                // suggestionElement.textContent = data.title;
+                                suggestionElement.id = "searched-item";
+                                suggestionElement.className = 'row px-2';
+                                searchedImage.src = '/images/books/' + data.book_photo;
+                                searchedImage.className = 'col-3 px-0 bg-light';
+                                searchedContent.className = 'col border';
+                                searchedContent.id = 'textContent';
+                                titleText.className = 'm-0 fw-bold';
+                                titleText.id = 'searched-title';
+                                titleText.textContent = data.title;
+                                authorText.id = 'searched-author';
+                                authorText.textContent = data.author;
+                                suggestionElement.addEventListener('click', () => {
+                                    window.location.href = "/product/" + data.id + "/" +
+                                        data
+                                        .user_id;
+                                    searchContainer.innerHTML = '';
+                                });
+                                searchContainer.appendChild(suggestionElement);
+                                suggestionElement.appendChild(searchedImage);
+                                suggestionElement.appendChild(searchedContent);
+                                searchedContent.appendChild(titleText);
+                                searchedContent.appendChild(authorText);
+                            }
+                        });
+                    })
+                    .catch(error => console.log('error', error));
+            } else {
+                searchContainer.style.display = 'none'
+                searchContainer.innerHTML = '';
+            }
+        });
         var sidebar_width = document.getElementById("sidebar").offsetWidth;
         var content_width = document.getElementById("content");
         var home_sidebar = document.getElementById("home-side-btn");
@@ -4738,7 +4828,7 @@
         var science_fiction_btn = document.getElementById("science-fiction-header");
         var fantasy_adventure_btn = document.getElementById("fantasy-adventure-header");
         var young_adult_btn = document.getElementById("young-adult-header");
-        // var mystery_suspense_btn = document.getElementById("mystery-suspense-header");
+        var mystery_suspense_btn = document.getElementById("mystery-suspense-header");
         var crime_thriller_btn = document.getElementById("crime-thriller-header");
         var horror_supernatural_btn = document.getElementById("horror-supernatural-header");
         var comedy_satire_btn = document.getElementById("comedy-satire-header");
@@ -4871,22 +4961,22 @@
             nonfiction_biography_cards.style.display = "none";
             document.getElementById("young-adult-content").style.display = "table";
         });
-        // mystery_suspense_btn.addEventListener("click", function() {
-        //     educational_cards.style.display = "none";
-        //     historical_fiction_cards.style.display = "none";
-        //     poetry_prose_cards.style.display = "none";
-        //     self_help_cards.style.display = "none";
-        //     romance_saga_cards.style.display = "none";
-        //     science_fiction_cards.style.display = "none";
-        //     fantasy_adventure_cards.style.display = "none";
-        //     young_adult_cards.style.display = "none";
-        //     mystery_suspense_cards.style.display = "none";
-        //     crime_thriller_cards.style.display = "none";
-        //     horror_supernatural_cards.style.display = "none";
-        //     comedy_satire_cards.style.display = "none";
-        //     nonfiction_biography_cards.style.display = "none";
-        //     document.getElementById("mystery-suspense-content").style.display = "table";
-        // });
+        mystery_suspense_btn.addEventListener("click", function() {
+            educational_cards.style.display = "none";
+            historical_fiction_cards.style.display = "none";
+            poetry_prose_cards.style.display = "none";
+            self_help_cards.style.display = "none";
+            romance_saga_cards.style.display = "none";
+            science_fiction_cards.style.display = "none";
+            fantasy_adventure_cards.style.display = "none";
+            young_adult_cards.style.display = "none";
+            mystery_suspense_cards.style.display = "none";
+            crime_thriller_cards.style.display = "none";
+            horror_supernatural_cards.style.display = "none";
+            comedy_satire_cards.style.display = "none";
+            nonfiction_biography_cards.style.display = "none";
+            document.getElementById("mystery-suspense-content").style.display = "table";
+        });
         crime_thriller_btn.addEventListener("click", function() {
             educational_cards.style.display = "none";
             historical_fiction_cards.style.display = "none";

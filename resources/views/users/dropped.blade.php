@@ -17,7 +17,7 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div> --}}
-    <div id="content" class="border content">
+    <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -100,8 +100,8 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span> <br>
-                                        <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price + 130 . '.0' }}</span></p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
+                                        <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price + 130}}</span></p>
                                     </div>
                                 </div>
                             </div>

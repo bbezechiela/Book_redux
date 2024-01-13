@@ -26,7 +26,7 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    <div class="input-group mt-1" style="height: 2em;">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
@@ -45,7 +45,7 @@
                             data-bs-placement="bottom" data-bs-title="Notification">
                             <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
                         </button></a> --}}
-                    <ul class="nav py-profile justify-content-end">
+                    <ul class="nav py-profile justify-content-end" style="margin-left: 2em">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
