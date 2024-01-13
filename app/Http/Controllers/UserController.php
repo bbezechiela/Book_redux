@@ -497,7 +497,8 @@ class UserController extends Controller
 
     public function userReviewsAndRatings()
     {
-        return view('users.userReviewsAndRatings');
+        $book = Books::where('user_id', session('id'))->with('item.ratedItem.user')->get();
+        return view('users.userReviewsAndRatings', ['book' => $book]);
     }
 
     public function orders()
@@ -1202,7 +1203,7 @@ class UserController extends Controller
 
         if ($rate) {
             // return redirect('/delivered-mypurchase')->with('message', 'Review successfully created. Thank you for your feedback!');
-            return response()->json(['response' => 'Review successfully created. Thank you for your feedback!']);
+            return response()->json(['response' => 'Rating and Review was submitted. Thank you for your feedback!']);
         } else {
             return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
         }

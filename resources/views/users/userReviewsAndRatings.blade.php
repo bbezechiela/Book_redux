@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'User Reviews and Ratings | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/reviews-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'User Reviews and Ratings | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/reviews-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -27,8 +27,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
                 {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
@@ -123,11 +123,12 @@
                     </div>
                     <div class="col">
                         <div class="ratings">
-                            <a href="#" class="btn active d-block rate-button" role="button" data-bs-toggle="button"
-                                aria-pressed="true"
+                            <a href="#" class="btn active d-block rate-button" role="button"
+                                data-bs-toggle="button" aria-pressed="true"
                                 style="background-color: #003060; border-color: #003060; color: #fff;">All
                                 <span>(10)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">3 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">3
+                                Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
@@ -135,7 +136,8 @@
                         <div class="ratings">
                             <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
                                 aria-pressed="true">5 Star <span>(100)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">2 Star
+                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">2
+                                Star
                                 <span>(20)</span></a>
                         </div>
                     </div>
@@ -143,20 +145,101 @@
                         <div class="ratings">
                             <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button"
                                 aria-pressed="true">4 star <span>(10)</span></a>
-                            <a href="#" class="btn d-block rate-button" role="button" data-bs-toggle="button">1 Star
+                            <a href="#" class="btn d-block rate-button" role="button"
+                                data-bs-toggle="button">1 Star
                                 <span>(59)</span></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container text-center customer-ratings">
+        @foreach ($book as $books)
+            @foreach ($books->item as $items)
+                @foreach ($items->ratedItem as $review)
+                    <div class="container text-center customer-ratings">
+                        <div class="row align-items-center">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('images/profile_photos/' . $review->user->profile_photo) }}"
+                                    alt="seller image" class="customer-picture">
+                                <div class="customer-ratings-info">
+                                    <p>{{ $review->user->first_name . ' ' . $review->user->last_name }}</p>
+                                    {{-- <p>N******nnn <a href="" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
+                                    @if ($review->rate_value == 1)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    @elseif ($review->rate_value == 2)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    @elseif ($review->rate_value == 3)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    @elseif ($review->rate_value == 4)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    @elseif ($review->rate_value == 5)
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    @endif
+                                    <p style="font-weight: bold;">{{ $books->status }}</p>
+                                    <p>{{ $review->created_at->format('F j, Y, g:i a') }}</p>
+                                    <p>Condition: <span>{{ $review->condition_accuracy }}</span></p>
+                                    <p>Accuracy of Description: <span>{{ $review->description_accuracy }}</span></p>
+                                    <p>Interaction: <span>{{ $review->interaction }}</span></p>
+                                    <p>{{ $review->description }}</p>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                @if (isset($review->first_img))
+                                                    <img src="{{ asset('images/rate_images/' . $review->first_img) }}" alt="Image 1"
+                                                        class="d-inline square-picture">
+                                                @endif
+                                                @if (isset($review->second_img))
+                                                    <img src="{{ asset('images/rate_images/' . $review->second_img) }}" alt="Image 1"
+                                                        class="d-inline square-picture">
+                                                @endif
+                                                @if (isset($review->third_img))
+                                                    <img src="{{ asset('images/rate_images/' . $review->third_img) }}" alt="Image 1"
+                                                        class="d-inline square-picture">
+                                                @endif
+                                                @if (isset($review->fourth_img))
+                                                    <img src="{{ asset('images/rate_images/' . $review->fourth_img) }}" alt="Image 1"
+                                                        class="d-inline square-picture">
+                                                @endif
+                                                @if (isset($review->fifth_img))
+                                                    <img src="{{ asset('images/rate_images/' . $review->fifth_img) }}" alt="Image 1"
+                                                        class="d-inline square-picture">
+                                                @endif                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach
+        @endforeach
+        {{-- <div class="container text-center customer-ratings">
             <div class="row align-items-center">
                 <div class="d-flex align-items-center">
                     <img src="../assets/nestine.png" alt="seller image" class="customer-picture">
                     <div class="customer-ratings-info">
-                        <p>N******nnn</p>
-                        {{-- <p>N******nnn <a href="" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
+                        <p>N******nnn</p>                        
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -180,44 +263,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container text-center customer-ratings">
-            <div class="row align-items-center">
-                <div class="d-flex align-items-center">
-                    <img src="../assets/nestine.png" alt="seller image" class="customer-picture">
-                    <div class="customer-ratings-info">
-                        <p>N******nnn</p>
-                        {{-- <p>N******nnn <a href="#" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <p style="font-weight: bold;">Exchange</p>
-                        <p>22/07/2023 <span>11.03</span></p>
-                        <p>Condition: <span>10/10</span></p>
-                        <p>Accuracy of Description: <span>10/10</span></p>
-                        <p>Interaction: <span>10/10</span></p>
-                        <p>Nice book. Good job Exchanger!</p>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <img src="../assets/bubble_bath.png" alt="Image 1" class="d-inline square-picture">
-                                    <img src="../assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
-                                    <img src="../assets/bubble_bath.png" alt="Image 3" class="d-inline square-picture">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> --}}
     </div>
 
 </div>
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])

@@ -438,7 +438,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     @endif
                                     <p style="font-weight: bold;">{{ $items->book->status }}</p>
-                                    <p>22/07/2023 <span>11.03</span></p>
+                                    <p>{{ $itemReviews->created_at->format('F j, Y, g:i a') }}</p>
                                     <p>Condition: <span>{{ $itemReviews->condition_accuracy }}</span></p>
                                     <p>Accuracy of Description: <span>{{ $itemReviews->description_accuracy }}</span>
                                     </p>
