@@ -212,7 +212,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body px-3">
-                    <p class="fs-4">Are you sure you want to cancel you order?</p>
+                    <p class="fs-4">Are you sure you want to cancel your order?</p>
                     <div class="text-center">
                         <a id="confirm-redirection" class="btn btn-danger">Confirm</a>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
