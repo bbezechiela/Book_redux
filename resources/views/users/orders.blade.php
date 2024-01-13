@@ -636,7 +636,7 @@
                             .city_municipality + ', ' + address.region;
                         pickup_postal.textContent = address.postal_code;
                     } else if (address.default_address == 'true') {
-                        // selected_adress = address.id;
+                        selected_adress = address.id;
                         seller_name.value = address.name;
                         seller_contact_num.value = address.contact_number;
                         seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
