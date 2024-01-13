@@ -128,21 +128,29 @@
                 </div>
         </ul>
         <!--  Educational -->
-        <div id="educational" class="mx-2 px-3">
+        <div id="educational" class="mx-5 px-5">
             <h4 id="educational-header">Educational</h4>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
                 <!-- card Educational -->
                 @foreach ($book as $educational)
                 @if (preg_match('/Educational/i', $educational->genre))
                 @if ($educational->status == 'Exchange' && $educational->unit == 'Available' &&
                 !empty($educational->genre))
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $educational->author }}
                             {{ $educational->genre }}</p>
+                        @foreach ($educational->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -170,13 +178,21 @@
                     </div>
                 </div>
                 @elseif (!empty($educational->genre) && $educational->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $educational->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $educational->author }}
                             {{ $educational->genre }}</p>
+                        @foreach ($educational->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $educational->price }}</span>
                             <div class="button-container">
@@ -206,22 +222,30 @@
                 @endforeach
             </div>
         </div>
-        <div id="historical_fiction" class="mx-2 px-3">
+        <div id="historical_fiction" class="mx-5 px-5">
             <h4 id="historical-fiction-header">Historical Fiction</h4>
-            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
                 <!-- card Historical Fiction -->
                 @foreach ($book as $historical_fiction)
                 @if (preg_match('/Historical Fiction/i', $historical_fiction->genre))
                 @if ($historical_fiction->status == 'Exchange' && $historical_fiction->unit == 'Available' &&
                 !empty($historical_fiction->genre))
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $historical_fiction->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $historical_fiction->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}
                             {{ $historical_fiction->genre }}</p>
+                        @foreach ($historical_fiction->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -249,14 +273,22 @@
                     </div>
                 </div>
                 @elseif (!empty($historical_fiction->genre) && $historical_fiction->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $historical_fiction->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $historical_fiction->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}
                             {{ $historical_fiction->genre }}</p>
+                        @foreach ($exchange->user->addressUser as $address)
+                        @if ($historical_fiction->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $historical_fiction->price }}</span>
                             <div class="button-container">
@@ -288,20 +320,28 @@
                 @endforeach
             </div>
         </div>
-        <div id="poetry_prose" class="mx-2 px-3">
+        <div id="poetry_prose" class="mx-5 px-5">
             <h4 id="poetry-prose-header">Poetry & Prose</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Poetry & Prose -->
                 @foreach ($book as $poetry_prose)
                 @if (preg_match('/Poetry & Prose/i', $poetry_prose->genre))
                 @if ($poetry_prose->status == 'Exchange' && $poetry_prose->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $poetry_prose->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}
                             {{ $poetry_prose->genre }}</p>
+                        @foreach ($poetry_prose->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -329,13 +369,21 @@
                     </div>
                 </div>
                 @elseif ($poetry_prose->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $poetry_prose->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}
                             {{ $poetry_prose->genre }}</p>
+                        @foreach ($poetry_prose->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $poetry_prose->price }}</span>
                             <div class="button-container">
@@ -365,20 +413,28 @@
                 @endforeach
             </div>
         </div>
-        <div id="self_help" class="mx-2 px-3">
+        <div id="self_help" class="mx-5 px-5">
             <h4 id="self-help-header">Self-Help</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Self-Help -->
                 @foreach ($book as $self_help)
                 @if (preg_match('/Self-Help/i', $self_help->genre))
                 @if ($self_help->status == 'Exchange' && $self_help->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $self_help->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}
                             {{ $self_help->genre }}</p>
+                        @foreach ($self_help->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -406,13 +462,21 @@
                     </div>
                 </div>
                 @elseif ($self_help->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $self_help->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}
                             {{ $self_help->genre }}</p>
+                        @foreach ($self_help->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $self_help->price }}</span>
                             <div class="button-container">
@@ -442,20 +506,28 @@
                 @endforeach
             </div>
         </div>
-        <div id="romance_saga" class="mx-2 px-3">
+        <div id="romance_saga" class="mx-5 px-5">
             <h4 id="romance-saga-header">Romance & Saga</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Romance & Saga -->
                 @foreach ($book as $romance_saga)
                 @if (preg_match('/Romance & Saga/i', $romance_saga->genre))
                 @if ($romance_saga->status == 'Exchange' && $romance_saga->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $romance_saga->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}
                             {{ $romance_saga->genre }}</p>
+                        @foreach ($romance_saga->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -483,13 +555,21 @@
                     </div>
                 </div>
                 @elseif ($romance_saga->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $romance_saga->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}
                             {{ $romance_saga->genre }}</p>
+                        @foreach ($romance_saga->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $romance_saga->price }}</span>
                             <div class="button-container">
@@ -519,21 +599,29 @@
                 @endforeach
             </div>
         </div>
-        <div id="science_fiction" class="mx-2 px-3">
+        <div id="science_fiction" class="mx-5 px-5">
             <h4 id="science-fiction-header">Science Fiction</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Science Fiction -->
                 @foreach ($book as $science_fiction)
                 @if (preg_match('/Science Fiction/i', $science_fiction->genre))
                 @if ($science_fiction->status == 'Exchange' && $science_fiction->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
                         </p>
-                        <p class="card-text mt-0 mb-2">{{ $science_fiction->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}
                             {{ $science_fiction->genre }}</p>
+                        @foreach ($science_fiction->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -561,14 +649,22 @@
                     </div>
                 </div>
                 @elseif ($science_fiction->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
                         </p>
-                        <p class="card-text mt-0 mb-2">{{ $science_fiction->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}
                             {{ $science_fiction->genre }}</p>
+                        @foreach ($science_fiction->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $science_fiction->price }}</span>
                             <div class="button-container">
@@ -599,21 +695,29 @@
 
             </div>
         </div>
-        <div id="fantasy_adventure" class="mx-2 mb-4 px-3">
+        <div id="fantasy_adventure" class="mx-5 px-5">
             <h4 id="fantasy-adventure-header">Fantasy & Adventure</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Fantasy & Adventure -->
                 @foreach ($book as $fantasy_adventure)
                 @if (preg_match('/Fantasy & Adventure/i', $fantasy_adventure->genre))
                 @if ($fantasy_adventure->status == 'Exchange' && $fantasy_adventure->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $fantasy_adventure->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $fantasy_adventure->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}
                             {{ $fantasy_adventure->genre }}</p>
+                        @foreach ($fantasy_adventure->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -641,14 +745,22 @@
                     </div>
                 </div>
                 @elseif ($fantasy_adventure->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $fantasy_adventure->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $fantasy_adventure->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}
                             {{ $fantasy_adventure->genre }}</p>
+                        @foreach ($fantasy_adventure->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $fantasy_adventure->price }}</span>
                             <div class="button-container">
@@ -678,20 +790,28 @@
                 @endforeach
             </div>
         </div>
-        <div id="young_adult" class="mx-2 px-3">
+        <div id="young_adult" class="mx-5 px-5">
             <h4 id="young-adult-header">Young Adult</h4>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Young Adult -->
                 @foreach ($book as $young_adult)
                 @if (preg_match('/Young Adult/i', $young_adult->genre))
                 @if ($young_adult->status == 'Exchange' && $young_adult->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $young_adult->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}
                             {{ $young_adult->genre }}</p>
+                        @foreach ($young_adult->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -719,13 +839,21 @@
                     </div>
                 </div>
                 @elseif ($young_adult->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $young_adult->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}
                             {{ $young_adult->genre }}</p>
+                        @foreach ($young_adult->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $young_adult->price }}</span>
                             <div class="button-container">
@@ -756,21 +884,29 @@
 
             </div>
         </div>
-        <div id="crime_thriller" class="mx-2 px-3">
+        <div id="crime_thriller" class="mx-5 px-5">
             <h4 id="crime-thriller-header">Crime & Thriller</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Crime & Thriller -->
                 @foreach ($book as $crime_thriller)
                 @if (preg_match('/Crime & Thriller/i', $crime_thriller->genre))
                 @if ($crime_thriller->status == 'Exchange' && $crime_thriller->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
                         </p>
-                        <p class="card-text mt-0 mb-2">{{ $crime_thriller->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}
                             {{ $crime_thriller->genre }}</p>
+                        @foreach ($crime_thriller->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -798,14 +934,22 @@
                     </div>
                 </div>
                 @elseif ($crime_thriller->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
                         </p>
-                        <p class="card-text mt-0 mb-2">{{ $crime_thriller->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}
                             {{ $crime_thriller->genre }}</p>
+                        @foreach ($crime_thriller->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $crime_thriller->price }}</span>
                             <div class="button-container">
@@ -835,21 +979,29 @@
                 @endforeach
             </div>
         </div>
-        <div id="horror_supernatural" class="mx-2 px-3">
+        <div id="horror_supernatural" class="mx-5 px-5">
             <h4 id="horror-supernatural-header">Horror & Supernatural</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Horror & Supernatural -->
                 @foreach ($book as $horror_supernatural)
                 @if (preg_match('/Horror & Supernatural/i', $horror_supernatural->genre))
                 @if ($horror_supernatural->status == 'Exchange' && $horror_supernatural->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $horror_supernatural->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $horror_supernatural->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}
                             {{ $horror_supernatural->genre }}</p>
+                        @foreach ($horror_supernatural->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -877,14 +1029,22 @@
                     </div>
                 </div>
                 @elseif ($horror_supernatural->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $horror_supernatural->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $horror_supernatural->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}
                             {{ $horror_supernatural->genre }}</p>
+                        @foreach ($horror_supernatural->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $horror_supernatural->price }}</span>
                             <div class="button-container">
@@ -914,21 +1074,29 @@
                 @endforeach
             </div>
         </div>
-        <div id="comedy_satire" class="mx-2 px-3">
+        <div id="comedy_satire" class="mx-5 px-5">
             <h4 id="comedy-satire-header">Comedy & Satire</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Comedy & Satire-->
                 @foreach ($book as $comedy_satire)
                 @if (preg_match('/Comedy & Satire/i', $comedy_satire->genre))
                 @if ($comedy_satire->status == 'Exchange' && $comedy_satire->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
                         </p>
-                        <p class="card-text mt-0 mb-2">{{ $comedy_satire->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}
                             {{ $comedy_satire->genre }}</p>
+                        @foreach ($comedy_satire->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -956,14 +1124,22 @@
                     </div>
                 </div>
                 @elseif ($comedy_satire->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto" alt="..."
-                        width="130px" height="170px">
+                        width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
                         </p>
-                        <p class="card-text mt-0 mb-2">{{ $comedy_satire->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}
                             {{ $comedy_satire->genre }}</p>
+                        @foreach ($comedy_satire->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $comedy_satire->price }}</span>
                             <div class="button-container">
@@ -993,21 +1169,29 @@
                 @endforeach
             </div>
         </div>
-        <div id="nonfiction_biography" class="mx-2 px-3">
+        <div id="nonfiction_biography" class="mx-5 px-5">
             <h4 id="nonfiction-biography-header">Non-Fiction & Biography</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 300px; ">
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card Non-Fiction & Biography -->
                 @foreach ($book as $nonfiction_biography)
                 @if (preg_match('/Non-Fiction & Biography/i', $nonfiction_biography->genre))
                 @if ($nonfiction_biography->status == 'Exchange' && $nonfiction_biography->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $nonfiction_biography->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $nonfiction_biography->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}
                             {{ $nonfiction_biography->genre }}</p>
+                        @foreach ($nonfiction_biography->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-start align-items-center p-0">
                             <span class="fw-bold p-0">For Exchange</span>
                             {{-- <span class="fw-bold p-0">P100.00</span> --}}
@@ -1035,14 +1219,22 @@
                     </div>
                 </div>
                 @elseif ($nonfiction_biography->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto;">
+                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                     <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto"
-                        alt="..." width="130px" height="170px">
+                        alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $nonfiction_biography->title }}</p>
-                        <p class="card-text mt-0 mb-2">{{ $nonfiction_biography->author }}<br>
+                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}
                             {{ $nonfiction_biography->genre }}</p>
+                        @foreach ($nonfiction_biography->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
                         <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                             <span class="fw-bold p-0">₱{{ $nonfiction_biography->price }}</span>
                             <div class="button-container">
@@ -4636,7 +4828,7 @@
         var science_fiction_btn = document.getElementById("science-fiction-header");
         var fantasy_adventure_btn = document.getElementById("fantasy-adventure-header");
         var young_adult_btn = document.getElementById("young-adult-header");
-        // var mystery_suspense_btn = document.getElementById("mystery-suspense-header");
+        var mystery_suspense_btn = document.getElementById("mystery-suspense-header");
         var crime_thriller_btn = document.getElementById("crime-thriller-header");
         var horror_supernatural_btn = document.getElementById("horror-supernatural-header");
         var comedy_satire_btn = document.getElementById("comedy-satire-header");
@@ -4769,22 +4961,22 @@
             nonfiction_biography_cards.style.display = "none";
             document.getElementById("young-adult-content").style.display = "table";
         });
-        // mystery_suspense_btn.addEventListener("click", function() {
-        //     educational_cards.style.display = "none";
-        //     historical_fiction_cards.style.display = "none";
-        //     poetry_prose_cards.style.display = "none";
-        //     self_help_cards.style.display = "none";
-        //     romance_saga_cards.style.display = "none";
-        //     science_fiction_cards.style.display = "none";
-        //     fantasy_adventure_cards.style.display = "none";
-        //     young_adult_cards.style.display = "none";
-        //     mystery_suspense_cards.style.display = "none";
-        //     crime_thriller_cards.style.display = "none";
-        //     horror_supernatural_cards.style.display = "none";
-        //     comedy_satire_cards.style.display = "none";
-        //     nonfiction_biography_cards.style.display = "none";
-        //     document.getElementById("mystery-suspense-content").style.display = "table";
-        // });
+        mystery_suspense_btn.addEventListener("click", function() {
+            educational_cards.style.display = "none";
+            historical_fiction_cards.style.display = "none";
+            poetry_prose_cards.style.display = "none";
+            self_help_cards.style.display = "none";
+            romance_saga_cards.style.display = "none";
+            science_fiction_cards.style.display = "none";
+            fantasy_adventure_cards.style.display = "none";
+            young_adult_cards.style.display = "none";
+            mystery_suspense_cards.style.display = "none";
+            crime_thriller_cards.style.display = "none";
+            horror_supernatural_cards.style.display = "none";
+            comedy_satire_cards.style.display = "none";
+            nonfiction_biography_cards.style.display = "none";
+            document.getElementById("mystery-suspense-content").style.display = "table";
+        });
         crime_thriller_btn.addEventListener("click", function() {
             educational_cards.style.display = "none";
             historical_fiction_cards.style.display = "none";
