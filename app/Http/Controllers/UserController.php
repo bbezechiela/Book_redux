@@ -1257,7 +1257,7 @@ class UserController extends Controller
             return redirect('/mypurchase');
         } else if ($request->input('shipping_status') == 'Personal Transaction') {            
             $order->update([
-                'order_status' => 'Confirmed by seller',
+                'order_status' => 'paid',
                 'shipping_status' => $request->input('shipping_status')                
             ]);
 
