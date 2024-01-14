@@ -139,13 +139,21 @@ Route::post('/mylist/salepost', [ListingController::class, 'saleList']);
 
 Route::post('/mylist/exchangepost', [ListingController::class, 'exchangeList']);
 
-Route::post('/mylist/rentpost', [ListingController::class, 'rentList']);
+Route::post('/listing/rentpost', [ListingController::class, 'rentList']);
 
 Route::get('/mylist/sale', [ListingController::class, 'sale']);
 
 Route::get('/mylist/exchange', [ListingController::class, 'exchange']);
 
-Route::get('/mylist/rent', [ListingController::class, 'rent']);
+// Route::get('/mylist/rent', [ListingController::class, 'rent']);
+
+Route::post('/listing/sale', [ListingController::class, 'sellerSale']);
+
+// Route::post('/listing/rent', [ListingController::class, 'sellerRent']);
+
+Route::post('/listing/updateSale/{id}', [ListingController::class, 'sellerUpdateSale']);
+
+Route::get('/listing/delete/{id}', [ListingController::class, 'destroySeller']);
 
 Route::get('/orders', [UserController::class, 'orders']);
 
@@ -171,7 +179,7 @@ Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate'])
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
 
-Route::post('/mylist/updateRent/{id}', [ListingController::class, 'rentUpdate']);
+Route::post('/listing/updateRent/{id}', [ListingController::class, 'rentUpdate']);
 
 Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
@@ -286,7 +294,7 @@ Route::get('/sellernotification', [UserController::class, 'sellerNotification'])
 
 Route::get('/systemfeedback', [UserController::class, 'feedback']);
 
-Route::get('/listings', [UserController::class, 'listings']);
+Route::get('/listings', [ListingController::class, 'listings']);
 
 Route::get('/profile', [UserController::class, 'profile']);
 

@@ -91,8 +91,7 @@
         </div>
         @foreach ($user->orders as $order)
             @foreach ($order->items as $item)
-                @if (
-                    $item->order->payment_method == 'Cash on Delivery' &&
+                @if ($item->order->payment_method == 'Cash on Delivery' &&
                         ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
@@ -144,6 +143,8 @@
 
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                             @elseif ($item->order->payment_method == 'eWallet' && ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
                                 <div class="order-cart">
                                     <div class="name-cart d-flex justify-content-between">

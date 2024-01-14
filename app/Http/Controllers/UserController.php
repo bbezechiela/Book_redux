@@ -84,12 +84,7 @@ class UserController extends Controller
     public function feedback()
     {
         return view('bookseller.feedback');
-    }
-
-    public function listings()
-    {
-        return view('bookseller.listings');
-    }
+    }   
 
     public function profile()
     {
