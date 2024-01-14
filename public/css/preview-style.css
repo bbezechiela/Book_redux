@@ -64,18 +64,17 @@
 
 .message-button,
 .follow-button {
-    background-color: #fff;
-    color: #E55B13;
-    border-color: #E55B13;
+    color: #003060;
+    border-color: #003060;
     font-size: 12px;
     border-radius: 15px 40px;
 }
 
 .message-button:hover,
 .follow-button:hover {
-    background-color: #003060;
+    background-color: #E55B13;
     color: #fff;
-    border-color: #003060;
+    border-color: #E55B13;
 }
 
 .message-button i,
@@ -170,18 +169,18 @@
 
 .ellipsis-button{
     position: absolute;
-    top: -3em;
-    left: 70em;
+    top: 1em;
+    left: 36em;
     background: none;
     border: none;
     padding: 0;
-    color: #E55B13;
+    color: #fff;
     float: right;
 }
 
 .ellipsis-button:hover{
     background-color: transparent;
-    color: #003060;
+    color: #fff;
 }
 
 .rating-details {
@@ -204,13 +203,13 @@
     margin-bottom: 1em;
 }
 
-.review-rating-details {
+/* .review-rating-details {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     max-width: 1500px;
     color: #003060;
     margin-left: 1.5em;
     padding: 1em;
-}
+} */
 
 .rate-button {
     width: 10em;
@@ -236,7 +235,7 @@
     border-top-left-radius: var(--bs-border-radius) !important;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #003060;
-    margin-left: 1.8em;
+    /* margin-left: 1.8em; */
     padding: 2em;
     font-size: 13px;
 }
@@ -404,3 +403,11 @@
     margin: 0;
     border: 1px solid #003060;
 }
+
+/* .gradient-custom-2 {
+    background: #fbc2eb;
+    
+    background: -webkit-linear-gradient(to right, #E55B13, #003060);
+    
+    background: linear-gradient(to right, #E55B13, #003060)
+    } */

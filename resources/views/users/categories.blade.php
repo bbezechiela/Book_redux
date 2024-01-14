@@ -136,12 +136,12 @@
                 @if (preg_match('/Educational/i', $educational->genre))
                 @if ($educational->status == 'Exchange' && $educational->unit == 'Available' &&
                 !empty($educational->genre))
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $educational->author }}
+                        <p class="card-text mt-0 mb-0">{{ $educational->author }} <br>
                             {{ $educational->genre }}</p>
                         @foreach ($educational->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -178,12 +178,12 @@
                     </div>
                 </div>
                 @elseif (!empty($educational->genre) && $educational->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $educational->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $educational->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $educational->author }}
+                        <p class="card-text mt-0 mb-0">{{ $educational->author }}<br>
                             {{ $educational->genre }}</p>
                         @foreach ($educational->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -230,13 +230,13 @@
                 @if (preg_match('/Historical Fiction/i', $historical_fiction->genre))
                 @if ($historical_fiction->status == 'Exchange' && $historical_fiction->unit == 'Available' &&
                 !empty($historical_fiction->genre))
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $historical_fiction->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}
+                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}<br>
                             {{ $historical_fiction->genre }}</p>
                         @foreach ($historical_fiction->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -273,15 +273,15 @@
                     </div>
                 </div>
                 @elseif (!empty($historical_fiction->genre) && $historical_fiction->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $historical_fiction->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $historical_fiction->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}
+                        <p class="card-text mt-0 mb-0">{{ $historical_fiction->author }}<br>
                             {{ $historical_fiction->genre }}</p>
-                        @foreach ($exchange->user->addressUser as $address)
+                        @foreach ($historical_fiction->user->addressUser as $address)
                         @if ($historical_fiction->default_address == 'true')
                         <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
                                 class="fa fa-map-marker"
@@ -327,12 +327,12 @@
                 @foreach ($book as $poetry_prose)
                 @if (preg_match('/Poetry & Prose/i', $poetry_prose->genre))
                 @if ($poetry_prose->status == 'Exchange' && $poetry_prose->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}
+                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}<br>
                             {{ $poetry_prose->genre }}</p>
                         @foreach ($poetry_prose->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -369,12 +369,12 @@
                     </div>
                 </div>
                 @elseif ($poetry_prose->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $poetry_prose->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $poetry_prose->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}
+                        <p class="card-text mt-0 mb-0">{{ $poetry_prose->author }}<br>
                             {{ $poetry_prose->genre }}</p>
                         @foreach ($poetry_prose->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -420,12 +420,12 @@
                 @foreach ($book as $self_help)
                 @if (preg_match('/Self-Help/i', $self_help->genre))
                 @if ($self_help->status == 'Exchange' && $self_help->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}
+                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}<br>
                             {{ $self_help->genre }}</p>
                         @foreach ($self_help->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -462,12 +462,12 @@
                     </div>
                 </div>
                 @elseif ($self_help->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $self_help->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $self_help->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}
+                        <p class="card-text mt-0 mb-0">{{ $self_help->author }}<br>
                             {{ $self_help->genre }}</p>
                         @foreach ($self_help->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -513,12 +513,12 @@
                 @foreach ($book as $romance_saga)
                 @if (preg_match('/Romance & Saga/i', $romance_saga->genre))
                 @if ($romance_saga->status == 'Exchange' && $romance_saga->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}
+                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}<br>
                             {{ $romance_saga->genre }}</p>
                         @foreach ($romance_saga->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -555,12 +555,12 @@
                     </div>
                 </div>
                 @elseif ($romance_saga->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $romance_saga->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $romance_saga->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}
+                        <p class="card-text mt-0 mb-0">{{ $romance_saga->author }}<br>
                             {{ $romance_saga->genre }}</p>
                         @foreach ($romance_saga->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -606,13 +606,13 @@
                 @foreach ($book as $science_fiction)
                 @if (preg_match('/Science Fiction/i', $science_fiction->genre))
                 @if ($science_fiction->status == 'Exchange' && $science_fiction->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1  pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
                         </p>
-                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}
+                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}<br>
                             {{ $science_fiction->genre }}</p>
                         @foreach ($science_fiction->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -649,13 +649,13 @@
                     </div>
                 </div>
                 @elseif ($science_fiction->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1  pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $science_fiction->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $science_fiction->title }}
                         </p>
-                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}
+                        <p class="card-text mt-0 mb-0">{{ $science_fiction->author }}<br>
                             {{ $science_fiction->genre }}</p>
                         @foreach ($science_fiction->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -702,13 +702,13 @@
                 @foreach ($book as $fantasy_adventure)
                 @if (preg_match('/Fantasy & Adventure/i', $fantasy_adventure->genre))
                 @if ($fantasy_adventure->status == 'Exchange' && $fantasy_adventure->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $fantasy_adventure->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}
+                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}<br>
                             {{ $fantasy_adventure->genre }}</p>
                         @foreach ($fantasy_adventure->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -745,13 +745,13 @@
                     </div>
                 </div>
                 @elseif ($fantasy_adventure->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $fantasy_adventure->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $fantasy_adventure->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}
+                        <p class="card-text mt-0 mb-0">{{ $fantasy_adventure->author }}<br>
                             {{ $fantasy_adventure->genre }}</p>
                         @foreach ($fantasy_adventure->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -797,12 +797,12 @@
                 @foreach ($book as $young_adult)
                 @if (preg_match('/Young Adult/i', $young_adult->genre))
                 @if ($young_adult->status == 'Exchange' && $young_adult->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}
+                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}<br>
                             {{ $young_adult->genre }}</p>
                         @foreach ($young_adult->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -839,12 +839,12 @@
                     </div>
                 </div>
                 @elseif ($young_adult->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $young_adult->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $young_adult->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}
+                        <p class="card-text mt-0 mb-0">{{ $young_adult->author }}<br>
                             {{ $young_adult->genre }}</p>
                         @foreach ($young_adult->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -891,13 +891,13 @@
                 @foreach ($book as $crime_thriller)
                 @if (preg_match('/Crime & Thriller/i', $crime_thriller->genre))
                 @if ($crime_thriller->status == 'Exchange' && $crime_thriller->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
                         </p>
-                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}
+                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}<br>
                             {{ $crime_thriller->genre }}</p>
                         @foreach ($crime_thriller->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -934,13 +934,13 @@
                     </div>
                 </div>
                 @elseif ($crime_thriller->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $crime_thriller->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $crime_thriller->title }}
                         </p>
-                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}
+                        <p class="card-text mt-0 mb-0">{{ $crime_thriller->author }}<br>
                             {{ $crime_thriller->genre }}</p>
                         @foreach ($crime_thriller->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -986,13 +986,13 @@
                 @foreach ($book as $horror_supernatural)
                 @if (preg_match('/Horror & Supernatural/i', $horror_supernatural->genre))
                 @if ($horror_supernatural->status == 'Exchange' && $horror_supernatural->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $horror_supernatural->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}
+                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}<br>
                             {{ $horror_supernatural->genre }}</p>
                         @foreach ($horror_supernatural->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -1029,13 +1029,13 @@
                     </div>
                 </div>
                 @elseif ($horror_supernatural->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $horror_supernatural->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $horror_supernatural->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}
+                        <p class="card-text mt-0 mb-0">{{ $horror_supernatural->author }}<br>
                             {{ $horror_supernatural->genre }}</p>
                         @foreach ($horror_supernatural->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -1081,13 +1081,13 @@
                 @foreach ($book as $comedy_satire)
                 @if (preg_match('/Comedy & Satire/i', $comedy_satire->genre))
                 @if ($comedy_satire->status == 'Exchange' && $comedy_satire->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
                         </p>
-                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}
+                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}<br>
                             {{ $comedy_satire->genre }}</p>
                         @foreach ($comedy_satire->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -1124,13 +1124,13 @@
                     </div>
                 </div>
                 @elseif ($comedy_satire->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto" alt="..."
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $comedy_satire->book_photo) }}" class="img mx-auto p-2" alt="..."
                         width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $comedy_satire->title }}
                         </p>
-                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}
+                        <p class="card-text mt-0 mb-0">{{ $comedy_satire->author }}<br>
                             {{ $comedy_satire->genre }}</p>
                         @foreach ($comedy_satire->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -1176,13 +1176,13 @@
                 @foreach ($book as $nonfiction_biography)
                 @if (preg_match('/Non-Fiction & Biography/i', $nonfiction_biography->genre))
                 @if ($nonfiction_biography->status == 'Exchange' && $nonfiction_biography->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $nonfiction_biography->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}
+                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}<br>
                             {{ $nonfiction_biography->genre }}</p>
                         @foreach ($nonfiction_biography->user->addressUser as $address)
                         @if ($address->default_address == 'true')
@@ -1219,13 +1219,13 @@
                     </div>
                 </div>
                 @elseif ($nonfiction_biography->unit == 'Available')
-                <div class="card m-1" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
-                    <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto"
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $nonfiction_biography->book_photo) }}" class="img mx-auto p-2"
                         alt="..." width="130px" height="150px">
                     <div class="card-body py-0">
                         <p id="book-title" class="card-title mb-0 fw-bold">
                             {{ $nonfiction_biography->title }}</p>
-                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}
+                        <p class="card-text mt-0 mb-0">{{ $nonfiction_biography->author }}<br>
                             {{ $nonfiction_biography->genre }}</p>
                         @foreach ($nonfiction_biography->user->addressUser as $address)
                         @if ($address->default_address == 'true')

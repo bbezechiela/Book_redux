@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="right-section">
                                     <div class="book-price">
-                                        <p class="product-price">{{ $item->book->price }}</p>
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
                                         <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
                                         </p> <br>
                                         <p class="text-total fw-bold">Total Payment:<span
@@ -147,8 +147,20 @@
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Nestine Nicole Navarro</p>
-                                        <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
-                                            Type</span>
+                                        <div class="rate">
+                                            <i id="one-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="two-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="three-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="four-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        {{-- <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
+                                            Type</span> --}}
                                         {{-- <div class="dropdown interaction-drpdwn">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -164,7 +176,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 d-flex m-0 justify-content-end">
+                            {{-- <div class="col-4 d-flex m-0 justify-content-end">
                                 <div class="rate">
                                     <i id="one-star" class="fa fa-star-o" style="cursor: pointer;"
                                         aria-hidden="true"></i>
@@ -177,7 +189,7 @@
                                     <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
                                         aria-hidden="true"></i>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="review-details">
                                 <span id="item-id" hidden></span>
                                 <p>Accuracy of Condition:
