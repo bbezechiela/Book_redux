@@ -139,9 +139,16 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="customer-details">
-                                    <img src="../assets/nestine.png" alt="seller image" class="circle-picture">
+                                    <img src="../assets/eubert.png" alt="seller image" class="circle-picture">
                                     <div class="name-interaction">
-                                        <p>Nestine Nicole Navarro</p>
+                                        <p>Marc Eubert Contado</p>
+                                        <div class="rate">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </div>
                                         {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -157,7 +164,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 d-flex m-0 justify-content-end">
+                            {{-- <div class="col-4 d-flex m-0 justify-content-end">
                                 <div class="rate">
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                     <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -165,9 +172,9 @@
                                     <i class="fa fa-star-o" aria-hidden="true"></i>
                                     <i class="fa fa-star-o" aria-hidden="true"></i>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="review-details">
-                                <p>Interaction:<span>10/10</span></p>
+                                <p>Interaction:<span>1/10</span></p>
                                 <div class="mb-3">
                                     <label for="exampleTextarea" class="form-label">Description:</label>
                                     <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Enter your text here..."></textarea>

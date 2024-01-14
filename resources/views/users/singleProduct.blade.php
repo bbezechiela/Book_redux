@@ -15,7 +15,7 @@
             aria-labelledby="offcanvasExampleLabel">
             <x-sidebar />
         </div>
-        <div id="content" class="border content">
+        <div id="content" class="content">
             <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
                 <div class="w-100 d-flex mt-2 p-0">
                     <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -364,7 +364,7 @@
                             <div class="ratings">
                                 <a href="#" class="btn active d-block rate-button" role="button"
                                     data-bs-toggle="button" aria-pressed="true"
-                                    style="background-color: #003060; border-color: #003060;">All
+                                    style="background-color: #003060; border-color: #003060; color: #fff;">All
                                     <span>(10)</span></a>
                                 <a href="#" class="btn d-block rate-button" role="button"
                                     data-bs-toggle="button">3
