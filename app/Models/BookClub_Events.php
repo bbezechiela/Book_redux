@@ -21,6 +21,6 @@ class BookClub_Events extends Model
         'start_time',
         'end_time',
         'description',
-        // 'image_path'
+        'image_path'
     ];
 }

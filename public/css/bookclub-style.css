@@ -394,3 +394,11 @@
     font-weight: bold;
 }
 
+/* _____ */
+#eventOuterContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+}
+

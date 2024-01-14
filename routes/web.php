@@ -229,6 +229,8 @@ Route::post('/joinRequest', [BookClubController::class, 'joinRequest']);
 
 Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter']);
 
+Route::get('/getEvents', [BookClubController::class, 'getEvents']);
+
 // API's
 Route::get('/search/{item}', [UserController::class, 'searchItem']);
 
