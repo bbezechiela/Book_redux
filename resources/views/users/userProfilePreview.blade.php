@@ -61,68 +61,106 @@
                 </div>
             </div>
         </ul>
-        <div class="container-fluid" style="--bs-gutter-x: 0;">
-            <div class="card">
-                <div class="rounded-top text-white d-flex flex-row" style="background-color: #003060; height:200px;">
-                    <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                        <img src="../assets/nestine.png" alt="Generic placeholder image"
-                            class="img-fluid img-thumbnail mt-4 mb-2"
-                            style="width: 150px; z-index: 1; background-color: #FFF;">
-                        <button type="button" class="btn message-button" style="z-index: 1;">
-                            <i class="fa fa-envelope" aria-hidden="true"></i> Message
-                        </button>
-                    </div>
-                    <div class="ms-3" style="margin-top: 130px;">
-                        <h5>Nestine Nicole Navarro</h5>
-                        <p>Lives in Tacloban City</p>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-ellipsis-h ellipsis-icon ml-auto" aria-hidden="true"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-circle" aria-hidden="true"
-                                        style="margin-right: 1px"></i>
-                                    Report</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="p-4 text-black" style="background-color: #f8f9fa;">
-                    <div class="d-flex justify-content-end text-center py-1">
-                        <div>
-                            <p class="mb-1 h5" style="color: #E55B13;">253</p>
-                            <p class="small text-muted mb-0">Listings</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="rounded-top text-white d-flex flex-row"
+                            style="background-color: #003060; height:200px;">
+                            <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                                <img src="../assets/nestine.png" alt="Generic placeholder image"
+                                    class="img-fluid img-thumbnail mt-4 mb-2"
+                                    style="width: 150px; z-index: 1; background-color: #FFF;">
+                                <button type="button" class="btn message-button" style="z-index: 1;">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i> Message
+                                </button>
+                            </div>
+                            <div class="ms-3" style="margin-top: 130px;">
+                                <h5>Nestine Nicole Navarro</h5>
+                                <p>Lives in Tacloban City</p>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h ellipsis-icon ml-auto" aria-hidden="true"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-circle"
+                                                aria-hidden="true" style="margin-right: 1px"></i>
+                                            Report</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="px-3">
-                            <p class="mb-1 h5" style="color: #E55B13;">1026</p>
-                            <p class="small text-muted mb-0">Reviews</p>
+                        <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                            <div class="d-flex justify-content-end text-center py-1">
+                                <div>
+                                    <p class="mb-1 h5" style="color: #E55B13;">253</p>
+                                    <p class="small text-muted mb-0">Listings</p>
+                                </div>
+                                <div class="px-3">
+                                    <p class="mb-1 h5" style="color: #E55B13;">1026</p>
+                                    <p class="small text-muted mb-0">Reviews</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body p-4">
-                    <div class="mb-5">
-                        <p class="lead fw-normal mb-1" style="color: #003060;">Preferred genres</p>
+                        <div class="card-body p-4">
+                            <div class="mb-2">
+                                <p class="lead fw-normal mb-1" style="color: #E55B13;">Preferred genres</p>
+                                <div class="p-2" style="background-color: #f8f9fa;">
+                                    <p class="font-italic mb-1" style="color: #003060;">Educational</p>
+                                    <p class="font-italic mb-1" style="color: #003060;">History Fiction</p>
+                                    <p class="font-italic mb-0" style="color: #003060;">Science Fiction</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="p-4" style="background-color: #f8f9fa;">
-                            <p class="font-italic mb-1" style="color: #003060;">Educational</p>
-                            <p class="font-italic mb-1" style="color: #003060;">History Fiction</p>
-                            <p class="font-italic mb-0" style="color: #003060;">Science Fiction</p>
+                            <ul class="nav nav-underline">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/userlistings">Listings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link custom-nav-link" href="/userreviews">User Reviews and Ratings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between mx-auto">
+                        <div class="col-4 d-flex flex-row">
+                            <h3 class="fw-bold">Listings (Ikaw nala himo UI kay na error na an ak cocopyhan unta kay
+                                mayda
+                                na
+                                backend hahaha) Adi nga naka comment is an kanan nakadto han explore - similar la adto
+                                an
+                                iya
+                                style didi na page</h3>
                         </div>
                     </div>
                 </div>
-                <div class="p-4" style="background-color: #f8f9fa;">
-                    <ul class="nav nav-underline">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/userlistings">Listings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link custom-nav-link" href="/userreviews">User Reviews and Ratings</a>
-                        </li>
-                    </ul>
+
+                <div id="recommended" class="col-lg-4">
+                    <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
+                        <div class="card-header sticky-top">
+                            <div class="d-flex justify-content-between">
+                                <h5 id="recommended-header" class="mb-0">Recommended For You</h5>
+                            </div>
+                        </div>
+                        @foreach ($post->shuffle() as $recommended)
+                        <div class="card-body"
+                            onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('images/books/' . $recommended->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
+                                <div>
+                                    <h6 id="book-title" class="mb-0">{{ $recommended->title }}</h6>
+                                    <p class="mb-0">For {{ $recommended->status }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-
         {{-- <div class="container text-center seller-details mx-4">
             <div class="row align-items-center">
                 <div class="col">
@@ -185,12 +223,6 @@
         {{-- </ul>
         </div>
         <div class="row contents px-3 mt-4"> --}}
-            <div class="row justify-content-between mx-auto">
-                <div class="col-4 d-flex flex-row">
-                    <h3 class="fw-bold">Listings (Ikaw nala himo UI kay na error na an ak cocopyhan unta kay mayda na
-                        backend hahaha) Adi nga naka comment is an kanan nakadto han explore - similar la adto an iya
-                        style didi na page</h3>
-                </div>
 
         {{-- <div id="daily-discover" class="mx-5 px-5">
                     <h4 id="daily-discover-header">Listings</h4>
@@ -296,3 +328,15 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    function clickedPost(id, user_id) {
+        window.location.href = "/product/" + id + "/" + user_id;
+    };
+    var recommended_cards = document.getElementById("recommended");
+    var recommended_btn = document.getElementById("recommended-header");
+    recommended_btn.addEventListener("click", function() {
+        // alert("bitch");
+        recommended_cards.style.display = "none";
+    });
+</script>

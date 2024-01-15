@@ -739,17 +739,16 @@
                                         <div class="accordion" id="accordionPanelsStayOpenExample">
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
-                                                    <button class="accordion-button" type="button"
+                                                    <button class="accordion-button collapsed" type="button"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#panelsStayOpen-collapseOne"
-                                                        aria-expanded="true"
+                                                        aria-expanded="false"
                                                         aria-controls="panelsStayOpen-collapseOne">
                                                         Genre Guidelines
                                                     </button>
                                                 </h2>
                                                 <div id="panelsStayOpen-collapseOne"
-                                                    class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordionFlushExample">
+                                                    class="accordion-collapse collapse">
                                                     <div class="accordion-body">
                                                         <strong>Educational: </strong>
                                                         <small>Educational books aim to impart knowledge and information
@@ -823,17 +822,17 @@
                                             </div>
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
-                                                    <button class="accordion-button" type="button"
+                                                    <button class="accordion-button collapsed" type="button"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#panelsStayOpen-collapseTwo"
-                                                        aria-expanded="true"
+                                                        aria-expanded="false"
                                                         aria-controls="panelsStayOpen-collapseTwo">
                                                         Book Condition Guidelines
                                                     </button>
                                                 </h2>
                                                 <div id="panelsStayOpen-collapseTwo"
                                                     class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordionFlushExample">
+                                                   >
                                                     <div class="accordion-body">
                                                         <strong>New: </strong>
                                                         <small>A book that is in pristine condition, showing no
@@ -881,17 +880,17 @@
                                             </div>
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
-                                                    <button class="accordion-button" type="button"
+                                                    <button class="accordion-button collapsed" type="button"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#panelsStayOpen-collapseThree"
-                                                        aria-expanded="true"
+                                                        aria-expanded="false"
                                                         aria-controls="panelsStayOpen-collapseThree">
                                                         Guidelines for Listing a Book for Rent
                                                     </button>
                                                 </h2>
                                                 <div id="panelsStayOpen-collapseThree"
                                                     class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordionFlushExample">
+                                                    >
                                                     <div class="accordion-body">
                                                         <strong>Book Information: </strong>
                                                         <small>Provide accurate and detailed information about the book
@@ -973,9 +972,9 @@
                                                         Terms and Conditions for Listing Books for Rent
                                                     </button>
                                                 </h2>
-                                                <div id="panelsStayOpen-collapseOne"
+                                                <div id="panelsStayOpen-collapseFour"
                                                     class="accordion-collapse collapse show"
-                                                    data-bs-parent="#accordionFlushExample">
+                                                    >
                                                     <div class="accordion-body">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                             height="16" fill="currentColor" class="bi bi-dot"

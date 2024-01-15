@@ -298,7 +298,7 @@
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
                                 <h5 id="for-exchange-header" class="mb-0 daily_discovery_text">For Exchange</h5>
-                                <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
+                                {{-- <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small> --}}
                             </div>
                         </div>
                         @foreach ($post->shuffle() as $exchange)
