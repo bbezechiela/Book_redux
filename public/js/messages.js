@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 
                                 // input field design
                                 const inputFieldCss = `
-                                    width: 920px;
+                                    width: 650px;
                                     border: 1px solid #F8F9FA;
                                     background-color: #F8F9FA;
                                     color: #003060;
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 inputField.style.cssText = inputFieldCss;                
                 
                                 const submitButtonCss = `
-                                    width: 100px;
+                                    width: 80px;
                                     border: 1px solid #E55B13;
                                     background-color: #E55B13;
                                     color: white;
@@ -714,7 +714,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         form.method = 'post';
             
                         const inputFieldCss = `
-                        width: 920px;
+                        width: 650px;
                         border: 1px solid #F8F9FA;
                         background-color: #F8F9FA;
                         color: #003060;
@@ -727,7 +727,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         inputField.style.cssText = inputFieldCss;
             
                         const submitButtonCss = `
-                            width: 100px;
+                            width: 80px;
                             color: white;
                             border: 1px solid #E55B13;
                             background-color: #E55B13;

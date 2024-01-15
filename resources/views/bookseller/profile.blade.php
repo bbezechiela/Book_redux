@@ -51,7 +51,7 @@
                 <div class="profile-details">
                     <p>Change Profile Photo</p>
                 </div>
-                <img class="img mx-auto rounded-circle border" id="img-icon" src="../assets/bookstore.png"
+                <img class="img mx-auto rounded-circle border" id="img-icon" src="{{ asset('images/profile_photos/' . $user->profile_photo) }}"
                     alt="upload_profile" width="80" height="80">
                 <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo" required>
                 <label for="profileUpload" class="btn mx-auto mt-3 py-1 px-0 upload-btn">Upload</label>
@@ -59,11 +59,11 @@
             </div>
             <div class="col mx-2 d-flex justify-content-center flex-column w-50">
                 <div class="form-outline mt-4">
-                    <input type="text" id="ownerName" name="owner_name" class="form-control" required />
+                    <input type="text" id="ownerName" name="owner_name" value="{{ $user->owner_name }}" class="form-control" required />
                     <label class="form-label" for="ownerName">Bookstore Owner Name</label>
                 </div>
                 <div class="form-outline mt-4">
-                    <input type="email" id="email" name="email" class="form-control" required />
+                    <input type="email" id="email" name="email" class="form-control" value="{{ $user->email }}" required />
                     <label class="form-label" for="email">Email</label>
                 </div>
                 <div class="form-outline mt-4">
@@ -71,7 +71,7 @@
                     <label class="form-label" for="address">Registered Business Address</label>
                 </div>
                 <div class="form-outline mt-4">
-                    <input type="number" id="registration_number" name="registration_number" class="form-control"
+                    <input type="number" id="registration_number" name="registration_number" value="{{ $user->registration_number }}" class="form-control"
                         required />
                     <label class="form-label" for="registration_number">Registration Number</label>
                 </div>
@@ -88,15 +88,15 @@
             </div>
             <div class="col mx-2 d-flex justify-content-center flex-column w-50">
                 <div class="form-outline">
-                    <input type="text" id="business_name" name="business_name" class="form-control" required />
+                    <input type="text" id="business_name" name="business_name" value="{{ $user->business_name }}" class="form-control" required />
                     <label class="form-label" for="business_name">Business Name</label>
                 </div>
                 <div class="form-outline mt-4">
-                    <input type="text" id="phoneNumber" name="phone_number" class="form-control" required />
+                    <input type="text" id="phoneNumber" name="phone_number" value="{{ $user->phone_number }}" class="form-control" required />
                     <label class="form-label" for="phoneNumber">Contact Number</label>
                 </div>
                 <div class="form-outline mt-4">
-                    <input type="text" id="date_registered" name="date_registered" class="form-control"
+                    <input type="text" id="date_registered" name="date_registered" class="form-control" value="{{ $user->date_registered }}"
                         onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}" required />
                     <label class="form-label" for="date_registered">Date Registered</label>
                 </div>

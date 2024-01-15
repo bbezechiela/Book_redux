@@ -86,7 +86,7 @@
     border: none;
     padding: 0;
     margin-top: -4.2em;
-    margin-left: 38em;
+    margin-left: 32em;
 }
 
 .change-button a:hover {
@@ -241,7 +241,7 @@ h1, h2 {
     height: 70px;
     margin-bottom: .3em;
     width: 94%;
-    margin-left: 2em;
+    margin-left: 2.4em;
     color: #003060;
     font-size: 20px;
     background-color: #f8fbfd;
@@ -270,7 +270,7 @@ h1, h2 {
     background-color: transparent;
     font-size: 20px;
     color: #E55B13;
-    margin-left: -3em;
+    margin-left: -5em;
 }
 
 .payment-button:hover {
@@ -305,7 +305,7 @@ h1, h2 {
 
 .summary p {
     color: #003060;
-    margin-left: 61em;
+    margin-left: 50em;
 }
 
 .merchandise-subtotal {
@@ -327,7 +327,7 @@ h1, h2 {
 }
 
 .place-order-button {
-    margin-left: 41em;
+    margin-left: 30em;
     background-color: #003060;
     border-color: #003060;
     width: 15em;

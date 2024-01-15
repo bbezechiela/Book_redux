@@ -12,6 +12,11 @@ class SellerController extends Controller
         return view('bookseller.sellerSignup');
     }
 
+    public function profile()
+    {
+        $user = Users::find(session('id'));
+        return view('bookseller.profile', ['user' => $user]);
+    }
 
     public function sellerDashboard()
     {
