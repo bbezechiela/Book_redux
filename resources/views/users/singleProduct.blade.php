@@ -178,6 +178,92 @@
                         </div>
                     </div>
                 </div>
+            @elseif ($book_id->status == 'Rent')
+                <div class="card mb-3 book-details mx-4">
+                    <div class="row g-0">
+                        <div class="col-md-4 p-5">
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide"
+                                data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                            class="img-fluid mx-auto rounded d-block mx-auto" alt="product"
+                                            width="300px" height="564px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
+                                            class="img-fluid mx-auto rounded d-block mx-auto" alt="product"
+                                            width="300px" height="564px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
+                                            class="img-fluid mx-auto rounded d-block mx-auto" alt="product"
+                                            width="300px" height="564px">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $book_id->title }} <a href=""
+                                        data-bs-toggle="modal" data-bs-target="#report">Report</a></h5>
+                                <h6 class="card-title"><span
+                                        style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
+                                    </span>
+                                    <span>| For {{ $book_id->status }}
+                                        |</span> <span>{{ $book_id->genre }}</span>
+                                </h6>
+                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span>
+                                </p>
+                                <p class="card-text">Security Deposit <span style="font-weight: bold;">₱{{ $book_id->security_deposit}}</span>
+                                </p>
+                                <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
+                                <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
+                                </p>
+                                <div class="d-flex justify-content-start align-items-center mb-2">
+                                    <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
+                                        <p class="m-0" style="color: #003060;">Quantity:
+                                            <span>{{ $book_id->stock }}
+                                                pieces available</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="card-text">Language: <span>{{ $book_id->language }}</span>
+                                </p>
+                                <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
+                                </p>
+                                <p class="card-text">Rental Duration: <span>{{ $book_id->rental_duration }}</span></p>
+                                <p class="card-text">Rental Terms & Condition:
+                                    <span>{{ $book_id->rental_terms_and_condition }}</span></p>
+                                <p class="card-text">Product Description: <span>{{ $book_id->description }}</span></p>
+                                <p class="card-text"><small
+                                        class="text-body-secondary">{{ $user_id->address }}</small>
+                                </p>
+
+                                @if ($book_id->unit == 'Added to Cart' && $book_id->user_id == session('id'))
+                                    <p class="fs-3 fw-bold text-success">Item added to Cart</p>
+                                @else
+                                    <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
+                                            class="fa fa-cart-plus" aria-hidden="true"
+                                            style="margin-right: 7px"></i>Add to Cart</a>
+                                    {{-- <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
+                                style="margin-right: 7px"></i>Add to Wishlist</a> --}}
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @else
                 <div class="card mb-3 book-details mx-4">
                     <div class="row g-0">
@@ -237,8 +323,7 @@
                                 </ul>
                             </span>
                             </p> --}}
-                                <p class="card-text">Shipping Fee <span
-                                        style="font-weight: bold;">₱{{ $book_id->price }}</span>
+                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span>
                                 </p>
                                 <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
                                 <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
@@ -448,24 +533,24 @@
                                         <div class="row">
                                             <div class="col">
                                                 @if (isset($itemReviews->first_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->first_img) }}" alt="Image 1"
-                                                        class="d-inline square-picture">
+                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->first_img) }}"
+                                                        alt="Image 1" class="d-inline square-picture">
                                                 @endif
                                                 @if (isset($itemReviews->second_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->second_img) }}" alt="Image 1"
-                                                        class="d-inline square-picture">
+                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->second_img) }}"
+                                                        alt="Image 1" class="d-inline square-picture">
                                                 @endif
                                                 @if (isset($itemReviews->third_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->third_img) }}" alt="Image 1"
-                                                        class="d-inline square-picture">
+                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->third_img) }}"
+                                                        alt="Image 1" class="d-inline square-picture">
                                                 @endif
                                                 @if (isset($itemReviews->fourth_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->fourth_img) }}" alt="Image 1"
-                                                        class="d-inline square-picture">
+                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->fourth_img) }}"
+                                                        alt="Image 1" class="d-inline square-picture">
                                                 @endif
                                                 @if (isset($itemReviews->fifth_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->fifth_img) }}" alt="Image 1"
-                                                        class="d-inline square-picture">
+                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->fifth_img) }}"
+                                                        alt="Image 1" class="d-inline square-picture">
                                                 @endif
                                             </div>
                                         </div>

@@ -189,9 +189,9 @@ h1, h2 {
     margin-left: 9px;
 }
 
-.product-price {
-    margin-left: 52.5em;
-}
+/* .product-price {
+    margin-left: 45em;
+} */
 
 .shipping-option {
     display: flex;
@@ -305,7 +305,7 @@ h1, h2 {
 
 .summary p {
     color: #003060;
-    margin-left: 50em;
+    /* margin-left: 50em; */
 }
 
 .merchandise-subtotal {
@@ -313,7 +313,7 @@ h1, h2 {
 }
 
 .summary-merchandise-total {
-    margin-left: 3em;
+    margin-left: 3.6em;
 }
 
 .summary-shipping-total{
@@ -327,7 +327,7 @@ h1, h2 {
 }
 
 .place-order-button {
-    margin-left: 30em;
+    /* margin-left: 30em; */
     background-color: #003060;
     border-color: #003060;
     width: 15em;

@@ -26,28 +26,12 @@
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
-                        {{-- <div class="input-group mt-1" style="height: 2em">
-                            <span class="input-group-text">
-                                <i class="fa fa-search"></i>
-                            </span>
-                            <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                        </div>
-                        <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Messages">
-                                <i class="fa fa-envelope-o" aria-hidden="true"
-                                    style="font-size: 20px; color: #003060;"></i>
-                            </button></a>
-                        <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Notification">
-                                <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                            </button></a> --}}
                         <ul class="nav py-profile justify-content-end">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="margin-right: 2em;">
                                 <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                     class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
                                     <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                                        alt="notification" width="35" height="35" class="rounded-5"
-                                        style="margin-right: 2em;">
+                                        alt="notification" width="35" height="35" class="rounded-5">
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
@@ -97,12 +81,17 @@
                     <span data="book-id" hidden>{{ $orders->product_id }}</span>
                     <div class="order-cart">
                         <div class="name-cart">
-                            <a class="seller-name"
-                                href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                            @if ($orders->productRelation->user->type == 'Bookseller')
+                                <a class="seller-name"
+                                    href="#"><span>{{ $orders->productRelation->user->business_name }}</span></a>
+                            @else
+                                <a class="seller-name"
+                                    href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                            @endif
                             <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
                         </div>
                         <div class="product-cart">
-                            <div class="book-details">
+                            <div class="book-details w-100 position-relative">
                                 <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}"
                                     alt="book" width="80px" height="110px">
                                 <div class="book-info">
@@ -111,55 +100,50 @@
                                     <p class="mb-0 interaction-type">Qty: <span
                                             class="qty">{{ $qty[$index] }}</span></p>
                                 </div>
-                                <div class="product-price">₱<span
-                                        class="price-list">{{ $orders->productRelation->price }}</span>
-                                </div>
+                                @if ($orders->productRelation->status == 'Rent')
+                                    <div class="product-price position-absolute end-0 me-2">₱<span
+                                            class="price-list">{{ $orders->productRelation->security_deposit }}</span>
+                                    @else
+                                        <div class="product-price position-absolute end-0 me-2">₱<span
+                                                class="price-list">{{ $orders->productRelation->price }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
-                @endforeach
-                <div class="shipping-option">
-                    <p class="txt-shipping-opt">Shipping Option:</p>
-                    {{-- <div class="dropdown">
-                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle shipping-button"
-                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Door-to-Door Delivery</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Door-to-Door Delivery</a></li>
-                            <li><a class="dropdown-item" href="#">Personal Transaction</a></li>
-                        </ul>
-                    </div> --}}                    
-                    <select id="shipping-option" class="btn shipping-button">
-                        <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
-                        <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
-                    </select>
-                    {{-- <div class="shipping-price">₱130.0</div> --}}
-                </div>
-                <div class="order-total">
-                    <p>Order Total <span id="total">(1 item):</span></p>
-                    <div id="total-price" class="total">₱294</div>
-                </div>
-                <div class="payment-container">
-                    <h1 class="payment-details">Payment Method</h1>
-                    <select id="payment-method" class="btn payment-button">
-                        <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
-                        <option class="fs-6" value="eWallet">eWallet</option>
-                        {{-- <option class="fs-6" value="GCash">GCash</option>
-                        <option class="fs-6" value="Maya">Maya</option> --}}
-                    </select>
-                </div>
-                <div class="summary">
-                    <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
-                            class="summary-merchandise-total">P244</span></p>
-                    <p>Shipping Total: <span class="summary-shipping-total" id="shipping-total">₱130.0</span></p>
-                    <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
-                </div>
-                <div class="col-md-6 text-right">
-                    <button id="place-order" class="btn text-white place-order-button" data-bs-toggle="modal"
-                        data-bs-target="#messageModal">Place Order</button>
-                </div>
-            </main>
         </div>
+        @endforeach
+        <div class="shipping-option">
+            <p class="txt-shipping-opt">Shipping Option:</p>
+            <select id="shipping-option" class="btn shipping-button">
+                <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
+                <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
+            </select>
+            {{-- <div class="shipping-price">₱130.0</div> --}}
+        </div>
+        <div class="order-total">
+            <p>Order Total <span id="total">(1 item):</span></p>
+            <div id="total-price" class="total">₱294</div>
+        </div>
+        <div class="payment-container">
+            <h1 class="payment-details">Payment Method</h1>
+            <select id="payment-method" class="btn payment-button">
+                <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
+                <option class="fs-6" value="eWallet">eWallet</option>
+            </select>
+        </div>
+        <div class="summary">
+            <p class="merchandise-subtotal text-end">Merchandise Subtotal: <span id="mer-total"
+                    class="summary-merchandise-total">P244</span></p>
+            <p class="text-end">Shipping Total: <span class="summary-shipping-total"
+                    id="shipping-total">₱130.0</span></p>
+            <p class="text-end">Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
+        </div>
+        <div class="col-md-6 text-center w-100">
+            <button id="place-order" class="btn text-white place-order-button" data-bs-toggle="modal"
+                data-bs-target="#messageModal">Place Order</button>
+        </div>
+        </main>
+    </div>
     </div>
 </body>
 <!-- Modal -->
@@ -184,7 +168,7 @@
 <script>
     // console.log(document.querySelectorAll('span[data="status"]').textContent);
     var prices = document.querySelectorAll('span[class="price-list"]');
-    var item_qty = document.querySelectorAll('span[class="qty"]');    
+    var item_qty = document.querySelectorAll('span[class="qty"]');
     var totalItem = document.getElementById('total');
     var displayTotal = document.getElementById('total-price');
     var mercha_total = document.getElementById('mer-total');
@@ -280,12 +264,14 @@
             });
         }
 
-        line_items.push({
-            currency: 'PHP',
-            amount: 13000,
-            name: 'Shipping Fee',
-            quantity: line_items.length
-        });
+        if (shipping_option.value == 'Door-to-Door Delivery') {
+            line_items.push({
+                currency: 'PHP',
+                amount: 13000,
+                name: 'Shipping Fee',
+                quantity: line_items.length
+            });
+        }
 
         const options = {
             method: 'POST',
@@ -345,7 +331,9 @@
         shipping_choices[1].textContent = 'Personal Transaction';
     });
 
-    shipping_choices[0].addEventListener('click', () => {
+    shipping_choices[0].addEventListener('click', () => {        
+        document.querySelector('option[value="Cash on Delivery"]').className = 'fs-6';
+        payment_method.value = 'Cash on Delivery';
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
         document.getElementById('shipping-total').textContent = '₱130.00';
@@ -353,6 +341,8 @@
     });
 
     shipping_choices[1].addEventListener('click', () => {
+        document.querySelector('option[value="Cash on Delivery"]').className = 'd-none';
+        payment_method.value = 'eWallet';        
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
         document.getElementById('shipping-total').textContent = '₱0.00';

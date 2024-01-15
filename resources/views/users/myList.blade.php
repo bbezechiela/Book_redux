@@ -689,7 +689,7 @@
                                 <input type="text" name="length" id="exchange-length" hidden>
                                 <input type="text" name="courier" id="exchange-courier" hidden>
 
-                                <input type="file" name="book_photo" id="exchange-image" class="d-none">
+                                <input type="file" name="book_photo" id="exchange-image" class="d-none" accept="image/*">
                                 <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book photo
                                     field must be a file of type: jpeg, png, jpg, gif.</small>
                                 <label for="exchange-image" class="position-relative w-100 h-100"

@@ -67,7 +67,7 @@
                     <label class="form-label" for="email">Email</label>
                 </div>
                 <div class="form-outline mt-4">
-                    <input type="text" id="address" name="address" class="form-control" required />
+                    <input type="text" id="address" name="address" class="form-control" value="{{ $user->address }}" required />
                     <label class="form-label" for="address">Registered Business Address</label>
                 </div>
                 <div class="form-outline mt-4">

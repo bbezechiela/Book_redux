@@ -163,7 +163,7 @@ Route::get('/dropped', [UserController::class, 'dropped']);
 
 Route::get('/refund', [UserController::class, 'refund']);
 
-Route::get('/sellerorders', [UserController::class, 'sellerOrders']);
+Route::get('/sellerorders', [SellerController::class, 'sellerOrders']);
 
 Route::get('/sellerdelivered', [UserController::class, 'sellerDelivered']);
 

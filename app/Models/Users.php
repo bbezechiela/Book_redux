@@ -41,7 +41,7 @@ class Users extends Model
         'last_name',
         'email',
         'phone_number',
-        // 'address',
+        'address',
         'birthday',
         'gender',
         // 'age',

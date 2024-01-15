@@ -99,9 +99,7 @@
                                 </div>
 
                                 <div class="product-cart">
-                                    <div class="book-details">
-                                        {{-- <input class="form-check-input check-order" type="checkbox" name="items"
-                                            value="{{ $item->productRelation->price }}" id="check-order"> --}}
+                                    <div class="book-details">                                        
                                         <input class="form-check-input check-order" type="checkbox" name="items[]"
                                             value="{{ $item->id }}" id="check-order">
                                         <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
@@ -112,18 +110,8 @@
                                                 {{ $item->productRelation->status }}
                                             </p>
                                         </div>
-                                    </div>
-                                    {{-- <div class="product-price">₱{{ $item->productRelation->price }}
-                        </div> --}}
-                                    <div class="product-action">
-                                        {{-- <div class="dropdown">
-                                            <button class="btn dropdown-toggle move-button" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
-                                            <ul class="dropdown-menu"> --}}
-                                                {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
-                                                {{-- <li><a class="dropdown-item" href="#">Move to wish list</a></li>
-                                            </ul>
-                                        </div> --}}
+                                    </div>                                    
+                                    <div class="product-action">                                        
                                         <a href="/deletecart/{{ $item->id }}" class="delete-button">Delete</a>
                                     </div>
                                 </div>
@@ -131,16 +119,17 @@
                         @elseif ($item->user_id == session('id') && $item->productRelation->unit == 'Added to Cart')
                             <div class="order-cart">
                                 <div class="name-cart">
-                                    <a class="seller-name"
-                                        href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                    @if ($item->productRelation->user->type == 'Bookseller')
+                                        <a class="seller-name" href="#"><span>{{ $item->productRelation->user->business_name }}</span></a>    
+                                    @else
+                                        <a class="seller-name" href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                    @endif                                    
                                     <button class="message-seller"><i class="fa fa-commenting"
                                             aria-hidden="true"></i></button>
                                 </div>
 
                                 <div class="product-cart">
-                                    <div class="book-details">
-                                        {{-- <input class="form-check-input check-order" type="checkbox" name="items"
-                                            value="{{ $item->productRelation->price }}" id="check-order"> --}}
+                                    <div class="book-details">                                        
                                         <input class="form-check-input check-order" type="checkbox" name="items[]"
                                             value="{{ $item->id }}" id="check-order">
                                         <img src="{{ asset('/images/books/' . $item->productRelation->book_photo) }}"
@@ -155,10 +144,7 @@
                                             </div>
 
                                         </div>
-                                    </div>
-                                    {{-- <div class="product-price flex-row">₱<span
-                        id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
-            </div> --}}
+                                    </div>                                 
                                     <div class="d-flex justify-content-start align-items-center">
                                         <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
                                             <button type="button" class="btn btn-link btn-minus px-2"
@@ -177,15 +163,7 @@
                                     <div class="total-price fw-bold flex-row">₱<span
                                             id="{{ $item->id }}">{{ $item->productRelation->price }}</span>
                                     </div>
-                                    <div class="product-action">
-                                        {{-- <div class="dropdown">
-                                            <button class="btn dropdown-toggle move-button" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Move to</button>
-                                            <ul class="dropdown-menu"> --}}
-                                                {{-- <li><a class="dropdown-item" href="#">Move to likes</a></li> --}}
-                                                {{-- <li><a class="dropdown-item" href="#">Move to wish list</a></li>
-                                            </ul>
-                                        </div> --}}
+                                    <div class="product-action">                                        
                                         <a class="btn delete-button"
                                             href="/deletecart/{{ $item->id }}">Delete</a>
                                     </div>

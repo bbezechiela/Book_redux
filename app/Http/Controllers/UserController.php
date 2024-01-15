@@ -549,11 +549,7 @@ class UserController extends Controller
     {
         return view('users.refund');
     }
-
-    public function sellerOrders()
-    {
-        return view('bookseller.sellerOrders');
-    }
+    
 
     public function sellerDelivered()
     {

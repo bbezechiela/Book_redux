@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Books;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,12 @@ class SellerController extends Controller
         return view('bookseller.sellerDashboard');
     }
 
+    public function sellerOrders()
+    {
+        $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
+        return view('bookseller.sellerOrders', ['orders' => $order]);
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -39,6 +46,8 @@ class SellerController extends Controller
             'password' => 'required',
             'profile_photo' => 'required'
         ]);
+
+        // dd($request->all());
 
         $validated["password"] =  bcrypt($validated["password"]);
 
