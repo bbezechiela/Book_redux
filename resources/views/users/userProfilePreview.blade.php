@@ -105,7 +105,7 @@
                         </div>
                         <div class="card-body p-4">
                             <div class="mb-2">
-                                <p class="lead fw-normal mb-1" style="color: #003060;">Preferred genres</p>
+                                <p class="lead fw-normal mb-1" style="color: #E55B13;">Preferred genres</p>
                                 <div class="p-2" style="background-color: #f8f9fa;">
                                     <p class="font-italic mb-1" style="color: #003060;">Educational</p>
                                     <p class="font-italic mb-1" style="color: #003060;">History Fiction</p>
@@ -126,37 +126,37 @@
                     </div>
                     <div class="row justify-content-between mx-auto">
                         <div class="col-4 d-flex flex-row">
-                            <h3 class="fw-bold">Listings (Ikaw nala himo UI kay na error na an ak cocopyhan unta kay mayda
+                            <h3 class="fw-bold">Listings (Ikaw nala himo UI kay na error na an ak cocopyhan unta kay
+                                mayda
                                 na
-                                backend hahaha) Adi nga naka comment is an kanan nakadto han explore - similar la adto an
+                                backend hahaha) Adi nga naka comment is an kanan nakadto han explore - similar la adto
+                                an
                                 iya
                                 style didi na page</h3>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <div id="recommended">
-                        <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
-                            <div class="card-header sticky-top">
-                                <div class="d-flex justify-content-between">
-                                    <h5 id="recommended-header" class="mb-0">Recommended For You</h5>
-                                </div>
+                <div id="recommended" class="col-lg-4">
+                    <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
+                        <div class="card-header sticky-top">
+                            <div class="d-flex justify-content-between">
+                                <h5 id="recommended-header" class="mb-0">Recommended For You</h5>
                             </div>
-                            @foreach ($post->shuffle() as $recommended)
-                            <div class="card-body"
-                                onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('images/books/' . $recommended->book_photo) }}" alt="Book Image"
-                                        class="rounded me-3" width="80" height="80">
-                                    <div>
-                                        <h6 id="book-title" class="mb-0">{{ $recommended->title }}</h6>
-                                        <p class="mb-0">For {{ $recommended->status }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
                         </div>
+                        @foreach ($post->shuffle() as $recommended)
+                        <div class="card-body"
+                            onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('images/books/' . $recommended->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
+                                <div>
+                                    <h6 id="book-title" class="mb-0">{{ $recommended->title }}</h6>
+                                    <p class="mb-0">For {{ $recommended->status }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -223,105 +223,103 @@
         {{-- </ul>
         </div>
         <div class="row contents px-3 mt-4"> --}}
-       
-            {{-- <div id="daily-discover" class="mx-5 px-5">
+
+        {{-- <div id="daily-discover" class="mx-5 px-5">
                     <h4 id="daily-discover-header">Listings</h4>
                     <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 300px; ">
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
                             <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-            alt="..." width="130px" height="170px">
-            <div class="card-body py-0">
-                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                    {{ $daily->genre }}</p>
-                @foreach ($daily->user->addressUser as $address)
-                @if ($address->default_address == 'true')
-                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                        aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
-                </p>
-                @endif
-                @endforeach
-                @foreach ($daily->cart as $cart)
-                @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                    <span class="fw-bold p-0 text-success">Added to cart</span>
-                </div>
-                @endif
-                @endforeach
-                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
-                    <div class="button-container">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle add-button"
-                                onclick="stopPropagation(event)" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
-                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add to
-                                        Cart</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                            class="fa fa-list-alt" aria-hidden="true" style="margin-right: 7px"></i>Add
-                                        to
-                                        Wishlist</a></li>
-                            </ul>
-                        </div>
+        alt="..." width="130px" height="170px">
+        <div class="card-body py-0">
+            <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+            <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                {{ $daily->genre }}</p>
+            @foreach ($daily->user->addressUser as $address)
+            @if ($address->default_address == 'true')
+            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+            </p>
+            @endif
+            @endforeach
+            @foreach ($daily->cart as $cart)
+            @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+            <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                <span class="fw-bold p-0 text-success">Added to cart</span>
+            </div>
+            @endif
+            @endforeach
+            <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                <span class="fw-bold p-0">₱{{ $daily->price }}</span>
+                <div class="button-container">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
+                                    onclick="stopPropagation(event)"><i class="fa fa-cart-plus" aria-hidden="true"
+                                        style="margin-right: 7px"></i>Add to
+                                    Cart</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                        class="fa fa-list-alt" aria-hidden="true" style="margin-right: 7px"></i>Add
+                                    to
+                                    Wishlist</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
-        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-            onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-            <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2" alt="..." width="130px"
-                height="170px">
-            <div class="card-body py-0">
-                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                    {{ $daily->genre }}</p>
-                @foreach ($daily->user->addressUser as $address)
-                @if ($address->default_address == 'true')
-                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                        aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
-                </p>
-                @endif
-                @endforeach
-                @foreach ($daily->cart as $cart)
-                @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                    <span class="fw-bold p-0 text-success">Added to cart</span>
-                </div>
-                @endif
-                @endforeach
-                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
-                    <div class="button-container">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle add-button"
-                                onclick="stopPropagation(event)" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
-                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add to
-                                        Cart</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                            class="fa fa-list-alt" aria-hidden="true" style="margin-right: 7px"></i>Add
-                                        to
-                                        Wishlist</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
-        @endforeach
     </div>
+    @elseif ($daily->unit == 'Available' || ($daily->stock > 0))
+    <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+        onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
+        <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2" alt="..." width="130px"
+            height="170px">
+        <div class="card-body py-0">
+            <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+            <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                {{ $daily->genre }}</p>
+            @foreach ($daily->user->addressUser as $address)
+            @if ($address->default_address == 'true')
+            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
+                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+            </p>
+            @endif
+            @endforeach
+            @foreach ($daily->cart as $cart)
+            @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
+            <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                <span class="fw-bold p-0 text-success">Added to cart</span>
+            </div>
+            @endif
+            @endforeach
+            <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                <span class="fw-bold p-0">₱{{ $daily->price }}</span>
+                <div class="button-container">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle add-button" onclick="stopPropagation(event)"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
+                                    onclick="stopPropagation(event)"><i class="fa fa-cart-plus" aria-hidden="true"
+                                        style="margin-right: 7px"></i>Add to
+                                    Cart</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
+                                        class="fa fa-list-alt" aria-hidden="true" style="margin-right: 7px"></i>Add
+                                    to
+                                    Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    @endforeach
+</div>
 </div>--}}
 {{-- </div>
 </div>

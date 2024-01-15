@@ -105,7 +105,7 @@
                         </div>
                         <div class="card-body p-4">
                             <div class="mb-2">
-                                <p class="lead fw-normal mb-1" style="color: #003060;">Preferred genres</p>
+                                <p class="lead fw-normal mb-1" style="color: #E55B13;">Preferred genres</p>
                                 <div class="p-2" style="background-color: #f8f9fa;">
                                     <p class="font-italic mb-1" style="color: #003060;">Educational</p>
                                     <p class="font-italic mb-1" style="color: #003060;">History Fiction</p>
@@ -241,46 +241,44 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <div id="recommended">
-                        <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
-                            <div class="card-header sticky-top">
-                                <div class="d-flex justify-content-between">
-                                    <h5 id="recommended-header" class="mb-0">Recommended For You</h5>
-                                </div>
+                <div id="recommended" class="col-lg-4">
+                    <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
+                        <div class="card-header sticky-top">
+                            <div class="d-flex justify-content-between">
+                                <h5 id="recommended-header" class="mb-0">Recommended For You</h5>
                             </div>
-                            @foreach ($post->shuffle() as $recommended)
-                            <div class="card-body"
-                                onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('images/books/' . $recommended->book_photo) }}" alt="Book Image"
-                                        class="rounded me-3" width="80" height="80">
-                                    <div>
-                                        <h6 id="book-title" class="mb-0">{{ $recommended->title }}</h6>
-                                        <p class="mb-0">For {{ $recommended->status }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
                         </div>
+                        @foreach ($post->shuffle() as $recommended)
+                        <div class="card-body"
+                            onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('images/books/' . $recommended->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
+                                <div>
+                                    <h6 id="book-title" class="mb-0">{{ $recommended->title }}</h6>
+                                    <p class="mb-0">For {{ $recommended->status }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
 
-{{-- <div class="container text-center seller-details mx-4">
+        {{-- <div class="container text-center seller-details mx-4">
             <div class="row align-items-center">
                 <div class="col">
                     <div class="d-flex align-items-center">
                         <img src="../assets/nestine.png" alt="seller image" class="circle-picture">
                         <div class="user-info">
                             <p>Nestine Nicole Navarro</p> --}}
-{{-- <p>2K followers . 400 following</p> --}}
-{{-- <p>Lives in Tacloban City</p>
+        {{-- <p>2K followers . 400 following</p> --}}
+        {{-- <p>Lives in Tacloban City</p>
                             <button class="message-button"><i class="fa fa-envelope"
                                     aria-hidden="true"></i>Message</button> --}}
-{{-- <button class="follow-button"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button> --}}
-{{-- </div>
+        {{-- <button class="follow-button"><i class="fa fa-plus" aria-hidden="true"></i>Follow</button> --}}
+        {{-- </div>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -290,9 +288,9 @@
                                 <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-circle"
                                             aria-hidden="true" style="margin-right: 7px"></i>
                                         Report</a></li> --}}
-{{-- <li><a class="dropdown-item" href="#"><i class="fa fa-ban" aria-hidden="true"
+        {{-- <li><a class="dropdown-item" href="#"><i class="fa fa-ban" aria-hidden="true"
                                             style="margin-right: 7px"></i>Block</a></li> --}}
-{{-- </ul>
+        {{-- </ul>
                         </div>
 
                     </div>
@@ -302,7 +300,7 @@
                         <p>Liked genres:<span class="exchange">Educational, History Fiction, Science Fiction</span></p>
                     </div>
                 </div> --}}
-{{-- <div class="col">
+        {{-- <div class="col">
                     <div class="ratings">
                         <p>Ratings <span class="rate">100</span></p>
                         <p>Books Bought <span class="bought">20</span></p>
@@ -314,7 +312,7 @@
                         <p>Books Exchanged <span class="exchange">59</span></p>
                     </div>
                 </div> --}}
-{{-- </div>
+        {{-- </div>
         </div>
         <div class="navbar-details">
             <ul class="nav nav-underline">
@@ -324,15 +322,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/userreviews">User Reviews and Ratings</a>
                 </li> --}}
-{{-- <li class="nav-item">
+        {{-- <li class="nav-item">
                     <a class="nav-link custom-nav-link" href="/userwishlist">Wish List</a>
                 </li> --}}
-{{-- </ul>
+        {{-- </ul>
         </div>
         <div class="ratings-review">
             <div class="card-body rating-details">
                 <h4>User Reviews and Ratings</h4> --}}
-{{-- <nav class="nav nav-pills flex-column flex-sm-row">
+        {{-- <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="#">Sold Rating</a>
                     <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -342,9 +340,9 @@
                         href="#">Bought
                         Rating</a>
                 </nav> --}}
-{{-- </div> --}}
+        {{-- </div> --}}
 
-</div>
+    </div>
 </div>
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
