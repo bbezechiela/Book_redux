@@ -35,8 +35,9 @@
                         <label class="form-label" for="email">Email</label>
                     </div>
                     <div class="form-outline mt-4">
-                        <input type="text" id="address" name="address" class="form-control" required />
+                        <input type="text" id="address" name="address" class="form-control" required />                        
                         <label class="form-label" for="address">Registered Business Address</label>
+                        {{-- <div class="px-3 py-1 position-absolute" style="background-color: rgb(255, 240, 240)">sample</div> --}}
                     </div>
                     <div class="form-outline mt-4">
                         <input type="text" id="registration_number" name="registration_number" class="form-control"
@@ -69,7 +70,8 @@
                         <label class="form-label" for="date_registered">Date Registered</label>
                     </div>
                     <div class="form-outline mt-4">
-                        <input class="form-control" type="file" id="permit" name="permit" accept="image/*" multiple />
+                        <input class="form-control" type="file" id="permit" name="permit" accept="image/*"
+                            multiple />
                         <label for="permit" class="form-label">Business Permit</label>
                     </div>
                     <div class="form-outline mt-4">
@@ -79,7 +81,7 @@
                     <div class="mx-1 mt-3 d-flex justify-content-start">
                         <span class="text-secondary" style="white-space: nowrap;">
                             Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
-                            <label type="checkbox" id="show-password"><span id="pass-tip"></span></label> 
+                            <label type="checkbox" id="show-password"><span id="pass-tip"></span></label>
                         </span>
                         {{-- <input type="checkbox" id="show-password" class="ms-2">
                         <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
@@ -147,9 +149,7 @@
         tip.className += "ms-2 mb-3 fw-bold"
         tip.textContent = labels[strength - 1];
     });
-</script>
 
-<script>
     document.addEventListener("DOMContentLoaded", function() {
         const formInputs = document.querySelectorAll(".form-control");
         formInputs.forEach(function(input) {
@@ -168,6 +168,20 @@
                 }
             });
         });
+    });
+
+    document.getElementById('address').addEventListener('input', () => {
+        fetch("https://api.geoapify.com/v1/geocode/autocomplete?text=" + document.getElementById('address').value + "&apiKey=071399a5ce1a4ecc90e9d3070dd7fb1e", {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result.features.forEach(suggestion => {
+                    console.log(suggestion.properties.city);
+                });
+            })
+            .catch(error => console.error(error));
     });
 </script>
 

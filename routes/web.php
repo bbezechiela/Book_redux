@@ -296,7 +296,7 @@ Route::get('/systemfeedback', [UserController::class, 'feedback']);
 
 Route::get('/listings', [ListingController::class, 'listings']);
 
-Route::get('/profile', [UserController::class, 'profile']);
+Route::get('/profile', [SellerController::class, 'profile']);
 
 Route::get('/courierprofile', [UserController::class, 'courierProfile']);
 
