@@ -191,6 +191,38 @@ class UserController extends Controller
         // return view('users.bookRentingClub');
     }
 
+    public function userProfilePreview()
+    {
+        if (session()->has('user')) {
+
+            // $users = Users::where();
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.userProfilePreview', ['post' => $post, 'user' => $user]);
+            // return view('users.homepage')->with('post', $post);
+            // return view('users.homepage', compact('post'));
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        // return view('users.bookRentingClub');
+    }
+
+    public function previewReviews()
+    {
+        if (session()->has('user')) {
+
+            // $users = Users::where();
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.previewReviews', ['post' => $post, 'user' => $user]);
+            // return view('users.homepage')->with('post', $post);
+            // return view('users.homepage', compact('post'));
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        // return view('users.bookRentingClub');
+    }
+
     public function eventsSelling()
     {
         return view('users.eventsSelling');
@@ -425,15 +457,15 @@ class UserController extends Controller
     //     return view('users.searchResult');
     // }
 
-    public function userProfilePreview()
-    {
-        return view('users.userProfilePreview');
-    }
+    // public function userProfilePreview()
+    // {
+    //     return view('users.userProfilePreview');
+    // }
 
-    public function previewReviews()
-    {
-        return view('users.previewReviews');
-    }
+    // public function previewReviews()
+    // {
+    //     return view('users.previewReviews');
+    // }
 
     public function previewWishlist()
     {
