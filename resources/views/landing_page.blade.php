@@ -344,39 +344,44 @@
                         <div class="d-flex flex-row justify-content-center">
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">Book Buyback Prices Explained</h5>
+                                    <h6 class="card-title" style="color: #E55B13;">Strategic Negotiation Tactics for Successful Book Deals: A
+                                        Comprehensive Guide</h6>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">January 20, 2023</h6>
-                                    <p id="num-text" class="card-text mt-3" style="text-align: justify;">
-                                        Sometimes
-                                        you get a good buyback offer for a textbook and no offer for a piece of
-                                        fiction.
-                                        Why is it so?</p>
+                                    <p id="num-text" class="card-text mt-3" style="text-align: justify; font-size: 12px;">
+                                        Delve into the world of effective negotiation strategies tailored specifically
+                                        for the book industry. From establishing initial terms to closing deals with
+                                        finesse, this guide provides invaluable insights to empower authors and
+                                        retailers alike in securing favorable agreements.</p>
                                     <a id="hints-btn" class="btn">Continue Reading</a>
                                 </div>
 
                             </div>
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">Book Buyback Prices Explained</h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">January 20, 2023</h6>
-                                    <p id="num-text" class="card-text mt-3" style="text-align: justify;">
-                                        Sometimes
-                                        you get a good buyback offer for a textbook and no offer for a piece of
-                                        fiction.
-                                        Why is it so?</p>
+                                    <h6 class="card-title" style="color: #E55B13;">Fortifying Your Shipments: Expert Tips for Packaging Books
+                                        Safely</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">December 1, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3" style="text-align: justify; font-size: 12px;">
+                                        Safeguard your literary treasures with our expert tips on packaging and shipping
+                                        books securely. Discover the latest in protective materials, proper packaging
+                                        techniques, and reliable shipping methods to ensure your books reach their
+                                        destination in pristine condition, leaving a lasting impression on your
+                                        customers.</p>
                                     <a id="hints-btn" class="btn">Continue Reading</a>
                                 </div>
                             </div>
 
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">Book Buyback Prices Explained</h5>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">January 20, 2023</h6>
-                                    <p id="num-text" class="card-text mt-3" style="text-align: justify;">
-                                        Sometimes
-                                        you get a good buyback offer for a textbook and no offer for a piece of
-                                        fiction.
-                                        Why is it so?</p>
+                                    <h6 class="card-title" style="color: #E55B13;">The Price is Right: Mastering Competitive Pricing for Book
+                                        Sales</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">September 17, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3" style="text-align: justify; font-size: 12px;">
+                                        Uncover the art and science of competitive book pricing with this comprehensive
+                                        guide. From understanding market trends to evaluating customer behavior, learn
+                                        the strategies that will help you set the perfect price for your books,
+                                        attracting buyers while optimizing your revenue in the dynamic landscape of book
+                                        commerce.</p>
                                     <a id="hints-btn" class="btn">Continue Reading</a>
                                 </div>
                             </div>
