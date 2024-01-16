@@ -33,6 +33,7 @@ class BookClubController extends Controller
             $user_finder = Users::where('id', '=', $current_user_id)->first();
     
             $fileNameWithExt = $request->file('event_image_upload')->getClientOriginalName();
+            $fileNameWithExt = str_replace(' ', '_', $fileNameWithExt);
             
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             $fileExtension = $request->file('event_image_upload')->getClientOriginalExtension();
@@ -89,6 +90,19 @@ class BookClubController extends Controller
         }
     }
 
+    // get user
+    function getUser(Request $request) {
+        $current_user_id = $request->query('userId');
+
+        $getter = Users::where('id', '=', $current_user_id)->get();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter]);
+        } else {
+            return response()->json(['error' => 'Error in getting user']);
+        }
+    }
+    
     // book club join request
     function joinRequest(Request $request) {
         $current_user_id = $request->json('currentUserId');

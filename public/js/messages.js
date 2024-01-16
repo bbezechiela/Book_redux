@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             // para ma apply an mga styles
                             receiver_profile_pic.style.cssText = receiver_profile_pic_styles;
                             // url an image depende kun hinut user tas it ira image
-                            receiver_profile_pic.style.backgroundImage = 'url("' + imgLocation + '")'; 
+                            receiver_profile_pic.style.backgroundImage = `url(${imgLocation})`; 
                 
                             // image name checker
                             //console.log(response.profile_photo.profile_photo);

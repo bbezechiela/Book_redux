@@ -105,27 +105,156 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showEvents(responses) {
         responses.forEach(response => {
-            const innerCtnStyle = `
+            const eventInnerContainer_style = `
                 min-width: 900px;
                 max-width: 900px;
-                height: 300px;
-                border: 1px solid black;
+                height: 350px;
                 margin-bottom: 20px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                flex-direction: row;
+                border-radius: 5px;
+                box-shadow: 0 0 4px grey;
             `;
 
+            // container kada event
             const eventInnerContainer = document.createElement('div');
-            eventInnerContainer.style.cssText = innerCtnStyle;
+            eventInnerContainer.style.cssText = eventInnerContainer_style;
+
+            const rightSection_style = `
+                width: 300px;
+                height: inherit;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            `;
 
             const rightSection = document.createElement('div');
-            const event_image = document.createElement('div');
+            rightSection.style.cssText = rightSection_style;
 
+            const event_image_style = `
+                height: 260px;
+                width: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            `;
+
+            // event picture
+            const image_location = window.location.origin + '/images/profile_photos/' + response.image_path; 
+            console.log(image_location);
+            const event_image = document.createElement('div');
+            event_image.style.cssText = event_image_style;
+            event_image.style.backgroundImage = `url(${image_location})`;
+
+            const event_type_stype = `
+                height: 40px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                background-color: #003060;
+            `;
+
+            // didi nat mamanipulate an event type
             const event_type = document.createElement('div');
-            event_type.textContent = response.type;
+            const remove_white_space = response.type.replace('-', ' ');
+            const manipulated_event_type = remove_white_space.replace(/\b\w/g, function(char) {
+                return char.toUpperCase();
+            });
+            event_type.textContent = manipulated_event_type;
+            event_type.style.cssText = event_type_stype
 
             rightSection.appendChild(event_image);
             rightSection.appendChild(event_type);
 
+            // left section
+            const leftSection_style = `
+            height: 300px;
+            width: 500px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-direction: column;
+            `;
+            
             const leftSection = document.createElement('div');
+            leftSection.style.cssText = leftSection_style;
+                
+            // event header 
+            const event_header = document.createElement('div');
+            
+            // event date && time 
+            const event_date_time = document.createElement('div');
+            const eventMonthNumber = response.start_date.match(/-(\d{2})/);
+            const manipulated_event_month = eventMonthNumber[1].replace('0','');
+            
+            const months = [
+                '', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            event_date_time.textContent = months[manipulated_event_month];
+            event_date_time.classList.add('eventHeader');
+            
+            // event name 
+            const event_name = document.createElement('div');
+            event_name.textContent = response.name;
+            event_name.classList.add('eventHeader');
+            
+            // event poser
+            const event_poser = document.createElement('div');
+            
+            const userId = response.user_id;
+            // user getter
+            async function getUser() {
+                const getter = await fetch(`/getUser?userId=${userId}`, {
+                    method: 'GET'
+                });
+                const response = await getter.json();
+
+                if (response.data) {
+                    event_poser.textContent = `Posted by ${response.data[0].first_name}`;
+                    event_poser.classList.add('event_poser');
+                    console.log(response.data);
+                } else {
+                    console.log(response.error);
+                }
+            };
+
+            getUser();
+
+            event_header.appendChild(event_date_time);
+            event_header.appendChild(event_name);
+            event_header.appendChild(event_poser);         
+
+            // event body
+            const event_body = document.createElement('div');
+            event_body.textContent = response.description; 
+
+            const event_join_button_style = `
+                height: 50px;
+                width: 120px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 5px;
+                cursor: pointer;
+            `;
+
+            // event join button
+            const event_join_button = document.createElement('div');
+            event_join_button.id = 'joinEvent';
+            event_join_button.textContent = 'Join';
+            event_join_button.style.cssText = event_join_button_style;
+
+            leftSection.appendChild(event_header);
+            leftSection.appendChild(event_body);
+            leftSection.appendChild(event_join_button);
+            
+            eventInnerContainer.appendChild(rightSection);
+            eventInnerContainer.appendChild(leftSection);
 
             const eventOuterContainer = document.getElementById('eventOuterContainer');
             eventOuterContainer.appendChild(eventInnerContainer);
