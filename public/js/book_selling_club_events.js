@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 border-radius: 5px;
                 cursor: pointer;
             `;
+            // hello there my friend
 
             // event join button
             const event_join_button = document.createElement('div');
