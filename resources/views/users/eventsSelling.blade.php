@@ -114,8 +114,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="card mt-5 mb-3 event-card">
+                    <div class="container" id='eventOuterContainer'>
+                        <!-- <div class="card mt-5 mb-3 event-card">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="../assets/b4.jpg" alt="Event Image">
@@ -138,7 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -298,7 +298,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn post-btn">Create</button>
+                        <button id="create-event" type="button" class="btn post-btn">Create</button>
                     </div>
                 </div>
             </div>
@@ -404,6 +404,11 @@
             </div>
 
         </div>
+        <script>
+            const current_user_id = "{{ session('id'); }}";
+            const csrf_token = '{{ csrf_token(); }}';
+        </script>
+        <script src="{{ asset('js/book_selling_club_events.js'); }}"></script>
     </div>
     @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',

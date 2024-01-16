@@ -394,3 +394,32 @@
     font-weight: bold;
 }
 
+/* _____ */
+#eventOuterContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+#joinEvent {
+    background-color: #003060;
+    color: white;
+}
+
+#joinEvent:hover {
+    background-color: #E55B13;
+    color:white;
+}
+
+.eventHeader {
+    color: #003060;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.event_poser {
+    color: black;
+    opacity: 0.6;
+    font-size: 14px;
+}

@@ -84,7 +84,7 @@ Route::get('/exchangeclub', [UserController::class, 'bookExchangeClub']);
 Route::get('/rentingclub', [UserController::class, 'bookRentingClub']);
 
 Route::get('/eventssellingclub', [UserController::class, 'eventsSelling']);
-
+ 
 Route::get('/memberssellingclub', [UserController::class, 'membersSelling']);
 
 Route::get('/eventsexchangeclub', [UserController::class, 'eventsExchange']);
@@ -317,19 +317,15 @@ Route::get('/shipment', [UserController::class, 'manageShipment']);
 Route::get('/fullnameGetter', [MessageController::class, 'fullnameGetter']);
 
 // book club routes, api's
-Route::get('/sellingClubMemberChecker', [BookClubController::class, 'sellingClubMemberChecker']);
-
-Route::post('/createBookSellingClub', [BookClubController::class, 'createBookSellingClub']);
-
-Route::get('/adminChecker', [BookClubController::class, 'adminChecker']);
-
-Route::post('/addModerators', [BookClubController::class, 'addModerators']);
-
-Route::get('/moderatorChecker', [BookClubController::class, 'moderatorChecker']);
-
-Route::post('/addMembers', [BookClubController::class, 'addMembers']);
+Route::post('/createEvent', [BookClubController::class, 'createEvent']);
 
 Route::post('/joinRequest', [BookClubController::class, 'joinRequest']);
+
+Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter']);
+
+Route::get('/getEvents', [BookClubController::class, 'getEvents']);
+
+Route::get('/getUser', [BookClubController::class, 'getUser']);
 
 // API's
 Route::get('/checkusername/{user}', [UserController::class, 'checkUsername']);
