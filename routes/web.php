@@ -325,7 +325,10 @@ Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter'
 
 Route::get('/getEvents', [BookClubController::class, 'getEvents']);
 
+// getUser para ha events na section para ig display hinu nag post
 Route::get('/getUser', [BookClubController::class, 'getUser']);
+
+Route::post('/addMember', [BookClubController::class, 'addMember']);
 
 // API's
 Route::get('/checkusername/{user}', [UserController::class, 'checkUsername']);
