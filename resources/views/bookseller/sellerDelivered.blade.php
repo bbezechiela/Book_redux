@@ -70,19 +70,20 @@
                         <div class="product-cart">
                             <div class="book-details">
                                 <div class="left-section">
-                                    <img src="../assets/city_of_secrets.png" alt="book" width="80px"
+                                    <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book" width="80px"
                                         height="110px">
                                     <div class="book-info">
-                                        <p class="mb-0 book-title">City of Secrets</p>
-                                        <p class="mb-0 book-qty">2 Qty</p>
-                                        <p class="mb-0 fw-bold interaction-type">Rent</p>
-                                        <p class="payment-mode">Cash on Delivery</p>
+                                        <p class="mb-0 book-title">{{ $order->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty}} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->payment_method }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
                                     <div class="book-price">
-                                        <p class="product-price">P144</p>
-                                        <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
+                                        <p class="product-price">₱{{ $order->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span></p> <br>
+                                        <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price + 130 }}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -93,7 +94,7 @@
                                         Rating and Review</button>
                                 </div>
                                 <div class="button-group">
-                                    <button type="button" class="btn btn-sm track-button" data-bs-toggle="modal"
+                                    <button type="button" id="start-rental-btn" class="btn btn-sm track-button" data-bs-toggle="modal" onclick="rentalBtn({{ $order->id }})"
                                         data-bs-target="#rental-period">Start Rental Period Tracking</button>
                                     <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
                                 </div>
@@ -124,7 +125,7 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span> <br>
                                         <p class="text-total">Total Payment:<span
                                                 class="product-total">₱{{ $order->price + 130 }}</span>
                                         </p>
@@ -377,9 +378,9 @@
                         <input type="text" name="duration" id="duration" class="form-control"
                             placeholder="Duration" style="margin-bottom: 12px; color: #003060;">
                         
-                        <label for="customer-name" style="color: #003060">Name:</label>
+                        {{-- <label for="customer-name" style="color: #003060">Name:</label>
                         <input type="text" name="customer-name" id="customer-name" class="form-control"
-                            placeholder="Name" style="margin-bottom: 12px; color: #003060;">
+                            placeholder="Name" style="margin-bottom: 12px; color: #003060;"> --}}
 
                         <label for="contact" style="color: #003060">Contact Number:</label>
                         <input type="text" name="contact" id="contact" class="form-control"
@@ -403,3 +404,26 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>    
+    function rentalBtn(id) {
+        fetch('/rentaltrackfetch/' + id, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+            document.getElementById('rental-price').value = result.price;
+            document.getElementById('deposit').value = result.security_deposit;
+            document.getElementById('duration').value = result.rental_duration;
+            document.getElementById('rental-price').value = result.price;
+            result.item.forEach(item => {
+                if (item.book_id == id) {
+                    document.getElementById('contact').value = item.order.user.phone_number;
+                    document.getElementById('email').value = item.order.user.email;
+                }
+            });            
+        })
+        .catch(error => console.error(error));
+    }
+</script>

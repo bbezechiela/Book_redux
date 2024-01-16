@@ -358,3 +358,5 @@ Route::post('/booksellerconfirm', [SellerController::class, 'confirmOrder']);
 Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
 
 Route::get('/viewshipping/{id}', [UserController::class, 'viewShipping']);
+
+Route::get('/rentaltrackfetch/{id}', [SellerController::class, 'rentalTrackFetch']);

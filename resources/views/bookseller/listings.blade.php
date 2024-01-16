@@ -39,6 +39,22 @@
                 </div>
             </div>
         </ul>
+        @php
+            $order_amount = 0;
+            $delivered_amount = 0;
+            $dropped_amount = 0;
+            foreach ($books as $orders) {
+                foreach ($orders->item as $item) {
+                    if ($item->order_status == 'Pending') {
+                        $order_amount++;
+                    } elseif ($item->order_status == 'received') {
+                        $delivered_amount++;
+                    } elseif ($item->order_status == 'dropped') {
+                        $dropped_amount++;
+                    }
+                }
+            }
+        @endphp
         <div class="container-fuid pt-3 px-3">
             <div class="row border mx-2 mt-3 p-3 shadow rounded">
                 <div class="col d-flex align-items-center">
@@ -50,16 +66,16 @@
                 </a>
 
                 <a href="/sellerorders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
-                    <p class="my-0 text-center fw-bold fs-3">0</p>
+                    <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
                     <p class="my-0 text-center fs-6">Orders</p>
                 </a>
 
                 <a href="/sellerdelivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                    <p class="my-0 text-center fw-bold fs-3">0</p>
+                    <p class="my-0 text-center fw-bold fs-3">{{ $delivered_amount }}</p>
                     <p class="my-0 text-center fs-6">Delivered</p>
                 </a>
                 <a href="/sellerdropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                    <p class="my-0 text-center fw-bold fs-3">0</p>
+                    <p class="my-0 text-center fw-bold fs-3">{{ $dropped_amount }}</p>
                     <p class="my-0 text-center fs-6">Dropped</p>
                 </a>
                 <a href="/sellerrefund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
@@ -87,7 +103,7 @@
                         <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort">
                             <option selected disabled>{{ $status }}</option>
                             <option value="All">All</option>
-                            <option value="Sale">Sale</option>                            
+                            <option value="Sale">Sale</option>
                             <option value="Rent">Rent</option>
                         </select>
                     </div>
@@ -626,7 +642,8 @@
 
                     <!-- rent -->
                     <div id="rent">
-                        <form id="rent-form" action="/listing/rentpost" method="POST" enctype="multipart/form-data">
+                        <form id="rent-form" action="/listing/rentpost" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body container-fluid px-5">
                                 <div class="row">
@@ -638,7 +655,8 @@
                                         <input type="text" name="length" id="rent-length" hidden>
                                         <input type="text" name="courier" id="rent-courier" hidden>
 
-                                        <input type="file" name="book_photo" id="rent-image" accept="image/*" class="d-none">
+                                        <input type="file" name="book_photo" id="rent-image" accept="image/*"
+                                            class="d-none">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book
                                             photo
                                             field must be a file of type: jpeg, png, jpg, gif.</small>
@@ -659,8 +677,8 @@
                                                 <div class="col-md-8">
                                                     <div class="input-file-wrapper">
                                                         <input id="filebutton1" name="back_cover"
-                                                            class="input-file form-control" type="file" accept="image/*"
-                                                            style="margin-bottom: 12px;">
+                                                            class="input-file form-control" type="file"
+                                                            accept="image/*" style="margin-bottom: 12px;">
                                                     </div>
                                                 </div>
 
@@ -669,8 +687,8 @@
                                                 <div class="col-md-8">
                                                     <div class="input-file-wrapper">
                                                         <input id="filebutton2" name="interior_photo"
-                                                            class="input-file form-control" type="file" accept="image/*"
-                                                            style="margin-bottom: 12px;">
+                                                            class="input-file form-control" type="file"
+                                                            accept="image/*" style="margin-bottom: 12px;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -692,9 +710,8 @@
                                             <option value="Self-Help">Self-Help</option>
                                             <option value="Crime & Thriller">Crime & Thriller</option>
                                         </select>
-                                        <input type="number" name="stock" id="stock-rent"
-                                            class="form-control" placeholder="Stock"
-                                            style="margin-bottom: 12px; color: #003060;">
+                                        <input type="number" name="stock" id="stock-rent" class="form-control"
+                                            placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
                                         <select name="condition" id="" class="form-control form-select"
                                             style="margin-bottom: 12px; color: #003060;">
                                             <option>Condition</option>
@@ -831,8 +848,7 @@
                                                     </button>
                                                 </h2>
                                                 <div id="panelsStayOpen-collapseTwo"
-                                                    class="accordion-collapse collapse"
-                                                   >
+                                                    class="accordion-collapse collapse">
                                                     <div class="accordion-body">
                                                         <strong>New: </strong>
                                                         <small>A book that is in pristine condition, showing no
@@ -889,8 +905,7 @@
                                                     </button>
                                                 </h2>
                                                 <div id="panelsStayOpen-collapseThree"
-                                                    class="accordion-collapse collapse"
-                                                    >
+                                                    class="accordion-collapse collapse">
                                                     <div class="accordion-body">
                                                         <strong>Book Information: </strong>
                                                         <small>Provide accurate and detailed information about the book
@@ -973,8 +988,7 @@
                                                     </button>
                                                 </h2>
                                                 <div id="panelsStayOpen-collapseFour"
-                                                    class="accordion-collapse collapse show"
-                                                    >
+                                                    class="accordion-collapse collapse show">
                                                     <div class="accordion-body">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                             height="16" fill="currentColor" class="bi bi-dot"
@@ -1336,12 +1350,14 @@
                                             <img id="edit-rent-book-image" src="../assets/listing.png" alt="image"
                                                 class="img-fluid position-absolute top-50 start-50 translate-middle"
                                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                data-bs-title="Click to Upload Image" width="170" height="170">
+                                                data-bs-title="Click to Upload Image" width="170"
+                                                height="170">
                                         </label>
 
                                     </div>
                                     <div class="col">
-                                        <select name="genre" id="edit-rent-genre" class="form-control form-select"
+                                        <select name="genre" id="edit-rent-genre"
+                                            class="form-control form-select"
                                             style="margin-bottom: 12px; color: #003060;">
                                             <option>Genre</option>
                                             <option value="Educational">Educational</option>
@@ -1497,7 +1513,8 @@
                             placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
 
                         <label class="fw-bold" for="courier">Please Select Courier</label><br>
-                        <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
+                        <input id="edit-jrs" class="ms-2" name="courier" type="radio"
+                            value="JRS Express">
                         <label for="edit-jrs">JRS Express</label><br>
                         <input id="edit-jt" class="ms-2" name="courier" type="radio"
                             value="J&T Express">
@@ -1518,7 +1535,8 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
                 @if (session('createMessage') &&
                         session('createMessage') ==
@@ -1539,7 +1557,8 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
                 @if (session('deleteMessage') &&
                         session('deleteMessage') ==
@@ -1560,7 +1579,8 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
                 @if (session('updateMessage') == 'Update Confirmed: Your listing has been successfully updated.')
                     <div class="toast-body fw-bold text-success">
@@ -1580,129 +1600,6 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
-
-{{-- <script>    
-    var create_listing_btn = document.getElementById('create-listing');  
-    var back_btn = document.getElementById("back-shipping");
-    var sale_shipping_fee_btn = document.getElementById('sale-shipping-fee-btn'); 
-    var rent_shipping_fee_btn = document.getElementById('rent-shipping-fee-btn');
-    var list_category = document.getElementById("modal-category");
-    var shipping_save_btn = document.getElementById('shipping-save-btn');    
-
-    var sale_form = document.getElementById('sale-form');    
-    var rent_form = document.getElementById('rent-form');
-    var jtRadio = document.getElementById('jt');
-
-    // hidden inputs for sale
-    var sale_weight = document.getElementById('sale-weight');
-    var sale_width = document.getElementById('sale-width');
-    var sale_height = document.getElementById('sale-height');
-    var sale_length = document.getElementById('sale-length');
-    var sale_courier = document.getElementById('sale-courier');
-    // hidden inputs for rent
-    var rent_weight = document.getElementById('rent-weight');
-    var rent_width = document.getElementById('rent-width');
-    var rent_height = document.getElementById('rent-height');
-    var rent_length = document.getElementById('rent-length');
-    var rent_courier = document.getElementById('rent-courier');
-
-    const createListingModal = new bootstrap.Modal('#createListingModal', {
-        keyboard: false
-    });     
-
-    const shippingModal = new bootstrap.Modal('#shipping-fee', {
-        keyboard: false
-    });
-    
-
-    document.getElementById('flexCheckDefault').addEventListener('change', function() {
-        var submitButton = document.getElementById('submitButton');
-        submitButton.disabled = !this.checked;
-    });
-
-    // document.getElementById('exchangeDefault').addEventListener('change', function() {
-    //     var submitButton = document.getElementById('submitExchangeButton');
-    //     submitButton.disabled = !this.checked;
-    // });
-    
-    sale_form.addEventListener('submit', function(event) {
-        sale_weight.value = weight.value;
-        sale_width.value = width.value;
-        sale_height.value = height.value;
-        sale_length.value = length.value;
-        sale_courier.value = courier;
-    });
-    
-    rent_form.addEventListener('submit', function(event) {
-        rent_weight.value = weight.value;
-        rent_width.value = width.value;
-        rent_height.value = height.value;
-        rent_length.value = length.value;
-        rent_courier.value = courier;
-    });
-    shipping_save_btn.addEventListener('click', function() {
-        if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
-            alert("Please complete every fields");
-        } else {
-            if (jtRadio.checked) {
-                courier = jtRadio.value;
-                // if (jrsRadio.checked) {
-                //     courier = jrsRadio.value;
-                // } else if (jtRadio.checked) {
-                //     courier = jtRadio.value;
-            } else {
-                courier = null;
-            }
-            sale_weight.value = weight.value;
-            sale_width.value = width.value;
-            sale_height.value = height.value;
-            sale_length.value = length.value;
-            sale_courier.value = courier;
-            shippingModal.hide();
-            createListingModal.show();
-        }
-    });
-
-    create_listing_btn.addEventListener('click', function() {
-        list_category.value = 'Sale';
-        document.getElementById('listing-type').textContent = 'Sale';
-        createListingModal.show();
-    });
-    
-    back_btn.addEventListener("click", function() {
-        shippingModal.hide();
-        createListingModal.show();
-    });
-
-    sale_shipping_fee_btn.addEventListener('click', function() {
-        createListingModal.hide();
-        shippingModal.show();
-    });
-
-    rent_shipping_fee_btn.addEventListener('click', function() {
-        createListingModal.hide();
-        shippingModal.show();
-    });
-
-    
-    
-
-
-
-    // uploading image
-    var sale_image_upload = document.getElementById("sale-image");
-    // var exchange_image_upload = document.getElementById("exchange-image");
-    var rent_image_upload = document.getElementById("rent-image");
-    sale_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("sale-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);
-    });
-    
-    rent_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("rent-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);
-    });
-</script> --}}
 <script>
     // toast script
     const deleteToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('deleteLiveToast'));

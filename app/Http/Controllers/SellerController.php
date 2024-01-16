@@ -119,4 +119,13 @@ class SellerController extends Controller
             return redirect('/sellerorders');
         }
     }
+
+
+
+
+    // API's
+    public function rentalTrackFetch($id) {
+        $book = Books::with('item.order.user', 'user')->find($id);
+        return $book;
+    }
 }
