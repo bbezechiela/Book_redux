@@ -135,6 +135,11 @@
                                 id="pass-tip"></span></label>
                     </div>
                 </div>
+                {{-- <div class="mx-1 mt-3 d-flex justify-content-start">
+                    <span class="text-secondary">
+                        Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                    </span>
+                </div> --}}
             </div>
         </form>
     </div>

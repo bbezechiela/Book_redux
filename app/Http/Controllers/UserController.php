@@ -210,8 +210,6 @@ class UserController extends Controller
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
             return view('users.previewReviews', ['post' => $post, 'user' => $user]);
-            // return view('users.homepage')->with('post', $post);
-            // return view('users.homepage', compact('post'));
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
@@ -220,32 +218,75 @@ class UserController extends Controller
 
     public function eventsSelling()
     {
-        return view('users.eventsSelling');
+        if (session()->has('user')) {
+
+            // $users = Users::where();
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.eventsSelling', ['post' => $post, 'user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function membersSelling()
     {
-        return view('users.membersSelling');
+        if (session()->has('user')) {
+
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.membersSelling', ['post' => $post, 'user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function eventsExchange()
     {
-        return view('users.eventsExchange');
+        if (session()->has('user')) {
+
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.eventsExchange', ['post' => $post, 'user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function membersExchange()
     {
-        return view('users.membersExchange');
+        if (session()->has('user')) {
+
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.membersExchange', ['post' => $post, 'user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function eventsRenting()
     {
-        return view('users.eventsRenting');
+        if (session()->has('user')) {
+
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.eventsRenting', ['post' => $post, 'user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function membersRenting()
     {
-        return view('users.membersRenting');
+        if (session()->has('user')) {
+
+            $user = Users::find(session('id'));
+            $post = Books::with('user.addressUser', 'cart')->get();
+            return view('users.membersRenting', ['post' => $post, 'user' => $user]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
     }
 
     public function checkout(Request $request)
