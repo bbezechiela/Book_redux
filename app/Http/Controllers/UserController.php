@@ -581,12 +581,6 @@ class UserController extends Controller
     {
         return view('users.refund');
     }
-    
-
-    public function sellerDelivered()
-    {
-        return view('bookseller.sellerDelivered');
-    }
 
     public function sellerDropped()
     {
@@ -1290,7 +1284,7 @@ class UserController extends Controller
 
             return redirect('/mypurchase');
         }
-    }
+    }    
 
     public function viewShipping($id) {
         $order = Books::with('item.order.user', 'item.order.address', 'user.addressUser')->find($id);

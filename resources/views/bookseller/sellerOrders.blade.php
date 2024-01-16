@@ -779,7 +779,7 @@
     const csrf_token = '{{ csrf_token() }}';
     confirm_btn.addEventListener('click', () => {
         if (document.getElementById('drop_off').checked) {
-            fetch('/sellerconfirm', {
+            fetch('//booksellerconfirm', {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': csrf_token,
@@ -802,7 +802,7 @@
             if (pickup_date.value == '') {
                 alert('Please set your pickup date');
             } else {
-                fetch('/sellerconfirm', {
+                fetch('/booksellerconfirm', {
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': csrf_token,
@@ -825,7 +825,7 @@
             }
 
         } else if (document.getElementById('personal_transaction').checked) {
-            fetch('/sellerconfirm', {
+            fetch('/booksellerconfirm', {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': csrf_token,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\Order_Items;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,13 @@ class SellerController extends Controller
     {
         $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
         return view('bookseller.sellerOrders', ['orders' => $order]);
+    }
+
+
+    public function sellerDelivered()
+    {
+        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user', 'user')->get();
+        return view('bookseller.sellerDelivered', ['orders' => $order]);
     }
 
     public function store(Request $request)
@@ -80,6 +88,35 @@ class SellerController extends Controller
             return redirect('/sellerboard');
         } else {
             return view('bookseller.sellerSignup');
+        }
+    }
+
+    public function confirmOrder(Request $request) {
+        $order = Order_Items::find($request['id']);        
+
+        if ($request->input('shipping_status') == 'Drop off') {            
+            $order->update([
+                'order_status' => 'Confirmed by seller',
+                'shipping_status' => $request->input('shipping_status')                
+            ]);
+
+            return redirect('/sellerorders');
+        } else if ($request->input('shipping_status') == 'Personal Transaction') {            
+            $order->update([
+                'order_status' => 'paid',
+                'shipping_status' => $request->input('shipping_status')                
+            ]);
+
+            return redirect('/sellerorders');
+        } else if ($request->input('shipping_status') == 'Pickup') {    
+            $order->update([
+                'order_status' => 'Confirmed by seller',
+                'shipping_status' => $request->input('shipping_status'),
+                'pickup_address_id' => $request->input('pickup_address_id'),
+                'pickup_date' => $request->input('pickup_date')
+            ]);
+
+            return redirect('/sellerorders');
         }
     }
 }

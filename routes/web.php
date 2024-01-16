@@ -165,7 +165,7 @@ Route::get('/refund', [UserController::class, 'refund']);
 
 Route::get('/sellerorders', [SellerController::class, 'sellerOrders']);
 
-Route::get('/sellerdelivered', [UserController::class, 'sellerDelivered']);
+Route::get('/sellerdelivered', [SellerController::class, 'sellerDelivered']);
 
 Route::get('/sellerdropped', [UserController::class, 'sellerDropped']);
 
@@ -353,6 +353,8 @@ Route::post('/ratepost', [UserController::class, 'ratePost']);
 Route::post('/updaterate/{id}', [UserController::class, 'updateRate']);
 
 Route::post('/sellerconfirm', [UserController::class, 'confirmOrder']);
+
+Route::post('/booksellerconfirm', [SellerController::class, 'confirmOrder']);
 
 Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
 

@@ -71,10 +71,16 @@
                     <div class="details-container">
                         <div class="seller-details-box">
                             <label for="seller-details" class="form-label label-title">Seller Details</label>
-                            <label for="seller-fullname">{{ $item->address->name }}</label>
-                            <label for="seller-contact-number">{{ $item->address->contact_number }}</label>
+                            @if ($item->book->user->type == 'Bookseller')
+                                <label for="seller-fullname">{{ $item->book->user->business_name }}</label>
+                                <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
+                                <label for="seller-contact-number">{{ $item->book->user->address }}</label>
+                            @else
+                                <label for="seller-fullname">{{ $item->address->name }}</label>
+                                <label for="seller-contact-number">{{ $item->address->contact_number }}</label>
+                            @endif                                                        
                             @if (isset($item->address))
-                            <label for="seller-address">{{ $item->address->street_building_house . ', ' . $item->address->brgy_village . ', ' . $item->address->city_municipality . ', ' . $item->address->postal_code . ', ' . $item->address->region }}</label>
+                                <label for="seller-address">{{ $item->address->street_building_house . ', ' . $item->address->brgy_village . ', ' . $item->address->city_municipality . ', ' . $item->address->postal_code . ', ' . $item->address->region }}</label>
                             @else
                                 @foreach ($item->book->user->addressUser as $address)
                                     @if ($address->default_address == 'true')
