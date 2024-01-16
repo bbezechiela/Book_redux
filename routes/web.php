@@ -111,6 +111,8 @@ Route::get('/myprofile', [UserController::class, 'myProfile']);
 
 Route::post('/myprofileupdate', [UserController::class, 'myProfileUpdate']);
 
+Route::post('/profileupdate', [SellerController::class, 'profileUpdate']);
+
 Route::get('/mypurchase', [UserController::class, 'myPurchase']);
 
 Route::get('/toreceive', [UserController::class, 'toReceive']);

@@ -355,7 +355,7 @@
                     </div>
                     <div class="modal-body">
                         <label for="start-date" style="color: #003060">Start Date:</label>                        
-                        <input type="date" name="start-date" id="start-date" class="form-control"
+                        <input type="date" name="start_date" id="start-date" class="form-control"
                             placeholder="Start Date" style="margin-bottom: 12px; color: #003060;">
                         
                         <label for="end-date" style="color: #003060">End Date:</label>
@@ -375,7 +375,7 @@
                             placeholder="Security Deposit" style="margin-bottom: 12px; color: #003060;">
                         
                         <label for="duration" style="color: #003060">Duration:</label>
-                        <input type="text" name="duration" id="duration" class="form-control"
+                        <input type="number" name="duration" id="duration" class="form-control"
                             placeholder="Duration" style="margin-bottom: 12px; color: #003060;">
                         
                         {{-- <label for="customer-name" style="color: #003060">Name:</label>
@@ -413,6 +413,13 @@
         .then(response => response.json())
         .then(result => {
             console.log(result);
+            var created_date = new Date(result.created_at);            
+            var endDate = new Date(created_date);
+            endDate.setDate(created_date.getUTCDate() + parseInt(document.getElementById('duration').value));
+            // console.log(endDate);
+            document.getElementById('start-date').value = created_date.getUTCFullYear() + '-' + (created_date.getUTCMonth() + 1).toString().padStart(2, '0') + '-' + created_date.getDate().toString().padStart(2, '0');
+            document.getElementById('end-date').value = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0');
+            // console.log(endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getUTCDate().toString().padStart(2, '0'));
             document.getElementById('rental-price').value = result.price;
             document.getElementById('deposit').value = result.security_deposit;
             document.getElementById('duration').value = result.rental_duration;
@@ -426,4 +433,8 @@
         })
         .catch(error => console.error(error));
     }
+  
+    // document.getElementById('duration').addEventListener('input', () => {
+    //     console.log(document.getElementById('duration').value);
+    // })
 </script>

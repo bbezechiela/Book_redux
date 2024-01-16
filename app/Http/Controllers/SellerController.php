@@ -91,24 +91,25 @@ class SellerController extends Controller
         }
     }
 
-    public function confirmOrder(Request $request) {
-        $order = Order_Items::find($request['id']);        
+    public function confirmOrder(Request $request)
+    {
+        $order = Order_Items::find($request['id']);
 
-        if ($request->input('shipping_status') == 'Drop off') {            
+        if ($request->input('shipping_status') == 'Drop off') {
             $order->update([
                 'order_status' => 'Confirmed by seller',
-                'shipping_status' => $request->input('shipping_status')                
+                'shipping_status' => $request->input('shipping_status')
             ]);
 
             return redirect('/sellerorders');
-        } else if ($request->input('shipping_status') == 'Personal Transaction') {            
+        } else if ($request->input('shipping_status') == 'Personal Transaction') {
             $order->update([
                 'order_status' => 'paid',
-                'shipping_status' => $request->input('shipping_status')                
+                'shipping_status' => $request->input('shipping_status')
             ]);
 
             return redirect('/sellerorders');
-        } else if ($request->input('shipping_status') == 'Pickup') {    
+        } else if ($request->input('shipping_status') == 'Pickup') {
             $order->update([
                 'order_status' => 'Confirmed by seller',
                 'shipping_status' => $request->input('shipping_status'),
@@ -120,11 +121,106 @@ class SellerController extends Controller
         }
     }
 
+    public function profileUpdate(Request $request)
+    {
+        if (session()->has('user')) {
+            if ($request->hasFile('profile_photo')) {
+                $validated = $request->validate([
+                    // 'owner_name' => ['required', 'min:4'],
+                    // // 'last_name' => ['required', 'min:4'],
+                    // 'email' => ['required', 'email'],
+                    // 'phone_number' => ['required', 'max:12'],
+                    // 'address' => ['required', 'min:4'],
+                    // 'registration_number' => 'required',
+                    // 'business_name' => 'required',
+                    // 'date_registered' => 'required',
+                    // 'permit' => 'required',
+                    // // 'username' => 'required',
+                    // // 'password' => 'required',
+                    // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                    'owner_name' => 'required',
+                    'email' => ['required', 'email'],
+                    'address' => 'required',
+                    'registration_number' => 'required',
+                    'business_name' => 'required',
+                    'phone_number' => 'required',
+                    'date_registered' => 'required',
+                    // 'permit' => 'required',
+                    // 'username' => 'required',
+                    // 'password' => 'required',
+                    'profile_photo' => 'required'
+                ]);                
+
+                $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('profile_photo')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
+                $validated["profile_photo"] = $fileNameToStore;
+
+                // $fileNameWithExt = $request->file('permit')->getClientOriginalName();
+                // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                // $extension = $request->file('permit')->getClientOriginalExtension();
+                // $fileNameToStore = $fileName . '_' . time() . $extension;
+                // $request->file('permit')->move(public_path('images/permits'), $fileNameToStore);
+                // $validated["permit"] = $fileNameToStore;
+
+                $user = Users::find(session('id'));
+                $user->update($validated);
+
+                if ($user) {
+                    session()->put([
+                        'first_name' => $user->business_name,
+                        // 'last_name' => $user->owner_name,
+                        'username' => $user->owner_name,
+                        'profile_pic' => $user->profile_photo
+                    ]);
+                    return view('bookseller.profile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
+                } else {
+                    return view('bookseller.profile', ['user' => $user, 'message' => 'Error updating profile']);
+                }
+            } else {
+                $validated = $request->validate([
+                    'owner_name' => 'required',
+                    'email' => ['required', 'email'],
+                    'address' => 'required',
+                    'registration_number' => 'required',
+                    'business_name' => 'required',
+                    'phone_number' => 'required',
+                    'date_registered' => 'required',
+                    // 'permit' => 'required',
+                    // 'username' => 'required',
+                    // 'password' => 'required',
+                    // 'profile_photo' => 'required'
+                ]);                
+
+                $user = Users::find(session('id'));
+                $user->update($validated);
+
+
+                if ($user) {
+                    // return redirect('/myprofile');
+                    session()->put([
+                        'first_name' => $user->business_name,
+                        // 'last_name' => $user->owner_name,
+                        'username' => $user->owner_name,                        
+                    ]);
+                    return view('bookseller.profile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
+                } else {
+                    return view('bookseller.profile', ['user' => $user, 'message' => 'Error updating profile']);
+                }
+            }
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+    }
+
 
 
 
     // API's
-    public function rentalTrackFetch($id) {
+    public function rentalTrackFetch($id)
+    {
         $book = Books::with('item.order.user', 'user')->find($id);
         return $book;
     }

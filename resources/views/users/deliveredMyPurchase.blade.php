@@ -74,7 +74,7 @@
                                         width="80px" height="110px">
                                     <div class="book-info">
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="mb-0 fw-bold interaction-type" id="interaction-type">{{ $item->book->status }}</p>
                                         <p class="payment-mode">{{ $order->payment_method }}</p>
                                     </div>
                                 </div>
@@ -451,10 +451,17 @@
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {
-                // console.log(data);
-                document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
-                document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
-                document.getElementById('username').textContent = data.username;
+                console.log(data);
+                if (data.type == 'Bookseller') {
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.business_name;
+                    // document.getElementById('username').textContent = data.owner_name;
+                } else {
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
+                    document.getElementById('username').textContent = data.username;
+                }
+
                 document.getElementById('interaction-type').textContent = type;
                 document.getElementById('item-id').textContent = item_id;
             })
@@ -656,7 +663,7 @@
                 body: formData,
             })
             .then(response => response.json())
-            .then(data => {                
+            .then(data => {
                 document.getElementById('toast-message').textContent = data.response;
                 message.show()
                 setTimeout(() => {

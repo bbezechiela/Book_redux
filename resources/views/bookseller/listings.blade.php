@@ -745,8 +745,8 @@
                                         <option>Language</option>
                                         <option value="English">English</option>
                                     </select>
-                                    <input type="text" name="rental_duration" class="form-control"
-                                        placeholder="Rental Duration" style="margin-bottom: 12px; color: #003060;">
+                                    <input type="number" name="rental_duration" class="form-control"
+                                        placeholder="Rental Duration (days)" style="margin-bottom: 12px; color: #003060;">
                                     <textarea name="rental_terms_and_condition" id="exchange-preferences" class="form-control" cols="30"
                                         rows="4" placeholder="Rental Terms and Condition" style="margin-bottom: 12px; color: #003060;"></textarea>
                                     <textarea name="description" id="" class="form-control" cols="30" rows="4"
