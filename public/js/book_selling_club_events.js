@@ -81,8 +81,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
  
     }
-
     // ids, event-name, image-upload, start-date, end-date, start-time, end-time, event-type, event-description, create-event
+
+    // Fisher yates shuffle algorithm
+    function shuffleEvents(events) {
+        for (let i = events.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [events[i], events[j]] = [events[j], events[i]];
+        }
+
+        return events;
+    }
 
     // show events 
     async function getEvents() {
@@ -94,7 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (response.data) {
             console.log(response.data);
 
-            showEvents(response.data);
+            const shuffledEvents = shuffleEvents(response.data);
+            console.log(shuffledEvents);
+
+            showEvents(shuffledEvents);
 
         } else {
             console.log(response.error);
@@ -106,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showEvents(responses) {
         responses.forEach(response => {
             const eventInnerContainer_style = `
-                min-width: 900px;
+                width: 900px;
                 max-width: 900px;
                 height: 350px;
                 margin-bottom: 20px;
@@ -122,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const eventInnerContainer = document.createElement('div');
             eventInnerContainer.style.cssText = eventInnerContainer_style;
 
-            const rightSection_style = `
+            const leftSection_style = `
                 width: 300px;
                 height: inherit;
                 display: flex;
@@ -131,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 flex-direction: column;
             `;
 
-            const rightSection = document.createElement('div');
-            rightSection.style.cssText = rightSection_style;
+            const leftSection = document.createElement('div');
+            leftSection.style.cssText = leftSection_style;
 
             const event_image_style = `
                 height: 260px;
@@ -168,34 +180,44 @@ document.addEventListener('DOMContentLoaded', () => {
             event_type.textContent = manipulated_event_type;
             event_type.style.cssText = event_type_stype
 
-            rightSection.appendChild(event_image);
-            rightSection.appendChild(event_type);
+            leftSection.appendChild(event_image);
+            leftSection.appendChild(event_type);
 
             // left section
-            const leftSection_style = `
-            height: 300px;
-            width: 500px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: flex-start;
-            flex-direction: column;
+            const rightSection_style = `
+                height: 300px;
+                width: 500px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: flex-start;
+                flex-direction: column;
             `;
             
-            const leftSection = document.createElement('div');
-            leftSection.style.cssText = leftSection_style;
+            const rightSection = document.createElement('div');
+            rightSection.style.cssText = rightSection_style;
                 
             // event header 
             const event_header = document.createElement('div');
             
             // event date && time 
             const event_date_time = document.createElement('div');
-            const eventMonthNumber = response.start_date.match(/-(\d{2})/);
+            const newDateFormat = response.start_date.replace(/(\d{4})-(\d{2})-(\d{2})/, "$2-$3-$1");
+
+            // month number
+            const eventMonthNumber = newDateFormat.match(/(\d{2})/);
             const manipulated_event_month = eventMonthNumber[1].replace('0','');
-            
+
             const months = [
                 '', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
             ];
-            event_date_time.textContent = months[manipulated_event_month];
+
+            // day number
+            const eventDayNumber = newDateFormat.match(/-(\d{2})/);
+
+            // year number
+            const eventYearNumber = newDateFormat.match(/(?<=-)\d+$/);
+
+            event_date_time.textContent = `${months[manipulated_event_month]} ${eventDayNumber[1]}, ${eventYearNumber[0]}`;
             event_date_time.classList.add('eventHeader');
             
             // event name 
@@ -250,12 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
             event_join_button.textContent = 'Join';
             event_join_button.style.cssText = event_join_button_style;
 
-            leftSection.appendChild(event_header);
-            leftSection.appendChild(event_body);
-            leftSection.appendChild(event_join_button);
+            rightSection.appendChild(event_header);
+            rightSection.appendChild(event_body);
+            rightSection.appendChild(event_join_button);
             
-            eventInnerContainer.appendChild(rightSection);
             eventInnerContainer.appendChild(leftSection);
+            eventInnerContainer.appendChild(rightSection);
 
             const eventOuterContainer = document.getElementById('eventOuterContainer');
             eventOuterContainer.appendChild(eventInnerContainer);

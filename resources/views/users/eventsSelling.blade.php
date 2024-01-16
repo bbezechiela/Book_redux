@@ -102,8 +102,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container" id='eventOuterContainer' style='border: 1px solid red;'>
-                        <div class="card mt-5 mb-3 event-card">
+                    <div class="container" id='eventOuterContainer'>
+                        <!-- <div class="card mt-5 mb-3 event-card">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="../assets/b4.jpg" alt="Event Image">
@@ -126,12 +126,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
                 <!-- For Sale Card -->
-                <div class="col-lg-4" style='border: 1px solid blue;'>
+                <div class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
