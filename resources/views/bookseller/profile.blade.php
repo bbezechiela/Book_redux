@@ -77,14 +77,18 @@
                 </div>
                 <div class="form-outline mt-4">
                     <input type="text" id="username" name="username" class="form-control" required />
-                    <label class="form-label" for="username">Username</label>
+                    <label class="form-label" for="username">Current Password</label>
                 </div>
-
                 <div class="mx-1 mt-3 d-flex justify-content-start">
-                    <span class="text-secondary">
+                    <span class="text-secondary" style="white-space: nowrap;">
                         Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
                     </span>
                 </div>
+                {{-- <div class="mx-1 mt-3 d-flex justify-content-start">
+                    <span class="text-secondary">
+                        Tip: Use upper and lowercase, numbers, and symbols for strong passwords.
+                    </span>
+                </div> --}}
             </div>
             <div class="col mx-2 d-flex justify-content-center flex-column w-50">
                 <div class="form-outline">
@@ -106,12 +110,10 @@
                 </div>
                 <div class="form-outline mt-4">
                     <input type="password" id="password" name="password" class="form-control" required />
-                    <label class="form-label" for="password">Password</label>
+                    <label class="form-label" for="password">New Password</label>
                 </div>
                 <div class="mx-1 mt-3 d-flex justify-content-start">
-                    <input type="checkbox" id="show-password" class="ms-2">
-                    <label for="show-password" style="white-space: nowrap; margin-left: 8px;">Show Password<span
-                            id="pass-tip"></span></label>
+                        <label type="checkbox" id="show-password"><span id="pass-tip"></span></label>
                 </div>
             </div>
 

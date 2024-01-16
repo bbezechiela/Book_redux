@@ -143,94 +143,26 @@
                 </div>
 
                 <!-- For Sale Card -->
-                <div class="col-lg-4">
+                <div id="for_sale" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">For Sale</h5>
-                                <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
+                                <h5 id="for-sale-header" class="mb-0 daily_discovery_text">For Sale</h5>
+                                {{-- <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small> --}}
                             </div>
                         </div>
-                        <div class="card-body">
+                        @foreach ($post->shuffle() as $sale)
+                        <div class="card-body" onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
+                                <img src="{{ asset('images/books/' . $sale->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
+                                    <h6 class="mb-0">{{ $sale->title }}</h6>
+                                    <p class="mb-0">For {{ $sale->status }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
