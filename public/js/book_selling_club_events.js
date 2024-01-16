@@ -272,6 +272,31 @@ document.addEventListener('DOMContentLoaded', () => {
             event_join_button.textContent = 'Join';
             event_join_button.style.cssText = event_join_button_style;
 
+            const event_id = response.event_id;
+            // event add member
+            event_join_button.addEventListener('click', async () => {
+                console.log(event_id);
+                const adder = await fetch(`/addMember`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf_token,
+                    }, 
+                    body: JSON.stringify({
+                        'eventId': event_id,
+                        'userId': current_user_id,
+                    })
+                });
+                const response = await adder.json();
+
+                if (response.data) {
+                    console.log(response.data);
+                } else {
+                    console.log(response.error);
+                }
+            
+            });
+
             rightSection.appendChild(event_header);
             rightSection.appendChild(event_body);
             rightSection.appendChild(event_join_button);

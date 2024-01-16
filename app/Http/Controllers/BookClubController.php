@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use App\Models\BookClub;
-use App\Models\BookClub_Members;
+use App\Models\BookClub_Event_Members;
 use App\Models\BookClub_Join_Requests;
 use App\Models\BookClub_Events;
 use Illuminate\Http\Request;
@@ -100,6 +100,23 @@ class BookClubController extends Controller
             return response()->json(['data' => $getter]);
         } else {
             return response()->json(['error' => 'Error in getting user']);
+        }
+    }
+
+    // add event member
+    function addMember(Request $request) {
+        $event_id = $request->json('eventId');
+        $current_user_id = $request->json('userId');    
+
+        $adder = BookClub_Event_Members::create([
+            'event_id' => $event_id,
+            'user_id' => $current_user_id
+        ]);
+
+        if ($adder) {
+            return response()->json(['data' => 'Member added to the said event']);
+        } else {
+            return response()->json(['error' => 'Failed to add member']);
         }
     }
     
