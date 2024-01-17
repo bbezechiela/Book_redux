@@ -76,18 +76,21 @@
                                 <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
                                 <label for="seller-contact-number">{{ $item->book->user->address }}</label>
                             @else
-                                <label for="seller-fullname">{{ $item->address->name }}</label>
-                                <label for="seller-contact-number">{{ $item->address->contact_number }}</label>
-                            @endif                                                        
-                            @if (isset($item->address))
-                                <label for="seller-address">{{ $item->address->street_building_house . ', ' . $item->address->brgy_village . ', ' . $item->address->city_municipality . ', ' . $item->address->postal_code . ', ' . $item->address->region }}</label>
-                            @else
-                                @foreach ($item->book->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <label for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
-                                    @endif
-                                @endforeach
+                                @if (isset($item->address))
+                                    <label
+                                        for="seller-address">{{ $item->address->street_building_house . ', ' . $item->address->brgy_village . ', ' . $item->address->city_municipality . ', ' . $item->address->postal_code . ', ' . $item->address->region }}</label>
+                                    <label for="seller-fullname">{{ $item->address->name }}</label>
+                                    <label for="seller-contact-number">{{ $item->address->contact_number }}</label>
+                                @else
+                                    @foreach ($item->book->user->addressUser as $address)
+                                        @if ($address->default_address == 'true')
+                                            <label
+                                                for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
+
 
                         </div>
 
@@ -205,8 +208,8 @@
                                         class="d-flex flex-row justify-content-between align-items-center order-details">
                                         <span id="order_id" hidden></span>
                                         <span id="item_id" hidden></span>
-                                        <div><span class="d-block fs-12">Order date</span><span class="font-weight-bold"
-                                                id="order-date">12 March 2020</span></div>
+                                        <div><span class="d-block fs-12">Order date</span><span
+                                                class="font-weight-bold" id="order-date">12 March 2020</span></div>
                                         <div><span class="d-block fs-12">Order number</span><span
                                                 class="font-weight-bold" id="order-number">OD44434324</span></div>
                                         <div><span class="d-block fs-12">Payment method</span><span
