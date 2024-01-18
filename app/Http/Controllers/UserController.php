@@ -564,6 +564,11 @@ class UserController extends Controller
         return view('users.userReviewsAndRatings', ['book' => $book]);
     }
 
+    public function myReviews() {
+        $book = Books::with('item.ratedItem.user')->get();
+        return view('users.userMyReviews', ['book' => $book]);
+    }
+
     public function orders()
     {        
         $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
@@ -632,11 +637,6 @@ class UserController extends Controller
     {
         return view('bookseller.sellerRefund');
     }    
-
-    public function reviewsRating()
-    {
-        return view('bookseller.reviewsRating');
-    }
 
     public function store(Request $request)
     {
@@ -1229,7 +1229,7 @@ class UserController extends Controller
 
     public function getRating($id)
     {
-        $rating = Reviews::with('item.book.user')->find($id);
+        $rating = Reviews::with('item.book.user', 'item.order.user')->find($id);
         return $rating;
     }
 
@@ -1333,7 +1333,7 @@ class UserController extends Controller
 
         return $order;
     }
-
+    
     public function sellerPostRate(Request $request) {
         $data = $request->all();        
 
@@ -1358,6 +1358,35 @@ class UserController extends Controller
             return response()->json(['response' => 'Rating and Review was submitted. Thank you for your feedback!']);
         } else {
             return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
+        }
+    }
+
+    public function sellerUpdateRate(Request $request) {
+        $data = $request->all();        
+
+        $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
+
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $fileNameWithExt = $request->file($field)->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file($field)->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+                $request->file($field)->move(public_path('images/rate_images'), $fileNameToStore);
+
+                $request[$field] = $fileNameToStore;
+            }
+        }
+
+        $rate = Reviews::find($request['id']);        
+        $rate->update($request->except('id'));
+
+        // return response()->json(['response' => $rate]);
+        if ($rate) {
+            return response()->json(['response' => 'Successfully updated']);
+        } else {
+            return response()->json(['response' => 'error']);
         }
     }
 }

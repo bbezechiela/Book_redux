@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use App\Models\Order_Items;
+use App\Models\Reviews;
 use App\Models\Track_Rental;
 use App\Models\Users;
 use Illuminate\Http\Request;
@@ -33,6 +34,16 @@ class SellerController extends Controller
         return view('bookseller.sellerOrders', ['orders' => $order]);
     }
 
+    public function reviewsRating()
+    {
+        $book = Books::where('user_id', session('id'))->with('item.ratedItem.user')->get();
+        return view('bookseller.reviewsRating', ['book' => $book]);
+    }
+
+    public function myReviews() {
+        $book = Books::with('item.ratedItem.user')->get();
+        return view('bookseller.sellerMyReviews', ['book' => $book]);
+    }
 
     public function sellerDelivered()
     {
@@ -254,4 +265,6 @@ class SellerController extends Controller
         $book = Books::with('item.order.user', 'user')->find($id);
         return $book;
     }
+
+    
 }

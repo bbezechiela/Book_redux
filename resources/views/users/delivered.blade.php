@@ -111,27 +111,30 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    @if ($item->ratedItem->count() > 0)
-                                        @foreach ($item->ratedItem as $review)
-                                            @if ($review->item_id == $item->id && $review->user_id == session('id'))
-                                                <button type="button" class="post-btn" data-bs-toggle="modal"
-                                                    data-bs-target="#rate-review"
-                                                    onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
-                                                    Rating and Review</button>
-                                            {{-- @else
-                                                <button type="button" class="post-btn" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post Rating and Review</button> --}}
-                                            @endif
-                                        @endforeach
+                                    @php
+                                        $loopFlag = false;
+                                        $rate_id = 0;
+
+                                        if ($item->ratedItem->count() > 0) {
+                                            foreach ($item->ratedItem as $review) {
+                                                if ($review->item_id == $item->id && $review->user_id == session('id') && $loopFlag == false) {
+                                                    $loopFlag = true;
+                                                    $rate_id = $review->id;
+                                                }
+                                            }
+                                        }
+                                    @endphp
+                                    @if ($loopFlag)
+                                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review" {{-- onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit --}}
+                                            onclick="editRating({{ $rate_id }})">Edit
+                                            Rating and Review</button>
                                     @else
                                         <button type="button" class="post-btn" data-bs-toggle="modal"
                                             data-bs-target="#rate-review"
-                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
+                                            onclick="ratingReview({{ $item->order->user_id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
                                             Rating and Review</button>
                                     @endif
-                                    {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
-                                        onclick="ratingReview({{ $item->order->user_id }}, '{{ $item->book->status }}', {{ $item->id }})"
-                                        data-bs-target="#rate-review">Post
-                                        Rating and Review</button> --}}
                                 </div>
                                 <div class="button-group">
                                     <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
@@ -187,8 +190,9 @@
                                         </div> --}}
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>
                             <div class="review-details">
+                                <span id="review_id" hidden></span>
                                 <span id="item-id" hidden></span>
                                 <p>Interaction:
                                     {{-- <span>10/10</span> --}}
@@ -326,6 +330,7 @@
     var description = document.getElementById('description');
     var username_radio = document.getElementById('username-switch');
     var rate_val = 0;
+    var submit_btn_status = '';
 
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
@@ -433,8 +438,73 @@
         }
     }
 
+    function editRating(id) {
+        // alert(id);
+        fetch('/getrating/' + id, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('user_img').src = 'images/profile_photos/' + result.item.order.user.profile_photo;
+                if (result.item.order.user.type == 'Bookseller') {
+                    document.getElementById('user_name').textContent = result.item.order.user.business_name;
+                } else {
+                    document.getElementById('user_name').textContent = result.item.order.user.first_name + ' ' + result.item.order.user.last_name;
+                }                
+                document.getElementById('review_id').textContent = result.id;
+                star(result.rate_value);
+                interaction.value = result.interaction;
+                description.value = result.description;
+
+                if (result.first_img != undefined) {
+                    document.getElementById('one-image').src = '/images/rate_images/' + result.first_img;
+                    document.getElementById('first-plus').className = 'fa p-0';
+                    document.getElementById('one-image').style.width = '60px';
+                    document.getElementById('one-image').style.height = '60px';
+                }
+
+                if (result.second_img != undefined) {
+                    document.getElementById('two-image').src = '/images/rate_images/' + result.second_img;
+                    document.getElementById('second-plus').className = 'fa p-0';
+                    document.getElementById('two-image').style.width = '60px';
+                    document.getElementById('two-image').style.height = '60px';
+                }
+
+                if (result.third_img != undefined) {
+                    document.getElementById('three-image').src = '/images/rate_images/' + result.third_img;
+                    document.getElementById('three-plus').className = 'fa p-0';
+                    document.getElementById('three-image').style.width = '60px';
+                    document.getElementById('three-image').style.height = '60px';
+                }
+
+                if (result.fourth_img != undefined) {
+                    document.getElementById('four-image').src = '/images/rate_images/' + result.fourth_img;
+                    document.getElementById('four-plus').className = 'fa p-0';
+                    document.getElementById('four-image').style.width = '60px';
+                    document.getElementById('four-image').style.height = '60px';
+                }
+
+                if (result.fifth_img != undefined) {
+                    document.getElementById('five-image').src = '/images/rate_images/' + result.fifth_img;
+                    document.getElementById('five-plus').className = 'fa p-0';
+                    document.getElementById('five-image').style.width = '60px';
+                    document.getElementById('five-image').style.height = '60px';
+                }
+            })
+            .catch(error => console.error(error));
+
+        submit_btn.textContent = 'Edit';
+        submit_btn_status = 'Edit';
+        // submit_btn.id = 'edit-btn';
+        // document.getElementById('edit-btn').textContent = 'Edit';
+        // document.getElementById('edit-btn').href = 'google.com';
+        // alert(document.getElementById('edit-btn').href);
+    }
+
     function ratingReview(user_id, type, item_id) {
-        // submit_btn.disabled = false;
+        description.value = '';
+        interaction.value = '1/10';
         first_img.value = '';
         second_img.value = '';
         third_img.value = '';
@@ -459,11 +529,11 @@
         document.getElementById('four-image').style.height = '0px';
         document.getElementById('five-image').style.height = '0px';
 
-        // document.getElementById('first-plus').className = 'fa fa-plus';
-        // document.getElementById('second-plus').className = 'fa fa-plus';
-        // document.getElementById('three-plus').className = 'fa fa-plus';
-        // document.getElementById('four-plus').className = 'fa fa-plus';
-        // document.getElementById('five-plus').className = 'fa fa-plus';
+        document.getElementById('first-plus').className = 'fa fa-plus';
+        document.getElementById('second-plus').className = 'fa fa-plus';
+        document.getElementById('three-plus').className = 'fa fa-plus';
+        document.getElementById('four-plus').className = 'fa fa-plus';
+        document.getElementById('five-plus').className = 'fa fa-plus';
         star(0);
 
 
@@ -486,58 +556,103 @@
                 }
 
                 // document.getElementById('interaction-type').textContent = type;
-                document.getElementById('item-id').textContent = item_id;                
+                document.getElementById('item-id').textContent = item_id;
             })
             .catch(error => console.error(error));
 
+        submit_btn.textContent = 'Submit';
+        submit_btn_status = 'Submit';
         // submit_btn.id = 'submit-btn';
         // document.getElementById('submit-btn').textContent = 'Submit';
+        // document.getElementById('submit-btn').href = 'facebook.com';
+        // alert(document.getElementById('submit-btn').href);
 
-        // document.getElementById('submit-btn').addEventListener('click', submitBtn);
     }
 
     submit_btn.addEventListener('click', () => {
-        submit_btn.disabled = true;
+        if (submit_btn_status == 'Submit') {
+            var formData = new FormData();
 
-        var formData = new FormData();
+            formData.append('item_id', document.getElementById('item-id').textContent);
+            formData.append('user_id', {{ session('id') }});
+            formData.append('rate_value', rate_val);
+            formData.append('interaction', interaction.value);
+            formData.append('description', description.value);
+            formData.append('display_username', username_radio.checked);
 
-        formData.append('item_id', document.getElementById('item-id').textContent);        
-        formData.append('user_id', {{ session('id') }});
-        formData.append('rate_value', rate_val);
-        formData.append('interaction', interaction.value);
-        formData.append('description', description.value);
-        formData.append('display_username', username_radio.checked);
+            if (first_img.files.length > 0) {
+                formData.append('first_img', first_img.files[0]);
+            }
+            if (second_img.files.length > 0) {
+                formData.append('second_img', second_img.files[0]);
+            }
+            if (third_img.files.length > 0) {
+                formData.append('third_img', third_img.files[0]);
+            }
+            if (fourth_img.files.length > 0) {
+                formData.append('fourth_img', fourth_img.files[0]);
+            }
+            if (fifth_img.files.length > 0) {
+                formData.append('fifth_img', fifth_img.files[0]);
+            }
 
-        if (first_img.files.length > 0) {
-            formData.append('first_img', first_img.files[0]);
-        }
-        if (second_img.files.length > 0) {
-            formData.append('second_img', second_img.files[0]);
-        }
-        if (third_img.files.length > 0) {
-            formData.append('third_img', third_img.files[0]);
-        }
-        if (fourth_img.files.length > 0) {
-            formData.append('fourth_img', fourth_img.files[0]);
-        }
-        if (fifth_img.files.length > 0) {
-            formData.append('fifth_img', fifth_img.files[0]);
+            fetch('/sellerpostrate', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: formData
+                })
+                // .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 800);
+                })
+                .catch(error => console.error(error));
+        } else if (submit_btn_status == 'Edit') {
+            var editFormData = new FormData();
+
+            editFormData.append('id', document.getElementById('review_id').textContent);
+            editFormData.append('user_id', {{ session('id') }});
+            editFormData.append('rate_value', rate_val);
+            editFormData.append('interaction', interaction.value);
+            editFormData.append('description', description.value);
+            editFormData.append('display_username', username_radio.checked);
+
+            if (first_img.files.length > 0) {
+                editFormData.append('first_img', first_img.files[0]);
+            }
+            if (second_img.files.length > 0) {
+                editFormData.append('second_img', second_img.files[0]);
+            }
+            if (third_img.files.length > 0) {
+                editFormData.append('third_img', third_img.files[0]);
+            }
+            if (fourth_img.files.length > 0) {
+                editFormData.append('fourth_img', fourth_img.files[0]);
+            }
+            if (fifth_img.files.length > 0) {
+                editFormData.append('fifth_img', fifth_img.files[0]);
+            }
+
+            fetch('/sellerupdaterate', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: editFormData
+                })
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 800);
+                })
+                .catch(error => console.error(error));
         }
 
-        fetch('/sellerpostrate', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: formData
-            })
-            // .then(response => response.json())
-            .then(response => {
-                console.log(response);
-                setTimeout(() => {
-                    window.location.reload();
-                }, 800);                
-            })
-            .catch(error => console.error(error));
     });
 </script>

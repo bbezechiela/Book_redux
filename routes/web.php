@@ -129,6 +129,8 @@ Route::get('/changepassword', [UserController::class, 'changePassword']);
 
 Route::get('/reviewsandratings', [UserController::class, 'userReviewsAndRatings']);
 
+Route::get('/usermyreviews', [UserController::class, 'myReviews']);
+
 Route::get('/userlistings', [UserController::class, 'userProfilePreview']);
 
 Route::get('/userreviews', [UserController::class, 'previewReviews']);
@@ -175,7 +177,9 @@ Route::get('/sellerrefund', [UserController::class, 'sellerRefund']);
 
 Route::get('/trackrental', [SellerController::class, 'rentalTracking']);
 
-Route::get('/reviews', [UserController::class, 'reviewsRating']);
+Route::get('/reviews', [SellerController::class, 'reviewsRating']);
+
+Route::get('/sellermyreviews', [SellerController::class, 'myReviews']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
 
@@ -366,3 +370,5 @@ Route::get('/viewshipping/{id}', [UserController::class, 'viewShipping']);
 Route::get('/rentaltrackfetch/{id}', [SellerController::class, 'rentalTrackFetch']);
 
 Route::post('/sellerpostrate', [UserController::class, 'sellerPostRate']);
+
+Route::post('/sellerupdaterate', [UserController::class, 'sellerUpdateRate']);

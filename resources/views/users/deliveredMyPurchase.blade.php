@@ -62,8 +62,11 @@
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
-                                <a class="seller-name"
-                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                @if ($item->book->user->type == 'Bookseller')
+                                <a class="seller-name" href="#"><span>{{ $item->book->user->business_name}}</span></a>
+                                @else
+                                <a class="seller-name" href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                @endif                                
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
@@ -74,7 +77,8 @@
                                         width="80px" height="110px">
                                     <div class="book-info">
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type" id="interaction-type">{{ $item->book->status }}</p>
+                                        <p class="mb-0 fw-bold interaction-type" id="interaction-type">
+                                            {{ $item->book->status }}</p>
                                         <p class="payment-mode">{{ $order->payment_method }}</p>
                                     </div>
                                 </div>
@@ -90,9 +94,31 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    {{-- {{$item->ratedItem->count()}} --}}
-                                    {{-- @foreach ($item->ratedItem as $review) --}}
-                                    @if ($item->ratedItem->count() > 0)
+                                    @php
+                                        $loopFlag = false;
+                                        $rate_id = 0;
+
+                                        if ($item->ratedItem->count() > 0) {
+                                            foreach ($item->ratedItem as $review) {
+                                                if ($review->item_id == $item->id && $review->user_id == session('id') && $loopFlag == false) {
+                                                    $loopFlag = true;
+                                                    $rate_id = $review->id;
+                                                }
+                                            }
+                                        }
+                                    @endphp
+                                    @if ($loopFlag)
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                                            Rating and Review</button>
+                                    @else
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
+                                            Rating and Review</button>
+                                    @endif
+                                    {{-- @if ($item->ratedItem->count() > 0)
                                         @foreach ($item->ratedItem as $review)
                                             @if ($review->item_id == $item->id && $review->user_id == session('id'))
                                                 <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
@@ -106,7 +132,8 @@
                                             data-bs-target="#rate-review"
                                             onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
                                             Rating and Review</button>
-                                    @endif
+                                    @endif --}}
+
                                     {{-- @endforeach --}}
                                     {{-- @if (isset($item->ratedItem))
                                         <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
@@ -492,9 +519,11 @@
                 rate_val = data.rate_value;
                 document.getElementById('user_img').src = 'images/profile_photos/' + data.item.book.user
                     .profile_photo;
-                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data
-                    .item
-                    .book.user.last_name;
+                if (data.item.book.user.type == 'Bookseller') {
+                    document.getElementById('user_name').textContent = data.item.book.user.business_name;
+                } else {
+                    document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data.item.book.user.last_name;
+                }                
                 document.getElementById('username').textContent = data.item.book.user.username;
                 document.getElementById('interaction-type').textContent = data.item.book.status;
                 document.getElementById('item-id').textContent = item_id;
