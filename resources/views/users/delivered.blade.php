@@ -111,9 +111,27 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                    @if ($item->ratedItem->count() > 0)
+                                        @foreach ($item->ratedItem as $review)
+                                            @if ($review->item_id == $item->id && $review->user_id == session('id'))
+                                                <button type="button" class="post-btn" data-bs-toggle="modal"
+                                                    data-bs-target="#rate-review"
+                                                    onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                                                    Rating and Review</button>
+                                            {{-- @else
+                                                <button type="button" class="post-btn" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post Rating and Review</button> --}}
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
+                                            Rating and Review</button>
+                                    @endif
+                                    {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
+                                        onclick="ratingReview({{ $item->order->user_id }}, '{{ $item->book->status }}', {{ $item->id }})"
                                         data-bs-target="#rate-review">Post
-                                        Rating and Review</button>
+                                        Rating and Review</button> --}}
                                 </div>
                                 <div class="button-group">
                                     <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
@@ -139,15 +157,21 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="customer-details">
-                                    <img src="../assets/eubert.png" alt="seller image" class="circle-picture">
+                                    <img src="../assets/eubert.png" id="user_img" alt="seller image"
+                                        class="circle-picture">
                                     <div class="name-interaction">
-                                        <p>Marc Eubert Contado</p>
+                                        <p id="user_name">Marc Eubert Contado</p>
                                         <div class="rate">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i id="one-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="two-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="three-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="four-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
                                         </div>
                                         {{-- <div class="dropdown">
                                             <button class="btn dropdown-toggle" type="button"
@@ -163,39 +187,62 @@
                                         </div> --}}
                                     </div>
                                 </div>
-                            </div>
-                            {{-- <div class="col-4 d-flex m-0 justify-content-end">
-                                <div class="rate">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                </div>
-                            </div> --}}
+                            </div>                           
                             <div class="review-details">
-                                <p>Interaction:<span>1/10</span></p>
+                                <span id="item-id" hidden></span>
+                                <p>Interaction:
+                                    {{-- <span>10/10</span> --}}
+                                    <select class="btn" name="" id="interaction" required>
+                                        {{-- <option >/10</option> --}}
+                                        <option value="1/10">1/10</option>
+                                        <option value="2/10">2/10</option>
+                                        <option value="3/10">3/10</option>
+                                        <option value="4/10">4/10</option>
+                                        <option value="5/10">5/10</option>
+                                        <option value="6/10">6/10</option>
+                                        <option value="7/10">7/10</option>
+                                        <option value="8/10">8/10</option>
+                                        <option value="9/10">9/10</option>
+                                        <option value="10/10">10/10</option>
+                                    </select>
+                                </p>
                                 <div class="mb-3">
-                                    <label for="exampleTextarea" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Enter your text here..."></textarea>
+                                    <label for="description" class="form-label">Description:</label>
+                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..."></textarea>
                                 </div>
                                 </p>
                                 <p>Photo:
                                 <div class="image-container">
                                     <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <input id="first-img" type="file" accept="image/*" class="d-none"
+                                            required>
+                                        <label for="first-img"><i id="first-plus" class="fa fa-plus"
+                                                aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                    id="one-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <input id="second-img" type="file" accept="image/*" class="d-none">
+                                        <label for="second-img"><i id="second-plus" class="fa fa-plus"
+                                                aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                    id="two-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <input id="third-img" type="file" accept="image/*" class="d-none">
+                                        <label for="third-img"><i id="three-plus" class="fa fa-plus"
+                                                aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                    id="three-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <input id="fourth-img" type="file" accept="image/*" class="d-none">
+                                        <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
+                                                aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                    id="four-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        <input id="fifth-img" type="file" accept="image/*" class="d-none">
+                                        <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
+                                                aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                    id="five-image" alt=""></i></label>
                                     </div>
                                 </div>
                                 </p>
@@ -203,7 +250,7 @@
                                     <p>Show username on your rating/review</p>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" role="switch"
-                                            id="flexSwitchCheckDefault">
+                                            id="username-switch">
                                     </div>
                                 </div>
                                 <p class="username-text">Your username will be shown as <span>necxs</span></p>
@@ -211,14 +258,14 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn confirm-button">Submit</button>
+                        <button type="button" id="submit-btn" class="btn confirm-button">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Rate and Review Modal -->
-        <div class="modal fade" id="rental-period" data-bs-backdrop="static" data-bs-keyboard="false"
+        {{-- <div class="modal fade" id="rental-period" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -252,7 +299,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </div>
@@ -261,3 +308,236 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    var first_img = document.getElementById('first-img');
+    var second_img = document.getElementById('second-img');
+    var third_img = document.getElementById('third-img');
+    var fourth_img = document.getElementById('fourth-img');
+    var fifth_img = document.getElementById('fifth-img');
+
+    var one_S = document.getElementById('one-star');
+    var two_S = document.getElementById('two-star');
+    var three_S = document.getElementById('three-star');
+    var four_S = document.getElementById('four-star');
+    var five_S = document.getElementById('five-star');
+
+    var submit_btn = document.getElementById('submit-btn');
+    var description = document.getElementById('description');
+    var username_radio = document.getElementById('username-switch');
+    var rate_val = 0;
+
+    first_img.addEventListener('change', () => {
+        var img = document.getElementById('one-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('first-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+
+    second_img.addEventListener('change', () => {
+        var img = document.getElementById('two-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('second-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+
+    third_img.addEventListener('change', () => {
+        var img = document.getElementById('three-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('three-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+
+    fourth_img.addEventListener('change', () => {
+        var img = document.getElementById('four-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('four-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+
+    fifth_img.addEventListener('change', () => {
+        var img = document.getElementById('five-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('five-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+
+
+    one_S.addEventListener('click', () => {
+        star(1);
+        rate_val = 1;
+    });
+
+    two_S.addEventListener('click', () => {
+        star(2);
+        rate_val = 2;
+    });
+
+    three_S.addEventListener('click', () => {
+        star(3);
+        rate_val = 3;
+    });
+
+    four_S.addEventListener('click', () => {
+        star(4);
+        rate_val = 4;
+    });
+
+    five_S.addEventListener('click', () => {
+        star(5);
+        rate_val = 5;
+    });
+
+    function star(rate) {
+        if (rate == 0) {
+            one_S.className = 'fa fa-star-o';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 1) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star';
+        }
+    }
+
+    function ratingReview(user_id, type, item_id) {
+        // submit_btn.disabled = false;
+        first_img.value = '';
+        second_img.value = '';
+        third_img.value = '';
+        fourth_img.value = '';
+        fifth_img.value = '';
+
+        document.getElementById('one-image').src = '';
+        document.getElementById('two-image').src = '';
+        document.getElementById('three-image').src = '';
+        document.getElementById('four-image').src = '';
+        document.getElementById('five-image').src = '';
+
+        document.getElementById('one-image').style.width = '0px';
+        document.getElementById('two-image').style.width = '0px';
+        document.getElementById('three-image').style.width = '0px';
+        document.getElementById('four-image').style.width = '0px';
+        document.getElementById('five-image').style.width = '0px';
+
+        document.getElementById('one-image').style.height = '0px';
+        document.getElementById('two-image').style.height = '0px';
+        document.getElementById('three-image').style.height = '0px';
+        document.getElementById('four-image').style.height = '0px';
+        document.getElementById('five-image').style.height = '0px';
+
+        // document.getElementById('first-plus').className = 'fa fa-plus';
+        // document.getElementById('second-plus').className = 'fa fa-plus';
+        // document.getElementById('three-plus').className = 'fa fa-plus';
+        // document.getElementById('four-plus').className = 'fa fa-plus';
+        // document.getElementById('five-plus').className = 'fa fa-plus';
+        star(0);
+
+
+        const request = {
+            method: 'GET'
+        };
+
+        fetch('/getuser/' + user_id, request)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.type == 'Bookseller') {
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.business_name;
+                    // document.getElementById('username').textContent = data.owner_name;
+                } else {
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
+                    // document.getElementById('username').textContent = data.username;
+                }
+
+                // document.getElementById('interaction-type').textContent = type;
+                document.getElementById('item-id').textContent = item_id;                
+            })
+            .catch(error => console.error(error));
+
+        // submit_btn.id = 'submit-btn';
+        // document.getElementById('submit-btn').textContent = 'Submit';
+
+        // document.getElementById('submit-btn').addEventListener('click', submitBtn);
+    }
+
+    submit_btn.addEventListener('click', () => {
+        submit_btn.disabled = true;
+
+        var formData = new FormData();
+
+        formData.append('item_id', document.getElementById('item-id').textContent);        
+        formData.append('user_id', {{ session('id') }});
+        formData.append('rate_value', rate_val);
+        formData.append('interaction', interaction.value);
+        formData.append('description', description.value);
+        formData.append('display_username', username_radio.checked);
+
+        if (first_img.files.length > 0) {
+            formData.append('first_img', first_img.files[0]);
+        }
+        if (second_img.files.length > 0) {
+            formData.append('second_img', second_img.files[0]);
+        }
+        if (third_img.files.length > 0) {
+            formData.append('third_img', third_img.files[0]);
+        }
+        if (fourth_img.files.length > 0) {
+            formData.append('fourth_img', fourth_img.files[0]);
+        }
+        if (fifth_img.files.length > 0) {
+            formData.append('fifth_img', fifth_img.files[0]);
+        }
+
+        fetch('/sellerpostrate', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: formData
+            })
+            // .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);                
+            })
+            .catch(error => console.error(error));
+    });
+</script>

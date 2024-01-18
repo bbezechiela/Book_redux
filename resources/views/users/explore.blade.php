@@ -203,8 +203,7 @@
                                 @endforeach
                                 @foreach ($daily->cart as $cart)
                                     @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                             <span class="fw-bold p-0 text-success">Added to cart</span>
                                         </div>
                                     @endif
@@ -242,7 +241,7 @@
             <!-- card Featured -->
             @foreach ($post->sortByDesc('created_at') as $daily)
                 @if ($daily->user->type == 'Bookseller')
-                    {{ 'sample' }}
+                    {{-- {{ 'sample' }} --}}
                 @elseif ($daily->status == 'Exchange' && $daily->stock > 0)
                     <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                         onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">

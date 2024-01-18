@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use App\Models\Order_Items;
+use App\Models\Track_Rental;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class SellerController extends Controller
 
     public function sellerDashboard()
     {
-        return view('bookseller.sellerDashboard');
+        $listings = Books::where('user_id', session('id'))->get();
+        return view('bookseller.sellerDashboard', ['listing' => $listings]);
     }
 
     public function sellerOrders()
@@ -34,7 +36,7 @@ class SellerController extends Controller
 
     public function sellerDelivered()
     {
-        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user', 'user')->get();
+        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user', 'user', 'track')->get();
         return view('bookseller.sellerDelivered', ['orders' => $order]);
     }
 
@@ -125,19 +127,7 @@ class SellerController extends Controller
     {
         if (session()->has('user')) {
             if ($request->hasFile('profile_photo')) {
-                $validated = $request->validate([
-                    // 'owner_name' => ['required', 'min:4'],
-                    // // 'last_name' => ['required', 'min:4'],
-                    // 'email' => ['required', 'email'],
-                    // 'phone_number' => ['required', 'max:12'],
-                    // 'address' => ['required', 'min:4'],
-                    // 'registration_number' => 'required',
-                    // 'business_name' => 'required',
-                    // 'date_registered' => 'required',
-                    // 'permit' => 'required',
-                    // // 'username' => 'required',
-                    // // 'password' => 'required',
-                    // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                $validated = $request->validate([                    
                     'owner_name' => 'required',
                     'email' => ['required', 'email'],
                     'address' => 'required',
@@ -149,7 +139,7 @@ class SellerController extends Controller
                     // 'username' => 'required',
                     // 'password' => 'required',
                     'profile_photo' => 'required'
-                ]);                
+                ]);
 
                 $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
                 $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -170,11 +160,19 @@ class SellerController extends Controller
 
                 if ($user) {
                     session()->put([
-                        'first_name' => $user->business_name,
-                        // 'last_name' => $user->owner_name,
-                        'username' => $user->owner_name,
+                        'owner_name' => $user->owner_name,
+                        'business_name' => $user->business_name,
+                        // 'address' => $user->address,
+                        'user' => $user->username,
+                        // 'username' => $user->owner_name,
                         'profile_pic' => $user->profile_photo
                     ]);
+
+                    if ($request->filled('password')) {
+                        $user->update([
+                            'password' => bcrypt($request->input('password'))
+                        ]);
+                    }
                     return view('bookseller.profile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('bookseller.profile', ['user' => $user, 'message' => 'Error updating profile']);
@@ -192,7 +190,7 @@ class SellerController extends Controller
                     // 'username' => 'required',
                     // 'password' => 'required',
                     // 'profile_photo' => 'required'
-                ]);                
+                ]);
 
                 $user = Users::find(session('id'));
                 $user->update($validated);
@@ -201,10 +199,17 @@ class SellerController extends Controller
                 if ($user) {
                     // return redirect('/myprofile');
                     session()->put([
-                        'first_name' => $user->business_name,
-                        // 'last_name' => $user->owner_name,
-                        'username' => $user->owner_name,                        
+                        'owner_name' => $user->owner_name,
+                        'business_name' => $user->business_name,
+                        // 'address' => $user->address,
+                        'user' => $user->username,
+                        'username' => $user->owner_name,
                     ]);
+                    if ($request->filled('password')) {
+                        $user->update([
+                            'password' => bcrypt($request->input('password'))
+                        ]);
+                    }
                     return view('bookseller.profile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('bookseller.profile', ['user' => $user, 'message' => 'Error updating profile']);
@@ -213,6 +218,31 @@ class SellerController extends Controller
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
+    }
+
+    public function trackRentalInput(Request $request) {
+        // dd($request->all());
+        $track = Track_Rental::create([
+            'book_id' => $request->input('book_id'),
+            'user_id' => $request->input('user_id'),
+            'status' => 'Tracked',
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'action' => 'null'
+        ]);
+
+        if ($track) {
+            return redirect('/sellerdelivered')->with('message', 'rental tracked successfully');
+        } else {
+            return redirect('/sellerdelivered')->with('message', 'failed');
+        }
+    }
+
+    public function rentalTracking()
+    {
+        $rental = Track_Rental::with('book', 'user')->get();
+        // dd($rental);
+        return view('bookseller.rentalTracking', ['tracks' => $rental]);
     }
 
 

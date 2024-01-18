@@ -94,7 +94,7 @@
                                     {{-- @foreach ($item->ratedItem as $review) --}}
                                     @if ($item->ratedItem->count() > 0)
                                         @foreach ($item->ratedItem as $review)
-                                            @if ($review->item_id == $item->id)
+                                            @if ($review->item_id == $item->id && $review->user_id == session('id'))
                                                 <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
                                                     data-bs-target="#rate-review"
                                                     onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit

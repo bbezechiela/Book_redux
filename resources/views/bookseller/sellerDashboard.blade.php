@@ -77,7 +77,18 @@
                         </div>
                     </div>
                 </div>
-                
+                @php
+                    $sale_amount = 0;
+                    $rent_amount = 0;
+
+                    foreach ($listing as $track) {
+                        if ($track->status == 'Sale') {
+                            $sale_amount++;
+                        } else if ($track->status == 'Rent') {
+                            $rent_amount++;
+                        }
+                    }
+                @endphp
                 <div class="row">
                     <div class="row">
                         <div class="col-xxl-4 col-md-4">
@@ -101,7 +112,7 @@
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $sale_amount }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +140,7 @@
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         </div>
                                         <div class="ps-3">
-                                            <h6>3,264</h6>
+                                            <h6>{{ $rent_amount }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +168,7 @@
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         </div>
                                         <div class="ps-3">
-                                            <h6>1244</h6>
+                                            <h6>{{ $listing->count() }}</h6>
                                         </div>
                                     </div>
                                 </div>

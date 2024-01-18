@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('item_id')->references('id')->on('order_items');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('rate_value');
-            $table->string('condition_accuracy');
-            $table->string('description_accuracy');
+            $table->string('rate_value')->nullable();
+            $table->string('condition_accuracy')->nullable();
+            $table->string('description_accuracy')->nullable();
             $table->string('interaction');
             $table->text('description');
             $table->string('display_username')->nullable();

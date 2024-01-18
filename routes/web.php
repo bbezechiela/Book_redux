@@ -173,7 +173,7 @@ Route::get('/sellerdropped', [UserController::class, 'sellerDropped']);
 
 Route::get('/sellerrefund', [UserController::class, 'sellerRefund']);
 
-Route::get('/trackrental', [UserController::class, 'rentalTracking']);
+Route::get('/trackrental', [SellerController::class, 'rentalTracking']);
 
 Route::get('/reviews', [UserController::class, 'reviewsRating']);
 
@@ -192,6 +192,8 @@ Route::post('/storeaddress/{add}', [UserController::class, 'storeAddress']);
 Route::post('/updateaddress/{id}/{add}', [UserController::class, 'updateAddress']);
 
 Route::get('/destroyaddress/{id}/{del}', [UserController::class, 'destroyAddress']);
+
+Route::post('/trackrentalpost', [SellerController::class, 'trackRentalInput']);
 
 // Admin
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
@@ -362,3 +364,5 @@ Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
 Route::get('/viewshipping/{id}', [UserController::class, 'viewShipping']);
 
 Route::get('/rentaltrackfetch/{id}', [SellerController::class, 'rentalTrackFetch']);
+
+Route::post('/sellerpostrate', [UserController::class, 'sellerPostRate']);

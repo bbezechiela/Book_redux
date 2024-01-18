@@ -26,12 +26,12 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <div class="input-group mt-1" style="height: 2em">
+                    {{-- <div class="input-group mt-1" style="height: 2em">
                         <span class="input-group-text">
                             <i class="fa fa-search"></i>
                         </span>
                         <input class="form-control rounded-3" type="text" placeholder="Search">
-                    </div>
+                    </div> --}}
                     {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Messages">
                             <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>

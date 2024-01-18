@@ -25,6 +25,10 @@ class Books extends Model
         return $this->hasMany(Cart::class, 'product_id');
     }
 
+    public function track() {
+        return $this->hasMany(Track_Rental::class, 'book_id');
+    }
+
     protected $fillable = [
         'user_id',
         'status',

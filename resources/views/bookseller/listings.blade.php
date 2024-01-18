@@ -100,7 +100,7 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <label class="fw-bold" for="sort">Sort by</label>
-                        <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort">
+                        <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort" style="background-color: #fff;">
                             <option selected disabled>{{ $status }}</option>
                             <option value="All">All</option>
                             <option value="Sale">Sale</option>

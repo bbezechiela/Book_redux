@@ -225,7 +225,8 @@
                                 </h6>
                                 <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span>
                                 </p>
-                                <p class="card-text">Security Deposit <span style="font-weight: bold;">₱{{ $book_id->security_deposit}}</span>
+                                <p class="card-text">Security Deposit <span
+                                        style="font-weight: bold;">₱{{ $book_id->security_deposit }}</span>
                                 </p>
                                 <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
                                 <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
@@ -244,7 +245,8 @@
                                 </p>
                                 <p class="card-text">Rental Duration: <span>{{ $book_id->rental_duration }}</span></p>
                                 <p class="card-text">Rental Terms & Condition:
-                                    <span>{{ $book_id->rental_terms_and_condition }}</span></p>
+                                    <span>{{ $book_id->rental_terms_and_condition }}</span>
+                                </p>
                                 <p class="card-text">Product Description: <span>{{ $book_id->description }}</span></p>
                                 <p class="card-text"><small
                                         class="text-body-secondary">{{ $user_id->address }}</small>
@@ -411,7 +413,7 @@
                     <div class="col">
                         <div class="ratings">
                             {{-- <p>Username<span class="rate">{{ $user_id->username}}</span></p> --}}
-                            <p>Liked genres:<span class="exchange">{{ $user_id->interest }}</span></p>
+                            <p>Preferred genres:<span class="exchange">{{ $user_id->interest }}</span></p>
                             {{-- <p>Ratings <span class="rate">100</span></p>
                             <p>Books Bought <span class="bought">20</span></p>
                             <p>Books Lent <span class="lent">120</span></p> --}}
@@ -484,81 +486,85 @@
             </div>
             @foreach ($book_id->item as $items)
                 @foreach ($items->ratedItem as $itemReviews)
-                    <div class="container text-center customer-ratings">
-                        <div class="row align-items-center">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('images/profile_photos/' . $itemReviews->user->profile_photo) }}"
-                                    alt="seller image" class="customer-picture">
-                                <div class="customer-ratings-info">
-                                    <p>{{ $itemReviews->user->first_name . ' ' . $itemReviews->user->last_name }}</p>
-                                    @if ($itemReviews->rate_value == 1)
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    @elseif ($itemReviews->rate_value == 2)
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    @elseif ($itemReviews->rate_value == 3)
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    @elseif ($itemReviews->rate_value == 4)
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    @elseif ($itemReviews->rate_value == 5)
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    @endif
-                                    <p style="font-weight: bold;">{{ $items->book->status }}</p>
-                                    <p>{{ $itemReviews->created_at->format('F j, Y, g:i a') }}</p>
-                                    <p>Condition: <span>{{ $itemReviews->condition_accuracy }}</span></p>
-                                    <p>Accuracy of Description: <span>{{ $itemReviews->description_accuracy }}</span>
-                                    </p>
-                                    <p>Interaction: <span>{{ $itemReviews->interaction }}</span></p>
-                                    <p>{{ $itemReviews->description }}</p>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col">
-                                                @if (isset($itemReviews->first_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->first_img) }}"
-                                                        alt="Image 1" class="d-inline square-picture">
-                                                @endif
-                                                @if (isset($itemReviews->second_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->second_img) }}"
-                                                        alt="Image 1" class="d-inline square-picture">
-                                                @endif
-                                                @if (isset($itemReviews->third_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->third_img) }}"
-                                                        alt="Image 1" class="d-inline square-picture">
-                                                @endif
-                                                @if (isset($itemReviews->fourth_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->fourth_img) }}"
-                                                        alt="Image 1" class="d-inline square-picture">
-                                                @endif
-                                                @if (isset($itemReviews->fifth_img))
-                                                    <img src="{{ asset('images/rate_images/' . $itemReviews->fifth_img) }}"
-                                                        alt="Image 1" class="d-inline square-picture">
-                                                @endif
+                    @if ($itemReviews->user_id != $items->book->user_id)
+                        <div class="container text-center customer-ratings">
+                            <div class="row align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('images/profile_photos/' . $itemReviews->user->profile_photo) }}"
+                                        alt="seller image" class="customer-picture">
+                                    <div class="customer-ratings-info">
+                                        <p>{{ $itemReviews->user->first_name . ' ' . $itemReviews->user->last_name }}
+                                        </p>
+                                        @if ($itemReviews->rate_value == 1)
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif ($itemReviews->rate_value == 2)
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif ($itemReviews->rate_value == 3)
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif ($itemReviews->rate_value == 4)
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @elseif ($itemReviews->rate_value == 5)
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        @endif
+                                        <p style="font-weight: bold;">{{ $items->book->status }}</p>
+                                        <p>{{ $itemReviews->created_at->format('F j, Y, g:i a') }}</p>
+                                        <p>Condition: <span>{{ $itemReviews->condition_accuracy }}</span></p>
+                                        <p>Accuracy of Description:
+                                            <span>{{ $itemReviews->description_accuracy }}</span>
+                                        </p>
+                                        <p>Interaction: <span>{{ $itemReviews->interaction }}</span></p>
+                                        <p>{{ $itemReviews->description }}</p>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col">
+                                                    @if (isset($itemReviews->first_img))
+                                                        <img src="{{ asset('images/rate_images/' . $itemReviews->first_img) }}"
+                                                            alt="Image 1" class="d-inline square-picture">
+                                                    @endif
+                                                    @if (isset($itemReviews->second_img))
+                                                        <img src="{{ asset('images/rate_images/' . $itemReviews->second_img) }}"
+                                                            alt="Image 1" class="d-inline square-picture">
+                                                    @endif
+                                                    @if (isset($itemReviews->third_img))
+                                                        <img src="{{ asset('images/rate_images/' . $itemReviews->third_img) }}"
+                                                            alt="Image 1" class="d-inline square-picture">
+                                                    @endif
+                                                    @if (isset($itemReviews->fourth_img))
+                                                        <img src="{{ asset('images/rate_images/' . $itemReviews->fourth_img) }}"
+                                                            alt="Image 1" class="d-inline square-picture">
+                                                    @endif
+                                                    @if (isset($itemReviews->fifth_img))
+                                                        <img src="{{ asset('images/rate_images/' . $itemReviews->fifth_img) }}"
+                                                            alt="Image 1" class="d-inline square-picture">
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             @endforeach
             {{-- <div class="container text-center customer-ratings">

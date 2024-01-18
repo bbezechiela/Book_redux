@@ -121,10 +121,10 @@
                             onblur="if(this.value==''){this.type='text'}" required />
                         <label class="form-label" for="date_registered">Date Registered</label>
                     </div>
-                    <div class="form-outline mt-4">
+                    {{-- <div class="form-outline mt-4">
                         <input class="form-control" type="file" id="permit" name="permit" multiple />
                         <label for="permit" class="form-label">Business Permit</label>
-                    </div>
+                    </div> --}}
                     <div class="form-outline mt-4">
                         <input type="password" id="password" name="password" class="form-control" required />
                         <label class="form-label" for="password">Password</label>

@@ -343,23 +343,26 @@
             </div>
         </div>
 
-        <!-- Rate and Review Modal -->
+        <!-- Rental Period and Tracking Modal -->
         <div class="modal fade" id="rental-period" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <form class="modal-content" action="/trackrentalpost" method="POST">
+                    @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Rental Period Tracking</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <input type="number" id="book_id" name="book_id" hidden>
+                        <input type="number" id="user_id" name="user_id" hidden>
                         <label for="start-date" style="color: #003060">Start Date:</label>                        
                         <input type="date" name="start_date" id="start-date" class="form-control"
                             placeholder="Start Date" style="margin-bottom: 12px; color: #003060;">
                         
                         <label for="end-date" style="color: #003060">End Date:</label>
-                        <input type="date" name="end-date" id="end-date" class="form-control"
+                        <input type="date" name="end_date" id="end-date" class="form-control"
                             placeholder="End Date" style="margin-bottom: 12px; color: #003060;">
                         
                         {{-- <label for="title" style="color: #003060">Title:</label>
@@ -367,7 +370,7 @@
                             placeholder="Title" style="margin-bottom: 12px; color: #003060;"> --}}
                         
                         <label for="rental-price" style="color: #003060">Rental Price:</label>
-                        <input type="text" name="rental-price" id="rental-price" class="form-control"
+                        <input type="text" name="rental_price" id="rental-price" class="form-control"
                             placeholder="Rental Price" style="margin-bottom: 12px; color: #003060;">
                         
                         <label for="deposit" style="color: #003060">Deposit:</label>
@@ -391,9 +394,9 @@
                             placeholder="Email" style="margin-bottom: 12px; color: #003060;">
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn confirm-button">Submit</button>
+                        <button type="submit" class="btn confirm-button">Submit</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
@@ -415,7 +418,7 @@
             console.log(result);
             var created_date = new Date(result.created_at);            
             var endDate = new Date(created_date);
-            endDate.setDate(created_date.getUTCDate() + parseInt(document.getElementById('duration').value));
+            endDate.setDate(created_date.getUTCDate() + parseInt(result.rental_duration));
             // console.log(endDate);
             document.getElementById('start-date').value = created_date.getUTCFullYear() + '-' + (created_date.getUTCMonth() + 1).toString().padStart(2, '0') + '-' + created_date.getDate().toString().padStart(2, '0');
             document.getElementById('end-date').value = endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0');
@@ -424,10 +427,12 @@
             document.getElementById('deposit').value = result.security_deposit;
             document.getElementById('duration').value = result.rental_duration;
             document.getElementById('rental-price').value = result.price;
+            document.getElementById('book_id').value = result.id;
             result.item.forEach(item => {
                 if (item.book_id == id) {
                     document.getElementById('contact').value = item.order.user.phone_number;
                     document.getElementById('email').value = item.order.user.email;
+                    document.getElementById('user_id').value = item.order.user_id;
                 }
             });            
         })

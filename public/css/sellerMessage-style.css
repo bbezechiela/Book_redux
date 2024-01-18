@@ -339,10 +339,9 @@ body {
     color: #003060;
 }
 
-/* right section outer container */
 #messageOuterContainer {
-    height: 1200px;
-    width: 98%;
+    height: 150px;
+    width: 92%;
     border-radius: 15px;
     /* box-shadow: 0 0 5px grey; */
     overflow-y: scroll;
@@ -369,11 +368,15 @@ body {
 
 #rightSectionOuterContainer {
     position: relative;
-    height: 650px;
-    width: 1100px;
+    height: 700px;
+    width: 800px;
     background-color: white;
     /* box-shadow: 0 0 10px grey; */
     /* border-radius: 25px; */
+}
+
+#messageForm{
+    height: -30px;
 }
 
 #rightSectionInnerContainer {
@@ -384,7 +387,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    margin-top: -5em;
+    margin-top: 1em;
 }
 
 #leftSectionOuterContainer {
@@ -396,9 +399,9 @@ body {
     height: 650px;
     background-color: white;
     border-radius:  25px;
-    margin-top: -17em;
+    margin-top: 10em;
     /* box-shadow: 0 0 10px grey; */
-    width: 420px;
+    width: 400px;
 }
 
 #messageCtn {
@@ -542,7 +545,7 @@ body {
 #bodyCtn {
     /* changes kanan ellipsis */
     position: relative;
-    height: 870px;
+    height: 470px;
     display: flex;
     justify-content: space-around;
     align-items: center;

@@ -631,12 +631,7 @@ class UserController extends Controller
     public function sellerRefund()
     {
         return view('bookseller.sellerRefund');
-    }
-
-    public function rentalTracking()
-    {
-        return view('bookseller.rentalTracking');
-    }
+    }    
 
     public function reviewsRating()
     {
@@ -1014,15 +1009,21 @@ class UserController extends Controller
     }
 
     public function search($item)
-    {
-        // $search = Books::where('title', 'LIKE', '%' . $item . '%')->get();
+    {        
         $search = Books::where(function ($query) use ($item) {
             $query->where('title', 'LIKE', '%' . $item . '%')
                 ->orWhere('author', 'LIKE', '%' . $item . '%')
                 ->orWhere('genre', 'LIKE', '%' . $item . '%');
         })->get();
 
-        return view('users.search', ['items' => $search]);
+        if ($search) {
+            return view('users.search', ['items' => $search]);
+        } 
+        // else {
+        //     $search_name = Users::where(function ($query) use ($item) {
+        //         $query->where()
+        //     });
+        // }
     }
 
     public function placeOrder(Request $request)
@@ -1331,5 +1332,32 @@ class UserController extends Controller
         $order = Books::with('item.order.user', 'item.order.address', 'user.addressUser')->find($id);
 
         return $order;
+    }
+
+    public function sellerPostRate(Request $request) {
+        $data = $request->all();        
+
+        $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
+
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $fileNameWithExt = $request->file($field)->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file($field)->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+
+                $request->file($field)->move(public_path('images/rate_images'), $fileNameToStore);
+
+                $data[$field] = $fileNameToStore;
+            }
+        }
+
+        $review = Reviews::create($data);
+
+        if ($review) {            
+            return response()->json(['response' => 'Rating and Review was submitted. Thank you for your feedback!']);
+        } else {
+            return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
+        }
     }
 }

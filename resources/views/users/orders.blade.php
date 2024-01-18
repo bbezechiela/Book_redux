@@ -256,7 +256,7 @@
                                 <i class="fa fa-dropbox" aria-hidden="true"></i>
                                 <div class="text-section">
                                     <h6 class="fw-bold">Drop off</h6>
-                                    <p>You can drop off your parcel at any J&T Express Branch</p>
+                                    <p>You can drop off your parcel at any JRS Express Branch</p>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Drop off"
@@ -268,7 +268,7 @@
                                 <i class="fa fa-truck" aria-hidden="true"></i>
                                 <div class="text-section">
                                     <h6 class="fw-bold">Pickup</h6>
-                                    <p>J&T Express will collect parcel from your pickup address</p>
+                                    <p>JRS Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Pickup"
