@@ -83,7 +83,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
@@ -116,7 +116,7 @@
                                         Rating and Review</button>
                                 </div>
                                 <div class="button-group">
-                                    <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
+                                    <a href="/messages" type="button" class="btn btn-sm contact-button">Contact Customer</a>
                                 </div>
                             </div>
                         </div>

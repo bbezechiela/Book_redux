@@ -99,10 +99,10 @@
                             <div>
                                 @if ($item->book->user->type == 'Bookseller')
                                     <a class="seller-name"
-                                        href="#"><span>{{ $item->book->user->business_name }}</span></a>
+                                        href="/userlistings"><span>{{ $item->book->user->business_name }}</span></a>
                                 @else
                                     <a class="seller-name"
-                                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                                 @endif
                             </div>
                             <span class="order-text me-5 mt-0">To Purchase</span>
@@ -147,7 +147,7 @@
                             <div class="name-cart d-flex justify-content-between">
                                 <div>
                                     <a class="seller-name"
-                                        href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                                 </div>
                                 <span class="order-text me-5 mt-0">To Purchase</span>
                             </div>
