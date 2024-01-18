@@ -13,7 +13,7 @@
     <div id="sellersidebar" class="sellersidebar p-2 min-vh-100 shadow">
         <x-sellersidebar />
     </div>
-    <div id="content" class="pe-0 border content">
+    <div id="content" class="pe-0 content">
         <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <a href="/sellerboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
@@ -58,7 +58,7 @@
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                    <a class="seller-name" href="/userlistings"><span>Jennie Blackpink</span></a>
                 </div>
                 <span class="order-text me-5 mt-0">Dropped</span>
             </div>
@@ -93,7 +93,7 @@
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                    <a class="seller-name" href="/userlistings"><span>Jennie Blackpink</span></a>
                 </div>
                 <span class="order-text me-5 mt-0">Dropped</span>
             </div>

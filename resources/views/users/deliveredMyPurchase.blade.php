@@ -63,10 +63,12 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 @if ($item->book->user->type == 'Bookseller')
-                                <a class="seller-name" href="#"><span>{{ $item->book->user->business_name}}</span></a>
+                                    <a class="seller-name"
+                                        href="/userlistings"><span>{{ $item->book->user->business_name }}</span></a>
                                 @else
-                                <a class="seller-name" href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                                @endif                                
+                                    <a class="seller-name"
+                                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                @endif
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
@@ -147,7 +149,8 @@
 
                                 </div>
                                 <div class="button-group">
-                                    <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                                    <a href="/messages" type="button" class="btn btn-sm contact-button">Contact
+                                        Seller</a>
                                 </div>
                             </div>
                         </div>
@@ -522,8 +525,9 @@
                 if (data.item.book.user.type == 'Bookseller') {
                     document.getElementById('user_name').textContent = data.item.book.user.business_name;
                 } else {
-                    document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data.item.book.user.last_name;
-                }                
+                    document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data
+                        .item.book.user.last_name;
+                }
                 document.getElementById('username').textContent = data.item.book.user.username;
                 document.getElementById('interaction-type').textContent = data.item.book.status;
                 document.getElementById('item-id').textContent = item_id;

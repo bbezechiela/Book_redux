@@ -79,7 +79,7 @@
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                    <a class="seller-name" href="/userlistings"><span>Jennie Blackpink</span></a>
                 </div>
                 <span class="order-text me-5 mt-0">Refund</span>
             </div>
@@ -110,7 +110,7 @@
         <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                    <a class="seller-name" href="/userlistings"><span>Jennie Blackpink</span></a>
                 </div>
                 <span class="order-text me-5 mt-0">Refund</span>
             </div>

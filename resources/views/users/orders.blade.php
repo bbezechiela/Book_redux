@@ -86,7 +86,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
                                 <button class="message-seller"><i class="fa fa-commenting"
                                         aria-hidden="true"></i></button>
                             </div>
@@ -139,7 +139,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
                                 <button class="message-seller"><i class="fa fa-commenting"
                                         aria-hidden="true"></i></button>
                             </div>
