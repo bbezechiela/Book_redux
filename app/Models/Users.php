@@ -10,7 +10,7 @@ class Users extends Model
     use HasFactory;
 
     public function books() {
-        return $this->hasMany(Books::class. 'user_id');
+        return $this->hasMany(Books::class, 'user_id');
     }
 
     public function cart() {

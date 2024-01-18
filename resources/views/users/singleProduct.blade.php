@@ -404,7 +404,7 @@
                                 {{-- <p>2K followers . 400 following</p> --}}
                                 <button class="message-button" data-username="{{ $user_id->username }}"><i
                                         class="fa fa-envelope" aria-hidden="true"></i>Message</button>
-                                <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye"
+                                <a href="/userlistings/{{ $user_id->id }}"><button class="view-profile-button"><i class="fa fa-eye"
                                             aria-hidden="true"></i>View
                                         Profile</button></a>
                             </div>

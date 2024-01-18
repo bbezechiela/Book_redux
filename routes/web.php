@@ -131,7 +131,7 @@ Route::get('/reviewsandratings', [UserController::class, 'userReviewsAndRatings'
 
 Route::get('/usermyreviews', [UserController::class, 'myReviews']);
 
-Route::get('/userlistings', [UserController::class, 'userProfilePreview']);
+Route::get('/userlistings/{id}', [UserController::class, 'userProfilePreview']);
 
 Route::get('/userreviews', [UserController::class, 'previewReviews']);
 

@@ -186,16 +186,14 @@ class UserController extends Controller
         // return view('users.bookRentingClub');
     }
 
-    public function userProfilePreview()
+    public function userProfilePreview($id)
     {
         if (session()->has('user')) {
 
             // $users = Users::where();
-            $user = Users::find(session('id'));
+            $user = Users::with('books', 'reviews')->find($id);
             $post = Books::with('user.addressUser', 'cart')->get();
-            return view('users.userProfilePreview', ['post' => $post, 'user' => $user]);
-            // return view('users.homepage')->with('post', $post);
-            // return view('users.homepage', compact('post'));
+            return view('users.userProfilePreview', ['user' => $user, 'post' => $post]);            
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
