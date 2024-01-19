@@ -108,20 +108,25 @@
             </div>
         </div>
 
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($items->orders as $order)
             @foreach ($order->items as $item)
                 @if ($item->order_status == 'dropped')
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
-                                <a class="seller-name" href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                <a class="seller-name"
+                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">Dropped</span>
                         </div>
                         <div class="product-cart">
                             <div class="book-details">
                                 <div class="left-section">
-                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px" height="110px">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
                                     <div class="book-info">
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
@@ -132,8 +137,10 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
-                                        <p class="text-total fw-bold">Total Payment:<span class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p>
+                                        <br>
+                                        <p class="text-total fw-bold">Total Payment:<span
+                                                class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -142,50 +149,24 @@
                                     <p class="cancelled-text">Cancelled</p>
                                 </div>
                                 <div class="button-group">
-                                    <a href="/messages" type="button" class="btn btn-sm contact-button">Contact Seller</a>
+                                    <a href="/messages" type="button" class="btn btn-sm contact-button">Contact
+                                        Seller</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++;
+                    @endphp
                 @endif
             @endforeach
         @endforeach
-        {{-- <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Dropped</span>
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
             </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 book-qty">2 Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱144</p>
-                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
-                            <p class="text-total">Total Payment:<span class="product-total">₱194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <p class="cancelled-text">Cancelled by seller</p>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+            <h1 class="text-warning mt-2 text-center fw-bold">No dropped item</h1>
+        @endif
     </div>
 </div>
 

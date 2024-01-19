@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'To Receive | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/myPurchase-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'To Receive | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/myPurchase-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -28,8 +28,8 @@
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
                 {{-- <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
@@ -108,137 +108,115 @@
                 </nav>
             </div>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($user->orders as $order)
-        @foreach ($order->items as $item)
-        @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'paid')
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Receive</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
-                            height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+            @foreach ($order->items as $item)
+                @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'paid')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">To Receive</span>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p>
+                                        <br>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">₱{{ $item->book->price + 130 }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-message">
+                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                        data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                </div>
+                                <div class="button-group">
+                                    <a class="btn btn-outline-primary btn-sm receive-button"
+                                        href="/orderreceived/{{ $item->id }}">Order
+                                        Received</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱{{ $item->book->price }}</p>
-                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p> <br>
-                            <p class="text-total">Total Payment:<span
-                                    class="product-total">₱{{ $item->book->price + 130 }}</span></p>
+                    @php
+                        $loopCount++;
+                    @endphp
+                @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'paid')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">To Receive</span>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                                        <p class="mb-0 book-qty">2 Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">{{ $item->book->price }}</p>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">{{ $item->book->price }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-message">
+                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                        data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                </div>
+                                <div class="button-group">
+                                    <a class="btn btn-outline-primary btn-sm receive-button"
+                                        href="/orderreceived/{{ $item->id }}">Order
+                                        Received</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
-                            data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
-                                class="fa fa-angle-right" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="button-group">
-                        <a class="btn btn-outline-primary btn-sm receive-button"
-                            href="/orderreceived/{{ $item->id }}">Order
-                            Received</a>
-                    </div>
-                </div>
+                    @php
+                        $loopCount++;
+                    @endphp
+                @endif
+            @endforeach
+        @endforeach
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
             </div>
-        </div>
-        @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'paid')
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Receive</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
-                            height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                            <p class="mb-0 book-qty">2 Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">{{ $item->book->price }}</p>
-                            <p class="text-total">Total Payment:<span
-                                    class="product-total">{{ $item->book->price }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
-                            data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
-                                class="fa fa-angle-right" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="button-group">
-                        <a class="btn btn-outline-primary btn-sm receive-button"
-                            href="/orderreceived/{{ $item->id }}">Order
-                            Received</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <h1 class="text-warning mt-2 text-center fw-bold">No to receive item</h1>
         @endif
-        @endforeach
-        @endforeach
-        {{-- <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Liuza Sober</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Receive</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Personal Transaction</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P144</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
-                            data-bs-target="#track-delivery">Your order has been delivered<i class="fa fa-angle-right"
-                                aria-hidden="true"></i></button>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-sm receive-button" data-bs-toggle="modal"
-                            data-bs-target="#order-received">Order
-                            Received</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
         <!-- Tracking Modal -->
         <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -249,7 +227,8 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My
                             Purchase
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <section>
@@ -278,7 +257,8 @@
                                                         class="d-flex justify-content-center align-items-center big-dot dot">
                                                         <i class="fa fa-check text-white"></i></span>
                                                 </div>
-                                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                                <div
+                                                    class="d-flex flex-row justify-content-between align-items-center">
                                                     <div class="d-flex flex-column align-items-start tracking-text">
                                                         <span>15 Mar</span><span class="tracking-description">Order
                                                             placed</span>
@@ -379,7 +359,8 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Release
                             <span>P120.00</span> to seller
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="color: #003060;">
                         <p>Check that you received all items in satisfactory condition (no return/refund required)
@@ -396,13 +377,15 @@
         </div>
 
         <!-- Return Refund Modal -->
-        <div class="modal fade" id="return-refund" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="return-refund" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Return/Refund
                             Request</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="color: #003060;">
                         <p>Please complete the following details for return/refund request.</p>
@@ -415,7 +398,8 @@
                             <div class="product-return">
                                 <div class="book-details-return">
                                     <div class="left-section">
-                                        <img src="../assets/city_of_secrets.png" alt="book" width="50px" height="80px">
+                                        <img src="../assets/city_of_secrets.png" alt="book" width="50px"
+                                            height="80px">
                                         <div class="book-info-return">
                                             <p class="mb-0 book-title">City of Secrets</p>
                                             <p class="mb-0 fw-bold interaction-type">Sale</p>
@@ -425,7 +409,8 @@
                                     <div class="right-section">
                                         <div class="book-price">
                                             <p class="product-price">P144</p>
-                                            <p class="text-total">Total Payment:<span class="product-total">P144</span>
+                                            <p class="text-total">Total Payment:<span
+                                                    class="product-total">P144</span>
                                             </p>
                                         </div>
                                     </div>
@@ -434,27 +419,26 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleTextarea" class="form-label">Reason/s:</label>
-                            <textarea class="form-control" id="exampleTextarea" rows="5"
-                                placeholder="Enter your text here..."></textarea>
+                            <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Enter your text here..."></textarea>
                         </div>
                         <p>Evidence:
-                            <div class="image-container">
-                                <div class="image-holder">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <div class="image-holder">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <div class="image-holder">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <div class="image-holder">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
-                                <div class="image-holder">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </div>
+                        <div class="image-container">
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
                             </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                        </div>
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -466,6 +450,6 @@
     </div>
 
     @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+        'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+        'aos_link' => '/aos-master/dist/aos.js',
     ])

@@ -76,6 +76,9 @@
                     href="/refund">Refund</a>
             </nav>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($orders as $order)
             @foreach ($order->item as $item)
                 @if ($item->order_status == 'dropped')
@@ -115,9 +118,18 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++
+                    @endphp
                 @endif
             @endforeach
         @endforeach
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
+            </div>
+            <h1 class="text-warning mt-2 text-center fw-bold">No dropped orders</h1>
+        @endif
         {{-- <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>

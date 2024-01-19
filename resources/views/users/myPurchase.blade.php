@@ -89,10 +89,12 @@
                 </nav>
             </div>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($user->orders as $order)
             @foreach ($order->items as $item)
-                @if (
-                    $item->order->payment_method == 'Cash on Delivery' &&
+                @if ($item->order->payment_method == 'Cash on Delivery' &&
                         ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
@@ -140,6 +142,9 @@
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $loopCount++;
+                        @endphp
                     @elseif (
                         $item->order->payment_method == 'eWallet' &&
                             ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
@@ -184,25 +189,19 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {{-- <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱{{ $item->book->price }}</p>
-                                <p class="text-total">Total Payment: ₱<span id="payment_{{ $item->order->id }}"
-                                        class="product-total">{{ $item->book->price }}</span></p>
-                            </div>
-                            <div class="button-group">
-                                <a class="btn btn-sm cancel-button" href="/deleteorder/{{ $item->id }}">Cancel Order</a>
-                                <button type="button"
-                                    class="btn btn-sm pending-button">{{ $item->order_status }}</button>
-                            </div>
-                        </div> --}}
-                        {{-- </div> --}}
-                        {{-- </div>
-            </div> --}}
+                        </div>    
+                        @php
+                            $loopCount++;
+                        @endphp
                 @endif
             @endforeach
         @endforeach
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
+            </div>
+            <h1 class="text-warning mt-2 text-center fw-bold">No purchased item</h1>
+        @endif
     </div>
     {{-- alert modal --}}
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

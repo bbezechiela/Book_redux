@@ -21,31 +21,12 @@
         <div id="content" class="pe-0 content">
             <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
 
-                <div class="w-100 d-flex mt-1 p-0">
-                    {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                        aria-controls="offcanvasExample">
-                        <i class="fa fa-bars" aria-hidden="true"></i>
-                    </button> --}}
+                <div class="w-100 d-flex mt-1 p-0">                    
                     <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
                             src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
-                    <div class="d-flex">
-                        {{-- <div class="input-group mt-1" style="height: 2em">
-                            <span class="input-group-text">
-                                <i class="fa fa-search"></i>
-                            </span>
-                            <input class="form-control rounded-3" type="text" placeholder="Search">
-                        </div> --}}
-                        {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Messages">
-                                <i class="fa fa-envelope-o" aria-hidden="true"
-                                    style="font-size: 20px; color: #003060;"></i>
-                            </button></a>
-                        <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Notification">
-                                <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                            </button></a> --}}
+                    <div class="d-flex">                        
                         <ul class="nav py-profile justify-content-end">
                             <li class="nav-item dropdown">
                                 <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -76,17 +57,12 @@
                     </label>
                 </h4>
             </div>
-            <main class="product-list">
-                {{-- <div class="details-container">
-                    <div class="product-details">Product Details</div>
-                    <div class="price">Price</div>
-                    <div class="action">Actions</div>
-                </div> --}}
-                {{-- @php
-                    global $totalPrice;
-                @endphp --}}
+            <main class="product-list">              
                 <form id="form" action="/checkout">
                     @csrf
+                    @php
+                        $loopCount = 0;
+                    @endphp
                     @foreach ($items->cart as $item)
                         {{-- <p>{{ $item->productRelation->title }}</p> --}}
                         @if ($item->productRelation->status == 'Exchange' && $item->user_id == session('id') && $item->productRelation->unit == 'Added to Cart')
@@ -173,8 +149,15 @@
                             $totalPrice += floatVal($item->productRelation->price);
                         @endphp --}}
                         @endif
+                        @php
+                            $loopCount++;
+                        @endphp
                     @endforeach
                 </form>
+                @if ($loopCount == 0)
+                    <img class="img mt-3 mx-auto" src="../assets/broke-empty.png" alt="image" style="width: 15%">
+                    <h1 class="text-warning mt-2 text-center fw-bold">Cart is empty</h1>
+                @endif
             </main>
             <div class="footer fixed-bottom">
                 <div class="float-end">

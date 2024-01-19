@@ -77,7 +77,9 @@
                     href="/refund">Refund</a>
             </nav>
         </div>
-
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($orders as $order)
             @foreach ($order->item as $item)
                 @if ($item->order_status == 'Pending')
@@ -122,7 +124,8 @@
                                             details</small>
                                     </div>
                                     <div class="button-group">
-                                        <button type="button" id="decline-btn" class="btn btn-sm decline-button" data-bs-toggle="modal" onclick="declineItem({{ $item->id }})"
+                                        <button type="button" id="decline-btn" class="btn btn-sm decline-button"
+                                            data-bs-toggle="modal" onclick="declineItem({{ $item->id }})"
                                             data-bs-target="#staticBackdrop">Decline</button>
                                         <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                             data-bs-toggle="modal"
@@ -134,6 +137,9 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++;
+                    @endphp
                 @elseif ($item->order_status == 'paid')
                     <div class="order-cart d-print-none">
                         <div class="name-cart d-flex justify-content-between">
@@ -186,9 +192,18 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++;
+                    @endphp
                 @endif
             @endforeach
         @endforeach
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
+            </div>
+            <h1 class="text-warning mt-2 text-center fw-bold">No Orders</h1>
+        @endif
 
         <!-- Arrange Shipment Modal -->
         <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
@@ -377,7 +392,9 @@
                                             <div><span class="d-block fs-12">Order date</span><span
                                                     id="detail-order-date" class="font-weight-bold">12 March
                                                     2020</span></div>
-                                            <div><span class="d-block fs-12">Order number</span><span id="detail-order-number" class="font-weight-bold">OD44434324</span></div>
+                                            <div><span class="d-block fs-12">Order number</span><span
+                                                    id="detail-order-number"
+                                                    class="font-weight-bold">OD44434324</span></div>
                                             <div><span class="d-block fs-12">Payment method</span><span
                                                     id="detail-payment-method" class="font-weight-bold">Cash on
                                                     Delivery</span></div>
@@ -528,11 +545,11 @@
     var decline_btn = document.getElementById('decline-btn');
     var confirm_decline_btn = document.getElementById('confirm-redirection');
 
-    function declineItem(id) {        
+    function declineItem(id) {
         confirm_decline_btn.href = '/declineorder/' + id;
     }
     // decline_btn.addEventListener('click', () => {
-        // confirm_decline_btn.href = 
+    // confirm_decline_btn.href = 
     // });
 
     pickup.addEventListener('click', (event) => {
@@ -613,7 +630,7 @@
 
         }
     });
-    
+
     function arrangeShipment(book_id, item_id) {
         address_modal.innerHTML = '';
         id_book = book_id;
@@ -624,7 +641,7 @@
             .then(result => {
                 // console.log(result);
                 result.user.address_user.forEach(address => {
-                    if (address.id == parseInt(selected_adress)) {                        
+                    if (address.id == parseInt(selected_adress)) {
                         seller_name.value = address.name;
                         seller_contact_num.value = address.contact_number;
                         seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
@@ -744,7 +761,8 @@
                         selected_adress = address.id;
                         seller_name.value = address.name;
                         seller_contact_num.value = address.contact_number;
-                        seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
+                        seller_add.value = address.region + ', ' + address.street_building_house +
+                            ', ' +
                             address.brgy_village + ', ' + address.city_municipality;
 
                         pickup_name.textContent = address.name;
