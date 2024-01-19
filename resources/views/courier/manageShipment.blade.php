@@ -122,8 +122,8 @@
                         </div>
                         <div class="product-details-box">
                             <label for="product-details" class="form-label label-title">Shipping Details</label>
-                            <label for="order-date">Shipping: Pickup</label>
-                            <label for="pickup-date">Pickup Date: 12/29/2023</label>
+                            <label for="order-date">Shipping: {{ $item->shipping_status }}</label>
+                            <label for="pickup-date">Pickup Date: {{ $item->pickup_date }}</label>
                             <label
                                 for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
                         </div>

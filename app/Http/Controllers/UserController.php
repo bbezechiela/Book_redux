@@ -175,7 +175,7 @@ class UserController extends Controller
         if (session()->has('user')) {
 
             // $users = Users::where();
-            $user = Users::find(session('id'));
+            $user = Users::with('addressUser')->find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
             return view('users.bookRentingClub', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
@@ -200,14 +200,16 @@ class UserController extends Controller
         // return view('users.bookRentingClub');
     }
 
-    public function previewReviews()
+    public function previewReviews($id)
     {
         if (session()->has('user')) {
 
             // $users = Users::where();
-            $user = Users::find(session('id'));
+            $user = Users::with('books', 'reviews')->find($id);
             $post = Books::with('user.addressUser', 'cart')->get();
-            return view('users.previewReviews', ['post' => $post, 'user' => $user]);
+            $review = Reviews::with('item.order.user', 'item.book.user', 'user')->get();
+            
+            return view('users.previewReviews', ['post' => $post, 'user' => $user, 'rate' => $review]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }

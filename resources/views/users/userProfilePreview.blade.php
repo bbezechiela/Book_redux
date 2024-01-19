@@ -64,10 +64,15 @@
                             <div class="ms-3" style="margin-top: 130px;">
                                 @if ($user->type == 'Bookseller')
                                     <h5>{{ $user->business_name }}</h5>
+                                    <p>{{ $user->address }}</p>
                                 @else
                                     <h5>{{ $user->first_name . ' ' . $user->last_name }}</h5>
-                                @endif                                
-                                <p>Lives in Tacloban City</p>
+                                    @foreach ($user->addressUser as $address)
+                                        @if ($address->default_address = 'true')
+                                            <h5>{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region . ' ' . $address->postal_code }}</h5>
+                                        @endif
+                                    @endforeach
+                                @endif                                                                
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
@@ -106,10 +111,10 @@
                         <div class="p-4" style="background-color: #f8f9fa;">
                             <ul class="nav nav-underline">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="/userlistings">Listings</a>
+                                    <a class="nav-link active" aria-current="page" href="/userlistings/{{ $user->id }}">Listings</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link custom-nav-link" href="/userreviews">User Reviews and
+                                    <a class="nav-link custom-nav-link" href="/userreviews/{{ $user->id }}">User Reviews and
                                         Ratings</a>
                                 </li>
                             </ul>

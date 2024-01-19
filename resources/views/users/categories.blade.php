@@ -692,7 +692,6 @@
                 @endif
                 @endif
                 @endforeach
-
             </div>
         </div>
         <div id="fantasy_adventure" class="mx-5 px-5">
@@ -881,9 +880,108 @@
                 @endif
                 @endif
                 @endforeach
-
             </div>
         </div>
+        <div id="mystery_suspense" class="mx-5 px-5">
+            <h4 id="mystery-suspense-header">Mystery & Suspense</h4>
+            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
+                <!-- card Mystery & Suspense -->
+                @foreach ($book as $mystery_suspense)
+                @if (preg_match('/Mystery & Suspense/i', $mystery_suspense->genre))
+                @if ($mystery_suspense->status == 'Exchange' && $mystery_suspense->unit == 'Available')
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $mystery_suspense->book_photo) }}" class="img mx-auto p-2" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $mystery_suspense->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $mystery_suspense->author }}<br>
+                            {{ $mystery_suspense->genre }}</p>
+                        @foreach ($mystery_suspense->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-start align-items-center p-0">
+                            <span class="fw-bold p-0">For Exchange</span>
+                            {{-- <span class="fw-bold p-0">P100.00</span> --}}
+                            {{-- <div class="button-container"> --}}
+                            {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                            {{-- <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle add-button"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-cart-plus" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Cart</a>
+                                                    </li> --}}
+                            {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                            {{-- </ul>
+                                            </div>
+                                        </div> --}}
+                        </div>
+                    </div>
+                </div>
+                @elseif ($mystery_suspense->unit == 'Available')
+                <div class="card m-1 pb-4" style="width: 200px; flex: 0 0 auto; cursor: pointer;">
+                    <img src="{{ asset('images/books/' . $mystery_suspense->book_photo) }}" class="img mx-auto p-2" alt="..."
+                        width="130px" height="150px">
+                    <div class="card-body py-0">
+                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $mystery_suspense->title }}
+                        </p>
+                        <p class="card-text mt-0 mb-0">{{ $mystery_suspense->author }}<br>
+                            {{ $mystery_suspense->genre }}</p>
+                        @foreach ($mystery_suspense->user->addressUser as $address)
+                        @if ($address->default_address == 'true')
+                        <p class="card-text mt-0 mb-2 location-text" style="white-space: nowrap;"><i
+                                class="fa fa-map-marker"
+                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                        </p>
+                        @endif
+                        @endforeach
+                        <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                            <span class="fw-bold p-0">₱{{ $mystery_suspense->price }}</span>
+                            <div class="button-container">
+                                {{-- <button class="like-button"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"
+                                                    style="margin-right: 8px"></i></button> --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle add-button" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#"><i class="fa fa-cart-plus"
+                                                    aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
+                                        </li>
+                                        {{-- <li><a class="dropdown-item" href="#"><i
+                                                                class="fa fa-list-alt" aria-hidden="true"
+                                                                style="margin-right: 7px"></i>Add to Wishlist</a>
+                                                    </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endif
+                @endforeach
+            </div>
+        </div>
+
+
+
+
+
         <div id="crime_thriller" class="mx-5 px-5">
             <h4 id="crime-thriller-header">Crime & Thriller</h4>
             <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">

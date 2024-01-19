@@ -400,12 +400,16 @@
                             <img src="{{ asset('images/profile_photos/' . $user_id->profile_photo) }}"
                                 alt="seller image" class="circle-picture">
                             <div class="user-info">
-                                <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
+                                @if ($user_id->type == 'Bookseller')
+                                    <p>{{ $user_id->business_name }}</p>
+                                @else
+                                    <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
+                                @endif
                                 {{-- <p>2K followers . 400 following</p> --}}
                                 <button class="message-button" data-username="{{ $user_id->username }}"><i
                                         class="fa fa-envelope" aria-hidden="true"></i>Message</button>
-                                <a href="/userlistings/{{ $user_id->id }}"><button class="view-profile-button"><i class="fa fa-eye"
-                                            aria-hidden="true"></i>View
+                                <a href="/userlistings/{{ $user_id->id }}"><button class="view-profile-button"><i
+                                            class="fa fa-eye" aria-hidden="true"></i>View
                                         Profile</button></a>
                             </div>
                         </div>
@@ -413,7 +417,11 @@
                     <div class="col">
                         <div class="ratings">
                             {{-- <p>Username<span class="rate">{{ $user_id->username}}</span></p> --}}
-                            <p>Preferred genres:<span class="exchange">{{ $user_id->interest }}</span></p>
+                            @if ($user_id->type == 'Bookseller')
+                                {{-- <p>{{ $user_id->business_name }}</p> --}}
+                            @else
+                                <p>Preferred genres:<span class="exchange">{{ $user_id->interest }}</span></p>
+                            @endif                            
                             {{-- <p>Ratings <span class="rate">100</span></p>
                             <p>Books Bought <span class="bought">20</span></p>
                             <p>Books Lent <span class="lent">120</span></p> --}}

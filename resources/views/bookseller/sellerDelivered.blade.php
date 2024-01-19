@@ -82,7 +82,7 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span></p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p>
                                         <br>
                                         <p class="text-total">Total Payment:<span
                                                 class="product-total">₱{{ $order->price + 130 }}</span></p>
@@ -128,7 +128,7 @@
                                 <div class="right-section">
                                     <div class="book-price">
                                         <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.0</span>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
                                             <br>
                                         <p class="text-total">Total Payment:<span
                                                 class="product-total">₱{{ $order->price + 130 }}</span>
