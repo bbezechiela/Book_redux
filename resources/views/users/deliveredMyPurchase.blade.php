@@ -166,9 +166,9 @@
         @endforeach
         @if ($loopCount == 0)
             <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
-            <h1 class="text-warning mt-2 text-center fw-bold">No to delivered item</h1>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">Nothing received yet</h1>
         @endif
 
         <!-- Rate and Review Modal -->

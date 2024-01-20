@@ -17,7 +17,7 @@
     <div id="sidebarClub" class="sidebarClub p-2 min-vh-100 shadow">
         <x-sidebarClub />
     </div>
-    <div id="content" class="border content">
+    <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
