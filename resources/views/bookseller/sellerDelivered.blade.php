@@ -348,7 +348,20 @@
                 </form>
             </div>
         </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
 
+                <div id="toast-message" class="toast-body fw-bold text-success">
+                    {{ 'test' }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -358,6 +371,7 @@
 ])
 
 <script>
+    const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
     var first_img = document.getElementById('first-img');
     var second_img = document.getElementById('second-img');
     var third_img = document.getElementById('third-img');
@@ -649,6 +663,8 @@
                 // .then(response => response.json())
                 .then(response => {
                     console.log(response);
+                    document.getElementById('toast-message').textContent = response.response;
+                    message.show()
                     setTimeout(() => {
                         window.location.reload();
                     }, 800);
@@ -690,6 +706,8 @@
                 .then(response => response.json())
                 .then(response => {
                     console.log(response);
+                    document.getElementById('toast-message').textContent = response.response;
+                    message.show()
                     setTimeout(() => {
                         window.location.reload();
                     }, 800);

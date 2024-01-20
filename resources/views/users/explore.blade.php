@@ -827,13 +827,7 @@
                                     {{ $rent->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $rent->author }}<br>
                                     {{ $rent->genre }}</p>
-                                @foreach ($rent->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
-                                        </p>
-                                    @endif
-                                @endforeach
+                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ $rent->user->address }}</p>                                
                                 @if ($rent->cart->count() >= 0)
                                     @foreach ($rent->cart as $cart)
                                         @if ($cart->user_id == session('id') && $cart->product_id == $rent->id)
@@ -858,11 +852,7 @@
                                                             onclick="stopPropagation(event)"><i
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                        class="fa fa-list-alt" aria-hidden="true"
-                                        style="margin-right: 7px"></i>Add to
-                                    Wishlist</a></li> --}}
+                                                            Cart</a></li>                                                   
                                                 </ul>
                                             </div>
                                         </div>

@@ -155,8 +155,8 @@
                     @endforeach
                 </form>
                 @if ($loopCount == 0)
-                    <img class="img mt-3 mx-auto" src="../assets/broke-empty.png" alt="image" style="width: 15%">
-                    <h1 class="text-warning mt-2 text-center fw-bold">Cart is empty</h1>
+                    <img class="img mt-3 mx-auto" src="../assets/empty-cart-removebg-preview.png" alt="image" style="width: 25%">
+                    <h1 class="mt-2 text-center fw-bold">Your Cart is Currently Empty!</h1>
                 @endif
             </main>
             <div class="footer fixed-bottom">

@@ -1384,7 +1384,7 @@ class UserController extends Controller
 
         // return response()->json(['response' => $rate]);
         if ($rate) {
-            return response()->json(['response' => 'Successfully updated']);
+            return response()->json(['response' => 'Rating and Review was updated. Thank you for your feedback!']);
         } else {
             return response()->json(['response' => 'error']);
         }

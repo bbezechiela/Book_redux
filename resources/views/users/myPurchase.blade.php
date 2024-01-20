@@ -198,7 +198,7 @@
         @endforeach
         @if ($loopCount == 0)
             <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/broke-empty.png" alt="image" style="width: 15%">
+                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
             </div>
             <h1 class="text-warning mt-2 text-center fw-bold">No purchased item</h1>
         @endif

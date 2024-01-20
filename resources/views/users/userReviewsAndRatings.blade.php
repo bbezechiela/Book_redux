@@ -28,7 +28,7 @@
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </button> --}}
                 <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                        src="../assets/Book_Logo.png" alt="Logo"></a>                
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -135,6 +135,9 @@
                 </div>
             </div>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($book as $books)
             @foreach ($books->item as $items)
                 @foreach ($items->ratedItem as $review)
@@ -214,40 +217,19 @@
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $loopCount++;
+                        @endphp
                     @endif
                 @endforeach
             @endforeach
         @endforeach
-        {{-- <div class="container text-center customer-ratings">
-            <div class="row align-items-center">
-                <div class="d-flex align-items-center">
-                    <img src="../assets/nestine.png" alt="seller image" class="customer-picture">
-                    <div class="customer-ratings-info">
-                        <p>N******nnn</p>                        
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <p style="font-weight: bold;">Exchange</p>
-                        <p>22/07/2023 <span>11.03</span></p>
-                        <p>Condition: <span>10/10</span></p>
-                        <p>Accuracy of Description: <span>10/10</span></p>
-                        <p>Interaction: <span>10/10</span></p>
-                        <p>Nice book. Good job Exchanger!</p>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <img src="../assets/bubble_bath.png" alt="Image 1" class="d-inline square-picture">
-                                    <img src="../assets/bubble_bath.png" alt="Image 2" class="d-inline square-picture">
-                                    <img src="../assets/bubble_bath.png" alt="Image 3" class="d-inline square-picture">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
             </div>
-        </div> --}}
+            <h1 class="text-warning mt-2 text-center fw-bold">No User Reviews</h1>
+        @endif
     </div>
 
 </div>
