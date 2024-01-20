@@ -102,10 +102,6 @@
                         </div>
                     </div>
                     
-                    <!-- pag create book club para ha specific na admin -->
-                    <div id='demo'></div>
-                    <div> asd</div>
-
                     <div class="card mt-5 mb-3 card-post">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
@@ -388,36 +384,43 @@
                                 placeholder="Write something here..."></textarea>
                         </div>
                         <div class="image-container">
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
+                            <label id='first_img_holder' for="first_img" class="imageLabels image-holder">
+                                +
+                                <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                            </label>
+                            <input id='first_img' type='file'></input>
+                            <label id='second_img_holder' for="second_img" class="imageLabels image-holder">
+                                +
+                            </label>
+                            <input id='second_img' type='file'></input>
+                            <label id='third_img_holder' for="third_img" class='imageLabels image-holder'>
+                                +
+                            </label>
+                            <input id='third_img' type='file'></input>
+                            <label id='fourth_img_holder' for="fourth_img" class='imageLabels image-holder'>
+                                +
+                            </label>
+                            <input id='fourth_img' type='file'></input>
+                            <label id='fifth_img_holder' for="fifth_img" class="imageLabels image-holder">
+                                +
+                            </label>
+                            <input id='fifth_img' type='file'></input>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn post-btn">Post</button>
+                        <button id='create-post' type="button" class="btn post-btn">Post</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script> 
+    <script>
+        const current_bookClub_name = "Book Selling Club";
         const current_user_id = "{{ session('id'); }}";
         const csrf_token = "{{ csrf_token(); }}";
     </script>
 
-    <script src="{{ asset('js/book_selling_club.js'); }}"></script>
+    <script src="{{ asset('js/book_club_posts.js'); }}"></script>
 
 </div>
 @include('partials.__footer', [

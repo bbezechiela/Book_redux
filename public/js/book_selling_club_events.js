@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (files.length > 0) {
             file = files[0];
+            console.log(URL.createObjectURL(file));
             document.getElementById('image-preview').src = URL.createObjectURL(file);
         } else {
             console.log('files waray sulod');
@@ -71,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (adder.ok) {
             console.log('adder okay');
         }
-
         const response = await adder.json();
             
         if (response.data) {

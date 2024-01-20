@@ -407,7 +407,11 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/book_exchange_club.js') }}"></script>
+    <script>
+        const current_club_name = "Book Exchange Club";        
+    </script>
+
+    <script src="{{ asset('js/book_club_posts.js') }}"></script>
 </div>
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
