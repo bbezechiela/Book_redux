@@ -108,6 +108,27 @@ class BookClubController extends Controller
         }
     }
 
+    // get posts
+    function getPosts(Request $request) {
+        $current_bookclub_name = $request->query('currentBookClubName');
+
+        $club_finder = BookClub::where('book_club_name', '=', $current_bookclub_name)->first();
+
+        if ($club_finder->count() > 0) {
+            $club_id = $club_finder->book_club_id;
+
+            $club_posts_getter = BookClub_Posts::where('club_id', '=', $club_id)->get();
+
+            if ($club_posts_getter->count() > 0) {
+                return response()->json(['data' => $club_posts_getter]);
+            } else {
+                return response()->json(['error' => 'Cant find any post']);
+            }
+        } else {
+            return response()->json(['error' => 'Cant find book club']);
+        }
+    }
+
     // create event
     function createEvent(Request $request) {
         try {

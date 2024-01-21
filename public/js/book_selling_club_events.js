@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await getter.json();
 
                 if (response.data) {
-                    event_poser.textContent = `Posted by ${response.data[0].first_name}`;
+                    event_poser.textContent = `Posted by ${response.data[0].username}`;
                     event_poser.classList.add('event_poser');
                     console.log(response.data);
                 } else {

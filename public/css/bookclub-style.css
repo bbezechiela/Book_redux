@@ -453,3 +453,52 @@
     margin-right: 10px;
     margin-bottom: 1rem;
 }
+
+.postHeader {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding-left: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.postBody {
+    height: 200px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.postFooter{
+    height: 70px;
+    width: 100%;
+}
+
+.postInnerContainer {
+    height: auto;
+    width: 900px;
+    margin-bottom: 12px;  
+    box-shadow: 0 0 5px grey;
+    border-radius: 5px;
+}
+
+/* user profile container in post card */
+.userProfileCtn {
+    height: 70px;
+    width: 70px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+/* name and date container ha post header */
+.nameAndDateContainer {
+    height: 70px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

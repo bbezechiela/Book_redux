@@ -119,4 +119,100 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // get posts
+    async function getPosts() {
+        const getter = await fetch(`/getPosts?currentBookClubName=${current_bookClub_name}`, {
+            method: 'GET',
+        });
+        const response = await getter.json();
+
+        if (response.data) {
+            console.log(response.data);
+            showPosts(response.data);
+        } else {
+            console.log(response.error);
+        }
+    }
+    getPosts();
+
+    // show posts
+    const postOuterContainer_styles = `
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        border: 1px solid red;
+    `;
+
+    const postOuterContainer = document.getElementById('postOuterContainer');
+    postOuterContainer.style.cssText = postOuterContainer_styles;
+
+    async function showPosts(responses) {
+        responses.forEach(response => {
+            
+            const postInnerContainer = document.createElement('div');
+            postInnerContainer.classList.add('postInnerContainer');
+
+            // header
+            const postHeader = document.createElement('div');
+            postHeader.classList.add('postHeader');
+
+            // poster user info
+            const userProfileCtn = document.createElement('div');
+            userProfileCtn.classList.add('userProfileCtn');
+
+            // poster name and date
+            const userNameCtn = document.createElement('div');
+            const postDate = document.createElement('div');
+            const dateHolder = response.created_at.match(/(\d{4})-(\d{2})-(\d{2})/);
+            const newDateFormat = dateHolder[0].replace(/(\d{4})-(\d{2})-(\d{2})/, '$2-$3-$1');
+            postDate.textContent = newDateFormat;
+            
+            // user getter
+            const userId = response.user_id;
+            (async function getUser() {
+                const getter = await fetch(`/getUser?userId=${userId}`, {
+                    method: 'GET',
+                });
+                const response = await getter.json();
+
+                if (response.data) {
+                    userNameCtn.textContent = `${response.data[0].first_name} ${response.data[0].last_name}`;
+                    console.log(response.data);
+
+                    // get poser profile photo
+                    const imgLocation = window.location.origin + '/images/profile_photos/' + response.data[0].profile_photo;
+
+                    userProfileCtn.style.backgroundImage = `url(${imgLocation})`;
+                } else {
+                    console.log(response.error);
+                }
+            })();
+
+            // container for username tas post date
+            const nameAndDateContainer = document.createElement('div');
+            nameAndDateContainer.appendChild(userNameCtn);
+            nameAndDateContainer.appendChild(postDate);
+            nameAndDateContainer.classList.add('nameAndDateContainer'); 
+
+            postHeader.appendChild(userProfileCtn);
+            postHeader.appendChild(nameAndDateContainer);
+
+            // body
+            const postBody = document.createElement('div');
+            postBody.textContent = response.caption;
+            postBody.classList.add('postBody');
+
+            // footer
+            const postFooter = document.createElement('div');
+            postFooter.textContent = 'footer';
+            postFooter.classList.add('postFooter');
+
+            postInnerContainer.appendChild(postHeader);
+            postInnerContainer.appendChild(postBody);
+            postInnerContainer.appendChild(postFooter);
+
+            postOuterContainer.appendChild(postInnerContainer);
+        });
+    }
 });
