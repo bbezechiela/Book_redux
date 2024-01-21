@@ -5,8 +5,8 @@
 
     <div class="d-flex flex-column ms-2 text-white">
         {{-- <span class="fw-bold">{{ session('fullname') }}</span> --}}
-        <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>
-        <span class="fw-regular">{{ session('username') }}</span>
+        <span class="fw-bold">{{ session('owner_name')  }}</span>
+        <span class="fw-regular">{{ session('user') }}</span>
     </div>
 </div>
 

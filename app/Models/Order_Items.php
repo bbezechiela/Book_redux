@@ -34,6 +34,7 @@ class Order_Items extends Model
         'bar_code',
         'order_status',
         'shipping_status',
+        'shipping_fee',
         'pickup_address_id',
         'pickup_date'
     ];

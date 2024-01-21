@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('bar_code')->nullable();
             $table->string('order_status');
             $table->string('shipping_status')->nullable();
+            $table->string('shipping_fee')->nullable();
             $table->unsignedBigInteger('pickup_address_id')->nullable();
             $table->foreign('pickup_address_id')->references('id')->on('address');
             $table->string('pickup_date')->nullable();

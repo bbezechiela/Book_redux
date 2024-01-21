@@ -126,7 +126,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd">
+                            @foreach ($tracks as $track)
+                                <tr class="odd">
+                                    <td class="control" tabindex="0" style=""></td>
+                                    <td class="status-text">
+                                        {{ $track->status }}
+                                    </td>
+                                    <td>{{ $track->end_date }}</td>
+                                    <td>{{ $track->start_date }}</td>
+                                    <td>{{ $track->book->title }}</td>
+                                    <td>₱{{ $track->book->price }}</td>
+                                    <td>₱{{ $track->book->security_deposit }}</td>
+                                    <td>{{ $track->book->rental_duration }} Day(s)</td>
+                                    <td>{{ $track->book->user->first_name . ' ' . $track->book->user->last_name }}</td>
+                                    <td>{{ $track->user->phone_number }}</td>
+                                    <td>{{ $track->user->email }}</td>
+                                    <td>
+                                        <div class="d-inline-block"><a href="javascript:;"
+                                                class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                            <ul class="dropdown-menu dropdown-menu-end m-0" style="">
+                                                <li><a href="javascript:;" class="dropdown-item">Returned</a>
+                                                </li>
+                                                <li><a href="javascript:;" class="dropdown-item">Notify User</a>
+                                                </li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a href="javascript:;"
+                                                        class="dropdown-item text-danger delete-record">Overdue</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            {{-- <tr class="odd">
                                 <td class="control" tabindex="0" style=""></td>
                                 <td class="status-text">
                                     Returned
@@ -150,8 +183,8 @@
                                         </ul>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr class="even">
+                            </tr> --}}
+                            {{-- <tr class="even">
                                 <td class="control" tabindex="0" style=""></td>
                                 <td class="status-text">
                                     Overdue
@@ -300,7 +333,7 @@
                                         </ul>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>

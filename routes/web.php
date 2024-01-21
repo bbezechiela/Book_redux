@@ -292,6 +292,8 @@ Route::delete('/deleteConversationSearchBased', [MessageController::class, 'dele
 
 
 // seller
+Route::post('/updateCourier', [UserController::class, 'courierUpdate']);
+
 Route::post('/registerseller', [SellerController::class, 'store']);
 
 Route::get('/sellerboard', [SellerController::class, 'sellerDashboard']);
