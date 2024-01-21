@@ -201,7 +201,7 @@
                     <div class="container mt-5 mb-5">
                         <div class="d-flex justify-content-center row">
                             <div class="col-md-10">
-                                <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg"
                                         width="120">
                                     <hr>
                                     <div

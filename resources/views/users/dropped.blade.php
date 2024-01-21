@@ -72,8 +72,8 @@
                     href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
                     href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/refund">Refund</a> --}}
             </nav>
         </div>
         @php

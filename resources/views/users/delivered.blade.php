@@ -71,8 +71,8 @@
                     href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/refund">Refund</a> --}}
             </nav>
         </div>
 

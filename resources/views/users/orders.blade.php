@@ -73,8 +73,8 @@
                     href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/refund">Refund</a> --}}
             </nav>
         </div>
         @php
@@ -382,7 +382,7 @@
                         <div class="container mt-5 mb-5">
                             <div class="d-flex justify-content-center row">
                                 <div class="col-md-10">
-                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg"
                                             width="120">
                                         {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
                                         {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
