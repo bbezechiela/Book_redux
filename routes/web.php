@@ -335,6 +335,11 @@ Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter'
 
 Route::get('/getEvents', [BookClubController::class, 'getEvents']);
 
+// discussion tab, post
+Route::post('/createPost', [BookClubController::class, 'createPost']);
+
+Route::get('/getPosts', [BookClubController::class, 'getPosts']);
+
 // getUser para ha events na section para ig display hinu nag post
 Route::get('/getUser', [BookClubController::class, 'getUser']);
 

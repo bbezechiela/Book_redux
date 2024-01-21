@@ -80,7 +80,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8" style='border: 1px solid green;'>
                     <div class="card mb-3 card-cover">
                         <div class="card-header selling-header">
                             <div class="d-flex align-items-center justify-content-between">
@@ -114,6 +114,7 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
                     <!-- pag create book club para ha specific na admin -->
                     <div id='demo'></div>
@@ -295,6 +296,55 @@
                             </div>
                         </div>
                     </div>
+=======
+                    
+                    <div class="card mt-5 mb-3 card-post" style='border: 1px solid red;'>
+                        <div class="card-header">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center card-dets">
+                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
+                                        width="50" height="50">
+                                    <div>
+                                        <p class="mb-0">John Doe Buena</p>
+                                        <small class="text-muted">12/29/2022 10:11</small>
+                                    </div>
+                                </div>
+                                <div class="dropdown" style='border: 1px solid blue;'>
+                                    <button class="btn btn-link" type="button" id="postOptions"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
+                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
+                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
+                                Thanks</p>
+                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
+                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
+                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
+                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
+                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
+                                            aria-hidden="true"></i>Like</button>
+                                    <button class="btn btn-link"><i class="fa fa-comment-o"
+                                            aria-hidden="true"></i>Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- post outer container, ma hold ini hiya hin post inner container -->
+                    <div id="postOuterContainer"></div>
+>>>>>>> chammydady
                 </div>
 
                 <!-- For Sale Card -->
@@ -337,6 +387,7 @@
                                 placeholder="Write something here..."></textarea>
                         </div>
                         <div class="image-container">
+<<<<<<< HEAD
                             <div class="image-holder">
                                 <input id="first-img" type="file" accept="image/*" class="d-none">
                                 <label for="first-img"><i id="first-plus" class="fa fa-plus" aria-hidden="true"
@@ -362,21 +413,48 @@
                                 <label for="fifth-img"><i id="five-plus" class="fa fa-plus" aria-hidden="true"
                                         style="cursor: pointer;"><img src="" id="five-image" alt=""></i></label>
                             </div>
+=======
+                            <label id='first_img_holder' for="first_img" class="imageLabels image-holder">
+                                +
+                                <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                            </label>
+                            <input id='first_img' type='file'></input>
+                            <label id='second_img_holder' for="second_img" class="imageLabels image-holder">
+                                +
+                            </label>
+                            <input id='second_img' type='file'></input>
+                            <label id='third_img_holder' for="third_img" class='imageLabels image-holder'>
+                                +
+                            </label>
+                            <input id='third_img' type='file'></input>
+                            <label id='fourth_img_holder' for="fourth_img" class='imageLabels image-holder'>
+                                +
+                            </label>
+                            <input id='fourth_img' type='file'></input>
+                            <label id='fifth_img_holder' for="fifth_img" class="imageLabels image-holder">
+                                +
+                            </label>
+                            <input id='fifth_img' type='file'></input>
+>>>>>>> chammydady
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn post-btn">Post</button>
+                        <button id='create-post' type="button" class="btn post-btn">Post</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
+<<<<<<< HEAD
+=======
+        const current_bookClub_name = "Book Selling Club";
+>>>>>>> chammydady
         const current_user_id = "{{ session('id'); }}";
         const csrf_token = "{{ csrf_token(); }}";
     </script>
 
-    <script src="{{ asset('js/book_selling_club.js'); }}"></script>
+    <script src="{{ asset('js/book_club_posts.js'); }}"></script>
 
 </div>
 <!-- Report Modal -->

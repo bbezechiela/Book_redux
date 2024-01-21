@@ -366,7 +366,11 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/book_exchange_club.js') }}"></script>
+    <script>
+        const current_club_name = "Book Exchange Club";        
+    </script>
+
+    <script src="{{ asset('js/book_club_posts.js') }}"></script>
 </div>
 <!-- Report Modal -->
 <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
