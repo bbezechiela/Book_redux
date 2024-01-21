@@ -73,8 +73,8 @@
                     href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/refund">Refund</a> --}}
             </nav>
         </div>
         @php
@@ -200,9 +200,9 @@
         @endforeach
         @if ($loopCount == 0)
             <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
-            <h1 class="mt-3 text-center fw-bold" style="color: #003060">No orders at the moment</h1>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No new orders today</h1>
         @endif
 
         <!-- Arrange Shipment Modal -->
@@ -382,7 +382,7 @@
                         <div class="container mt-5 mb-5">
                             <div class="d-flex justify-content-center row">
                                 <div class="col-md-10">
-                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg"
                                             width="120">
                                         {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
                                         {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}

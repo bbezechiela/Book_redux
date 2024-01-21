@@ -72,8 +72,8 @@
                     href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
                     href="/dropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/refund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/refund">Refund</a> --}}
             </nav>
         </div>
         @php
@@ -126,9 +126,9 @@
         @endforeach
         @if ($loopCount == 0)
             <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
-            <h1 class="text-warning mt-2 text-center fw-bold">No dropped orders</h1>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No order cancellations</h1>
         @endif
         {{-- <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">

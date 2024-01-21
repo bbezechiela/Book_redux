@@ -673,7 +673,7 @@ class UserController extends Controller
         $userExist = Users::where('username', $validated["username"])->first();
 
         if ($userExist) {
-            return view('users.signup', ['message' => 'Username already exist']);
+            return view('users.signup', ['message' => 'already exist']);
         } else {
             $user = Users::create($validated);
 
@@ -1240,7 +1240,7 @@ class UserController extends Controller
         $checkuser = Users::where('username', $user)->first();
 
         if ($checkuser) {
-            return response()->json(['message' => 'Username already exists. Please choose a different username.']);
+            return response()->json(['message' => 'already exists. Please choose a different username.']);
         } else {
             return response()->json(['message' => 'not exist']);
         }

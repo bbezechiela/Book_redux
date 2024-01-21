@@ -84,8 +84,8 @@
                         href="/delivered-mypurchase">Delivered</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/dropped-mypurchase">Dropped</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/refund-mypurchase">Refund</a>
+                    {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/refund-mypurchase">Refund</a> --}}
                 </nav>
             </div>
         </div>
@@ -198,9 +198,9 @@
         @endforeach
         @if ($loopCount == 0)
             <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
-            <h1 class="text-warning mt-2 text-center fw-bold">No purchased item</h1>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">You haven't placed any orders yet</h1>
         @endif
     </div>
     {{-- alert modal --}}

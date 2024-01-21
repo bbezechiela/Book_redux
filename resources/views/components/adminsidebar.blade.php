@@ -59,12 +59,12 @@
         <i class="fa fa-star-half-o d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Manage Reviews and Rating</span>
     </a> --}}
-    <a href="/managerefund"
+    {{-- <a href="/managerefund"
         class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if (Request::is('managerefund*')) active @endif"
         data-blade="manageRefund" style="white-space: nowrap">
         <i class="fa fa-retweet d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage Return/Refund</span>
-    </a>
+    </a> --}}
     {{-- <a href="/manageresources" class="btn nav-item d-flex flex-row w-100 px-5 py-0" style="white-space: nowrap">
         <i class="fa fa-sticky-note d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Manage Educational Resources</span>
