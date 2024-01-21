@@ -383,7 +383,7 @@ h1, h2 {
     line-height: 0;
     text-align: center;
     bottom: 1px;
-    right: 27px;
+    right: -3px;
     margin: 0;
     border: 1px solid #003060;
 }

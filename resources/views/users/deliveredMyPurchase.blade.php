@@ -25,11 +25,23 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -67,10 +79,10 @@
                             <div>
                                 @if ($item->book->user->type == 'Bookseller')
                                     <a class="seller-name"
-                                        href="/userlistings"><span>{{ $item->book->user->business_name }}</span></a>
+                                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->business_name }}</span></a>
                                 @else
                                     <a class="seller-name"
-                                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                                 @endif
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>

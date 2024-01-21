@@ -85,7 +85,7 @@
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
-                                <a class="seller-name" href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <a class="seller-name" href="/userlistings/{{ $order->user_id }}"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">Dropped</span>
                         </div>

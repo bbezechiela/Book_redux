@@ -51,8 +51,8 @@
                     href="/sellerdelivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
                     href="/sellerdropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/sellerrefund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/sellerrefund">Refund</a> --}}
             </nav>
         </div>
         <div class="order-cart">
