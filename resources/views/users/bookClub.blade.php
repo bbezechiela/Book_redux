@@ -68,180 +68,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <h5 class="mb-0">Book Exchange Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club? Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <h5 class="mb-0">Book Selling Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club? Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <h5 class="mb-0">Book Renting Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club? Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <h5 class="mb-0">Book Exchange Club</h5>
-                                        <p class="mb-0">John Doe Buena<small class="text-muted" style="margin-left: 10px;">12/29/2022 10:11</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club? Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+                <!-- display posts -->
+                    <div id="postOuterContainer"></div>
+
+                </div>
                 <!-- Daily Discover Card -->
                 <div class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
@@ -336,6 +167,11 @@
             </div>
         </div>
     </div>
+    <script>
+        // current user id for like and comment usage
+        const current_user_id = "{{ session('id'); }}"
+        const csrf_token = "{{ csrf_token(); }}";
+    </script>
     <script src="{{ asset('js/book_club_mywall.js') }}"></script>
 </div>
 @include('partials.__footer', [

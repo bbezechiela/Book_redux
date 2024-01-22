@@ -1,5 +1,8 @@
 // lets gow
 document.addEventListener('DOMContentLoaded', () => {
+    // current post time
+    let lastPostTimestamp = '1990-12-12 12:12:12';
+
     console.log(window.innerHeight);
     console.log(window.innerWidth);
     
@@ -92,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // hide modal function
+    function hideModal() {
+        const modalContainer = document.getElementById('createPostModal');
+        modalContainer.classList.add('hideModal');
+    }
+
     async function createPost() {
         // post element
         const captionText = document.getElementById('exampleTextarea').value;
@@ -117,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.data) {
             console.log(response.data);
+            hideModal();
         } else {
             console.log(response.error);
         }
@@ -134,13 +144,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // get posts
     async function getPosts() {
-        const getter = await fetch(`/getPosts?currentBookClubName=${current_bookClub_name}`, {
+        const getter = await fetch(`/getPosts?currentBookClubName=${current_bookClub_name}&currentPostTimestamp=${lastPostTimestamp}`, {
             method: 'GET',
         });
         const response = await getter.json();
 
         if (response.data) {
             console.log(response.data);
+            lastPostTimestamp = response.data[response.data.length - 1].created_at;
+
             const shuffledEvents = shuffleEvents(response.data);
 
             showPosts(shuffledEvents);
@@ -148,7 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(response.error);
         }
     }
-    getPosts();
+    // getPosts();
+    setInterval(getPosts, 1200);
 
     // show posts
     const postOuterContainer_styles = `
@@ -249,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(response.error);
                 }
             })();
+            userNameCtn.style.color = '#003060';
 
             // container for username tas post date
             const nameAndDateContainer = document.createElement('div');

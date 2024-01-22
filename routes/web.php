@@ -231,6 +231,12 @@ Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter'
 
 Route::get('/getEvents', [BookClubController::class, 'getEvents']);
 
+// get all post para ha my wall
+Route::get('/getAllPosts', [BookClubController::class, 'getAllPosts']);
+
+// get club para ha pots my wall
+Route::get('/getClub', [BookClubController::class, 'getClub']);
+
 // discussion tab, post
 Route::post('/createPost', [BookClubController::class, 'createPost']);
 
