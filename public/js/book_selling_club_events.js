@@ -104,10 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(response.data);
 
             const shuffledEvents = shuffleEvents(response.data);
-            console.log(shuffledEvents);
 
             showEvents(shuffledEvents);
-
         } else {
             console.log(response.error);
         }

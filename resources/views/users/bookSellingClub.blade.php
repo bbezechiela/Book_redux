@@ -68,7 +68,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8" style='border: 1px solid green;'>
+                <div class="col-lg-8">
                     <div class="card mb-3 card-cover">
                         <div class="card-header selling-header">
                             <div class="d-flex align-items-center justify-content-between">
@@ -102,7 +102,8 @@
                         </div>
                     </div>
                     
-                    <div class="card mt-5 mb-3 card-post">
+                    <!-- post card example -->
+                    <!-- <div class="card mt-5 mb-3 card-post">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center card-dets">
@@ -144,7 +145,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- post outer container, ma hold ini hiya hin post inner container -->
                     <div id="postOuterContainer"></div>
