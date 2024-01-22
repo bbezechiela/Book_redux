@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     
-                    <div class="card mt-5 mb-3 card-post" style='border: 1px solid red;'>
+                    <div class="card mt-5 mb-3 card-post">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center card-dets">

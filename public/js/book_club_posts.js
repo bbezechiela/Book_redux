@@ -141,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         justify-content: center;
         align-items: flex-end;
         flex-direction: column;
-        border: 1px solid red;
     `;
 
     const postOuterContainer = document.getElementById('postOuterContainer');
@@ -200,8 +199,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // body
             const postBody = document.createElement('div');
-            postBody.textContent = response.caption;
             postBody.classList.add('postBody');
+
+            // post caption
+            const postCaption = document.createElement('div');
+            postCaption.classList.add('postCaption');
+            postCaption.textContent = response.caption;
+
+            // post images
+            const postImgContainer = document.createElement('div');
+            postImgContainer.classList.add('postImgContainer');
+
+            // getting five images
+            const firstImgCtn = document.createElement('div');
+            firstImgCtn.classList.add('postImages');
+            firstImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.first_img})`;
+            const secondImgCtn = document.createElement('div');
+            secondImgCtn.classList.add('postImages');
+            secondImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.second_img})`;
+
+            const thirdImgCtn = document.createElement('div');
+            thirdImgCtn.classList.add('postImages');
+            thirdImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.third_img})`;
+
+            const fourthImgCtn = document.createElement('div');
+            fourthImgCtn.classList.add('postImages');
+            fourthImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.fourth_img})`;
+            
+            const fifthImgCtn = document.createElement('div');
+            fifthImgCtn.classList.add('postImages');
+            fifthImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.fifth_img})`;
+
+            postImgContainer.appendChild(firstImgCtn);
+            postImgContainer.appendChild(secondImgCtn);
+            postImgContainer.appendChild(thirdImgCtn);
+            postImgContainer.appendChild(fourthImgCtn);
+            postImgContainer.appendChild(fifthImgCtn);
+
+            postBody.appendChild(postCaption);
+            postBody.appendChild(postImgContainer);
 
             // footer
             const postFooter = document.createElement('div');

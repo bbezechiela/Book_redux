@@ -465,9 +465,17 @@
 }
 
 .postBody {
-    height: 200px;
+    height: auto;
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* post caption */
+.postCaption {
+    height: auto;
+    width: inherit;
+    padding-left: 15px;
+    margin-top: 15px;
 }
 
 .postFooter{
@@ -478,7 +486,7 @@
 .postInnerContainer {
     height: auto;
     width: 900px;
-    margin-bottom: 12px;  
+    margin-bottom: 15px;  
     box-shadow: 0 0 5px grey;
     border-radius: 5px;
 }
@@ -501,4 +509,23 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+/* got post images */
+.postImgContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+    padding-left: 15px;
+    margin: 15px 0 15px 0;
+}
+
+.postImages {
+    height: 120px;
+    width: 120px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
