@@ -25,11 +25,23 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -51,19 +63,27 @@
                         aria-current="page" href="/delivered-mypurchase">Delivered</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/dropped-mypurchase">Dropped</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/refund-mypurchase">Refund</a>
+                    {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/refund-mypurchase">Refund</a> --}}
                 </nav>
             </div>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($orders as $order)
             @foreach ($order->items as $item)
                 @if ($item->order_status == 'received')
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
-                                <a class="seller-name"
-                                    href="#"><span>{{ $order->user->first_name . ' ' . $order->user->last_name }}</span></a>
+                                @if ($item->book->user->type == 'Bookseller')
+                                    <a class="seller-name"
+                                        href="/userlistings"><span>{{ $item->book->user->business_name }}</span></a>
+                                @else
+                                    <a class="seller-name"
+                                        href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                @endif
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
@@ -74,14 +94,16 @@
                                         width="80px" height="110px">
                                     <div class="book-info">
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $order->payment_method }}</p>
+                                        <p class="mb-0 fw-bold interaction-type" id="interaction-type">
+                                            {{ $item->book->status }}</p>
+                                        <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
+                                        <p>#{{ $order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
                                     <div class="book-price">
-                                        <p class="product-price">{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130.00</span>
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
                                         </p> <br>
                                         <p class="text-total fw-bold">Total Payment:<span
                                                 class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
@@ -90,15 +112,46 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    {{-- {{$item->ratedItem->count()}} --}}
-                                    {{-- @foreach ($item->ratedItem as $review) --}}
-                                    @if ($item->ratedItem->count() > 0)
-                                        @foreach ($item->ratedItem as $review)
-                                            <button type="button" class="post-btn-delivered" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit Rating and Review</button>
-                                        @endforeach                                        
+                                    @php
+                                        $loopFlag = false;
+                                        $rate_id = 0;
+
+                                        if ($item->ratedItem->count() > 0) {
+                                            foreach ($item->ratedItem as $review) {
+                                                if ($review->item_id == $item->id && $review->user_id == session('id') && $loopFlag == false) {
+                                                    $loopFlag = true;
+                                                    $rate_id = $review->id;
+                                                }
+                                            }
+                                        }
+                                    @endphp
+                                    @if ($loopFlag)
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                                            Rating and Review</button>
                                     @else
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal" data-bs-target="#rate-review" onclick="ratingReview({{ $item->book->user->id }}, '{{ $order->status }}', {{ $item->id }})">Post Rating and Review</button>
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
+                                            Rating and Review</button>
                                     @endif
+                                    {{-- @if ($item->ratedItem->count() > 0)
+                                        @foreach ($item->ratedItem as $review)
+                                            @if ($review->item_id == $item->id && $review->user_id == session('id'))
+                                                <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                                    data-bs-target="#rate-review"
+                                                    onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                                                    Rating and Review</button>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
+                                            Rating and Review</button>
+                                    @endif --}}
+
                                     {{-- @endforeach --}}
                                     {{-- @if (isset($item->ratedItem))
                                         <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
@@ -112,14 +165,25 @@
 
                                 </div>
                                 <div class="button-group">
-                                    <button type="button" class="btn btn-sm contact-button">Contact Seller</button>
+                                    <a href="/messages" type="button" class="btn btn-sm contact-button">Contact
+                                        Seller</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++;
+                    @endphp
                 @endif
             @endforeach
         @endforeach
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
+            </div>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">Nothing received yet</h1>
+        @endif
+
         <!-- Rate and Review Modal -->
         <div class="modal fade" id="rate-review" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -128,7 +192,8 @@
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review
                             Seller</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" id="close-btn" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -138,8 +203,20 @@
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Nestine Nicole Navarro</p>
-                                        <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
-                                            Type</span>
+                                        <div class="rate">
+                                            <i id="one-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="two-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="three-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="four-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                            <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                        {{-- <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
+                                            Type</span> --}}
                                         {{-- <div class="dropdown interaction-drpdwn">
                                             <button class="btn dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -155,7 +232,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 d-flex m-0 justify-content-end">
+                            {{-- <div class="col-4 d-flex m-0 justify-content-end">
                                 <div class="rate">
                                     <i id="one-star" class="fa fa-star-o" style="cursor: pointer;"
                                         aria-hidden="true"></i>
@@ -168,12 +245,12 @@
                                     <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
                                         aria-hidden="true"></i>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="review-details">
                                 <span id="item-id" hidden></span>
                                 <p>Accuracy of Condition:
                                     {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-accuracy">
+                                    <select class="btn" name="" id="condition-accuracy" required>
                                         {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
@@ -189,7 +266,7 @@
                                 </p>
                                 <p>Accuracy of Description:
                                     {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-description">
+                                    <select class="btn" name="" id="condition-description" required>
                                         {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
@@ -205,7 +282,7 @@
                                 </p>
                                 <p>Interaction:
                                     {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="interaction">
+                                    <select class="btn" name="" id="interaction" required>
                                         {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
@@ -221,40 +298,41 @@
                                 </p>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..."></textarea>
+                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..." required></textarea>
                                 </div>
                                 </p>
                                 <p>Photo:
                                 <div class="image-container">
                                     <div class="image-holder">
-                                        <input id="first-img" type="file" accept="image/*" class="d-none">
+                                        <input id="first-img" type="file" accept="image/*" class="d-none"
+                                            required>
                                         <label for="first-img"><i id="first-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="one-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="one-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="second-img" type="file" accept="image/*" class="d-none">
                                         <label for="second-img"><i id="second-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="two-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="two-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="third-img" type="file" accept="image/*" class="d-none">
                                         <label for="third-img"><i id="three-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="three-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="three-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="fourth-img" type="file" accept="image/*" class="d-none">
                                         <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="four-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="four-image" alt=""></i></label>
                                     </div>
                                     <div class="image-holder">
                                         <input id="fifth-img" type="file" accept="image/*" class="d-none">
                                         <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
                                                 aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="five-image" class="fa fa-plus" alt=""></i></label>
+                                                    id="five-image" alt=""></i></label>
                                     </div>
                                 </div>
                                 </p>
@@ -276,6 +354,20 @@
                 </div>
             </div>
         </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div id="toast-message" class="toast-body fw-bold text-success">
+                    {{ 'test' }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -285,6 +377,8 @@
 ])
 
 <script>
+    const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
+
     var rate_val = 0;
 
     var one_S = document.getElementById('one-star');
@@ -305,6 +399,8 @@
     var interaction = document.getElementById('interaction');
     var description = document.getElementById('description');
     var check_username = document.getElementById('user-switch');
+
+    var close_btn = document.getElementById('close-btn');
 
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
@@ -372,7 +468,7 @@
     });
 
     function ratingReview(user_id, type, item_id) {
-
+        submit_btn.disabled = false;
         first_img.value = '';
         second_img.value = '';
         third_img.value = '';
@@ -412,23 +508,31 @@
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
-                document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
-                document.getElementById('username').textContent = data.username;
+                if (data.type == 'Bookseller') {
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.business_name;
+                    // document.getElementById('username').textContent = data.owner_name;
+                } else {
+                    document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                    document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
+                    document.getElementById('username').textContent = data.username;
+                }
+
                 document.getElementById('interaction-type').textContent = type;
                 document.getElementById('item-id').textContent = item_id;
             })
-            .catch(error => console.log(error));
+            .catch(error => console.error(error));
 
         submit_btn.id = 'submit-btn';
         document.getElementById('submit-btn').textContent = 'Submit';
 
-        document.getElementById('submit-btn').addEventListener('click', () => {
-            submit();
-        });
+        document.getElementById('submit-btn').addEventListener('click', submitBtn);
     }
 
+    var id_edit_btn = 0;
+
     function editRating(id, item_id) {
+        submit_btn.disabled = false;
         var review_id = 0;
 
         const request = {
@@ -438,15 +542,18 @@
         fetch('/getrating/' + id, request)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 review_id = data.id;
                 star(parseInt(data.rate_value));
                 rate_val = data.rate_value;
                 document.getElementById('user_img').src = 'images/profile_photos/' + data.item.book.user
                     .profile_photo;
-                document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data
-                    .item
-                    .book.user.last_name;
+                if (data.item.book.user.type == 'Bookseller') {
+                    document.getElementById('user_name').textContent = data.item.book.user.business_name;
+                } else {
+                    document.getElementById('user_name').textContent = data.item.book.user.first_name + ' ' + data
+                        .item.book.user.last_name;
+                }
                 document.getElementById('username').textContent = data.item.book.user.username;
                 document.getElementById('interaction-type').textContent = data.item.book.status;
                 document.getElementById('item-id').textContent = item_id;
@@ -491,57 +598,46 @@
                     alert(data.description_accuracy)
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
 
         submit_btn.id = 'edit-btn';
         document.getElementById('edit-btn').textContent = 'Edit';
 
-        // if (document.getElementById('edit-btn')) {
-
-        document.getElementById('edit-btn').addEventListener('click', () => {
-            edit(review_id);
-            // alert('edit btn');
-        });
-        // }
+        id_edit_btn = id;
+        document.getElementById('edit-btn').addEventListener('click', editBtn);
 
     }
 
+    function submitBtn() {
+        submit();
+    }
 
-    function star(rate) {
-        if (rate == 1) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star-o';
-            three_S.className = 'fa fa-star-o';
-            four_S.className = 'fa fa-star-o';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 2) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star-o';
-            four_S.className = 'fa fa-star-o';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 3) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star';
-            four_S.className = 'fa fa-star-o';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 4) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star';
-            four_S.className = 'fa fa-star';
-            five_S.className = 'fa fa-star-o';
-        } else if (rate == 5) {
-            one_S.className = 'fa fa-star';
-            two_S.className = 'fa fa-star';
-            three_S.className = 'fa fa-star';
-            four_S.className = 'fa fa-star';
-            five_S.className = 'fa fa-star';
+    function editBtn() {
+        edit(id_edit_btn);
+    }
+
+    close_btn.addEventListener('click', () => {
+
+        if (document.getElementById('submit-btn') == null) {
+            document.getElementById('edit-btn').removeEventListener('click', editBtn);
+            star(0);
+            accu_cond.value = '1/10';
+            accu_desc.value = '1/10';
+            interaction.value = '1/10';
+            description.value = '';
+        } else {
+            document.getElementById('submit-btn').removeEventListener('click', submitBtn);
+            star(0);
+            star(0);
+            accu_cond.value = '1/10';
+            accu_desc.value = '1/10';
+            interaction.value = '1/10';
+            description.value = '';
         }
-    }
+    });
 
     function submit() {
+        document.getElementById('submit-btn').disabled = true;
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
         formData.append('user_id', {{ session('id') }});
@@ -579,13 +675,17 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                window.location.reload();
+                document.getElementById('toast-message').textContent = data.response;
+                message.show()
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
             })
             .catch(error => console.log(error));
     }
 
     function edit(id) {
+        document.getElementById('edit-btn').disabled = true;
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
         formData.append('user_id', {{ session('id') }});
@@ -623,10 +723,54 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                window.location.reload();
+                document.getElementById('toast-message').textContent = data.response;
+                message.show()
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
             })
             .catch(error => console.log(error));
     }
     // });
+
+
+    function star(rate) {
+        if (rate == 0) {
+            one_S.className = 'fa fa-star-o';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 1) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star';
+        }
+    }
 </script>

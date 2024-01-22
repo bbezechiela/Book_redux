@@ -15,39 +15,23 @@
             <x-sidebar />
         </div>
         <div id="content" class="border content">
-            <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+            <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
                 <div class="w-100 d-flex mt-2 p-0">
-                    <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                    {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                         aria-controls="offcanvasExample">
                         <i class="fa fa-bars" aria-hidden="true"></i>
-                    </button>
+                    </button> --}}
                     <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
                             src="../assets/Book_Logo.png" alt="Logo"></a>
                 </div>
                 <div class="position-absolute end-0">
                     <div class="d-flex">
-                        {{-- <div class="input-group mt-1" style="height: 2em">
-                            <span class="input-group-text">
-                                <i class="fa fa-search"></i>
-                            </span>
-                            <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                        </div>
-                        <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Messages">
-                                <i class="fa fa-envelope-o" aria-hidden="true"
-                                    style="font-size: 20px; color: #003060;"></i>
-                            </button></a>
-                        <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Notification">
-                                <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                            </button></a> --}}
                         <ul class="nav py-profile justify-content-end">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" style="margin-right: 2em;">
                                 <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                     class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
                                     <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                                        alt="notification" width="35" height="35" class="rounded-5"
-                                        style="margin-right: 2em;">
+                                        alt="notification" width="35" height="35" class="rounded-5">
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
@@ -65,56 +49,49 @@
             <div id="checkout" class="checkout-content mt-3 w-100">
                 <h4 class="text-center checkout_text mx-5 pb-2">Checkout</h4>
             </div>
-            {{-- @if ($user->address->default_address == 'true') --}}
-
-            @foreach ($user->addressUser as $user)
-                @if ($user->default_address == 'true')
-                    <div class="delivery-address-container">
-                        <span id="address-id" hidden>{{ $user->id }}</span>
-                        <h2 class="delivery-address-title">
-                            <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
-                            Address
-                        </h2>
-                        <div class="seller-details">
-                            <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
-                            <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
-                            <p class="address" style="margin-right: 15px;">
-                                {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
-                            </p>
-                            <p class="zipcode">{{ $user->postal_code }}</p>
+            @if ($user->addressUser->count() > 0)
+                @foreach ($user->addressUser as $user)
+                    @if ($user->default_address == 'true')
+                        <div class="delivery-address-container">
+                            <span id="address-id" hidden>{{ $user->id }}</span>
+                            <h2 class="delivery-address-title">
+                                <i class="fa fa-map-marker" aria-hidden="true" style="margin-right: 10px;"></i>Delivery
+                                Address
+                            </h2>
+                            <div class="seller-details">
+                                <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
+                                <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
+                                <p class="address" style="margin-right: 15px;">
+                                    {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
+                                </p>
+                                <p class="zipcode">{{ $user->postal_code }}</p>
+                            </div>
+                            <button class="change-button"><a href="/deliveryAddress">Change</a></button>
                         </div>
-                        <button class="change-button"><a href="/deliveryAddress">Change</a></button>
-                    </div>
-                @endif
-            @endforeach
-            {{-- <div class="float-end">
-                <p class="mb-0 me-5 d-flex align-items-center">
-                </p>
-            </div> --}}
-            {{-- <div class="footer fixed-bottom">
-                <div class="container"> --}}
-
-            {{-- </div>
-            </div> --}}
+                    @endif
+                @endforeach
+            @else
+                <a href="/addresses" class="btn">Add Delivery Address</a>
+            @endif
 
             <main class="product-list">
-                {{-- <div class="details-container">
-                    <h1 class="product-details">Book Ordered</h1>
-                    <h1 class="price">Price</h1>
-                </div> --}}
-                {{-- </div> --}}
                 @foreach ($items as $index => $orders)
                     {{-- {{ $orders->productRelation->title }} --}}
                     {{-- <span data="id" >{{ $orders->id }}</span> --}}
                     <span data="book-id" hidden>{{ $orders->product_id }}</span>
                     <div class="order-cart">
                         <div class="name-cart">
-                            <a class="seller-name"
-                                href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                            @if ($orders->productRelation->user->type == 'Bookseller')
+                                <a class="seller-name"
+                                    href="#"><span>{{ $orders->productRelation->user->business_name }}</span></a>
+                            @else
+                                <a class="seller-name"
+                                    href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                            @endif
                             <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
                         </div>
                         <div class="product-cart">
-                            <div class="book-details">
+                            <div class="book-details w-100 position-relative">
                                 <img src="{{ asset('/images/books/' . $orders->productRelation->book_photo) }}"
                                     alt="book" width="80px" height="110px">
                                 <div class="book-info">
@@ -123,8 +100,18 @@
                                     <p class="mb-0 interaction-type">Qty: <span
                                             class="qty">{{ $qty[$index] }}</span></p>
                                 </div>
-                                <div class="product-price">₱<span
-                                        class="price-list">{{ $orders->productRelation->price }}</span>
+                                <div class="product-price position-absolute end-0 me-2">
+                                    @if ($orders->productRelation->status == 'Rent')
+                                        <p>Rental Price: ₱<span
+                                                class="rental-price">{{ $orders->productRelation->price }}</span>
+                                        </p>
+                                        <p>Security Deposit: ₱<span
+                                                class="price-list">{{ $orders->productRelation->security_deposit }}</span>
+                                        </p>
+                                    @else
+                                        {{-- <div class="product-price position-absolute end-0 me-2"> --}}
+                                        Price: ₱<span class="price-list">{{ $orders->productRelation->price }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -132,15 +119,6 @@
                 @endforeach
                 <div class="shipping-option">
                     <p class="txt-shipping-opt">Shipping Option:</p>
-                    {{-- <div class="dropdown">
-                        <button class="btn btn--bs-primary-border-subtle dropdown-toggle shipping-button"
-                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Door-to-Door Delivery</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Door-to-Door Delivery</a></li>
-                            <li><a class="dropdown-item" href="#">Personal Transaction</a></li>
-                        </ul>
-                    </div> --}}
                     <select id="shipping-option" class="btn shipping-button">
                         <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
                         <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
@@ -156,17 +134,16 @@
                     <select id="payment-method" class="btn payment-button">
                         <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
                         <option class="fs-6" value="eWallet">eWallet</option>
-                        {{-- <option class="fs-6" value="GCash">GCash</option>
-                        <option class="fs-6" value="Maya">Maya</option> --}}
                     </select>
                 </div>
                 <div class="summary">
-                    <p class="merchandise-subtotal">Merchandise Subtotal: <span id="mer-total"
+                    <p class="merchandise-subtotal text-end">Merchandise Subtotal: <span id="mer-total"
                             class="summary-merchandise-total">P244</span></p>
-                    <p>Shipping Total: <span class="summary-shipping-total">₱130.0</span></p>
-                    <p>Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
+                    <p class="text-end">Shipping Total: <span class="summary-shipping-total"
+                            id="shipping-total">₱130.0</span></p>
+                    <p class="text-end">Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
                 </div>
-                <div class="col-md-6 text-right">
+                <div class="col-md-6 text-center w-100">
                     <button id="place-order" class="btn text-white place-order-button" data-bs-toggle="modal"
                         data-bs-target="#messageModal">Place Order</button>
                 </div>
@@ -175,14 +152,15 @@
     </div>
 </body>
 <!-- Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="messageModal" tabindex="-1" data-bs-backdrop="static"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">           
+        <div class="modal-content">
             <div class="modal-body text-center">
                 <h3 class="fw-bold fs-2" style="color: #003060;">Please Wait</h3>
                 <p style="color: #003060;">You'll be redirected to another page.</p>
-                <img class="img  mt-2" src="../assets/loading.gif" width="50" alt="loading gif">                
-            </div>            
+                <img class="img  mt-2" src="../assets/loading.gif" width="50" alt="loading gif">
+            </div>
         </div>
     </div>
 </div>
@@ -205,7 +183,9 @@
 
     for (var i = 0; i < item_qty.length; i++) {
         totalPrice += (parseFloat(prices[i].textContent) * parseFloat(item_qty[i].textContent));
+        // console.log(prices[i].textContent);
     }
+    
     // prices.forEach(element => {
     //     // console.log(parseFloat(element.textContent));
     //     totalPrice += parseFloat(element.textContent);
@@ -220,6 +200,7 @@
     var address_id = document.getElementById('address-id');
     var books = document.querySelectorAll('span[data="book-id"]');
     var shipping_option = document.getElementById('shipping-option');
+    var shipping_choices = document.querySelectorAll('option[class="fs-5"]')
     var payment_method = document.getElementById('payment-method');
     var titles = document.querySelectorAll('p[class="book-title"]');
     var book_titles = Array.from(titles, element => element.textContent).join(', ');
@@ -290,12 +271,14 @@
             });
         }
 
-        line_items.push({
-            currency: 'PHP',
-            amount: 13000,
-            name: 'Shipping Fee',
-            quantity: line_items.length
-        });
+        if (shipping_option.value == 'Door-to-Door Delivery') {
+            line_items.push({
+                currency: 'PHP',
+                amount: 13000,
+                name: 'Shipping Fee',
+                quantity: line_items.length
+            });
+        }
 
         const options = {
             method: 'POST',
@@ -345,6 +328,33 @@
             .catch(err => console.error(err));
     }
 
+    shipping_option.addEventListener('mousedown', () => {
+        shipping_choices[0].textContent = 'Door-to-Door Delivery = ₱130.00';
+        shipping_choices[1].textContent = 'Personal Transaction = ₱0.00';
+    });
+
+    shipping_option.addEventListener('blur', () => {
+        shipping_choices[0].textContent = 'Door-to-Door Delivery';
+        shipping_choices[1].textContent = 'Personal Transaction';
+    });
+
+    shipping_choices[0].addEventListener('click', () => {
+        document.querySelector('option[value="Cash on Delivery"]').className = 'fs-6';
+        payment_method.value = 'Cash on Delivery';
+        shipping_choices[0].textContent = 'Door-to-Door Delivery';
+        shipping_choices[1].textContent = 'Personal Transaction';
+        document.getElementById('shipping-total').textContent = '₱130.00';
+        sum_total.textContent = '₱' + parseFloat(totalPrice + 130) + '.0';
+    });
+
+    shipping_choices[1].addEventListener('click', () => {
+        document.querySelector('option[value="Cash on Delivery"]').className = 'd-none';
+        payment_method.value = 'eWallet';
+        shipping_choices[0].textContent = 'Door-to-Door Delivery';
+        shipping_choices[1].textContent = 'Personal Transaction';
+        document.getElementById('shipping-total').textContent = '₱0.00';
+        sum_total.textContent = '₱' + parseFloat(totalPrice) + '.0';
+    });
 
     function orderNumber() {
         let now = Date.now().toString() // '1492341545873'

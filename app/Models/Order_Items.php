@@ -10,11 +10,15 @@ class Order_Items extends Model
     use HasFactory;
 
     public function order() {
-        return $this->belongsTo(Orders::class, 'order_id')->withDefault();
+        return $this->belongsTo(Orders::class, 'order_id');
     }
     
     public function book() {
         return $this->belongsTo(Books::class, 'book_id');
+    }
+
+    public function address() {
+        return $this->belongsTo(Address::class, 'pickup_address_id');
     }
 
     public function ratedItem() {
@@ -30,6 +34,8 @@ class Order_Items extends Model
         'bar_code',
         'order_status',
         'shipping_status',
+        'shipping_fee',
+        'pickup_address_id',
         'pickup_date'
     ];
 }

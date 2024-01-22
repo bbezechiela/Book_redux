@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'My Purchase | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/myPurchase-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'My Purchase | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/myPurchase-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -21,32 +21,14 @@
     <div id="sidebarProfile" class="sidebarProfile p-2 min-vh-100 shadow">
         <x-sidebarProfile />
     </div> --}}
-    <div id="content" class="border content">
+    <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
-                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button> --}}
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
-                        alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
                     <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -84,8 +66,6 @@
                         href="/delivered-mypurchase">Delivered</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/dropped-mypurchase">Dropped</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/refund-mypurchase">Refund</a>
                 </nav>
             </div>
         </div>
@@ -126,181 +106,51 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Returned
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item btn">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Overdue
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Overdue
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Overdue
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Returned
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="even">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Returned
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="odd">
-                                <td class="control" tabindex="0" style=""></td>
-                                <td class="status-text">
-                                    Overdue
-                                </td>
-                                <td>11/10/2023</td>
-                                <td>10/10/2023</td>
-                                <td>Harry Potter</td>
-                                <td>₱100</td>
-                                <td>₱200</td>
-                                <td>1 Month</td>
-                                <td>Jennie BlackPink</td>
-                                <td>09076549802</td>
-                                <td>jenjen@gmail.com</td>
-                                <td>
-                                    <div class="d-inline-block"><a href="javascript:;"
-                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                        <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                            <li><a href="javascript:;" class="dropdown-item">Return</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                            @php
+                                $loopCount = 0;
+                            @endphp
+                            @foreach ($tracks as $track)
+                                <tr class="odd">
+                                    <td class="control" tabindex="0" style=""></td>
+                                    <td class="status-text">
+                                        {{ $track->status }}
+                                    </td>
+                                    <td>{{ $track->end_date }}</td>
+                                    <td>{{ $track->start_date }}</td>
+                                    <td>{{ $track->book->title }}</td>
+                                    <td>₱{{ $track->book->price }}</td>
+                                    <td>₱{{ $track->book->security_deposit }}</td>
+                                    <td>{{ $track->book->rental_duration }} Day(s)</td>
+                                    <td>{{ $track->book->user->first_name . ' ' . $track->book->user->last_name }}</td>
+                                    <td>{{ $track->user->phone_number }}</td>
+                                    <td>{{ $track->user->email }}</td>
+                                    <td>
+                                        <div class="d-inline-block"><a href="javascript:;"
+                                                class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                            <ul class="dropdown-menu dropdown-menu-end m-0" style="">
+                                                <li><a href="javascript:;" class="dropdown-item">Returned</a>
+                                                </li>
+                                                <li><a href="javascript:;" class="dropdown-item">Notify User</a>
+                                                </li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a href="javascript:;"
+                                                        class="dropdown-item text-danger delete-record">Overdue</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @php
+                                    $loopCount++;
+                                @endphp
+                            @endforeach
+                            @if ($loopCount == 0)
+                                <div class="w-100 mt-5 d-flex justify-content-center">
+                                    <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
+                                </div>
+                                <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No Books Rented</h1>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -311,6 +161,6 @@
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])

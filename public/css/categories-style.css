@@ -100,6 +100,14 @@ h4 {
     font-size: smaller;
 }
 
+.location-text {
+    color: #757575;
+}
+
+.location-text i{
+    margin-right: 8px;
+}
+
 .price {
     color: #E55B13;
 }
@@ -190,7 +198,8 @@ h4 {
 }
 
 .form-control {
-    margin-right: 2em;
+    margin-right: -1em;
+    width: 13em;
 }
 
 .input-group-text i{

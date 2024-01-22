@@ -17,7 +17,7 @@
     <div id="sidebarClub" class="sidebarClub p-2 min-vh-100 shadow">
         <x-sidebarClub />
     </div>
-    <div id="content" class="border content">
+    <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -91,8 +91,8 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h6>Book Selling Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
-                                        data-bs-toggle="modal" data-bs-target="#createpost"></i></h6>
+                                <h6 id="clubname">Book Selling Club<i class="btn fa fa-pencil-square-o"
+                                        aria-hidden="true" data-bs-toggle="modal" data-bs-target="#createpost"></i></h6>
                                 <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
                                     style="height: 2em">
                             </div>
@@ -115,282 +115,37 @@
                         </div>
                     </div>
                     
-                    <!-- pag create book club para ha specific na admin -->
-                    <div id='createSellingClubOuterCtn'></div>
-
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#report">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#report">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#report">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-5 mb-3 card-post">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        {{-- <li><a class="dropdown-item" href="#">Hide Post</a></li> --}}
-                                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#report">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- post outer container, ma hold ini hiya hin post inner container -->
+                    <div id="postOuterContainer"></div>
                 </div>
 
                 <!-- For Sale Card -->
-                <div class="col-lg-4">
+                <div id="for_sale" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">For Sale</h5>
-                                <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
+                                <h5 id="for-sale-header" class="mb-0 daily_discovery_text">For Sale</h5>
+                                {{-- <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small> --}}
                             </div>
                         </div>
-                        <div class="card-body">
+                        @foreach ($post->shuffle() as $sale)
+                        <div class="card-body" onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
+                                <img src="{{ asset('images/books/' . $sale->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
+                                    <h6 class="mb-0">{{ $sale->title }}</h6>
+                                    <p class="mb-0">For {{ $sale->status }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
         <!-- Create Post Modal -->
-        <div class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div id='createPostModal' class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -400,40 +155,47 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <textarea class="form-control border" id="exampleTextarea" rows="5"
+                            <textarea class="form-control border" id="caption-text" rows="5"
                                 placeholder="Write something here..."></textarea>
                         </div>
                         <div class="image-container">
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
-                            <div class="image-holder">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </div>
+                            <label id='first_img_holder' for="first_img" class="imageLabels image-holder">
+                                +
+                                <!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+                            </label>
+                            <input id='first_img' type='file'></input>
+                            <label id='second_img_holder' for="second_img" class="imageLabels image-holder">
+                                +
+                            </label>
+                            <input id='second_img' type='file'></input>
+                            <label id='third_img_holder' for="third_img" class='imageLabels image-holder'>
+                                +
+                            </label>
+                            <input id='third_img' type='file'></input>
+                            <label id='fourth_img_holder' for="fourth_img" class='imageLabels image-holder'>
+                                +
+                            </label>
+                            <input id='fourth_img' type='file'></input>
+                            <label id='fifth_img_holder' for="fifth_img" class="imageLabels image-holder">
+                                +
+                            </label>
+                            <input id='fifth_img' type='file'></input>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn post-btn">Post</button>
+                        <button id='create-post' type="button" class="btn post-btn">Post</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script> 
+    <script>
+        const current_bookClub_name = "Book Selling Club";
         const current_user_id = "{{ session('id'); }}";
         const csrf_token = "{{ csrf_token(); }}";
     </script>
 
-    <script src="{{ asset('js/book_club.js'); }}"></script>
+    <script src="{{ asset('js/book_club_posts.js'); }}"></script>
 
 </div>
 <!-- Report Modal -->
@@ -530,3 +292,140 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    var first_img = document.getElementById('first-img');
+    var second_img = document.getElementById('second-img');
+    var third_img = document.getElementById('third-img');
+    var fourth_img = document.getElementById('fourth-img');
+    var fifth_img = document.getElementById('fifth-img');
+    var post_btn = document.getElementById('post-btn');
+    var clubname = document.getElementById('clubname');
+    var caption = document.getElementById('caption-text');
+    first_img.addEventListener('change', () => {
+        var img = document.getElementById('one-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('first-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    second_img.addEventListener('change', () => {
+        var img = document.getElementById('two-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('second-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    third_img.addEventListener('change', () => {
+        var img = document.getElementById('three-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('three-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    fourth_img.addEventListener('change', () => {
+        var img = document.getElementById('four-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('four-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    fifth_img.addEventListener('change', () => {
+        var img = document.getElementById('five-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('five-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+
+    function post(user_id) {
+        first_img.value = '';
+        second_img.value = '';
+        third_img.value = '';
+        fourth_img.value = '';
+        fifth_img.value = '';
+        document.getElementById('one-image').src = '';
+        document.getElementById('two-image').src = '';
+        document.getElementById('three-image').src = '';
+        document.getElementById('four-image').src = '';
+        document.getElementById('five-image').src = '';
+        document.getElementById('one-image').style.width = '0px';
+        document.getElementById('two-image').style.width = '0px';
+        document.getElementById('three-image').style.width = '0px';
+        document.getElementById('four-image').style.width = '0px';
+        document.getElementById('five-image').style.width = '0px';
+        document.getElementById('one-image').style.height = '0px';
+        document.getElementById('two-image').style.height = '0px';
+        document.getElementById('three-image').style.height = '0px';
+        document.getElementById('four-image').style.height = '0px';
+        document.getElementById('five-image').style.height = '0px';
+        const request = {
+            method: 'GET'
+        };
+        fetch('/getuser/' + user_id, request)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
+                document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
+            })
+            .catch(error => console.log(error));
+        post_btn.id = 'post-btn';
+        document.getElementById('post-btn').textContent = 'Post';
+        document.getElementById('post-btn').addEventListener('click', () => {
+            post();
+        });
+    }
+
+    function post() {
+        var formData = new FormData();
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
+        formData.append('clubname', clubname.value);
+        formData.append('caption', caption.value);
+        if (first_img.files.length > 0) {
+            formData.append('first_img', first_img.files[0]);
+        }
+        if (second_img.files.length > 0) {
+            formData.append('second_img', second_img.files[0]);
+        }
+        if (third_img.files.length > 0) {
+            formData.append('third_img', third_img.files[0]);
+        }
+        if (fourth_img.files.length > 0) {
+            formData.append('fourth_img', fourth_img.files[0]);
+        }
+        if (fifth_img.files.length > 0) {
+            formData.append('fifth_img', fifth_img.files[0]);
+        }
+        // console.log(formData);
+        fetch('/ratepost', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    // 'Content-type': 'application/json'
+                },
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(error => console.log(error));
+    }
+</script>
+
+<script>
+    function clickedPost(id, user_id) {
+        window.location.href = "/product/" + id + "/" + user_id;
+    };
+    var for_sale_cards = document.getElementById("for_sale");
+    var for_sale_btn = document.getElementById("for-sale-header");
+    // for_sale_btn.addEventListener("click", function() {
+    //     for_sale_cards.style.display = "none";
+    // });
+</script>

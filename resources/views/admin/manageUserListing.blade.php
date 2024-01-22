@@ -77,8 +77,7 @@
                         <div class="col-xxl-4 col-md-6">
                             <div class="card info-card reported-listing-card">
                                 <div class="filter view-reports">
-                                    <a class="icon" href="/reportedlisting">View Reported Listings <i
-                                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <a class="icon" href="/reportedlisting">View</a>
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Total Reported Listing</h5>

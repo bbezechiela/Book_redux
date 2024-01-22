@@ -43,7 +43,8 @@
                 </div>
             </div>
         </ul>
-        <div class="container-fluid">
+        {{-- Original Frontend --}}
+        {{-- <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" id="chat3" style="border-radius: 5px;">
@@ -251,7 +252,6 @@
                                     </div>
                                 </div>
 
-                                {{-- shit --}}
                                 <div class="col-md-6 col-lg-7 col-xl-8">
                                     <div class="chat-about position-sticky top-0">
 
@@ -261,7 +261,6 @@
                                             </button>
                                         </h6>
                                     </div>
-                                    {{-- shit --}}
                                     <div class="pt-3 pe-3 your-scrollable-element overflow-auto"
                                         style="position: relative;">
                                         <div class="d-flex flex-row justify-content-start body-img">
@@ -399,137 +398,228 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- User Menu Modal -->
-        <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="side-img">
-                            <img src="../assets/osama.png" alt="user_img"
-                                class="d-flex align-self-center me-3 with-border">
+        </div> --}}
+        {{-- Original Frontend --}}
+
+        <div id='bodyCtn'>
+
+            <div id='bodyCtn'>
+                <!-- pop out for ellipsis-->
+                <div id='ellipsisPopUp'></div>
+                <div id='leftSectionOuterContainer'>
+                    <div id="searchOuterContainer">
+                        <div id="searchInnerContainer">
+                            <input type="search" id="searchInputContainer" class="form-control rounded"
+                                placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <span id="searchButton">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
                         </div>
-                        <div class="pt-1">
-                            <p class="fw-bold mb-0 name-msg">Ben Smith</p>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        {{-- <div class="d-flex justify-content-between align-items-center mb-1 menu">
+
+                    <div id="conversationList"></div>
+                </div>
+
+                <div id="rightSectionOuterContainer">
+                    <div id="rightSectionInnerContainer">
+                        <div id="messagesHeaderContainer">
+                        </div>
+
+                        <div id="messageOuterContainer"></div>
+                        <div id="formOuterContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Menu Modal -->
+            <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="side-img">
+                                <img src="../assets/osama.png" alt="user_img"
+                                    class="d-flex align-self-center me-3 with-border">
+                            </div>
+                            <div class="pt-1">
+                                <p class="fw-bold mb-0 name-msg">Ben Smith</p>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{-- <div class="d-flex justify-content-between align-items-center mb-1 menu">
+                        <p>Mute</p>
+                        <label class="form-check form-switch m-0">
+                            <input class="form-check-input" type="checkbox" id="toggleUser">
+                        </label>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-1 menu">
+                        <p>Block User</p>
+                        <label class="form-check form-switch m-0">
+                            <input class="form-check-input" type="checkbox" id="toggleBlock">
+                        </label>
+                    </div> --}}
+                            <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
+                                <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i
+                                        class="fa fa-caret-right" aria-hidden="true" data-bs-toggle="modal"
+                                        data-bs-target="#report-user" style="margin-left: 12.5em;"></i>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
+                                <p data-bs-toggle="modal" data-bs-target="#report-user">Delete Conversation<i
+                                        class="fa fa-caret-right" aria-hidden="true" data-bs-toggle="modal"
+                                        data-bs-target="#report-user" style="margin-left: 6.5em;"></i>
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center btn-menu">
+                                <a href="/userlistings" class="text-decoration-none">
+                                    <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
+                                            style="margin-left: 10em;"></i></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Menu Modal -->
+        {{-- <div class="modal fade" id="profile-menu" tabindex="-1" aria-labelledby="smallModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="side-img">
+                                <img src="../assets/osama.png" alt="user_img"
+                                    class="d-flex align-self-center me-3 with-border">
+                            </div>
+                            <div class="pt-1">
+                                <p class="fw-bold mb-0 name-msg">Ben Smith</p>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body"> --}}
+        {{-- <div class="d-flex justify-content-between align-items-center mb-1 menu">
                             <p>Mute</p>
                             <label class="form-check form-switch m-0">
                                 <input class="form-check-input" type="checkbox" id="toggleUser">
                             </label>
                         </div>
                         <hr> --}}
-                        <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
-                            <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i class="fa fa-caret-right"
-                                    aria-hidden="true" data-bs-toggle="modal" data-bs-target="#report-user"
-                                    style="margin-left: 12.5em;"></i>
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center btn-menu">
-                            <a href="/userlistings" class="text-decoration-none">
-                                <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
-                                        style="margin-left: 10em;"></i></p>
-                            </a>
+        {{-- <div class="d-flex justify-content-between align-items-center mb-1 btn-menu">
+                                <p data-bs-toggle="modal" data-bs-target="#report-user">Report<i
+                                        class="fa fa-caret-right" aria-hidden="true" data-bs-toggle="modal"
+                                        data-bs-target="#report-user" style="margin-left: 12.5em;"></i>
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center btn-menu">
+                                <a href="/userlistings" class="text-decoration-none">
+                                    <p>View Profile<i class="fa fa-caret-right" aria-hidden="true"
+                                            style="margin-left: 10em;"></i></p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> --}}
 
-    <!-- Report Modal -->
-    <div class="modal fade" id="report-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="report-details">
-                        <div class="reasons">
-                            <p>Please select
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Prohibited Item
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Scam
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Counterfeit
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Offensive chat messages/images/videos
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Data privacy violation
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Others
-                                    </label>
-                                </div>
-                            </p>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleTextarea" class="form-label">Description:</label>
-                            <textarea class="form-control" id="exampleTextarea" rows="5"
-                                placeholder="Please elaborate on your selected reason"></textarea>
-                        </div>
-                        <div class="supporting-images">
-                            <p>Supporting Images:
-                                <div class="image-container">
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="image-holder">
-                                        <i class="fa fa-plus" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </p>
-                        </div>
-
+        <!-- Report Modal -->
+        <div class="modal fade" id="report-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Report this User
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn report-button">Send Report</button>
+                    <div class="modal-body">
+                        <div class="report-details">
+                            <div class="reasons">
+                                <p>Please select
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Prohibited Item
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Scam
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Counterfeit
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Offensive chat messages/images/videos
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Data privacy violation
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Others
+                                        </label>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleTextarea" class="form-label">Description:</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="5"
+                                    placeholder="Please elaborate on your selected reason"></textarea>
+                            </div>
+                            <div class="supporting-images">
+                                <p>Supporting Images:
+                                    <div class="image-container">
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="image-holder">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn report-button">Send Report</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <script>
+                const current_username = "{{ session('user') }}";
+                const current_user_id = "{{ session('id') }}";
+                const csrfToken = "{{ csrf_token() }}";
+            </script>
+            <script src="{{ asset('/js/messages.js') }}"></script>
         </div>
-
-    </div>
-    @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
-    ])
+        @include('partials.__footer', [
+        'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+        'aos_link' => '/aos-master/dist/aos.js',
+        ])

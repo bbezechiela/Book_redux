@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->text('exchange_preferences')->nullable();
 
-            $table->text('rental_duration')->nullable();
+            $table->unsignedBigInteger('rental_duration')->nullable();
             $table->text('rental_terms_and_condition')->nullable();
             $table->text('security_deposit')->nullable();
 

@@ -17,7 +17,7 @@
     <div id="sidebarClub" class="sidebarClub p-2 min-vh-100 shadow">
         <x-sidebarClub />
     </div>
-    <div id="content" class="border content">
+    <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
             <div class="w-100 d-flex mt-2 p-0">
                 <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -113,123 +113,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="card mt-5 mb-3 event-card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="../assets/b4.jpg" alt="Event Image">
-                                    <p class="text-center setup">In Person</p>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="event-details">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title dets">August 3, 2023 10:00 AM</h5>
-                                            <a href="#" class="btn btn-link" data-bs-toggle="modal"
-                                                data-bs-target="#eventdetails">View Details</a>
-                                        </div>
-                                        <h5 class="card-title dets">Educational Books Donation Drive</h5>
-                                        <p class="text-muted dets">Posted by John Doe</p>
-                                        <p class="card-text" style="margin-top: 15px"> Please join us in the first ever
-                                            book exchange that will happen on August 3, 2023 in Tacloban. You don’t want
-                                            this to miss, don’t you? Tap in the join button so we can know who we will
-                                            be expecting. See you there Taclobanons!</p>
-                                        <button class="btn join-btn">Join</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <!-- events outer container -->
+                    <div id='eventOuterContainer' class="container"></div>
                 </div>
 
                 <!-- For Exchange Card -->
-                <div class="col-lg-4">
+                <div id="for_rent" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0">For Exchange</h5>
-                                <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small>
+                                <h5 id="for-rent-header" class="mb-0 daily_discovery_text">For Rent</h5>
+                                {{-- <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small> --}}
                             </div>
                         </div>
-                        <div class="card-body">
+                        @foreach ($post->shuffle() as $rent)
+                        <div class="card-body" onclick="clickedPost({{ $rent->id }}, {{ $rent->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
+                                <img src="{{ asset('images/books/' . $rent->book_photo) }}" alt="Book Image"
+                                    class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
+                                    <h6 class="mb-0">{{ $rent->title }}</h6>
+                                    <p class="mb-0">For {{ $rent->status }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <img src="../assets/yellow_book.png" alt="Book Image" class="rounded me-3" width="80"
-                                    height="80">
-                                <div>
-                                    <h6 class="mb-0">Book Title</h6>
-                                    <p class="mb-0">Sale</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -297,7 +206,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn post-btn">Create</button>
+                        <button id='create-event' type="button" class="btn post-btn">Create</button>
                     </div>
                 </div>
             </div>
@@ -401,10 +310,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
+        </div>
 
         </div>
     </div>
-    @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
-    ])
+    <script>
+        const current_bookClub_name = 'Book Renting Club';
+        const current_user_id = "{{ session('id'); }}";
+        const csrf_token = "{{ csrf_token(); }}";
+    </script>
+    <script src="{{ asset('js/book_club_events.js'); }}"></script>
+
+</div>
+@include('partials.__footer', [
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
+])

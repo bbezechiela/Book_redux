@@ -53,7 +53,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title dashboard-title">List Book for Sale</h5>
                                     <p class="card-text">Create listings with details such as book title, author, condition, and pricing.</p>
-                                    <a href="/listings" class="btn">Sell</a>
+                                    <a href="/forsale" class="btn">Sell</a>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title dashboard-title">List Book for Rent</h5>
                                     <p class="card-text">Create rental listings specifying the rental duration, rental pricing, and book details.</p>
-                                    <a href="/listings" class="btn">Rent</a>
+                                    <a href="/forrent" class="btn">Rent</a>
                                 </div>
                             </div>
                         </div>
@@ -77,23 +77,22 @@
                         </div>
                     </div>
                 </div>
-                
+                @php
+                    $sale_amount = 0;
+                    $rent_amount = 0;
+
+                    foreach ($listing as $track) {
+                        if ($track->status == 'Sale') {
+                            $sale_amount++;
+                        } else if ($track->status == 'Rent') {
+                            $rent_amount++;
+                        }
+                    }
+                @endphp
                 <div class="row">
                     <div class="row">
                         <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card users-card">
-                                {{-- <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                            class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" style="">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div> --}}
+                            <div class="card info-card users-card">                                
                                 <div class="card-body">
                                     <h5 class="card-title">Total Orders for Sale</h5>
                                     <div class="d-flex align-items-center">
@@ -101,7 +100,7 @@
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $sale_amount }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -109,19 +108,7 @@
                         </div>
 
                         <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card listings-card">
-                                {{-- <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
-                                            aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div> --}}
+                            <div class="card info-card listings-card">                                
                                 <div class="card-body">
                                     <h5 class="card-title">Total Orders for Rent</h5>
                                     <div class="d-flex align-items-center">
@@ -129,7 +116,7 @@
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         </div>
                                         <div class="ps-3">
-                                            <h6>3,264</h6>
+                                            <h6>{{ $rent_amount }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -137,19 +124,7 @@
                         </div>
 
                         <div class="col-xxl-4 col-md-4">
-                            <div class="card info-card reported-card">
-                                {{-- <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="fa fa-ellipsis-h"
-                                            aria-hidden="true"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div> --}}
+                            <div class="card info-card reported-card">                                
                                 <div class="card-body">
                                     <h5 class="card-title">Total Listings</h5>
                                     <div class="d-flex align-items-center">
@@ -157,7 +132,7 @@
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         </div>
                                         <div class="ps-3">
-                                            <h6>1244</h6>
+                                            <h6>{{ $listing->count() }}</h6>
                                         </div>
                                     </div>
                                 </div>

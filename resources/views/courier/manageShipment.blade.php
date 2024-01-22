@@ -10,11 +10,14 @@
 </head>
 
 <div id="body-container" class="container-fluid px-0 body">
+    <div id="couriersidebar" class="couriersidebar p-2 min-vh-100 shadow">
+        <x-couriersidebar />
+    </div>
     <div id="content" class="pe-0 content">
         <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
                 <p class="text-admin">Courier</p>
-                <a href="/shipment"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
+                {{-- <a href="/shipment"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" data-bs-title="Home">
                         <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px; margin-right: 20px;">
                             Manage Order</i>
@@ -29,47 +32,34 @@
                         data-bs-placement="bottom" data-bs-title="Completed">
                         <i class="fa fa-check-square-o" aria-hidden="true"
                             style="font-size: 20px; color: #003060; margin-right: 20px;"> Completed</i>
-                    </button></a>
-                <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
+                    </button></a> --}}
+                {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
                         data-bs-placement="bottom" data-bs-title="Messages">
                         <i class="fa fa-envelope-o" aria-hidden="true"
                             style="font-size: 20px; color: #003060; margin-right: 20px;"> Messages</i>
-                    </button></a>
+                    </button></a> --}}
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/shipment"><button class="btn mx-1 mt-1 selected-style" data-bs-toggle="tooltip"
-                        data-bs-placement="bottom" data-bs-title="Home">
-                        <i class="fa fa-area-chart" aria-hidden="true" style="font-size: 20px;"></i>
-                    </button></a> --}}
-                    {{-- <a href="/couriermessage"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
-                    {{-- <a href="/couriernotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
-                    <ul class="nav py-profile justify-content-end">
+                    <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                        <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
+                            width="35" height="35" class="rounded-5" style="margin-right: 2em;">
+                    </a>
+                    {{-- <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
                                 <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                                    alt="notification" width="35" height="35" class="rounded-5"
-                                    style="margin-right: 2em;">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/courierprofile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
+                    alt="notification" width="35" height="35" class="rounded-5"
+                    style="margin-right: 2em;">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/courierprofile">Profile</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
+                    </li>
+        </ul> --}}
                 </div>
             </div>
         </ul>
@@ -81,15 +71,26 @@
                     <div class="details-container">
                         <div class="seller-details-box">
                             <label for="seller-details" class="form-label label-title">Seller Details</label>
-                            <label
-                                for="seller-fullname">{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</label>
-                            <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
-                            @foreach ($item->book->user->addressUser as $address)
-                                @if ($address->default_address == 'true')
+                            @if ($item->book->user->type == 'Bookseller')
+                                <label for="seller-fullname">{{ $item->book->user->business_name }}</label>
+                                <label for="seller-contact-number">{{ $item->book->user->phone_number }}</label>
+                                <label for="seller-contact-number">{{ $item->book->user->address }}</label>
+                            @else
+                                @if (isset($item->address))
                                     <label
-                                        for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                                        for="seller-address">{{ $item->address->street_building_house . ', ' . $item->address->brgy_village . ', ' . $item->address->city_municipality . ', ' . $item->address->postal_code . ', ' . $item->address->region }}</label>
+                                    <label for="seller-fullname">{{ $item->address->name }}</label>
+                                    <label for="seller-contact-number">{{ $item->address->contact_number }}</label>
+                                @else
+                                    @foreach ($item->book->user->addressUser as $address)
+                                        @if ($address->default_address == 'true')
+                                            <label
+                                                for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                                        @endif
+                                    @endforeach
                                 @endif
-                            @endforeach
+                            @endif
+
 
                         </div>
 
@@ -117,12 +118,12 @@
                             <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
                             <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
                             <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
-                            <label for="shipping-fee">Shipping Fee: ₱{{ 0 }}</label>
+                            <label for="shipping-fee">Shipping Fee: ₱{{ 130.0 }}</label>
                         </div>
                         <div class="product-details-box">
                             <label for="product-details" class="form-label label-title">Shipping Details</label>
-                            <label for="order-date">Shipping: Pickup</label>
-                            <label for="pickup-date">Pickup Date: OD421376365</label>
+                            <label for="order-date">Shipping: {{ $item->shipping_status }}</label>
+                            <label for="pickup-date">Pickup Date: {{ $item->pickup_date }}</label>
                             <label
                                 for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
                         </div>
@@ -190,8 +191,7 @@
     </div>
 
     <!-- Shipping Details Modal -->
-    <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header d-print-none">
@@ -201,7 +201,7 @@
                     <div class="container mt-5 mb-5">
                         <div class="d-flex justify-content-center row">
                             <div class="col-md-10">
-                                <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg"
                                         width="120">
                                     <hr>
                                     <div
@@ -242,8 +242,9 @@
                                                 id="tracking_number" name="tracking_number" required>
                                             <label for="tracking_number"
                                                 class="btn mx-auto mt-3 py-1 px-0 upload-track-btn">Upload</label>
-                                            <img src="../assets/tracking.jfif" width="250" height="100"
-                                                id="img-icon">
+                                            <img src="" width="250" height="100" id="img-icon">
+                                            {{-- <img src="../assets/tracking.jfif" width="250" height="100"
+                                                id="img-icon"> --}}
 
                                         </div>
                                         <div class="col-md-6">

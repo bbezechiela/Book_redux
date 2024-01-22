@@ -83,6 +83,22 @@
                 <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
         </ul> --}}
+    @php
+        $order_amount = 0;
+        $delivered_amount = 0;
+        $dropped_amount = 0;
+        foreach ($books as $orders) {
+            foreach ($orders->item as $item) {
+                if ($item->order_status == 'Pending') {
+                    $order_amount++;
+                } elseif ($item->order_status == 'received') {
+                    $delivered_amount++;
+                } elseif ($item->order_status == 'dropped') {
+                    $dropped_amount++;
+                }
+            }
+        }
+    @endphp
     <div class="container-fuid pt-3 px-3">
         <div class="row border mx-2 mt-3 p-3 shadow rounded">
             <div class="col d-flex align-items-center">
@@ -95,22 +111,22 @@
                 </a> --}}
 
             <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
                 <p class="my-0 text-center fs-6">Orders</p>
             </a>
 
             <a href="/delivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $delivered_amount }}</p>
                 <p class="my-0 text-center fs-6">Delivered</p>
             </a>
             <a href="/dropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $dropped_amount }}</p>
                 <p class="my-0 text-center fs-6">Dropped</p>
             </a>
-            <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
+            {{-- <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
                 <p class="my-0 text-center fw-bold fs-3">0</p>
                 <p class="my-0 text-center fs-6">Refund</p>
-            </a>
+            </a> --}}
 
         </div>
         <!-- My List contents -->
@@ -129,7 +145,7 @@
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     {{-- <form action="#"> --}}
                     <label class="fw-bold" for="sort">Sort by</label>
-                    <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort">
+                    <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort" style="background-color: #fff;">
                         <option selected disabled>{{ $status }}</option>
                         <option value="All">All</option>
                         <option value="Sale">Sale</option>
@@ -673,7 +689,7 @@
                                 <input type="text" name="length" id="exchange-length" hidden>
                                 <input type="text" name="courier" id="exchange-courier" hidden>
 
-                                <input type="file" name="book_photo" id="exchange-image" class="d-none">
+                                <input type="file" name="book_photo" id="exchange-image" class="d-none" accept="image/*">
                                 <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book photo
                                     field must be a file of type: jpeg, png, jpg, gif.</small>
                                 <label for="exchange-image" class="position-relative w-100 h-100"

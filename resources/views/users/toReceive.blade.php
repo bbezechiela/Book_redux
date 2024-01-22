@@ -103,11 +103,14 @@
                         href="/delivered-mypurchase">Delivered</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/dropped-mypurchase">Dropped</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/refund-mypurchase">Refund</a>
+                    {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                        href="/refund-mypurchase">Refund</a> --}}
                 </nav>
             </div>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($user->orders as $order)
             @foreach ($order->items as $item)
                 @if ($item->order->payment_method == 'Cash on Delivery' && $item->order_status == 'paid')
@@ -115,7 +118,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">To Receive</span>
                         </div>
@@ -126,25 +129,27 @@
                                         width="80px" height="110px">
                                     <div class="book-info">
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 book-qty">2 Qty</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
                                     <div class="book-price">
-                                        <p class="product-price">{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">130</span></p> <br>
+                                        <p class="product-price">₱{{ $item->book->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span></p>
+                                        <br>
                                         <p class="text-total">Total Payment:<span
-                                                class="product-total">{{ $item->book->price + 130 }}</span></p>                                        
+                                                class="product-total">₱{{ $item->book->price + 130 }}</span></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
                                         data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
-                                            class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                            class="fa fa-angle-right" aria-hidden="true"></i></button> --}}
                                 </div>
                                 <div class="button-group">
                                     <a class="btn btn-outline-primary btn-sm receive-button"
@@ -154,12 +159,15 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++;
+                    @endphp
                 @elseif ($item->order->payment_method == 'eWallet' && $item->order_status == 'paid')
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="#"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">To Receive</span>
                         </div>
@@ -172,7 +180,8 @@
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                         <p class="mb-0 book-qty">2 Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p class="mb-0payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -198,47 +207,18 @@
                             </div>
                         </div>
                     </div>
+                    @php
+                        $loopCount++;
+                    @endphp
                 @endif
             @endforeach
         @endforeach
-        {{-- <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Liuza Sober</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">To Receive</span>
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Personal Transaction</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P144</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <button type="button" class="post-btn" data-bs-toggle="modal"
-                            data-bs-target="#track-delivery">Your order has been delivered<i class="fa fa-angle-right"
-                                aria-hidden="true"></i></button>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-sm receive-button" data-bs-toggle="modal"
-                            data-bs-target="#order-received">Order
-                            Received</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No deliveries yet</h1>
+        @endif
 
         <!-- Tracking Modal -->
         <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"

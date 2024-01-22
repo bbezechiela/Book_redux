@@ -84,7 +84,7 @@ Route::get('/exchangeclub', [UserController::class, 'bookExchangeClub']);
 Route::get('/rentingclub', [UserController::class, 'bookRentingClub']);
 
 Route::get('/eventssellingclub', [UserController::class, 'eventsSelling']);
-
+ 
 Route::get('/memberssellingclub', [UserController::class, 'membersSelling']);
 
 Route::get('/eventsexchangeclub', [UserController::class, 'eventsExchange']);
@@ -111,6 +111,8 @@ Route::get('/myprofile', [UserController::class, 'myProfile']);
 
 Route::post('/myprofileupdate', [UserController::class, 'myProfileUpdate']);
 
+Route::post('/profileupdate', [SellerController::class, 'profileUpdate']);
+
 Route::get('/mypurchase', [UserController::class, 'myPurchase']);
 
 Route::get('/toreceive', [UserController::class, 'toReceive']);
@@ -127,9 +129,11 @@ Route::get('/changepassword', [UserController::class, 'changePassword']);
 
 Route::get('/reviewsandratings', [UserController::class, 'userReviewsAndRatings']);
 
-Route::get('/userlistings', [UserController::class, 'userProfilePreview']);
+Route::get('/usermyreviews', [UserController::class, 'myReviews']);
 
-Route::get('/userreviews', [UserController::class, 'previewReviews']);
+Route::get('/userlistings/{id}', [UserController::class, 'userProfilePreview']);
+
+Route::get('/userreviews/{id}', [UserController::class, 'previewReviews']);
 
 Route::get('/userwishlist', [UserController::class, 'previewWishlist']);
 
@@ -139,13 +143,21 @@ Route::post('/mylist/salepost', [ListingController::class, 'saleList']);
 
 Route::post('/mylist/exchangepost', [ListingController::class, 'exchangeList']);
 
-Route::post('/mylist/rentpost', [ListingController::class, 'rentList']);
+Route::post('/listing/rentpost', [ListingController::class, 'rentList']);
 
 Route::get('/mylist/sale', [ListingController::class, 'sale']);
 
 Route::get('/mylist/exchange', [ListingController::class, 'exchange']);
 
-Route::get('/mylist/rent', [ListingController::class, 'rent']);
+// Route::get('/mylist/rent', [ListingController::class, 'rent']);
+
+Route::post('/listing/sale', [ListingController::class, 'sellerSale']);
+
+// Route::post('/listing/rent', [ListingController::class, 'sellerRent']);
+
+Route::post('/listing/updateSale/{id}', [ListingController::class, 'sellerUpdateSale']);
+
+Route::get('/listing/delete/{id}', [ListingController::class, 'destroySeller']);
 
 Route::get('/orders', [UserController::class, 'orders']);
 
@@ -155,23 +167,25 @@ Route::get('/dropped', [UserController::class, 'dropped']);
 
 Route::get('/refund', [UserController::class, 'refund']);
 
-Route::get('/sellerorders', [UserController::class, 'sellerOrders']);
+Route::get('/sellerorders', [SellerController::class, 'sellerOrders']);
 
-Route::get('/sellerdelivered', [UserController::class, 'sellerDelivered']);
+Route::get('/sellerdelivered', [SellerController::class, 'sellerDelivered']);
 
-Route::get('/sellerdropped', [UserController::class, 'sellerDropped']);
+Route::get('/sellerdropped', [SellerController::class, 'sellerDropped']);
 
 Route::get('/sellerrefund', [UserController::class, 'sellerRefund']);
 
-Route::get('/trackrental', [UserController::class, 'rentalTracking']);
+Route::get('/trackrental', [SellerController::class, 'rentalTracking']);
 
-Route::get('/reviews', [UserController::class, 'reviewsRating']);
+Route::get('/reviews', [SellerController::class, 'reviewsRating']);
+
+Route::get('/sellermyreviews', [SellerController::class, 'myReviews']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
 
-Route::post('/mylist/updateRent/{id}', [ListingController::class, 'rentUpdate']);
+Route::post('/listing/updateRent/{id}', [ListingController::class, 'rentUpdate']);
 
 Route::get('/mylist/delete/{id}', [ListingController::class, 'destroy']);
 
@@ -183,7 +197,7 @@ Route::post('/updateaddress/{id}/{add}', [UserController::class, 'updateAddress'
 
 Route::get('/destroyaddress/{id}/{del}', [UserController::class, 'destroyAddress']);
 
-Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
+Route::post('/trackrentalpost', [SellerController::class, 'trackRentalInput']);
 
 // Admin
 Route::get('/dashboard', [AdminController::class, 'dashboard']);
@@ -252,6 +266,8 @@ Route::post('/placeorder', [UserController::class, 'placeOrder']);
 
 Route::get('/deleteorder/{id}', [UserController::class, 'deleteOrder']);
 
+Route::get('/declineorder/{id}', [UserController::class, 'declineOrder']);
+
 Route::get('/successpayment', [UserController::class, 'successOrder']);
 
 Route::get('/orderreceived/{id}', [UserController::class, 'receivedOrder']);
@@ -276,6 +292,12 @@ Route::delete('/deleteConversationSearchBased', [MessageController::class, 'dele
 
 
 // seller
+Route::get('/forsale', [SellerController::class, 'redirectSale']);
+
+Route::get('/forrent', [SellerController::class, 'redirectRent']);
+
+Route::post('/updateCourier', [UserController::class, 'courierUpdate']);
+
 Route::post('/registerseller', [SellerController::class, 'store']);
 
 Route::get('/sellerboard', [SellerController::class, 'sellerDashboard']);
@@ -286,9 +308,9 @@ Route::get('/sellernotification', [UserController::class, 'sellerNotification'])
 
 Route::get('/systemfeedback', [UserController::class, 'feedback']);
 
-Route::get('/listings', [UserController::class, 'listings']);
+Route::get('/listings', [ListingController::class, 'listings']);
 
-Route::get('/profile', [UserController::class, 'profile']);
+Route::get('/profile', [SellerController::class, 'profile']);
 
 Route::get('/courierprofile', [UserController::class, 'courierProfile']);
 
@@ -309,14 +331,29 @@ Route::get('/shipment', [UserController::class, 'manageShipment']);
 Route::get('/fullnameGetter', [MessageController::class, 'fullnameGetter']);
 
 // book club routes, api's
-Route::get('/sellingClubMemberChecker', [BookClubController::class, 'sellingClubMemberChecker']);
+Route::post('/createEvent', [BookClubController::class, 'createEvent']);
 
-Route::post('/createBookSellingClub', [BookClubController::class, 'createBookSellingClub']);
+Route::post('/joinRequest', [BookClubController::class, 'joinRequest']);
 
-Route::get('/adminChecker', [BookClubController::class, 'adminChecker']);
+Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter']);
 
-Route::post('/addModerators', [BookClubController::class, 'addModerators']);
+Route::get('/getEvents', [BookClubController::class, 'getEvents']);
 
+// get all post para ha my wall
+Route::get('/getAllPosts', [BookClubController::class, 'getAllPosts']);
+
+// get club para ha pots my wall
+Route::get('/getClub', [BookClubController::class, 'getClub']);
+
+// discussion tab, post
+Route::post('/createPost', [BookClubController::class, 'createPost']);
+
+Route::get('/getPosts', [BookClubController::class, 'getPosts']);
+
+// getUser para ha events na section para ig display hinu nag post
+Route::get('/getUser', [BookClubController::class, 'getUser']);
+
+Route::post('/addMember', [BookClubController::class, 'addMember']);
 
 // API's
 Route::get('/checkusername/{user}', [UserController::class, 'checkUsername']);
@@ -333,10 +370,22 @@ Route::get('/getrating/{id}', [UserController::class, 'getRating']);
 
 Route::post('/acceptshipment', [UserController::class, 'acceptShipment']);
 
-Route::post('/completedShipping', [UserController::class, 'complete']);
+Route::get('/completedShipping', [UserController::class, 'complete']);
 
 Route::post('/ratepost', [UserController::class, 'ratePost']);
 
 Route::post('/updaterate/{id}', [UserController::class, 'updateRate']);
 
 Route::post('/sellerconfirm', [UserController::class, 'confirmOrder']);
+
+Route::post('/booksellerconfirm', [SellerController::class, 'confirmOrder']);
+
+Route::get('/getorderdetails/{id}', [UserController::class, 'getOrderDetails']);
+
+Route::get('/viewshipping/{id}', [UserController::class, 'viewShipping']);
+
+Route::get('/rentaltrackfetch/{id}', [SellerController::class, 'rentalTrackFetch']);
+
+Route::post('/sellerpostrate', [UserController::class, 'sellerPostRate']);
+
+Route::post('/sellerupdaterate', [UserController::class, 'sellerUpdateRate']);

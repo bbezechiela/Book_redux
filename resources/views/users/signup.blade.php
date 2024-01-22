@@ -15,8 +15,8 @@
             </ul>
         </div>
     @endif
-    <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
-        data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
+    {{-- <a href="/" class="position-absolute mx-4 my-1 navbar-brand pb-3 px-2" data-aos="fade-right"
+        data-aos-duration="2000"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a> --}}
     <h1 id="create-acct" class="text-center fw-bold mx-auto w-50 pb-1 mt-5" data-aos="fade-down" data-aos-duration="1500">
         Create Account</h1>
     <form id="form" action="/register" method="post" enctype="multipart/form-data">
@@ -131,8 +131,10 @@
                 .then(result => {
                     console.log(result);
                     if (result.message == 'not exist') {
-                        document.getElementById('response-message').textContent = '';
-                    } else {
+                        document.getElementById('response-message').textContent = '';                        
+                        document.getElementById('sign-up').disabled = false;
+                    } else {                                                
+                        document.getElementById('sign-up').disabled = true;
                         document.getElementById('response-message').textContent = username.value + ' ' + result.message;
                     }
                 })

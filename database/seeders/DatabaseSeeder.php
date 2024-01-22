@@ -23,6 +23,28 @@ class DatabaseSeeder extends Seeder
         // ]);
         $user = [
             [
+                'type' => 'Admin',
+                'first_name' => 'FirstAdmin',
+                'last_name' => 'FirstAdmin',
+                'email' => 'admin@admin.com',
+                'phone_number' => '09169452347',
+                'birthday' => '2003-03-12',
+                'gender' => 'Male',
+                'username' => 'admin',
+                'password' => bcrypt('admin')
+            ],
+            [
+                'type' => 'Courier',
+                'first_name' => 'JRS',
+                'last_name' => 'Express',
+                'email' => 'courier@sample.com',
+                'phone_number' => '09169452347',
+                'birthday' => '2004-04-06',
+                'gender' => 'Male',
+                'username' => 'shopee',
+                'password' => bcrypt('lazada')
+            ],
+            [
                 'type' => 'General User',
                 'first_name' => 'Marc Eubert',
                 'last_name' => 'Contado',
@@ -46,6 +68,18 @@ class DatabaseSeeder extends Seeder
             ]
         ];
 
+        // DB::table('users')->insert([
+        //     'type' => 'Admin',
+        //     'first_name' => 'FirstAdmin',
+        //     'last_name' => 'FirstAdmin',
+        //     'email' => 'admin@admin.com',
+        //     'phone_number' => '09169452347',
+        //     'birthday' => '2003-03-12',
+        //     'gender' => 'Male',
+        //     'username' => 'admin',
+        //     'password' => bcrypt('admin')
+        // ]);
+
         foreach ($user as $users) {
             DB::table('users')->insert([
                 'type' => $users['type'],
@@ -61,15 +95,16 @@ class DatabaseSeeder extends Seeder
         }
 
         DB::table('users')->insert([
-            'type' => 'Admin',
-            'first_name' => 'FirstAdmin',
-            'last_name' => 'FirstAdmin',
-            'email' => 'admin@admin.com',
+            'type' => 'Bookseller',
+            'owner_name' => 'Store Owner',
+            'email' => 'contact@bookredux.store',
+            'address' => 'Tacloban, City',
+            'business_name' => 'Book Store',
             'phone_number' => '09169452347',
-            'birthday' => '2003-03-12',
-            'gender' => 'Male',
-            'username' => 'admin',
-            'password' => bcrypt('admin')
+            'registration_number' => '12345678',
+            'date_registered' => '02/13/2022',
+            'username' => 'store',
+            'password' => bcrypt('user')
         ]);
     }
 }
