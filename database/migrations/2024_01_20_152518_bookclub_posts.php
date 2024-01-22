@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_club_posts', function(Blueprint $table) {
-            $table->id();
+            // $table->id();
             $table->bigIncrements('post_id');
             $table->unsignedBigInteger('club_id');
             $table->foreign('club_id')->references('book_club_id')->on('book_clubs');
