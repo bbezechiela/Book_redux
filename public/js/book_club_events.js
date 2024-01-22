@@ -1,5 +1,8 @@
 // lets gow
 document.addEventListener('DOMContentLoaded', () => {
+    // current event timestamp
+    let lastEventTimestamp = '1990-12-12 12:12:12';
+
     // trigger create btn from blade
     const createButton =  document.getElementById('create-event');
     createButton.addEventListener('click', createEvent);

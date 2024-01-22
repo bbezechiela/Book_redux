@@ -428,6 +428,11 @@
     font-size: 14px;
 }
 
+/* hide modal */
+.hideModal {
+    display: none;
+}
+
 /* book selling club post stuff */
 .imageLabels {
     position: relative;
@@ -476,6 +481,7 @@
     width: inherit;
     padding-left: 15px;
     margin-top: 15px;
+    color: #003060;
 }
 
 .postFooter{
@@ -490,7 +496,7 @@
 .postInnerContainer {
     height: auto;
     width: 900px;
-    margin-bottom: 15px;  
+    margin-bottom: 30px;  
     box-shadow: 0 0 5px grey;
     border-radius: 5px;
     position: relative;
@@ -564,6 +570,35 @@
     align-items: flex-start;
     flex-direction: column;
     padding-left: 15px;
+}
+
+/* name and date for my wall */
+.nameAndDateContainerForMyWall {
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 10px;
+    color: grey;
+}
+
+/* threeInOne para la ini ha my wall */
+.threeInOne {
+    height: inherit;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 15px;
+}
+
+.clubName {
+    font-size: 22px;
+    font-weight: 700;
+    color: #003060;
 }
 
 /* got post images */
