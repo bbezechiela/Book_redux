@@ -114,7 +114,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container" id='eventOuterContainer'>
+
+                    <!-- event outer container -->
+                    <div id='eventOuterContainer' class="container">
                         <!-- <div class="card mt-5 mb-3 event-card">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -337,10 +339,11 @@
 
         </div>
         <script>
+            const current_bookClub_name = 'Book Selling Club';
             const current_user_id = "{{ session('id'); }}";
             const csrf_token = '{{ csrf_token(); }}';
         </script>
-        <script src="{{ asset('js/book_selling_club_events.js'); }}"></script>
+        <script src="{{ asset('js/book_club_events.js'); }}"></script>
     </div>
     @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',

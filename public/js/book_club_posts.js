@@ -1,5 +1,8 @@
 // lets gow
 document.addEventListener('DOMContentLoaded', () => {
+    console.log(window.innerHeight);
+    console.log(window.innerWidth);
+    
     // create post 
     const createButton = document.getElementById('create-post');
     createButton.addEventListener('click', createPost);
@@ -119,6 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Fisher yates shuffle algorithm
+    function shuffleEvents(events) {
+        for (let i = events.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [events[i], events[j]] = [events[j], events[i]];
+        }
+
+        return events;
+    }
+
     // get posts
     async function getPosts() {
         const getter = await fetch(`/getPosts?currentBookClubName=${current_bookClub_name}`, {
@@ -128,7 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.data) {
             console.log(response.data);
-            showPosts(response.data);
+            const shuffledEvents = shuffleEvents(response.data);
+
+            showPosts(shuffledEvents);
         } else {
             console.log(response.error);
         }
@@ -141,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         justify-content: center;
         align-items: flex-end;
         flex-direction: column;
-        border: 1px solid red;
     `;
 
     const postOuterContainer = document.getElementById('postOuterContainer');
@@ -149,9 +163,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function showPosts(responses) {
         responses.forEach(response => {
-            
             const postInnerContainer = document.createElement('div');
             postInnerContainer.classList.add('postInnerContainer');
+
+            const ellipsis = document.createElement('div');
+            ellipsis.textContent = '...';
+            ellipsis.classList.add('ellipsis');
+
+            // ellipsis popup elements
+            const hidePost = document.createElement('div');
+            hidePost.textContent = 'Hide Post';
+            hidePost.classList.add('popUpElements');
+            hidePost.addEventListener('click', () => {
+                console.log('hide post');
+                console.log(response.post_id);
+            });          
+            
+            const reportPost = document.createElement('div');
+            reportPost.textContent = 'Report Post';
+            reportPost.classList.add('popUpElements');
+            reportPost.addEventListener('click', () => {
+                console.log('report post');
+            });
+
+            const ellipsisPopUp = document.createElement('div');
+            ellipsisPopUp.classList.add('ellipsisPopUp');
+
+            ellipsisPopUp.appendChild(hidePost);
+            ellipsisPopUp.appendChild(reportPost);
+
+            let ellipsisInitialState = 1;
+            ellipsis.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (ellipsisInitialState % 2 === 0) {
+                    ellipsisPopUp.classList.add('ellipsisInitialState');
+                } else {
+                    ellipsisPopUp.classList.remove('ellipsisInitialState');
+                }
+
+                ellipsisInitialState++;
+                ellipsis.append(ellipsisPopUp);
+            });
+
+            document.addEventListener('click', () => {
+                ellipsisPopUp.classList.add('ellipsisInitialState');
+                console.log('asdsadas');
+
+                ellipsisInitialState = 1;
+            });
+            
+            postInnerContainer.appendChild(ellipsis);
 
             // header
             const postHeader = document.createElement('div');
@@ -200,13 +261,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // body
             const postBody = document.createElement('div');
-            postBody.textContent = response.caption;
             postBody.classList.add('postBody');
+
+            // post caption
+            const postCaption = document.createElement('div');
+            postCaption.classList.add('postCaption');
+            postCaption.textContent = response.caption;
+
+            // post images
+            const postImgContainer = document.createElement('div');
+            postImgContainer.classList.add('postImgContainer');
+
+            // getting five images
+            const firstImgCtn = document.createElement('div');
+            firstImgCtn.classList.add('postImages');
+            firstImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.first_img})`;
+            const secondImgCtn = document.createElement('div');
+            secondImgCtn.classList.add('postImages');
+            secondImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.second_img})`;
+
+            const thirdImgCtn = document.createElement('div');
+            thirdImgCtn.classList.add('postImages');
+            thirdImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.third_img})`;
+
+            const fourthImgCtn = document.createElement('div');
+            fourthImgCtn.classList.add('postImages');
+            fourthImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.fourth_img})`;
+            
+            const fifthImgCtn = document.createElement('div');
+            fifthImgCtn.classList.add('postImages');
+            fifthImgCtn.style.backgroundImage = `url(${window.location.origin}${'/images/profile_photos/'}${response.fifth_img})`;
+
+            postImgContainer.appendChild(firstImgCtn);
+            postImgContainer.appendChild(secondImgCtn);
+            postImgContainer.appendChild(thirdImgCtn);
+            postImgContainer.appendChild(fourthImgCtn);
+            postImgContainer.appendChild(fifthImgCtn);
+
+            postBody.appendChild(postCaption);
+            postBody.appendChild(postImgContainer);
 
             // footer
             const postFooter = document.createElement('div');
-            postFooter.textContent = 'footer';
             postFooter.classList.add('postFooter');
+
+            const likeButton = document.createElement('div');
+            likeButton.className = 'fa fa-thumbs-o-up';
+            likeButton.textContent = ' Like';
+            likeButton.addEventListener('click', () => {
+                console.log('like clicked');
+            });
+
+            const commentButton = document.createElement('div');
+            commentButton.className = 'fa fa-comment-o';
+            commentButton.style.marginLeft = '15px';
+            commentButton.textContent = ' Comment';
+            commentButton.addEventListener('click', () => {
+                console.log('comment liked');
+            });
+
+            postFooter.appendChild(likeButton);
+            postFooter.appendChild(commentButton);
 
             postInnerContainer.appendChild(postHeader);
             postInnerContainer.appendChild(postBody);

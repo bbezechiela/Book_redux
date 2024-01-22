@@ -465,22 +465,84 @@
 }
 
 .postBody {
-    height: 200px;
+    height: auto;
     width: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* post caption */
+.postCaption {
+    height: auto;
+    width: inherit;
+    padding-left: 15px;
+    margin-top: 15px;
 }
 
 .postFooter{
     height: 70px;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0 0 15px;
 }
 
 .postInnerContainer {
     height: auto;
     width: 900px;
-    margin-bottom: 12px;  
+    margin-bottom: 15px;  
     box-shadow: 0 0 5px grey;
     border-radius: 5px;
+    position: relative;
+}
+
+/* ellipsis for post container */
+.ellipsis {
+    height: 40px;
+    width: 40px;
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.ellipsisPopUp {
+    height: 70px;
+    width: 150px;
+    position: inherit;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.ellipsisInitialState {
+    display: none;
+}
+
+/* ellipsis pop up elements */
+.popUpElements {
+    font-size: 15px;
+    font-weight: 400;
+    color: #003060;
+    padding: 0 0 0 15px;
+    height: auto;
+    width: 100%;
+}
+
+.popUpElements:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* user profile container in post card */
@@ -499,6 +561,102 @@
     width: 150px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
+    padding-left: 15px;
+}
+
+/* got post images */
+.postImgContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 15px;
+    padding-left: 15px;
+    margin: 15px 0 15px 0;
+}
+
+.postImages {
+    height: 120px;
+    width: 120px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* event inner container */
+.eventInnerContainer {
+    width: 900px;
+    max-width: 900px;
+    height: 350px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 5px;
+    box-shadow: 0 0 4px grey;
+}
+
+/* media queries post inner container */
+@media (max-width: 1600px) {
+    .postInnerContainer {
+        width: 700px;
+    }
+
+    @media (max-width: 1500px) {
+        .postInnerContainer {
+            width: 650px;
+        }
+
+        @media (max-width: 1350px) {
+            .postInnerContainer {
+                width: 550px;
+            }
+
+            @media (max-width: 1150px) {
+                .postInnerContainer {
+                    width: 450px;
+                }
+
+                @media (max-width: 1000px) {
+                    .postInnerContainer {
+                        width: 560px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* media queries event inner container */
+@media (max-width: 1600px) {
+    .eventInnerContainer {
+        width: 700px;
+    }
+
+    @media (max-width: 1500px) {
+        .eventInnerContainer {
+            width: 650px;
+        }
+
+        @media (max-width: 1350px) {
+            .eventInnerContainer {
+                width: 550px;
+            }
+
+            @media (max-width: 1150px) {
+                .eventInnerContainer {
+                    width: 450px;
+                }
+
+                @media (max-width: 1000px) {
+                    .eventInnerContainer {
+                        width: 560px;
+                    }
+                }
+            }
+        }
+    }
 }

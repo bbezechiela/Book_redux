@@ -1,9 +1,5 @@
 // lets gow
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Book Selling Club Events');
-
-    const current_bookClub_name = 'Book Selling Club';
-
     // trigger create btn from blade
     const createButton =  document.getElementById('create-event');
     createButton.addEventListener('click', createEvent);
@@ -104,36 +100,21 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(response.data);
 
             const shuffledEvents = shuffleEvents(response.data);
-            console.log(shuffledEvents);
 
             showEvents(shuffledEvents);
-
         } else {
             console.log(response.error);
         }
-
     }
     getEvents();
 
     function showEvents(responses) {
         responses.forEach(response => {
-            const eventInnerContainer_style = `
-                width: 900px;
-                max-width: 900px;
-                height: 350px;
-                margin-bottom: 20px;
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-                flex-direction: row;
-                border-radius: 5px;
-                box-shadow: 0 0 4px grey;
-            `;
-
             // container kada event
             const eventInnerContainer = document.createElement('div');
-            eventInnerContainer.style.cssText = eventInnerContainer_style;
+            eventInnerContainer.classList.add('eventInnerContainer');
 
+            // left section
             const leftSection_style = `
                 width: 300px;
                 height: inherit;
@@ -141,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                margin-left: 15px;
             `;
 
             const leftSection = document.createElement('div');
@@ -183,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             leftSection.appendChild(event_image);
             leftSection.appendChild(event_type);
 
-            // left section
+            // right section
             const rightSection_style = `
                 height: 300px;
                 width: 500px;
@@ -191,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 justify-content: space-evenly;
                 align-items: flex-start;
                 flex-direction: column;
+                margin-left: 15px;
             `;
             
             const rightSection = document.createElement('div');
