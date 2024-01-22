@@ -630,11 +630,7 @@ class UserController extends Controller
     {
         return view('users.refund');
     }
-
-    public function sellerDropped()
-    {
-        return view('bookseller.sellerDropped');
-    }
+    
 
     public function sellerRefund()
     {
@@ -1390,7 +1386,7 @@ class UserController extends Controller
                 'shipping_status' => $request->input('shipping_status')
             ]);
 
-            return redirect('/mypurchase');
+            return redirect('/mypurchase')->with('message', 'Successfully arranged!');
         } else if ($request->input('shipping_status') == 'Personal Transaction') {
             $order->update([
                 'order_status' => 'paid',
@@ -1439,9 +1435,9 @@ class UserController extends Controller
         $review = Reviews::create($data);
 
         if ($review) {
-            return response()->json(['response' => 'Rating and Review was submitted. Thank you for your feedback!']);
+            return response()->json(['message' => 'Rating and Review was submitted. Thank you for your feedback!']);
         } else {
-            return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
+            return response()->json(['message' => 'Submission unsuccessful. Please review and try again.']);
         }
     }
 
@@ -1469,9 +1465,9 @@ class UserController extends Controller
 
         // return response()->json(['response' => $rate]);
         if ($rate) {
-            return response()->json(['response' => 'Rating and Review was updated. Thank you for your feedback!']);
+            return response()->json(['message' => 'Rating and Review was updated. Thank you for your feedback!']);
         } else {
-            return response()->json(['response' => 'error']);
+            return response()->json(['message' => 'error']);
         }
     }
 }

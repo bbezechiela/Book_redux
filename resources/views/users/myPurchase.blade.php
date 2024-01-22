@@ -119,6 +119,7 @@
                                         <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -167,7 +168,8 @@
                                             <p class="mb-0 book-price">2 Qty</p>
                                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}
                                             </p>
-                                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                            <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                            <p>#{{ $item->order->order_number }}</p>
                                         </div>
                                     </div>
                                     <div class="right-section">

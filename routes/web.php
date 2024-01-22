@@ -171,7 +171,7 @@ Route::get('/sellerorders', [SellerController::class, 'sellerOrders']);
 
 Route::get('/sellerdelivered', [SellerController::class, 'sellerDelivered']);
 
-Route::get('/sellerdropped', [UserController::class, 'sellerDropped']);
+Route::get('/sellerdropped', [SellerController::class, 'sellerDropped']);
 
 Route::get('/sellerrefund', [UserController::class, 'sellerRefund']);
 
@@ -292,6 +292,10 @@ Route::delete('/deleteConversationSearchBased', [MessageController::class, 'dele
 
 
 // seller
+Route::get('/forsale', [SellerController::class, 'redirectSale']);
+
+Route::get('/forrent', [SellerController::class, 'redirectRent']);
+
 Route::post('/updateCourier', [UserController::class, 'courierUpdate']);
 
 Route::post('/registerseller', [SellerController::class, 'store']);

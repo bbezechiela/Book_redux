@@ -102,15 +102,15 @@
                                 </div>
                                 <div class="product-price position-absolute end-0 me-2">
                                     @if ($orders->productRelation->status == 'Rent')
-                                        <p>Rental Price: <span
-                                                class="price-list fw-bold">₱{{ $orders->productRelation->price }}</span>
+                                        <p>Rental Price: ₱<span
+                                                class="rental-price">{{ $orders->productRelation->price }}</span>
                                         </p>
-                                        <p>Security Deposit: <span
-                                                class="price-list fw-bold">₱{{ $orders->productRelation->security_deposit }}</span>
+                                        <p>Security Deposit: ₱<span
+                                                class="price-list">{{ $orders->productRelation->security_deposit }}</span>
                                         </p>
                                     @else
                                         {{-- <div class="product-price position-absolute end-0 me-2"> --}}
-                                        Price: <span class="price-list fw-bold">₱{{ $orders->productRelation->price }}</span>
+                                        Price: ₱<span class="price-list">{{ $orders->productRelation->price }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -183,7 +183,9 @@
 
     for (var i = 0; i < item_qty.length; i++) {
         totalPrice += (parseFloat(prices[i].textContent) * parseFloat(item_qty[i].textContent));
+        // console.log(prices[i].textContent);
     }
+    
     // prices.forEach(element => {
     //     // console.log(parseFloat(element.textContent));
     //     totalPrice += parseFloat(element.textContent);

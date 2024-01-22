@@ -51,11 +51,65 @@
                     href="/sellerdelivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
                     href="/sellerdropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/sellerrefund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/sellerrefund">Refund</a> --}}
             </nav>
         </div>
-        <div class="order-cart">
+        @php
+            $loopCount = 0;
+        @endphp
+        @foreach ($orders as $order)
+            @foreach ($order->item as $item)
+                @if ($item->order_status == 'dropped')
+                    <div class="order-cart">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name" href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                            </div>
+                            <span class="order-text me-5 mt-0">Dropped</span>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('/images/books/' . $order->book_photo) }}" alt="book" width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $order->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                                        <p class="payment-mode">{{ $item->order->payment_method }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $order->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span> <br>
+                                        <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price + 130}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-message">
+                                    <p class="cancelled-text">Cancelled</p>
+                                </div>
+                                <div class="button-group">
+                                    <a href="/sellermessage" type="button" class="btn btn-sm contact-button">Contact Customer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @php
+                        $loopCount++
+                    @endphp
+                @endif
+            @endforeach
+        @endforeach
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
+            </div>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No order cancellations</h1>
+        @endif
+        {{-- <div class="order-cart">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href="/userlistings"><span>Jennie Blackpink</span></a>
@@ -89,77 +143,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="/userlistings"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Dropped</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 book-qty">2 Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <p class="cancelled-text">Cancelled by buyer</p>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="order-cart">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
-                </div>
-                <span class="order-text me-5 mt-0">Dropped</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="../assets/city_of_secrets.png" alt="book" width="80px" height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">City of Secrets</p>
-                            <p class="mb-0 book-qty">2 Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">Sale</p>
-                            <p class="payment-mode">Cash on Delivery</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">P144</p>
-                            <p class="text-total">Total Payment:<span class="product-total">P194</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-details">
-                    <div class="order-message">
-                        <p class="cancelled-text">Cancelled by buyer</p>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn btn-sm contact-button">Contact Customer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> --}}
+        
     </div>
 </div>
 

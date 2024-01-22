@@ -84,31 +84,31 @@
                         <form class="px-4" action="">
                             <p class="text-center"><strong>Your rating:</strong></p>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="very_good" id="very_good" />
+                                <input class="form-check-input" type="radio" name="rating" id="very_good" />
                                 <label class="form-check-label" for="very_good">
                                     Very good
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="good" id="good" />
+                                <input class="form-check-input" type="radio" name="rating" id="good" />
                                 <label class="form-check-label" for="good">
                                     Good
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="medicore" id="medicore" />
+                                <input class="form-check-input" type="radio" name="rating" id="medicore" />
                                 <label class="form-check-label" for="medicore">
                                     Medicore
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="bad" id="bad" />
+                                <input class="form-check-input" type="radio" name="rating" id="bad" />
                                 <label class="form-check-label" for="bad">
                                     Bad
                                 </label>
                             </div>
                             <div class="form-check mb-2">
-                                <input class="form-check-input" type="radio" name="verybad" id="verybad" />
+                                <input class="form-check-input" type="radio" name="rating" id="verybad" />
                                 <label class="form-check-label" for="verybad">
                                     Very bad
                                 </label>

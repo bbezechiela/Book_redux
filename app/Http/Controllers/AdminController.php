@@ -103,7 +103,8 @@ class AdminController extends Controller
 
     public function manageSeller()
     {
-        return view('admin.manageSeller');
+        $user = Users::where('type', 'Bookseller')->get();
+        return view('admin.manageSeller', ['users' => $user]);
     }
 
 

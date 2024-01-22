@@ -256,6 +256,20 @@ class SellerController extends Controller
         return view('bookseller.rentalTracking', ['tracks' => $rental]);
     }
 
+    public function sellerDropped()
+    {
+        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user')->get();
+        return view('bookseller.sellerDropped', ['orders' => $order]);
+    }
+
+    public function redirectSale() {
+        return redirect('/listings')->with('sale', 'sample using with');
+    }
+
+    public function redirectRent() {
+        return redirect('/listings')->with('rent', 'sample using with');
+    }
+
 
 
 

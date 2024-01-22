@@ -25,11 +25,23 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    <a href="/myprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
-                        </button></a>
+                    <ul class="nav py-profile justify-content-end">
+                        <li class="nav-item dropdown">
+                            <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
+                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                    alt="notification" width="35" height="35" class="rounded-5"
+                                    style="margin-right: 2em;">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </ul>
@@ -84,7 +96,8 @@
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                         <p class="mb-0 fw-bold interaction-type" id="interaction-type">
                                             {{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $order->payment_method }}</p>
+                                        <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
+                                        <p>#{{ $order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">

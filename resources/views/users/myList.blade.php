@@ -123,10 +123,10 @@
                 <p class="my-0 text-center fw-bold fs-3">{{ $dropped_amount }}</p>
                 <p class="my-0 text-center fs-6">Dropped</p>
             </a>
-            <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
+            {{-- <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
                 <p class="my-0 text-center fw-bold fs-3">0</p>
                 <p class="my-0 text-center fs-6">Refund</p>
-            </a>
+            </a> --}}
 
         </div>
         <!-- My List contents -->

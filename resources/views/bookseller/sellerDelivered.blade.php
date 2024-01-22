@@ -52,8 +52,8 @@
                     href="/sellerdelivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/sellerdropped">Dropped</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/sellerrefund">Refund</a>
+                {{-- <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
+                    href="/sellerrefund">Refund</a> --}}
             </nav>
         </div>
 
@@ -63,7 +63,8 @@
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
                             <div>
-                                <a class="seller-name" href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <a class="seller-name"
+                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">Delivered</span>
                         </div>
@@ -90,11 +91,28 @@
                                 </div>
                             </div>
                             <div class="order-details">
-                                <div class="order-message">
+                                @php
+                                    $loopFlag = false;
+                                    $rate_id = 0;
+
+                                    if ($item->ratedItem->count() > 0) {
+                                        foreach ($item->ratedItem as $review) {
+                                            if ($review->item_id == $item->id && $review->user_id == session('id') && $loopFlag == false) {
+                                                $loopFlag = true;
+                                                $rate_id = $review->id;
+                                            }
+                                        }
+                                    }
+                                @endphp
+                                @if ($loopFlag)
                                     <button type="button" class="post-btn" data-bs-toggle="modal"
-                                        data-bs-target="#rate-review">Post
+                                        onclick="editRating({{ $rate_id }})" data-bs-target="#rate-review">Edit
                                         Rating and Review</button>
-                                </div>
+                                @else
+                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                        onclick="ratingReview({{ $item->order->user_id }}, '{{ $item->book->status }}', {{ $item->id }})"
+                                        data-bs-target="#rate-review">Post Rating and Review</button>
+                                @endif
                                 <div class="button-group">
                                     <button type="button" id="start-rental-btn" class="btn btn-sm track-button"
                                         data-bs-toggle="modal" onclick="rentalBtn({{ $order->id }})"
@@ -152,10 +170,12 @@
                                         }
                                     @endphp
                                     @if ($loopFlag)
-                                        <button type="button" class="post-btn" data-bs-toggle="modal" onclick="editRating({{ $rate_id }})"
+                                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                                            onclick="editRating({{ $rate_id }})"
                                             data-bs-target="#rate-review">Edit Rating and Review</button>
                                     @else
-                                        <button type="button" class="post-btn" data-bs-toggle="modal" onclick="ratingReview({{ $item->order->user_id }}, '{{ $item->book->status }}', {{ $item->id }})"
+                                        <button type="button" class="post-btn" data-bs-toggle="modal"
+                                            onclick="ratingReview({{ $item->order->user_id }}, '{{ $item->book->status }}', {{ $item->id }})"
                                             data-bs-target="#rate-review">Post Rating and Review</button>
                                     @endif
 
@@ -184,7 +204,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="customer-details">
-                                    <img src="../assets/eubert.png" id="user_img" alt="seller image"
+                                    <img src="../assets/Eubert.png" id="user_img" alt="seller image"
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Marc Eubert Contado</p>
@@ -534,13 +554,16 @@
             method: 'GET'
         };
 
+        console.log(user_id);
+
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                console.log(data.profile_photo);
                 if (data.type == 'Bookseller') {
                     document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
                     document.getElementById('user_name').textContent = data.business_name;
+                    alert(data.first_name)
                     // document.getElementById('username').textContent = data.owner_name;
                 } else {
                     document.getElementById('user_img').src = 'images/profile_photos/' + data.profile_photo;
@@ -570,12 +593,14 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                document.getElementById('user_img').src = 'images/profile_photos/' + result.item.order.user.profile_photo;
+                document.getElementById('user_img').src = 'images/profile_photos/' + result.item.order.user
+                    .profile_photo;
                 if (result.item.order.user.type == 'Bookseller') {
                     document.getElementById('user_name').textContent = result.item.order.user.business_name;
                 } else {
-                    document.getElementById('user_name').textContent = result.item.order.user.first_name + ' ' + result.item.order.user.last_name;
-                }                
+                    document.getElementById('user_name').textContent = result.item.order.user.first_name + ' ' +
+                        result.item.order.user.last_name;
+                }
                 document.getElementById('review_id').textContent = result.id;
                 star(result.rate_value);
                 interaction.value = result.interaction;
@@ -660,10 +685,10 @@
                     },
                     body: formData
                 })
-                // .then(response => response.json())
+                .then(response => response.json())
                 .then(response => {
                     console.log(response);
-                    document.getElementById('toast-message').textContent = response.response;
+                    document.getElementById('toast-message').textContent = response.message;
                     message.show()
                     setTimeout(() => {
                         window.location.reload();
@@ -706,7 +731,7 @@
                 .then(response => response.json())
                 .then(response => {
                     console.log(response);
-                    document.getElementById('toast-message').textContent = response.response;
+                    document.getElementById('toast-message').textContent = response.message;
                     message.show()
                     setTimeout(() => {
                         window.location.reload();

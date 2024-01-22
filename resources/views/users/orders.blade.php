@@ -103,7 +103,8 @@
                                         <p class="mb-0 book-title">{{ $order->title }}</p>
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -160,7 +161,8 @@
                                         <p class="mb-0 book-title">{{ $order->title }}</p>
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -186,6 +188,61 @@
                                             class="btn btn-sm arrange-button" data-bs-toggle="modal"
                                             onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
                                             data-bs-target="#shipping-details">View Shipping Details</button>
+                                    </div>
+                                </div>
+                                {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
+                            </div>
+                        </div>
+                    </div>
+                    @php
+                        $loopCount++;
+                    @endphp
+                @elseif ($item->order_status == 'Confirmed by seller')
+                    <div class="order-cart d-print-none">
+                        <div class="name-cart d-flex justify-content-between">
+                            <div>
+                                <a class="seller-name"
+                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <button class="message-seller"><i class="fa fa-commenting"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                            <span class="order-text me-5 mt-0">Order</span>
+                        </div>
+                        <div class="product-cart">
+                            <div class="book-details">
+                                <div class="left-section">
+                                    <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book"
+                                        width="80px" height="110px">
+                                    <div class="book-info">
+                                        <p class="mb-0 book-title">{{ $order->title }}</p>
+                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
+                                    </div>
+                                </div>
+                                <div class="right-section">
+                                    <div class="book-price">
+                                        <p class="product-price">₱{{ $order->price }}</p>
+                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
+                                        </p> <br>
+                                        <p class="text-total">Total Payment:<span
+                                                class="product-total">₱{{ $order->price }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order">
+                                <div class="order-details">
+                                    <div class="order-message">
+                                        <small class="" style="color: #E55B13">FOR APPROVAL BY COURIER</small>
+                                        {{-- <p class="fs-5 fw-bold" style="color: #E55B13">FOR APPROVAL BY COURIER</p> --}}
+                                    </div>
+                                    <div class="button-group">
+                                        {{-- <button type="button" class="btn btn-sm decline-button">Decline</button> --}}
+                                        <button id="arrange_shipment" type="button"
+                                            class="btn btn-sm arrange-button" data-bs-toggle="modal"
+                                            onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
+                                            data-bs-target="#shipping-details" disabled>View Shipping Details</button>
                                     </div>
                                 </div>
                                 {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
@@ -481,6 +538,22 @@
                 </div>
             </div>
         </div>
+        {{-- toast --}}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                @if (session('message'))
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 
@@ -496,6 +569,11 @@
 </script> --}}
 
 <script>
+    const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
+    @if (session('message'))
+        message.show()
+    @endif
+    
     var id = document.getElementById('item_id');
     var address_modal = document.getElementById('address-modal');
     var seller_name = document.getElementById('seller-fullname');
@@ -820,6 +898,10 @@
     function displayPickupContent() {
         var detailContent = document.getElementById('details');
         detailContent.className = 'details-container';
+        var currentDate = new Date().toISOString().split('T')[0];
+
+        // Set the minimum date for the input
+        document.getElementById('pickup-date').min = currentDate;
     }
 
     function myFunction() {
