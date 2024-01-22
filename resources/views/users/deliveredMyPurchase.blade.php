@@ -96,7 +96,8 @@
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                         <p class="mb-0 fw-bold interaction-type" id="interaction-type">
                                             {{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $order->payment_method }}</p>
+                                        <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
+                                        <p>#{{ $order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">

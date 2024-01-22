@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (files.length > 0) {
             file = files[0];
+            console.log(URL.createObjectURL(file));
             document.getElementById('image-preview').src = URL.createObjectURL(file);
         } else {
             console.log('files waray sulod');
@@ -71,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (adder.ok) {
             console.log('adder okay');
         }
-
         const response = await adder.json();
             
         if (response.data) {
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await getter.json();
 
                 if (response.data) {
-                    event_poser.textContent = `Posted by ${response.data[0].first_name}`;
+                    event_poser.textContent = `Posted by ${response.data[0].username}`;
                     event_poser.classList.add('event_poser');
                     console.log(response.data);
                 } else {

@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'Admin Dashboard | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/dashboard-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'Admin Dashboard | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/dashboard-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -20,20 +20,6 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
-                    {{-- <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
                             <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
@@ -58,7 +44,7 @@
                                         <i class="fa fa-user-secret" aria-hidden="true"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>3,264</h6>
+                                        <h6>{{ $users->count() }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +63,7 @@
                                         <i class="fa fa-ban" aria-hidden="true"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>3,264</h6>
+                                        <h6>0</h6>
                                     </div>
                                 </div>
                             </div>
@@ -129,8 +115,10 @@
                                             <th class="control sorting_disabled" rowspan="1" colspan="1"
                                                 style="width: 0px;" aria-label=""></th>
                                             <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
-                                                rowspan="1" colspan="1" style="width: 18px;" data-col="1" aria-label="">
-                                                <input type="checkbox" class="form-check-input"></th>
+                                                rowspan="1" colspan="1" style="width: 18px;" data-col="1"
+                                                aria-label="">
+                                                <input type="checkbox" class="form-check-input">
+                                            </th>
                                             {{-- <th class="sorting sorting_asc" tabindex="0"
                                                 aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                 style="width: 120px;">ID</th> --}}
@@ -141,84 +129,91 @@
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 180px;">Owner Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 180px;">Business Name</th>
+                                                rowspan="1" colspan="1" style="width: 180px;">Business Name
+                                            </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 108px;">Contact Number</th>
+                                                rowspan="1" colspan="1" style="width: 108px;">Contact Number
+                                            </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Business
                                                 Address</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Date Registered</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Date Registered
+                                            </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Registration Number</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Registration
+                                                Number</th>
+                                            {{-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1" style="width: 120px;">Business Permit
+                                            </th> --}}
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Business Permit</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Account Created</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Account Created
+                                            </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 144px;">Actions
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd">
+                                        @foreach ($users as $user)
+                                            <tr class="odd">
+                                                <td class="control" tabindex="0" style=""></td>
+                                                <td class="  dt-checkboxes-cell"><input type="checkbox"
+                                                        class="dt-checkboxes form-check-input"></td>                                               
+                                                <td>{{ $user->username }}</td>
+                                                <td>
+                                                    <div
+                                                        class="d-flex justify-content-start align-items-center book-image">
+                                                        <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                                src="{{ asset('images/profile_photos/' . $user->profile_photo) }}" alt="Logo">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $user->owner_name }}</td>
+                                                <td>{{ $user->business_name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->phone_number }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $user->date_registered }}</td>
+                                                <td>{{ $user->registration_number }}</td>
+                                                {{-- <td>
+                                                    <div
+                                                        class="d-flex justify-content-start align-items-center book-image">
+                                                        <div class="d-flex flex-column"><img class="img mt-1 me-5"
+                                                                src="../assets/permit.jfif" alt="Logo">
+                                                        </div>
+                                                    </div>
+                                                </td> --}}
+                                                <td>{{ $user->created_at }}</td>
+                                                <td>
+                                                    <div class="d-inline-block"><a href="javascript:;"
+                                                            class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                                        <ul class="dropdown-menu dropdown-menu-end m-0"
+                                                            style="">
+                                                            <li><a href="javascript:;"
+                                                                    class="dropdown-item">Suspend</a>
+                                                            </li>
+                                                            <li><a href="javascript:;" class="dropdown-item">Send an
+                                                                    offense</a>
+                                                            </li>
+                                                            <div class="dropdown-divider"></div>
+                                                            <li><a href="javascript:;"
+                                                                    class="dropdown-item text-danger delete-record">Delete
+                                                                    account</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        {{-- <tr class="even">
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
-                                            <td>Nestinenn</td>
-                                            <td>
-                                                <div class="d-flex justify-content-start align-items-center book-image">
-                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
-                                                            src="../assets/nestine.png" alt="Logo">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Nestine Nicole</td>
-                                            <td>Bookstore</td>
-                                            <td>2002155@lnu.edu.ph</td>
-                                            <td>09491229441</td>
-                                            <td>Tacloban City</td>
-                                            <td>12/29/2001</td>
-                                            <td>7787989587433</td>
-                                            <td>
-                                                <div class="d-flex justify-content-start align-items-center book-image">
-                                                    <div class="d-flex flex-column"><img class="img mt-1 me-5"
-                                                            src="../assets/permit.jfif" alt="Logo">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>10/10/2022</td>
-                                            <td>
-                                                <div class="d-inline-block"><a href="javascript:;"
-                                                        class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                                    <ul class="dropdown-menu dropdown-menu-end m-0" style="">
-                                                        <li><a href="javascript:;" class="dropdown-item">Suspend</a>
-                                                        </li>
-                                                        <li><a href="javascript:;" class="dropdown-item">Send an
-                                                                offense</a>
-                                                        </li>
-                                                        <div class="dropdown-divider"></div>
-                                                        <li><a href="javascript:;"
-                                                                class="dropdown-item text-danger delete-record">Delete
-                                                                account</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="even">
-                                            <td class="control" tabindex="0" style=""></td>
-                                            <td class="  dt-checkboxes-cell"><input type="checkbox"
-                                                    class="dt-checkboxes form-check-input"></td>
-                                            {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
+                                            
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -314,9 +309,7 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
+                                           
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -363,9 +356,7 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
+                                            
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -412,9 +403,7 @@
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
                                                     class="dt-checkboxes form-check-input"></td>
-                                            {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
+                                            
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -460,10 +449,7 @@
                                         <tr class="odd">
                                             <td class="control" tabindex="0" style=""></td>
                                             <td class="  dt-checkboxes-cell"><input type="checkbox"
-                                                    class="dt-checkboxes form-check-input"></td>
-                                            {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
+                                                    class="dt-checkboxes form-check-input"></td>                                           
                                             <td>Nestinenn</td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center book-image">
@@ -505,7 +491,7 @@
                                                     </ul>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                                 <div class="row">
@@ -524,32 +510,35 @@
                                                         role="link" data-dt-idx="previous" tabindex="0"
                                                         class="page-link">Previous</a></li>
                                                 <li class="paginate_button page-item active active-page">
-                                                    <a href="#" aria-controls="DataTables_Table_0" role="link"
-                                                        aria-current="page" data-dt-idx="0" tabindex="0"
-                                                        class="page-link">1</a></li>
+                                                    <a href="#" aria-controls="DataTables_Table_0"
+                                                        role="link" aria-current="page" data-dt-idx="0"
+                                                        tabindex="0" class="page-link">1</a>
+                                                </li>
                                                 <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
-                                                        tabindex="0" class="page-link">2</a></li>
+                                                        aria-controls="DataTables_Table_0" role="link"
+                                                        data-dt-idx="1" tabindex="0" class="page-link">2</a></li>
                                                 <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link" data-dt-idx="2"
-                                                        tabindex="0" class="page-link">3</a></li>
+                                                        aria-controls="DataTables_Table_0" role="link"
+                                                        data-dt-idx="2" tabindex="0" class="page-link">3</a></li>
                                                 <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link" data-dt-idx="3"
-                                                        tabindex="0" class="page-link">4</a></li>
+                                                        aria-controls="DataTables_Table_0" role="link"
+                                                        data-dt-idx="3" tabindex="0" class="page-link">4</a></li>
                                                 <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link" data-dt-idx="4"
-                                                        tabindex="0" class="page-link">5</a></li>
+                                                        aria-controls="DataTables_Table_0" role="link"
+                                                        data-dt-idx="4" tabindex="0" class="page-link">5</a></li>
                                                 <li class="paginate_button page-item disabled"
                                                     id="DataTables_Table_0_ellipsis"><a
                                                         aria-controls="DataTables_Table_0" aria-disabled="true"
                                                         role="link" data-dt-idx="ellipsis" tabindex="0"
                                                         class="page-link">…</a></li>
                                                 <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link" data-dt-idx="14"
-                                                        tabindex="0" class="page-link">15</a></li>
-                                                <li class="paginate_button page-item next" id="DataTables_Table_0_next">
-                                                    <a href="#" aria-controls="DataTables_Table_0" role="link"
-                                                        data-dt-idx="next" tabindex="0" class="page-link">Next</a>
+                                                        aria-controls="DataTables_Table_0" role="link"
+                                                        data-dt-idx="14" tabindex="0" class="page-link">15</a></li>
+                                                <li class="paginate_button page-item next"
+                                                    id="DataTables_Table_0_next">
+                                                    <a href="#" aria-controls="DataTables_Table_0"
+                                                        role="link" data-dt-idx="next" tabindex="0"
+                                                        class="page-link">Next</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -565,6 +554,6 @@
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])

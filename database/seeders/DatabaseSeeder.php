@@ -34,6 +34,17 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('admin')
             ],
             [
+                'type' => 'Courier',
+                'first_name' => 'JRS',
+                'last_name' => 'Express',
+                'email' => 'courier@sample.com',
+                'phone_number' => '09169452347',
+                'birthday' => '2004-04-06',
+                'gender' => 'Male',
+                'username' => 'shopee',
+                'password' => bcrypt('lazada')
+            ],
+            [
                 'type' => 'General User',
                 'first_name' => 'Marc Eubert',
                 'last_name' => 'Contado',

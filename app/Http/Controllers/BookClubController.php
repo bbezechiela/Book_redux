@@ -7,11 +7,128 @@ use App\Models\BookClub;
 use App\Models\BookClub_Event_Members;
 use App\Models\BookClub_Join_Requests;
 use App\Models\BookClub_Events;
+use App\Models\BookClub_Posts;
 use Illuminate\Http\Request;
 
 class BookClubController extends Controller
 {
     // lets gow  
+    // create post
+    function createPost(Request $request) {
+        try {
+            $current_bookclub_name = $request->input('current_bookClub_name');
+            $current_user_id = $request->input('current_user_id');
+    
+            $validated = $request->validate([
+                'caption' => 'required|max:255',
+                'first_img' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'second_img' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'third_img' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'fourth_img' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'fifth_img' => 'sometimes|image|mimes:jpeg,png,jpg,gift|max:10240',
+            ]);
+    
+            $club_finder = BookClub::where('book_club_name', '=', $current_bookclub_name)->first();
+            $user_finder = Users::where('id', '=', $current_user_id)->first();
+    
+            // first image manipulation
+            $firstImgWithExt = $request->file('first_img')->getClientOriginalName();
+            $firstImgWithExt = str_replace(' ', '_', $firstImgWithExt);
+    
+            $firstImgFileName = pathinfo($firstImgWithExt, PATHINFO_FILENAME);
+            $firstImgFileExtension = $request->file('first_img')->getClientOriginalExtension();
+            $firstImgFileToStore = $firstImgFileName . '_' . time() . $firstImgFileExtension;
+            $request->file('first_img')->move(public_path('images/profile_photos'), $firstImgFileToStore);
+            $validated['first_img'] = $firstImgFileToStore; 
+    
+            // second image manipulation
+            $secondImgWithExt = $request->file('second_img')->getClientOriginalName();
+            $secondImgWithExt = str_replace(' ', '_', $secondImgWithExt);
+    
+            $secondImgFileName = pathinfo($secondImgWithExt, PATHINFO_FILENAME);
+            $secondImgFileExtension = $request->file('second_img')->getClientOriginalExtension();
+            $secondImgFileToStore = $secondImgFileName . '_' . time() . $secondImgFileExtension;
+            $request->file('second_img')->move(public_path('images/profile_photos'), $secondImgFileToStore);
+            $validated['second_img'] = $secondImgFileToStore; 
+    
+            // third image manipulation 
+            $thirdImgWithExt = $request->file('third_img')->getClientOriginalName();
+            $thirdImgWithExt = str_replace(' ', '_', $thirdImgWithExt);
+    
+            $thirdImgFileName = pathinfo($thirdImgWithExt, PATHINFO_FILENAME);
+            $thirdImgFileExtension = $request->file('third_img')->getClientOriginalExtension();
+            $thirdImgFileToStore = $thirdImgFileName . '_' . time() . $thirdImgFileExtension;
+            $request->file('third_img')->move(public_path('images/profile_photos'), $thirdImgFileToStore);
+            $validated['third_img'] = $thirdImgFileToStore; 
+    
+            // fourth image manipulation
+            $fourthImgWithExt = $request->file('fourth_img')->getClientOriginalName();
+            $fourthImgWithExt = str_replace(' ', '_', $fourthImgWithExt);
+    
+            $fourthImgFileName = pathinfo($fourthImgWithExt, PATHINFO_FILENAME);
+            $fourthImgFileExtension = $request->file('fourth_img')->getClientOriginalExtension();
+            $fourthImgFileToStore = $fourthImgFileName . '_' . time() . $fourthImgFileExtension;
+            $request->file('fourth_img')->move(public_path('images/profile_photos'), $fourthImgFileToStore);
+            $validated['fourth_img'] = $fourthImgFileToStore; 
+    
+            // fifth image manipulation
+            $fifthImgWithExt = $request->file('fifth_img')->getClientOriginalName();
+            $fifthImgWithExt = str_replace(' ', '_', $fifthImgWithExt);
+    
+            $fifthImgFileName = pathinfo($fifthImgWithExt, PATHINFO_FILENAME);
+            $fifthImgFileExtension = $request->file('fifth_img')->getClientOriginalExtension();
+            $fifthImgFileToStore = $fifthImgFileName . '_' . time() . $fifthImgFileExtension;
+            $request->file('fifth_img')->move(public_path('images/profile_photos'), $fifthImgFileToStore);
+            $validated['fifth_img'] = $fifthImgFileToStore; 
+    
+            if ($club_finder->count() > 0 && $user_finder->count() > 0) {
+                $club_id = $club_finder->book_club_id;
+            
+                $adder = BookClub_Posts::create([
+                    'club_id' => $club_id, 
+                    'user_id' => $current_user_id,
+                    'caption' => $validated['caption'],
+                    'first_img' => $validated['first_img'],
+                    'second_img' => $validated['second_img'],
+                    'third_img' => $validated['third_img'],
+                    'fourth_img' => $validated['fourth_img'],
+                    'fifth_img' => $validated['fifth_img'],
+                ]);
+    
+                if ($adder) {
+                    return response()->json(['data' => 'Post created successfully']);
+                } else {
+                    return response()->json(['error' => 'Post creation failed']);
+                }
+            } else {
+                return response()->json(['error' => 'Cant find book club or user']);
+            }
+        } catch(Exception $e) {
+            return response()->json(['error' => $e]);
+        }
+    }
+
+    // get posts
+    function getPosts(Request $request) {
+        $current_bookclub_name = $request->query('currentBookClubName');
+
+        $club_finder = BookClub::where('book_club_name', '=', $current_bookclub_name)->first();
+
+        if ($club_finder->count() > 0) {
+            $club_id = $club_finder->book_club_id;
+
+            $club_posts_getter = BookClub_Posts::where('club_id', '=', $club_id)->get();
+
+            if ($club_posts_getter->count() > 0) {
+                return response()->json(['data' => $club_posts_getter]);
+            } else {
+                return response()->json(['error' => 'Cant find any post']);
+            }
+        } else {
+            return response()->json(['error' => 'Cant find book club']);
+        }
+    }
+
     // create event
     function createEvent(Request $request) {
         try {
@@ -43,11 +160,10 @@ class BookClubController extends Controller
 
             if ($club_finder->count() > 0 && $user_finder->count() > 0) {
                 $club_id = $club_finder->book_club_id;
-                $user_id = $user_finder->id;
 
                 $adder = BookClub_Events::create([ 
                     'club_id' => $club_id,
-                    'user_id' => $user_id,
+                    'user_id' => $current_user_id,
                     'name' => $validated['event_name'],
                     'type' => $validated['event_type'],
                     'start_date' => $validated['event_start_date'],

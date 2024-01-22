@@ -100,50 +100,55 @@
                                     <p class="mb-0 interaction-type">Qty: <span
                                             class="qty">{{ $qty[$index] }}</span></p>
                                 </div>
-                                @if ($orders->productRelation->status == 'Rent')
-                                    <div class="product-price position-absolute end-0 me-2">₱<span
-                                            class="price-list">{{ $orders->productRelation->security_deposit }}</span>
+                                <div class="product-price position-absolute end-0 me-2">
+                                    @if ($orders->productRelation->status == 'Rent')
+                                        <p>Rental Price: ₱<span
+                                                class="rental-price">{{ $orders->productRelation->price }}</span>
+                                        </p>
+                                        <p>Security Deposit: ₱<span
+                                                class="price-list">{{ $orders->productRelation->security_deposit }}</span>
+                                        </p>
                                     @else
-                                        <div class="product-price position-absolute end-0 me-2">₱<span
-                                                class="price-list">{{ $orders->productRelation->price }}</span>
-                                @endif
+                                        {{-- <div class="product-price position-absolute end-0 me-2"> --}}
+                                        Price: ₱<span class="price-list">{{ $orders->productRelation->price }}</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
+                @endforeach
+                <div class="shipping-option">
+                    <p class="txt-shipping-opt">Shipping Option:</p>
+                    <select id="shipping-option" class="btn shipping-button">
+                        <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
+                        <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
+                    </select>
+                    {{-- <div class="shipping-price">₱130.0</div> --}}
+                </div>
+                <div class="order-total">
+                    <p>Order Total <span id="total">(1 item):</span></p>
+                    <div id="total-price" class="total">₱294</div>
+                </div>
+                <div class="payment-container">
+                    <h1 class="payment-details">Payment Method</h1>
+                    <select id="payment-method" class="btn payment-button">
+                        <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
+                        <option class="fs-6" value="eWallet">eWallet</option>
+                    </select>
+                </div>
+                <div class="summary">
+                    <p class="merchandise-subtotal text-end">Merchandise Subtotal: <span id="mer-total"
+                            class="summary-merchandise-total">P244</span></p>
+                    <p class="text-end">Shipping Total: <span class="summary-shipping-total"
+                            id="shipping-total">₱130.0</span></p>
+                    <p class="text-end">Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
+                </div>
+                <div class="col-md-6 text-center w-100">
+                    <button id="place-order" class="btn text-white place-order-button" data-bs-toggle="modal"
+                        data-bs-target="#messageModal">Place Order</button>
+                </div>
+            </main>
         </div>
-        @endforeach
-        <div class="shipping-option">
-            <p class="txt-shipping-opt">Shipping Option:</p>
-            <select id="shipping-option" class="btn shipping-button">
-                <option class="fs-5" value="Door-to-Door Delivery">Door-to-Door Delivery</option>
-                <option class="fs-5" value="Personal Transaction">Personal Transaction</option>
-            </select>
-            {{-- <div class="shipping-price">₱130.0</div> --}}
-        </div>
-        <div class="order-total">
-            <p>Order Total <span id="total">(1 item):</span></p>
-            <div id="total-price" class="total">₱294</div>
-        </div>
-        <div class="payment-container">
-            <h1 class="payment-details">Payment Method</h1>
-            <select id="payment-method" class="btn payment-button">
-                <option class="fs-6" value="Cash on Delivery">Cash on Delivery</option>
-                <option class="fs-6" value="eWallet">eWallet</option>
-            </select>
-        </div>
-        <div class="summary">
-            <p class="merchandise-subtotal text-end">Merchandise Subtotal: <span id="mer-total"
-                    class="summary-merchandise-total">P244</span></p>
-            <p class="text-end">Shipping Total: <span class="summary-shipping-total"
-                    id="shipping-total">₱130.0</span></p>
-            <p class="text-end">Total Payment: <span id="summary-total" class="summary-total">P294</span></p>
-        </div>
-        <div class="col-md-6 text-center w-100">
-            <button id="place-order" class="btn text-white place-order-button" data-bs-toggle="modal"
-                data-bs-target="#messageModal">Place Order</button>
-        </div>
-        </main>
-    </div>
     </div>
 </body>
 <!-- Modal -->
@@ -178,7 +183,9 @@
 
     for (var i = 0; i < item_qty.length; i++) {
         totalPrice += (parseFloat(prices[i].textContent) * parseFloat(item_qty[i].textContent));
+        // console.log(prices[i].textContent);
     }
+    
     // prices.forEach(element => {
     //     // console.log(parseFloat(element.textContent));
     //     totalPrice += parseFloat(element.textContent);
@@ -331,7 +338,7 @@
         shipping_choices[1].textContent = 'Personal Transaction';
     });
 
-    shipping_choices[0].addEventListener('click', () => {        
+    shipping_choices[0].addEventListener('click', () => {
         document.querySelector('option[value="Cash on Delivery"]').className = 'fs-6';
         payment_method.value = 'Cash on Delivery';
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
@@ -342,7 +349,7 @@
 
     shipping_choices[1].addEventListener('click', () => {
         document.querySelector('option[value="Cash on Delivery"]').className = 'd-none';
-        payment_method.value = 'eWallet';        
+        payment_method.value = 'eWallet';
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
         document.getElementById('shipping-total').textContent = '₱0.00';

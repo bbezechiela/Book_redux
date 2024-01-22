@@ -131,7 +131,8 @@
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -146,9 +147,9 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    <button type="button" class="post-btn" data-bs-toggle="modal"
+                                    {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
                                         data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
-                                            class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                            class="fa fa-angle-right" aria-hidden="true"></i></button> --}}
                                 </div>
                                 <div class="button-group">
                                     <a class="btn btn-outline-primary btn-sm receive-button"
@@ -179,7 +180,8 @@
                                         <p class="mb-0 book-title">{{ $item->book->title }}</p>
                                         <p class="mb-0 book-qty">2 Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p class="mb-0payment-mode">{{ $item->order->shipping_option }}</p>
+                                        <p>#{{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">

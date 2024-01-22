@@ -5,8 +5,8 @@
 
     <div class="d-flex flex-column ms-2 text-white">
         {{-- <span class="fw-bold">{{ session('fullname') }}</span> --}}
-        <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>
-        <span class="fw-regular">{{ session('username') }}</span>
+        <span class="fw-bold">{{ session('owner_name')  }}</span>
+        <span class="fw-regular">{{ session('user') }}</span>
     </div>
 </div>
 
@@ -14,9 +14,9 @@
     <a href="/shipment" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn  @if (Request::is('manageShipment*')) active @endif">
         <span class="nav-link">Manage Order</span>
     </a>
-    <a href="/return" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn  @if (Request::is('manageReturn*')) active @endif" style="white-space: nowrap">
+    {{-- <a href="/return" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn  @if (Request::is('manageReturn*')) active @endif" style="white-space: nowrap">
         <span class="nav-link">Manage Return</span>
-    </a>
+    </a> --}}
     <a href="/completedShipping" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn  @if (Request::is('complete*')) active @endif" style="white-space: nowrap">
         <span class="nav-link">Completed</span>
     </a>

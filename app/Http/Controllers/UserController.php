@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Order_Items;
 use App\Models\Orders;
 use App\Models\Reviews;
+use App\Models\Track_Rental;
 use App\Models\User;
 use App\Models\Users;
 use Illuminate\Contracts\Session\Session;
@@ -56,7 +57,7 @@ class UserController extends Controller
                 return redirect('/dashboard');
             } else if (session('type') == "Bookseller") {
                 return redirect('/sellerboard');
-            } 
+            }
         } else {
             return view('users.login');
         }
@@ -84,7 +85,7 @@ class UserController extends Controller
     public function feedback()
     {
         return view('bookseller.feedback');
-    }       
+    }
 
     public function explore()
     {
@@ -193,7 +194,7 @@ class UserController extends Controller
             // $users = Users::where();
             $user = Users::with('books', 'reviews')->find($id);
             $post = Books::with('user.addressUser', 'cart')->get();
-            return view('users.userProfilePreview', ['user' => $user, 'post' => $post]);            
+            return view('users.userProfilePreview', ['user' => $user, 'post' => $post]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
         }
@@ -208,7 +209,7 @@ class UserController extends Controller
             $user = Users::with('books', 'reviews')->find($id);
             $post = Books::with('user.addressUser', 'cart')->get();
             $review = Reviews::with('item.order.user', 'item.book.user', 'user')->get();
-            
+
             return view('users.previewReviews', ['post' => $post, 'user' => $user, 'rate' => $review]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -398,11 +399,11 @@ class UserController extends Controller
                 $user = Users::find(session('id'));
                 $user->update($validated);
 
-                if ($user) {                   
+                if ($user) {
                     session()->put([
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
-                        'username' => $user->username, 
+                        'username' => $user->username,
                         'profile_pic' => $user->profile_photo
                     ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
@@ -434,8 +435,8 @@ class UserController extends Controller
                     // return redirect('/myprofile');
                     session()->put([
                         'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,    
-                        'username' => $user->username,                     
+                        'last_name' => $user->last_name,
+                        'username' => $user->username,
                     ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
@@ -564,13 +565,14 @@ class UserController extends Controller
         return view('users.userReviewsAndRatings', ['book' => $book]);
     }
 
-    public function myReviews() {
+    public function myReviews()
+    {
         $book = Books::with('item.ratedItem.user')->get();
         return view('users.userMyReviews', ['book' => $book]);
     }
 
     public function orders()
-    {        
+    {
         $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
         // dd($order);        
         return view('users.orders', ['orders' => $order]);
@@ -583,7 +585,7 @@ class UserController extends Controller
 
         $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
         $item_update = $item->update(['order_status' => 'dropped']);
-        
+
 
         if ($item_update) {
             return redirect('/mypurchase');
@@ -592,13 +594,14 @@ class UserController extends Controller
         }
     }
 
-    public function declineOrder($id) {
+    public function declineOrder($id)
+    {
         $item = Order_Items::with('book')->find($id);
         $qty = intval($item->qty) + intval($item->book->stock);
 
         $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
         $item_update = $item->update(['order_status' => 'dropped']);
-        
+
 
         if ($item_update) {
             return redirect('/orders');
@@ -627,16 +630,12 @@ class UserController extends Controller
     {
         return view('users.refund');
     }
-
-    public function sellerDropped()
-    {
-        return view('bookseller.sellerDropped');
-    }
+    
 
     public function sellerRefund()
     {
         return view('bookseller.sellerRefund');
-    }    
+    }
 
     public function store(Request $request)
     {
@@ -680,7 +679,7 @@ class UserController extends Controller
                     'type' => $user->type,
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
-                    'username' => $user->username, 
+                    'username' => $user->username,
                     // 'address' => $validated["address"],
                     'user' => $validated["username"],
                     'profile_pic' => $validated["profile_photo"]
@@ -735,12 +734,24 @@ class UserController extends Controller
                     'id' => $user["id"],
                     'first_name' => $user["first_name"],
                     'last_name' => $user["last_name"],
-                    'username' => $user["username"], 
+                    'username' => $user["username"],
                     'type' => $user->type,
                     'user' => $user["username"],
                     'profile_pic' => $user["profile_photo"]
                 ]);
                 return redirect()->route('explore');
+            } else if ($user->type == 'Courier') {
+                $request->session()->put([
+                    'id' => $user->id,
+                    'type' => $user->type,
+                    'owner_name' => $user->owner_name,
+                    // 'business_name' => $user->business_name,
+                    // 'address' => $user->address,
+                    'user' => $user->username,
+                    'profile_pic' => $user->profile_photo
+                ]);
+
+                return redirect('/shipment');
             } else if ($user->type == 'Bookseller') {
                 $request->session()->put([
                     'id' => $user->id,
@@ -1009,7 +1020,7 @@ class UserController extends Controller
     }
 
     public function search($item)
-    {        
+    {
         $search = Books::where(function ($query) use ($item) {
             $query->where('title', 'LIKE', '%' . $item . '%')
                 ->orWhere('author', 'LIKE', '%' . $item . '%')
@@ -1018,7 +1029,7 @@ class UserController extends Controller
 
         if ($search) {
             return view('users.search', ['items' => $search]);
-        } 
+        }
         // else {
         //     $search_name = Users::where(function ($query) use ($item) {
         //         $query->where()
@@ -1027,7 +1038,7 @@ class UserController extends Controller
     }
 
     public function placeOrder(Request $request)
-    {    
+    {
         $data = $request->input('data');
         // dd($address_id);
         $request->session()->put('data', $data);
@@ -1126,7 +1137,8 @@ class UserController extends Controller
 
     public function courierProfile()
     {
-        return view('courier.courierProfile');
+        $user = Users::find(session('id'));
+        return view('courier.courierProfile', ['user' => $user]);
     }
 
     public function courierMessage()
@@ -1148,12 +1160,76 @@ class UserController extends Controller
 
     public function booksRented()
     {
-        return view('users.booksRented');
+        $rental = Track_Rental::where('user_id', session('id'))->with('book.user', 'user')->get();
+        return view('users.booksRented', ['tracks' => $rental]);
+    }
+
+    public function courierUpdate(Request $request)
+    {        
+        if ($request->hasFile('profile_photo')) {
+            $validated = $request->validate([
+                'owner_name' => 'required',
+                'email' => ['required', 'email'],
+                'phone_number' => 'required',
+                'username' => 'required',
+                'password' => 'required',
+                'profile_photo' => 'required'
+            ]);
+
+            $validated['password'] = bcrypt($request['password']);            
+
+            $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('profile_photo')->getClientOriginalExtension();
+            $fileNameToStore = $fileName . '_' . time() . $extension;
+            $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
+            $validated["profile_photo"] = $fileNameToStore;
+            
+            $user = Users::find(session('id'));
+            if ($user && Hash::check($request->input('current_password'), $user["password"])) {
+                $user->update($validated);
+
+                session()->put([
+                    'owner_name' => $user->owner_name,                                        
+                    'user' => $user->username,                    
+                    'profile_pic' => $user->profile_photo
+                ]);
+
+                return redirect('/courierprofile')->with('message', 'Profile updated successfully');
+            } else {
+                return redirect('/courierprofile')->with('message', 'Error in updating profile');
+            }
+        } else {
+            $validated = $request->validate([
+                'owner_name' => 'required',
+                'email' => ['required', 'email'],
+                'phone_number' => 'required',
+                'username' => 'required',
+                'password' => 'required',                
+            ]);
+
+            $validated['password'] = bcrypt($request['password']);
+
+            $user = Users::find(session('id'));
+            if ($user && Hash::check($request->input('current_password'), $user["password"])) {
+                $user->update($validated);
+
+                session()->put([
+                    'owner_name' => $user->owner_name,                    
+                    // 'address' => $user->address,
+                    'user' => $user->username,
+                    // 'username' => $user->owner_name,
+                    'profile_pic' => $user->profile_photo
+                ]);
+
+                return redirect('/courierprofile')->with('message', 'Profile updated successfully');
+            } else {
+                return redirect('/courierprofile')->with('message', 'Error in updating profile');
+            }
+        }
     }
 
 
-
-    
     // API's
     public function checkUsername($user)
     {
@@ -1281,42 +1357,44 @@ class UserController extends Controller
                 $data[$field] = $fileNameToStore;
             }
         }
-        
+
 
         $update = Reviews::find($id);
         $update->update($data);
         if ($update) {
             // return redirect('delivered-mypurchase')->with(['message' => 'Update confirmed: Your review has been successfully updated.']);
-            return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);            
+            return response()->json(['response' => 'Update confirmed: Your review has been successfully updated.']);
         } else {
             return response()->json(['response' => 'Update review unsuccessful.']);
         }
     }
 
-    public function getOrderDetails($id) {
+    public function getOrderDetails($id)
+    {
         $order = Books::with('item.order.user', 'item.order.address', 'user.addressUser')->find($id);
 
         return $order;
     }
 
-    public function confirmOrder(Request $request) {
-        $order = Order_Items::find($request['id']);        
+    public function confirmOrder(Request $request)
+    {
+        $order = Order_Items::find($request['id']);
 
-        if ($request->input('shipping_status') == 'Drop off') {            
+        if ($request->input('shipping_status') == 'Drop off') {
             $order->update([
                 'order_status' => 'Confirmed by seller',
-                'shipping_status' => $request->input('shipping_status')                
+                'shipping_status' => $request->input('shipping_status')
             ]);
 
-            return redirect('/mypurchase');
-        } else if ($request->input('shipping_status') == 'Personal Transaction') {            
+            return redirect('/mypurchase')->with('message', 'Successfully arranged!');
+        } else if ($request->input('shipping_status') == 'Personal Transaction') {
             $order->update([
                 'order_status' => 'paid',
-                'shipping_status' => $request->input('shipping_status')                
+                'shipping_status' => $request->input('shipping_status')
             ]);
 
             return redirect('/mypurchase');
-        } else if ($request->input('shipping_status') == 'Pickup') {    
+        } else if ($request->input('shipping_status') == 'Pickup') {
             $order->update([
                 'order_status' => 'Confirmed by seller',
                 'shipping_status' => $request->input('shipping_status'),
@@ -1326,16 +1404,18 @@ class UserController extends Controller
 
             return redirect('/mypurchase');
         }
-    }    
+    }
 
-    public function viewShipping($id) {
+    public function viewShipping($id)
+    {
         $order = Books::with('item.order.user', 'item.order.address', 'user.addressUser')->find($id);
 
         return $order;
     }
-    
-    public function sellerPostRate(Request $request) {
-        $data = $request->all();        
+
+    public function sellerPostRate(Request $request)
+    {
+        $data = $request->all();
 
         $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
 
@@ -1354,15 +1434,16 @@ class UserController extends Controller
 
         $review = Reviews::create($data);
 
-        if ($review) {            
-            return response()->json(['response' => 'Rating and Review was submitted. Thank you for your feedback!']);
+        if ($review) {
+            return response()->json(['message' => 'Rating and Review was submitted. Thank you for your feedback!']);
         } else {
-            return response()->json(['response' => 'Submission unsuccessful. Please review and try again.']);
+            return response()->json(['message' => 'Submission unsuccessful. Please review and try again.']);
         }
     }
 
-    public function sellerUpdateRate(Request $request) {
-        $data = $request->all();        
+    public function sellerUpdateRate(Request $request)
+    {
+        $data = $request->all();
 
         $imageFields = ['first_img', 'second_img', 'third_img', 'fourth_img', 'fifth_img'];
 
@@ -1379,14 +1460,14 @@ class UserController extends Controller
             }
         }
 
-        $rate = Reviews::find($request['id']);        
+        $rate = Reviews::find($request['id']);
         $rate->update($request->except('id'));
 
         // return response()->json(['response' => $rate]);
         if ($rate) {
-            return response()->json(['response' => 'Successfully updated']);
+            return response()->json(['message' => 'Rating and Review was updated. Thank you for your feedback!']);
         } else {
-            return response()->json(['response' => 'error']);
+            return response()->json(['message' => 'error']);
         }
     }
 }

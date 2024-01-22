@@ -153,6 +153,9 @@
                 </div>
             </div>
         </div>
+        @php
+            $loopCount = 0;
+        @endphp
         @foreach ($book as $books)
             @foreach ($books->item as $items)
                 @foreach ($items->ratedItem as $review)
@@ -232,10 +235,19 @@
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $loopCount++;
+                        @endphp
                     @endif
                 @endforeach
             @endforeach
         @endforeach        
+        @if ($loopCount == 0)
+            <div class="w-100 mt-5 d-flex justify-content-center">
+                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
+            </div>
+            <h1 class="text-warning mt-2 text-center fw-bold">You haven't done any reviews yet!</h1>
+        @endif
     </div>
 
 </div>

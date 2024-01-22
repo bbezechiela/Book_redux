@@ -171,7 +171,7 @@ Route::get('/sellerorders', [SellerController::class, 'sellerOrders']);
 
 Route::get('/sellerdelivered', [SellerController::class, 'sellerDelivered']);
 
-Route::get('/sellerdropped', [UserController::class, 'sellerDropped']);
+Route::get('/sellerdropped', [SellerController::class, 'sellerDropped']);
 
 Route::get('/sellerrefund', [UserController::class, 'sellerRefund']);
 
@@ -292,6 +292,12 @@ Route::delete('/deleteConversationSearchBased', [MessageController::class, 'dele
 
 
 // seller
+Route::get('/forsale', [SellerController::class, 'redirectSale']);
+
+Route::get('/forrent', [SellerController::class, 'redirectRent']);
+
+Route::post('/updateCourier', [UserController::class, 'courierUpdate']);
+
 Route::post('/registerseller', [SellerController::class, 'store']);
 
 Route::get('/sellerboard', [SellerController::class, 'sellerDashboard']);
@@ -332,6 +338,11 @@ Route::post('/joinRequest', [BookClubController::class, 'joinRequest']);
 Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter']);
 
 Route::get('/getEvents', [BookClubController::class, 'getEvents']);
+
+// discussion tab, post
+Route::post('/createPost', [BookClubController::class, 'createPost']);
+
+Route::get('/getPosts', [BookClubController::class, 'getPosts']);
 
 // getUser para ha events na section para ig display hinu nag post
 Route::get('/getUser', [BookClubController::class, 'getUser']);

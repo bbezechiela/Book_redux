@@ -100,7 +100,8 @@
                     </div>
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <label class="fw-bold" for="sort">Sort by</label>
-                        <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort" style="background-color: #fff;">
+                        <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort"
+                            style="background-color: #fff;">
                             <option selected disabled>{{ $status }}</option>
                             <option value="All">All</option>
                             <option value="Sale">Sale</option>
@@ -108,7 +109,7 @@
                         </select>
                     </div>
                     <div id="content-cards" class="w-100 mx-2 row justify-content-start px-4"
-                        style="height: 300px; margin-top: 2em;">
+                        style="height: 300px; margin-top: 2em;">                        
                         @foreach ($books as $book)
                             <div class="card col-3 m-1 shadow" style="width: 240px; flex: 0 0 auto;">
                                 <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
@@ -746,7 +747,8 @@
                                         <option value="English">English</option>
                                     </select>
                                     <input type="number" name="rental_duration" class="form-control"
-                                        placeholder="Rental Duration (days)" style="margin-bottom: 12px; color: #003060;">
+                                        placeholder="Rental Duration (days)"
+                                        style="margin-bottom: 12px; color: #003060;">
                                     <textarea name="rental_terms_and_condition" id="exchange-preferences" class="form-control" cols="30"
                                         rows="4" placeholder="Rental Terms and Condition" style="margin-bottom: 12px; color: #003060;"></textarea>
                                     <textarea name="description" id="" class="form-control" cols="30" rows="4"
@@ -1908,6 +1910,24 @@
     var rent_height = document.getElementById('rent-height');
     var rent_length = document.getElementById('rent-length');
     var rent_courier = document.getElementById('rent-courier');
+
+    // redirect form dashboard
+    @if (session('sale'))
+        list_category.value = 'Sale';
+        document.getElementById('listing-type').textContent = 'Sale';
+        document.getElementById("sale").style.display = "flex";
+        // document.getElementById("exchange").style.display = "none";
+        document.getElementById("rent").style.display = "none";
+        createListingModal.show();
+    @elseif (session('rent'))
+        list_category.value = 'Rent';
+        document.getElementById('listing-type').textContent = 'Rent';
+        document.getElementById("sale").style.display = "none";
+        // document.getElementById("exchange").style.display = "none";
+        document.getElementById("rent").style.display = "flex";
+        createListingModal.show();
+    @endif
+
     create_listing_btn.addEventListener('click', function() {
         list_category.value = 'Sale';
         document.getElementById('listing-type').textContent = 'Sale';
