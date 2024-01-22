@@ -101,32 +101,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="card mt-5 mb-3 event-card">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="../assets/b4.jpg" alt="Event Image">
-                                    <p class="text-center setup">In Person</p>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="event-details">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title dets">August 3, 2023 10:00 AM</h5>
-                                            <a href="#" class="btn btn-link" data-bs-toggle="modal"
-                                                data-bs-target="#eventdetails">View Details</a>
-                                        </div>
-                                        <h5 class="card-title dets">Educational Books Donation Drive</h5>
-                                        <p class="text-muted dets">Posted by John Doe</p>
-                                        <p class="card-text" style="margin-top: 15px"> Please join us in the first ever
-                                            book exchange that will happen on August 3, 2023 in Tacloban. You don’t want
-                                            this to miss, don’t you? Tap in the join button so we can know who we will
-                                            be expecting. See you there Taclobanons!</p>
-                                        <button class="btn join-btn">Join</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <!-- event outer container -->
+                    <div id='eventOuterContainer' class="container"></div>
                 </div>
 
                 <!-- For Exchange Card -->
@@ -285,7 +262,7 @@
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn post-btn">Create</button>
+                        <button id='create-event' type="button" class="btn post-btn">Create</button>
                     </div>
                 </div>
             </div>
@@ -390,6 +367,12 @@
                 </div>
             </div>
         </div>
+        <script>
+            const current_bookClub_name = 'Book Exchange Club';
+            const current_user_id = "{{ session('id'); }}";
+            const csrf_token = '{{ csrf_token(); }}';
+        </script>
+        <script src="{{ asset('js/book_club_events.js'); }}"></script>
     </div>
     @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
