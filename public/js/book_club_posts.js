@@ -96,10 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // hide modal function
-    function hideModal() {
-        const modalContainer = document.getElementById('createPostModal');
-        modalContainer.classList.add('hideModal');
-    }
+    // function hideModal() {
+    //     const modalContainer = document.getElementById('createPostModal');
+    //     modalContainer.classList.add('hideModal');
+    // }
+    const createPostModal = new bootstrap.Modal('#createpost', {
+        keyboard: false
+    });
 
     async function createPost() {
         // post element
@@ -126,7 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.data) {
             console.log(response.data);
-            hideModal();
+            // hideModal();
+            createPostModal.hide();
         } else {
             console.log(response.error);
         }

@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const createPostModal = new bootstrap.Modal('#createevent', {
+        keyboard: false
+    });
     // createe event
     async function createEvent() {
         // get values from elements in the create event model
@@ -75,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         if (response.data) {
             console.log(response.data);
+            createPostModal.hide();
         } else {
             console.log(response.error);
         }
@@ -94,13 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // show events 
     async function getEvents() {
-        const getEvents = await fetch(`/getEvents?currentBookClubName=${current_bookClub_name}`, {
+        const getEvents = await fetch(`/getEvents?currentBookClubName=${current_bookClub_name}&currentEventTimestamp=${lastEventTimestamp}`, {
             method: 'GET' 
         });
 
         const response = await getEvents.json();
         if (response.data) {
             console.log(response.data);
+            lastEventTimestamp = response.data[response.data.length -1].created_at;
 
             const shuffledEvents = shuffleEvents(response.data);
 
@@ -109,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(response.error);
         }
     }
-    getEvents();
+    // getEvents();
+    setInterval(getEvents, 1200);
 
     function showEvents(responses) {
         responses.forEach(response => {
