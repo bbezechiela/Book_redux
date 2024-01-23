@@ -344,54 +344,174 @@
                         <div class="d-flex flex-row justify-content-center">
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title" style="color: #E55B13;">Strategic Negotiation Tactics for Successful Book Deals: A
-                                        Comprehensive Guide</h6>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">January 20, 2023</h6>
-                                    <p id="num-text" class="card-text mt-3" style="text-align: justify; font-size: 12px;">
-                                        Delve into the world of effective negotiation strategies tailored specifically
-                                        for the book industry. From establishing initial terms to closing deals with
-                                        finesse, this guide provides invaluable insights to empower authors and
-                                        retailers alike in securing favorable agreements.</p>
-                                    <a id="hints-btn" class="btn">Continue Reading</a>
+                                    <h6 class="card-title" style="color: #E55B13;">Master Sales Negotiation with These 7
+                                        Amazing Techniques </h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">September 06, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Negotiation is a discussion between two parties to come up with a mutually
+                                        beneficial agreement.
+                                        In sales, this discussion is between buyers and sellers. Negotiation is an
+                                        important sales skill as it is a part of most deals.
+                                        Let’s look at sales negotiation techniques to help you build rapport with the
+                                        client. </p>
+                                    <a id="hints-btn" href="https://www.leadsquared.com/learn/sales/sales-negotiation/"
+                                        class="btn">Continue Reading</a>
                                 </div>
 
                             </div>
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title" style="color: #E55B13;">Fortifying Your Shipments: Expert Tips for Packaging Books
-                                        Safely</h6>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">December 1, 2023</h6>
-                                    <p id="num-text" class="card-text mt-3" style="text-align: justify; font-size: 12px;">
-                                        Safeguard your literary treasures with our expert tips on packaging and shipping
-                                        books securely. Discover the latest in protective materials, proper packaging
-                                        techniques, and reliable shipping methods to ensure your books reach their
-                                        destination in pristine condition, leaving a lasting impression on your
-                                        customers.</p>
-                                    <a id="hints-btn" class="btn">Continue Reading</a>
+                                    <h6 class="card-title" style="color: #E55B13;">Book Packaging, Easy, Safe &
+                                        Inexpensive</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">February 03, 2008</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        What are your odds of being content with the
+                                        book packaging that shows up in the mail from books you’ve ordered online?
+                                        Imagine trying to compare textbooks with a finely bound classic first edition.
+                                        That’s the range of packaging I’ve had arrive at my door. My odds of being
+                                        pleased after opening a package seem to running around fifty percent.</p>
+                                    <a id="hints-btn" href="https://bookshopblog.com/how-to-package-books-for-shipping/"
+                                        class="btn">Continue Reading</a>
                                 </div>
                             </div>
 
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title" style="color: #E55B13;">The Price is Right: Mastering Competitive Pricing for Book
-                                        Sales</h6>
-                                    <h6 class="card-subtitle mb-2 text-body-secondary">September 17, 2023</h6>
-                                    <p id="num-text" class="card-text mt-3" style="text-align: justify; font-size: 12px;">
-                                        Uncover the art and science of competitive book pricing with this comprehensive
-                                        guide. From understanding market trends to evaluating customer behavior, learn
-                                        the strategies that will help you set the perfect price for your books,
-                                        attracting buyers while optimizing your revenue in the dynamic landscape of book
-                                        commerce.</p>
-                                    <a id="hints-btn" class="btn">Continue Reading</a>
+                                    <h6 class="card-title" style="color: #E55B13;">Book Marketing 101: Price </h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">October 25, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        How much should your book cost?
+                                        Your answer is critical to your book’s success and your author career.
+                                        Most authors simply price their books like the authors around them. But I want
+                                        you to make informed pricing decisions to understand the why behind book
+                                        pricing.
+                                        In this article, we’ll discuss the second P of the five Ps of marketing.</p>
+                                    <a id="hints-btn" href="https://www.authormedia.com/book-marketing-101-price/"
+                                        class="btn">Continue Reading</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="...">
+                        <div class="d-flex flex-row justify-content-center">
+                            <div class="card mx-3 rounded-4">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title" style="color: #E55B13;">How to Ship Books: Tips and Best
+                                        Practices for Shipping Books</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">August 04, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Shipping books may seem like a straightforward process, but ensuring that they
+                                        arrive safely and in optimal condition requires careful planning and execution.
+                                        Shipping books multiple books can be heavy and since they are made of paper,
+                                        they are more susceptible to damage when not packed properly. Whether you’re an
+                                        avid reader, a book collector, or a bookseller, understanding the best practices
+                                        for shipping books is essential.</p>
+                                    <a id="hints-btn"
+                                        href="https://goshippo.com/blog/how-to-ship-books-tips-and-best-practices-for-shipping-books"
+                                        class="btn">Continue Reading</a>
+                                </div>
+
+                            </div>
+                            <div class="card mx-3 rounded-4">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title" style="color: #E55B13;">Best Negotiation Books: A Negotiation
+                                        Reading List</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">January 18, 2024</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Negotiation books that will get you to “yes” in any personal or business
+                                        negotiation.
+                                        Whether you’re facing negotiations with colleagues, customers, or family
+                                        members, the following negotiation books from experts at PON offer new
+                                        perspectives on common negotiating dilemmas. Among the best books on
+                                        negotiation, they’ll help you reach better deals, form stronger relationships,
+                                        and effectively address conflict.</p>
+                                    <a id="hints-btn"
+                                        href="https://www.pon.harvard.edu/daily/negotiation-training-daily/negotiation-books-a-negotiation-reading-list/"
+                                        class="btn">Continue Reading</a>
+                                </div>
+                            </div>
+
+                            <div class="card mx-3 rounded-4">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title" style="color: #E55B13;">Competitive Pricing Strategy:
+                                        Benefits, Examples, Strategies</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">October 12, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Setting the right wholesale vs. retail price for your products or services can
+                                        make all the difference.
+                                        Competitive pricing is a dynamic pricing strategy that empowers business owners
+                                        to establish the selling price of their products or services by closely
+                                        examining the prices set by their competitors. This approach serves as a
+                                        valuable compass, particularly for newcomers in the market, enabling them to
+                                        gauge the pricing sweet spot for their offerings.</p>
+                                    <a id="hints-btn" href="https://www.bluecart.com/blog/competitive-pricing-strategy"
+                                        class="btn">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="...">
+                        <div class="d-flex flex-row justify-content-center">
+                            <div class="card mx-3 rounded-4">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title" style="color: #E55B13;">How Book Pricing is a Powerful
+                                        Strategy to sell more books</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">May 09, 2019</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Finding the pricing sweet spot for your book is really an exercise in
+                                        psychology. As such some trial and error is necessary.
+                                        This means you’ll have to stay on top of your sales numbers, and make
+                                        adjustments as soon as you see sales waning.
+                                        The price point implies value,
+                                        without requiring a serious investment. In fact, I often recommend this range to
+                                        newer authors looking to expand their potential buyer market.</p>
+                                    <a id="hints-btn"
+                                        href="https://indiereader.com/2019/05/how-book-pricing-is-a-powerful-strategy-to-sell-more-books/"
+                                        class="btn">Continue Reading</a>
+                                </div>
+
+                            </div>
+                            <div class="card mx-3 rounded-4">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title" style="color: #E55B13;">11 Best Negotiation Books to Read in
+                                        2024</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">January 04, 2022</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Negotiation books are guides that teach compromise and persuasion skills. These
+                                        works cover topics such as empathizing with the opponent, appealing to the other
+                                        party’s interests, and regulating emotions. The purpose of these books is to
+                                        help negotiations go more smoothly and help professionals achieve more favorable
+                                        deals. These works are a subset of business books and sales books.</p>
+                                    <a id="hints-btn" href="https://teambuilding.com/blog/negotiation-books"
+                                        class="btn">Continue Reading</a>
+                                </div>
+                            </div>
+
+                            <div class="card mx-3 rounded-4">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title" style="color: #E55B13;">How to Market a Book: 7 Tips for
+                                        Strategic Pricing</h6>
+                                    <h6 class="card-subtitle mb-2 text-body-secondary">May 02, 2023</h6>
+                                    <p id="num-text" class="card-text mt-3"
+                                        style="text-align: justify; font-size: 12px;">
+                                        Pricing your book can be a daunting task and authors don’t realize how much this
+                                        factors into how to market a book correctly.
+                                        Pricing is the cornerstone of good book marketing. Yes, you want to make sure
+                                        that you’re earning enough money to cover your costs and make a profit, but you
+                                        also don’t want to price your book so high that it turns readers away. That’s
+                                        where strategic pricing comes in.</p>
+                                    <a id="hints-btn" href="https://amarketingexpert.com/2023/05/02/how-to-market-a-book-7-tips-for-strategic-pricing/" class="btn">Continue Reading</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-indicators position-relative mt-3">

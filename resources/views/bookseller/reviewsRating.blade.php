@@ -16,7 +16,8 @@
     <div id="content" class="pe-0 content">
         <ul class="nav sticky-top head-nav shadow py-4 px-4 top-nav">
             <div class="w-100 d-flex mt-1 p-1">
-                <a href="/sellerboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
+                <a href="/sellerboard" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -62,7 +63,7 @@
                         Rating</a>
                 </nav>
             </div> --}}
-            <div class="container text-center review-rating-details">
+            {{-- <div class="container text-center review-rating-details">
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="d-flex justify-content-center align-items-center">
@@ -103,91 +104,103 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
+        @php
+        $loopCount = 0;
+        @endphp
         @foreach ($book as $books)
-            @foreach ($books->item as $items)
-                @foreach ($items->ratedItem as $review)
-                    @if ($review->user_id != session('id'))
-                        <div class="container text-center customer-ratings">
-                            <div class="row align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('images/profile_photos/' . $review->user->profile_photo) }}"
-                                        alt="seller image" class="customer-picture">
-                                    <div class="customer-ratings-info">
-                                        <p>{{ $review->user->first_name . ' ' . $review->user->last_name }}</p>
-                                        {{-- <p>N******nnn <a href="" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
-                                        @if ($review->rate_value == 1)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        @elseif ($review->rate_value == 2)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        @elseif ($review->rate_value == 3)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        @elseif ($review->rate_value == 4)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        @elseif ($review->rate_value == 5)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        @endif
-                                        <p style="font-weight: bold;">{{ $books->status }}</p>
-                                        <p>{{ $review->created_at->format('F j, Y, g:i a') }}</p>
-                                        <p>Condition: <span>{{ $review->condition_accuracy }}</span></p>
-                                        <p>Accuracy of Description: <span>{{ $review->description_accuracy }}</span></p>
-                                        <p>Interaction: <span>{{ $review->interaction }}</span></p>
-                                        <p>{{ $review->description }}</p>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col">
-                                                    @if (isset($review->first_img))
-                                                        <img src="{{ asset('images/rate_images/' . $review->first_img) }}"
-                                                            alt="Image 1" class="d-inline square-picture">
-                                                    @endif
-                                                    @if (isset($review->second_img))
-                                                        <img src="{{ asset('images/rate_images/' . $review->second_img) }}"
-                                                            alt="Image 1" class="d-inline square-picture">
-                                                    @endif
-                                                    @if (isset($review->third_img))
-                                                        <img src="{{ asset('images/rate_images/' . $review->third_img) }}"
-                                                            alt="Image 1" class="d-inline square-picture">
-                                                    @endif
-                                                    @if (isset($review->fourth_img))
-                                                        <img src="{{ asset('images/rate_images/' . $review->fourth_img) }}"
-                                                            alt="Image 1" class="d-inline square-picture">
-                                                    @endif
-                                                    @if (isset($review->fifth_img))
-                                                        <img src="{{ asset('images/rate_images/' . $review->fifth_img) }}"
-                                                            alt="Image 1" class="d-inline square-picture">
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        @foreach ($books->item as $items)
+        @foreach ($items->ratedItem as $review)
+        @if ($review->user_id != session('id'))
+        <div class="container text-center customer-ratings">
+            <div class="row align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('images/profile_photos/' . $review->user->profile_photo) }}" alt="seller image"
+                        class="customer-picture">
+                    <div class="customer-ratings-info">
+                        <p>{{ $review->user->first_name . ' ' . $review->user->last_name }}</p>
+                        {{-- <p>N******nnn <a href="" data-bs-toggle="modal" data-bs-target="#report">Report</a></p> --}}
+                        @if ($review->rate_value == 1)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        @elseif ($review->rate_value == 2)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        @elseif ($review->rate_value == 3)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        @elseif ($review->rate_value == 4)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        @elseif ($review->rate_value == 5)
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        @endif
+                        <p style="font-weight: bold;">{{ $books->status }}</p>
+                        <p>{{ $review->created_at->format('F j, Y, g:i a') }}</p>
+                        <p>Condition: <span>{{ $review->condition_accuracy }}</span></p>
+                        <p>Accuracy of Description: <span>{{ $review->description_accuracy }}</span></p>
+                        <p>Interaction: <span>{{ $review->interaction }}</span></p>
+                        <p>{{ $review->description }}</p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    @if (isset($review->first_img))
+                                    <img src="{{ asset('images/rate_images/' . $review->first_img) }}" alt="Image 1"
+                                        class="d-inline square-picture">
+                                    @endif
+                                    @if (isset($review->second_img))
+                                    <img src="{{ asset('images/rate_images/' . $review->second_img) }}" alt="Image 1"
+                                        class="d-inline square-picture">
+                                    @endif
+                                    @if (isset($review->third_img))
+                                    <img src="{{ asset('images/rate_images/' . $review->third_img) }}" alt="Image 1"
+                                        class="d-inline square-picture">
+                                    @endif
+                                    @if (isset($review->fourth_img))
+                                    <img src="{{ asset('images/rate_images/' . $review->fourth_img) }}" alt="Image 1"
+                                        class="d-inline square-picture">
+                                    @endif
+                                    @if (isset($review->fifth_img))
+                                    <img src="{{ asset('images/rate_images/' . $review->fifth_img) }}" alt="Image 1"
+                                        class="d-inline square-picture">
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    @endif
-                @endforeach
-            @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php
+        $loopCount++;
+        @endphp
+        @endif
         @endforeach
+        @endforeach
+        @endforeach
+        @if ($loopCount == 0)
+        <div class="w-100 mt-5 d-flex justify-content-center">
+            <img class="img mt-3" src="../assets/rating.png" alt="image">
+        </div>
+        <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No user reviews available</h1>
+        @endif
         {{-- <div class="container text-center customer-ratings">
             <div class="row align-items-center">
                 <div class="d-flex align-items-center">

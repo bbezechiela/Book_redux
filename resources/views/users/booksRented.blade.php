@@ -149,7 +149,7 @@
                                 <div class="w-100 mt-5 d-flex justify-content-center">
                                     <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
                                 </div>
-                                <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No Books Rented</h1>
+                                <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No books are rented</h1>
                             @endif
                         </tbody>
                     </table>

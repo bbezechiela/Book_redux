@@ -88,8 +88,8 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                                <button class="message-seller"><i class="fa fa-commenting"
+                                    href="/userlistings/{{ $order->user_id }}"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <button class="message-seller message-button"><i class="fa fa-commenting"
                                         aria-hidden="true"></i></button>
                             </div>
                             <span class="order-text me-5 mt-0">Order</span>
@@ -146,8 +146,8 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                                <button class="message-seller"><i class="fa fa-commenting"
+                                    href="/userlistings/{{ $order->user_id }}"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                                <button class="message-seller message-button"><i class="fa fa-commenting"
                                         aria-hidden="true"></i></button>
                             </div>
                             <span class="order-text me-5 mt-0">Order</span>
@@ -907,4 +907,22 @@
     function myFunction() {
         window.print();
     }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageButtons = document.querySelectorAll('.message-button');
+
+        messageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const username = button.dataset.username;
+                redirectToMessaging(username);
+            });
+        });
+
+        function redirectToMessaging(username) {
+            const messagingUrl = `/messages?user=${username}`;
+            window.location.href = messagingUrl;
+        }
+    });
 </script>

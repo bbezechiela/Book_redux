@@ -5,7 +5,8 @@
 
     <div class="d-flex flex-column ms-2">
         <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>
-        <span class="profile-content"><a href="/followers" class="text-decoration-none text-white">2.9K Followers .</a><a href="/following" class="text-decoration-none text-white">500 Following</a></span>
+        <span>{{ session('username') }}</span>
+        {{-- <span class="profile-content"><a href="/followers" class="text-decoration-none text-white">2.9K Followers .</a><a href="/following" class="text-decoration-none text-white">500 Following</a></span> --}}
         {{-- <span class="profile-content">Lives in {{ session('address') }}</span> --}}
     </div>
 </div>

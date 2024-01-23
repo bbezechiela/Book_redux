@@ -76,8 +76,8 @@
                     <a class="nav-link custom-nav-link" href="/usermyreviews">My Reviews</a>
                 </li>
         </div>
-        <div class="ratings-review">
-            <div class="card-body rating-details-review">
+        {{-- <div class="ratings-review">
+            <div class="card-body rating-details-review"> --}}
                 {{-- <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="#">Seller Rating</a>
@@ -88,7 +88,7 @@
                         href="#">Buyer
                         Rating</a>
                 </nav> --}}
-            </div>
+            {{-- </div>
             <div class="container text-center review-rating-details">
                 <div class="row align-items-center">
                     <div class="col">
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         @php
             $loopCount = 0;
         @endphp
@@ -226,9 +226,9 @@
         @endforeach
         @if ($loopCount == 0)
             <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/empty-icon.png" alt="image" style="width: 15%">
+                <img class="img mt-3" src="../assets/rating.png" alt="image">
             </div>
-            <h1 class="text-warning mt-2 text-center fw-bold">No User Reviews</h1>
+            <h1 class="mt-2 text-center fw-bold"  style="color: #E55B13; font-size: 20px;">No user reviews available</h1>
         @endif
     </div>
 

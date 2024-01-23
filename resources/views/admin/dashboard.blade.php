@@ -36,8 +36,8 @@
                         </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}?v={{ time() }}" alt="profile"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
+                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}?v={{ time() }}"
+                                alt="profile" width="35" height="35" class="rounded-5" style="margin-right: 2em;">
                         </button></a>
                 </div>
             </div>
@@ -94,7 +94,8 @@
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">New Listings <span id="new_listing_header">| Today</span></h5>
+                                    <h5 class="card-title">New Listings <span id="new_listing_header">| Today</span>
+                                    </h5>
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -102,6 +103,36 @@
                                         </div>
                                         <div class="ps-3">
                                             <h6 id="new_listing">{{ $CountCurrListing }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-4 col-md-4">
+                            <div class="card info-card sellers-card">
+                                <div class="filter">
+                                    <a class="icon" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                            class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" style="">
+                                        <li class="dropdown-header text-start">
+                                            <h6>Filter</h6>
+                                        </li>
+                                        <li><a id="new_user_today" class="dropdown-item btn">Today</a></li>
+                                        <li><a id="new_user_this_month" class="dropdown-item btn">This Month</a></li>
+                                        <li><a id="new_user_this_year" class="dropdown-item btn">This Year</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">New Booksellers <span id="new_user_header">| This
+                                            Month</span></h5>
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6 id="new_user">{{ $CountCurrUser }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -136,9 +167,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-xxl-4 col-md-4">
                             <div class="card info-card post-card">
                                 <div class="filter">
@@ -271,95 +299,81 @@
     var newUserToday = document.getElementById('new_user_today');
     var newUserThisMonth = document.getElementById('new_user_this_month');
     var newUserThisYear = document.getElementById('new_user_this_year');
-
     var newListingToday = document.getElementById('new_listing_today');
     var newListingThisMonth = document.getElementById('new_listing_this_month');
     var newListingThisYear = document.getElementById('new_listing_this_year');
-
     var newUserHeader = document.getElementById('new_user_header');
     var newListingHeader = document.getElementById('new_listing_header');
-
     newUserToday.addEventListener('click', () => {
-        newUserHeader.textContent = '| Today';        
-
+        newUserHeader.textContent = '| Today';
         fetch('/newUserToday', {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            document.getElementById('new_user').textContent = result;
-        })
-        .catch(error => console.error(error));
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('new_user').textContent = result;
+            })
+            .catch(error => console.error(error));
     });
-
     newUserThisMonth.addEventListener('click', () => {
         newUserHeader.textContent = '| This Month';
-        
         fetch('/newUserThisMonth', {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            document.getElementById('new_user').textContent = result;
-        })
-        .catch(error => console.error(error));
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('new_user').textContent = result;
+            })
+            .catch(error => console.error(error));
     });
-
     newUserThisYear.addEventListener('click', () => {
         newUserHeader.textContent = '| This Year';
-        
         fetch('/newUserThisYear', {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            document.getElementById('new_user').textContent = result;
-        })
-        .catch(error => console.error(error));
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('new_user').textContent = result;
+            })
+            .catch(error => console.error(error));
     });
-
     newListingToday.addEventListener('click', () => {
         newListingHeader.textContent = '| Today';
-        
         fetch('/newListingToday', {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            document.getElementById('new_listing').textContent = result;
-        })
-        .catch(error => console.error(error));
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('new_listing').textContent = result;
+            })
+            .catch(error => console.error(error));
     });
-
     newListingThisMonth.addEventListener('click', () => {
         newListingHeader.textContent = '| This Month';
-        
         fetch('/newListingThisMonth', {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            document.getElementById('new_listing').textContent = result;
-        })
-        .catch(error => console.error(error));
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('new_listing').textContent = result;
+            })
+            .catch(error => console.error(error));
     });
-
     newListingThisYear.addEventListener('click', () => {
         newListingHeader.textContent = '| This Year';
-        
         fetch('/newListingThisYear', {
-            method: "GET"
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            document.getElementById('new_listing').textContent = result;
-        })
-        .catch(error => console.error(error));
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById('new_listing').textContent = result;
+            })
+            .catch(error => console.error(error));
     });
 </script>

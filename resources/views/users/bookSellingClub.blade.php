@@ -145,7 +145,8 @@
             </div>
         </div>
         <!-- Create Post Modal -->
-        <div id='createPostModal' class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        {{-- id='createPostModal' --}}
+        <div class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -155,7 +156,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <textarea class="form-control border" id="caption-text" rows="5"
+                            <textarea class="form-control border" id="exampleTextarea" rows="5"
                                 placeholder="Write something here..."></textarea>
                         </div>
                         <div class="image-container">
@@ -293,7 +294,7 @@
 'aos_link' => '/aos-master/dist/aos.js',
 ])
 
-<script>
+<script>    
     var first_img = document.getElementById('first-img');
     var second_img = document.getElementById('second-img');
     var third_img = document.getElementById('third-img');
