@@ -21,7 +21,7 @@
         <i class="fa fa-envelope-o d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Messages</span>
     </a>
-    <a href="/managesellingclub"
+    {{-- <a href="/managesellingclub"
         class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('managesellingclub*')) active @endif"
         data-blade="manageSellingClub" style="white-space: nowrap">
         <i class="fa fa-linode d-flex align-items-center" aria-hidden="true"></i>
@@ -38,7 +38,7 @@
         data-blade="manageRentingClub" style="white-space: nowrap">
         <i class="fa fa-window-restore d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage Book Renting Club</span>
-    </a>
+    </a> --}}
     <a href="/manageuseraccounts"
         class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if (Request::is('manageuseraccounts*')) active @endif"
         data-blade="manageuserAccounts" style="white-space: nowrap">

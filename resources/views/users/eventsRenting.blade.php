@@ -106,9 +106,9 @@
                                         <a class="nav-link active" aria-current="page"
                                             href="/eventsrentingclub">Events</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link custom-nav-link" href="/membersrentingclub">Members</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>

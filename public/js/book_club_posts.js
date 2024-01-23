@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })();
             userNameCtn.style.color = '#003060';
+            userNameCtn.style.whiteSpace = 'nowrap';
 
             // container for username tas post date
             const nameAndDateContainer = document.createElement('div');

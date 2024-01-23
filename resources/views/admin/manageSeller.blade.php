@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-4 col-md-6">
+                    {{-- <div class="col-xxl-4 col-md-6">
                         <div class="card info-card reported-card">
                             <div class="filter view-reports">
                                 <a class="icon" href="/reportedseller">View</a>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="card table-card" style="margin-left: 1em;">
                         <div class="card-datatable table-responsive">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"

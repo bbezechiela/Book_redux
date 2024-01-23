@@ -741,8 +741,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
                         form.appendChild(inputField);
                         form.appendChild(submitButton);
+
+                        form.style.border = '5px solid red';
             
                         formOuterContainer.appendChild(form);
+                        formOuterContainer.style.border = '1px solid black';
                         // message timestamp
                         lastMessageTimestamp = '1990-12-12 12:12:12';    
                     

@@ -93,8 +93,8 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <h6>Book Selling Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
                                         data-bs-toggle="modal" data-bs-target="#createevent"></i></h6>
-                                <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
-                                    style="height: 2em">
+                                {{-- <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
+                                    style="height: 2em"> --}}
                             </div>
                         </div>
                         <div class="card-footer">
@@ -107,9 +107,9 @@
                                         <a class="nav-link active" aria-current="page"
                                             href="/eventssellingclub">Events</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a class="nav-link custom-nav-link" href="/memberssellingclub">Members</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>

@@ -74,7 +74,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xxl-4 col-md-6">
+                        {{-- <div class="col-xxl-4 col-md-6">
                             <div class="card info-card reported-listing-card">
                                 <div class="filter view-reports">
                                     <a class="icon" href="/reportedlisting">View</a>
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="container">
                             <ul class="nav nav-tabs" id="myTabs" role="tablist">
                                 <li class="nav-item" role="presentation">

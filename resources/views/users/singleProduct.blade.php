@@ -438,7 +438,7 @@
                 </div>
             </div>
 
-            <div class="ratings-review">
+            {{-- <div class="ratings-review">
                 <div class="card-body rating-details">
                 </div>
                 <div class="container text-center review-rating-details">
@@ -491,7 +491,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @foreach ($book_id->item as $items)
                 @foreach ($items->ratedItem as $itemReviews)
                     @if ($itemReviews->user_id != $items->book->user_id)
