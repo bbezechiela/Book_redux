@@ -70,8 +70,8 @@
                     <div class="order-cart">
                         <div class="name-cart">
                             <a class="seller-name"
-                                href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                                href="/userlistings/{{ $item->user_id }}"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                            <a class="btn message-button"><i class="fa fa-commenting" aria-hidden="true"></i></a>
                         </div>
 
                         <div class="product-cart">
@@ -97,12 +97,12 @@
                         <div class="name-cart">
                             @if ($item->productRelation->user->type == 'Bookseller')
                             <a class="seller-name"
-                                href="#"><span>{{ $item->productRelation->user->business_name }}</span></a>
+                                href="/userlistings/{{ $item->user_id }}"><span>{{ $item->productRelation->user->business_name }}</span></a>
                             @else
                             <a class="seller-name"
-                                href="#"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
+                                href="/userlistings/{{ $item->user_id }}"><span>{{ $item->productRelation->user->first_name . ' ' . $item->productRelation->user->last_name }}</span></a>
                             @endif
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                            <a class="btn message-button"><i class="fa fa-commenting" aria-hidden="true"></i></a>
                         </div>
 
                         <div class="product-cart">
@@ -287,6 +287,24 @@
             alert('No selected item/s');
         } else {
             form.submit();
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageButtons = document.querySelectorAll('.message-button');
+
+        messageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const username = button.dataset.username;
+                redirectToMessaging(username);
+            });
+        });
+
+        function redirectToMessaging(username) {
+            const messagingUrl = `/messages?user=${username}`;
+            window.location.href = messagingUrl;
         }
     });
 </script>

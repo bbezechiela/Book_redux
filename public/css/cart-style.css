@@ -130,6 +130,9 @@ h4 {
     color: #003060;
     font-weight: bold;
     margin-right: .5em;
+}
+
+.name-cart .seller-name{
     margin-left: 4em;
 }
 
@@ -137,7 +140,7 @@ h4 {
     text-decoration: underline;
 }
 
-.message-seller {
+.message-button {
     color: #E55B13;
     background: none;
     border: none;
@@ -145,7 +148,7 @@ h4 {
     font-size: 17px;
 }
 
-.message-seller:hover {
+.message-button:hover {
     color: #98c0e7;
 }
 
