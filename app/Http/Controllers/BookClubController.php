@@ -278,12 +278,37 @@ class BookClubController extends Controller
         }
     }
 
+    // view comments
+    function viewComments(Request $request) {
+        $postId = $request->query('postId');
+
+        $getter = BookClub_Post_Comments::where('post_id', '=', $postId)->get();
+
+        if ($getter->count() > 0) {
+            foreach ($getter as $row) {
+                $userId = $row->user_id;
+            }
+
+            $userGetter = Users::where('id', '=', $userId)->first();
+
+            if ($userGetter->count() > 0) {
+                return response()->json(['data' => [$getter, $userGetter]]);
+            } else {
+                return response()->json(['error' => 'Cant find users for this comments']);
+            }
+        } else {
+            return response()->json(['error' => 'theres no comment for this post']);
+        }
+    }
+
     // post comment adder
     function addCommentToPost(Request $request) {
+        $comment_content = $request->json('comment_content');
         $postId = $request->json('postId');
         $userId = $request->json('userId');
 
         $adder = BookClub_Post_Comments::create([
+            'comment_content' => $comment_content,
             'post_id' => $postId, 
             'user_id' => $userId,
         ]);

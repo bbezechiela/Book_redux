@@ -12,6 +12,7 @@ class BookClub_Post_Comments extends Model
     protected $table = 'book_club_post_comments';
 
     protected $fillable = [
+        'comment_content',
         'post_id',
         'user_id',
     ];

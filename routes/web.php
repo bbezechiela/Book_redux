@@ -249,6 +249,9 @@ Route::post('/addCommentToPost', [BookClubController::class, 'addCommentToPost']
 // comment counter kada post
 Route::get('/commentCounter', [BookClubController::class, 'commentCounter']);
 
+// view commenet kada post
+Route::get('/viewComments', [BookClubController::class, 'viewComments']);
+
 // discussion tab, post
 Route::post('/createPost', [BookClubController::class, 'createPost']);
 

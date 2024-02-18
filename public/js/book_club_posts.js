@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(likeCounter, 2000);
 
             likeButton.addEventListener('click', async () => {
-                const adder = await fetch(`/addLikeToPost?postId=${postId}&userId=${userId}`, {
+                const adder = await fetch(`/addLikeToPost?postId=${postId}&userId=${current_user_id}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -335,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(response.error);
                 }
             });
-
             
             const commentButton = document.createElement('div');
             commentButton.className = 'fa fa-comment-o';
@@ -387,12 +386,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const imgLocation = window.location.origin + '/images/profile_photos/' + response.data[0].profile_photo;
 
                     userProfileCtn.style.backgroundImage = `url(${imgLocation})`;
-                    userProfileContainer.style.backgroundImage = `url(${imgLocation})`;
                 } else {
                     console.log(response.error);
                 }
             })();
-
+            
             const commentForm = document.createElement('form');
             commentForm.id = 'commentForm';
             commentForm.method = 'post';
@@ -406,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
             commentSubmitButton.id = 'commentSubmitButton';
             commentSubmitButton.type = 'button';
             commentSubmitButton.textContent = '>';
-
+            
             commentSubmitButton.addEventListener('click', async () => {
                 const adder = await fetch(`/addCommentToPost`, {
                     method: 'POST',
@@ -415,8 +413,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         'X-CSRF-TOKEN': csrf_token,
                     }, 
                     body: JSON.stringify({
+                        'comment_content': commentInputField.value,
                         'postId': postId,
-                        'userId': userId,
+                        'userId': current_user_id,
                     })
                 })
 
@@ -438,6 +437,45 @@ document.addEventListener('DOMContentLoaded', () => {
             commentOuterContainer.appendChild(commentInnerContainer);
 
             commentButton.addEventListener('click', () => {
+                (async () => {
+                    const getter = await fetch(`/getUser?userId=${current_user_id}`, {
+                        method: 'GET',
+                    });
+                    const responsee = await getter.json();
+
+                    if (responsee.data) {
+                        // get poser profile photo
+                        const imgLocation = window.location.origin + '/images/profile_photos/' + responsee.data[0].profile_photo;
+
+                        userProfileContainer.style.backgroundImage = `url(${imgLocation})`;
+                        userProfileContainer.style.border = '1px solid black';
+                    } else {
+                        console.log(responsee.error);
+                    }
+                })();
+
+                (async () => {
+                    const getter = await fetch(`/viewComments?postId=${postId}`, {
+                        method: 'GET',
+                    })
+
+                    const response = await getter.json();
+                    if (response.data) {
+                        const viewCommentsOuterContainer = document.createElement('div');
+                        response.data[0].forEach(response => {
+                            const comments = document.createElement('div');
+                            comments.textContent = response.comment_content;
+
+                            viewCommentsOuterContainer.appendChild(comments);
+                            commentOuterContainer.appendChild(viewCommentsOuterContainer);
+                        });
+
+                        console.log(response.data);
+                    } else {
+                        console.log(response.error);
+                    }
+                })();
+
                 postContainer.appendChild(commentOuterContainer);
             });
 

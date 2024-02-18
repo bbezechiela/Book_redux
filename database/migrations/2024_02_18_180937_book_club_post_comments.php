@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('book_club_post_comments', function(Blueprint $table) {
             $table->bigIncrements('comment_id');
+            $table->text('comment_content');
             $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')->references('post_id')->on('book_club_posts');
             $table->unsignedBigInteger('user_id');
