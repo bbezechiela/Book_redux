@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // show events 
     async function getEvents() {
-        const getEvents = await fetch(`/getEvents?currentBookClubName=${current_bookClub_name}`, {
+        const getEvents = await fetch(`/getEvents?currentBookClubName=${current_bookClub_name}&currentEventTimestamp=${lastEventTimestamp}`, {
             method: 'GET' 
         });
 
