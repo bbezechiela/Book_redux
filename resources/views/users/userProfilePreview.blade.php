@@ -68,8 +68,8 @@
                                 @else
                                     <h5>{{ $user->first_name . ' ' . $user->last_name }}</h5>
                                     @foreach ($user->addressUser as $address)
-                                        @if ($address->default_address = 'true')
-                                            <h5>{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->region . ' ' . $address->postal_code }}</h5>
+                                        @if ($address->default_address)
+                                            <h5>{{ $address->address }}</h5>
                                         @endif
                                     @endforeach
                                 @endif                                                                

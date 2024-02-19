@@ -256,6 +256,8 @@ Route::get('/feedback', [UserController::class, 'systemFeedback']);
 
 // Route::get('/userdashboard', [UserController::class, 'userDashboard'])->name('userdashboard');
 
+Route::get('/redirectnearby', [UserController::class, 'redirectNearbyListings']);
+
 Route::get('/searchitem/{item}', [UserController::class, 'search']);
 
 Route::get('/addtocart/{id}', [ListingController::class, 'addToCart']);
@@ -389,3 +391,9 @@ Route::get('/rentaltrackfetch/{id}', [SellerController::class, 'rentalTrackFetch
 Route::post('/sellerpostrate', [UserController::class, 'sellerPostRate']);
 
 Route::post('/sellerupdaterate', [UserController::class, 'sellerUpdateRate']);
+
+Route::get('/getuseraddress', [UserController::class, 'getCurrentUserAddress']);
+
+Route::get('/getnearbybooks', [UserController::class, 'getNearbyBooks']);
+
+Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);

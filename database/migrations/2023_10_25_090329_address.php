@@ -19,13 +19,16 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->text('name');
             $table->text('contact_number');
-            $table->text('region');            
-            $table->text('city_municipality');
-            $table->text('brgy_village');
-            $table->string('postal_code');
-            $table->text('street_building_house');
-            $table->string('default_address')->nullable();
-            $table->timestamps();
+            // $table->text('region');            
+            // $table->text('city_municipality');
+            // $table->text('brgy_village');
+            // $table->string('postal_code');
+            // $table->text('street_building_house');
+            $table->text('address');
+            $table->text('latitude');
+            $table->text('longitude');
+            $table->boolean('default_address')->nullable();
+            $table->timestamps();            
         });
     }
 

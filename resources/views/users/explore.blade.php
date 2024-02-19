@@ -7,6 +7,9 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDYtN3BNCcHFJXpQXrNMxKxIsc9-Pdd-0&callback=console.debug&libraries=maps,marker,places&v=beta">
+    </script>
 </head>
 
 <div id="body-container" class="container-fluid px-0">
@@ -66,6 +69,9 @@
                 </div>
             </div>
         </ul>
+        <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
+            style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
+                width="25">Find Nearby Listings</button type="button">
         <div id="daily-discover" class="mx-5 px-5">
             <h4 id="daily-discover-header">Daily Discover</h4>
             <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
@@ -111,7 +117,7 @@
                                                                 onclick="stopPropagation(event)"><i
                                                                     class="fa fa-cart-plus" aria-hidden="true"
                                                                     style="margin-right: 7px"></i>Add to
-                                                                Cart</a></li>                                                     
+                                                                Cart</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -161,7 +167,7 @@
                                                                 onclick="stopPropagation(event)"><i
                                                                     class="fa fa-cart-plus" aria-hidden="true"
                                                                     style="margin-right: 7px"></i>Add to
-                                                                Cart</a></li>                                                       
+                                                                Cart</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -186,9 +192,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                         {{ $daily->genre }}</p>
                                     @foreach ($daily->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -222,9 +228,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                         {{ $daily->genre }}</p>
                                     @foreach ($daily->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -396,9 +402,9 @@
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 @foreach ($daily->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
+                                    @if ($address->default_address)
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                aria-hidden="true"></i>{{ $address->address }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -432,9 +438,9 @@
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 @foreach ($daily->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
+                                    @if ($address->default_address)
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                aria-hidden="true"></i>{{ $address->address }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -600,9 +606,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -637,9 +643,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -713,9 +719,9 @@
                                     </p>
                                 @else
                                     @foreach ($sale->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -788,9 +794,9 @@
                                 <p class="card-text mt-0 mb-0">{{ $exchange->author }}<br>
                                     {{ $exchange->genre }}</p>
                                 @foreach ($exchange->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
+                                    @if ($address->default_address)
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                aria-hidden="true"></i>{{ $address->address }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -804,7 +810,7 @@
                                         @endif
                                     @endforeach
                                     <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">For Exchange</span>                                       
+                                        <span class="fw-bold p-0">For Exchange</span>
                                     </div>
                                 @endif
                             </div>
@@ -997,9 +1003,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                         {{ $daily->genre }}</p>
                                     @foreach ($daily->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -1026,9 +1032,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                         {{ $daily->genre }}</p>
                                     @foreach ($daily->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -1176,9 +1182,9 @@
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 @foreach ($daily->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
+                                    @if ($address->default_address)
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                aria-hidden="true"></i>{{ $address->address }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1205,9 +1211,9 @@
                                 <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
                                     {{ $daily->genre }}</p>
                                 @foreach ($daily->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
+                                    @if ($address->default_address)
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                aria-hidden="true"></i>{{ $address->address }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1354,9 +1360,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -1384,9 +1390,9 @@
                                     <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
                                         {{ $recommended->genre }}</p>
                                     @foreach ($recommended->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -1450,9 +1456,9 @@
                                     </p>
                                 @else
                                     @foreach ($sale->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
+                                        @if ($address->default_address)
                                             <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                    aria-hidden="true"></i>{{ $address->address }}
                                             </p>
                                         @endif
                                     @endforeach
@@ -1493,7 +1499,7 @@
                                     </div>
                                 @endif
                             </div>
-                        </div>                        
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -1506,17 +1512,17 @@
                     @if ($exchange->status == 'Exchange' && $exchange->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
-                            <img src="{{ asset('images/books/' . $exchange->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
+                            <img src="{{ asset('images/books/' . $exchange->book_photo) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
                             <div class="card-body py-0">
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}
                                 </p>
                                 <p class="card-text mt-0 mb-0">{{ $exchange->author }}<br>
                                     {{ $exchange->genre }}</p>
                                 @foreach ($exchange->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
+                                    @if ($address->default_address)
                                         <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
+                                                aria-hidden="true"></i>{{ $address->address }}
                                         </p>
                                     @endif
                                 @endforeach
@@ -1529,12 +1535,13 @@
                                             </div>
                                         @endif
                                     @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">For Exchange</span>                                       
+                                    <div
+                                        class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                        <span class="fw-bold p-0">For Exchange</span>
                                     </div>
                                 @endif
                             </div>
-                        </div>                       
+                        </div>
                     @endif
                 @endforeach
 
@@ -1566,7 +1573,8 @@
                                             </div>
                                         @endif
                                     @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <div
+                                        class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">₱{{ $rent->price }}</span>
                                         <div class="button-container">
                                             <div class="dropdown">
@@ -1588,7 +1596,7 @@
                                     </div>
                                 @endif
                             </div>
-                        </div>                       
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -1612,6 +1620,56 @@
     </div>
 </div>
 </div>
+
+{{-- Nearby Seller Modal --}}
+<div class="modal fade" id="nearby_seller_modal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Find Nearby Listings</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="circle-radius" aria-label="Floating label select example">
+                        <option value="1">1 Kilometre</option>
+                        <option value="2">2 Kilometre</option>
+                        <option value="5">5 Kilometre</option>
+                        <option value="10">10 Kilometre</option>
+                        <option value="20">20 Kilometre</option>
+                        <option value="40">40 Kilometre</option>
+                        <option value="50">50 Kilometre</option>
+                        <option value="60">60 Kilometre</option>
+                        <option value="70">70 Kilometre</option>
+                        <option value="80">80 Kilometre</option>
+                        <option value="90">90 Kilometre</option>
+                        <option value="100">100 Kilometre</option>
+                        <option value="120">120 Kilometre</option>
+                        <option value="130">130 Kilometre</option>
+                    </select>
+                    <label class="fw-bold" for="circle-radius">Radius</label>
+                </div>
+                <div class=" d-flex justify-content-end flex-row">
+                    <label for="current-location">Current Location:</label>
+                    <div class="form-check form-switch mb-2 ms-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="current-location">
+                    </div>
+                </div>
+                <div class="border rounded">
+                    {{-- <gmp-map class="mx-auto" center="11.240029883135003, 125.00268827609003" zoom="16" map-id="DEMO_MAP_ID">
+                        <gmp-advanced-marker position="11.240029883135003, 125.00268827609003" title="Second location"></gmp-advanced-marker>
+                    </gmp-map> --}}
+                    <div id="map" style="height: 400px"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="nearbylisting-apply-btn" class="btn btn-outline-primary">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
@@ -1619,11 +1677,331 @@
 ])
 
 <script>
+    // Proximity script
+
+    let map;
+    let book_ids = [];
+    let coordinates = {
+        lat: 0,
+        lng: 0
+    };
+
+    // function initMap() {
+    //     map = new google.maps.Map(document.getElementById('map'), {
+    //         center: {
+    //             lat: 11.240029883135003,
+    //             lng: 125.00268827609003
+    //         },
+    //         zoom: 16
+    //     });
+
+    //     drawCircle(map, {
+    //         lat: 11.240029883135003,
+    //         lng: 125.00268827609003
+    //     }, document.getElementById('circle-radius').value);        
+    // }
+    // var gmp_map = document.querySelector('gmp-map');
+
+    function drawCircle(map, coordinates, proximity) {
+        var circle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0,
+            map: map,
+            center: coordinates,
+            radius: proximity * 1000
+        });
+    }
+
+
+    const successCallback = (position) => {
+        console.log(position.coords.latitude + ', ' + position.coords.latitude);
+        coordinates.lat = position.coords.latitude;
+        coordinates.lng = position.coords.latitude;
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: coordinates.lat,
+                lng: coordinates.lng
+            },
+            zoom: 13
+        });
+
+        drawCircle(map, {
+            lat: coordinates.lat,
+            lng: coordinates.lng
+        }, document.getElementById('circle-radius').value);
+
+        getNearbyListings();
+        // gmp_map.setAttribute('center', position.coords.latitude + ', ' + position.coords.longitude);
+
+        // var pinCurrentLocation = document.createElement('gmp-advanced-marker');
+        // pinCurrentLocation.setAttribute('position', position.coords.latitude + ', ' + position.coords.longitude);
+        // pinCurrentLocation.setAttribute('title', 'Current Location');        
+        // gmp_map.appendChild(pinCurrentLocation);
+
+    };
+
+    const errorCallback = (error) => {
+        console.log(error);
+    };
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+    };
+
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Radius of the Earth in kilometers
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const distance = R * c; // Distance in kilometers
+        return distance;
+    }
+
+    // 
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById(
         'liveToast'));
     @if (session('message'))
         toastBootstrap.show()
     @endif
+
+    const nearby_seller_modal = new bootstrap.Modal('#nearby_seller_modal', {
+        keyboard: false
+    });
+
+
+    // var nearby_seller = document.querySelector('.nearby-seller-btn');
+    document.querySelector('.nearby-seller-btn').addEventListener('click', () => {
+        // alert('test nearby seller btn');
+        nearby_seller_modal.show();
+        fetch('/getuseraddress', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result.address_user.forEach(address => {
+                    if (address.default_address) {
+                        var {
+                            latitude,
+                            longitude
+                        } = address;
+
+                        if (document.getElementById('current-location').checked) {
+                            console.log('test');
+                            navigator.geolocation.getCurrentPosition(successCallback, errorCallback,
+                                options);
+                        } else {
+                            coordinates.lat = parseFloat(latitude);
+                            coordinates.lng = parseFloat(longitude);
+                            map = new google.maps.Map(document.getElementById('map'), {
+                                center: {
+                                    lat: coordinates.lat,
+                                    lng: coordinates.lng
+                                },
+                                zoom: 13
+                            });
+
+                            drawCircle(map, {
+                                lat: coordinates.lat,
+                                lng: coordinates.lng
+                            }, document.getElementById('circle-radius').value);
+                        }
+                    }
+                })
+                getNearbyListings();
+            })
+            .catch(error => console.error(error));
+    });
+
+    function getNearbyListings() {
+        book_ids = [];
+        var {
+            lat,
+            lng
+        } = coordinates;
+
+        fetch('/getnearbybooks', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log({{ json_encode(session('id')) }});
+                result.forEach(address => {
+                    if (address.user_id != {{ json_encode(session('id')) }} && address.default_address) {
+                        var {
+                            longitude,
+                            latitude,
+                            name,
+                            address,
+                            user
+                        } = address;
+
+                        if (calculateDistance(lat, lng, parseFloat(latitude), parseFloat(longitude)) <=
+                            document.getElementById('circle-radius').value) {
+                            user.books.forEach(book => {
+                                book_ids.push(book.id);
+                            })
+                        }
+                    }
+                })
+                // if (result.user_id !== {{ json_encode(session('id')) }}) {
+                // result.forEach(book => {
+                //     if (book.user_id != {{ json_encode(session('id')) }} && book.user.address_user) {
+                //         var address = book.user.address_user;
+                //         address.forEach(add => {
+                //             if (add.default_address) {
+                //                 var {
+                //                     latitude,
+                //                     longitude,
+                //                     name,
+                //                     user_id
+                //                 } = add;
+                //                 if (calculateDistance(lat, lng, parseFloat(latitude),
+                //                         parseFloat(longitude)) <= document.getElementById(
+                //                         'circle-radius').value) {
+                //                     var marker = new google.maps.Marker({
+                //                         position: {
+                //                             lat: parseFloat(latitude),
+                //                             lng: parseFloat(longitude)
+                //                         },
+                //                         map: map,
+                //                         title: name,
+                //                         id: user_id
+                //                     });
+
+                //                     marker.addListener('click', () => {
+                //                         console.log(marker.id);
+                //                         window.location.href = `/userlistings/${marker.id}`;
+                //                     })
+
+
+                //                 } else {
+                //                     console.log('outside the proximity');
+                //                 }
+
+                //             }
+                //         })
+                //     }
+                // });
+                // }
+                console.log(book_ids);
+            })
+            .catch(error => console.error(error));
+    }
+
+    document.getElementById('current-location').addEventListener('change', () => {
+        if (document.getElementById('current-location').checked) {
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+        } else {
+            fetch('/getuseraddress', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    result.address_user.forEach(address => {
+                        if (address.default_address) {
+                            var {
+                                latitude,
+                                longitude
+                            } = address;
+
+                            if (document.getElementById('current-location').checked) {
+                                console.log('test');
+                                navigator.geolocation.getCurrentPosition(successCallback,
+                                    errorCallback,
+                                    options);
+                            } else {
+                                coordinates.lat = parseFloat(latitude);
+                                coordinates.lng = parseFloat(longitude);
+                                map = new google.maps.Map(document.getElementById('map'), {
+                                    center: {
+                                        lat: coordinates.lat,
+                                        lng: coordinates.lng
+                                    },
+                                    zoom: 13
+                                });
+
+                                drawCircle(map, {
+                                    lat: coordinates.lat,
+                                    lng: coordinates.lng
+                                }, document.getElementById('circle-radius').value);
+                            }
+                        }
+                    })
+                    getNearbyListings();
+                })
+                .catch(error => console.error(error));
+        }
+    });
+
+    document.getElementById('circle-radius').addEventListener('change', () => {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: coordinates.lat,
+                lng: coordinates.lng
+            },
+            zoom: 13
+        });
+
+        // var marker = new google.maps.Marker({
+        //     position: coordinates,
+        //     map: map,
+        //     title: 'First Marker Sample',
+        //     // icon: {
+        //     //     url: 'inay-profile.jpg',
+        //     //     scaledSize: new google.maps.Size(40, 40)
+        //     // },
+        //     // id: 1
+        // });
+
+        // marker.addListener('click', function() {
+        //     console.log('test marker click');
+        // });
+
+        drawCircle(map, {
+            lat: coordinates.lat,
+            lng: coordinates.lng
+        }, document.getElementById('circle-radius').value);
+
+        getNearbyListings();
+    });
+
+    // Apply Btn
+    document.getElementById('nearbylisting-apply-btn').addEventListener('click', () => {
+        fetch('/getnearbylistings', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(book_ids)
+            })
+            // .then(response => response.json())
+            .then(result => {
+                if (result.status == 200) {
+                    window.location.href = '/redirectnearby';
+                    // console.log('test');
+                }
+                console.log(result);
+            })
+            .catch(error => console.error(error));
+    });
+
+
+    // End prox
+
+
+
 
     function stopPropagation() {
         event.stopPropagation();
