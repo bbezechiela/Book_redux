@@ -494,7 +494,7 @@
     padding: 0 0 0 15px;
 }
 
-.postInnerContainer {
+.postMejInnerContainer {
     height: auto;
     width: 900px;
     margin-bottom: 30px;  
@@ -503,10 +503,47 @@
     position: relative;
 }
 
+/* comment container */
+.commentOuterContainer {
+    height: auto;
+    width: inherit;
+}
+
+.commentInnerContainer {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 15px;
+    flex-direction: row;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#commentInputFieldContainer {
+    height: 50px;
+    widtH: 500px;
+    border: 1px solid grey;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-left: 15px;
+    padding-left: 15px;
+}
+
+#commentSubmitButton {
+    height: 50px;
+    width: 90px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #003060;
+    color: white;
+    border: none;
+}
+
 /* ellipsis for post container */
 .ellipsis {
     height: 40px;
-    width: 40px;
+    width: 40px;    
     font-size: 25px;
     position: absolute;
     top: 20px;

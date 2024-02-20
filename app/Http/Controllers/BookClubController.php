@@ -8,6 +8,8 @@ use App\Models\BookClub_Event_Members;
 use App\Models\BookClub_Join_Requests;
 use App\Models\BookClub_Events;
 use App\Models\BookClub_Posts;
+use App\Models\BookClub_Post_Likes;
+use App\Models\BookClub_Post_Comments;
 use Illuminate\Http\Request;
 
 class BookClubController extends Controller
@@ -244,6 +246,92 @@ class BookClubController extends Controller
         } else {
             return response()->json(['error' => 'Cant find book club']);
         }
+    }
+
+    // add like to post
+    function addLikeToPost(Request $request) {
+        $postId = $request->query('postId');
+        $userId = $request->query('userId');
+
+        $adder = BookClub_Post_Likes::create([
+            'post_id' => $postId,
+            'user_id' => $userId,
+        ]);
+
+        if ($adder) {
+            return response()->json(['data' => 'Like was successfull']);
+        } else {
+            return response()->json(['error' => 'Like failed']);
+        }
+    }
+
+    // post like counter
+    function likeCounter(Request $request) {
+        $postId = $request->query('postId');
+
+        $getter = BookClub_Post_Likes::where('post_id', '=', $postId)->get();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter->count()]);
+        } else {
+            return response()->json(['error' => 'Theres no likes for this post']);
+        }
+    }
+
+    // view comments
+    function viewComments(Request $request) {
+        $postId = $request->query('postId');
+
+        $getter = BookClub_Post_Comments::where('post_id', '=', $postId)->get();
+
+        if ($getter->count() > 0) {
+            foreach ($getter as $row) {
+                $userId = $row->user_id;
+            }
+
+            $userGetter = Users::where('id', '=', $userId)->first();
+
+            if ($userGetter->count() > 0) {
+                return response()->json(['data' => [$getter, $userGetter]]);
+            } else {
+                return response()->json(['error' => 'Cant find users for this comments']);
+            }
+        } else {
+            return response()->json(['error' => 'theres no comment for this post']);
+        }
+    }
+
+    // post comment adder
+    function addCommentToPost(Request $request) {
+        $comment_content = $request->json('comment_content');
+        $postId = $request->json('postId');
+        $userId = $request->json('userId');
+
+        $adder = BookClub_Post_Comments::create([
+            'comment_content' => $comment_content,
+            'post_id' => $postId, 
+            'user_id' => $userId,
+        ]);
+
+        if ($adder) {
+            return response()->json(['data' => 'Comment inserted successfully']);
+        } else {
+            return response()->json(['error' => 'Comment failed to insert']);
+        }
+    }
+
+    // comment counter
+    function commentCounter(Request $request) {
+        $postId = $request->query('postId');
+        
+        $getter = BookClub_Post_Comments::where('post_id', '=', $postId)->get();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter->count()]);
+        } else {
+            return response()->json(['error' => 'Theres no comment for this post']);
+        }
+
     }
 
     // add event member
