@@ -459,6 +459,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         method: 'GET',
                     })
 
+                    // LAST NOTE
+                    // na show na hiya it content it mga comment
+                    // pag retreive nala kun hinut user ito nga comment
                     const response = await getter.json();
                     if (response.data) {
                         const viewCommentsOuterContainer = document.createElement('div');
