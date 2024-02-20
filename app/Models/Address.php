@@ -23,11 +23,14 @@ class Address extends Model
         'user_id',
         'name',
         'contact_number',
-        'region',
-        'city_municipality',
-        'brgy_village',        
-        'postal_code',
-        'street_building_house',
+        // 'region',
+        // 'city_municipality',
+        // 'brgy_village',        
+        // 'postal_code',
+        // 'street_building_house',
+        'address',
+        'latitude',
+        'longitude',
         'default_address'
     ];
 }

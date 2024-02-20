@@ -72,7 +72,7 @@ class ListingController extends Controller
             'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
             'title' => ['required', 'min:4'],
             'author' => ['required', 'min:4'],
-            'edition' => ['required', 'min:4'],
+            'edition' => ['required', 'min:2'],
             'genre' => ['required', 'min:2'],
             'stock' => 'required',
             'condition' => 'required',

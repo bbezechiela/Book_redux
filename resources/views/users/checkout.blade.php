@@ -51,7 +51,7 @@
             </div>
             @if ($user->addressUser->count() > 0)
                 @foreach ($user->addressUser as $user)
-                    @if ($user->default_address == 'true')
+                    @if ($user->default_address)
                         <div class="delivery-address-container">
                             <span id="address-id" hidden>{{ $user->id }}</span>
                             <h2 class="delivery-address-title">
@@ -62,9 +62,8 @@
                                 <p class="name" style="margin-right: 10px;">{{ $user->name }}</p>
                                 <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
                                 <p class="address" style="margin-right: 15px;">
-                                    {{ $user->street_building_house . ', ' . $user->brgy_village . ', ' . $user->city_municipality }}
-                                </p>
-                                <p class="zipcode">{{ $user->postal_code }}</p>
+                                    {{ $user->address }}
+                                </p>                                
                             </div>
                             <button class="change-button"><a href="/deliveryAddress">Change</a></button>
                         </div>
