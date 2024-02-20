@@ -1604,6 +1604,8 @@
                 @endforeach
             </div>
         </div>
+
+        {{-- Notification Toast --}}
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -1618,6 +1620,28 @@
                         {{ session('message') }}
                     </div>
                 @endif
+            </div>
+        </div>
+
+        {{-- Map Marker Toast --}}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="mapToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    {{-- <small>1 min ago</small> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+                <div class="toast-body fw-bold text-success px-0 py-2">
+                    <div class="w-100 px-3 d-flex ">
+                        <img id="map-toast-img" class="img rounded-4" src="/assets/osama.png" alt="profile" style="width: 60px">
+                        <div class="border mx-3 w-100">
+                            <h5 id="map-toast-name" class="fw-bold py-0 mt-0 mb-0" style="color: #003060">Osama Velasco</h5>
+                            <p id="map-toast-address" class="text-secondary py-0 mt-0">Address</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1716,10 +1740,7 @@
                     </gmp-map> --}}
                     <div id="users-map" style="height: 400px"></div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                {{-- <button type="button" id="nearbylisting-apply-btn" class="btn btn-outline-primary">Apply</button> --}}
-            </div>
+            </div>            
         </div>
     </div>
 </div>
@@ -1825,8 +1846,8 @@
     }
 
     // 
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById(
-        'liveToast'));
+    const mapMarkerToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('mapToast'));
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast'));
     @if (session('message'))
         toastBootstrap.show()
     @endif
@@ -1900,7 +1921,7 @@
                         } = address;
 
                         if (document.getElementById('current-user-location').checked) {
-                            console.log('checked');
+                            navigator.geolocation.getCurrentPosition(nearbyUserSuccessCallback, errorCallback, options);
                         } else {
                             coordinates.lat = parseFloat(latitude);
                             coordinates.lng = parseFloat(longitude);
@@ -1956,7 +1977,7 @@
                             })
                         }
                     }
-                });                
+                });
                 console.log(book_ids);
             })
             .catch(error => console.error(error));
@@ -1979,8 +2000,10 @@
                             var {
                                 latitude,
                                 longitude,
-                                name,
-                                user_id
+                                address,
+                                // name,
+                                user_id,
+                                user
                             } = address;
 
                             if (calculateDistance(lat, lng, parseFloat(latitude), parseFloat(longitude)) <=
@@ -1991,14 +2014,30 @@
                                         lng: parseFloat(longitude)
                                     },
                                     map: map,
-                                    title: name,
-                                    id: user_id
-                                });
+                                    title: 'Click to open profile',
+                                    id: user_id,
+                                    name: `${user.first_name} ${user.last_name}`,
+                                    address: address,
+                                    img_url: user.profile_photo
+                                });                                
 
                                 marker.addListener('click', () => {
-                                    console.log(marker.id);
+                                    // console.log(marker.id);
                                     window.location.href = `/userlistings/${marker.id}`;
                                 });
+
+                                marker.addListener('mouseover', () => {
+                                    document.getElementById('map-toast-img').src = `/images/profile_photos/${marker.img_url}`;
+                                    document.getElementById('map-toast-name').textContent = marker.name;
+                                    document.getElementById('map-toast-address').textContent = marker.address;
+                                    mapMarkerToast.show();
+                                });
+
+                                marker.addListener('mouseout', () => {
+                                    mapMarkerToast.hide();
+                                })
+
+
                             } else {
                                 console.log('Outside the proximity');
                             }
@@ -2074,7 +2113,7 @@
                                 longitude
                             } = address;
 
-                            if (document.getElementById('current-user-location').checked) {                                
+                            if (document.getElementById('current-user-location').checked) {
                                 navigator.geolocation.getCurrentPosition(successCallback,
                                     errorCallback,
                                     options);
