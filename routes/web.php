@@ -256,6 +256,8 @@ Route::get('/feedback', [UserController::class, 'systemFeedback']);
 
 // Route::get('/userdashboard', [UserController::class, 'userDashboard'])->name('userdashboard');
 
+Route::get('/redirectnearby', [UserController::class, 'redirectNearbyListings']);
+
 Route::get('/searchitem/{item}', [UserController::class, 'search']);
 
 Route::get('/addtocart/{id}', [ListingController::class, 'addToCart']);
@@ -339,6 +341,12 @@ Route::get('/joinRequestGetter', [BookClubController::class, 'joinRequestGetter'
 
 Route::get('/getEvents', [BookClubController::class, 'getEvents']);
 
+// get all post para ha my wall
+Route::get('/getAllPosts', [BookClubController::class, 'getAllPosts']);
+
+// get club para ha pots my wall
+Route::get('/getClub', [BookClubController::class, 'getClub']);
+
 // discussion tab, post
 Route::post('/createPost', [BookClubController::class, 'createPost']);
 
@@ -383,3 +391,9 @@ Route::get('/rentaltrackfetch/{id}', [SellerController::class, 'rentalTrackFetch
 Route::post('/sellerpostrate', [UserController::class, 'sellerPostRate']);
 
 Route::post('/sellerupdaterate', [UserController::class, 'sellerUpdateRate']);
+
+Route::get('/getuseraddress', [UserController::class, 'getCurrentUserAddress']);
+
+Route::get('/getnearbybooks', [UserController::class, 'getNearbyBooks']);
+
+Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);

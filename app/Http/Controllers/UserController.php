@@ -630,7 +630,7 @@ class UserController extends Controller
     {
         return view('users.refund');
     }
-    
+
 
     public function sellerRefund()
     {
@@ -800,209 +800,89 @@ class UserController extends Controller
 
     public function storeAddress(Request $request, $add)
     {
-        if ($request->has('default_address')) {
-            $validated = $request->validate([
-                'name' => 'required',
-                'contact_number' => 'required',
-                'region' => 'required',
-                'city_municipality' => 'required',
-                'brgy_village' => 'required',
-                'postal_code' => 'required',
-                'street_building_house' => 'required',
-                'default_address' => 'accepted'
-            ]);
+        $post_address = Address::where(['user_id' => session('id'), 'default_address' => true])->first();
 
-            // dd($validated);            
-
-            $post_address = Address::where(['user_id' => session('id'), 'default_address' => 'true'])->first();
-
-            if ($post_address && $add == 'delivery') {
+        if ($request->input('default_address') == true) {
+            // for notDelivery of $add
+            if ($post_address && $add == 'notDelivery') {
                 $post_address->update([
-                    'default_address' => null
+                    'default_address' => false
                 ]);
 
-                $new_add = Address::create([
+                $create = Address::create([
                     'user_id' => session('id'),
-                    'name' => $validated['name'],
-                    'contact_number' => $validated['contact_number'],
-                    'region' => $validated['region'],
-                    'city_municipality' => $validated['city_municipality'],
-                    'brgy_village' => $validated['brgy_village'],
-                    'postal_code' => $validated['postal_code'],
-                    'street_building_house' => $validated['street_building_house'],
-                    'default_address' => $validated['default_address']
+                    'name' => $request->input('name'),
+                    'contact_number' => $request->input('contact_number'),
+                    'address' => $request->input('address'),
+                    'latitude' => $request->input('latitude'),
+                    'longitude' => $request->input('longitude'),
+                    'default_address' => $request->input('default_address')
                 ]);
-                return redirect('/deliveryAddress')->with('message', 'Address added successfully');
-            } elseif ($post_address && $add == 'notDelivery') {
-                $post_address->update([
-                    'default_address' => null
-                ]);
-                $new_add = Address::create([
-                    'user_id' => session('id'),
-                    'name' => $validated['name'],
-                    'contact_number' => $validated['contact_number'],
-                    'region' => $validated['region'],
-                    'city_municipality' => $validated['city_municipality'],
-                    'brgy_village' => $validated['brgy_village'],
-                    'postal_code' => $validated['postal_code'],
-                    'street_building_house' => $validated['street_building_house'],
-                    'default_address' => $validated['default_address']
-                ]);
-                // $post_address->update($validated);
+
                 return redirect('addresses')->with('message', 'Success! The address has been added to your account successfully.');
-            } elseif ($add == 'delivery') {
-                $new_add = Address::create([
+            } else if ($add == 'notDelivery') {
+                $create = Address::create([
                     'user_id' => session('id'),
-                    'name' => $validated['name'],
-                    'contact_number' => $validated['contact_number'],
-                    'region' => $validated['region'],
-                    'city_municipality' => $validated['city_municipality'],
-                    'brgy_village' => $validated['brgy_village'],
-                    'postal_code' => $validated['postal_code'],
-                    'street_building_house' => $validated['street_building_house'],
-                    'default_address' => $validated['default_address']
-                ]);
-                return redirect('/deliveryAddress')->with('message', 'Success! The address has been added to your account successfully.');
-            } elseif ($add == 'notDelivery') {
-                $new_add = Address::create([
-                    'user_id' => session('id'),
-                    'name' => $validated['name'],
-                    'contact_number' => $validated['contact_number'],
-                    'region' => $validated['region'],
-                    'city_municipality' => $validated['city_municipality'],
-                    'brgy_village' => $validated['brgy_village'],
-                    'postal_code' => $validated['postal_code'],
-                    'street_building_house' => $validated['street_building_house'],
-                    'default_address' => $validated['default_address']
+                    'name' => $request->input('name'),
+                    'contact_number' => $request->input('contact_number'),
+                    'address' => $request->input('address'),
+                    'latitude' => $request->input('latitude'),
+                    'longitude' => $request->input('longitude'),
+                    'default_address' => $request->input('default_address')
                 ]);
                 return redirect('addresses')->with('message', 'Success! The address has been added to your account successfully.');
-            } else {
-                return "error bitch";
+            }
+            // for delivery of $add
+            else if ($post_address && $add == 'delivery') {
+                return response()->json('existing data and create new');
+            } else if ($add == 'delivery') {
+                return response()->json('create new');
             }
         } else {
-            $validated = $request->validate([
-                'name' => 'required',
-                'contact_number' => 'required',
-                'region' => 'required',
-                'city_municipality' => 'required',
-                'brgy_village' => 'required',
-                'postal_code' => 'required',
-                'street_building_house' => 'required'
-            ]);
-
-            // dd($validated);
-            $post_address = Address::create([
+            $create = Address::create([
                 'user_id' => session('id'),
-                'name' => $validated['name'],
-                'contact_number' => $validated['contact_number'],
-                'region' => $validated['region'],
-                'city_municipality' => $validated['city_municipality'],
-                'brgy_village' => $validated['brgy_village'],
-                'postal_code' => $validated['postal_code'],
-                'street_building_house' => $validated['street_building_house'],
-                // 'default_address' => $validated['default_address']
+                'name' => $request->input('name'),
+                'contact_number' => $request->input('contact_number'),
+                'address' => $request->input('address'),
+                'latitude' => $request->input('latitude'),
+                'longitude' => $request->input('longitude'),
+                'default_address' => $request->input('default_address')
             ]);
 
-            if ($post_address && $add == 'delivery') {
-                return redirect('/deliveryAddress')->with('message', 'Success! The address has been added to your account successfully.');
-            } elseif ($post_address && $add == 'notDelivery') {
+            if ($create && $add == 'notDelivery') {
                 return redirect('addresses')->with('message', 'Success! The address has been added to your account successfully.');
-            } else {
-                return "error bitch";
+            } else if ($create && $add == 'notDelivery') {
+                return response()->json('for delivery test');
             }
-        }
+        }        
     }
 
     public function updateAddress(Request $request, $id, $add)
     {
-        if ($request->has('default_address')) {
-            $validated = $request->validate([
-                'name' => 'required',
-                'contact_number' => 'required',
-                'region' => 'required',
-                'city_municipality' => 'required',
-                'brgy_village' => 'required',
-                'postal_code' => 'required',
-                'street_building_house' => 'required',
-                'default_address' => 'accepted'
-            ]);
+        $address = Address::where(['user_id' => session('id'), 'default_address' => true])->first();        
 
-            // dd($validated);
-            // $address = Address::find($id);
-            // $address->update($validated);
-            // $address = Address::updateOrInsert(
-            //     ['default_address' => 'true'],
-            //     [
-            //         'user_id' => session('id'),
-            //         'name' => $validated['name'],
-            //         'contact_number' => $validated['contact_number'],
-            //         'region' => $validated['region'],
-            //         'city_municipality' => $validated['city_municipality'],
-            //         'brgy_village' => $validated['brgy_village'],
-            //         'postal_code' => $validated['postal_code'],
-            //         'street_building_house' => $validated['street_building_house']
-            //         // 'default_address' => $validated['default_address']
-            //     ]
-            // );
-
-            $address = Address::where(['user_id' => session('id'), 'default_address' => 'true'])->first();
-
-            if ($address && $add == 'delivery') {
-                $address->update(['default_address' => null]);
+        if ($request->input('default_address') == true) {
+            if ($address && $add == 'notDelivery') {
+                $address->update([
+                    'default_address' => false
+                ]);
                 $new_add = Address::find($id);
-                $new_add->update($validated);
-
-                return redirect('/deliveryAddress');
-            } elseif ($address && $add == 'notDelivery') {
-                $address->update(['default_address' => null]);
-                $new_add = Address::find($id);
-                $new_add->update($validated);
+                $new_add->update($request->all());
 
                 return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
-            } elseif ($add == 'delivery') {
+            } else if ($add == 'notDelivery') {
                 $new_add = Address::find($id);
-                $new_add->update($validated);
-                return redirect('/deliveryAddress');
-            } elseif ($add == 'notDelivery') {
-                $new_add = Address::find($id);
-                $new_add->update($validated);
+                $new_add->update($request->all());
                 return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
-            } else {
-                return "error bitch";
             }
         } else {
-            $validated = $request->validate([
-                'name' => 'required',
-                'contact_number' => 'required',
-                'region' => 'required',
-                'city_municipality' => 'required',
-                'brgy_village' => 'required',
-                'postal_code' => 'required',
-                'street_building_house' => 'required',
-            ]);
+            $update_add = Address::find($id);
+            $update_add->update($request->all());
 
-            // dd($validated);
-            $address = Address::find($id);
-            $address->update([
-                // 'user_id' => session('id'),
-                'name' => $validated['name'],
-                'contact_number' => $validated['contact_number'],
-                'region' => $validated['region'],
-                'city_municipality' => $validated['city_municipality'],
-                'brgy_village' => $validated['brgy_village'],
-                'postal_code' => $validated['postal_code'],
-                'street_building_house' => $validated['street_building_house'],
-                'default_address' => null
-            ]);
-
-            if ($address && $add == 'delivery') {
-                return redirect('/deliveryAddress');
-            } elseif ($address && $add == 'notDelivery') {
+            if ($update_add && $add == 'notDelivery') {
                 return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
-            } else {
-                return "error bitch";
             }
-        }
+        }       
     }
 
     public function destroyAddress($id, $del)
@@ -1165,7 +1045,7 @@ class UserController extends Controller
     }
 
     public function courierUpdate(Request $request)
-    {        
+    {
         if ($request->hasFile('profile_photo')) {
             $validated = $request->validate([
                 'owner_name' => 'required',
@@ -1176,7 +1056,7 @@ class UserController extends Controller
                 'profile_photo' => 'required'
             ]);
 
-            $validated['password'] = bcrypt($request['password']);            
+            $validated['password'] = bcrypt($request['password']);
 
             $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -1184,14 +1064,14 @@ class UserController extends Controller
             $fileNameToStore = $fileName . '_' . time() . $extension;
             $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
             $validated["profile_photo"] = $fileNameToStore;
-            
+
             $user = Users::find(session('id'));
             if ($user && Hash::check($request->input('current_password'), $user["password"])) {
                 $user->update($validated);
 
                 session()->put([
-                    'owner_name' => $user->owner_name,                                        
-                    'user' => $user->username,                    
+                    'owner_name' => $user->owner_name,
+                    'user' => $user->username,
                     'profile_pic' => $user->profile_photo
                 ]);
 
@@ -1205,7 +1085,7 @@ class UserController extends Controller
                 'email' => ['required', 'email'],
                 'phone_number' => 'required',
                 'username' => 'required',
-                'password' => 'required',                
+                'password' => 'required',
             ]);
 
             $validated['password'] = bcrypt($request['password']);
@@ -1215,7 +1095,7 @@ class UserController extends Controller
                 $user->update($validated);
 
                 session()->put([
-                    'owner_name' => $user->owner_name,                    
+                    'owner_name' => $user->owner_name,
                     // 'address' => $user->address,
                     'user' => $user->username,
                     // 'username' => $user->owner_name,
@@ -1227,6 +1107,10 @@ class UserController extends Controller
                 return redirect('/courierprofile')->with('message', 'Error in updating profile');
             }
         }
+    }    
+
+    public function redirectNearbyListings() {
+        return view('users.nearbyListings');
     }
 
 
@@ -1469,5 +1353,22 @@ class UserController extends Controller
         } else {
             return response()->json(['message' => 'error']);
         }
+    }
+
+    public function getCurrentUserAddress() {
+        // $user = Users::with('addressUser')->find(session('id'));
+        $user = Users::with('addressUser')->find(session('id'));
+        return response()->json($user);
+    }
+
+    public function getNearbyBooks() {
+        // $books = Books::with('user.addressUser')->get();
+        $books = Address::with('user.books')->get();
+        return $books;
+    }
+
+    public function nearbyListings(Request $request) {
+        $books = Books::whereIn('id', $request->all())->with('user.addressUser')->get();
+        session()->put('books', $books);       
     }
 }

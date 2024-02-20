@@ -80,7 +80,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8" style='border: 1px solid green;'>
+                <div class="col-lg-8">
                     <div class="card mb-3 card-cover">
                         <div class="card-header selling-header">
                             <div class="d-flex align-items-center justify-content-between">
@@ -115,50 +115,6 @@
                         </div>
                     </div>
                     
-                    <div class="card mt-5 mb-3 card-post" style='border: 1px solid red;'>
-                        <div class="card-header">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center card-dets">
-                                    <img src="../assets/nestine.png" alt="Profile Picture" class="rounded-circle me-3"
-                                        width="50" height="50">
-                                    <div>
-                                        <p class="mb-0">John Doe Buena</p>
-                                        <small class="text-muted">12/29/2022 10:11</small>
-                                    </div>
-                                </div>
-                                <div class="dropdown" style='border: 1px solid blue;'>
-                                    <button class="btn btn-link" type="button" id="postOptions"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="postOptions">
-                                        <li><a class="dropdown-item" href="#">Hide Post</a></li>
-                                        <li><a class="dropdown-item" href="#">Report Post</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Hello guys. Can you help me pick my logo for a book club?
-                                Thanks</p>
-                            <img src="../assets/b1.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b2.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b3.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b4.jpg" alt="Post Image" class="img-fluid" width="80" height="100">
-                            <img src="../assets/b5.jfif" alt="Post Image" class="img-fluid" width="80" height="100">
-                        </div>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-link"><i class="fa fa-thumbs-o-up"
-                                            aria-hidden="true"></i>Like</button>
-                                    <button class="btn btn-link"><i class="fa fa-comment-o"
-                                            aria-hidden="true"></i>Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- post outer container, ma hold ini hiya hin post inner container -->
                     <div id="postOuterContainer"></div>
                 </div>
@@ -189,7 +145,7 @@
             </div>
         </div>
         <!-- Create Post Modal -->
-        <div class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div id='createPostModal' class="modal fade" id="createpost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

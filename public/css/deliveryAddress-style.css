@@ -6,6 +6,10 @@
     background-color: #2D6092;
 }
 
+.pac-container {
+    z-index: 2000;
+}
+
 .sidebar {
     position: fixed;
     background-color: #003060;
@@ -87,7 +91,7 @@
     background: none;
     border: none;
     padding: 0;
-    margin-left: 28em;
+    margin-left: 25em;
     margin-top: -5em;
     margin-bottom: 7em;
 }

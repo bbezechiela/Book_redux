@@ -55,15 +55,15 @@
     text-decoration: underline;
 }
 
-.tabs{
+.tabs {
     font-size: 12px;
 }
 
-.location-text{
+.location-text {
     color: #757575;
 }
 
-.location-text i{
+.location-text i {
     margin-right: 8px;
 }
 
@@ -74,7 +74,8 @@ p {
     text-decoration: none;
 }
 
-a:hover, h4 {
+a:hover,
+h4 {
     color: #E55B13;
     font-weight: bold;
 }
@@ -114,16 +115,16 @@ a:hover, h4 {
     align-items: center;
 }
 
-.add-button{
-/* .like-button { */
+.add-button {
+    /* .like-button { */
     color: #2D6092;
     background: none;
     border: none;
     padding: 0;
 }
 
-.add-button:hover{
-/* .like-button:hover { */
+.add-button:hover {
+    /* .like-button:hover { */
     color: #E55B13;
     background-color: transparent;
 }
@@ -132,7 +133,7 @@ a:hover, h4 {
     display: none;
 }
 
-.dropdown-menu .dropdown-item{
+.dropdown-menu .dropdown-item {
     color: #003060;
 }
 
@@ -140,14 +141,15 @@ a:hover, h4 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10em; 
+    margin-top: 10em;
 }
 
 .form-control:focus {
     box-shadow: inset 0px 0px 0px 1px #f5f3f0;
 }
 
-.input-group-text, .form-control {
+.input-group-text,
+.form-control {
     border: none;
     background-color: #fff;
 }
@@ -156,7 +158,7 @@ a:hover, h4 {
     margin-right: 2em;
 }
 
-.input-group-text i{
+.input-group-text i {
     color: #003060;
 }
 
@@ -171,8 +173,16 @@ a:hover, h4 {
     /* display: ; */
 }
 
-.text-success{
+.text-success {
     font-size: 11px;
+}
+
+.nearby-seller-btn:hover {
+    text-decoration: underline;
+}
+
+.nearby-user-btn:hover {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 576px) {
@@ -183,9 +193,9 @@ a:hover, h4 {
 
 .py-profile .avatar {
     padding: 0;
-  }
-  
-  .py-profile .avatar:after {
+}
+
+.py-profile .avatar:after {
     font-family: 'fontawesome' !important;
     content: "\f0d7";
     border: none;
@@ -204,5 +214,4 @@ a:hover, h4 {
     right: -3px;
     margin: 0;
     border: 1px solid #003060;
-  }
-  
+}

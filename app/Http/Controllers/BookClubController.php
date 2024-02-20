@@ -111,13 +111,14 @@ class BookClubController extends Controller
     // get posts
     function getPosts(Request $request) {
         $current_bookclub_name = $request->query('currentBookClubName');
+        $current_post_timestamp = $request->query('currentPostTimestamp');
 
         $club_finder = BookClub::where('book_club_name', '=', $current_bookclub_name)->first();
 
         if ($club_finder->count() > 0) {
             $club_id = $club_finder->book_club_id;
 
-            $club_posts_getter = BookClub_Posts::where('club_id', '=', $club_id)->get();
+            $club_posts_getter = BookClub_Posts::where('club_id', '=', $club_id)->where('created_at', '>', $current_post_timestamp)->get();
 
             if ($club_posts_getter->count() > 0) {
                 return response()->json(['data' => $club_posts_getter]);
@@ -216,6 +217,32 @@ class BookClubController extends Controller
             return response()->json(['data' => $getter]);
         } else {
             return response()->json(['error' => 'Error in getting user']);
+        }
+    }
+
+    // get all posts my wall
+    function getAllPosts(Request $request) {
+        $current_post_timestamp = $request->query('currentPostTimestamp');
+
+        $getter = BookClub_Posts::where('created_at', '>', $current_post_timestamp)->get();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter]);
+        } else {
+            return response()->json(['error' => 'Theres no posts at all']);
+        }
+    }
+
+    // get club
+    function getClub(Request $request) {
+        $club_id = $request->query('clubId');
+
+        $getter = BookClub::where('book_club_id', '=', $club_id)->first();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter]);
+        } else {
+            return response()->json(['error' => 'Cant find book club']);
         }
     }
 
