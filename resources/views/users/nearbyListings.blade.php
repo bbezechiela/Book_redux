@@ -225,69 +225,6 @@
                     @endif
                 @endforeach
 
-                {{-- @foreach ($items as $item)
-                    @if ($item->status == 'Exchange')
-                        <div class="card col-3 m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                            onclick="clickedPost({{ $item->id }}, {{ $item->user_id }})">
-                            <img src="{{ asset('images/books/' . $item->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
-                            <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $item->title }}</p>
-                                <p class="card-text mt-0 mb-2">{{ $item->author }}<br>
-                                    {{ $item->genre }}</p>
-                                @foreach ($item->user->addressUser as $address)
-                                    @if ($address->default_address == 'true')
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
-                                        </p>
-                                    @endif
-                                @endforeach
-                                <div class="card-foot price pb-3 d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">For Exchange</span>
-                                </div>
-                            </div>
-                        @else
-                            <div class="card col-3 m-1 pb-4 shadow"
-                                style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $item->id }}, {{ $item->user_id }})">
-                                <img src="{{ asset('images/books/' . $item->book_photo) }}" class="img mx-auto p-2"
-                                    alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $item->title }}</p>
-                                    <p class="card-text mt-0 mb-2">{{ $item->author }}<br>
-                                        {{ $item->genre }}</p>
-                                    @foreach ($item->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
-                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->brgy_village . ', ' . $address->city_municipality }}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                    <div
-                                        class="card-foot price pb-3 d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $item->price }}</span>
-                                        <div class="button-container">                                           
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>                                                    
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    @endif
-                @endforeach --}}
-
             </div>
         </div>
 

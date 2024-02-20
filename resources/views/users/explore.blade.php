@@ -69,6 +69,9 @@
                 </div>
             </div>
         </ul>
+        <button type="button" class="position-absolute end-0 mt-2 btn fw-bold nearby-user-btn"
+            style="color: #E55B13; margin-right: 230px"><img src="assets/location-icon.png" alt="Location icon"
+                class="img" width="25">Find Nearby Users</button type="button">
         <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
             style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
                 width="25">Find Nearby Listings</button type="button">
@@ -85,8 +88,8 @@
                             @if ($daily->status == 'Rent' && $daily->stock > 0)
                                 <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                     onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                    <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                        alt="..." width="130px" height="150px">
+                                    <img src="{{ asset('images/books/' . $daily->book_photo) }}"
+                                        class="img mx-auto p-2" alt="..." width="130px" height="150px">
                                     <div class="card-body py-0">
                                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                         <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
@@ -1670,6 +1673,57 @@
     </div>
 </div>
 
+{{-- Nearby User Modal --}}
+<div class="modal fade" id="nearby_user_modal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Find Nearby Users</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="user-circle-radius"
+                        aria-label="Floating label select example">
+                        <option value="1">1 Kilometre</option>
+                        <option value="2">2 Kilometre</option>
+                        <option value="5">5 Kilometre</option>
+                        <option value="10">10 Kilometre</option>
+                        <option value="20">20 Kilometre</option>
+                        <option value="40">40 Kilometre</option>
+                        <option value="50">50 Kilometre</option>
+                        <option value="60">60 Kilometre</option>
+                        <option value="70">70 Kilometre</option>
+                        <option value="80">80 Kilometre</option>
+                        <option value="90">90 Kilometre</option>
+                        <option value="100">100 Kilometre</option>
+                        <option value="120">120 Kilometre</option>
+                        <option value="130">130 Kilometre</option>
+                    </select>
+                    <label class="fw-bold" for="circle-radius">Radius</label>
+                </div>
+                <div class="d-flex justify-content-end flex-row">
+                    <label for="current-user-location">Current Location:</label>
+                    <div class="form-check form-switch mb-2 ms-2">
+                        <input class="form-check-input" type="checkbox" role="switch"
+                            id="current-user-location">
+                    </div>
+                </div>
+                <div class="border rounded">
+                    {{-- <gmp-map class="mx-auto" center="11.240029883135003, 125.00268827609003" zoom="16" map-id="DEMO_MAP_ID">
+                        <gmp-advanced-marker position="11.240029883135003, 125.00268827609003" title="Second location"></gmp-advanced-marker>
+                    </gmp-map> --}}
+                    <div id="users-map" style="height: 400px"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                {{-- <button type="button" id="nearbylisting-apply-btn" class="btn btn-outline-primary">Apply</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
@@ -1685,22 +1739,6 @@
         lat: 0,
         lng: 0
     };
-
-    // function initMap() {
-    //     map = new google.maps.Map(document.getElementById('map'), {
-    //         center: {
-    //             lat: 11.240029883135003,
-    //             lng: 125.00268827609003
-    //         },
-    //         zoom: 16
-    //     });
-
-    //     drawCircle(map, {
-    //         lat: 11.240029883135003,
-    //         lng: 125.00268827609003
-    //     }, document.getElementById('circle-radius').value);        
-    // }
-    // var gmp_map = document.querySelector('gmp-map');
 
     function drawCircle(map, coordinates, proximity) {
         var circle = new google.maps.Circle({
@@ -1744,6 +1782,26 @@
 
     };
 
+    const nearbyUserSuccessCallback = (position) => {
+        coordinates.lat = position.coords.latitude;
+        coordinates.lng = position.coords.latitude;
+
+        map = new google.maps.Map(document.getElementById('users-map'), {
+            center: {
+                lat: coordinates.lat,
+                lng: coordinates.lng
+            },
+            zoom: 13
+        });
+
+        drawCircle(map, {
+            lat: coordinates.lat,
+            lng: coordinates.lng
+        }, document.getElementById('user-circle-radius').value);
+
+        getNearbyUsers();
+    }
+
     const errorCallback = (error) => {
         console.log(error);
     };
@@ -1777,8 +1835,11 @@
         keyboard: false
     });
 
+    const nearby_user_modal = new bootstrap.Modal('#nearby_user_modal', {
+        keyboard: false
+    });
 
-    // var nearby_seller = document.querySelector('.nearby-seller-btn');
+    // Nearby seller Button
     document.querySelector('.nearby-seller-btn').addEventListener('click', () => {
         // alert('test nearby seller btn');
         nearby_seller_modal.show();
@@ -1822,6 +1883,49 @@
             .catch(error => console.error(error));
     });
 
+    // Nearby User Button
+    document.querySelector('.nearby-user-btn').addEventListener('click', () => {
+        nearby_user_modal.show();
+        fetch('/getuseraddress', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                result.address_user.forEach(address => {
+                    if (address.default_address) {
+                        var {
+                            latitude,
+                            longitude
+                        } = address;
+
+                        if (document.getElementById('current-user-location').checked) {
+                            console.log('checked');
+                        } else {
+                            coordinates.lat = parseFloat(latitude);
+                            coordinates.lng = parseFloat(longitude);
+
+                            map = new google.maps.Map(document.getElementById('users-map'), {
+                                center: {
+                                    lat: coordinates.lat,
+                                    lng: coordinates.lng
+                                },
+                                zoom: 13
+                            });
+
+                            drawCircle(map, {
+                                lat: coordinates.lat,
+                                lng: coordinates.lng
+                            }, document.getElementById('user-circle-radius').value);
+
+                            getNearbyUsers();
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+    });
+
     function getNearbyListings() {
         book_ids = [];
         var {
@@ -1852,52 +1956,60 @@
                             })
                         }
                     }
-                })
-                // if (result.user_id !== {{ json_encode(session('id')) }}) {
-                // result.forEach(book => {
-                //     if (book.user_id != {{ json_encode(session('id')) }} && book.user.address_user) {
-                //         var address = book.user.address_user;
-                //         address.forEach(add => {
-                //             if (add.default_address) {
-                //                 var {
-                //                     latitude,
-                //                     longitude,
-                //                     name,
-                //                     user_id
-                //                 } = add;
-                //                 if (calculateDistance(lat, lng, parseFloat(latitude),
-                //                         parseFloat(longitude)) <= document.getElementById(
-                //                         'circle-radius').value) {
-                //                     var marker = new google.maps.Marker({
-                //                         position: {
-                //                             lat: parseFloat(latitude),
-                //                             lng: parseFloat(longitude)
-                //                         },
-                //                         map: map,
-                //                         title: name,
-                //                         id: user_id
-                //                     });
-
-                //                     marker.addListener('click', () => {
-                //                         console.log(marker.id);
-                //                         window.location.href = `/userlistings/${marker.id}`;
-                //                     })
-
-
-                //                 } else {
-                //                     console.log('outside the proximity');
-                //                 }
-
-                //             }
-                //         })
-                //     }
-                // });
-                // }
+                });                
                 console.log(book_ids);
             })
             .catch(error => console.error(error));
     }
 
+    function getNearbyUsers() {
+        var {
+            lat,
+            lng
+        } = coordinates;
+
+        fetch('/getnearbybooks', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                result.forEach(address => {
+                    if (address.user_id != {{ json_encode(session('id')) }}) {
+                        if (address.default_address) {
+                            var {
+                                latitude,
+                                longitude,
+                                name,
+                                user_id
+                            } = address;
+
+                            if (calculateDistance(lat, lng, parseFloat(latitude), parseFloat(longitude)) <=
+                                document.getElementById('user-circle-radius').value) {
+                                var marker = new google.maps.Marker({
+                                    position: {
+                                        lat: parseFloat(latitude),
+                                        lng: parseFloat(longitude)
+                                    },
+                                    map: map,
+                                    title: name,
+                                    id: user_id
+                                });
+
+                                marker.addListener('click', () => {
+                                    console.log(marker.id);
+                                    window.location.href = `/userlistings/${marker.id}`;
+                                });
+                            } else {
+                                console.log('Outside the proximity');
+                            }
+                        }
+                    }
+                })
+            })
+            .catch(error => console.error(error));
+    }
+
+    // Nearby Listing Current Location Toggle
     document.getElementById('current-location').addEventListener('change', () => {
         if (document.getElementById('current-location').checked) {
             navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
@@ -1944,6 +2056,52 @@
         }
     });
 
+    // Nearby User's Current Location Toggle
+    document.getElementById('current-user-location').addEventListener('change', () => {
+        if (document.getElementById('current-user-location').checked) {
+            navigator.geolocation.getCurrentPosition(nearbyUserSuccessCallback, errorCallback, options);
+        } else {
+            fetch('/getuseraddress', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    result.address_user.forEach(address => {
+                        if (address.default_address) {
+                            var {
+                                latitude,
+                                longitude
+                            } = address;
+
+                            if (document.getElementById('current-user-location').checked) {                                
+                                navigator.geolocation.getCurrentPosition(successCallback,
+                                    errorCallback,
+                                    options);
+                            } else {
+                                coordinates.lat = parseFloat(latitude);
+                                coordinates.lng = parseFloat(longitude);
+                                map = new google.maps.Map(document.getElementById('users-map'), {
+                                    center: {
+                                        lat: coordinates.lat,
+                                        lng: coordinates.lng
+                                    },
+                                    zoom: 13
+                                });
+
+                                drawCircle(map, {
+                                    lat: coordinates.lat,
+                                    lng: coordinates.lng
+                                }, document.getElementById('user-circle-radius').value);
+                            }
+                        }
+                    })
+                    getNearbyUsers();
+                })
+                .catch(error => console.error(error));
+        }
+    })
+
     document.getElementById('circle-radius').addEventListener('change', () => {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
@@ -1974,6 +2132,24 @@
         }, document.getElementById('circle-radius').value);
 
         getNearbyListings();
+    });
+
+    // Fnd Nearby Users Circle Radius
+    document.getElementById('user-circle-radius').addEventListener('change', () => {
+        map = new google.maps.Map(document.getElementById('users-map'), {
+            center: {
+                lat: coordinates.lat,
+                lng: coordinates.lng
+            },
+            zoom: 13
+        });
+
+        drawCircle(map, {
+            lat: coordinates.lat,
+            lng: coordinates.lng
+        }, document.getElementById('user-circle-radius').value);
+
+        getNearbyUsers();
     });
 
     // Apply Btn
