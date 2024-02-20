@@ -1624,12 +1624,11 @@
         </div>
 
         {{-- Map Marker Toast --}}
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        {{-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="mapToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
-                    <strong class="me-auto"></strong>
-                    {{-- <small>1 min ago</small> --}}
+                    <strong class="me-auto"></strong>                    
                     <button type="button" class="btn-close" data-bs-dismiss="toast"
                         aria-label="Close"></button>
                 </div>
@@ -1643,7 +1642,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 </div>
@@ -1846,7 +1845,7 @@
     }
 
     // 
-    const mapMarkerToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('mapToast'));
+    // const mapMarkerToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('mapToast'));
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast'));
     @if (session('message'))
         toastBootstrap.show()
@@ -2014,27 +2013,41 @@
                                         lng: parseFloat(longitude)
                                     },
                                     map: map,
-                                    title: 'Click to open profile',
+                                    // title: 'Click to open profile',
                                     id: user_id,
                                     name: `${user.first_name} ${user.last_name}`,
                                     address: address,
                                     img_url: user.profile_photo
-                                });                                
+                                });                 
+                                
+                                const contentString = `<div class="d-flex">
+                                    <img id="map-toast-img" class="img rounded-4" src="/images/profile_photos/${marker.img_url}" alt="profile pic" style="width: 60px">
+                                        <div class="mx-3 w-100 mb-2">
+                                            <h5 id="map-toast-name" class="fw-bold py-0 mt-0 mb-0" style="color: #003060">${marker.name}</h5>
+                                            <p id="map-toast-address" class="text-secondary fw-bold py-0 mt-0">${marker.address}</p>
+                                        </div>
+                                        <span class="fw-bold position-absolute bottom-0 end-0 mx-2 mb-1" style="color: #E55B13;">Click to Open Profile</span>
+                                    </div>`;
+
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: contentString,
+                                    ariaLabel: address
+                                })
 
                                 marker.addListener('click', () => {
                                     // console.log(marker.id);
                                     window.location.href = `/userlistings/${marker.id}`;
                                 });
 
-                                marker.addListener('mouseover', () => {
-                                    document.getElementById('map-toast-img').src = `/images/profile_photos/${marker.img_url}`;
-                                    document.getElementById('map-toast-name').textContent = marker.name;
-                                    document.getElementById('map-toast-address').textContent = marker.address;
-                                    mapMarkerToast.show();
+                                marker.addListener('mouseover', () => {                                    
+                                    infoWindow.open({
+                                        anchor: marker,
+                                        map
+                                    });
                                 });
 
                                 marker.addListener('mouseout', () => {
-                                    mapMarkerToast.hide();
+                                    infoWindow.close();
                                 })
 
 
