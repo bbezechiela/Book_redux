@@ -63,7 +63,7 @@
             {{-- <p class="fw-bold" style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon"
                     class="img" width="25">Nearby Listings:</p> --}}
             <div class="row contents justify-content-start px-3 mt-5">
-                <p class="text-secondary fst-italic">Nearby Listings:</p>
+                <p style="color: #E55B13; font-size: 25px;">Listings Near You</p>
 
                 @foreach (session('books') as $book)
                     @if ($book->user->type == 'Bookseller')
