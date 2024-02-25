@@ -35,6 +35,7 @@ class Order_Items extends Model
         'order_status',
         'shipping_status',
         'shipping_fee',
+        'tracking_number',
         'pickup_address_id',
         'pickup_date'
     ];

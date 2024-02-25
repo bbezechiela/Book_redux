@@ -97,7 +97,7 @@
                                         <p class="mb-0 fw-bold interaction-type" id="interaction-type">
                                             {{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
-                                        <p>#{{ $order->order_number }}</p>
+                                        <p>{{ $item->tracking_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -135,33 +135,7 @@
                                             data-bs-target="#rate-review"
                                             onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
                                             Rating and Review</button>
-                                    @endif
-                                    {{-- @if ($item->ratedItem->count() > 0)
-                                        @foreach ($item->ratedItem as $review)
-                                            @if ($review->item_id == $item->id && $review->user_id == session('id'))
-                                                <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                                    data-bs-target="#rate-review"
-                                                    onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
-                                                    Rating and Review</button>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review"
-                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
-                                            Rating and Review</button>
-                                    @endif --}}
-
-                                    {{-- @endforeach --}}
-                                    {{-- @if (isset($item->ratedItem))
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review"
-                                            onclick="editRating({{ $item->ratedItem->id }}, {{ $item->id }})">Edit
-                                            Rating and
-                                            Review</button>
-                                    @else
-                                        
-                                    @endif --}}
+                                    @endif                                 
 
                                 </div>
                                 <div class="button-group">

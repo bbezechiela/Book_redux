@@ -63,9 +63,9 @@
                                 <p class="contact" style="margin-right: 35px;">{{ $user->contact_number }}</p>
                                 <p class="address" style="margin-right: 15px;">
                                     {{ $user->address }}
-                                </p>                                
+                                </p>
                             </div>
-                            <button class="change-button"><a href="/deliveryAddress">Change</a></button>
+                            <button class="change-button "><a href="/addresses">Change</a></button>
                         </div>
                     @endif
                 @endforeach
@@ -98,6 +98,9 @@
                                     <p class="fw-bold interaction-type">{{ $orders->productRelation->status }}</p>
                                     <p class="mb-0 interaction-type">Qty: <span
                                             class="qty">{{ $qty[$index] }}</span></p>
+                                    <span class="book-length" hidden>{{ $orders->productRelation->length }}</span>
+                                    <span class="book-width" hidden>{{ $orders->productRelation->width }}</span>
+                                    <span class="book-height" hidden>{{ $orders->productRelation->height }}</span>
                                 </div>
                                 <div class="product-price position-absolute end-0 me-2">
                                     @if ($orders->productRelation->status == 'Rent')
@@ -173,18 +176,48 @@
     // console.log(document.querySelectorAll('span[data="status"]').textContent);
     var prices = document.querySelectorAll('span[class="price-list"]');
     var item_qty = document.querySelectorAll('span[class="qty"]');
+    var book_length = document.querySelectorAll('span[class="book-length"]');
+    var book_width = document.querySelectorAll('span[class="book-width"]');
+    var book_height = document.querySelectorAll('span[class="book-height"]');
     var totalItem = document.getElementById('total');
     var displayTotal = document.getElementById('total-price');
     var mercha_total = document.getElementById('mer-total');
     var sum_total = document.getElementById('summary-total');
     var totalPrice = 0.0;
+    var totalShipping = 0.0;
+    var shipping_price = []
 
 
     for (var i = 0; i < item_qty.length; i++) {
         totalPrice += (parseFloat(prices[i].textContent) * parseFloat(item_qty[i].textContent));
-        // console.log(prices[i].textContent);
+        if ((((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(book_height[
+                i].textContent)) / 3500) * parseFloat(item_qty[i].textContent) * 1000) <= 500) {
+            shipping_price.push(85);
+        } else if ((((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(
+                book_height[i].textContent)) / 3500) * parseFloat(item_qty[i].textContent) * 1000) <= 1000) {
+            shipping_price.push(155);
+        } else if (((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(
+                book_height[i].textContent)) / 3500) * parseFloat(item_qty[i].textContent) <= 3) {
+            shipping_price.push(180);
+        } else if (((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(
+                book_height[i].textContent)) / 3500) * parseFloat(item_qty[i].textContent) <= 4) {
+            shipping_price.push(270);
+        } else if (((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(
+                book_height[i].textContent)) / 3500) * parseFloat(item_qty[i].textContent) <= 5) {
+            shipping_price.push(360);
+        } else if (((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(
+                book_height[i].textContent)) / 3500) * parseFloat(item_qty[i].textContent) <= 6) {
+            shipping_price.push(455);
+        }
+        // shipping_price.push(((parseFloat(book_length[i].textContent) * parseFloat(book_width[i].textContent) * parseFloat(book_height[i].textContent)) / 3500) * parseFloat(item_qty[i].textContent))        
     }
-    
+
+    shipping_price.forEach(element => {
+        totalShipping += element;
+    });
+
+    document.getElementById('shipping-total').textContent = `₱${parseFloat(totalShipping)}`;
+
     // prices.forEach(element => {
     //     // console.log(parseFloat(element.textContent));
     //     totalPrice += parseFloat(element.textContent);
@@ -193,7 +226,7 @@
     displayTotal.textContent = '₱' + totalPrice + '.0';
     totalItem.textContent = '(' + prices.length + ' item/s)';
     mercha_total.textContent = '₱' + totalPrice + '.0';
-    sum_total.textContent = '₱' + parseFloat(totalPrice + 130) + '.0';
+    sum_total.textContent = '₱' + parseFloat(totalPrice + totalShipping) + '.0';
     // place order
     var place_order_btn = document.getElementById('place-order');
     var address_id = document.getElementById('address-id');
@@ -204,6 +237,7 @@
     var titles = document.querySelectorAll('p[class="book-title"]');
     var book_titles = Array.from(titles, element => element.textContent).join(', ');
     var book_id = [];
+    var shipping_fees = [];
     var qty = [];
 
     place_order_btn.addEventListener('click', () => {
@@ -218,7 +252,12 @@
             // });
             // console.log(books.length);
             for (var i = 0; i < books.length; i++) {
-                book_id.push(books[i].textContent)
+                book_id.push(books[i].textContent);
+                shipping_fees.push(shipping_price[i])
+                // {
+                //     id: ,
+                //     shipping: 
+                // }
                 qty.push(item_qty[i].textContent);
             }
 
@@ -226,6 +265,7 @@
                 address_id: address_id.textContent,
                 book_id: book_id,
                 qty: qty,
+                shipping_fee: shipping_fees,
                 order_number: orderNumber().toString(),
                 shipping_option: shipping_option.value,
                 payment_method: payment_method.value,
@@ -342,7 +382,7 @@
         payment_method.value = 'Cash on Delivery';
         shipping_choices[0].textContent = 'Door-to-Door Delivery';
         shipping_choices[1].textContent = 'Personal Transaction';
-        document.getElementById('shipping-total').textContent = '₱130.00';
+        document.getElementById('shipping-total').textContent = `₱${totalShipping}`;
         sum_total.textContent = '₱' + parseFloat(totalPrice + 130) + '.0';
     });
 

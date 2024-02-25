@@ -23,47 +23,12 @@
     </div> --}}
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
-            <div class="w-100 d-flex mt-2 p-0">
-                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button> --}}
+            <div class="w-100 d-flex mt-2 p-0">                
                 <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                        src="../assets/Book_Logo.png" alt="Logo"></a>
-                {{-- <ul class="nav nav-underline">
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/myprofile">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/mypurchase">My Purchase</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/addresses">Addresses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/changepassword">Change Password</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="/reviewsandratings">User Reviews and Ratings</a>
-                    </li>
-                </ul> --}}
+                        src="../assets/Book_Logo.png" alt="Logo"></a>                
             </div>
             <div class="position-absolute end-0">
-                <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
+                <div class="d-flex">                    
                     <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -132,7 +97,7 @@
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                                        <p>#{{ $item->order->order_number }}</p>
+                                        <p>{{ $item->tracking_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">

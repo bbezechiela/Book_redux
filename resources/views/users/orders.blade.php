@@ -20,30 +20,12 @@
     </div> --}}
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4 d-print-none">
-            <div class="w-100 d-flex mt-2 p-0 d-print-none">
-                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button> --}}
+            <div class="w-100 d-flex mt-2 p-0 d-print-none">                
                 <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
                         src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0 d-print-none">
-                <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
+                <div class="d-flex">                  
                     <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -591,7 +573,9 @@
     var payment = document.getElementById('payment-method');
 
     var order_date = document.getElementById('order-date');
+    var order_number = document.getElementById('order-number');
     var book_title = document.getElementById('book-title');
+
     var trans_type = document.getElementById('transaction-type');
     var price = document.getElementById('price');
     var deposit = document.getElementById('deposit');
@@ -719,29 +703,25 @@
             .then(result => {
                 // console.log(result);
                 result.user.address_user.forEach(address => {
+                    console.log(address);
                     if (address.id == parseInt(selected_adress)) {
                         seller_name.value = address.name;
                         seller_contact_num.value = address.contact_number;
-                        seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
-                            address.brgy_village + ', ' + address.city_municipality;
+                        seller_add.value = address.address;
 
                         pickup_name.textContent = address.name;
                         pickup_phone.textContent = address.contact_number;
-                        pickup_address.textContent = address.brgy_village + ', ' + address
-                            .city_municipality + ', ' + address.region;
+                        pickup_address.textContent = address.address;
                         pickup_postal.textContent = address.postal_code;
-                    } else if (address.default_address == 'true') {
+                    } else if (address.default_address) {
                         selected_adress = address.id;
                         seller_name.value = address.name;
                         seller_contact_num.value = address.contact_number;
-                        seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
-                            address.brgy_village + ', ' + address.city_municipality;
+                        seller_add.value = address.address;
 
                         pickup_name.textContent = address.name;
                         pickup_phone.textContent = address.contact_number;
-                        pickup_address.textContent = address.brgy_village + ', ' + address
-                            .city_municipality + ', ' + address.region;
-                        pickup_postal.textContent = address.postal_code;
+                        pickup_address.textContent = address.address;
                     }
                     var address_label = document.createElement('label');
                     var address_text_section = document.createElement('div');
@@ -769,9 +749,7 @@
 
                     add_pickup_name.textContent = address.name;
                     add_pickup_phone.textContent = address.contact_number;
-                    add_pickup_address.textContent = address.brgy_village + ', ' + address
-                        .city_municipality + ', ' + address.region;
-                    add_pickup_postal.textContent = address.postal_code;
+                    add_pickup_address.textContent = address.address;
 
                     address_modal.appendChild(address_label);
                     address_label.appendChild(address_text_section);
@@ -787,11 +765,9 @@
                     if (item.id == item_id) {
                         id.value = item.id;
                         customer_name.value = item.order.address.name;
-                        detail_order_number.value = item.order.order_number;
+                        order_number.value = item.order.order_number;
                         customer_contact_num.value = item.order.user.phone_number;
-                        customer_add.value = item.order.address.region + ', ' + item.order.address
-                            .street_building_house + ', ' + item.order.address.brgy_village + ', ' + item
-                            .order.address.city_municipality + ', ' + item.order.address.postal_code;
+                        customer_add.value = item.order.address.address;
                         payment.value = item.order.payment_method;
                         item_created = item.order.created_at;
                     }
