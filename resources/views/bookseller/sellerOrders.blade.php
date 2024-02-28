@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Orders | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/sellerOrders-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Orders | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/sellerOrders-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -43,119 +43,127 @@
                     href="/sellerrefund">Refund</a> --}}
             </nav>
         </div>
-
+        @php
+        $loopCount = 0;
+        @endphp
         @foreach ($orders as $order)
-            @foreach ($order->item as $item)
-                @if ($item->order_status == 'Pending')
-                    {{-- {{ $item->order->user->first_name }} --}}
-                    <div class="order-cart d-print-none">
-                        <div class="name-cart d-flex justify-content-between">
-                            <div>
-                                <a class="seller-name"
-                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                                <button class="message-seller"><i class="fa fa-commenting"
-                                        aria-hidden="true"></i></button>
-                            </div>
-                            <span class="order-text me-5 mt-0">Order</span>
-                        </div>
-                        <div class="product-cart">
-                            <div class="book-details">
-                                <div class="left-section">
-                                    <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book"
-                                        width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="mb-0 book-title">{{ $order->title }}</p>
-                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
-                                    </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
-                                        </p> <br>
-                                        <p class="text-total">Total Payment:<span
-                                                class="product-total">₱{{ $order->price }}</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="order">
-                                <div class="order-details">
-                                    <div class="order-message">
-                                        <small class="text-body-secondary">To accept the order, arrange first the
-                                            shipment
-                                            details</small>
-                                    </div>
-                                    <div class="button-group">
-                                        <button type="button" id="decline-btn" class="btn btn-sm decline-button"
-                                            data-bs-toggle="modal" onclick="declineItem({{ $item->id }})"
-                                            data-bs-target="#staticBackdrop">Decline</button>
-                                        <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                            data-bs-toggle="modal"
-                                            onclick="arrangeShipment({{ $order->id . ', ' . $item->id }})"
-                                            data-bs-target="#arrange-shipment">Arrange Shipment</button>
-                                    </div>
-                                </div>
-                                {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
-                            </div>
+        @foreach ($order->item as $item)
+        @if ($item->order_status == 'Pending')
+        {{-- {{ $item->order->user->first_name }} --}}
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                    <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Order</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $order->title }}</p>
+                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
                         </div>
                     </div>
-                @elseif ($item->order_status == 'paid')
-                    <div class="order-cart d-print-none">
-                        <div class="name-cart d-flex justify-content-between">
-                            <div>
-                                <a class="seller-name"
-                                    href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                                <button class="message-seller"><i class="fa fa-commenting"
-                                        aria-hidden="true"></i></button>
-                            </div>
-                            <span class="order-text me-5 mt-0">Order</span>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $order->price }}</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
+                            </p> <br>
+                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price }}</span>
+                            </p>
                         </div>
-                        <div class="product-cart">
-                            <div class="book-details">
-                                <div class="left-section">
-                                    <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book"
-                                        width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="mb-0 book-title">{{ $order->title }}</p>
-                                        <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
-                                        <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                                        <p class="payment-mode">{{ $item->order->shipping_option }}</p>
-                                    </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">₱{{ $order->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
-                                        </p> <br>
-                                        <p class="text-total">Total Payment:<span
-                                                class="product-total">₱{{ $order->price }}</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="order">
-                                <div class="order-details">
-                                    <div class="order-message">
-                                        {{-- <small class="text-body-secondary">To accept the order, arrange first the
+                    </div>
+                </div>
+                <div class="order">
+                    <div class="order-details">
+                        <div class="order-message">
+                            <small class="text-body-secondary">To accept the order, arrange first the
+                                shipment
+                                details</small>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" id="decline-btn" class="btn btn-sm decline-button"
+                                data-bs-toggle="modal" onclick="declineItem({{ $item->id }})"
+                                data-bs-target="#staticBackdrop">Decline</button>
+                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
+                                data-bs-toggle="modal" onclick="arrangeShipment({{ $order->id . ', ' . $item->id }})"
+                                data-bs-target="#arrange-shipment">Arrange Shipment</button>
+                        </div>
+                    </div>
+                    {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
+                </div>
+            </div>
+        </div>
+        @php
+        $loopCount++;
+        @endphp
+        @elseif ($item->order_status == 'paid')
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name"
+                        href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
+                    <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Order</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $order->title }}</p>
+                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
+                            <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
+                            <p class="payment-mode">{{ $item->order->shipping_option }}</p>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $order->price }}</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
+                            </p> <br>
+                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order">
+                    <div class="order-details">
+                        <div class="order-message">
+                            {{-- <small class="text-body-secondary">To accept the order, arrange first the
                                             shipment
                                             details</small> --}}
-                                    </div>
-                                    <div class="button-group">
-                                        {{-- <button type="button" class="btn btn-sm decline-button">Decline</button> --}}
-                                        <button id="arrange_shipment" type="button"
-                                            class="btn btn-sm arrange-button" data-bs-toggle="modal"
-                                            onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
-                                            data-bs-target="#shipping-details">View Shipping Details</button>
-                                    </div>
-                                </div>
-                                {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
-                            </div>
+                        </div>
+                        <div class="button-group">
+                            {{-- <button type="button" class="btn btn-sm decline-button">Decline</button> --}}
+                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
+                                data-bs-toggle="modal" onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
+                                data-bs-target="#shipping-details">View Shipping Details</button>
                         </div>
                     </div>
-                @endif
-            @endforeach
+                    {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
+                </div>
+            </div>
+        </div>
+        @endif
         @endforeach
+        @endforeach
+        @if ($loopCount == 0)
+        <div class="w-100 mt-5 d-flex justify-content-center">
+            <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
+        </div>
+        <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No new orders today</h1>
+        @endif
+
         {{-- <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -298,14 +306,13 @@
         </div> --}}
 
         <!-- Arrange Shipment for Sale Modal -->
-        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Arrange Shipment</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="details-container">
@@ -348,10 +355,8 @@
                                     placeholder="Order Date: 12/29/2023"><br>
                                 <input type text="text" class="form-control" id="detail-order-number"
                                     placeholder="OD421376365"><br>
-                                <input type="text" class="form-control" id="book-title"
-                                    placeholder="Maria Clara"><br>
-                                <input type="text" class="form-control" id="transaction-type"
-                                    placeholder="Sale"><br>
+                                <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                                <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
                                 <input type="text" class="form-control" id="price" placeholder="P100"><br>
                                 {{-- <input type="text" class="form-control" id="deposit" placeholder="P0"><br> --}}
                                 <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
@@ -378,8 +383,8 @@
                                     <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="Pickup"
-                                        name="transaction_type" id="pick_up">
+                                    <input class="form-check-input" type="radio" value="Pickup" name="transaction_type"
+                                        id="pick_up">
                                     {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
                                 </div>
                             </label>
@@ -430,14 +435,13 @@
         </div>
 
         <!-- Arrange Shipment for Rent Modal -->
-        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Arrange Shipment for Rent</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="details-container">
@@ -479,10 +483,8 @@
                                     placeholder="Order Date: 12/29/2023"><br>
                                 <input type text="text" class="form-control" id="order-number"
                                     placeholder="OD421376365"><br>
-                                <input type="text" class="form-control" id="book-title"
-                                    placeholder="Maria Clara"><br>
-                                <input type="text" class="form-control" id="transaction-type"
-                                    placeholder="Sale"><br>
+                                <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                                <input type="text" class="form-control" id="transaction-type" placeholder="Sale"><br>
                                 <input type="text" class="form-control" id="price" placeholder="P100"><br>
                                 <input type="text" class="form-control" id="deposit" placeholder="P0"><br>
                                 <input type="text" class="form-control" id="shipping-fee" placeholder="P50">
@@ -494,11 +496,10 @@
                                 <i class="fa fa-dropbox" aria-hidden="true"></i>
                                 <div class="text-section">
                                     <h6>Drop off</h6>
-                                    <p>You can drop off your parcel at any JRS Express Branch</p>
+                                    <p>You can drop off your parcel at any J&T Express Branch</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -506,11 +507,10 @@
                                 <i class="fa fa-truck" aria-hidden="true"></i>
                                 <div class="text-section">
                                     <h6>Pickup</h6>
-                                    <p>JRS Express will collect parcel from your pickup address</p>
+                                    <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -521,8 +521,7 @@
                                     <p>You and the customer will arrange your transaction</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault"></label>
                                 </div>
                             </div>
@@ -604,7 +603,7 @@
                         <div class="container mt-5 mb-5">
                             <div class="d-flex justify-content-center row">
                                 <div class="col-md-10">
-                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/JT_Express_Logo.jpg"
+                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/j&t.jpg"
                                             width="120">
                                         {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
                                         {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
@@ -615,8 +614,8 @@
                                                     id="detail-order-date" class="font-weight-bold">12 March
                                                     2020</span></div>
                                             <div><span class="d-block fs-12">Order number</span><span
-                                                    id="detail-order-number"
-                                                    class="font-weight-bold">OD44434324</span></div>
+                                                    id="detail-order-number" class="font-weight-bold">OD44434324</span>
+                                            </div>
                                             <div><span class="d-block fs-12">Payment method</span><span
                                                     id="detail-payment-method" class="font-weight-bold">Cash on
                                                     Delivery</span></div>
@@ -642,9 +641,8 @@
                                             </div>
                                         </div>
                                         <div class="mt-5 amount row">
-                                            <div class="d-flex justify-content-center col-md-6"><img
-                                                    id="detail-barcode" src="../assets/tracking.jfif" width="250"
-                                                    height="100">
+                                            <div class="d-flex justify-content-center col-md-6"><img id="detail-barcode"
+                                                    src="../assets/tracking.jfif" width="250" height="100">
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="billing">
@@ -689,8 +687,8 @@
             </div>
         </div>
         {{-- alert modal --}}
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body px-3">
@@ -707,8 +705,8 @@
 </div>
 
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
@@ -717,24 +715,20 @@
     var seller_name = document.getElementById('seller-fullname');
     var seller_contact_num = document.getElementById('seller-contact-number');
     var seller_add = document.getElementById('seller-address');
-
     var customer_name = document.getElementById('customer-fullname');
     var customer_contact_num = document.getElementById('customer-contact-number');
     var customer_add = document.getElementById('customer-address');
-
     var weight = document.getElementById('weight');
     var width = document.getElementById('width');
     var height = document.getElementById('height');
     var length = document.getElementById('length');
     var payment = document.getElementById('payment-method');
-
     var order_date = document.getElementById('order-date');
     var book_title = document.getElementById('book-title');
     var trans_type = document.getElementById('transaction-type');
     var price = document.getElementById('price');
     var deposit = document.getElementById('deposit');
     var shipping = document.getElementById('shipping-fee');
-
     var pickup = document.querySelector('label[class="pickup-details"]');
     var pickup_date = document.getElementById('pickup-date');
     var pickup_name = document.getElementById('pickup-name');
@@ -742,7 +736,6 @@
     var pickup_address = document.getElementById('pickup-address');
     var pickup_postal = document.getElementById('pickup-postal');
     var confirm_btn = document.getElementById('confirm-btn');
-
     var detail_order_date = document.getElementById('detail-order-date');
     var detail_payment_method = document.getElementById('detail-payment-method');
     var detail_order_number = document.getElementById('detail-order-number');
@@ -754,7 +747,6 @@
     var detail_subtotal = document.getElementById('detail-subtotal');
     var detail_total = document.getElementById('detail-total');
     var detail_address = document.getElementById('detail-address');
-
     var address_update_btn = document.getElementById('update-address');
     var selected_adress;
     var id_book;
@@ -767,7 +759,6 @@
     // decline_btn.addEventListener('click', () => {
     // confirm_decline_btn.href = 
     // });
-
     pickup.addEventListener('click', (event) => {
         event.preventDefault();
         if (!document.getElementById('pick_up').checked) {
@@ -775,7 +766,6 @@
             displayPickupContent();
         }
     });
-
     const csrf_token = '{{ csrf_token() }}';
     confirm_btn.addEventListener('click', () => {
         if (document.getElementById('drop_off').checked) {
@@ -797,7 +787,6 @@
                     }
                 })
                 .catch(error => console.error(error));
-
         } else if (document.getElementById('pick_up').checked) {
             if (pickup_date.value == '') {
                 alert('Please set your pickup date');
@@ -823,7 +812,6 @@
                     })
                     .catch(error => console.error(error));
             }
-
         } else if (document.getElementById('personal_transaction').checked) {
             fetch('/booksellerconfirm', {
                     method: 'POST',
@@ -843,7 +831,6 @@
                     }
                 })
                 .catch(error => console.error(error));
-
         }
     });
 
@@ -862,7 +849,6 @@
                 //         seller_contact_num.value = address.contact_number;
                 //         seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
                 //             address.brgy_village + ', ' + address.city_municipality;
-
                 //         pickup_name.textContent = address.name;
                 //         pickup_phone.textContent = address.contact_number;
                 //         pickup_address.textContent = address.brgy_village + ', ' + address
@@ -874,7 +860,6 @@
                 //         seller_contact_num.value = address.contact_number;
                 //         seller_add.value = address.region + ', ' + address.street_building_house + ', ' +
                 //             address.brgy_village + ', ' + address.city_municipality;
-
                 //         pickup_name.textContent = address.name;
                 //         pickup_phone.textContent = address.contact_number;
                 //         pickup_address.textContent = address.brgy_village + ', ' + address
@@ -888,29 +873,23 @@
                 //     var add_pickup_address = document.createElement('p');
                 //     var add_pickup_postal = document.createElement('p');
                 //     var address_radio = document.createElement('input');
-
                 //     address_label.className = 'pickup-address mb-2';
                 //     address_label.htmlFor = 'id_' + address.id;
-
                 //     address_text_section.className = 'text-section';
-
                 //     // add_pickup_name.id = 'pickup-name';
                 //     // add_pickup_name.className = 'fw-bold';
                 //     // add_pickup_phone.id = 'pickup-phone';
                 //     // add_pickup_address.id = 'pickup-address';
                 //     // add_pickup_postal.id = 'pickup-postal';
-
                 //     address_radio.id = 'id_' + address.id;
                 //     address_radio.type = 'radio';
                 //     address_radio.name = 'address_id';
                 //     address_radio.value = address.id;
-
                 //     add_pickup_name.textContent = address.name;
                 //     add_pickup_phone.textContent = address.contact_number;
                 //     add_pickup_address.textContent = address.brgy_village + ', ' + address
                 //         .city_municipality + ', ' + address.region;
                 //     add_pickup_postal.textContent = address.postal_code;
-
                 //     address_modal.appendChild(address_label);
                 //     address_label.appendChild(address_text_section);
                 //     address_text_section.appendChild(add_pickup_name);
@@ -922,12 +901,10 @@
                 seller_name.value = result.user.owner_name;
                 seller_contact_num.value = result.user.phone_number;
                 seller_add.value = result.user.address;
-
                 pickup_name.textContent = result.user.business_name;
                 pickup_phone.textContent = result.user.phone_number;
                 pickup_address.textContent = result.user.address;
                 // pickup_postal.textContent = address.postal_code;
-
                 var item_created;
                 result.item.forEach(item => {
                     if (item.id == item_id) {
@@ -942,30 +919,23 @@
                         item_created = item.order.created_at;
                     }
                 });
-
                 weight.value = result.weight;
                 width.value = result.width;
                 height.value = result.height;
                 length.value = result.length;
-
-
                 var date = new Date(item_created);
-
                 // order_date.value = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
                 order_date.value = date.toLocaleDateString();
                 book_title.value = result.title;
                 trans_type.value = result.status;
                 price.value = result.price;
                 shipping.value = '₱130';
-
                 if (document.getElementById('pick_up').checked) {
                     displayPickupContent();
                 }
-
             })
             .catch(error => console.error(error));
     }
-
     address_update_btn.addEventListener('click', () => {
         var address_selection = document.querySelectorAll('input[name="address_id"]');
         address_selection.forEach(add_id => {
@@ -988,7 +958,6 @@
                         seller_add.value = address.region + ', ' + address.street_building_house +
                             ', ' +
                             address.brgy_village + ', ' + address.city_municipality;
-
                         pickup_name.textContent = address.name;
                         pickup_phone.textContent = address.contact_number;
                         pickup_address.textContent = address.brgy_village + ', ' + address
@@ -1033,7 +1002,6 @@
                 detail_total.textContent = '₱' + (parseFloat(result.price) + parseFloat(130)) + '.0';
             })
             .catch(error => console.error(error));
-
     }
 
     function hidePickupContent() {

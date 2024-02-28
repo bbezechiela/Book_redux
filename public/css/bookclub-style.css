@@ -370,6 +370,7 @@
 .post-btn:hover {
     border: 1px solid #003060;
     background-color: #003060;
+    color: #fff;
 }
 
 .card-participants {

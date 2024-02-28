@@ -1516,8 +1516,8 @@
 
                         <label class="fw-bold" for="courier">Please Select Courier</label><br>
                         <input id="edit-jrs" class="ms-2" name="courier" type="radio"
-                            value="JRS Express">
-                        <label for="edit-jrs">JRS Express</label><br>
+                            value="J&T Express">
+                        <label for="edit-jrs">J&T Express</label><br>
                         <input id="edit-jt" class="ms-2" name="courier" type="radio"
                             value="J&T Express">
                         <label for="edit-jt">J&T Express</label>
@@ -1685,7 +1685,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "JRS Express") {
+            if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
@@ -1717,7 +1717,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "JRS Express") {
+            if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
@@ -1753,7 +1753,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "JRS Express") {
+            if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }

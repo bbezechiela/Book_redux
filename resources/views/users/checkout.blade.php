@@ -82,12 +82,12 @@
                         <div class="name-cart">
                             @if ($orders->productRelation->user->type == 'Bookseller')
                                 <a class="seller-name"
-                                    href="#"><span>{{ $orders->productRelation->user->business_name }}</span></a>
+                                    href="/userlistings/{{ $orders->user_id }}"><span>{{ $orders->productRelation->user->business_name }}</span></a>
                             @else
                                 <a class="seller-name"
-                                    href="#"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
+                                    href="/userlistings/{{ $orders->user_id }}"><span>{{ $orders->productRelation->user->first_name . ' ' . $orders->productRelation->user->last_name }}</span></a>
                             @endif
-                            <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+                            <button class="message-seller message-button"><i class="fa fa-commenting" aria-hidden="true"></i></button>
                         </div>
                         <div class="product-cart">
                             <div class="book-details w-100 position-relative">
@@ -403,4 +403,22 @@
         // format
         return [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join('')
     }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageButtons = document.querySelectorAll('.message-button');
+
+        messageButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const username = button.dataset.username;
+                redirectToMessaging(username);
+            });
+        });
+
+        function redirectToMessaging(username) {
+            const messagingUrl = `/messages?user=${username}`;
+            window.location.href = messagingUrl;
+        }
+    });
 </script>

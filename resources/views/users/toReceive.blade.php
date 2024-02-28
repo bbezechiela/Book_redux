@@ -83,7 +83,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                    href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">To Receive</span>
                         </div>
@@ -131,7 +131,7 @@
                         <div class="name-cart d-flex justify-content-between">
                             <div>
                                 <a class="seller-name"
-                                    href="/userlistings"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                                    href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
                             </div>
                             <span class="order-text me-5 mt-0">To Receive</span>
                         </div>
@@ -309,7 +309,7 @@
                         <div class="order-cart">
                             <div class="name-return d-flex justify-content-between">
                                 <div>
-                                    <a class="seller-name" href="#"><span>Jennie Blackpink</span></a>
+                                    <a class="seller-name" href="/userlistings/{{ $order->user_id }}"><span>Jennie Blackpink</span></a>
                                 </div>
                             </div>
                             <div class="product-return">
