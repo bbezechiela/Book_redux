@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function showPosts(responses) {
         responses.forEach(response => {
+            const postContainer = document.createElement('div');
+            postContainer.classList.add('postMejInnerContainer');
+
             const postInnerContainer = document.createElement('div');
             postInnerContainer.classList.add('postInnerContainer');
 
@@ -237,7 +240,9 @@ document.addEventListener('DOMContentLoaded', function() {
             postInnerContainer.appendChild(postBody);
             postInnerContainer.appendChild(postFooter);
 
-            postOuterContainer.appendChild(postInnerContainer);
+            postContainer.appendChild(postInnerContainer);
+
+            postOuterContainer.appendChild(postContainer);
         });
     }
 });
