@@ -313,7 +313,8 @@
         if (shipping_option.value == 'Door-to-Door Delivery') {
             line_items.push({
                 currency: 'PHP',
-                amount: 13000,
+                // amount: 13000,
+                amount: parseFloat(totalShipping) * 100,
                 name: 'Shipping Fee',
                 quantity: line_items.length
             });

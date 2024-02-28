@@ -23,12 +23,12 @@
     </div> --}}
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
-            <div class="w-100 d-flex mt-2 p-0">                
+            <div class="w-100 d-flex mt-2 p-0">
                 <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                        src="../assets/Book_Logo.png" alt="Logo"></a>                
+                        src="../assets/Book_Logo.png" alt="Logo"></a>
             </div>
             <div class="position-absolute end-0">
-                <div class="d-flex">                    
+                <div class="d-flex">
                     <ul class="nav py-profile justify-content-end">
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -97,7 +97,8 @@
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                                        <p>{{ $item->tracking_number }}</p>
+                                        <p id="track_{{ $item->id }}" class="d-none">{{ $item->tracking_number }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -112,9 +113,7 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
-                                        data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
-                                            class="fa fa-angle-right" aria-hidden="true"></i></button> --}}
+                                    <button type="button" class="post-btn" data-bs-toggle="modal" data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                                 </div>
                                 <div class="button-group">
                                     <a class="btn btn-outline-primary btn-sm receive-button"
@@ -146,7 +145,7 @@
                                         <p class="mb-0 book-qty">2 Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                                         <p class="mb-0payment-mode">{{ $item->order->shipping_option }}</p>
-                                        <p>#{{ $item->order->order_number }}</p>
+                                        <p id="track_{{ $item->id }}" class="d-none">{{ $item->tracking_number }}
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -160,9 +159,7 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    <button type="button" class="post-btn" data-bs-toggle="modal"
-                                        data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
-                                            class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                    <button type="button" class="post-btn" data-bs-toggle="modal" data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                                 </div>
                                 <div class="button-group">
                                     <a class="btn btn-outline-primary btn-sm receive-button"
@@ -207,46 +204,55 @@
                                                 <div
                                                     class="d-flex justify-content-between align-items-center header-track">
                                                     <div class="d-flex flex-column">
-                                                        <span class="lead fw-normal tracking-text">Your order has been
-                                                            delivered</span>
-                                                        <span class="text-muted small tracking-text">by DHFL on 21 Jan,
-                                                            2020</span>
+                                                        <span id="tracking-text-header"
+                                                            class="lead fw-normal tracking-text">Your order has been
+                                                            received by the rider</span>
+                                                        <span id="modal_tracking" class="text-muted small tracking-text"></span>
                                                     </div>
                                                 </div>
                                                 {{-- <hr class="my-4"> --}}
                                                 <div
                                                     class="d-flex flex-row justify-content-between align-items-center align-content-center">
-                                                    <span class="dot"></span>
-                                                    <hr class="flex-fill track-line"><span class="dot"></span>
-                                                    <hr class="flex-fill track-line"><span class="dot"></span>
-                                                    <hr class="flex-fill track-line"><span class="dot"></span>
+                                                    <span id="first_track{{ $item->id }}"
+                                                        class="dot"></span>
                                                     <hr class="flex-fill track-line"><span
-                                                        class="d-flex justify-content-center align-items-center big-dot dot">
-                                                        <i class="fa fa-check text-white"></i></span>
+                                                        id="second_track{{ $item->id }}"
+                                                        class="dot"></span>
+                                                    {{-- <hr class="flex-fill track-line"><span id="third_track{{ $item->id }}"
+                                                        class="dot"></span> --}}
+                                                    <hr class="flex-fill track-line"><span
+                                                        id="fourth_track{{ $item->id }}"
+                                                        class="d-flex justify-content-center align-items-center big-dot dot"><i
+                                                            class="fa fa-check text-white"></i></span>
+                                                    <hr class="flex-fill track-line"><span
+                                                        id="fifth_track{{ $item->id }}"
+                                                        class="dot"></span>
                                                 </div>
                                                 <div
                                                     class="d-flex flex-row justify-content-between align-items-center">
                                                     <div class="d-flex flex-column align-items-start tracking-text">
-                                                        <span>15 Mar</span><span class="tracking-description">Order
+                                                        <span class="date-track"></span>
+                                                        <span class="tracking-description">Order
                                                             placed</span>
                                                     </div>
                                                     <div
                                                         class="d-flex flex-column justify-content-center tracking-text">
-                                                        <span>15 Mar</span><span class="tracking-description">Preparing
+                                                        <span class="date-track"></span><span
+                                                            class="tracking-description">Preparing
                                                             to ship</span>
                                                     </div>
-                                                    <div
-                                                        class="d-flex flex-column justify-content-center align-items-center tracking-text">
-                                                        <span>15
-                                                            Mar</span><span class="tracking-description">Your order has
+                                                    {{-- <div class="d-flex flex-column justify-content-center align-items-center tracking-text">
+                                                        <span class="date-track"></span><span
+                                                            class="tracking-description">Your order has
                                                             been shipped</span>
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="d-flex flex-column align-items-center tracking-text">
-                                                        <span>15 Mar</span><span class="tracking-description">Out for
+                                                        <span class="date-track"></span><span
+                                                            class="tracking-description">Out for
                                                             delivery</span>
                                                     </div>
                                                     <div class="d-flex flex-column align-items-end tracking-text">
-                                                        <span>15 Mar</span><span
+                                                        <span class="date-track"></span><span
                                                             class="tracking-description">Delivered</span>
                                                     </div>
                                                 </div>
@@ -256,62 +262,6 @@
                                 </div>
                             </div>
                         </section>
-                        {{-- <div class="tracking-details">
-                            <div class="tracking-number">
-                                <p>Tracking Number</p>
-                                <p>1234567890</p>
-                            </div>
-                            <div class="tracking-progress">
-                                <div class="circle-icon">
-                                </div>
-                                <div class="date-time">
-                                    <p>2023-10-15 10:30 AM</p>
-                                </div>
-                                <div class="message">
-                                    <p>Your order has arrived at catbalogan</p>
-                                </div>
-                            </div>
-                            <div class="tracking-progress">
-                                <div class="circle-icon">
-                                </div>
-                                <div class="date-time">
-                                    <p>2023-10-15 10:30 AM</p>
-                                </div>
-                                <div class="message">
-                                    <p>Your order has arrived at Catarman</p>
-                                </div>
-                            </div>
-                            <div class="tracking-progress">
-                                <div class="circle-icon">
-                                </div>
-                                <div class="date-time">
-                                    <p>2023-10-15 10:30 AM</p>
-                                </div>
-                                <div class="message">
-                                    <p>Your order has been shipped</p>
-                                </div>
-                            </div>
-                            <div class="tracking-progress">
-                                <div class="circle-icon">
-                                </div>
-                                <div class="date-time">
-                                    <p>2023-10-15 10:30 AM</p>
-                                </div>
-                                <div class="message">
-                                    <p>Preparing to ship</p>
-                                </div>
-                            </div>
-                            <div class="tracking-progress">
-                                <div class="circle-icon">
-                                </div>
-                                <div class="date-time">
-                                    <p>2023-10-15 10:30 AM</p>
-                                </div>
-                                <div class="message">
-                                    <p>Order placed</p>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -415,7 +365,12 @@
             </div>
         </div>
     </div>
-
+<script>
+    const trackOrder = (id) => {
+        // alert(document.getElementById(`track_${id}`).textContent);
+        document.getElementById('modal_tracking').textContent = `Tracking Number: ${document.getElementById(`track_${id}`).textContent}`;
+    }
+</script>
     @include('partials.__footer', [
         'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
         'aos_link' => '/aos-master/dist/aos.js',

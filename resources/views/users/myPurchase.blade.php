@@ -94,7 +94,8 @@
         @endphp
         @foreach ($user->orders as $order)
             @foreach ($order->items as $item)
-                @if ($item->order->payment_method == 'Cash on Delivery' &&
+                @if (
+                    $item->order->payment_method == 'Cash on Delivery' &&
                         ($item->order_status == 'Pending' || $item->order_status == 'Confirmed by seller'))
                     <div class="order-cart">
                         <div class="name-cart d-flex justify-content-between">
@@ -108,6 +109,9 @@
                                 @endif
                             </div>
                             <span class="order-text me-5 mt-0">To Purchase</span>
+                            {{-- <button type="button" class="post-btn" data-bs-toggle="modal"
+                                data-bs-target="#track-delivery">Your order has arrived at Catbalogan centre<i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></button> --}}
                         </div>
                         <div class="product-cart">
                             <div class="book-details">
@@ -119,7 +123,11 @@
                                         <p class="mb-0 book-price">Qty: {{ $item->qty }}</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                                        <p>#{{ $item->order->order_number }}</p>
+                                        {{-- <p>#{{ $item->order->order_number }}</p> --}}
+                                        <p id="create_{{ $item->id }}" class="d-none date-create">
+                                            {{ $item->created_at->format('m/d/Y') }}</p>
+                                        <p id="update_{{ $item->id }}" class="d-none date-update">
+                                            {{ $item->updated_at->format('m/d/Y') }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -142,6 +150,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="button" class="post-btn text-start" data-bs-toggle="modal"
+                                data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track
+                                Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                         </div>
                         @php
                             $loopCount++;
@@ -169,7 +180,7 @@
                                             <p class="mb-0 fw-bold interaction-type">{{ $item->book->status }}
                                             </p>
                                             <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                                            <p>#{{ $item->order->order_number }}</p>
+                                            {{-- <p>#{{ $item->order->order_number }}</p> --}}
                                         </div>
                                     </div>
                                     <div class="right-section">
@@ -190,8 +201,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button type="button" class="post-btn text-start" data-bs-toggle="modal"
+                                    data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track
+                                    Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                             </div>
-                        </div>    
+                        </div>
                         @php
                             $loopCount++;
                         @endphp
@@ -202,8 +216,87 @@
             <div class="w-100 mt-5 d-flex justify-content-center">
                 <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
-            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">You haven't placed any orders yet</h1>
+            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">You haven't placed any
+                orders yet</h1>
         @endif
+    </div>
+
+    {{-- Tracking Order Modal --}}
+    <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My
+                        Purchase
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section>
+                        <div class="container py-3 h-10 mb-4">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col">
+                                    <div class="card card-stepper" style="border-radius: 10px; border: none;">
+                                        <div class="card-body p-4">
+                                            <div
+                                                class="d-flex justify-content-between align-items-center header-track">
+                                                <div class="d-flex flex-column">
+                                                    <span id="tracking-text-header"
+                                                        class="lead fw-normal tracking-text">Your order has been
+                                                        placed</span>
+                                                    {{-- <span class="text-muted small tracking-text">by DHFL on 21 Jan, 2020</span> --}}
+                                                </div>
+                                            </div>
+                                            {{-- <hr class="my-4"> --}}
+                                            <div
+                                                class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                                                <span id="first_track_dot"
+                                                    class="d-flex justify-content-center align-items-center big-dot dot"><i
+                                                        class="fa fa-check text-white"></i></span>
+                                                <hr class="flex-fill track-line"><span id="second_track_dot"
+                                                    class="dot"></span>
+                                                {{-- <hr class="flex-fill track-line"><span id="third_track_dot" class="dot"></span> --}}
+                                                <hr class="flex-fill track-line"><span id="fourth_track_dot"
+                                                    class="dot"></span>
+                                                <hr class="flex-fill track-line"><span id="fifth_track_dot"
+                                                    class="dot"></span>
+                                            </div>
+                                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                                <div class="d-flex flex-column align-items-start tracking-text">
+                                                    <span class="date-track"></span>
+                                                    <span class="tracking-description">Order
+                                                        placed</span>
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Preparing
+                                                        to ship</span>
+                                                </div>
+                                                {{-- <div class="d-flex flex-column justify-content-center align-items-center tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Your order has
+                                                        been shipped</span>
+                                                </div> --}}
+                                                <div class="d-flex flex-column align-items-center tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Out for
+                                                        delivery</span>
+                                                </div>
+                                                <div class="d-flex flex-column align-items-end tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Delivered</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
     {{-- alert modal --}}
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -245,6 +338,51 @@
 ])
 
 <script>
+    var date = new Date();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+    var track_date = document.querySelectorAll('span[class="date-track"]');
+    var track_prog = document.querySelectorAll('span[class="dot"]');
+
+    var dot_1 = document.getElementById('first_track_dot');
+    var dot_2 = document.getElementById('second_track_dot');
+    // var dot_3 = document.getElementById('third_track_dot');
+    // var dot_4 = document.getElementById('fourth_track_dot');
+    // var dot_5 = document.getElementById('fifth_track_dot');
+
+
+    const trackOrder = (id) => {
+        // alert(document.getElementById(`create_${id}`).textContent);        
+
+        fetch(`/gettoshipitem/${id}`, {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                var check = document.createElement('i');
+                check.className = 'fa fa-check text-white';
+                if (result.order_status == 'Confirmed by seller') {
+                    // console.log('with tracking');
+                    document.getElementById('tracking-text-header').textContent =
+                        'Seller is preparing your order to ship';
+                    dot_1.className = 'dot';
+                    dot_2.className = 'd-flex justify-content-center align-items-center big-dot dot';
+                    dot_2.appendChild(check);
+
+                    // track_date[0].textContent = document.getElementById(`create_${id}`).textContent;
+                    // track_date[1].textContent = document.getElementById(`update_${id}`).textContent;
+                } else {
+                    // track_date[0].textContent = document.getElementById(`create_${id}`).textContent;
+                    dot_1.className = 'd-flex justify-content-center align-items-center big-dot dot';
+                    dot_2.className = 'dot';
+                }
+            })
+            .catch(error => console.error(error));
+    }
+
+
+
     // function pay(id) {
     //     var payment_price = document.getElementById('payment_' + id);
     //     var title = document.getElementById('title_' + id);

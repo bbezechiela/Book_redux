@@ -373,6 +373,8 @@ Route::get('/getUser', [BookClubController::class, 'getUser']);
 Route::post('/addMember', [BookClubController::class, 'addMember']);
 
 // API's
+Route::get('/gettoshipitem/{id}', [UserController::class, 'getToShip']);
+
 Route::get('/checkusername/{user}', [UserController::class, 'checkUsername']);
 
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

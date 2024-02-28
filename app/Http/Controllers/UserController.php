@@ -1375,4 +1375,9 @@ class UserController extends Controller
         $books = Books::whereIn('id', $request->all())->with('user.addressUser')->get();
         session()->put('books', $books);       
     }
+
+    public function getToShip($id) {
+        $item = Order_Items::find($id);
+        return $item;
+    }
 }
