@@ -1115,6 +1115,11 @@ class UserController extends Controller
         return view('users.nearbyListings');
     }
 
+    public function displayListings() {
+        $books = Books::with('user')->get();
+        return view('listings', ['books' => $books]);
+    }
+
 
     // API's
     public function checkUsername($user)

@@ -129,7 +129,7 @@
                             </p> --}}
                                 {{-- <p class="card-text">Shipping Fee <span
                                             style="font-weight: bold;">₱{{ $book_id->price }}</span></p> --}}
-                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p>
+                                {{-- <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱103</span></p> --}}
                                 <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
                                 <p class="card-text">Edition: <span>{{ $book_id->edition }}</span></p>
                                 <div class="d-flex justify-content-start align-items-center mb-2">
@@ -223,7 +223,7 @@
                                     <span>| For {{ $book_id->status }}
                                         |</span> <span>{{ $book_id->genre }}</span>
                                 </h6>
-                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span>
+                                {{-- <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span> --}}
                                 </p>
                                 <p class="card-text">Security Deposit <span
                                         style="font-weight: bold;">₱{{ $book_id->security_deposit }}</span>
@@ -325,7 +325,7 @@
                                 </ul>
                             </span>
                             </p> --}}
-                                <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span>
+                                {{-- <p class="card-text">Shipping Fee <span style="font-weight: bold;">₱130.00</span> --}}
                                 </p>
                                 <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
                                 <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>

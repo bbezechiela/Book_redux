@@ -33,6 +33,8 @@ destroy - delete a data
 
 Route::get('/', [UserController::class, 'welcome']);
 
+Route::get('/listingsDisplay', [UserController::class, 'displayListings']);
+
 Route::get('/login', [UserController::class, 'login']);
 
 Route::post('/loginprocess', [UserController::class, 'login_process']);
