@@ -1653,7 +1653,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Find Nearby Listings</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby Listings</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1702,7 +1702,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Find Nearby Seller's</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby Sellers</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

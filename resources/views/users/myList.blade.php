@@ -1957,8 +1957,8 @@
                     <label class="fw-bold" for="courier">Please Select Courier</label><br>
                     {{-- <input id="jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                         <label for="jrs">JRS Express</label><br> --}}
-                    <input id="jt" class="ms-2" name="courier" type="radio" value="JRS Express">
-                    <label for="jt">JRS Express</label>
+                    <input id="jt" class="ms-2" name="courier" type="radio" value="J&T Express">
+                    <label for="jt">J&T Express</label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
@@ -1999,8 +1999,8 @@
                     <label class="fw-bold" for="courier">Please Select Courier</label><br>
                     {{-- <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                         <label for="edit-jrs">JRS Express</label><br> --}}
-                    <input id="edit-jt" class="ms-2" name="courier" type="radio" value="JRS Express">
-                    <label for="edit-jt">JRS Express</label>
+                    <input id="edit-jt" class="ms-2" name="courier" type="radio" value="J&T Express">
+                    <label for="edit-jt">J&T Express</label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="edit-shipping-save-btn"
@@ -2161,7 +2161,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "JRS Express") {
+            if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
@@ -2193,7 +2193,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "JRS Express") {
+            if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }
@@ -2229,7 +2229,7 @@
             //     document.getElementById('edit-jrs').checked = true;
             //     edit_courier = document.getElementById('edit-jrs').value;
             // } else 
-            if (courier.textContent == "JRS Express") {
+            if (courier.textContent == "J&T Express") {
                 document.getElementById('edit-jt').checked = true;
                 edit_courier = document.getElementById('edit-jt').value;
             }

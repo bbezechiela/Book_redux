@@ -310,7 +310,7 @@
                                 <i class="fa fa-dropbox" aria-hidden="true"></i>
                                 <div class="text-section">
                                     <h6 class="fw-bold">Drop off</h6>
-                                    <p>You can drop off your parcel at any JRS Express Branch</p>
+                                    <p>You can drop off your parcel at any J&T Express Branch</p>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Drop off"
@@ -322,7 +322,7 @@
                                 <i class="fa fa-truck" aria-hidden="true"></i>
                                 <div class="text-section">
                                     <h6 class="fw-bold">Pickup</h6>
-                                    <p>JRS Express will collect parcel from your pickup address</p>
+                                    <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Pickup"
@@ -421,7 +421,7 @@
                         <div class="container mt-5 mb-5">
                             <div class="d-flex justify-content-center row">
                                 <div class="col-md-10">
-                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg"
+                                    <div class="receipt bg-white p-3 rounded"><img src="../assets/j&t.jpg"
                                             width="120">
                                         {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
                                         {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
