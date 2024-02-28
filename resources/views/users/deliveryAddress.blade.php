@@ -74,10 +74,10 @@
                     <div class="address-details">
                         <p id="post_name">{{ $receiver->name }} &ensp;&ensp;<span
                                 id="post_contact">{{ $receiver->contact_number }}</span></p>
-                        <p>{{ $receiver->region . ', ' . $receiver->brgy_village . ', ' . $receiver->city_municipality }},
-                            <span>{{ $receiver->postal_code . ', ' . $receiver->street_building_house }}</span>
+                        <p>{{ $receiver->address }}
+                            {{-- <span>{{ $receiver->postal_code . ', ' . $receiver->street_building_house }}</span> --}}
                         </p>
-                        @if ($receiver->default_address == 'true')
+                        @if ($receiver->default_address)
                             <p class="default-txt">Default</p>
                         @endif
                     </div>

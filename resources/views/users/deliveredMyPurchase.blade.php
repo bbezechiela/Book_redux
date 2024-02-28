@@ -97,7 +97,7 @@
                                         <p class="mb-0 fw-bold interaction-type" id="interaction-type">
                                             {{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
-                                        <p>#{{ $order->order_number }}</p>
+                                        <p id="track_{{ $item->id }}" class="d-none">{{ $item->tracking_number }}
                                     </div>
                                 </div>
                                 <div class="right-section">
@@ -106,11 +106,15 @@
                                         <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
                                         </p> <br>
                                         <p class="text-total fw-bold">Total Payment:<span
-                                                class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span></p>
+                                                class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="order-details">
+                            <button type="button" class="post-btn text-start ms-1 mb-0 mt-3" data-bs-toggle="modal"
+                                data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track
+                                Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                            <div class="order-details mt-0">
                                 <div class="order-message">
                                     @php
                                         $loopFlag = false;
@@ -136,33 +140,6 @@
                                             onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
                                             Rating and Review</button>
                                     @endif
-                                    {{-- @if ($item->ratedItem->count() > 0)
-                                        @foreach ($item->ratedItem as $review)
-                                            @if ($review->item_id == $item->id && $review->user_id == session('id'))
-                                                <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                                    data-bs-target="#rate-review"
-                                                    onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
-                                                    Rating and Review</button>
-                                            @endif
-                                        @endforeach
-                                    @else
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review"
-                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
-                                            Rating and Review</button>
-                                    @endif --}}
-
-                                    {{-- @endforeach --}}
-                                    {{-- @if (isset($item->ratedItem))
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review"
-                                            onclick="editRating({{ $item->ratedItem->id }}, {{ $item->id }})">Edit
-                                            Rating and
-                                            Review</button>
-                                    @else
-                                        
-                                    @endif --}}
-
                                 </div>
                                 <div class="button-group">
                                     <a href="/messages" type="button" class="btn btn-sm contact-button">Contact
@@ -354,6 +331,83 @@
                 </div>
             </div>
         </div>
+
+        {{-- Tracking Modal --}}
+        <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My
+                            Purchase
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section>
+                            <div class="container py-3 h-10 mb-4">
+                                <div class="row d-flex justify-content-center align-items-center">
+                                    <div class="col">
+                                        <div class="card card-stepper" style="border-radius: 10px; border: none;">
+                                            <div class="card-body p-4">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center header-track">
+                                                    <div class="d-flex flex-column">
+                                                        <span id="tracking-text-header"
+                                                            class="lead fw-normal tracking-text">Your order has been
+                                                            delivered</span>
+                                                        <span id="modal_tracking"
+                                                            class="text-muted small tracking-text"></span>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                                                    <span id="first_track{{ $item->id }}" class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span
+                                                        id="second_track{{ $item->id }}" class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span
+                                                        id="fourth_track{{ $item->id }}" class="dot"></span>
+                                                    <hr class="flex-fill track-line"><span
+                                                        id="fifth_track{{ $item->id }}"
+                                                        class="d-flex justify-content-center align-items-center big-dot dot"><i
+                                                            class="fa fa-check text-white"></i></span>
+                                                </div>
+                                                <div
+                                                    class="d-flex flex-row justify-content-between align-items-center">
+                                                    <div class="d-flex flex-column align-items-start tracking-text">
+                                                        <span class="date-track"></span>
+                                                        <span class="tracking-description">Order
+                                                            placed</span>
+                                                    </div>
+                                                    <div
+                                                        class="d-flex flex-column justify-content-center tracking-text">
+                                                        <span class="date-track"></span><span
+                                                            class="tracking-description">Preparing
+                                                            to ship</span>
+                                                    </div>
+                                                    <div class="d-flex flex-column align-items-center tracking-text">
+                                                        <span class="date-track"></span><span
+                                                            class="tracking-description">Out for
+                                                            delivery</span>
+                                                    </div>
+                                                    <div class="d-flex flex-column align-items-end tracking-text">
+                                                        <span class="date-track"></span><span
+                                                            class="tracking-description">Delivered</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- toast --}}
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -378,6 +432,10 @@
 
 <script>
     const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
+
+    const trackOrder = (id) => {        
+        document.getElementById('modal_tracking').textContent = `Tracking Number: ${document.getElementById(`track_${id}`).textContent}`;
+    }
 
     var rate_val = 0;
 

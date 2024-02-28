@@ -96,13 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // hide modal function
-    // function hideModal() {
-    //     const modalContainer = document.getElementById('createPostModal');
-    //     modalContainer.classList.add('hideModal');
-    // }
-    const createPostModal = new bootstrap.Modal('#createpost', {
-        keyboard: false
-    });
 
     async function createPost() {
         // post element
@@ -129,8 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.data) {
             console.log(response.data);
-            // hideModal();
-            createPostModal.hide();
         } else {
             console.log(response.error);
         }
@@ -180,6 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function showPosts(responses) {
         responses.forEach(response => {
+            const postContainer = document.createElement('div');
+            postContainer.classList.add('postMejInnerContainer');
+
             const postInnerContainer = document.createElement('div');
             postInnerContainer.classList.add('postInnerContainer');
 
@@ -246,29 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const newDateFormat = dateHolder[0].replace(/(\d{4})-(\d{2})-(\d{2})/, '$2-$3-$1');
             postDate.textContent = newDateFormat;
             
-            // user getter
-            const userId = response.user_id;
-            (async function getUser() {
-                const getter = await fetch(`/getUser?userId=${userId}`, {
-                    method: 'GET',
-                });
-                const response = await getter.json();
-
-                if (response.data) {
-                    userNameCtn.textContent = `${response.data[0].first_name} ${response.data[0].last_name}`;
-                    console.log(response.data);
-
-                    // get poser profile photo
-                    const imgLocation = window.location.origin + '/images/profile_photos/' + response.data[0].profile_photo;
-
-                    userProfileCtn.style.backgroundImage = `url(${imgLocation})`;
-                } else {
-                    console.log(response.error);
-                }
-            })();
             userNameCtn.style.color = '#003060';
-            userNameCtn.style.whiteSpace = 'nowrap';
-
+            
             // container for username tas post date
             const nameAndDateContainer = document.createElement('div');
             nameAndDateContainer.appendChild(userNameCtn);
@@ -323,30 +296,196 @@ document.addEventListener('DOMContentLoaded', () => {
             // footer
             const postFooter = document.createElement('div');
             postFooter.classList.add('postFooter');
-
+            
             const likeButton = document.createElement('div');
             likeButton.className = 'fa fa-thumbs-o-up';
-            likeButton.textContent = ' Like';
-            likeButton.addEventListener('click', () => {
-                console.log('like clicked');
-            });
+            
+            const postId = response.post_id;
+            
+            // like counter retreiver
+            async function likeCounter() {
+                const getter = await fetch(`/likeCounter?postId=${postId}`, {
+                    methd: 'GET',
+                });
+            
+                const response = await getter.json();
+                if (response.data) {
+                    likeButton.textContent = `${response.data} Like`;
+                } else {
+                    likeButton.textContent = ` Like`;
+                }
+            }
 
+            setInterval(likeCounter, 2000);
+
+            likeButton.addEventListener('click', async () => {
+                const adder = await fetch(`/addLikeToPost?postId=${postId}&userId=${current_user_id}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf_token,
+                    }, 
+                });
+
+                const response = await adder.json();
+                if (response.data) {
+                    likeCounter();
+                    console.log(response.data);
+                } else {
+                    console.log(response.error);
+                }
+            });
+            
             const commentButton = document.createElement('div');
             commentButton.className = 'fa fa-comment-o';
             commentButton.style.marginLeft = '15px';
-            commentButton.textContent = ' Comment';
-            commentButton.addEventListener('click', () => {
-                console.log('comment liked');
-            });
+            
+            // post comment getter
+            async function commentCounter() {
+                const getter = await fetch(`/commentCounter?postId=${postId}`, {
+                    method: 'GET'
+                });
+                
+                const response = await getter.json();
+                if (response.data) {
+                    console.log(response.data);
+                    commentButton.textContent = `${response.data} Comment`;
+                } else {
+                    commentButton.textContent = ' Comment';
+                }
+            }
+
+            setInterval(commentCounter, 2000); 
 
             postFooter.appendChild(likeButton);
             postFooter.appendChild(commentButton);
+            
+            // comment sectcion
+            const commentOuterContainer = document.createElement('div');
+            commentOuterContainer.classList.add('commentOuterContainer');
+
+            const commentInnerContainer = document.createElement('div');
+            commentInnerContainer.classList.add('commentInnerContainer');
+    
+            const userProfileContainer = document.createElement('div');
+            userProfileContainer.classList.add('userProfileCtn');
+            
+            // user getter
+            const userId = response.user_id;
+            (async function getUser() {
+                const getter = await fetch(`/getUser?userId=${userId}`, {
+                    method: 'GET',
+                });
+                const response = await getter.json();
+
+                if (response.data) {
+                    userNameCtn.textContent = `${response.data[0].first_name} ${response.data[0].last_name}`;
+                    console.log(response.data);
+
+                    // get poser profile photo
+                    const imgLocation = window.location.origin + '/images/profile_photos/' + response.data[0].profile_photo;
+
+                    userProfileCtn.style.backgroundImage = `url(${imgLocation})`;
+                } else {
+                    console.log(response.error);
+                }
+            })();
+            
+            const commentForm = document.createElement('form');
+            commentForm.id = 'commentForm';
+            commentForm.method = 'post';
+            
+            const commentInputField = document.createElement('input');
+            commentInputField.id = 'commentInputFieldContainer';
+            commentInputField.type = 'textarea';
+            commentInputField.placeholder = 'Write a comment...';
+            
+            const commentSubmitButton = document.createElement('button');
+            commentSubmitButton.id = 'commentSubmitButton';
+            commentSubmitButton.type = 'button';
+            commentSubmitButton.textContent = '>';
+            
+            commentSubmitButton.addEventListener('click', async () => {
+                const adder = await fetch(`/addCommentToPost`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf_token,
+                    }, 
+                    body: JSON.stringify({
+                        'comment_content': commentInputField.value,
+                        'postId': postId,
+                        'userId': current_user_id,
+                    })
+                })
+
+                const response = await adder.json();
+                if (response.data) {
+                    commentInputField.value = '';
+                    console.log(response.data);
+                } else {
+                    console.log(response.error);
+                }
+            });
+
+            commentForm.appendChild(commentInputField);
+            commentForm.appendChild(commentSubmitButton);
+
+            commentInnerContainer.appendChild(userProfileContainer);
+            commentInnerContainer.appendChild(commentForm);
+
+            commentOuterContainer.appendChild(commentInnerContainer);
+
+            commentButton.addEventListener('click', () => {
+                (async () => {
+                    const getter = await fetch(`/getUser?userId=${current_user_id}`, {
+                        method: 'GET',
+                    });
+                    const responsee = await getter.json();
+
+                    if (responsee.data) {
+                        // get poser profile photo
+                        const imgLocation = window.location.origin + '/images/profile_photos/' + responsee.data[0].profile_photo;
+
+                        userProfileContainer.style.backgroundImage = `url(${imgLocation})`;
+                        userProfileContainer.style.border = '1px solid black';
+                    } else {
+                        console.log(responsee.error);
+                    }
+                })();
+
+                (async () => {
+                    const getter = await fetch(`/viewComments?postId=${postId}`, {
+                        method: 'GET',
+                    })
+
+                    const response = await getter.json();
+                    if (response.data) {
+                        const viewCommentsOuterContainer = document.createElement('div');
+                        response.data[0].forEach(response => {
+                            const comments = document.createElement('div');
+                            comments.textContent = response.comment_content;
+
+                            viewCommentsOuterContainer.appendChild(comments);
+                            commentOuterContainer.appendChild(viewCommentsOuterContainer);
+                        });
+
+                        console.log(response.data);
+                    } else {
+                        console.log(response.error);
+                    }
+                })();
+
+                postContainer.appendChild(commentOuterContainer);
+            });
 
             postInnerContainer.appendChild(postHeader);
             postInnerContainer.appendChild(postBody);
             postInnerContainer.appendChild(postFooter);
 
-            postOuterContainer.appendChild(postInnerContainer);
+            postContainer.appendChild(postInnerContainer);
+
+            postOuterContainer.appendChild(postContainer);
         });
     }
 });

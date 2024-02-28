@@ -77,15 +77,13 @@
                                 <label for="seller-contact-number">{{ $item->book->user->address }}</label>
                             @else
                                 @if (isset($item->address))
-                                    <label
-                                        for="seller-address">{{ $item->address->street_building_house . ', ' . $item->address->brgy_village . ', ' . $item->address->city_municipality . ', ' . $item->address->postal_code . ', ' . $item->address->region }}</label>
+                                    <label for="seller-address">{{ $item->address->address }}</label>
                                     <label for="seller-fullname">{{ $item->address->name }}</label>
                                     <label for="seller-contact-number">{{ $item->address->contact_number }}</label>
                                 @else
                                     @foreach ($item->book->user->addressUser as $address)
-                                        @if ($address->default_address == 'true')
-                                            <label
-                                                for="seller-address">{{ $address->street_building_house . ', ' . $address->brgy_village . ', ' . $address->city_municipality . ', ' . $address->postal_code . ', ' . $address->region }}</label>
+                                        @if ($address->default_address)
+                                            <label for="seller-address">{{ $address->address }}</label>
                                         @endif
                                     @endforeach
                                 @endif
@@ -98,8 +96,7 @@
                             <label for="customer-details" class="form-label label-title">Customer Details</label>
                             <label for="customer-fullname">{{ $item->order->address->name }}</label>
                             <label for="customer-contact-number">{{ $item->order->address->contact_number }}</label>
-                            <label
-                                for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
+                            <label for="customer-address">{{ $item->order->address->address }}</label>
                         </div>
                         <div class="package-details-box">
                             <label for="package-details" class="form-label label-title">Package Description</label>
@@ -117,15 +114,16 @@
                             <label for="book-title">Product Name: {{ $item->book->title }} (Book)</label>
                             <label for="transaction-type">Transaction Type: {{ $item->book->status }}</label>
                             <label for="price">Price/Rental Price: ₱{{ $item->book->price }}</label>
-                            <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
-                            <label for="shipping-fee">Shipping Fee: ₱{{ 130.0 }}</label>
+                            @if ($item->book->security_deposit)
+                                <label for="price">Security Deposit: ₱{{ $item->book->security_deposit }}</label>
+                            @endif
+                            <label for="shipping-fee">Shipping Fee: ₱{{ $item->shipping_fee }}</label>
                         </div>
                         <div class="product-details-box">
                             <label for="product-details" class="form-label label-title">Shipping Details</label>
                             <label for="order-date">Shipping: {{ $item->shipping_status }}</label>
                             <label for="pickup-date">Pickup Date: {{ $item->pickup_date }}</label>
-                            <label
-                                for="customer-address">{{ $item->order->address->street_building_house . ', ' . $item->order->address->brgy_village . ', ' . $item->order->address->city_municipality . ', ' . $item->order->address->postal_code . ', ' . $item->order->address->region }}</label>
+                            <label for="customer-address">{{ $item->order->address->address }}</label>
                         </div>
                     </div>
                     <center>
@@ -201,8 +199,7 @@
                     <div class="container mt-5 mb-5">
                         <div class="d-flex justify-content-center row">
                             <div class="col-md-10">
-                                <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg"
-                                        width="120">
+                                <div class="receipt bg-white p-3 rounded"><img src="../assets/jrs.jpg" width="120">
                                     <hr>
                                     <div
                                         class="d-flex flex-row justify-content-between align-items-center order-details">
@@ -237,18 +234,27 @@
                                         </div>
                                     </div>
                                     <div class="mt-5 amount row">
-                                        <div class="d-flex justify-content-center col-md-6">
-                                            <input type="file" class="d-none" accept="image/*"
-                                                id="tracking_number" name="tracking_number" required>
-                                            <label for="tracking_number"
-                                                class="btn mx-auto mt-3 py-1 px-0 upload-track-btn">Upload</label>
-                                            <img src="" width="250" height="100" id="img-icon">
-                                            {{-- <img src="../assets/tracking.jfif" width="250" height="100"
-                                                id="img-icon"> --}}
-
+                                        <div class="d-flex flex-column justify-content-center col-md-6">
+                                            <div class="d-flex">
+                                                <input type="file" class="d-none" accept="image/*"
+                                                    id="tracking_number" name="tracking_number" required>
+                                                <label for="tracking_number"
+                                                    class="btn mx-auto mt-3 py-1 px-0 upload-track-btn">Upload</label>
+                                                <img src="" width="250" height="100" id="img-icon">
+                                            </div>
+                                            
                                         </div>
                                         <div class="col-md-6">
+                                            {{-- <div>
+                                                <label for="tracking" class="upload-track-btn">Tracking Number</label>
+                                                <input type="text" id="tracking">
+                                            </div> --}}
                                             <div class="billing">
+                                                <div class="d-flex justify-content-between">
+                                                    <label for="tracking"> Tracking Number:</label> 
+                                                    <input type="text" id="tracking" class="w-50" placeholder="##..." name="tracking">
+                                                    {{-- <span class="font-weight-bold" id="sub-total">₱100</span> --}}
+                                                </div>
                                                 <div class="d-flex justify-content-between">
                                                     <span>Subtotal</span><span class="font-weight-bold"
                                                         id="sub-total">₱100</span>
@@ -308,6 +314,7 @@
     var total_price = document.getElementById('total');
     var address = document.getElementById('complete-address');
     var tracking_image = document.getElementById('tracking_number');
+    var tracking_num = document.getElementById('tracking');
     var save_btn = document.getElementById('save-btn');
     var id_order = document.getElementById('order_id');
     var id_item = document.getElementById('item_id');
@@ -328,7 +335,7 @@
                 order_date.textContent = date.getDate() + " " + month[date.getMonth()] + " " + date.getFullYear();
                 order_number.textContent = data.order_number;
                 payment_method.textContent = data.payment_method;
-                shipping_address.textContent = data.address.brgy_village + ', ' + data.address.city_municipality;
+                shipping_address.textContent = data.address.address;
                 // title.textContent = data.items[item_id].book.title;
                 data.items.forEach(element => {
                     if (element.id == item_id) {
@@ -336,12 +343,12 @@
                         status.textContent = element.book.status;
                         price.textContent = '₱' + element.book.price;
                         sub_total.textContent = '₱' + element.book.price;
-                        shipping.textContent = '₱130.0';
-                        total_price.textContent = '₱' + (parseFloat(element.book.price) + 130) + '.0';
+                        shipping.textContent = `₱${element.shipping_fee}.0`;
+                        total_price.textContent = '₱' + (parseFloat(element.book.price) + parseFloat(element
+                            .shipping_fee)) + '.0';
                     }
                 });
-                address.textContent = data.address.street_building_house + ', ' + data.address.brgy_village + ', ' +
-                    data.address.city_municipality + ', ' + data.address.postal_code + ', ' + data.address.region;
+                address.textContent = data.address.address;
                 id_order.textContent = order_id;
                 id_item.textContent = item_id;
             })
@@ -353,10 +360,12 @@
         // console.log(tracking_image.value);
     });
     save_btn.addEventListener('click', () => {
+        // alert(tracking_num.value);
         var formData = new FormData();
-        formData.append('file', tracking_image.files[0]);
-        // formData.append('order_id', id_order.textContent);
+        formData.append('file', tracking_image.files[0]);        
         formData.append('item_id', id_item.textContent);
+        formData.append('tracking_number', tracking_num.value);
+        
         fetch('/acceptshipment', {
                 method: 'POST', // Specify the HTTP method as POST
                 headers: {

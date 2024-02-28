@@ -71,7 +71,7 @@
         </ul>
         <button type="button" class="position-absolute end-0 mt-2 btn fw-bold nearby-user-btn"
             style="color: #E55B13; margin-right: 230px"><img src="assets/location-icon.png" alt="Location icon"
-                class="img" width="25">Find Nearby Users</button type="button">
+                class="img" width="25">Find Nearby Sellers</button type="button">
         <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
             style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
                 width="25">Find Nearby Listings</button type="button">
@@ -1647,7 +1647,7 @@
 </div>
 </div>
 
-{{-- Nearby Seller Modal --}}
+{{-- Nearby Listings Modal --}}
 <div class="modal fade" id="nearby_seller_modal" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -1696,13 +1696,13 @@
     </div>
 </div>
 
-{{-- Nearby User Modal --}}
+{{-- Nearby Seller Modal --}}
 <div class="modal fade" id="nearby_user_modal" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Find Nearby Users</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Find Nearby Seller's</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

@@ -347,6 +347,21 @@ Route::get('/getAllPosts', [BookClubController::class, 'getAllPosts']);
 // get club para ha pots my wall
 Route::get('/getClub', [BookClubController::class, 'getClub']);
 
+// book club post like route
+Route::post('/addLikeToPost', [BookClubController::class, 'addLikeToPost']);
+
+// like counter kada post
+Route::get('/likeCounter', [BookClubController::class, 'likeCounter']);
+
+// book club post comment route
+Route::post('/addCommentToPost', [BookClubController::class, 'addCommentToPost']);
+
+// comment counter kada post
+Route::get('/commentCounter', [BookClubController::class, 'commentCounter']);
+
+// view commenet kada post
+Route::get('/viewComments', [BookClubController::class, 'viewComments']);
+
 // discussion tab, post
 Route::post('/createPost', [BookClubController::class, 'createPost']);
 
@@ -358,6 +373,8 @@ Route::get('/getUser', [BookClubController::class, 'getUser']);
 Route::post('/addMember', [BookClubController::class, 'addMember']);
 
 // API's
+Route::get('/gettoshipitem/{id}', [UserController::class, 'getToShip']);
+
 Route::get('/checkusername/{user}', [UserController::class, 'checkUsername']);
 
 Route::get('/search/{item}', [UserController::class, 'searchItem']);

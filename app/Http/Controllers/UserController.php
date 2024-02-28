@@ -931,6 +931,7 @@ class UserController extends Controller
         $address_id = session('data')['address_id'];
         $book_id = session('data')['book_id'];
         $qty = session('data')['qty'];
+        $shipping_fee = session('data')['shipping_fee'];
         $order_num = session('data')['order_number'];
         $option = session('data')['shipping_option'];
         $method = session('data')['payment_method'];
@@ -953,6 +954,7 @@ class UserController extends Controller
                 'order_id' => $order->id,
                 'book_id' => $id,
                 'qty' => $qty[$index],
+                'shipping_fee' => $shipping_fee[$index],
                 'order_status' => 'Pending'
             ]);
 
@@ -1162,6 +1164,7 @@ class UserController extends Controller
     {
         if ($request->hasFile('file')) {
             $item_id = $request->input('item_id');
+            $tracking_num = $request->input('tracking_number');
 
             $fileNameWithExt = $request->file('file')->getClientOriginalName();
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -1175,7 +1178,8 @@ class UserController extends Controller
                 'bar_code' => $bar_code,
             ]);
             $order->update([
-                'order_status' => 'paid'
+                'order_status' => 'paid',
+                'tracking_number' => $tracking_num
             ]);
 
             if ($order) {
@@ -1370,5 +1374,10 @@ class UserController extends Controller
     public function nearbyListings(Request $request) {
         $books = Books::whereIn('id', $request->all())->with('user.addressUser')->get();
         session()->put('books', $books);       
+    }
+
+    public function getToShip($id) {
+        $item = Order_Items::find($id);
+        return $item;
     }
 }
