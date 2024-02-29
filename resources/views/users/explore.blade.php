@@ -1653,7 +1653,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby Listings</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby
+                    Listings</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1702,7 +1703,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby Sellers</h1>
+                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby
+                    Sellers</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1739,7 +1741,7 @@
                     </gmp-map> --}}
                     <div id="users-map" style="height: 400px"></div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -1749,6 +1751,15 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+<script>
+    window.embeddedChatbotConfig = {
+        chatbotId: "qSqyY67YEs7_l0X-mtrQI",
+        domain: "www.chatbase.co"
+    }
+</script>
+<script src="https://www.chatbase.co/embed.min.js" chatbotId="qSqyY67YEs7_l0X-mtrQI" domain="www.chatbase.co" defer>
+</script>
+
 
 <script>
     // Proximity script
@@ -1920,7 +1931,8 @@
                         } = address;
 
                         if (document.getElementById('current-user-location').checked) {
-                            navigator.geolocation.getCurrentPosition(nearbyUserSuccessCallback, errorCallback, options);
+                            navigator.geolocation.getCurrentPosition(nearbyUserSuccessCallback,
+                                errorCallback, options);
                         } else {
                             coordinates.lat = parseFloat(latitude);
                             coordinates.lng = parseFloat(longitude);
@@ -2018,8 +2030,8 @@
                                     name: `${user.first_name} ${user.last_name}`,
                                     address: address,
                                     img_url: user.profile_photo
-                                });                 
-                                
+                                });
+
                                 const contentString = `<div class="d-flex">
                                     <img id="map-toast-img" class="img rounded-4" src="/images/profile_photos/${marker.img_url}" alt="profile pic" style="width: 60px">
                                         <div class="mx-3 w-100 mb-2">
@@ -2039,7 +2051,7 @@
                                     window.location.href = `/userlistings/${marker.id}`;
                                 });
 
-                                marker.addListener('mouseover', () => {                                    
+                                marker.addListener('mouseover', () => {
                                     infoWindow.open({
                                         anchor: marker,
                                         map
