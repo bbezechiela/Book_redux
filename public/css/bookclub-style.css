@@ -476,7 +476,7 @@
 
 .postBody {
     height: auto;
-    width: 100%;
+    width: 90%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -500,7 +500,7 @@
 
 .postMejInnerContainer {
     height: auto;
-    width: 900px;
+    width: 90%;
     margin-bottom: 30px;
     box-shadow: 0 0 5px grey;
     border-radius: 5px;
@@ -511,6 +511,12 @@
 .commentOuterContainer {
     height: auto;
     width: inherit;
+}
+
+/* comment form container with bug to be solved */
+#commentForm {
+    width: 100%;
+    display: flex;
 }
 
 .commentInnerContainer {
@@ -526,7 +532,7 @@
 
 #commentInputFieldContainer {
     height: 50px;
-    widtH: 500px;
+    widtH: 80%;
     border: 1px solid grey;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -536,7 +542,7 @@
 
 #commentSubmitButton {
     height: 50px;
-    width: 90px;
+    width: 20%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background-color: #003060;
@@ -679,27 +685,27 @@
 /* media queries post inner container */
 @media (max-width: 1600px) {
     .postInnerContainer {
-        width: 700px;
+        width: 100%;
     }
 
     @media (max-width: 1500px) {
         .postInnerContainer {
-            width: 650px;
+            width: 100%;
         }
 
         @media (max-width: 1350px) {
             .postInnerContainer {
-                width: 550px;
+                width: 100%;
             }
 
             @media (max-width: 1150px) {
                 .postInnerContainer {
-                    width: 450px;
+                    width: 100%;
                 }
 
                 @media (max-width: 1000px) {
                     .postInnerContainer {
-                        width: 560px;
+                        width: 100%;
                     }
                 }
             }
