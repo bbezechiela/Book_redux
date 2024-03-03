@@ -150,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="post-btn text-start" data-bs-toggle="modal"
+                            <button type="button" class="ms-4 post-btn text-start" data-bs-toggle="modal"
                                 data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track
                                 Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                         </div>

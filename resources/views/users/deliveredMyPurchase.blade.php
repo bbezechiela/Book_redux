@@ -97,6 +97,9 @@
                                         <p class="mb-0 fw-bold interaction-type" id="interaction-type">
                                             {{ $item->book->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
+                                        <button type="button" class="fw-bold p-0 post-btn text-start mb-0" data-bs-toggle="modal"
+                                data-bs-target="#track-delivery" style="color:#003060" onclick="trackOrder({{ $item->id }})">Track
+                                Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                                         <p id="track_{{ $item->id }}" class="d-none">{{ $item->tracking_number }}
                                     </div>
                                 </div>
@@ -111,9 +114,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="post-btn text-start ms-1 mb-0 mt-3" data-bs-toggle="modal"
-                                data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track
-                                Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                            
                             <div class="order-details mt-0">
                                 <div class="order-message">
                                     @php

@@ -86,7 +86,7 @@
                                         <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
                                         <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
                                         <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                                        <p>#{{ $item->order->order_number }}</p>
+                                        <p>Order No: {{ $item->order->order_number }}</p>
                                     </div>
                                 </div>
                                 <div class="right-section">

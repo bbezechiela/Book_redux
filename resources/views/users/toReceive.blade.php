@@ -113,7 +113,7 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-message">
-                                    <button type="button" class="post-btn" data-bs-toggle="modal" data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                                    <button type="button" class="ms-3 post-btn" data-bs-toggle="modal" data-bs-target="#track-delivery" onclick="trackOrder({{ $item->id }})">Track Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
                                 </div>
                                 <div class="button-group">
                                     <a class="btn btn-outline-primary btn-sm receive-button"
