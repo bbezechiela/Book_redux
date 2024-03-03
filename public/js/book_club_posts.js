@@ -299,6 +299,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const likeButton = document.createElement('div');
             likeButton.className = 'fa fa-thumbs-o-up';
+            likeButton.style.color = '#003060';
+            likeButton.style.cursor = 'pointer';
             
             const postId = response.post_id;
             
@@ -338,6 +340,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const commentButton = document.createElement('div');
             commentButton.className = 'fa fa-comment-o';
+            commentButton.style.color = '#003060';
+            commentButton.style.cursor = 'pointer';
             commentButton.style.marginLeft = '15px';
             
             // post comment getter

@@ -220,6 +220,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const likeButton = document.createElement('div');
             likeButton.className = 'fa fa-thumbs-o-up';
+            likeButton.style.color = '#003060';
+            likeButton.style.cursor = 'pointer';
             likeButton.textContent = ' Like';
             likeButton.addEventListener('click', () => {
                 console.log('like clicked');
@@ -227,6 +229,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const commentButton = document.createElement('div');
             commentButton.className = 'fa fa-comment-o';
+            commentButton.style.color = '#003060';
+            commentButton.style.cursor = 'pointer';
             commentButton.style.marginLeft = '15px';
             commentButton.textContent = ' Comment';
             commentButton.addEventListener('click', () => {

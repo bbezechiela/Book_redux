@@ -612,7 +612,7 @@
 /* name and date container ha post header */
 .nameAndDateContainer {
     height: 70px;
-    width: 150px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
