@@ -192,9 +192,13 @@
     overflow-y: scroll;
 }
 
+#messageForm{
+height: 0;
+}
+
 #messageInputContainer {
-    height: 50px;
-    width: 58em;
+    height: 40px;
+    width: 50em;
     padding-left: 15px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -214,7 +218,7 @@
 #rightSectionOuterContainer {
     position: relative;
     height: 700px;
-    width: 800px;
+    width: 700px;
     background-color: white;
     /* box-shadow: 0 0 10px grey; */
     /* border-radius: 25px; */
@@ -242,7 +246,7 @@
     border-radius:  25px;
     margin-top: 10em;
     /* box-shadow: 0 0 10px grey; */
-    width: 400px;
+    width: 300px;
 }
 
 #messageCtn {
