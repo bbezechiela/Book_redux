@@ -169,10 +169,11 @@
                                 {{-- <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i
                                 class="fa fa-cart-plus" aria-hidden="true" style="margin-right: 7px"></i>Add
                             to Cart</a> --}}
-                                {{-- <a href="/messages" class="btn cart-button"><i class="fa fa-exchange"
+                                {{-- <a href="/messages/" class="btn cart-button"><i class="fa fa-exchange"
                                         aria-hidden="true" style="margin-right: 7px"></i>Initiate Exchange
                                 </a> --}}
-                                <button class="message-button btn cart-button" data-username="{{ $user_id->username }}"></i>Initiate Exchange</button>
+                                <button class="message-button" data-username="{{ $user_id->username }}"><i class="fa fa-exchange"
+                                    aria-hidden="true" style="margin-right: 7px"></i>Initiate Exchange</button>
                                 {{-- <a href="#" class="btn wishlist-button"><i class="fa fa-list-alt" aria-hidden="true"
                                     style="margin-right: 7px"></i>Add to Wishlist</a> --}}
                             </div>
@@ -796,7 +797,7 @@
         });
 
         function redirectToMessaging(username) {
-            const messagingUrl = `/messages?user=${username}`;
+            const messagingUrl = `/messages/${username}`;
             window.location.href = messagingUrl;
         }
     });

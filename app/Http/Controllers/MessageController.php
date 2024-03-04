@@ -227,4 +227,72 @@ class MessageController extends Controller
             return response()->json(['error' => 'cant find user']);
         }
     }
+
+     // testing
+    function messages($username) {
+        return view('users.message', ['data' => $username]);
+    }
+
+    function messageUsingPost(Request $request) {
+        $username = $request->query('username');
+
+        $getter = Users::where('username', '=', $username)->get();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter]);
+        } else {
+            return response()->json(['error' => 'error']);
+        }
+    }
+
+    function sendMessageThree(Request $request) {
+        $sender_id = $request->json('sender_id');
+        $receiver_id = $request->json('receiver_id');
+        $message_content = $request->json('message_content');
+        $conversation_name = $request->json('conversation_name');        
+
+        $participantsUserArr = explode(',', $conversation_name);
+        sort($participantsUserArr);
+        $sorted_conversation_name = implode(',', $participantsUserArr);
+
+        $checker = Conversations::where('conversation_name', $sorted_conversation_name)->first();
+
+        if ($checker) {
+            $messageInsert = Messages::create([
+                'sender_id' => $sender_id,
+                'receiver_id' => $receiver_id,
+                'message_content' => $message_content,
+                'conversation_id' => $checker->conversation_id
+            ]);
+            if ($messageInsert) {
+                return response()->json(['message' => 'message inserted successfully']);
+            } else {
+                return response()->json(['message' => 'Database errorr']);
+            }
+        } else {
+            return response()->json(['message' => 'waray pa kita convo']);
+        }
+    }
+
+    function getMessagesPostApproach(Request $request) {
+         // since nagamit kita backtick syntax pag pass hin value tikang ha url need to gumamit hin query function ha request class para ma retreive an value 
+         $lastMessageTimestamp = $request->query('lastMessageTimestamp');
+         $conversation_name = $request->query('conversationName');
+     
+         $participantsUserArr = explode(',', $conversation_name);
+         sort($participantsUserArr);
+         $sorted_conversation_name = implode(',', $participantsUserArr);
+ 
+         $checkConversations = Conversations::where('conversation_name', $sorted_conversation_name)->first();
+ 
+         if ($checkConversations) {
+             $getMessage = Messages::where('conversation_id', $checkConversations->conversation_id)->where('created_at', ">", $lastMessageTimestamp)->get();
+ 
+             if ($getMessage) {
+                 return response()->json(['data' => $getMessage]);
+             } else {
+                 return response()->json(['data' => 'Theres no record']);        
+             }
+         }      
+    }
 }

@@ -584,6 +584,7 @@
                 const current_username = "{{ session('user') }}";
                 const current_user_id = "{{ session('id') }}";
                 const csrfToken = "{{ csrf_token() }}";
+                const usernameFromPost = "{{ $data }}";
             </script>
             <script src="{{ asset('/js/messages.js') }}"></script>
         </div>

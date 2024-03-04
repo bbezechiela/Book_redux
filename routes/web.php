@@ -63,7 +63,11 @@ Route::get('/read', [UserController::class, 'readNotification']);
 
 Route::get('/unread', [UserController::class, 'unreadNotification']);
 
-Route::get('/messages', [UserController::class, 'message']);
+// Route::get('/messages', [UserController::class, 'message']);
+
+Route::get('/messages/{user}', [MessageController::class, 'messages']);
+
+Route::get('/messageUsingPost', [MessageController::class, 'messageUsingPost']);
 
 Route::get('/adminmessages', [UserController::class, 'adminMessage']);
 
@@ -282,18 +286,21 @@ Route::post('/sendMessage', [MessageController::class, 'sendMessage']);
 
 Route::post('/sendMessageTwo', [MessageController::class, 'sendMessageTwo']);
 
+Route::post('/sendMessageThree', [MessageController::class, 'sendMessageThree']);
+
 Route::get('/getMessage', [MessageController::class, 'getMessage']);
 
 Route::get('/searchUser', [MessageController::class, 'searchUser']);
 
 Route::post('/conversations', [MessageController::class, 'createConversation']);
 
+Route::get('/getMessagesPostApproach', [MessageController::class, 'getMessagesPostApproach']);
+
 Route::get('/getConversations', [MessageController::class, 'getConversations']);
 
 Route::delete('/deleteConversationCtnBased', [MessageController::class, 'deleteConversationCtnBased']);
 
 Route::delete('/deleteConversationSearchBased', [MessageController::class, 'deleteConversationSearchBased']);
-
 
 // seller
 Route::get('/forsale', [SellerController::class, 'redirectSale']);
