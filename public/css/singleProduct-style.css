@@ -157,11 +157,11 @@
 
 .message-button,
 .view-profile-button {
-    background-color: #fff;
-    color: #E55B13;
+    background-color: #E55B13;
+    color: #fff;
     border-color: #E55B13;
     font-size: 12px;
-    border-radius: 15px 40px;
+    /* border-radius: 15px 40px; */
 }
 
 .message-button:hover,
