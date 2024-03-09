@@ -63,7 +63,7 @@ Route::get('/read', [UserController::class, 'readNotification']);
 
 Route::get('/unread', [UserController::class, 'unreadNotification']);
 
-// Route::get('/messages', [UserController::class, 'message']);
+Route::get('/messageses', [UserController::class, 'message']);
 
 Route::get('/messages/{user}', [MessageController::class, 'messages']);
 
