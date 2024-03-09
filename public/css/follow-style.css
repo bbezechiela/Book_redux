@@ -1,0 +1,123 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.home-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i{
+    color: #003060;
+}
+
+.profile-card {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    color: #003060;
+}
+
+.horizontal-line {
+    height: 2px; 
+    background-color: #003060; 
+    margin-bottom: 2em;
+}
+
+.profile-card img {
+    max-width: 3em;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.profile-card h3 {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.profile-card button {
+    margin-top: 5px;
+    background-color: #fff;
+    border-color: #E55B13;
+    color: #E55B13;
+    font-size: 13px;
+}
+
+.profile-card button:hover{
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
+.profile-card i{
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
+}

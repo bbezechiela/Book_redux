@@ -1,0 +1,142 @@
+
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #fff;
+}
+
+.sellersidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.sellersidebar i {
+    color: #fff;
+    ;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.sidebar-btn.active,
+.sidebar-btn.active i,
+.sidebar-btn.active span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-link:hover {
+    color: #003060;
+}
+
+.nav-item:hover {
+    background-color: #fff;
+    color: #003060;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #e7edf3;
+    border: 1px solid #003060;
+}
+
+.input-group-text,
+.search-field {
+    border: none;
+    background-color: #fff;
+}
+
+.search-field {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+.row{
+    color: #003060;
+    margin-top: 2em;
+}
+
+.col-3, .col{
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.upload-btn{
+    color: #a7a7a7;
+    font-size: 14px;
+    border: 1px solid #d3d3d3;
+    width: 10em;
+}
+
+.upload-btn:hover{
+    color: #a7a7a7;
+    border: 1px solid #d3d3d3;
+}
+
+.save-button{
+    background-color: #E55B13;
+    border-color: #E55B13;
+    width: 10em;
+    margin-top: 2.4em;
+    color: #fff;
+}
+
+.save-button:hover{
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
+#pass-tip {
+	color: red;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.form-control, #email{
+	color: #003060;
+}
+
+.form-control:focus{
+	border-color: #E55B13;
+	box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.form-outline {
+    position: relative;
+}
+
+.form-control:focus + .form-label,
+.form-control:valid + .form-label {
+    top: -20px; 
+    font-size: 12px; 
+    color: #555; 
+}
+
+.form-label {
+    position: absolute;
+    top: .4em;
+    left: 1em;
+    transition: 0.2s;
+    pointer-events: none;
+}

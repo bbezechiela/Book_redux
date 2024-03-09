@@ -1,0 +1,104 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #fff;
+}
+
+.sellersidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.sellersidebar i {
+    color: #fff;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.sidebar-btn.active,
+.sidebar-btn.active i,
+.sidebar-btn.active span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-link:hover {
+    color: #003060;
+}
+
+.nav-item:hover {
+    background-color: #fff;
+    color: #003060;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text,
+.search-field {
+    border: none;
+    background-color: #fff;
+}
+
+.search-field {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+.table-card {
+    padding: 2em;
+}
+
+.dataTable th, .dataTable td{
+    color: #003060;
+}
+
+.card {
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-body {
+    padding: 0 20px 20px 20px;
+}
+
+.dropdown-item {
+    color: #003060;
+}
+
+table{
+    margin-top: 2em;
+    margin-left: 3em;
+}
+
+.page-title{
+    margin-top: 2em;
+    margin-left: 1em;
+    color: #E55B13;
+}
+

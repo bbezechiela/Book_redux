@@ -1,0 +1,338 @@
+#login-btn {
+	background-color: #E55B13;
+	color: #fff;
+}
+
+#login-btn:hover {
+	background-color: #fff;
+	color: #E55B13;
+	border: 1px solid #E55B13;
+}
+
+.navbar-brand:hover {
+	border-bottom: 2px solid #E55B13;
+}
+
+.nav-link {
+	color: #003060;
+}
+
+.nav-item .nav-link:hover {
+	color: #E55B13;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#home h1 {
+	font-size: 60px;
+}
+
+#home {
+	margin-top: 5em;
+}
+
+.landing-gif img {
+	width: 80%;
+	height: 70%;
+}
+
+#landing-title {
+	border-left: 15px solid #E55B13;
+	color: #003060;
+}
+
+#signup-btn {
+	background-color: #fff;
+	border: 1px solid #E55B13;
+	color: #E55B13;
+}
+
+#signup-btn:hover {
+	background-color: #E55B13;
+	color: #fff;
+}
+
+#howItWorks-head {
+	color: #003060;
+}
+
+#howItWorks-header {
+	color: #414C68;
+	;
+}
+
+.howItWorks-btn:hover {
+	font-weight: bold;
+	color: #E55B13;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#selling {
+	border-bottom: 2px solid #003060;
+}
+
+#buying-page,
+#exchange-page,
+#renting-page,
+#donate-page {
+	display: none;
+}
+
+.card-body {
+	color: #003060;
+	width: 18rem;
+}
+
+#num-text span {
+	color: #E55B13;
+	text-decoration: none;
+}
+
+#howItWorks-num {
+	font-size: 70px;
+}
+
+#hints-head {
+	color: #003060;
+}
+
+#aboutUs-head {
+	color: #003060;
+}
+
+#hints-btn {
+	color: #003060;
+	text-decoration: underline;
+}
+
+#hints-btn:hover {
+	text-decoration: none;
+	border: 1px solid #003060;
+}
+
+#indicator {
+	background-color: #E55B13;
+}
+
+p {
+	color: #003060;
+}
+
+h3,
+h2 {
+	color: #003060;
+}
+
+#mission-vission {
+	border: 1px solid #003060;
+}
+
+@media (max-width: 767px) {
+
+	.navbar {
+		padding: 10px 0;
+	}
+
+	.navbar-brand img {
+		width: 90px;
+	}
+
+	.navbar-toggler-icon {
+		font-size: 13px;
+	}
+
+	.navbar-nav {
+		margin-top: 8px;
+	}
+
+	.nav-item {
+		text-align: start;
+		margin-bottom: 10px;
+	}
+
+	#login-btn {
+		display: block;
+		margin-left: 1.4em;
+	}
+
+	#signup-btn {
+		font-size: 12px;
+		white-space: nowrap;
+	}
+
+	#home {
+		margin-top: 5em;
+	}
+
+	#home h1 {
+		font-size: 25px;
+	}
+
+	#landing-title h1 {
+		font-size: 14px;
+	}
+
+	#howItWorks h1 {
+		font-size: 18px;
+	}
+
+	#selling-page,
+	#buying-page,
+	#exchange-page {
+		font-size: 12px;
+	}
+
+	#renting-page {
+		font-size: 8px;
+	}
+
+	.card-body {
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.card-title {
+		font-size: 12px;
+	}
+
+	.card-subtitle {
+		font-size: 8px;
+	}
+
+	.card-text {
+		font-size: 10px;
+	}
+
+	#hints-btn {
+		font-size: 10px;
+	}
+
+	#mission-vission h3 {
+		font-size: 15px;
+	}
+
+	#mission-vission p {
+		font-size: 12px;
+	}
+
+	.tip-text {
+		font-size: 10px;
+	}
+}
+
+/* sign.up.php */
+#create-acct {
+	color: #003060;
+}
+
+.tip-text {
+	white-space: nowrap;
+}
+
+.orange-design {
+	width: 23px;
+	height: 40px;
+	background-color: #E55B13;
+}
+
+.signup-form {
+	border-left: 20px solid #E55B13;
+	border-top: 1px solid #DDDBDB;
+	border-bottom: 1px solid #DDDBDB;
+	border-right: 1px solid #DDDBDB;
+}
+
+.fillup-form {
+	color: #003060;
+}
+
+input,
+select {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 1px solid #003060;
+	color: #003060;
+	background-color: #fff;
+}
+
+input:focus {
+	outline: none;
+}
+
+select:focus {
+	outline: none;
+}
+
+#img-icon {
+	font-size: 7em;
+}
+
+#pass-tip {
+	color: red;
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.form-control,
+#email {
+	color: #003060;
+}
+
+.form-control:focus {
+	border-color: #E55B13;
+	box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.form-outline {
+	position: relative;
+}
+
+.form-control:focus+.form-label,
+.form-control:valid+.form-label {
+	top: -20px;
+	font-size: 12px;
+	color: #555;
+}
+
+.form-label {
+	position: absolute;
+	top: .4em;
+	left: 1em;
+	transition: 0.2s;
+	pointer-events: none;
+}
+
+.upload-btn {
+	border: 1px solid #003060;
+	color: #003060;
+}
+
+.upload-btn:hover {
+	background-color: #003060;
+	color: #fff;
+}
+
+.sign-up-btn {
+	background-color: #E55B13;
+	color: #fff;
+}
+
+.sign-up-btn:hover {
+	border: 1px solid #E55B13;
+	color: #E55B13;
+}
+
+/* login/php */
+
+.login-orange {
+	border-left: 20px solid #E55B13;
+	border-top: 1px solid #DDDBDB;
+	border-bottom: 1px solid #DDDBDB;
+	border-right: 1px solid #DDDBDB;
+}
+
+.username-text {
+	color: #fff;
+}

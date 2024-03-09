@@ -1,0 +1,266 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.addresses {
+    background-color: #2D6092;
+}
+
+.pac-container {
+    z-index: 2000;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #003060;
+    width: var(--sidebar_width);
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+/* 
+.sidebarProfile {
+    position: fixed;
+    background-color: #003060;
+    color: #003060;
+    width: var(--sidebar_width);
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+} */
+
+.profile-content {
+    font-size: smaller;
+}
+
+.addresses-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+#del-address {
+    padding-top: 60px;
+}
+
+.del_address_text {
+    color: #003060;
+    border-bottom: 2px solid #003060;
+    margin-bottom: 2em;
+}
+
+.del-address-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0px 2px 2px 2px #c7c6c6;
+    border-radius: 3px;
+    height: 9em;
+    margin-bottom: 2em;
+    padding: 0 20px;
+    width: 94%;
+    /* margin-left: 2em; */
+}
+
+.address-details {
+    margin-top: 1em;
+    color: #003060;
+}
+
+.default-txt {
+    color: #E55B13;
+}
+
+.edit-button,
+.edit-button a {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 25em;
+    margin-top: -5em;
+    margin-bottom: 7em;
+}
+
+.delete-button,
+.delete-button a {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: -5em;
+    margin-bottom: 7em;
+    margin-left: 10px;
+}
+
+.edit-button a:hover .delete-button a {
+    color: #003060;
+}
+
+.add-button {
+    color: #003060;
+    background-color: #fff;
+    border: 2px solid #003060;
+    width: 12em;
+    /* margin-left: 3em; */
+    margin-bottom: 2em;
+}
+
+.add-button i {
+    margin-right: 8px;
+}
+
+.add-button:hover {
+    background-color: #E55B13;
+    color: #fff;
+    border: 2px solid #E55B13;
+}
+
+.confirm-button {
+    color: #fff;
+    background-color: #E55B13;
+    border-color: #E55B13;
+    width: 12em;
+}
+
+.confirm-button:hover {
+    background-color: #003060;
+    border-color: #003060;
+}
+
+.sticky-button {
+    position: fixed;
+    bottom: 20px;
+    left: 80%;
+    transform: translateX(-50%);
+}
+
+.default-address {
+    width: 20px;
+    height: 20px;
+    margin-left: 60px;
+}
+
+.default-address:checked {
+    background-color: #E55B13;
+    border-color: #E55B13;
+}
+
+.modal-content {
+    color: #003060;
+}
+
+.save-button {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    width: 7em;
+    color: #fff;
+}
+
+.save-button:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
+.close-button {
+    width: 7em;
+}
+
+.address-container {
+    color: #003060;
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+.address-container .header {
+    margin-bottom: 2em;
+}
+
+.nav-underline {
+    margin-left: 7em;
+}
+
+.nav-underline .nav-item .nav-link.active {
+    color: #E55B13;
+}
+
+.nav-underline .nav-item {
+    margin-right: 20px;
+}
+
+.custom-nav-link {
+    color: #003060;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text,
+.search-field {
+    border: none;
+    background-color: #fff;
+}
+
+.search-field {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+.autocomplete {
+    background-color: #c7c6c6;
+    position: absolute;
+    cursor: pointer;
+}
+
+#list:hover {
+    background-color: #2D6092;
+}
+
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
+}

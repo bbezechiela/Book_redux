@@ -1,0 +1,232 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.categories-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+#educational,
+#historical_fiction,
+#poetry_prose,
+#self_help,
+#romance_saga,
+#science_fiction,
+#fantasy_adventure,
+#young_adult,
+#mystery_suspense,
+#crime_thriller,
+#horror_supernatural,
+#comedy_satire,
+#nonfiction_biography {
+    padding-top: 90px;
+}
+
+#educational-header:hover,
+#historical-fiction-header:hover,
+#poetry-prose-header:hover,
+#self-help-header:hover,
+#romance-saga-header:hover,
+#science-fiction-header:hover,
+#fantasy-adventure-header:hover,
+#young-adult-header:hover,
+#mystery-suspense-header:hover,
+#crime-thriller-header:hover,
+#horror-supernatural-header:hover,
+#comedy-satire-header:hover,
+#nonfiction-biography-header:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a,
+h4:hover,
+p {
+    color: #003060;
+    text-decoration: none;
+}
+
+a:hover,
+h4 {
+    color: #E55B13;
+    font-weight: bold;
+}
+
+.drpdwn-genre {
+    color: #003060;
+    font-size: 12px;
+}
+
+.drpdwn-genre:hover {
+    font-weight: bold;
+    color: #E55B13;
+    text-decoration: underline;
+}
+
+#book-title {
+    color: #003060;
+
+}
+
+.card-text {
+    font-size: smaller;
+}
+
+.location-text {
+    color: #757575;
+}
+
+.location-text i{
+    margin-right: 8px;
+}
+
+.price {
+    color: #E55B13;
+}
+
+.btn-card {
+    border: 1px solid #E55B13;
+}
+
+.btn-card:hover {
+    background-color: #E55B13;
+}
+
+.educational-content,
+.historical-fiction-content,
+.poetry-prose-content,
+.self-help-content,
+.romance-saga-content,
+.science-fiction-content,
+.fantasy-adventure-content,
+.young-adult-content,
+.mystery-suspense-content,
+.crime-thriller-content,
+.horror-supernatural-content,
+.comedy-satire-content,
+.nonfiction-biography-content {
+    display: none;
+}
+
+.educational_text,
+.historical_fiction_text,
+.poetry_prose_text,
+.self_help_text,
+.romance_saga_text,
+.science_fiction_text,
+.fantasy_adventure_text,
+.young_adult_text,
+.mystery_suspense_text,
+.crime_thriller_text,
+.horror_supernatural_text,
+.comedy_satire_text,
+.nonfiction_biography_text {
+    color: #E55B13;
+    border-bottom: 3px solid #E55B13;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-button,
+.like-button {
+    color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.add-button:hover,
+.like-button:hover {
+    color: #E55B13;
+    background-color: transparent;
+}
+
+.add-button::after {
+    display: none;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #003060;
+    font-size: 12px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em;
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: -1em;
+    width: 13em;
+}
+
+.input-group-text i{
+    color: #003060;
+}
+
+.py-profile .avatar {
+    padding: 0;
+}
+
+.py-profile .avatar:after {
+    font-family: 'fontawesome' !important;
+    content: "\f0d7";
+    border: none;
+    padding-top: 9px;
+    color: #003060;
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    font-size: 13px;
+    width: 17px;
+    height: 17px;
+    border-radius: 25px;
+    line-height: 0;
+    text-align: center;
+    bottom: 1px;
+    right: 27px;
+    margin: 0;
+    border: 1px solid #003060;
+}

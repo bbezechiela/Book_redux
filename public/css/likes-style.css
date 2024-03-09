@@ -1,0 +1,146 @@
+/* :root {
+    --sidebar_width: 320px;
+} */
+
+.sidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.userdashboard-side-btn {
+    background-color: #2D6092;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-item:hover {
+    background-color: #2D6092;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+/* #likes {
+    padding-top: 90px;
+}
+
+h4{
+    color: #E55B13;
+    font-weight: bold;
+    margin-left: 1em;
+}
+
+#book-title {
+    color: #003060;
+} */
+
+.card-text {
+    font-size: smaller;
+}
+
+/* .price {
+    color: #E55B13;
+}
+
+.btn-card {
+    border: 1px solid #E55B13;
+}
+
+.btn-card:hover {
+    background-color: #E55B13;
+} */
+
+/* .button-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-button {
+    color: #2D6092;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.like-button {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.add-button:hover,
+.like-button:hover {
+    color: #2D6092;
+    background-color: transparent;
+}
+
+.add-button::after {
+    display: none;
+} */
+
+/* .dropdown-menu .dropdown-item {
+    color: #003060;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10em;
+} */
+
+.search-field:focus {
+    box-shadow: inset 0px 0px 0px 1px #f5f3f0;
+}
+
+.input-group-text, .search-field {
+    border: none;
+    background-color: #fff;
+}
+
+.search-field {
+    margin-right: 2em;
+}
+
+.input-group-text i, .card-body p{
+    color: #003060;
+}
+
+.container{
+    color: #003060;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+
+.card-body a{
+    background-color: #003060;
+    border-color: #003060;
+    width: 7em;
+    color: #fff;
+}
+
+.card-body a:hover{
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.dashboard-title{
+    color: #E55B13;
+}

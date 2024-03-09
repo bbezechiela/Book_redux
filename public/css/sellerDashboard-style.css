@@ -1,0 +1,227 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #fff;
+}
+
+.sellersidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.sellersidebar i{
+    color: #fff;;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.dashboard-side-btn, .dashboard-side-btn span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-link:hover {
+    color: #003060;
+}
+
+.nav-item:hover {
+    background-color: #fff;
+    color: #003060;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #e7edf3;
+    border: 1px solid #003060;
+}
+
+.input-group-text,
+.form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+#main {
+    margin-top: 20px;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+#main-page {
+    margin-top: 30px;
+    padding: 20px 30px;
+    transition: all 0.3s;
+}
+
+.dashboard .info-card {
+    padding-bottom: 10px;
+    margin-left: 2em;
+}
+
+.card {
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    margin-left: 1em;
+}
+
+.dashboard .filter {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.card-body {
+    padding: 0 10px 10px 10px;
+}
+
+.card-title {
+    padding: 20px 0 15px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-title span {
+    color: #899bbd;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.dashboard .users-card .card-icon {
+    color: #82b5e7;
+    background: #f6f6fe;
+}
+
+.dashboard .card-icon {
+    font-size: 32px;
+    line-height: 0;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.dashboard .info-card h6 {
+    font-size: 28px;
+    color: #012970;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard .info-card {
+    padding-bottom: 10px;
+}
+
+.dashboard .filter .icon {
+    color: #aab7cf;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+a {
+    color: #4154f1;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    border-radius: 4px;
+    padding: 10px 0;
+    animation-name: dropdown-animate;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+    border: 0;
+    box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+}
+
+.dashboard .filter .dropdown-header {
+    padding: 8px 15px;
+}
+
+.dashboard .filter .dropdown-header h6 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #aab7cf;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.dashboard .filter .dropdown-item {
+    padding: 8px 15px;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    color: #003060;
+}
+
+.dashboard .listings-card .card-icon {
+    color: #c7bd2d;
+    background: #f7f1b6;
+}
+
+.dashboard .reported-card .card-icon {
+    color: #af2520;
+    background: #ffecdf;
+}
+
+.container{
+    color: #003060;
+    text-align: center;
+}
+
+.card-body a{
+    background-color: #003060;
+    border-color: #003060;
+    width: 7em;
+    color: #fff;
+}
+
+.card-body a:hover{
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.card-body p{
+    color: #003060;
+}
+
+.dashboard-title{
+    color: #E55B13;
+}

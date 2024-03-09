@@ -1,0 +1,95 @@
+:root {
+    --sidebar_width: 320px;
+}
+
+body {
+    background-color: #fff;
+}
+
+.sellersidebar {
+    position: fixed;
+    background-color: #003060;
+    color: #fff;
+    width: var(--sidebar_width);
+}
+
+.sellersidebar i {
+    color: #fff;
+    ;
+}
+
+.profile-content {
+    font-size: smaller;
+}
+
+.feedback-side-btn,
+.feedback-side-btn span {
+    background-color: #fff;
+    color: #003060;
+}
+
+.top-nav {
+    border-radius: 5px 5px 5px 5px;
+}
+
+.nav-link:hover {
+    color: #003060;
+}
+
+.nav-item:hover {
+    background-color: #fff;
+    color: #003060;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 15px;
+}
+
+#content {
+    padding-left: var(--sidebar_width);
+}
+
+.form-control:focus {
+    box-shadow: inset 0px 0px 0px 1px #e7edf3;
+    border: 1px solid #003060;
+}
+
+.input-group-text,
+.form-control {
+    border: none;
+    background-color: #fff;
+}
+
+.form-control {
+    margin-right: 2em;
+}
+
+.input-group-text i {
+    color: #003060;
+}
+
+.card {
+    color: #003060;
+}
+
+.card-header {
+    background-color: #003060;
+}
+
+.text-center i {
+    color: #003060;
+    margin-top: 1em;
+}
+
+.btn-submit {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.btn-submit:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
