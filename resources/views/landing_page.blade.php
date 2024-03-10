@@ -62,7 +62,7 @@
     <div id="howItWorks" class="container-fluid px-0 pt-5 min-vh-100 offset">
         <h1 id="howItWorks-head" class="mx-auto text-center w-25 mt-5 pb-2" data-aos="fade-up" data-aos-duration="1000">
             How it works</h1>
-        <div id="howItWorks-header" class="row w-75 mx-auto mt-4 px-5" data-aos="fade-down" data-aos-duration="2000">
+        {{-- <div id="howItWorks-header" class="row w-75 mx-auto mt-4 px-5" data-aos="fade-down" data-aos-duration="2000">
             <div id="selling" class="col mx-2 text-center howItWorks-btn">
                 <span class="fs-8">Selling</span>
             </div>
@@ -75,10 +75,10 @@
             <div id="rent" class="col mx-2 text-center howItWorks-btn">
                 <span class="fs-8">Rent</span>
             </div>
-        </div>
+        </div> --}}
 
         <!-- SELLING Instructions -->
-        <div id="selling-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
+        {{-- <div id="selling-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
             <div class="col-3 mx-4 mb-3 card border-0">
                 <div class="card-body">
                     <h1 id="howItWorks-num" class="card-title text-center">1</h1>
@@ -139,10 +139,10 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- BUYING Instructions -->
-        <div id="buying-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
+        {{-- <div id="buying-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
             <div class="col-3 mx-4 mb-3 card border-0">
                 <div class="card-body">
                     <h1 id="howItWorks-num" class="card-title text-center">1</h1>
@@ -201,10 +201,10 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- EXCHANGE Instructions -->
-        <div id="exchange-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
+        <div class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
             <div class="col-3 mx-4 mb-3 card border-0">
                 <div class="card-body">
                     <h1 id="howItWorks-num" class="card-title text-center">1</h1>
@@ -269,7 +269,7 @@
         </div>
 
         <!-- RENTING Instructions -->
-        <div id="renting-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
+        {{-- <div id="renting-page" class="row justify-content-center mt-5" data-aos="fade-right" data-aos-duration="1500">
             <div class="col-3 mx-4 mb-3 card border-0">
                 <div class="card-body">
                     <h1 id="howItWorks-num" class="card-title text-center">1</h1>
@@ -330,7 +330,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- HINTS -->
         <div id="hints" class="container-fluid offset px-0 pt-4">
@@ -547,15 +547,15 @@
                 enthusiasts
                 come together to ignite their love for learning, sharing, and connecting. Our goal is to empower you
                 to
-                buy, sell, exchange, and rent books seamlessly, all while nurturing a vibrant community that
+                trade your books seamlessly, all while nurturing a vibrant community that
                 celebrates
                 the joy of reading.</p>
 
             <div class="row text-center px-5 mt-5">
                 <div id="mission-vission" class="col mx-4 p-4 rounded-4" data-aos="zoom-in-up" data-aos-duration="2000">
                     <h3>Mission Statement</h3>
-                    <p style="text-align: justify;">&emsp;Our mission is to build a lively online marketplace
-                        connecting students and book lovers, making it easy to buy, sell, rent, and exchange books.
+                    <p style="text-align: justify;">&emsp;Our mission is to build a lively online book trading
+                        connecting students and book lovers, making it easy to trade books.
                         We're all about creating a community that values accessible, affordable, and sustainable
                         reading. Our goal is to empower individuals in their quest for knowledge, personal
                         development,
@@ -578,78 +578,61 @@
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js'
 ])
+
+
+    {{-- Landing Page (index.php) --}}
 <script>
-    // Landing Page (index.php)
     AOS.init();
-    var selling = document.getElementById('selling');
-    var buying = document.getElementById('buying');
-    var exchange = document.getElementById('exchange');
-    var rent = document.getElementById('rent');
-    // var donate = document.getElementById('donate');
-    var selling_instructions = document.getElementById('selling-page');
-    var buying_instructions = document.getElementById('buying-page');
-    var exchange_instructions = document.getElementById('exchange-page');
-    var renting_instructions = document.getElementById('renting-page');
-    // var donate_instructions = document.getElementById('donate-page');
-    selling.addEventListener("click", function() {
-        selling.style.borderBottom = "2px solid #003060";
-        buying.style.borderBottom = "none";
-        exchange.style.borderBottom = "none";
-        rent.style.borderBottom = "none";
-        selling_instructions.style.display = "flex";
-        buying_instructions.style.display = "none";
-        exchange_instructions.style.display = "none";
-        renting_instructions.style.display = "none";
-        donate_instructions.style.display = "none";
-        // donate.style.borderBottom = "none";
-    });
-    buying.addEventListener("click", function() {
-        selling.style.borderBottom = "none";
-        buying.style.borderBottom = "2px solid #003060";
-        exchange.style.borderBottom = "none";
-        rent.style.borderBottom = "none";
-        // alert('buying');
-        selling_instructions.style.display = "none";
-        buying_instructions.style.display = "flex";
-        exchange_instructions.style.display = "none";
-        renting_instructions.style.display = "none";
-        donate_instructions.style.display = "none";
-        // donate.style.borderBottom = "none";
-    });
-    exchange.addEventListener("click", function() {
-        selling.style.borderBottom = "none";
-        buying.style.borderBottom = "none";
-        exchange.style.borderBottom = "2px solid #003060";
-        rent.style.borderBottom = "none";
-        selling_instructions.style.display = "none";
-        buying_instructions.style.display = "none";
-        exchange_instructions.style.display = "flex";
-        renting_instructions.style.display = "none";
-        donate_instructions.style.display = "none";
-        // donate.style.borderBottom = "none";
-    });
-    rent.addEventListener("click", function() {
-        selling.style.borderBottom = "none";
-        buying.style.borderBottom = "none";
-        exchange.style.borderBottom = "none";
-        rent.style.borderBottom = "2px solid #003060";
-        selling_instructions.style.display = "none";
-        buying_instructions.style.display = "none";
-        exchange_instructions.style.display = "none";
-        renting_instructions.style.display = "flex";
-        donate_instructions.style.display = "none";
-        // donate.style.borderBottom = "none";
-    });
-    // donate.addEventListener("click", function () {
-    //     selling_instructions.style.display = "none";
-    //     buying_instructions.style.display = "none";
-    //     exchange_instructions.style.display = "none";
-    //     renting_instructions.style.display = "none";
-    //     donate_instructions.style.display = "flex";
-    //     selling.style.borderBottom = "none";
+    // var selling = document.getElementById('selling');
+    // var buying = document.getElementById('buying');
+    // var exchange = document.getElementById('exchange');
+    // var rent = document.getElementById('rent');
+    // var selling_instructions = document.getElementById('selling-page');
+    // var buying_instructions = document.getElementById('buying-page');
+    // var exchange_instructions = document.getElementById('exchange-page');
+    // var renting_instructions = document.getElementById('renting-page');
+    // selling.addEventListener("click", function() {
+    //     selling.style.borderBottom = "2px solid #003060";
     //     buying.style.borderBottom = "none";
     //     exchange.style.borderBottom = "none";
     //     rent.style.borderBottom = "none";
-    //     donate.style.borderBottom = "2px solid #003060";
-    // })
+    //     selling_instructions.style.display = "flex";
+    //     buying_instructions.style.display = "none";
+    //     exchange_instructions.style.display = "none";
+    //     renting_instructions.style.display = "none";
+    //     donate_instructions.style.display = "none";
+    // });
+    // buying.addEventListener("click", function() {
+    //     selling.style.borderBottom = "none";
+    //     buying.style.borderBottom = "2px solid #003060";
+    //     exchange.style.borderBottom = "none";
+    //     rent.style.borderBottom = "none";
+    //     selling_instructions.style.display = "none";
+    //     buying_instructions.style.display = "flex";
+    //     exchange_instructions.style.display = "none";
+    //     renting_instructions.style.display = "none";
+    //     donate_instructions.style.display = "none";
+    // });
+    // exchange.addEventListener("click", function() {
+    //     selling.style.borderBottom = "none";
+    //     buying.style.borderBottom = "none";
+    //     exchange.style.borderBottom = "2px solid #003060";
+    //     rent.style.borderBottom = "none";
+    //     selling_instructions.style.display = "none";
+    //     buying_instructions.style.display = "none";
+    //     exchange_instructions.style.display = "flex";
+    //     renting_instructions.style.display = "none";
+    //     donate_instructions.style.display = "none";
+    // });
+    // rent.addEventListener("click", function() {
+    //     selling.style.borderBottom = "none";
+    //     buying.style.borderBottom = "none";
+    //     exchange.style.borderBottom = "none";
+    //     rent.style.borderBottom = "2px solid #003060";
+    //     selling_instructions.style.display = "none";
+    //     buying_instructions.style.display = "none";
+    //     exchange_instructions.style.display = "none";
+    //     renting_instructions.style.display = "flex";
+    //     donate_instructions.style.display = "none";
+    // });
 </script>
