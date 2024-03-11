@@ -28,16 +28,6 @@ class UserController extends Controller
         return view('components.sidebar');
     }
 
-    public function following()
-    {
-        return view('users.following');
-    }
-
-    public function followers()
-    {
-        return view('users.followers');
-    }
-
     public function welcome()
     {
         return view('landing_page');

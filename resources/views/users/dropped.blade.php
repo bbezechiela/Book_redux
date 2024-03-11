@@ -67,7 +67,7 @@
         <div class="card-body rating-details">
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
-                    href="/orders">Orders</a>
+                    href="/orders">Exchange Request</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/delivered">Delivered</a>
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"

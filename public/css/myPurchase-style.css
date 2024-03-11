@@ -539,11 +539,11 @@
     color: #003060;
 }
 
-.card {
+/* .card {
     margin-top: 10px;
     border: none;
     border-radius: 5px;
-}
+} */
 
 table {
     margin-left: 2em;
@@ -572,4 +572,47 @@ table {
     right: 27px;
     margin: 0;
     border: 1px solid #003060;
+}
+
+.message-seller {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 17px;
+}
+
+.message-seller:hover {
+    color: #98c0e7;
+}
+
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.accept {
+    color: #FFF;
+    background: #E55B13;
+    padding: 5px 15px;
+    box-shadow: 0 4px 0 0 #E55B13;
+}
+
+.accept:hover {
+    color: #FFF;
+    background: #6FE76F;
+    box-shadow: 0 4px 0 0 #7ED37E;
+}
+
+.deny {
+    color: #FFF;
+    background: #003060;
+    padding: 5px 15px;
+    box-shadow: 0 4px 0 0 #003060;
+}
+
+.deny:hover {
+    color: #FFF;
+    background: tomato;
+    box-shadow: 0 4px 0 0 tomato;
 }

@@ -16,26 +16,16 @@
     <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
     </div>
-    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar />
-    </div> --}}
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
-                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button> --}}
                 <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
                         src="../assets/Book_Logo.png" alt="Logo"></a>
                 <a class="mx-2 mt-2 tabs" id="daily-discover-anchor" href="#daily-discover">Daily Discover</a>
-                <a class="mx-2 mt-2 tabs" id="featured-anchor" href="#featured">Featured</a>
+                <a class="mx-2 mt-2 tabs" id="featured-anchor" href="#featured">New Listings</a>
                 <a class="mx-2 mt-2 tabs" id="recommended-anchor" href="#recommended">Recommended for you</a>
-                {{-- <a class="mx-2 mt-2 tabs" id="near_you-anchor" href="#near_you">Near you</a> --}}
-                <a class="mx-2 mt-2 tabs" id="for_sale-anchor" href="#for_sale">For sale</a>
                 <a class="mx-2 mt-2 tabs" id="for_exchange-anchor" href="#for_exchange">For exchange</a>
-                <a class="mx-2 mt-2 tabs" id="for_rent-anchor" href="#for_rent">For rent</a>
+                <a class="mx-2 mt-2 tabs" id="for_exchange-anchor" href="#for_exchange">Online Reading</a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
@@ -59,7 +49,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
                                 <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
                                 <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
                                 <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
@@ -71,7 +61,7 @@
         </ul>
         <button type="button" class="position-absolute end-0 mt-2 btn fw-bold nearby-user-btn"
             style="color: #E55B13; margin-right: 230px"><img src="assets/location-icon.png" alt="Location icon"
-                class="img" width="25">Find Nearby Sellers</button type="button">
+                class="img" width="25">Find Nearby Users</button type="button">
         <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
             style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
                 width="25">Find Nearby Listings</button type="button">
@@ -280,7 +270,7 @@
             </div>
         </div>
         <div id="featured" class="mx-5 px-5">
-            <h4 id="featured-header">Featured</h4>
+            <h4 id="featured-header">New Listings</h4>
             <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
                 <!-- card Featured -->
                 @php
@@ -700,7 +690,7 @@
             </div>
         </div>
         <div id="for_sale" class="mx-5 px-5">
-            <h4 id="for-sale-header">For Sale</h4>
+            <h4 id="for-sale-header">Online Reading</h4>
             <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
                 <!-- card For Sale -->
                 @php
@@ -829,69 +819,7 @@
                 @endforeach
             </div>
         </div>
-        <div id="for_rent" class="mx-5 mb-4 px-5">
-            <h4 id="for-rent-header">For Rent</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
-                <!-- card For Rent -->
-                @php
-                    $rentAmount = 0;
-                @endphp
-                @foreach ($post->shuffle() as $rent)
-                    @if ($rent->status == 'Rent' && $rent->stock > 0)
-                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                            onclick="clickedPost({{ $rent->id }}, {{ $rent->user_id }})">
-                            <img src="{{ asset('images/books/' . $rent->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
-                            <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">
-                                    {{ $rent->title }}</p>
-                                <p class="card-text mt-0 mb-0">{{ $rent->author }}<br>
-                                    {{ $rent->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>{{ $rent->user->address }}</p>
-                                @if ($rent->cart->count() >= 0)
-                                    @foreach ($rent->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $rent->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $rent->price }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $rent->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        @php
-                            $rentAmount++;
-
-                            if ($rentAmount == 10) {
-                                break;
-                            }
-                        @endphp
-                    @endif
-                @endforeach
-            </div>
-        </div>
+        
         <!-- DAILY DISCOVERY CONTENT -->
         <div id="daily-discovery-content" class="daily-discovery-content mt-3 w-100">
             <h4 class="text-center daily_discovery_text mx-5 pb-2">DAILY DISCOVER</h4>
@@ -1078,7 +1006,7 @@
         </div>
         <!-- FEATURED CONTENT -->
         <div id="featured-content" class="daily-discovery-content mt-3 w-100">
-            <h4 class="text-center daily_discovery_text mx-5 pb-2">FEATURED</h4>
+            <h4 class="text-center daily_discovery_text mx-5 pb-2">NEW LISTINGS</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post->sortByDesc('created_at') as $daily)
                     @if ($daily->user->type == 'Bookseller')
@@ -1550,60 +1478,6 @@
 
             </div>
         </div>
-        <!-- FOR RENT -->
-        <div id="for-rent-content" class="daily-discovery-content mt-3 w-100">
-            <h4 class="text-center daily_discovery_text mx-5 pb-2">FOR RENT</h4>
-            <div class="row justify-content-center mx-5 mb-4">
-                @foreach ($post->shuffle() as $rent)
-                    @if ($rent->status == 'Rent' && $rent->stock > 0)
-                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                            onclick="clickedPost({{ $rent->id }}, {{ $rent->user_id }})">
-                            <img src="{{ asset('images/books/' . $rent->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
-                            <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">
-                                    {{ $rent->title }}</p>
-                                <p class="card-text mt-0 mb-0">{{ $rent->author }}<br>
-                                    {{ $rent->genre }}</p>
-                                <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                        aria-hidden="true"></i>{{ $rent->user->address }}</p>
-                                @if ($rent->cart->count() >= 0)
-                                    @foreach ($rent->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $rent->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div
-                                        class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $rent->price }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $rent->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
 
         {{-- Notification Toast --}}
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -1704,7 +1578,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel" style="color: #E55B13;">Find Nearby
-                    Sellers</h1>
+                    Users</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

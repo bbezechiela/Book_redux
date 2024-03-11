@@ -333,8 +333,6 @@ Route::get('/manageseller', [AdminController::class, 'manageSeller']);
 
 Route::get('/reportedseller', [UserController::class, 'reportedSeller']);
 
-Route::get('/booksrented', [UserController::class, 'booksRented']);
-
 Route::get('/return', [UserController::class, 'manageReturn']);
 
 Route::get('/shipment', [UserController::class, 'manageShipment']);
