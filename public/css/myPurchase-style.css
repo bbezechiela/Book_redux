@@ -211,7 +211,7 @@
 }
 
 .pending-button,
-.receive-button,
+.receive-button:hover,
 .confirm-btn,
 .request-btn,
 .contact-button,
@@ -240,7 +240,7 @@
     color: #fff;
 }
 
-.receive-button:hover,
+.receive-button,
 .confirm-btn:hover,
 .request-btn:hover,
 .contact-button:hover,
@@ -627,4 +627,198 @@ table {
     color: #FFF;
     background: tomato;
     box-shadow: 0 4px 0 0 tomato;
+}
+
+.modal-title {
+    color: #003060;
+}
+
+.drop-off-details,
+.pickup-details,
+.pickup-address,
+.pickup-date,
+.personal-transaction-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 2px 2px 0px #98c0e7;
+    border-radius: 3px;
+    margin-bottom: 12px;
+    width: 93%;
+    background-color: #fff;
+    margin-top: 2em;
+    color: #003060;
+    padding: 1em;
+}
+
+.pickup-details,
+.personal-transaction-details {
+    margin-left: 20px;
+}
+
+.pickup-address,
+.pickup-date {
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
+.drop-off-details i,
+.pickup-details i,
+.personal-transaction-details i {
+    font-size: 30px;
+}
+
+.text-section {
+    margin-left: 10px;
+    flex: 1;
+    font-size: 13px;
+}
+
+.text-section h6,
+.text-section p {
+    margin: 0;
+}
+
+.pickup-address a {
+    color: #E55B13;
+}
+
+.pickup-address a:hover {
+    color: #003060;
+    text-decoration: none;
+}
+
+.confirm-button {
+    color: #fff;
+    background-color: #E55B13;
+    border-color: #E55B13;
+    width: 12em;
+}
+
+.confirm-button:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
+.change-btn {
+    border: none;
+    background: none;
+}
+
+.post-btn {
+    border: none;
+    background: none;
+    color: #E55B13;
+    text-decoration: underline;
+}
+
+.post-btn:hover {
+    color: #003060;
+}
+
+.row {
+    border-radius: 3px;
+    width: 93%;
+    height: auto;
+    color: #003060;
+    padding: 1em;
+    margin-left: 1em;
+}
+
+.customer-details p {
+    white-space: nowrap;
+}
+
+.customer-details {
+    display: flex;
+    align-items: justify;
+}
+
+.circle-picture {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    margin-bottom: 2em;
+}
+
+.name-interaction {
+    display: flex;
+    flex-direction: column;
+    color: #003060;
+}
+
+.name-interaction p {
+    margin-bottom: 0;
+}
+
+.dropdown {
+    margin-top: 0;
+    border: none;
+    background: none;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.name {
+    margin-bottom: -2px;
+}
+
+.receipt-details {
+    margin-top: 13px;
+}
+
+.shipping-address-text {
+    color: #E55B13;
+}
+
+.seller-details-box,
+.customer-details-box,
+.package-details-box,
+.product-details-box {
+    border: 1px dashed #98c0e7;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #003060;
+    flex: 1;
+}
+
+.customer-details-box,
+.product-details-box {
+    margin-left: 10px;
+}
+
+.seller-details-box label,
+.customer-details-box label,
+.package-details-box,
+.product-details-box {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrange-button,
+.save-button{
+    color: #fff;
+    background-color: #E55B13;
+    border: 1px solid #E55B13;
+    margin-right: 2em;
+}
+
+.arrange-button:hover,
+.save-button:hover{
+    color: #fff;
+    background-color: #003060;
+    border: 1px solid #003060;
 }

@@ -1,5 +1,5 @@
 @include('partials.__header', [
-'title' => 'Exchange Request | BookRedux',
+'title' => 'To Receive | BookRedux',
 'bootstrap_link' => '/bootstrap/bootstrap.min.css',
 'css_link' => '/css/orders-style.css',
 'aos_link' => '/aos-master/dist/aos.css',
@@ -7,17 +7,12 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> --}}
 </head>
 
 <div id="body-container" class="container-fluid px-0">
     <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
     </div>
-    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start d-print-none" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar />
-    </div> --}}
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4 d-print-none">
             <div class="w-100 d-flex mt-2 p-0 d-print-none">
@@ -49,9 +44,9 @@
 
         <div class="card-body rating-details d-print-none">
             <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
+                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/orders">Exchange Request</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;" 
+                <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                     href="/toreceiveLister">To
                     Receive</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -69,94 +64,7 @@
                     <button class="message-seller message-button"><i class="fa fa-commenting"
                             aria-hidden="true"></i></button>
                 </div>
-                <span class="order-text me-5 mt-0">Exchange Request</span>
-            </div>
-            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"
-                                    style="color: #003060"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Title: <span>City Limits</span></h5>
-                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                            <p class="card-text">Edition: <span>1st Edition</span></p>
-                            <p class="card-text">Condition: <span>Good</span></p>
-                            <p class="card-text">Description: <span>This is a sample description of the book I want to
-                                    offer for exchange.</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                            <p class="card-text">Genre: <span>Self-help</span></p>
-                            <p class="card-text">Format: <span>Paperback</span></p>
-                            <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
-                        {{-- <div> --}}
-                        <small>The requester wants to exchange your book, <span class="btn" data-bs-toggle="modal"
-                                data-bs-target="#request" style="color: #E55B13; border: none;">"The Pioneers"</span>
-                            for <span class="btn" style="color: #E55B13; cursor: text;">"City
-                                Limits"</span></small>
-                        <div>
-                            <button type="button" class="btn accept btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#arrange-shipment" onclick="arrangeShipment">Accept
-                                <span class="fa fa-check"></span>
-                            </button>
-                            <a href="#" class="deny btn btn-sm">Decline <span class="fa fa-close"></span></a>
-                        </div>
-
-                        {{-- </div> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href=""><span>Nestine Navarro</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Exchange Request</span>
+                <span class="order-text me-5 mt-0">To Receive</span>
             </div>
             <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
                 <div class="row g-0">
@@ -219,196 +127,18 @@
                     </div>
                     <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
                         <small class="" style="color:#003060;">Exchange Request Accepted: <span
-                                style="color: #E55B13;">Waiting for the requester to arrange the shipment</span></small>
+                                style="color: #E55B13;">Book Ready for Delivery</span></small>
                         <div>
                             <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
                                 Details</button>
+                            <a class="btn btn-sm receive-button" href="">Order
+                                Received</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @php
-        $loopCount = 0;
-        @endphp
-        @foreach ($orders as $order)
-        @foreach ($order->item as $item)
-        @if ($item->order_status == 'Pending')
-        {{-- {{ $item->order->user->first_name }} --}}
-        <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Order</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book" width="80px"
-                            height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">{{ $order->title }}</p>
-                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                            <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                            <p>Order No: {{ $item->order->order_number }}</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱{{ $order->price }}</p>
-                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
-                            </p> <br>
-                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order">
-                    <div class="order-details">
-                        <div class="order-message">
-                            <small class="text-body-secondary">To accept the order, arrange first the
-                                shipment
-                                details</small>
-                        </div>
-                        <div class="button-group">
-                            <button type="button" id="decline-btn" class="btn btn-sm decline-button"
-                                data-bs-toggle="modal" onclick="declineItem({{ $item->id }})"
-                                data-bs-target="#staticBackdrop">Decline</button>
-                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                data-bs-toggle="modal" onclick="arrangeShipment({{ $order->id . ', ' . $item->id }})"
-                                data-bs-target="#arrange-shipment">Arrange Shipment</button>
-                        </div>
-                    </div>
-                    {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
-                </div>
-            </div>
-        </div>
-        @php
-        $loopCount++;
-        @endphp
-        @elseif ($item->order_status == 'paid')
-        <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Order</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book" width="80px"
-                            height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">{{ $order->title }}</p>
-                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                            <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                            <p>#{{ $item->order->order_number }}</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱{{ $order->price }}</p>
-                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
-                            </p> <br>
-                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order">
-                    <div class="order-details">
-                        <div class="order-message">
-                            {{-- <small class="text-body-secondary">To accept the order, arrange first the
-                                            shipment
-                                            details</small> --}}
-                        </div>
-                        <div class="button-group">
-                            {{-- <button type="button" class="btn btn-sm decline-button">Decline</button> --}}
-                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                data-bs-toggle="modal" onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
-                                data-bs-target="#shipping-details">View Shipping Details</button>
-                        </div>
-                    </div>
-                    {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
-                </div>
-            </div>
-        </div>
-        @php
-        $loopCount++;
-        @endphp
-        @elseif ($item->order_status == 'Confirmed by seller')
-        <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name"
-                        href="/userlistings"><span>{{ $item->order->user->first_name . ' ' . $item->order->user->last_name }}</span></a>
-                    <button class="message-seller"><i class="fa fa-commenting" aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Order</span>
-            </div>
-            <div class="product-cart">
-                <div class="book-details">
-                    <div class="left-section">
-                        <img src="{{ asset('images/books/' . $order->book_photo) }}" alt="book" width="80px"
-                            height="110px">
-                        <div class="book-info">
-                            <p class="mb-0 book-title">{{ $order->title }}</p>
-                            <p class="mb-0 book-qty">{{ $item->qty }} Qty</p>
-                            <p class="mb-0 fw-bold interaction-type">{{ $order->status }}</p>
-                            <p class="mb-0 payment-mode">{{ $item->order->shipping_option }}</p>
-                            <p>#{{ $item->order->order_number }}</p>
-                        </div>
-                    </div>
-                    <div class="right-section">
-                        <div class="book-price">
-                            <p class="product-price">₱{{ $order->price }}</p>
-                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
-                            </p> <br>
-                            <p class="text-total">Total Payment:<span class="product-total">₱{{ $order->price }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="order">
-                    <div class="order-details">
-                        <div class="order-message">
-                            <small class="" style="color: #E55B13">FOR APPROVAL BY COURIER</small>
-                            {{-- <p class="fs-5 fw-bold" style="color: #E55B13">FOR APPROVAL BY COURIER</p> --}}
-                        </div>
-                        <div class="button-group">
-                            {{-- <button type="button" class="btn btn-sm decline-button">Decline</button> --}}
-                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                data-bs-toggle="modal" onclick="viewShipping({{ $order->id . ', ' . $item->id }})"
-                                data-bs-target="#shipping-details" disabled>View Shipping Details</button>
-                        </div>
-                    </div>
-                    {{-- <p class="order-ID">Order ID <span class="float-end me-5 orderID">#7649324789134</span></p> --}}
-                </div>
-            </div>
-        </div>
-        @php
-        $loopCount++;
-        @endphp
-        @endif
-        @endforeach
-        @endforeach
-        @if ($loopCount == 0)
-        <div class="w-100 mt-5 d-flex justify-content-center">
-            <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
-        </div>
-        <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No new exchange request today</h1>
-        @endif
 
         <!-- Arrange Shipment Modal -->
         <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"

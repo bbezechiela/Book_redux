@@ -79,7 +79,7 @@
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/toreceive">To Receive</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/delivered-mypurchase">Delivered</a>
+                        href="/delivered-mypurchase">Completed</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/dropped-mypurchase">Dropped</a>
                     {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
@@ -139,23 +139,28 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card-body">
-                            <h5 class="card-title">Title: City Limits</h5>
-                            <p class="card-text">Author: </p>
-                            <p class="card-text">Edition: </p>
-                            <p class="card-text">Condition:</p>
-                            <p class="card-text">Description: </p>
+                            <h5 class="card-title">Title: <span>The Pioneers</span></h5>
+                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                            <p class="card-text">Edition: <span>1st Edition</span></p>
+                            <p class="card-text">Condition: <span>Good</span></p>
+                            <p class="card-text">Description: <span>This is a sample description.</span></p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card-body">
-                            <h5 class="card-title">ISBN: </h5>
-                            <p class="card-text">Genre: </p>
-                            <p class="card-text">Format: </p>
-                            <p class="card-text">Exchange Method Preference: </p>
+                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                            <p class="card-text">Genre: <span>Self-help</span></p>
+                            <p class="card-text">Format: <span>Paperback</span></p>
+                            <p class="card-text">Exchange Preferences: <span>This is a sample exchange
+                                    preferences.</span></p>
+
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
-                        <small class="text-body-secondary">Please wait for the book sharer to approve your request</small>
+                        <small class="text-body-secondary">Please wait for the lister to approve your
+                            request <span class="btn" data-bs-toggle="modal" data-bs-target="#request"
+                                style="color: #E55B13; text-decoration: underline; cursor: pointer; margin-left: 20px; border: none;">View
+                                my exchange request</span> </small>
                         <div class="button-group">
                             <a class="btn btn-sm cancel-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                 onclick="">Cancel
@@ -167,84 +172,7 @@
                 </div>
             </div>
         </div>
-        <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href=""><span>Maria Mesa</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">My Exchange Request</span>
-            </div>
-            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"
-                                    style="color: #003060"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Title: <span>City Limits</span></h5>
-                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                            <p class="card-text">Edition: <span>1st Edition</span></p>
-                            <p class="card-text">Condition: <span>Good</span></p>
-                            <p class="card-text">Description: <span>This is a sample description of the book I want to offer for exchange.</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                            <p class="card-text">Genre: <span>Self-help</span></p>
-                            <p class="card-text">Format: <span>Paperback</span></p>
-                            <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
-                           
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
-                        <small class="" style="color: #E55B13;">The book sharer accepted your exchange request, it is now ready to be delivered</small>
-                        <div class="button-group">
-                            <button type="button" class="btn btn-sm record-button">View Sharer Record</button>
-                            <button type="button" class="btn btn-sm pending-button">Arrange Shipment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         @php
         $loopCount = 0;
         @endphp
@@ -483,6 +411,84 @@
                     {{ session('message') }}
                 </div>
                 @endif
+            </div>
+        </div>
+    </div>
+
+     
+
+    <!-- Request Modal -->
+    <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Submission Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em; border: none;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <div id="carouselExampleDark" class="carousel carousel-dark slide"
+                                    data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active" data-bs-interval="10000">
+                                                <img src="/assets/city_limits.png" class="img-fluid rounded-start"
+                                                    alt="..." height="200px" width="200px">
+                                            </div>
+                                            <div class="carousel-item" data-bs-interval="2000">
+                                                <img src="/assets/bubble_bath.png" class="img-fluid rounded-start"
+                                                    alt="..." height="200px" width="200px">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="/assets/brown_book.png" class="img-fluid rounded-start"
+                                                    alt="..." height="200px" width="200px">
+                                            </div>
+                                            <div class="carousel-item" data-bs-interval="2000">
+                                                <img src="/assets/yellow_book.png" class="img-fluid rounded-start"
+                                                    alt="..." height="200px" width="200px">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start"
+                                                    alt="..." height="200px" width="200px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"
+                                            style="color: #003060"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Title: <span>City Limits</span></h5>
+                                    <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                                    <p class="card-text">Edition: <span>1st Edition</span></p>
+                                    <p class="card-text">Condition: <span>Good</span></p>
+                                    <p class="card-text">Description: <span>This is a sample description of the book
+                                            I want to offer for exchange.</span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                                    <p class="card-text">Genre: <span>Self-help</span></p>
+                                    <p class="card-text">Format: <span>Paperback</span></p>
+                                    <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

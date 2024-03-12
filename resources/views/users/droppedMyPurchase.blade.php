@@ -92,19 +92,89 @@
             <div class="card-body nav-details">
                 <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/booksrented">Books Rented</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/mypurchase">To Purchase</a>
+                        href="/mypurchase">My Exchange Request</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         style="background-color: #003060;" aria-current="page" href="/toreceive">To
                         Receive</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/delivered-mypurchase">Delivered</a>
+                        href="/delivered-mypurchase">Completed</a>
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
                         aria-current="page" href="/dropped-mypurchase">Dropped</a>
                     {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/refund-mypurchase">Refund</a> --}}
                 </nav>
+            </div>
+        </div>
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name" href=""><span>Maria Mesa</span></a>
+                    <button class="message-seller message-button"><i class="fa fa-commenting"
+                            aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Dropped</span>
+            </div>
+            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"
+                                    style="color: #003060"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Title: <span>The Pioneers</span></h5>
+                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                            <p class="card-text">Edition: <span>1st Edition</span></p>
+                            <p class="card-text">Condition: <span>Good</span></p>
+                            <p class="card-text">Description: <span>This is a sample description.</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                            <p class="card-text">Genre: <span>Self-help</span></p>
+                            <p class="card-text">Format: <span>Paperback</span></p>
+                            <p class="card-text">Exchange Preferences: <span>This is a sample exchange
+                                    preferences.</span></p>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

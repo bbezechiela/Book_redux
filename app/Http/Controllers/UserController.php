@@ -507,6 +507,11 @@ class UserController extends Controller
         // return view('users.toReceive');
     }
 
+    public function toReceiveLister()
+    {
+        return view('users.toReceiveLister');
+    }
+
     public function deliveredMyPurchase()
     {
         // $order = Books::where(['unit' => 'Ordered'])->with('item.order.user', 'user', 'item.ratedItem')->get();

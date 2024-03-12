@@ -276,16 +276,14 @@
                                         <p class="card-text">Genre: <span>Self-help</span></p>
                                         <p class="card-text">Format: <span>Paperback</span></p>
                                         <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
-                                        <p class="card-text" style="color: #E55B13;">Book the requester wants to exchange: <span>The Pioneers<i class="fa fa-exchange" aria-hidden="true"
-                                style="margin-left: 8px; margin-right: 4px;"></i>City Limits</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
-                                    <button type="button" class="btn accept" data-bs-toggle="modal"
+                                    <button type="button" class="btn accept btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#shipping-details" onclick="" style="margin-right: 1em;">Accept
                                         <span class="fa fa-check"></span>
                                     </button>
-                                    <a href="#" class="deny btn" style="margin-right: 1em;">Decline <span
+                                    <a href="#" class="deny btn btn-sm" style="margin-right: 1em;">Decline <span
                                             class="fa fa-close"></span></a>
                                 </div>
                             </div>
@@ -359,8 +357,6 @@
                                             <p class="card-text">Genre: <span>Self-help</span></p>
                                             <p class="card-text">Format: <span>Paperback</span></p>
                                             <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
-                                            <p class="card-text" style="color: #E55B13;">Book the requester wants to exchange: <span>The Pioneers<i class="fa fa-exchange" aria-hidden="true"
-                                                style="margin-left: 8px; margin-right: 4px;"></i>City Limits</span></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
@@ -1036,7 +1032,7 @@
                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                     data-bs-title="Click to open shipping form"
                                     style="text-align: justify; margin-bottom: 12px;">
-                                    Shipping Fee
+                                    Shipping Fee 
                                 </button>
                                 <select name="condition" id="" class="form-control form-select"
                                     style="margin-bottom: 12px; color: #003060;">

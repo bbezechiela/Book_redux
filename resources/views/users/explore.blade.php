@@ -24,8 +24,8 @@
                 <a class="mx-2 mt-2 tabs" id="daily-discover-anchor" href="#daily-discover">Daily Discover</a>
                 <a class="mx-2 mt-2 tabs" id="featured-anchor" href="#featured">New Listings</a>
                 <a class="mx-2 mt-2 tabs" id="recommended-anchor" href="#recommended">Recommended for you</a>
-                <a class="mx-2 mt-2 tabs" id="for_exchange-anchor" href="#for_exchange">For exchange</a>
                 <a class="mx-2 mt-2 tabs" id="for_exchange-anchor" href="#for_exchange">Online Reading</a>
+                <a class="mx-2 mt-2 tabs" id="for_exchange-anchor" href="#for_exchange">For exchange</a>
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
