@@ -228,6 +228,18 @@
     color: #fff;
 }
 
+.record-button{
+    background-color: #003060;
+    border: 1px solid #003060;
+    color: #fff;
+}
+
+.record-button:hover{
+    background-color: #E55B13;
+    border: 1px solid #E55B13;
+    color: #fff;
+}
+
 .receive-button:hover,
 .confirm-btn:hover,
 .request-btn:hover,

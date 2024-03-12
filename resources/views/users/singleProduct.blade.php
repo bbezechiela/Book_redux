@@ -72,39 +72,6 @@
                 </div>
             </ul>
             @if ($book_id->status == 'Exchange')
-            {{-- <div class="card mb-3 book-details mx-4">
-                <div class="row g-0">
-                    <div class="col-md-4 p-5 stretch-card">
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active easyzoom easyzoom--overlay" data-bs-interval="10000">
-                                    <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
-                                        class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
-                                        width="300px" height="564px">
-                                </div>
-                                <div class="carousel-item easyzoom easyzoom--overlay" data-bs-interval="2000">
-                                    <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
-                                        class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
-                                        width="300px" height="564px">
-                                </div>
-                                <div class="carousel-item easyzoom easyzoom--overlay">
-                                    <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
-                                        class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
-                                        width="300px" height="564px">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true" style="color: #003060"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div> --}}
             <div class="card mb-3 book-details mx-4">
                 <div class="row g-0">
                     <div class="col-md-4 p-5 stretch-card">

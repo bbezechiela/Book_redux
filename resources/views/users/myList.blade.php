@@ -276,6 +276,8 @@
                                         <p class="card-text">Genre: <span>Self-help</span></p>
                                         <p class="card-text">Format: <span>Paperback</span></p>
                                         <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
+                                        <p class="card-text" style="color: #E55B13;">Book the requester wants to exchange: <span>The Pioneers<i class="fa fa-exchange" aria-hidden="true"
+                                style="margin-left: 8px; margin-right: 4px;"></i>City Limits</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
@@ -357,6 +359,8 @@
                                             <p class="card-text">Genre: <span>Self-help</span></p>
                                             <p class="card-text">Format: <span>Paperback</span></p>
                                             <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
+                                            <p class="card-text" style="color: #E55B13;">Book the requester wants to exchange: <span>The Pioneers<i class="fa fa-exchange" aria-hidden="true"
+                                                style="margin-left: 8px; margin-right: 4px;"></i>City Limits</span></p>
                                         </div>
                                     </div>
                                     <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">

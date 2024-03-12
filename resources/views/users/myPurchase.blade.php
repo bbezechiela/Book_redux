@@ -232,13 +232,14 @@
                             <p class="card-text">Genre: <span>Self-help</span></p>
                             <p class="card-text">Format: <span>Paperback</span></p>
                             <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
+                           
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
                         <small class="" style="color: #E55B13;">The book sharer accepted your exchange request, it is now ready to be delivered</small>
                         <div class="button-group">
+                            <button type="button" class="btn btn-sm record-button">View Sharer Record</button>
                             <button type="button" class="btn btn-sm pending-button">Arrange Shipment</button>
-
                         </div>
                     </div>
                 </div>
