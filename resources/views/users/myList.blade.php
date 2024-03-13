@@ -108,6 +108,10 @@
                 <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
                 <p class="my-0 text-center fs-6">Exchange Request</p>
             </a>
+            <a href="/toreceiveLister" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
+                <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
+                <p class="my-0 text-center fs-6">To Receive</p>
+            </a>
 
             <a href="/delivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
                 <p class="my-0 text-center fw-bold fs-3">{{ $delivered_amount }}</p>
