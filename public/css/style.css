@@ -31,6 +31,7 @@
 	margin-top: 5em;
 }
 
+
 .landing-gif img {
 	width: 80%;
 	height: 70%;
@@ -39,6 +40,15 @@
 #landing-title {
 	border-left: 15px solid #E55B13;
 	color: #003060;
+}
+
+#featured-header{
+	color: #E55B13;
+}
+
+#featured-header:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #signup-btn {

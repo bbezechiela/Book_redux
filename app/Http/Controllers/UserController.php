@@ -28,16 +28,6 @@ class UserController extends Controller
         return view('components.sidebar');
     }
 
-    public function following()
-    {
-        return view('users.following');
-    }
-
-    public function followers()
-    {
-        return view('users.followers');
-    }
-
     public function welcome()
     {
         return view('landing_page');
@@ -515,6 +505,11 @@ class UserController extends Controller
         // dd($order);        
         return view('users.toReceive', ['user' => $order]);
         // return view('users.toReceive');
+    }
+
+    public function toReceiveLister()
+    {
+        return view('users.toReceiveLister');
     }
 
     public function deliveredMyPurchase()

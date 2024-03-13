@@ -227,6 +227,7 @@
 .arrange-button,
 .contact-button,
 .save-button,
+.receive-button:hover,
 .track-button {
     color: #fff;
     background-color: #E55B13;
@@ -237,6 +238,7 @@
 .arrange-button:hover,
 .contact-button:hover,
 .save-button:hover,
+.receive-button,
 .track-button:hover {
     color: #fff;
     background-color: #003060;
@@ -507,4 +509,29 @@
     right: 27px;
     margin: 0;
     border: 1px solid #003060;
+}
+
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.accept {
+    color: #FFF;
+    background: #E55B13;
+}
+
+.accept:hover {
+    color: #FFF;
+    background: #6FE76F;
+}
+
+.deny {
+    color: #FFF;
+    background: #003060;
+}
+
+.deny:hover {
+    color: #FFF;
+    background: tomato;
 }

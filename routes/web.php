@@ -123,6 +123,8 @@ Route::get('/mypurchase', [UserController::class, 'myPurchase']);
 
 Route::get('/toreceive', [UserController::class, 'toReceive']);
 
+Route::get('/toreceiveLister', [UserController::class, 'toreceiveLister']);
+
 Route::get('/delivered-mypurchase', [UserController::class, 'deliveredMyPurchase']);
 
 Route::get('/dropped-mypurchase', [UserController::class, 'droppedMyPurchase']);
@@ -332,8 +334,6 @@ Route::get('/couriernotification', [UserController::class, 'courierNotification'
 Route::get('/manageseller', [AdminController::class, 'manageSeller']);
 
 Route::get('/reportedseller', [UserController::class, 'reportedSeller']);
-
-Route::get('/booksrented', [UserController::class, 'booksRented']);
 
 Route::get('/return', [UserController::class, 'manageReturn']);
 
