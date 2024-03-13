@@ -38,8 +38,8 @@
                             data-bs-title="About Us">About Us</a>
                     </li>
                     <div class="d-flex">
-                        <a id="login-btn" href="/login" class="btn" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                            data-bs-title="Login">Login</a>
+                        <a id="login-btn" href="/login" class="btn" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" data-bs-title="Login">Login</a>
                     </div>
                 </ul>
             </div>
@@ -54,8 +54,8 @@
                 <h1 class="mx-2">Uncover New Stories, Trade Used Pages</h1>
                 {{-- <a id="signup-btn" href="/role" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
                     data-bs-placement="top" data-bs-title="Sign Up">Sign In</a> --}}
-                <a id="signup-btn" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
-                    data-bs-placement="top" data-bs-title="Sign Up">Sign In</a>
+                <a id="signup-btn" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="Sign Up">Sign In</a>
             </div>
             <div class="col mx-3 d-flex justify-content-center landing-gif">
                 <img class="img" src="./assets/Reading-book.gif" alt="Image" data-aos="fade-left"
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-    
+
         {{-- <div id="listings" class="mx-5 px-5">
             <h4 id="featured-header">New Listings</h4>
             <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div> --}}
-        
+
         <!-- HOW IT WORKS -->
         <div id="howItWorks" class="container-fluid px-0 pt-5 min-vh-100 offset">
             <h1 id="howItWorks-head" class="mx-auto text-center w-25 mt-5 pb-2" data-aos="fade-up"
@@ -414,7 +414,8 @@
                     to
                     trade your books seamlessly, all while nurturing a vibrant community that
                     celebrates
-                    the joy of reading.</p>
+                    the joy of reading.
+                </p>
 
                 <div class="row text-center px-5 mt-5">
                     <div id="mission-vission" class="col mx-4 p-4 rounded-4" data-aos="zoom-in-up"
@@ -483,12 +484,34 @@
     const gogleProvider = new GoogleAuthProvider();
     const facebookProvider = new FacebookAuthProvider();
 
+    var googleSignIn = async (name, email, id, photo) => {
+        var data = {
+            name: name,
+            email: email,
+            uid: id,
+            image: photo
+        }
+
+        var signIn = await fetch('/googlesignin', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        // var toJsonSignIn = await signIn.json();
+
+        return signIn;
+
+    }
 
 
     document.getElementById('signup-btn').addEventListener('click', () => {
         // Google
         signInWithPopup(auth, gogleProvider)
-            .then((result) => {                
+            .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
@@ -497,6 +520,12 @@
                 // IdP data available using getAdditionalUserInfo(result)                
                 if (user.emailVerified) {
                     console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}`);
+                    googleSignIn(user.displayName, user.email, user.uid, user.photoURL)
+                        .then(response => {
+                            if (response.redirected) {
+                                window.location.href = response.url;
+                            }
+                        });                    
                 }
 
             }).catch((error) => {

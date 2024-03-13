@@ -18,8 +18,6 @@ use PHPUnit\Metadata\Uses;
 
 use function Laravel\Prompts\alert;
 
-// use Illuminate\Support\Facades\Auth;
-
 class UserController extends Controller
 {
 
@@ -40,7 +38,7 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        if ($request->session()->has('user')) {
+        if ($request->session()->has('uid')) {
             if (session('type') == "General User") {
                 return redirect('/explore');
             } else if (session('type') == "Admin") {
@@ -55,7 +53,7 @@ class UserController extends Controller
 
     public function signup(Request $request)
     {
-        if ($request->session()->has('user')) {
+        if ($request->session()->has('uid')) {
             return redirect('/explore');
         } else {
             return view('users.signup');
@@ -79,7 +77,7 @@ class UserController extends Controller
 
     public function explore()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
@@ -94,7 +92,7 @@ class UserController extends Controller
 
     public function singleProduct($id, $user_id)
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             $book = Books::with('item.ratedItem.user')->find($id);
             $user = Users::with('addressUser')->find($user_id);
             return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
@@ -115,7 +113,7 @@ class UserController extends Controller
 
     public function bookClub()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
@@ -131,7 +129,7 @@ class UserController extends Controller
 
     public function bookSellingClub()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
@@ -147,7 +145,7 @@ class UserController extends Controller
 
     public function bookExchangeClub()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
@@ -163,7 +161,7 @@ class UserController extends Controller
 
     public function bookRentingClub()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::with('addressUser')->find(session('id'));
@@ -179,7 +177,7 @@ class UserController extends Controller
 
     public function userProfilePreview($id)
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::with('books', 'reviews')->find($id);
@@ -193,7 +191,7 @@ class UserController extends Controller
 
     public function previewReviews($id)
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::with('books', 'reviews')->find($id);
@@ -209,7 +207,7 @@ class UserController extends Controller
 
     public function eventsSelling()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             // $users = Users::where();
             $user = Users::find(session('id'));
@@ -222,7 +220,7 @@ class UserController extends Controller
 
     public function membersSelling()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
@@ -234,7 +232,7 @@ class UserController extends Controller
 
     public function eventsExchange()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
@@ -246,7 +244,7 @@ class UserController extends Controller
 
     public function membersExchange()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
@@ -258,7 +256,7 @@ class UserController extends Controller
 
     public function eventsRenting()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
@@ -270,7 +268,7 @@ class UserController extends Controller
 
     public function membersRenting()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
 
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser', 'cart')->get();
@@ -282,7 +280,7 @@ class UserController extends Controller
 
     public function checkout(Request $request)
     {
-        if ($request->session()->has('user')) {
+        if ($request->session()->has('uid')) {
             $order = $request->input('items');
             $qty = $request->input('qty');
             $checkout = Cart::whereIn('id', $order)->with('productRelation.user.addressUser')->get();
@@ -300,7 +298,7 @@ class UserController extends Controller
 
     public function deliveryAddress(Request $request)
     {
-        if ($request->session()->has('user')) {
+        if ($request->session()->has('uid')) {
             $address = Address::where('user_id', session('id'))->get();
             // $address = Address::findOrFail(session('id'));
             // return view('users.address', ['address' => $address]);
@@ -313,7 +311,7 @@ class UserController extends Controller
 
     public function wishlist()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             return view('users.wishlist');
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -322,7 +320,7 @@ class UserController extends Controller
 
     public function categories()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             $user = Users::find(session('id'));
             $post = Books::with('user.addressUser')->get();
             return view('users.categories', ['book' => $post, 'user' => $user]);
@@ -336,7 +334,7 @@ class UserController extends Controller
 
     // public function myList()
     // {
-    //     if (session()->has('user')) {
+    //     if (session()->has('uid')) {
     //         return view('users.myList');
     //     } else {            
     //         return view('landing_page')->with('message', 'You have to login first');
@@ -350,7 +348,7 @@ class UserController extends Controller
 
     public function myProfile()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             $user = Users::find(session('id'));
             return view('users.myProfile', ['user' => $user]);
         } else {
@@ -360,7 +358,7 @@ class UserController extends Controller
 
     public function myProfileUpdate(Request $request)
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             if ($request->hasFile('profile_photo')) {
                 $validated = $request->validate([
                     'first_name' => ['required', 'min:4'],
@@ -534,7 +532,7 @@ class UserController extends Controller
 
     public function address(Request $request)
     {
-        if ($request->session()->has('user')) {
+        if ($request->session()->has('uid')) {
             $address = Address::where('user_id', session('id'))->get();
             // $address = Address::findOrFail(session('id'));
             return view('users.address', ['address' => $address]);
@@ -546,7 +544,7 @@ class UserController extends Controller
 
     public function changePassword(Request $request)
     {
-        if ($request->session()->has('user')) {
+        if ($request->session()->has('uid')) {
             $user = Users::find(session('id'));
             return view('users.changePassword', ['user' => $user]);
         } else {
@@ -682,7 +680,7 @@ class UserController extends Controller
 
                 return redirect('/survey');
                 // return redirect()->route('explore');
-                // if ($request->session()->has('user')) {
+                // if ($request->session()->has('uid')) {
                 //     return redirect('/explore');
                 // } else {
                 //     return view('users.signup');
@@ -1379,5 +1377,36 @@ class UserController extends Controller
     public function getToShip($id) {
         $item = Order_Items::find($id);
         return $item;
+    }
+
+
+
+
+
+    // New API's
+    public function googleSignIn(Request $request) {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $uid = $request->input('uid');
+        $photo = $request->input('image');
+        
+        $signUp = Users::create([
+            'type' => 'General User',
+            'name' => $name,
+            'email' => $email,
+            'uid' => $uid
+        ]);
+        
+        if ($signUp) {
+            session()->put([
+                'id' => $signUp->id,
+                'name' => $signUp->name,
+                'email' => $signUp->email,
+                'uid' => $signUp->uid,
+                'image' => $photo
+            ]);
+            return redirect('/survey');
+        }
+        
     }
 }

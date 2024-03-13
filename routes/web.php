@@ -423,3 +423,7 @@ Route::get('/getuseraddress', [UserController::class, 'getCurrentUserAddress']);
 Route::get('/getnearbybooks', [UserController::class, 'getNearbyBooks']);
 
 Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);
+
+
+// New API's
+Route::post('/googlesignin', [UserController::class, 'googleSignIn']);
