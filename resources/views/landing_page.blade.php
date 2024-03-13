@@ -1,16 +1,16 @@
 @include('partials.__header', [
-'title' => 'BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <div class="container-fluid p-0">
     <!-- NAV -->
     <nav class="navbar navbar-expand-lg shadow bg-light fixed-top" data-aos="fade-down" data-aos-duration="1000">
         <div class="container-fluid mx-3">
-            <a class="navbar-brand" href="/"><img src="./assets/Book_Logo.png" alt="Logo" width="130" class="img"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Logo"></a>
+            <a class="navbar-brand" href="/"><img src="./assets/Book_Logo.png" alt="Logo" width="130"
+                    class="img" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,10 +33,10 @@
                         <a class="nav-link fs-7" href="#aboutUs" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             data-bs-title="About Us">About Us</a>
                     </li>
-                    <div class="d-flex">
+                    {{-- <div class="d-flex">
                         <a id="login-btn" href="/login" class="btn" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             data-bs-title="Login">Login</a>
-                    </div>
+                    </div> --}}
                 </ul>
             </div>
 
@@ -48,8 +48,10 @@
         <div class="row align-items-center">
             <div id="landing-title" class="col mx-3" data-aos="fade-right" data-aos-duration="2000">
                 <h1 class="mx-2">Uncover New Stories, Trade Used Pages</h1>
-                <a id="signup-btn" href="/role" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
-                    data-bs-placement="top" data-bs-title="Sign Up">Sign Up</a>
+                {{-- <a id="signup-btn" href="/role" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
+                    data-bs-placement="top" data-bs-title="Sign Up">Sign In</a> --}}
+                <a id="signup-btn" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
+                    data-bs-placement="top" data-bs-title="Sign Up">Sign In</a>
             </div>
             <div class="col mx-3 d-flex justify-content-center landing-gif">
                 <img class="img" src="./assets/Reading-book.gif" alt="Image" data-aos="fade-left"
@@ -334,7 +336,8 @@
 
         <!-- HINTS -->
         <div id="hints" class="container-fluid offset px-0 pt-4">
-            <h1 id="hints-head" class="mx-auto text-center w-25 mt-5 pb-2" data-aos="fade-up" data-aos-duration="2000">
+            <h1 id="hints-head" class="mx-auto text-center w-25 mt-5 pb-2" data-aos="fade-up"
+                data-aos-duration="2000">
                 Resources</h1>
 
             <div id="carouselExampleIndicators" class="carousel slide mt-5" data-aos="fade-right"
@@ -344,7 +347,8 @@
                         <div class="d-flex flex-row justify-content-center">
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title" style="color: #E55B13;">Master Sales Negotiation with These 7
+                                    <h6 class="card-title" style="color: #E55B13;">Master Sales Negotiation with These
+                                        7
                                         Amazing Techniques </h6>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">September 06, 2023</h6>
                                     <p id="num-text" class="card-text mt-3"
@@ -355,7 +359,8 @@
                                         important sales skill as it is a part of most deals.
                                         Let’s look at sales negotiation techniques to help you build rapport with the
                                         client. </p>
-                                    <a id="hints-btn" href="https://www.leadsquared.com/learn/sales/sales-negotiation/"
+                                    <a id="hints-btn"
+                                        href="https://www.leadsquared.com/learn/sales/sales-negotiation/"
                                         class="btn">Continue Reading</a>
                                 </div>
 
@@ -372,7 +377,8 @@
                                         Imagine trying to compare textbooks with a finely bound classic first edition.
                                         That’s the range of packaging I’ve had arrive at my door. My odds of being
                                         pleased after opening a package seem to running around fifty percent.</p>
-                                    <a id="hints-btn" href="https://bookshopblog.com/how-to-package-books-for-shipping/"
+                                    <a id="hints-btn"
+                                        href="https://bookshopblog.com/how-to-package-books-for-shipping/"
                                         class="btn">Continue Reading</a>
                                 </div>
                             </div>
@@ -418,7 +424,8 @@
                             </div>
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title" style="color: #E55B13;">Best Negotiation Books: A Negotiation
+                                    <h6 class="card-title" style="color: #E55B13;">Best Negotiation Books: A
+                                        Negotiation
                                         Reading List</h6>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">January 18, 2024</h6>
                                     <p id="num-text" class="card-text mt-3"
@@ -450,7 +457,8 @@
                                         examining the prices set by their competitors. This approach serves as a
                                         valuable compass, particularly for newcomers in the market, enabling them to
                                         gauge the pricing sweet spot for their offerings.</p>
-                                    <a id="hints-btn" href="https://www.bluecart.com/blog/competitive-pricing-strategy"
+                                    <a id="hints-btn"
+                                        href="https://www.bluecart.com/blog/competitive-pricing-strategy"
                                         class="btn">Continue Reading</a>
                                 </div>
                             </div>
@@ -480,7 +488,8 @@
                             </div>
                             <div class="card mx-3 rounded-4">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title" style="color: #E55B13;">11 Best Negotiation Books to Read in
+                                    <h6 class="card-title" style="color: #E55B13;">11 Best Negotiation Books to Read
+                                        in
                                         2024</h6>
                                     <h6 class="card-subtitle mb-2 text-body-secondary">January 04, 2022</h6>
                                     <p id="num-text" class="card-text mt-3"
@@ -508,7 +517,9 @@
                                         that you’re earning enough money to cover your costs and make a profit, but you
                                         also don’t want to price your book so high that it turns readers away. That’s
                                         where strategic pricing comes in.</p>
-                                    <a id="hints-btn" href="https://amarketingexpert.com/2023/05/02/how-to-market-a-book-7-tips-for-strategic-pricing/" class="btn">Continue Reading</a>
+                                    <a id="hints-btn"
+                                        href="https://amarketingexpert.com/2023/05/02/how-to-market-a-book-7-tips-for-strategic-pricing/"
+                                        class="btn">Continue Reading</a>
                                 </div>
                             </div>
                         </div>
@@ -552,7 +563,8 @@
                 the joy of reading.</p>
 
             <div class="row text-center px-5 mt-5">
-                <div id="mission-vission" class="col mx-4 p-4 rounded-4" data-aos="zoom-in-up" data-aos-duration="2000">
+                <div id="mission-vission" class="col mx-4 p-4 rounded-4" data-aos="zoom-in-up"
+                    data-aos-duration="2000">
                     <h3>Mission Statement</h3>
                     <p style="text-align: justify;">&emsp;Our mission is to build a lively online book trading
                         connecting students and book lovers, making it easy to trade books.
@@ -561,7 +573,8 @@
                         development,
                         and the joy of reading by facilitating book sharing and reuse.</p>
                 </div>
-                <div id="mission-vission" class="col mx-4 p-4 rounded-4" data-aos="zoom-in-up" data-aos-duration="2500">
+                <div id="mission-vission" class="col mx-4 p-4 rounded-4" data-aos="zoom-in-up"
+                    data-aos-duration="2500">
                     <h3>Vision Statement</h3>
                     <p style="text-align: justify;">&emsp;Our vision is to transform how students and book lovers
                         access used books. We want to be the top choice for affordable literary resources, creating
@@ -575,64 +588,151 @@
     </div>
 </div>
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js'
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 
-    {{-- Landing Page (index.php) --}}
-<script>
+{{-- Landing Page (index.php) --}}
+<script type="module">
     AOS.init();
-    // var selling = document.getElementById('selling');
-    // var buying = document.getElementById('buying');
-    // var exchange = document.getElementById('exchange');
-    // var rent = document.getElementById('rent');
-    // var selling_instructions = document.getElementById('selling-page');
-    // var buying_instructions = document.getElementById('buying-page');
-    // var exchange_instructions = document.getElementById('exchange-page');
-    // var renting_instructions = document.getElementById('renting-page');
-    // selling.addEventListener("click", function() {
-    //     selling.style.borderBottom = "2px solid #003060";
-    //     buying.style.borderBottom = "none";
-    //     exchange.style.borderBottom = "none";
-    //     rent.style.borderBottom = "none";
-    //     selling_instructions.style.display = "flex";
-    //     buying_instructions.style.display = "none";
-    //     exchange_instructions.style.display = "none";
-    //     renting_instructions.style.display = "none";
-    //     donate_instructions.style.display = "none";
-    // });
-    // buying.addEventListener("click", function() {
-    //     selling.style.borderBottom = "none";
-    //     buying.style.borderBottom = "2px solid #003060";
-    //     exchange.style.borderBottom = "none";
-    //     rent.style.borderBottom = "none";
-    //     selling_instructions.style.display = "none";
-    //     buying_instructions.style.display = "flex";
-    //     exchange_instructions.style.display = "none";
-    //     renting_instructions.style.display = "none";
-    //     donate_instructions.style.display = "none";
-    // });
-    // exchange.addEventListener("click", function() {
-    //     selling.style.borderBottom = "none";
-    //     buying.style.borderBottom = "none";
-    //     exchange.style.borderBottom = "2px solid #003060";
-    //     rent.style.borderBottom = "none";
-    //     selling_instructions.style.display = "none";
-    //     buying_instructions.style.display = "none";
-    //     exchange_instructions.style.display = "flex";
-    //     renting_instructions.style.display = "none";
-    //     donate_instructions.style.display = "none";
-    // });
-    // rent.addEventListener("click", function() {
-    //     selling.style.borderBottom = "none";
-    //     buying.style.borderBottom = "none";
-    //     exchange.style.borderBottom = "none";
-    //     rent.style.borderBottom = "2px solid #003060";
-    //     selling_instructions.style.display = "none";
-    //     buying_instructions.style.display = "none";
-    //     exchange_instructions.style.display = "none";
-    //     renting_instructions.style.display = "flex";
-    //     donate_instructions.style.display = "none";
-    // });
+
+    // Import the functions you need from the SDKs you need
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        FacebookAuthProvider
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBo35vCyeyZg8TUw591KQaXkggTU9nDp2U",
+        authDomain: "trade-book-app.firebaseapp.com",
+        projectId: "trade-book-app",
+        storageBucket: "trade-book-app.appspot.com",
+        messagingSenderId: "336106378268",
+        appId: "1:336106378268:web:e39bc67cb1b444369a7bd9"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const gogleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
+
+
+
+    document.getElementById('signup-btn').addEventListener('click', () => {
+        // Google
+        signInWithPopup(auth, gogleProvider)
+            .then((result) => {                
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)                
+                if (user.emailVerified) {
+                    console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}`);
+                }
+
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    })
 </script>
+{{-- <script type="module">
+    // Import the functions you need from the SDKs you need
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import {
+        getAuth,
+        signInWithPopup,
+        GoogleAuthProvider,
+        FacebookAuthProvider
+    } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBo35vCyeyZg8TUw591KQaXkggTU9nDp2U",
+        authDomain: "trade-book-app.firebaseapp.com",
+        projectId: "trade-book-app",
+        storageBucket: "trade-book-app.appspot.com",
+        messagingSenderId: "336106378268",
+        appId: "1:336106378268:web:e39bc67cb1b444369a7bd9"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const gogleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
+
+    document.getElementById('click').addEventListener('click', () => {
+        // Google
+        signInWithPopup(auth, gogleProvider)
+            .then((result) => {
+                console.log(result);
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+
+        // Facebook
+        // signInWithPopup(auth, facebookProvider)
+        //     .then((result) => {
+        //         console.log(result);
+        //         // The signed-in user info.
+        //         const user = result.user;
+
+        //         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        //         const credential = FacebookAuthProvider.credentialFromResult(result);
+        //         const accessToken = credential.accessToken;
+
+        //         // IdP data available using getAdditionalUserInfo(result)
+        //         // ...
+        //     })
+        //     .catch((error) => {
+        //         // Handle Errors here.
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //         // The email of the user's account used.
+        //         const email = error.customData.email;
+        //         // The AuthCredential type that was used.
+        //         const credential = FacebookAuthProvider.credentialFromError(error);
+
+        //         // ...
+
+
+        //     });
+    })
+</script> --}}
