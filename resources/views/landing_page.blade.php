@@ -38,8 +38,11 @@
                             data-bs-title="About Us">About Us</a>
                     </li>
                     <div class="d-flex">
-                        <a id="login-btn" href="/login" class="btn" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Login">Login</a>
+                        <a id="login-btn" class="btn" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            data-bs-title="Login">
+                            <img class="img" src="/assets/googleIcon.svg" alt="google icon" />
+                            Login
+                        </a>
                     </div>
                 </ul>
             </div>
@@ -55,7 +58,11 @@
                 {{-- <a id="signup-btn" href="/role" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip"
                     data-bs-placement="top" data-bs-title="Sign Up">Sign In</a> --}}
                 <a id="signup-btn" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-title="Sign Up">Sign In</a>
+                    data-bs-title="Sign Up">
+                    Signin with &ensp;
+                    <img class="img" src="/assets/googleIcon.svg" alt="google icon" />
+                    oogle
+                </a>
             </div>
             <div class="col mx-3 d-flex justify-content-center landing-gif">
                 <img class="img" src="./assets/Reading-book.gif" alt="Image" data-aos="fade-left"
@@ -444,16 +451,34 @@
             </div>
         </div>
     </div>
+    <div class="modal" id="emailExistModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body d-flex flex-column justify-content-center">
+                    <img class="mx-auto" width="50" height="50"
+                        src="https://img.icons8.com/ios/50/FD7E14/error--v1.png" alt="error--v1" />
+                    <p id="alertMessage" class="fw-bold fs-5 text-center"><span id="emailAdd">email</span> has
+                        already signed in.
+                        Please login instead</p>
+                    <button type="button" class="btn btn-warning object-fit-contain fw-bold text-white"
+                        data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
 
-
 {{-- Landing Page (index.php) --}}
 <script type="module">
     AOS.init();
+    const modal = new bootstrap.Modal('#emailExistModal', {
+        keyboard: false
+    });
+
 
     // Import the functions you need from the SDKs you need
     import {
@@ -504,7 +529,25 @@
         // var toJsonSignIn = await signIn.json();
 
         return signIn;
+    }
 
+    var googleLogin = async (uid, photo) => {
+        var data = {
+            uid: uid,
+            image: photo
+        };
+
+        var login = await fetch(`/googlelogin`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        // var toJsonLogin = await login.json();
+
+        return login;
     }
 
 
@@ -524,8 +567,11 @@
                         .then(response => {
                             if (response.redirected) {
                                 window.location.href = response.url;
+                            } else {
+                                document.getElementById('emailAdd').textContent = user.email;
+                                modal.show();
                             }
-                        });                    
+                        });
                 }
 
             }).catch((error) => {
@@ -538,7 +584,42 @@
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
             });
-    })
+    });
+
+    document.getElementById('login-btn').addEventListener('click', () => {
+        signInWithPopup(auth, gogleProvider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+
+                const user = result.user;
+                if (user.emailVerified) {
+                    // console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}`);
+                    googleLogin(user.uid, user.photoURL)
+                        .then(response => {
+                            if (response.redirected) {
+                                window.location.href = response.url;
+                            } else {
+                                document.getElementById('alertMessage').innerHTML =
+                                    `${user.email} is not currently signed in. Please sign in first`;
+                                modal.show();
+                            }
+                            console.log(response);
+                        })
+                        .catch(error => console.error(error));
+                }
+
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    });
 </script>
 {{-- <script type="module">
     // Import the functions you need from the SDKs you need

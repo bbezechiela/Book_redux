@@ -58,8 +58,8 @@
                     <li class="nav-item dropdown">
                         <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                             class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="notification"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
+                            <img src="{{ session('image') }}" alt="notification" width="35" height="35"
+                                class="rounded-5" style="margin-right: 2em;">
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
@@ -154,20 +154,20 @@
                 <div id="content-cards" class="w-100 mx-2 row justify-content-start px-4"
                     style="height: 300px; margin-top: 2em;">
                     @foreach ($books as $book)
-                    <div class="card col-3 m-1 shadow" style="width: 240px; flex: 0 0 auto; mb-3">
-                        <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
-                        <span id="user_{{ $book->id }}" hidden>{{ $book->post_user }}</span>
-                        <span id="edition_{{ $book->id }}" hidden>{{ $book->edition }}</span>
-                        <span id="condition_{{ $book->id }}" hidden>{{ $book->condition }}</span>
-                        <span id="description_{{ $book->id }}" hidden>{{ $book->description }}</span>
-                        <span id="language_{{ $book->id }}" hidden>{{ $book->language }}</span>
-                        <span id="weight_{{ $book->id }}" hidden>{{ $book->weight }}</span>
-                        <span id="width_{{ $book->id }}" hidden>{{ $book->width }}</span>
-                        <span id="height_{{ $book->id }}" hidden>{{ $book->height }}</span>
-                        <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
-                        <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
-                        <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
-                        <span id="stock_{{ $book->id }}" hidden>{{ $book->stock }}</span>
+                        <div class="card col-3 m-1 shadow" style="width: 240px; flex: 0 0 auto; mb-3">
+                            <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
+                            <span id="user_{{ $book->id }}" hidden>{{ $book->post_user }}</span>
+                            <span id="edition_{{ $book->id }}" hidden>{{ $book->edition }}</span>
+                            <span id="condition_{{ $book->id }}" hidden>{{ $book->condition }}</span>
+                            <span id="description_{{ $book->id }}" hidden>{{ $book->description }}</span>
+                            <span id="language_{{ $book->id }}" hidden>{{ $book->language }}</span>
+                            <span id="weight_{{ $book->id }}" hidden>{{ $book->weight }}</span>
+                            <span id="width_{{ $book->id }}" hidden>{{ $book->width }}</span>
+                            <span id="height_{{ $book->id }}" hidden>{{ $book->height }}</span>
+                            <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
+                            <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
+                            <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
+                            <span id="stock_{{ $book->id }}" hidden>{{ $book->stock }}</span>
 
                             <span id="exchange_preferences_{{ $book->id }}"
                                 hidden>{{ $book->exchange_preferences }}</span>
@@ -178,29 +178,29 @@
                             <span id="security_deposit_{{ $book->id }}"
                                 hidden>{{ $book->security_deposit }}</span>
 
-                        <img id="photo_{{ $book->id }}" data-filename="{{ $book->book_photo }}"
-                            src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
-                            alt="{{ $book->book_photo }}" width="130px" height="170px">
-                        <div class="card-body py-0">
-                            <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
-                                {{ $book->title }}</p>
-                            <p id="author_{{ $book->id }}" class="card-text mt-0 mb-0 pb-0">
-                                {{ $book->author }}</p>
-                            <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
-                                {{ $book->genre }}</p>
-                            @if ($book->stock == 0)
-                            <p class="text-danger fw-bold">Sold Out</p>
-                            @else
-                            <div class="card-foot price d-flex justify-content-between p-0 mt-2"
-                                style="font-size: 14px;">
-                                <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
-                                        class="fa fa-eye" aria-hidden="true" style="margin-right: 5px;"></i>View
-                                    Request</a>
-                                <a class="p-0 edit-book" onclick="itemClicked('{{ $book->id }}')"><i
-                                        class="fa fa-pencil-square-o" aria-hidden="true"
-                                        style="margin-right: 5px;"></i>Edit</a>
+                            <img id="photo_{{ $book->id }}" data-filename="{{ $book->book_photo }}"
+                                src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
+                                alt="{{ $book->book_photo }}" width="130px" height="170px">
+                            <div class="card-body py-0">
+                                <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
+                                    {{ $book->title }}</p>
+                                <p id="author_{{ $book->id }}" class="card-text mt-0 mb-0 pb-0">
+                                    {{ $book->author }}</p>
+                                <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
+                                    {{ $book->genre }}</p>
+                                {{-- @if ($book->stock == 0) --}}
+                                <p class="text-danger fw-bold">Sold Out</p>
+                                {{-- @else --}}
+                                <div class="card-foot price d-flex justify-content-between p-0 mt-2"
+                                    style="font-size: 14px;">
+                                    <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
+                                            class="fa fa-eye" aria-hidden="true" style="margin-right: 5px;"></i>View
+                                        Request</a>
+                                    <a class="p-0 edit-book" onclick="itemClicked('{{ $book->id }}')"><i
+                                            class="fa fa-pencil-square-o" aria-hidden="true"
+                                            style="margin-right: 5px;"></i>Edit</a>
+                                </div>
                             </div>
-                        </div>
                     @endforeach
                     {{-- {{ $books->links() }} --}}
                 </div>
@@ -273,7 +273,8 @@
                                         <p class="card-text">Author: <span>Pedro Penduko</span></p>
                                         <p class="card-text">Edition: <span>1st Edition</span></p>
                                         <p class="card-text">Condition: <span>Good</span></p>
-                                        <p class="card-text">Description: <span>This is a sample description of the book I want to offer for exchange.</span></p>
+                                        <p class="card-text">Description: <span>This is a sample description of the
+                                                book I want to offer for exchange.</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -286,11 +287,12 @@
                                 </div>
                                 <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
                                     <button type="button" class="btn accept btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#shipping-details" onclick="" style="margin-right: 1em;">Accept
+                                        data-bs-target="#shipping-details" onclick=""
+                                        style="margin-right: 1em;">Accept
                                         <span class="fa fa-check"></span>
                                     </button>
-                                    <a href="#" class="deny btn btn-sm" style="margin-right: 1em;">Decline <span
-                                            class="fa fa-close"></span></a>
+                                    <a href="#" class="deny btn btn-sm" style="margin-right: 1em;">Decline
+                                        <span class="fa fa-close"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -310,28 +312,28 @@
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active" data-bs-interval="10000">
                                                         <img src="/assets/city_limits.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item" data-bs-interval="2000">
                                                         <img src="/assets/bubble_bath.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item">
                                                         <img src="/assets/brown_book.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item" data-bs-interval="2000">
                                                         <img src="/assets/yellow_book.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item">
                                                         <img src="/assets/city_of_secrets.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -354,7 +356,8 @@
                                             <p class="card-text">Author: <span>Pedro Penduko</span></p>
                                             <p class="card-text">Edition: <span>1st Edition</span></p>
                                             <p class="card-text">Condition: <span>Good</span></p>
-                                            <p class="card-text">Description: <span>This is a sample description of the book I want to offer for exchange.</span></p>
+                                            <p class="card-text">Description: <span>This is a sample description of the
+                                                    book I want to offer for exchange.</span></p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -370,9 +373,10 @@
                                         data-bs-target="#arrange-shipment" onclick="arrangeShipment">Accept
                                         <span class="fa fa-check"></span>
                                     </button> --}}
-                                    <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                    data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
-                                    Details</button>
+                                        <button id="arrange_shipment" type="button"
+                                            class="btn btn-sm arrange-button" data-bs-toggle="modal"
+                                            onclick="viewShipping" data-bs-target="#shipping-details">View
+                                            Details</button>
                                     </div>
                                 </div>
                             </div>
@@ -385,130 +389,131 @@
 
     <!-- Arrange Shipment Modal -->
     <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Transaction Record</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="details-container">
-                    <div class="seller-details-box">
-                        <input type="text" class="d-none" id="item_id">
-                        <label for="seller-details" class="form-label">Sharer Details</label>
-                        <input type="text" class="form-control" id="seller-fullname"
-                            placeholder="Nestine Nicole Navarro"><br>
-                        <input type="text" class="form-control" id="seller-contact-number"
-                            placeholder="09097568923"><br>
-                        <input type="text" class="form-control" id="seller-address"
-                            placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban">
-                    </div>
-
-                    <div class="customer-details-box">
-                        <label for="customer-details" class="form-label">Requester Details</label>
-                        <input type="text" class="form-control" id="customer-fullname"
-                            placeholder="Jennie BlackPink"><br>
-                        <input type text="text" class="form-control" id="customer-contact-number"
-                            placeholder="09129348884"><br>
-                        <input type="text" class="form-control" id="customer-address"
-                            placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban">
-                    </div>
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Transaction Record</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <div class="details-container">
+                        <div class="seller-details-box">
+                            <input type="text" class="d-none" id="item_id">
+                            <label for="seller-details" class="form-label">Sharer Details</label>
+                            <input type="text" class="form-control" id="seller-fullname"
+                                placeholder="Nestine Nicole Navarro"><br>
+                            <input type="text" class="form-control" id="seller-contact-number"
+                                placeholder="09097568923"><br>
+                            <input type="text" class="form-control" id="seller-address"
+                                placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban">
+                        </div>
 
-                <div class="details-container">
-                    <div class="package-details-box">
-                        <label for="package-details" class="form-label">Package Description</label>
-                        <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
-                        <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
-                        <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
-                        <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
-                        {{-- <input type="text" class="form-control" id="payment-method"
+                        <div class="customer-details-box">
+                            <label for="customer-details" class="form-label">Requester Details</label>
+                            <input type="text" class="form-control" id="customer-fullname"
+                                placeholder="Jennie BlackPink"><br>
+                            <input type text="text" class="form-control" id="customer-contact-number"
+                                placeholder="09129348884"><br>
+                            <input type="text" class="form-control" id="customer-address"
+                                placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban">
+                        </div>
+                    </div>
+
+                    <div class="details-container">
+                        <div class="package-details-box">
+                            <label for="package-details" class="form-label">Package Description</label>
+                            <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
+                            <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
+                            <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
+                            <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
+                            {{-- <input type="text" class="form-control" id="payment-method"
                             placeholder="Cash on Delivery"> --}}
+                        </div>
+
+                        <div class="product-details-box">
+                            <label for="product-details" class="form-label">Product Details</label>
+                            <input type="text" class="form-control" id="order-date"
+                                placeholder="Date of the request: 12/29/2023"><br>
+                            <input type="text" class="form-control" id="order-date"
+                                placeholder="Date of the approved request: 12/29/2023"><br>
+                            <input type text="text" class="form-control" id="transaction-number"
+                                placeholder="Transaction Number: TRA421376365"><br>
+                            <input type="text" class="form-control" id="book-title"
+                                placeholder="Maria Clara"><br>
+                        </div>
                     </div>
 
-                    <div class="product-details-box">
-                        <label for="product-details" class="form-label">Product Details</label>
-                        <input type="text" class="form-control" id="order-date"
-                            placeholder="Date of the request: 12/29/2023"><br>
-                        <input type="text" class="form-control" id="order-date"
-                            placeholder="Date of the approved request: 12/29/2023"><br>
-                        <input type text="text" class="form-control" id="transaction-number"
-                            placeholder="Transaction Number: TRA421376365"><br>
-                        <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                    <div class="details-container">
+                        <label class="drop-off-details" for="drop_off" onclick="hidePickupContent()">
+                            <i class="fa fa-dropbox" aria-hidden="true"></i>
+                            <div class="text-section">
+                                <h6 class="fw-bold">Drop off</h6>
+                                <p>You can drop off your parcel at any J&T Express Branch</p>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="Drop off"
+                                    name="transaction_type" id="drop_off">
+                                {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                            </div>
+                        </label>
+                        <label class="pickup-details" for="pick_up">
+                            <i class="fa fa-truck" aria-hidden="true"></i>
+                            <div class="text-section">
+                                <h6 class="fw-bold">Pickup</h6>
+                                <p>J&T Express will collect parcel from your pickup address</p>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="Pickup"
+                                    name="transaction_type" id="pick_up">
+                                {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                            </div>
+                        </label>
+                        <label class="personal-transaction-details" for="personal_transaction"
+                            onclick="hidePickupContent()">
+                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                            <div class="text-section">
+                                <h6 class="fw-bold">Personal Transaction</h6>
+                                <p>You and the customer will arrange your transaction</p>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="Personal Transaction"
+                                    name="transaction_type" id="personal_transaction">
+                                {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                            </div>
+                        </label>
                     </div>
-                </div>
-
-                <div class="details-container">
-                    <label class="drop-off-details" for="drop_off" onclick="hidePickupContent()">
-                        <i class="fa fa-dropbox" aria-hidden="true"></i>
-                        <div class="text-section">
-                            <h6 class="fw-bold">Drop off</h6>
-                            <p>You can drop off your parcel at any J&T Express Branch</p>
+                    <div class="details-container d-none" id="details">
+                        <div class="pickup-address">
+                            <div class="text-section">
+                                <h6 class="mb-2 fw-bold">Pickup Address</h6>
+                                <p id="pickup-name">Nestine Nicole Navarro</p>
+                                <p id="pickup-phone">09054173103</p>
+                                <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
+                                <p id="pickup-postal">6500</p>
+                            </div>
+                            <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                    href="#">Change</a></button>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Drop off"
-                                name="transaction_type" id="drop_off">
-                            {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
-                        </div>
-                    </label>
-                    <label class="pickup-details" for="pick_up">
-                        <i class="fa fa-truck" aria-hidden="true"></i>
-                        <div class="text-section">
-                            <h6 class="fw-bold">Pickup</h6>
-                            <p>J&T Express will collect parcel from your pickup address</p>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Pickup" name="transaction_type"
-                                id="pick_up">
-                            {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
-                        </div>
-                    </label>
-                    <label class="personal-transaction-details" for="personal_transaction"
-                        onclick="hidePickupContent()">
-                        <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        <div class="text-section">
-                            <h6 class="fw-bold">Personal Transaction</h6>
-                            <p>You and the customer will arrange your transaction</p>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Personal Transaction"
-                                name="transaction_type" id="personal_transaction">
-                            {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
-                        </div>
-                    </label>
-                </div>
-                <div class="details-container d-none" id="details">
-                    <div class="pickup-address">
-                        <div class="text-section">
-                            <h6 class="mb-2 fw-bold">Pickup Address</h6>
-                            <p id="pickup-name">Nestine Nicole Navarro</p>
-                            <p id="pickup-phone">09054173103</p>
-                            <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
-                            <p id="pickup-postal">6500</p>
-                        </div>
-                        <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                                href="#">Change</a></button>
-                    </div>
-                    <div class="pickup-date">
-                        <div class="text-section">
-                            <h6 class="mb-2 fw-bold">Pickup Date</h6>
-                            <div class="form-group">
-                                <input type="date" class="form-control" id="pickup-date"
-                                    data-date-format="yyyy-mm-dd">
+                        <div class="pickup-date">
+                            <div class="text-section">
+                                <h6 class="mb-2 fw-bold">Pickup Date</h6>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" id="pickup-date"
+                                        data-date-format="yyyy-mm-dd">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" id="confirm-btn" class="btn confirm-button">Confirm</button>
-                {{-- Clicking confirm button means you accept the order --}}
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" id="confirm-btn" class="btn confirm-button">Confirm</button>
+                    {{-- Clicking confirm button means you accept the order --}}
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- Modal -->
     {{-- create listing --}}
     <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -531,7 +536,7 @@
                         @csrf
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
-                                <div class="col-5 me-1 px-0 border mb-2 rounded">
+                                <div class="col-5 me-1 px-0 py-0 border mb-2 rounded">
                                     <input type="text" name="user_id" value="{{ session('id') }}" hidden>
                                     <input type="text" name="weight" id="sale-weight" hidden>
                                     <input type="text" name="width" id="sale-width" hidden>
@@ -543,18 +548,23 @@
                                     <div class="ExternalFiles">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
                                             Preview</small>
-                                        <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe>
+                                        <input id="pdfUpload" type="file" accept="application/pdf"
+                                            onchange="pdfPreview()" name="pdf_file" hidden>
+                                        <label for="pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
+                                            upload file</label>
+                                        {{-- <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe> --}}
+                                        <div class="border" id="pdfPreview"></div>
                                     </div>
 
                                     {{-- Remove this  --}}
-                                    {{-- <input type="file" name="book_photo" id="sale-image" accept="image/*" hidden> --}}
-                                    {{-- <label for="sale-image" class="position-relative w-100 h-100"
-                                        style="cursor: pointer;"> --}}
-                                        {{-- <img id="sale-book-image" src="../assets/listing.png" alt="image"
+                                    {{-- <input type="file" name="book_photo" id="sale-image" accept="image/*" hidden>
+                                    <label for="sale-image" class="position-relative w-100 h-100"
+                                        style="cursor: pointer;">
+                                    <img id="sale-book-image" src="../assets/listing.png" alt="image"
                                             class=""
                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            data-bs-title="Click to Upload Image" width="170" height="170"> --}}
-                                    {{-- </label> --}}
+                                            data-bs-title="Click to Upload Image" width="170" height="170">
+                                    </label> --}}
                                     {{-- Remove this  --}}
                                 </div>
                                 <div class="col">
@@ -599,19 +609,19 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="number" name="isbn" id="isbn-exchange" class="form-control"
+                                    <input type="text" name="isbn" id="isbn-exchange" class="form-control"
                                         placeholder="ISBN" style="margin-bottom: 12px; color: #003060;">
                                     {{-- <input type="text" name="price" id="price" class="form-control"
                                         id="list-name" placeholder="Price"
                                         style="margin-bottom: 12px; color: #003060;"> --}}
                                     <input type="text" name="edition" id="edition-sale" class="form-control"
                                         placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
-                                    <button type="button" id="sale-shipping-fee-btn" class="form-control"
+                                    {{-- <button type="button" id="sale-shipping-fee-btn" class="form-control"
                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                         data-bs-title="Click to open shipping form"
                                         style="text-align: justify; margin-bottom: 12px;">
                                         !!!!! Remove Shipping Fee
-                                    </button>
+                                    </button> --}}
                                     {{-- <select name="condition" id="" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;">
                                         <option>Condition</option>
@@ -1052,7 +1062,7 @@
                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                     data-bs-title="Click to open shipping form"
                                     style="text-align: justify; margin-bottom: 12px;">
-                                    Shipping Fee 
+                                    Shipping Fee
                                 </button>
                                 <select name="condition" id="" class="form-control form-select"
                                     style="margin-bottom: 12px; color: #003060;">
@@ -1859,7 +1869,8 @@
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Listing</h1>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
                     <option value="Sale">Sale</option>
@@ -1882,8 +1893,8 @@
                                     <input type="text" name="length" id="edit-sale-length" hidden>
                                     <input type="text" name="courier" id="edit-sale-courier" hidden>
 
-                                    <input type="file" name="book_photo" id="edit-sale-image" accept="image/*"
-                                        hidden>
+                                    <input type="file" name="book_photo" id="edit-sale-image"
+                                        accept="image/*" hidden>
                                     <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book
                                         photo
                                         field must be a file of type: jpeg, png, jpg, gif.</small>
@@ -2385,6 +2396,21 @@
 ])
 
 <script>
+    const pdfPreview = () => {
+        var fileInput = document.getElementById('pdfUpload');
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = (e) => {
+            var pdfPrev = document.getElementById('pdfPreview');
+            // <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe>
+            // pdfPrev.innerHTML = '<embed src="' + e.target.result + '" type="application/pdf" width="100%" height="100%">';
+            pdfPrev.innerHTML = `<iframe src="${e.target.result}" width="100%" height="100%" frameborder="0"></iframe>`;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
     function arrangeShipment(book_id, item_id) {
         address_modal.innerHTML = '';
         id_book = book_id;
@@ -2472,38 +2498,38 @@
             })
             .catch(error => console.error(error));
     }
-    address_update_btn.addEventListener('click', () => {
-        var address_selection = document.querySelectorAll('input[name="address_id"]');
-        address_selection.forEach(add_id => {
-            if (add_id.checked == true) {
-                selected_adress = add_id.value
-            }
-        });
-        // alert(selected_adress);
-        fetch('/getorderdetails/' + id_book, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                result.user.address_user.forEach(address => {
-                    if (address.id == selected_adress) {
-                        selected_adress = address.id;
-                        seller_name.value = address.name;
-                        seller_contact_num.value = address.contact_number;
-                        seller_add.value = address.region + ', ' + address.street_building_house +
-                            ', ' +
-                            address.brgy_village + ', ' + address.city_municipality;
-                        pickup_name.textContent = address.name;
-                        pickup_phone.textContent = address.contact_number;
-                        pickup_address.textContent = address.brgy_village + ', ' + address
-                            .city_municipality + ', ' + address.region;
-                        pickup_postal.textContent = address.postal_code;
-                    }
-                });
-            })
-            .catch(error => console.error(error));
-    });
+    // address_update_btn.addEventListener('click', () => {
+    //     var address_selection = document.querySelectorAll('input[name="address_id"]');
+    //     address_selection.forEach(add_id => {
+    //         if (add_id.checked == true) {
+    //             selected_adress = add_id.value
+    //         }
+    //     });
+    //     // alert(selected_adress);
+    //     fetch('/getorderdetails/' + id_book, {
+    //             method: 'GET'
+    //         })
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+    //             result.user.address_user.forEach(address => {
+    //                 if (address.id == selected_adress) {
+    //                     selected_adress = address.id;
+    //                     seller_name.value = address.name;
+    //                     seller_contact_num.value = address.contact_number;
+    //                     seller_add.value = address.region + ', ' + address.street_building_house +
+    //                         ', ' +
+    //                         address.brgy_village + ', ' + address.city_municipality;
+    //                     pickup_name.textContent = address.name;
+    //                     pickup_phone.textContent = address.contact_number;
+    //                     pickup_address.textContent = address.brgy_village + ', ' + address
+    //                         .city_municipality + ', ' + address.region;
+    //                     pickup_postal.textContent = address.postal_code;
+    //                 }
+    //             });
+    //         })
+    //         .catch(error => console.error(error));
+    // });
 
     function viewShipping(book_id, item_id) {
         fetch('/viewshipping/' + book_id, {
@@ -2556,9 +2582,7 @@
     function myFunction() {
         window.print();
     }
-</script>
 
-<script>
     // toast script
     const deleteToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('deleteLiveToast'));
     const createToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('createLiveToast'));
@@ -2803,8 +2827,8 @@
     const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip);
     const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
     const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
-    const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
-    const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
+    // const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
+    // const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
     const ExchangeShippingToolTip = document.getElementById('exchange-shipping-fee-btn');
     const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
     const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
@@ -2828,7 +2852,7 @@
     var list_category = document.getElementById("modal-category");
     var create_listing_btn = document.getElementById('create-listing');
     var back_btn = document.getElementById("back-shipping");
-    var sale_shipping_fee_btn = document.getElementById('sale-shipping-fee-btn');
+    // var sale_shipping_fee_btn = document.getElementById('sale-shipping-fee-btn');
     var exchange_shipping_fee_btn = document.getElementById('exchange-shipping-fee-btn');
     var rent_shipping_fee_btn = document.getElementById('rent-shipping-fee-btn');
     var shipping_save_btn = document.getElementById('shipping-save-btn');
@@ -2865,17 +2889,17 @@
     var rent_courier = document.getElementById('rent-courier');
     create_listing_btn.addEventListener('click', function() {
         list_category.value = 'Sale';
-        document.getElementById('listing-type').textContent = 'Sale';
+        document.getElementById('listing-type').textContent = 'Online Reading';
         createListingModal.show();
     });
     back_btn.addEventListener("click", function() {
         shippingModal.hide();
         createListingModal.show();
     });
-    sale_shipping_fee_btn.addEventListener('click', function() {
-        createListingModal.hide();
-        shippingModal.show();
-    });
+    // sale_shipping_fee_btn.addEventListener('click', function() {
+    //     createListingModal.hide();
+    //     shippingModal.show();
+    // });
     exchange_shipping_fee_btn.addEventListener('click', function() {
         createListingModal.hide();
         shippingModal.show();

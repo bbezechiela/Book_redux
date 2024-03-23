@@ -708,7 +708,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $request->session()->flush();
+        $request->session()->forget(['id', 'name', 'email', 'uid', 'image']);
         return view('landing_page');
     }
 
@@ -847,12 +847,12 @@ class UserController extends Controller
             } else if ($create && $add == 'notDelivery') {
                 return response()->json('for delivery test');
             }
-        }        
+        }
     }
 
     public function updateAddress(Request $request, $id, $add)
     {
-        $address = Address::where(['user_id' => session('id'), 'default_address' => true])->first();        
+        $address = Address::where(['user_id' => session('id'), 'default_address' => true])->first();
 
         if ($request->input('default_address') == true) {
             if ($address && $add == 'notDelivery') {
@@ -875,7 +875,7 @@ class UserController extends Controller
             if ($update_add && $add == 'notDelivery') {
                 return redirect('addresses')->with('message', 'Success! Your address has been updated successfully.');
             }
-        }       
+        }
     }
 
     public function destroyAddress($id, $del)
@@ -1102,13 +1102,15 @@ class UserController extends Controller
                 return redirect('/courierprofile')->with('message', 'Error in updating profile');
             }
         }
-    }    
+    }
 
-    public function redirectNearbyListings() {
+    public function redirectNearbyListings()
+    {
         return view('users.nearbyListings');
     }
 
-    public function displayListings() {
+    public function displayListings()
+    {
         $books = Books::with('user')->get();
         return view('listings', ['books' => $books]);
     }
@@ -1357,24 +1359,28 @@ class UserController extends Controller
         }
     }
 
-    public function getCurrentUserAddress() {
+    public function getCurrentUserAddress()
+    {
         // $user = Users::with('addressUser')->find(session('id'));
         $user = Users::with('addressUser')->find(session('id'));
         return response()->json($user);
     }
 
-    public function getNearbyBooks() {
+    public function getNearbyBooks()
+    {
         // $books = Books::with('user.addressUser')->get();
         $books = Address::with('user.books')->get();
         return $books;
     }
 
-    public function nearbyListings(Request $request) {
+    public function nearbyListings(Request $request)
+    {
         $books = Books::whereIn('id', $request->all())->with('user.addressUser')->get();
-        session()->put('books', $books);       
+        session()->put('books', $books);
     }
 
-    public function getToShip($id) {
+    public function getToShip($id)
+    {
         $item = Order_Items::find($id);
         return $item;
     }
@@ -1384,29 +1390,57 @@ class UserController extends Controller
 
 
     // New API's
-    public function googleSignIn(Request $request) {
+    public function googleSignIn(Request $request)
+    {
         $name = $request->input('name');
         $email = $request->input('email');
         $uid = $request->input('uid');
         $photo = $request->input('image');
-        
-        $signUp = Users::create([
-            'type' => 'General User',
-            'name' => $name,
-            'email' => $email,
-            'uid' => $uid
-        ]);
-        
-        if ($signUp) {
+
+        $users = Users::where('uid', $uid)->first();
+
+        if ($users) {
+            return response()->json('email exist');
+        } else {
+            $signUp = Users::create([
+                'type' => 'General User',
+                'name' => $name,
+                'email' => $email,
+                'uid' => $uid
+            ]);
+
+            if ($signUp) {
+                session()->put([
+                    'id' => $signUp->id,
+                    'name' => $signUp->name,
+                    'email' => $signUp->email,
+                    'uid' => $signUp->uid,
+                    'image' => $photo
+                ]);
+                return redirect('/survey');
+            }
+        }
+    }
+
+    public function googleLogin(Request $request)
+    {
+        $uid = $request->input('uid');
+        $photo = $request->input('image');
+
+        $user = Users::where('uid', $uid)->first();
+
+        if ($user) {
             session()->put([
-                'id' => $signUp->id,
-                'name' => $signUp->name,
-                'email' => $signUp->email,
-                'uid' => $signUp->uid,
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'uid' => $user->uid,
                 'image' => $photo
             ]);
-            return redirect('/survey');
+
+            return redirect()->route('explore');
+        } else {
+            return response()->json('email does not exist');
         }
-        
     }
 }

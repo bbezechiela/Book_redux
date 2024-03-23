@@ -44,7 +44,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                <img src="{{ session('image') }}"
                                     alt="notification" width="35" height="35" class="rounded-5">
                             </a>
                             <ul class="dropdown-menu">
@@ -2250,7 +2250,7 @@
     // var near_you_btn = document.getElementById("near-you-header");
     var for_sale_btn = document.getElementById("for-sale-header");
     var for_exchange_btn = document.getElementById("for-exchange-header");
-    var for_rent_btn = document.getElementById("for-rent-header");
+    // var for_rent_btn = document.getElementById("for-rent-header");
     daily_discover_btn.addEventListener("click", function() {
         // alert("bitch");
         daily_discover_cards.style.display = "none";
@@ -2312,15 +2312,15 @@
         for_rent_cards.style.display = "none";
         document.getElementById("for-exchange-content").style.display = "table";
     });
-    for_rent_btn.addEventListener("click", function() {
-        daily_discover_cards.style.display = "none";
-        featured_cards.style.display = "none";
-        recommended_cards.style.display = "none";
-        // near_you_cards.style.display = "none";
-        for_sale_cards.style.display = "none";
-        for_exchange_cards.style.display = "none";
-        for_rent_cards.style.display = "none";
-        document.getElementById("for-rent-content").style.display = "table";
-    });
+    // for_rent_btn.addEventListener("click", function() {
+    //     daily_discover_cards.style.display = "none";
+    //     featured_cards.style.display = "none";
+    //     recommended_cards.style.display = "none";
+    //     // near_you_cards.style.display = "none";
+    //     for_sale_cards.style.display = "none";
+    //     for_exchange_cards.style.display = "none";
+    //     for_rent_cards.style.display = "none";
+    //     document.getElementById("for-rent-content").style.display = "table";
+    // });
 </script>
 {{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}

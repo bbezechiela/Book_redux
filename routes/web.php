@@ -427,3 +427,5 @@ Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);
 
 // New API's
 Route::post('/googlesignin', [UserController::class, 'googleSignIn']);
+
+Route::post('/googlelogin', [UserController::class, 'googleLogin']);

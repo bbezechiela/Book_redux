@@ -10,11 +10,8 @@ class ListingController extends Controller
 {
     public function myList()
     {
-        if (session()->has('user')) {
-            $data = Books::where('user_id', session('id'))->with('item')->orderBy('created_at', 'desc')->get();
-            // $data = Books::where('user_id', session('id'))->orderBy('created_at', 'desc');
-            // $sample = $data->paginate(2);
-            // return view('users.myList', ['books' => $sample, 'status' => 'All']);
+        if (session()->has('uid')) {
+            $data = Books::where('user_id', session('id'))->with('item')->orderBy('created_at', 'desc')->get();            
             return view('users.myList', ['books' => $data, 'status' => 'All']);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -23,7 +20,7 @@ class ListingController extends Controller
 
     public function sale()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             $data = Books::where([
                 'user_id' => session('id'),
                 'status' => 'Sale'
@@ -37,7 +34,7 @@ class ListingController extends Controller
 
     public function exchange()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             $data = Books::where([
                 'user_id' => session('id'),
                 'status' => 'Exchange'
@@ -51,7 +48,7 @@ class ListingController extends Controller
 
     public function rent()
     {
-        if (session()->has('user')) {
+        if (session()->has('uid')) {
             $data = Books::where([
                 'user_id' => session('id'),
                 'status' => 'Rent'
