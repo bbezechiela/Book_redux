@@ -33,7 +33,7 @@
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
                                 <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
-                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
                                 <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
                             </ul>
                         </li>

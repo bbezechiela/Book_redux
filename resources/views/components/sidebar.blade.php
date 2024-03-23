@@ -21,15 +21,15 @@
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Explore</span>
     </a>
-    <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
+    {{-- <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
-    </a>
+    </a> --}}
     <a href="/messageses" class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
         <i class="fa fa-envelope-o d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Messages</span>
     </a>
-    <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
+    <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
         <i class="fa fa-users d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Book Club</span>
     </a>
@@ -59,10 +59,10 @@
         <i class="fa fa-thumbs-up d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">My Likes</span>
     </a> --}}
-    <a href="/feedback" class="btn nav-item d-flex flex-row w-100 px-5 py-0 feedback-side-btn">
+    {{-- <a href="/feedback" class="btn nav-item d-flex flex-row w-100 px-5 py-0 feedback-side-btn">
         <i class="fa fa-comments d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">System Feedback</span>
-    </a>
+    </a> --}}
     <a href="/logout" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="fa fa-sign-out d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Logout</span>

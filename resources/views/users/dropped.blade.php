@@ -55,7 +55,7 @@
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
                                 <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
-                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
                                 <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
                             </ul>
                         </li>
@@ -146,6 +146,12 @@
                             <p class="card-text">Format: <span>Paperback</span></p>
                             <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
                         </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
+                        <small>The requester wants to exchange your book, <span class="btn" data-bs-toggle="modal"
+                                data-bs-target="#request" style="color: #E55B13; border: none;">"The Pioneers"</span>
+                            for <span class="btn" style="color: #E55B13; cursor: text;">"City
+                                Limits"</span></small>
                     </div>
                 </div>
             </div>
@@ -278,6 +284,82 @@
                 </div>
             </div>
         </div> --}}
+    </div>
+</div>
+
+<!-- Request Modal -->
+<div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Submission
+                    Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em; border: none;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="10000">
+                                            <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start"
+                                                alt="..." height="200px" width="200px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"
+                                        style="color: #003060"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Title: <span>The Pioneers</span></h5>
+                                <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                                <p class="card-text">Edition: <span>1st Edition</span></p>
+                                <p class="card-text">Condition: <span>Good</span></p>
+                                <p class="card-text">Description: <span>This is a sample description.</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                                <p class="card-text">Genre: <span>Self-help</span></p>
+                                <p class="card-text">Format: <span>Paperback</span></p>
+                                <p class="card-text">Exchange Preferences: <span>This is a sample exchange
+                                        preferences.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

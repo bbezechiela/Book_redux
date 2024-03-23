@@ -18,9 +18,9 @@
     <a href="/addresses" class="btn nav-item d-flex flex-row w-100 px-5 py-0 addresses-side-btn">
         <span class="nav-link">Addresses</span>
     </a>
-    <a href="/changepassword" class="btn nav-item d-flex flex-row w-100 px-5 py-0 password-side-btn">
+    {{-- <a href="/changepassword" class="btn nav-item d-flex flex-row w-100 px-5 py-0 password-side-btn">
         <span class="nav-link">Change Password</span>
-    </a>
+    </a> --}}
     <a href="/reviewsandratings" class="btn nav-item d-flex flex-row w-100 px-5 py-0 reviews-side-btn">
         <span class="nav-link">User Reviews and Ratings</span>
     </a>

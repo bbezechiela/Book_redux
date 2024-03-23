@@ -33,7 +33,7 @@
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
                                 <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
-                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
                                 <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
                             </ul>
                         </li>
@@ -339,6 +339,7 @@
                                             <div class="d-flex flex-row product-name-image">
                                                 <div class="d-flex flex-column justify-content-between ml-2">
                                                     <div>
+                                                        <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
                                                         <span id="detail-title" class="d-block fw-bold p-name">The
                                                             Pioneers</span>
                                                         <span id="detail-isbn" class="fs-12">ISBN:
@@ -369,8 +370,51 @@
                                                     id="detail-shipping-address"
                                                     class="font-weight-bold shipping-address-text">09491229441</span>
                                             </div>
-                                            <div><span class="d-block fs-12">Requester Name</span><span
+                                            {{-- <div><span class="d-block fs-12">Requester Name</span><span
                                                     id="detail-payment-method" class="font-weight-bold">Nestine
+                                                    Navarro</span></div>
+                                            <div><span class="d-block fs-12">Contact Number</span><span
+                                                    id="detail-shipping-address"
+                                                    class="font-weight-bold shipping-address-text">09054173103</span>
+                                            </div> --}}
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between align-items-center product-details">
+                                            <div class="d-flex flex-row product-name-image">
+                                                <div class="d-flex flex-column justify-content-between ml-2">
+                                                    <div>
+                                                        <h6 style="color:#E55B13;">Requester Book - Incoming book</h6>
+                                                        <span id="detail-title" class="d-block fw-bold p-name">City Limits</span>
+                                                        <span id="detail-isbn" class="fs-12">ISBN:
+                                                            65342688564324</span><br>
+                                                        <span id="detail-isbn" class="fs-12">Author: Marx
+                                                            Hinton</span><br>
+                                                        <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
+                                                        <span id="detail-isbn" class="fs-12">Edition: 1st
+                                                            Edition</span><br>
+                                                        <span id="detail-isbn" class="fs-12">Condition: New</span><br>
+                                                        <span id="detail-isbn" class="fs-12">Exchange Method Preference:
+                                                            Meetup</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-price">
+                                                <h5 id="detail-price">Paperback</h5>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div
+                                            class="d-flex flex-row justify-content-between align-items-center order-details">
+                                            {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
+                                                    id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
+                                                    Penduko</span>
+                                            </div>
+                                            <div><span class="d-block fs-12">Contact number</span><span
+                                                    id="detail-shipping-address"
+                                                    class="font-weight-bold shipping-address-text">09491229441</span>
+                                            </div> --}}
+                                            <div><span class="d-block fs-12">Requester Name</span><span
+                                                    id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
                                                     Navarro</span></div>
                                             <div><span class="d-block fs-12">Contact Number</span><span
                                                     id="detail-shipping-address"
