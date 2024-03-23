@@ -132,7 +132,7 @@
                             <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
                                 Details</button>
-                            <a class="btn btn-sm receive-button" href="">Order
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#order-received" href="">Order
                                 Received</a>
                         </div>
                     </div>
@@ -467,6 +467,104 @@
             </div>
         </div>
     </div>
+
+    <!-- Confirmation-Order Modal -->
+    <div class="modal fade" id="order-received" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    {{-- <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Release
+                        <span>P120.00</span> to seller
+                    </h1> --}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="color: #003060;">
+                    <p>Check that you received the book in satisfactory condition (no return required)
+                        before confirming receipt.</p>
+                    <p>Once you confirm, the transaction is completed and you will not be able to submit a return
+                        request.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                        data-bs-target="#return-refund">Return</button>
+                    <button type="button" class="btn confirm-btn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Return Refund Modal -->
+    <div class="modal fade" id="return-refund" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Return
+                        Request</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="color: #003060;">
+                    <p>Please complete the following details for return request.</p>
+                    <div class="order-cart">
+                        <div class="name-return d-flex justify-content-between">
+                            <div>
+
+                                {{-- I COMMENT MUNA KAY NA ERROR DIK NATUTUHAY PAG FRONTEND --}}
+
+                                {{-- <a class="seller-name" href="/userlistings/{{ $order->user_id }}"><span>Jennie
+                                    Blackpink</span></a> --}}
+
+                                {{-- I COMMENT MUNA KAY NA ERROR DIK NATUTUHAY PAG FRONTEND --}}
+                            </div>
+                        </div>
+                        <div class="product-return">
+                            <div class="book-details-return">
+                                <div class="left-section">
+                                    <img src="../assets/city_of_secrets.png" alt="book" width="50px" height="80px">
+                                    <div class="book-info-return">
+                                        <p class="card-title">Title: <span>The Pioneers</span></p>
+                                        <p class="card-title">ISBN: <span>124154238778</span></p>
+                                        <p class="card-title">Author: <span>Pedro Penduko</span></p>
+                                        <p class="card-title">Edition: <span>1st Edition</span></p>
+                                        <p class="card-title">Condition: <span>Good</span></p>
+                                        <p class="card-title">Genre: <span>Self-help</span></p>
+                                        <p class="card-title">Format: <span>Paperback</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleTextarea" class="form-label">Reason/s:</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="5"
+                            placeholder="Enter your text here..."></textarea>
+                    </div>
+                    <p>Evidence:
+                        <div class="image-container">
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="image-holder">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn request-btn">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     {{-- alert modal --}}
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">

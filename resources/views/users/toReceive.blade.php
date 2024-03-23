@@ -227,7 +227,8 @@
                             <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
                                 Details</button>
-                            <a class="btn btn-sm receive-button" href="">Order
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#order-received"
+                                href="">Order
                                 Received</a>
                         </div>
                     </div>
@@ -433,19 +434,20 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Release
+                    {{-- <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Release
                         <span>P120.00</span> to seller
-                    </h1>
+                    </h1> --}}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="color: #003060;">
-                    <p>Check that you received all items in satisfactory condition (no return/refund required)
+                    <p>Check that you received the book in satisfactory condition (no return required)
                         before confirming receipt.</p>
-                    <p>Once you confirm, the order is completed and we will release the payment to seller.</p>
+                    <p>Once you confirm, the transaction is completed and you will not be able to submit a return
+                        request.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                        data-bs-target="#return-refund">Return Refund</button>
+                        data-bs-target="#return-refund">Return</button>
                     <button type="button" class="btn confirm-btn">Confirm</button>
                 </div>
             </div>
@@ -457,12 +459,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Return/Refund
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Return
                         Request</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" style="color: #003060;">
-                    <p>Please complete the following details for return/refund request.</p>
+                    <p>Please complete the following details for return request.</p>
                     <div class="order-cart">
                         <div class="name-return d-flex justify-content-between">
                             <div>
@@ -480,16 +482,13 @@
                                 <div class="left-section">
                                     <img src="../assets/city_of_secrets.png" alt="book" width="50px" height="80px">
                                     <div class="book-info-return">
-                                        <p class="mb-0 book-title">City of Secrets</p>
-                                        <p class="mb-0 fw-bold interaction-type">Sale</p>
-                                        <p class="payment-mode">Personal Transaction</p>
-                                    </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">P144</p>
-                                        <p class="text-total">Total Payment:<span class="product-total">P144</span>
-                                        </p>
+                                        <p class="card-title">Title: <span>The Pioneers</span></p>
+                                        <p class="card-title">ISBN: <span>124154238778</span></p>
+                                        <p class="card-title">Author: <span>Pedro Penduko</span></p>
+                                        <p class="card-title">Edition: <span>1st Edition</span></p>
+                                        <p class="card-title">Condition: <span>Good</span></p>
+                                        <p class="card-title">Genre: <span>Self-help</span></p>
+                                        <p class="card-title">Format: <span>Paperback</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -690,7 +689,8 @@
                                         <div class="d-flex flex-column justify-content-between ml-2">
                                             <div>
                                                 <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
-                                                <span id="detail-title" class="d-block fw-bold p-name">City Limits</span>
+                                                <span id="detail-title" class="d-block fw-bold p-name">City
+                                                    Limits</span>
                                                 <span id="detail-isbn" class="fs-12">ISBN:
                                                     65342688564324</span><br>
                                                 <span id="detail-isbn" class="fs-12">Author: Marx
@@ -709,8 +709,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div
-                                    class="d-flex flex-row justify-content-between align-items-center order-details">
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
                                     {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
                                             id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
                                             Penduko</span>
@@ -720,7 +719,8 @@
                                             class="font-weight-bold shipping-address-text">09491229441</span>
                                     </div> --}}
                                     <div><span class="d-block fw-bold fs-12">Requester Name</span><span
-                                            id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
+                                            id="detail-payment-method" class="font-weight-bold"
+                                            style="color: rgb(111, 185, 219)">Nestine
                                             Navarro</span></div>
                                     <div><span class="d-block fs-12">Contact Number</span><span
                                             id="detail-shipping-address"
@@ -753,10 +753,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div
-                                    class="d-flex flex-row justify-content-between align-items-center order-details">
-                                    <div><span class="d-block fs-12">Lister Name</span><span
-                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie Penduko</span>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <div><span class="d-block fs-12">Lister Name</span><span id="detail-order-date"
+                                            style="color: rgb(111, 185, 219)">Marie Penduko</span>
                                     </div>
                                     <div><span class="d-block fs-12">Contact number</span><span
                                             id="detail-shipping-address"
