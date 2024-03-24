@@ -536,38 +536,22 @@
                         @csrf
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
-                                <div class="col-5 me-1 px-0 py-0 border mb-2 rounded">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
-                                    <input type="text" name="weight" id="sale-weight" hidden>
-                                    <input type="text" name="width" id="sale-width" hidden>
-                                    <input type="text" name="height" id="sale-height" hidden>
-                                    <input type="text" name="length" id="sale-length" hidden>
-                                    <input type="text" name="courier" id="sale-courier" hidden>
+                                <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
+                                    <input type="text" name="user_id" value="{{ session('id') }}" required hidden>                                    
 
                                     {{-- The book file that the user uploaded should be display here for preview --}}
-                                    <div class="ExternalFiles">
+                                    <div class="ExternalFiles h-75">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
                                             Preview</small>
                                         <input id="pdfUpload" type="file" accept="application/pdf"
-                                            onchange="pdfPreview()" name="pdf_file" hidden>
+                                            name="pdf_file" hidden required>
                                         <label for="pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
                                             upload file</label>
-                                        {{-- <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe> --}}
-                                        <div class="border" id="pdfPreview"></div>
+                                        <iframe class="w-100 h-100" id="frame" src="" frameborder="0"></iframe>
                                     </div>
-
-                                    {{-- Remove this  --}}
-                                    {{-- <input type="file" name="book_photo" id="sale-image" accept="image/*" hidden>
-                                    <label for="sale-image" class="position-relative w-100 h-100"
-                                        style="cursor: pointer;">
-                                    <img id="sale-book-image" src="../assets/listing.png" alt="image"
-                                            class=""
-                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            data-bs-title="Click to Upload Image" width="170" height="170">
-                                    </label> --}}
-                                    {{-- Remove this  --}}
+                                    
                                 </div>
-                                <div class="col">
+                                <div class="col mb-3">
                                     <div class="form-group">
                                         <div class="row">
                                             <label class="col-md-4 control-label" for="filebutton1">Book Cover</label>
@@ -575,7 +559,7 @@
                                                 <div class="input-file-wrapper">
                                                     <input id="filebutton1" name="front_cover" accept="image/*"
                                                         class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
+                                                        style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
 
@@ -586,14 +570,14 @@
                                                     {{-- Should accept pdf and docx --}}
                                                     <input id="filebutton2" name="interior_photo" accept="image/*"
                                                         class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
+                                                        style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <select name="genre" id="" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
+                                        style="margin-bottom: 12px; color: #003060;" required>
                                         <option>Genre</option>
                                         <option value="Educational">Educational</option>
                                         <option value="Romance & Saga">Romance & Saga</option>
@@ -610,35 +594,16 @@
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
                                     <input type="text" name="isbn" id="isbn-exchange" class="form-control"
-                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;">
-                                    {{-- <input type="text" name="price" id="price" class="form-control"
-                                        id="list-name" placeholder="Price"
-                                        style="margin-bottom: 12px; color: #003060;"> --}}
+                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
                                     <input type="text" name="edition" id="edition-sale" class="form-control"
-                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
-                                    {{-- <button type="button" id="sale-shipping-fee-btn" class="form-control"
-                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                        data-bs-title="Click to open shipping form"
-                                        style="text-align: justify; margin-bottom: 12px;">
-                                        !!!!! Remove Shipping Fee
-                                    </button> --}}
-                                    {{-- <select name="condition" id="" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                        <option>Condition</option>
-                                        <option value="New">New</option>
-                                        <option value="Like New">Like New</option>
-                                        <option value="Very Good">Very Good</option>
-                                        <option value="Good">Good</option>
-                                        <option value="Fair">Fair</option>
-                                        <option value="Poor">Poor</option>
-                                    </select> --}}
+                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
                                 <input type="text" name="title" class="form-control" placeholder="Title"
-                                    style="margin-bottom: 12px; color: #003060;">
+                                    style="margin-bottom: 12px; color: #003060;" required>
                                 <input type="text" name="author" class="form-control" placeholder="Author"
-                                    style="margin-bottom: 12px; color: #003060;">
+                                    style="margin-bottom: 12px; color: #003060;" required>
                                 <textarea name="description" id="description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
                                 <div class="col guidelines">
                                     <h6>Listing Guidelines</h6>
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -2396,20 +2361,11 @@
 ])
 
 <script>
-    const pdfPreview = () => {
-        var fileInput = document.getElementById('pdfUpload');
-        var file = fileInput.files[0];
-        var reader = new FileReader();
+    document.getElementById('pdfUpload').addEventListener('change', (e) => {
+        var file = e.target.files[0];
+        document.getElementById('frame').src = URL.createObjectURL(file);
+    });
 
-        reader.onload = (e) => {
-            var pdfPrev = document.getElementById('pdfPreview');
-            // <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe>
-            // pdfPrev.innerHTML = '<embed src="' + e.target.result + '" type="application/pdf" width="100%" height="100%">';
-            pdfPrev.innerHTML = `<iframe src="${e.target.result}" width="100%" height="100%" frameborder="0"></iframe>`;
-        };
-
-        reader.readAsDataURL(file);
-    }
 
     function arrangeShipment(book_id, item_id) {
         address_modal.innerHTML = '';

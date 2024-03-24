@@ -61,78 +61,79 @@ class ListingController extends Controller
     }
 
     public function saleList(Request $request)
-    {
-        $validated = $request->validate([
-            'user_id' => 'required',
-            'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'title' => ['required', 'min:4'],
-            'author' => ['required', 'min:4'],
-            'edition' => ['required', 'min:2'],
-            'genre' => ['required', 'min:2'],
-            'stock' => 'required',
-            'condition' => 'required',
-            'description' => ['required', 'min:4'],
-            'language' => 'required',
-            'weight' => 'required',
-            'width' => 'required',
-            'height' => 'required',
-            'length' => 'required',
-            'courier' => 'required',
-            'price' => 'required'
-        ]);
+    {   
+        dd($request->all());
+        // $validated = $request->validate([
+        //     'user_id' => 'required',
+        //     'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+        //     'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+        //     'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+        //     'title' => ['required', 'min:4'],
+        //     'author' => ['required', 'min:4'],
+        //     'edition' => ['required', 'min:2'],
+        //     'genre' => ['required', 'min:2'],
+        //     'stock' => 'required',
+        //     'condition' => 'required',
+        //     'description' => ['required', 'min:4'],
+        //     'language' => 'required',
+        //     'weight' => 'required',
+        //     'width' => 'required',
+        //     'height' => 'required',
+        //     'length' => 'required',
+        //     'courier' => 'required',
+        //     'price' => 'required'
+        // ]);
 
-        $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
-        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-        $extension = $request->file('book_photo')->getClientOriginalExtension();
-        $fileNameToStore = $fileName . '_' . time() . $extension;
-        $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
-        $validated['book_photo'] = $fileNameToStore;
+        // $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
+        // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        // $extension = $request->file('book_photo')->getClientOriginalExtension();
+        // $fileNameToStore = $fileName . '_' . time() . $extension;
+        // $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
+        // $validated['book_photo'] = $fileNameToStore;
 
-        $coverWithExt = $request->file('back_cover')->getClientOriginalName();
-        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
-        $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
-        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
-        $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
-        $validated['back_cover'] = $coverNameToStore;
+        // $coverWithExt = $request->file('back_cover')->getClientOriginalName();
+        // $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        // $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
+        // $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        // $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+        // $validated['back_cover'] = $coverNameToStore;
 
-        $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
-        $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
-        $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
-        $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
-        $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
-        $validated['interior_photo'] = $interiorNameToStore;
+        // $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
+        // $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
+        // $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
+        // $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
+        // $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
+        // $validated['interior_photo'] = $interiorNameToStore;
 
-        // dd($validated);
-        $salePost = Books::create([
-            'user_id' => $validated['user_id'],
-            'status' => 'Sale',
-            'unit' => 'Available',
-            'book_photo' => $validated['book_photo'],
-            'back_cover' => $validated["back_cover"],
-            'interior_photo' => $validated["interior_photo"],
-            'title' => $validated['title'],
-            'author' => $validated['author'],
-            'edition' => $validated['edition'],
-            'genre' => $validated['genre'],
-            'stock' => $validated["stock"],
-            'condition' => $validated['condition'],
-            'description' => $validated['description'],
-            'language' => $validated['language'],
-            'price' => $validated['price'],
-            'weight' => $validated['weight'],
-            'width' => $validated['width'],
-            'height' => $validated['height'],
-            'length' => $validated['length'],
-            'courier' => $validated['courier']
-        ]);
+        // // dd($validated);
+        // $salePost = Books::create([
+        //     'user_id' => $validated['user_id'],
+        //     'status' => 'Sale',
+        //     'unit' => 'Available',
+        //     'book_photo' => $validated['book_photo'],
+        //     'back_cover' => $validated["back_cover"],
+        //     'interior_photo' => $validated["interior_photo"],
+        //     'title' => $validated['title'],
+        //     'author' => $validated['author'],
+        //     'edition' => $validated['edition'],
+        //     'genre' => $validated['genre'],
+        //     'stock' => $validated["stock"],
+        //     'condition' => $validated['condition'],
+        //     'description' => $validated['description'],
+        //     'language' => $validated['language'],
+        //     'price' => $validated['price'],
+        //     'weight' => $validated['weight'],
+        //     'width' => $validated['width'],
+        //     'height' => $validated['height'],
+        //     'length' => $validated['length'],
+        //     'courier' => $validated['courier']
+        // ]);
 
-        if ($salePost) {
-            return redirect()->route('mylist')->with('createMessage', 'Listing created successfully! Your information has been recorded and is now live for viewing.');
-        } else {
-            return redirect()->route('mylist')->with('createMessage', 'Error: Cannot list item');
-        }
+        // if ($salePost) {
+        //     return redirect()->route('mylist')->with('createMessage', 'Listing created successfully! Your information has been recorded and is now live for viewing.');
+        // } else {
+        //     return redirect()->route('mylist')->with('createMessage', 'Error: Cannot list item');
+        // }
     }
 
     public function exchangeList(Request $request)

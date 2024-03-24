@@ -28,7 +28,11 @@ class UserController extends Controller
 
     public function welcome()
     {
-        return view('landing_page');
+        if (session()->has('uid')) {
+            return redirect('/explore');
+        } else {
+            return view('landing_page');
+        }        
     }
 
     public function role()
