@@ -1330,7 +1330,7 @@
                 </div>
 
                 <!-- rent -->
-                <div id="rent">
+                {{-- <div id="rent">
                     <form id="rent-form" action="/mylist/rentpost" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body container-fluid px-5">
@@ -1785,7 +1785,7 @@
                                 style="background-color: #E55B13;">List</button>
                         </div>
                     </form>
-                </div>
+                </div> --}}
             </div>
 
         </div>
@@ -1884,7 +1884,7 @@
                                     <input type="text" name="price" id="edit-sale-price"
                                         class="form-control" placeholder="Price"
                                         style="margin-bottom: 12px; color: #003060;">
-                                    <button type="button" id="edit-sale-shipping-fee-btn" class="form-control"
+                                    {{-- <button type="button" id="edit-sale-shipping-fee-btn" class="form-control" --}}
                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                         data-bs-title="Click to open shipping form"
                                         style="text-align: justify; margin-bottom: 12px; color: #003060;">
@@ -2044,7 +2044,7 @@
                 </div>
 
                 <!-- rent -->
-                <div id="edit-rent-div">
+                {{-- <div id="edit-rent-div">
                     <form id="edit-rent-form" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body container-fluid px-5">
@@ -2167,7 +2167,7 @@
                                 class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
                         </div>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -2330,93 +2330,93 @@
     });
 
 
-    function arrangeShipment(book_id, item_id) {
-        address_modal.innerHTML = '';
-        id_book = book_id;
-        fetch('/getorderdetails/' + book_id, {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                result.user.address_user.forEach(address => {
-                    console.log(address);
-                    if (address.id == parseInt(selected_adress)) {
-                        seller_name.value = address.name;
-                        seller_contact_num.value = address.contact_number;
-                        seller_add.value = address.address;
-                        pickup_name.textContent = address.name;
-                        pickup_phone.textContent = address.contact_number;
-                        pickup_address.textContent = address.address;
-                        pickup_postal.textContent = address.postal_code;
-                    } else if (address.default_address) {
-                        selected_adress = address.id;
-                        seller_name.value = address.name;
-                        seller_contact_num.value = address.contact_number;
-                        seller_add.value = address.address;
-                        pickup_name.textContent = address.name;
-                        pickup_phone.textContent = address.contact_number;
-                        pickup_address.textContent = address.address;
-                    }
-                    var address_label = document.createElement('label');
-                    var address_text_section = document.createElement('div');
-                    var add_pickup_name = document.createElement('p');
-                    var add_pickup_phone = document.createElement('p');
-                    var add_pickup_address = document.createElement('p');
-                    var add_pickup_postal = document.createElement('p');
-                    var address_radio = document.createElement('input');
-                    address_label.className = 'pickup-address mb-2';
-                    address_label.htmlFor = 'id_' + address.id;
-                    address_text_section.className = 'text-section';
-                    // add_pickup_name.id = 'pickup-name';
-                    // add_pickup_name.className = 'fw-bold';
-                    // add_pickup_phone.id = 'pickup-phone';
-                    // add_pickup_address.id = 'pickup-address';
-                    // add_pickup_postal.id = 'pickup-postal';
-                    address_radio.id = 'id_' + address.id;
-                    address_radio.type = 'radio';
-                    address_radio.name = 'address_id';
-                    address_radio.value = address.id;
-                    add_pickup_name.textContent = address.name;
-                    add_pickup_phone.textContent = address.contact_number;
-                    add_pickup_address.textContent = address.address;
-                    address_modal.appendChild(address_label);
-                    address_label.appendChild(address_text_section);
-                    address_text_section.appendChild(add_pickup_name);
-                    address_text_section.appendChild(add_pickup_phone);
-                    address_text_section.appendChild(add_pickup_address);
-                    address_text_section.appendChild(add_pickup_postal);
-                    address_label.appendChild(address_radio);
-                });
-                var item_created;
-                result.item.forEach(item => {
-                    if (item.id == item_id) {
-                        id.value = item.id;
-                        customer_name.value = item.order.address.name;
-                        order_number.value = item.order.order_number;
-                        customer_contact_num.value = item.order.user.phone_number;
-                        customer_add.value = item.order.address.address;
-                        payment.value = item.order.payment_method;
-                        item_created = item.order.created_at;
-                    }
-                });
-                weight.value = result.weight;
-                width.value = result.width;
-                height.value = result.height;
-                length.value = result.length;
-                var date = new Date(item_created);
-                // order_date.value = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
-                order_date.value = date.toLocaleDateString();
-                book_title.value = result.title;
-                trans_type.value = result.status;
-                price.value = result.price;
-                shipping.value = '₱130';
-                if (document.getElementById('pick_up').checked) {
-                    displayPickupContent();
-                }
-            })
-            .catch(error => console.error(error));
-    }
+    // function arrangeShipment(book_id, item_id) {
+    //     address_modal.innerHTML = '';
+    //     id_book = book_id;
+    //     fetch('/getorderdetails/' + book_id, {
+    //             method: 'GET'
+    //         })
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+    //             result.user.address_user.forEach(address => {
+    //                 console.log(address);
+    //                 if (address.id == parseInt(selected_adress)) {
+    //                     seller_name.value = address.name;
+    //                     seller_contact_num.value = address.contact_number;
+    //                     seller_add.value = address.address;
+    //                     pickup_name.textContent = address.name;
+    //                     pickup_phone.textContent = address.contact_number;
+    //                     pickup_address.textContent = address.address;
+    //                     pickup_postal.textContent = address.postal_code;
+    //                 } else if (address.default_address) {
+    //                     selected_adress = address.id;
+    //                     seller_name.value = address.name;
+    //                     seller_contact_num.value = address.contact_number;
+    //                     seller_add.value = address.address;
+    //                     pickup_name.textContent = address.name;
+    //                     pickup_phone.textContent = address.contact_number;
+    //                     pickup_address.textContent = address.address;
+    //                 }
+    //                 var address_label = document.createElement('label');
+    //                 var address_text_section = document.createElement('div');
+    //                 var add_pickup_name = document.createElement('p');
+    //                 var add_pickup_phone = document.createElement('p');
+    //                 var add_pickup_address = document.createElement('p');
+    //                 var add_pickup_postal = document.createElement('p');
+    //                 var address_radio = document.createElement('input');
+    //                 address_label.className = 'pickup-address mb-2';
+    //                 address_label.htmlFor = 'id_' + address.id;
+    //                 address_text_section.className = 'text-section';
+    //                 // add_pickup_name.id = 'pickup-name';
+    //                 // add_pickup_name.className = 'fw-bold';
+    //                 // add_pickup_phone.id = 'pickup-phone';
+    //                 // add_pickup_address.id = 'pickup-address';
+    //                 // add_pickup_postal.id = 'pickup-postal';
+    //                 address_radio.id = 'id_' + address.id;
+    //                 address_radio.type = 'radio';
+    //                 address_radio.name = 'address_id';
+    //                 address_radio.value = address.id;
+    //                 add_pickup_name.textContent = address.name;
+    //                 add_pickup_phone.textContent = address.contact_number;
+    //                 add_pickup_address.textContent = address.address;
+    //                 address_modal.appendChild(address_label);
+    //                 address_label.appendChild(address_text_section);
+    //                 address_text_section.appendChild(add_pickup_name);
+    //                 address_text_section.appendChild(add_pickup_phone);
+    //                 address_text_section.appendChild(add_pickup_address);
+    //                 address_text_section.appendChild(add_pickup_postal);
+    //                 address_label.appendChild(address_radio);
+    //             });
+    //             var item_created;
+    //             result.item.forEach(item => {
+    //                 if (item.id == item_id) {
+    //                     id.value = item.id;
+    //                     customer_name.value = item.order.address.name;
+    //                     order_number.value = item.order.order_number;
+    //                     customer_contact_num.value = item.order.user.phone_number;
+    //                     customer_add.value = item.order.address.address;
+    //                     payment.value = item.order.payment_method;
+    //                     item_created = item.order.created_at;
+    //                 }
+    //             });
+    //             weight.value = result.weight;
+    //             width.value = result.width;
+    //             height.value = result.height;
+    //             length.value = result.length;
+    //             var date = new Date(item_created);
+    //             // order_date.value = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
+    //             order_date.value = date.toLocaleDateString();
+    //             book_title.value = result.title;
+    //             trans_type.value = result.status;
+    //             price.value = result.price;
+    //             shipping.value = '₱130';
+    //             if (document.getElementById('pick_up').checked) {
+    //                 displayPickupContent();
+    //             }
+    //         })
+    //         .catch(error => console.error(error));
+    // }
     // address_update_btn.addEventListener('click', () => {
     //     var address_selection = document.querySelectorAll('input[name="address_id"]');
     //     address_selection.forEach(add_id => {
@@ -2516,7 +2516,7 @@
     // delete
     var sale_delete = document.getElementById('sale-delete');
     var exchange_delete = document.getElementById('exchange-delete');
-    var rent_delete = document.getElementById('rent-delete');
+    // var rent_delete = document.getElementById('rent-delete');
     sale_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
         window.location.href = "/mylist/delete/" + id.value;
@@ -2525,10 +2525,10 @@
         var id = document.getElementById('edit-book-id');
         window.location.href = "/mylist/delete/" + id.value;
     });
-    rent_delete.addEventListener('click', () => {
-        var id = document.getElementById('edit-book-id');
-        window.location.href = "/mylist/delete/" + id.value;
-    });
+    // rent_delete.addEventListener('click', () => {
+    //     var id = document.getElementById('edit-book-id');
+    //     window.location.href = "/mylist/delete/" + id.value;
+    // });
     // update    
     var edit_modal = document.getElementById('edit-modal-category');
     var edit_courier;
@@ -2663,7 +2663,7 @@
     // update btn
     var sale_update_btn = document.getElementById('sale-update');
     var exchange_update_btn = document.getElementById('exchange-update');
-    var rent_update_btn = document.getElementById('rent-update');
+    // var rent_update_btn = document.getElementById('rent-update');
     sale_update_btn.addEventListener('click', () => {
         var sale_form = document.getElementById('edit-sale-form');
         var book_id = document.getElementById('edit-book-id');
@@ -2694,35 +2694,31 @@
         exchange_form.action = "/mylist/updateExchange/" + book_id.value;
         exchange_form.submit();
     });
-    rent_update_btn.addEventListener('click', () => {
-        var rent_form = document.getElementById('edit-rent-form');
-        var book_id = document.getElementById('edit-book-id');
-        var edit_weight = document.getElementById('edit-weight');
-        var edit_width = document.getElementById('edit-width');
-        var edit_height = document.getElementById('edit-height');
-        var edit_length = document.getElementById('edit-length');
-        document.getElementById('edit-rent-weight').value = edit_weight.value;
-        document.getElementById('edit-rent-width').value = edit_width.value
-        document.getElementById('edit-rent-height').value = edit_height.value;
-        document.getElementById('edit-rent-length').value = edit_length.value;
-        document.getElementById('edit-rent-courier').value = edit_courier;
-        rent_form.action = "/mylist/updateRent/" + book_id.value;
-        rent_form.submit();
-    });
+    // rent_update_btn.addEventListener('click', () => {
+    //     var rent_form = document.getElementById('edit-rent-form');
+    //     var book_id = document.getElementById('edit-book-id');
+    //     var edit_weight = document.getElementById('edit-weight');
+    //     var edit_width = document.getElementById('edit-width');
+    //     var edit_height = document.getElementById('edit-height');
+    //     var edit_length = document.getElementById('edit-length');
+    //     document.getElementById('edit-rent-weight').value = edit_weight.value;
+    //     document.getElementById('edit-rent-width').value = edit_width.value
+    //     document.getElementById('edit-rent-height').value = edit_height.value;
+    //     document.getElementById('edit-rent-length').value = edit_length.value;
+    //     document.getElementById('edit-rent-courier').value = edit_courier;
+    //     rent_form.action = "/mylist/updateRent/" + book_id.value;
+    //     rent_form.submit();
+    // });
     edit_modal.addEventListener('change', () => {
         if (edit_modal.value == 'Sale') {
             document.getElementById("edit-sale-div").style.display = "flex";
             document.getElementById("edit-exchange-div").style.display = "none";
-            document.getElementById("edit-rent-div").style.display = "none";
+            // document.getElementById("edit-rent-div").style.display = "none";
         } else if (edit_modal.value == 'Exchange') {
             document.getElementById("edit-sale-div").style.display = "none";
             document.getElementById("edit-exchange-div").style.display = "flex";
-            document.getElementById("edit-rent-div").style.display = "none";
-        } else if (edit_modal.value == 'Rent') {
-            document.getElementById("edit-sale-div").style.display = "none";
-            document.getElementById("edit-exchange-div").style.display = "none";
-            document.getElementById("edit-rent-div").style.display = "flex";
-        }
+            // document.getElementById("edit-rent-div").style.display = "none";
+        } 
     });
     // sort select    
     var sort_by = document.getElementById('sort');
@@ -2733,27 +2729,25 @@
             window.location.href = "/mylist/sale";
         } else if (sort_by.value == "Exchange") {
             window.location.href = "/mylist/exchange";
-        } else if (sort_by.value == "Rent") {
-            window.location.href = "/mylist/rent";
-        }
+        } 
     });
     // tool tips
     // const SaleimageToolTip = document.getElementById('sale-book-image');
     // const tooltipSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(SaleimageToolTip);
     const ExchangeImageToolTip = document.getElementById('exchange-book-image');
     const tooltipExchangeImageShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeImageToolTip);
-    const RentImageToolTip = document.getElementById('rent-book-image');
-    const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip);
+    // const RentImageToolTip = document.getElementById('rent-book-image');
+    // const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip);
     const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
     const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
     // const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
     // const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
-    const ExchangeShippingToolTip = document.getElementById('exchange-shipping-fee-btn');
-    const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
-    const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
-    const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip);
-    const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
-    const tooltipEditSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleShippingToolTip);
+    // const ExchangeShippingToolTip = document.getElementById('exchange-shipping-fee-btn');
+    // const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
+    // const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
+    // const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip);
+    // const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
+    // const tooltipEditSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleShippingToolTip);
     // modals
     const createListingModal = new bootstrap.Modal('#createListingModal', {
         keyboard: false
@@ -2761,91 +2755,92 @@
     const updateListingModal = new bootstrap.Modal('#updateListingModal', {
         keyboard: false
     });
-    const shippingModal = new bootstrap.Modal('#shipping-fee', {
-        keyboard: false
-    });
-    const editShippingModal = new bootstrap.Modal('#edit-shipping-fee', {
-        keyboard: false
-    });
+    // const shippingModal = new bootstrap.Modal('#shipping-fee', {
+    //     keyboard: false
+    // });
+    // const editShippingModal = new bootstrap.Modal('#edit-shipping-fee', {
+    //     keyboard: false
+    // });
     // buttons for modals
     var list_category = document.getElementById("modal-category");
     var create_listing_btn = document.getElementById('create-listing');
-    var back_btn = document.getElementById("back-shipping");
+    // var back_btn = document.getElementById("back-shipping");
     // var sale_shipping_fee_btn = document.getElementById('sale-shipping-fee-btn');
-    var exchange_shipping_fee_btn = document.getElementById('exchange-shipping-fee-btn');
-    var rent_shipping_fee_btn = document.getElementById('rent-shipping-fee-btn');
-    var shipping_save_btn = document.getElementById('shipping-save-btn');
-    var edit_back_btn = document.getElementById("edit-back-shipping");
+    // var exchange_shipping_fee_btn = document.getElementById('exchange-shipping-fee-btn');
+    // var rent_shipping_fee_btn = document.getElementById('rent-shipping-fee-btn');
+    // var shipping_save_btn = document.getElementById('shipping-save-btn');
+    // var edit_back_btn = document.getElementById("edit-back-shipping");
     var edit_sale_shipping_fee_btn = document.getElementById('edit-sale-shipping-fee-btn');
-    var edit_exchange_shipping_fee_btn = document.getElementById('edit-exchange-shipping-fee-btn');
-    var edit_rent_shipping_fee_btn = document.getElementById('edit-rent-shipping-fee-btn');
-    var edit_shipping_save_btn = document.getElementById('edit-shipping-save-btn');
+    // var edit_exchange_shipping_fee_btn = document.getElementById('edit-exchange-shipping-fee-btn');
+    // var edit_rent_shipping_fee_btn = document.getElementById('edit-rent-shipping-fee-btn');
+    // var edit_shipping_save_btn = document.getElementById('edit-shipping-save-btn');
     // shipping form inputs
-    var weight = document.getElementById('weight');
-    var width = document.getElementById('width');
-    var height = document.getElementById('height');
-    var length = document.getElementById('length');
-    // var jrsRadio = document.getElementById('jrs');
-    var jtRadio = document.getElementById('jt');
-    var courier;
-    // hidden inputs for sale
-    var sale_weight = document.getElementById('sale-weight');
-    var sale_width = document.getElementById('sale-width');
-    var sale_height = document.getElementById('sale-height');
-    var sale_length = document.getElementById('sale-length');
-    var sale_courier = document.getElementById('sale-courier');
+    // var weight = document.getElementById('weight');
+    // var width = document.getElementById('width');
+    // var height = document.getElementById('height');
+    // var length = document.getElementById('length');
+    // // var jrsRadio = document.getElementById('jrs');
+    // var jtRadio = document.getElementById('jt');
+    // var courier;
+    // // hidden inputs for sale
+    // var sale_weight = document.getElementById('sale-weight');
+    // var sale_width = document.getElementById('sale-width');
+    // var sale_height = document.getElementById('sale-height');
+    // var sale_length = document.getElementById('sale-length');
+    // var sale_courier = document.getElementById('sale-courier');
     // hidden inputs for exchange
-    var exchange_weight = document.getElementById('exchange-weight');
-    var exchange_width = document.getElementById('exchange-width');
-    var exchange_height = document.getElementById('exchange-height');
-    var exchange_length = document.getElementById('exchange-length');
-    var exchange_courier = document.getElementById('exchange-courier');
-    // hidden inputs for rent
-    var rent_weight = document.getElementById('rent-weight');
-    var rent_width = document.getElementById('rent-width');
-    var rent_height = document.getElementById('rent-height');
-    var rent_length = document.getElementById('rent-length');
-    var rent_courier = document.getElementById('rent-courier');
+    // var exchange_weight = document.getElementById('exchange-weight');
+    // var exchange_width = document.getElementById('exchange-width');
+    // var exchange_height = document.getElementById('exchange-height');
+    // var exchange_length = document.getElementById('exchange-length');
+    // var exchange_courier = document.getElementById('exchange-courier');
+    // // hidden inputs for rent
+    // var rent_weight = document.getElementById('rent-weight');
+    // var rent_width = document.getElementById('rent-width');
+    // var rent_height = document.getElementById('rent-height');
+    // var rent_length = document.getElementById('rent-length');
+    // var rent_courier = document.getElementById('rent-courier');
+
     create_listing_btn.addEventListener('click', function() {
         list_category.value = 'Sale';
         document.getElementById('listing-type').textContent = 'Online Reading';
         createListingModal.show();
     });
-    back_btn.addEventListener("click", function() {
-        shippingModal.hide();
-        createListingModal.show();
-    });
+    // back_btn.addEventListener("click", function() {
+    //     shippingModal.hide();
+    //     createListingModal.show();
+    // });
     // sale_shipping_fee_btn.addEventListener('click', function() {
     //     createListingModal.hide();
     //     shippingModal.show();
     // });
-    exchange_shipping_fee_btn.addEventListener('click', function() {
-        createListingModal.hide();
-        shippingModal.show();
-    });
-    rent_shipping_fee_btn.addEventListener('click', function() {
-        createListingModal.hide();
-        shippingModal.show();
-    });
-    edit_back_btn.addEventListener('click', () => {
-        editShippingModal.hide();
-        updateListingModal.show();
-    });
-    edit_sale_shipping_fee_btn.addEventListener('click', () => {
-        updateListingModal.hide();
-        editShippingModal.show()
-    });
-    edit_exchange_shipping_fee_btn.addEventListener('click', () => {
-        updateListingModal.hide();
-        editShippingModal.show()
-    });
-    edit_rent_shipping_fee_btn.addEventListener('click', () => {
-        updateListingModal.hide();
-        editShippingModal.show()
-    });
+    // exchange_shipping_fee_btn.addEventListener('click', function() {
+    //     createListingModal.hide();
+    //     shippingModal.show();
+    // });
+    // rent_shipping_fee_btn.addEventListener('click', function() {
+    //     createListingModal.hide();
+    //     shippingModal.show();
+    // });
+    // edit_back_btn.addEventListener('click', () => {
+    //     editShippingModal.hide();
+    //     updateListingModal.show();
+    // });
+    // edit_sale_shipping_fee_btn.addEventListener('click', () => {
+    //     updateListingModal.hide();
+    //     editShippingModal.show()
+    // });
+    // edit_exchange_shipping_fee_btn.addEventListener('click', () => {
+    //     updateListingModal.hide();
+    //     editShippingModal.show()
+    // });
+    // edit_rent_shipping_fee_btn.addEventListener('click', () => {
+    //     updateListingModal.hide();
+    //     editShippingModal.show()
+    // });
     var sale_form = document.getElementById('sale-form');
     var exchange_form = document.getElementById('exchange-form');
-    var rent_form = document.getElementById('rent-form');
+    // var rent_form = document.getElementById('rent-form');
     sale_form.addEventListener('submit', function(event) {
         sale_weight.value = weight.value;
         sale_width.value = width.value;
@@ -2860,59 +2855,59 @@
         exchange_length.value = length.value;
         exchange_courier.value = courier;
     });
-    rent_form.addEventListener('submit', function(event) {
-        rent_weight.value = weight.value;
-        rent_width.value = width.value;
-        rent_height.value = height.value;
-        rent_length.value = length.value;
-        rent_courier.value = courier;
-    });
-    shipping_save_btn.addEventListener('click', function() {
-        if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
-            alert("Please complete every fields");
-        } else {
-            if (jtRadio.checked) {
-                courier = jtRadio.value;
-                // if (jrsRadio.checked) {
-                //     courier = jrsRadio.value;
-                // } else if (jtRadio.checked) {
-                //     courier = jtRadio.value;
-            } else {
-                courier = null;
-            }
-            sale_weight.value = weight.value;
-            sale_width.value = width.value;
-            sale_height.value = height.value;
-            sale_length.value = length.value;
-            sale_courier.value = courier;
-            shippingModal.hide();
-            createListingModal.show();
-        }
-    });
-    edit_shipping_save_btn.addEventListener('click', () => {
-        // var book_id = document.getElementById('edit-book-id');
-        var edit_weight = document.getElementById('edit-weight');
-        var edit_width = document.getElementById('edit-width');
-        var edit_height = document.getElementById('edit-height');
-        var edit_length = document.getElementById('edit-length');
-        var edit_jrs_radio = document.getElementById('edit-jrs');
-        var edit_jt_radio = document.getElementById('edit-jt');
-        if (edit_weight.value == "" || edit_width.value == "" || edit_height.value == "" || edit_length.value ==
-            "") {
-            alert("Please fill all the inputs");
-        } else {
-            if (edit_jrs_radio.checked) {
-                edit_courier = edit_jrs_radio.value;
-            } else if (edit_jt_radio.checked) {
-                edit_courier = edit_jt_radio.value;
-            } else {
-                edit_courier = null;
-            }
-            editShippingModal.hide();
-            updateListingModal.show();
-        }
-        // alert(edit_weight.value + " " + edit_width.value + " " + edit_height.value + " " + edit_length.value + " " + edit_courier);
-    });
+    // rent_form.addEventListener('submit', function(event) {
+    //     rent_weight.value = weight.value;
+    //     rent_width.value = width.value;
+    //     rent_height.value = height.value;
+    //     rent_length.value = length.value;
+    //     rent_courier.value = courier;
+    // });
+    // shipping_save_btn.addEventListener('click', function() {
+    //     if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
+    //         alert("Please complete every fields");
+    //     } else {
+    //         if (jtRadio.checked) {
+    //             courier = jtRadio.value;
+    //             // if (jrsRadio.checked) {
+    //             //     courier = jrsRadio.value;
+    //             // } else if (jtRadio.checked) {
+    //             //     courier = jtRadio.value;
+    //         } else {
+    //             courier = null;
+    //         }
+    //         sale_weight.value = weight.value;
+    //         sale_width.value = width.value;
+    //         sale_height.value = height.value;
+    //         sale_length.value = length.value;
+    //         sale_courier.value = courier;
+    //         shippingModal.hide();
+    //         createListingModal.show();
+    //     }
+    // });
+    // edit_shipping_save_btn.addEventListener('click', () => {
+    //     // var book_id = document.getElementById('edit-book-id');
+    //     var edit_weight = document.getElementById('edit-weight');
+    //     var edit_width = document.getElementById('edit-width');
+    //     var edit_height = document.getElementById('edit-height');
+    //     var edit_length = document.getElementById('edit-length');
+    //     var edit_jrs_radio = document.getElementById('edit-jrs');
+    //     var edit_jt_radio = document.getElementById('edit-jt');
+    //     if (edit_weight.value == "" || edit_width.value == "" || edit_height.value == "" || edit_length.value ==
+    //         "") {
+    //         alert("Please fill all the inputs");
+    //     } else {
+    //         if (edit_jrs_radio.checked) {
+    //             edit_courier = edit_jrs_radio.value;
+    //         } else if (edit_jt_radio.checked) {
+    //             edit_courier = edit_jt_radio.value;
+    //         } else {
+    //             edit_courier = null;
+    //         }
+    //         editShippingModal.hide();
+    //         updateListingModal.show();
+    //     }
+    //     // alert(edit_weight.value + " " + edit_width.value + " " + edit_height.value + " " + edit_length.value + " " + edit_courier);
+    // });
     // list category    
     var exchange_btn = document.getElementById('create-exchange-listing');
     exchange_btn.addEventListener('click', () => {
@@ -2920,7 +2915,7 @@
         document.getElementById('listing-type').textContent = 'Exchange';
         document.getElementById("sale").style.display = "none";
         document.getElementById("exchange").style.display = "flex";
-        document.getElementById("rent").style.display = "none";
+        // document.getElementById("rent").style.display = "none";
         createListingModal.show();
     });
     list_category.addEventListener("change", function() {
@@ -2928,21 +2923,17 @@
         if (list_category.value == "Sale") {
             document.getElementById("sale").style.display = "flex";
             document.getElementById("exchange").style.display = "none";
-            document.getElementById("rent").style.display = "none";
+            // document.getElementById("rent").style.display = "none";
         } else if (list_category.value == "Exchange") {
             document.getElementById("sale").style.display = "none";
             document.getElementById("exchange").style.display = "flex";
-            document.getElementById("rent").style.display = "none";
-        } else if (list_category.value == "Rent") {
-            document.getElementById("sale").style.display = "none";
-            document.getElementById("exchange").style.display = "none";
-            document.getElementById("rent").style.display = "flex";
-        }
+            // document.getElementById("rent").style.display = "none";
+    } 
     });
     // uploading image
     // var sale_image_upload = document.getElementById("sale-image");
     var exchange_image_upload = document.getElementById("exchange-image");
-    var rent_image_upload = document.getElementById("rent-image");
+    // var rent_image_upload = document.getElementById("rent-image");
     // sale_image_upload.addEventListener("change", function() {
     //     var image = document.getElementById("sale-book-image");
     //     image.src = URL.createObjectURL(event.target.files[0]);
@@ -2951,14 +2942,14 @@
         var image = document.getElementById("exchange-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
-    rent_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("rent-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);
-    });
+    // rent_image_upload.addEventListener("change", function() {
+    //     var image = document.getElementById("rent-book-image");
+    //     image.src = URL.createObjectURL(event.target.files[0]);
+    // });
     // uploading edit image
     var edit_sale_image_upload = document.getElementById("edit-sale-image");
     var exchange_image_upload = document.getElementById("edit-exchange-image");
-    var rent_image_upload = document.getElementById("edit-rent-image");
+    // var rent_image_upload = document.getElementById("edit-rent-image");
     edit_sale_image_upload.addEventListener("change", function() {
         var image = document.getElementById("edit-sale-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -2967,10 +2958,10 @@
         var image = document.getElementById("edit-exchange-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
-    rent_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("edit-rent-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);
-    });
+    // rent_image_upload.addEventListener("change", function() {
+    //     var image = document.getElementById("edit-rent-book-image");
+    //     image.src = URL.createObjectURL(event.target.files[0]);
+    // });
 
     document.getElementById('flexCheckDefault').addEventListener('change', function() {
         var submitButton = document.getElementById('submitButton');
