@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use App\Models\Cart;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
@@ -62,27 +63,55 @@ class ListingController extends Controller
 
     public function saleList(Request $request)
     {   
-        dd($request->all());
-        // $validated = $request->validate([
-        //     'user_id' => 'required',
-        //     'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-        //     'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-        //     'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-        //     'title' => ['required', 'min:4'],
-        //     'author' => ['required', 'min:4'],
-        //     'edition' => ['required', 'min:2'],
-        //     'genre' => ['required', 'min:2'],
-        //     'stock' => 'required',
-        //     'condition' => 'required',
-        //     'description' => ['required', 'min:4'],
-        //     'language' => 'required',
-        //     'weight' => 'required',
-        //     'width' => 'required',
-        //     'height' => 'required',
-        //     'length' => 'required',
-        //     'courier' => 'required',
-        //     'price' => 'required'
-        // ]);
+        // dd($request->all());
+        $fileNameWithExt = $request->file('pdf_file')->getClientOriginalName();
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('pdf_file')->getClientOriginalExtension();
+        $fileNameToStore = $fileName . '_' . time() . $extension;
+        $request->file('pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+        $coverWithExt = $request->file('front_cover')->getClientOriginalName();
+        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        $coverExtension = $request->file('front_cover')->getClientOriginalExtension();
+        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);        
+        
+        
+        $id = $request->input('user_id');
+        $genre = $request->input('genre');
+        $isbn = $request->input('isbn');
+        $edition = $request->input('edition');
+        $title = $request->input('title');
+        $author = $request->input('author');
+        $description = $request->input('description');
+        $book_file = $request->input('pdf_file');
+        $front = $request->input('front_cover');
+        $interior = $request->input('interior_photo');
+        
+        
+        try {
+            $post = Books::create([
+                'user_id' => $id,
+                'status' => 'Online Reading',
+                'genre' => $genre,
+                'isbn' => $isbn,
+                'edition' => $edition,
+                'title' => $title,
+                'author' => $author,
+                'description' => $description,
+                'book_filename' => $fileNameToStore,
+                'back_cover' => $coverNameToStore,
+                'interior_photo' => $interior
+            ]);
+
+            if ($post) {
+                return 'Success';
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+        
+        
 
         // $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
         // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -91,7 +120,7 @@ class ListingController extends Controller
         // $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
         // $validated['book_photo'] = $fileNameToStore;
 
-        // $coverWithExt = $request->file('back_cover')->getClientOriginalName();
+        
         // $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
         // $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
         // $coverNameToStore = $coverName . '_' . time() . $coverExtension;

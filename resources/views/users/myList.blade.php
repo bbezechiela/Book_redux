@@ -154,33 +154,10 @@
                 <div id="content-cards" class="w-100 mx-2 row justify-content-start px-4"
                     style="height: 300px; margin-top: 2em;">
                     @foreach ($books as $book)
-                        <div class="card col-3 m-1 shadow" style="width: 240px; flex: 0 0 auto; mb-3">
-                            <span id="status_{{ $book->id }}" hidden>{{ $book->status }}</span>
-                            <span id="user_{{ $book->id }}" hidden>{{ $book->post_user }}</span>
-                            <span id="edition_{{ $book->id }}" hidden>{{ $book->edition }}</span>
-                            <span id="condition_{{ $book->id }}" hidden>{{ $book->condition }}</span>
-                            <span id="description_{{ $book->id }}" hidden>{{ $book->description }}</span>
-                            <span id="language_{{ $book->id }}" hidden>{{ $book->language }}</span>
-                            <span id="weight_{{ $book->id }}" hidden>{{ $book->weight }}</span>
-                            <span id="width_{{ $book->id }}" hidden>{{ $book->width }}</span>
-                            <span id="height_{{ $book->id }}" hidden>{{ $book->height }}</span>
-                            <span id="length_{{ $book->id }}" hidden>{{ $book->length }}</span>
-                            <span id="courier_{{ $book->id }}" hidden>{{ $book->courier }}</span>
-                            <span id="price_{{ $book->id }}" hidden>{{ $book->price }}</span>
-                            <span id="stock_{{ $book->id }}" hidden>{{ $book->stock }}</span>
-
-                            <span id="exchange_preferences_{{ $book->id }}"
-                                hidden>{{ $book->exchange_preferences }}</span>
-
-                            <span id="rental_duration_{{ $book->id }}" hidden>{{ $book->rental_duration }}</span>
-                            <span id="rental_terms_and_condition_{{ $book->id }}"
-                                hidden>{{ $book->rental_terms_and_condition }}</span>
-                            <span id="security_deposit_{{ $book->id }}"
-                                hidden>{{ $book->security_deposit }}</span>
-
-                            <img id="photo_{{ $book->id }}" data-filename="{{ $book->book_photo }}"
-                                src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
-                                alt="{{ $book->book_photo }}" width="130px" height="170px">
+                        <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">                           
+                            <img id="photo_{{ $book->id }}" data-filename="{{ $book->back_cover }}"
+                                src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto rounded"
+                                alt="{{ $book->back_cover }}" height="170px" style="max-width: 200px;">
                             <div class="card-body py-0">
                                 <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
                                     {{ $book->title }}</p>
@@ -189,7 +166,7 @@
                                 <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
                                     {{ $book->genre }}</p>
                                 {{-- @if ($book->stock == 0) --}}
-                                <p class="text-danger fw-bold">Sold Out</p>
+                                {{-- <p class="text-danger fw-bold">Sold Out</p> --}}
                                 {{-- @else --}}
                                 <div class="card-foot price d-flex justify-content-between p-0 mt-2"
                                     style="font-size: 14px;">
@@ -369,10 +346,6 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
-                                        {{-- <button type="button" class="btn accept" data-bs-toggle="modal"
-                                        data-bs-target="#arrange-shipment" onclick="arrangeShipment">Accept
-                                        <span class="fa fa-check"></span>
-                                    </button> --}}
                                         <button id="arrange_shipment" type="button"
                                             class="btn btn-sm arrange-button" data-bs-toggle="modal"
                                             onclick="viewShipping" data-bs-target="#shipping-details">View
@@ -537,7 +510,8 @@
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" required hidden>                                    
+                                    <input type="text" name="user_id" value="{{ session('id') }}" required
+                                        hidden>
 
                                     {{-- The book file that the user uploaded should be display here for preview --}}
                                     <div class="ExternalFiles h-75">
@@ -547,9 +521,10 @@
                                             name="pdf_file" hidden required>
                                         <label for="pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
                                             upload file</label>
-                                        <iframe class="w-100 h-100" id="frame" src="" frameborder="0"></iframe>
+                                        <iframe class="w-100 h-100" id="frame" src=""
+                                            frameborder="0"></iframe>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col mb-3">
                                     <div class="form-group">
@@ -563,16 +538,6 @@
                                                 </div>
                                             </div>
 
-                                            <label class="col-md-4 control-label" for="filebutton2"
-                                                style="white-space: nowrap;">Book File</label>
-                                            <div class="col-md-8">
-                                                <div class="input-file-wrapper">
-                                                    {{-- Should accept pdf and docx --}}
-                                                    <input id="filebutton2" name="interior_photo" accept="image/*"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;" required>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -2208,7 +2173,7 @@
     </div>
 
     {{-- shipping fee --}}
-    <div class="modal fade" id="shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
+    {{-- <div class="modal fade" id="shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -2235,9 +2200,7 @@
                     <input id="length" name="length" type="number" class="form-control"
                         placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
 
-                    <label class="fw-bold" for="courier">Please Select Courier</label><br>
-                    {{-- <input id="jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
-                        <label for="jrs">JRS Express</label><br> --}}
+                    <label class="fw-bold" for="courier">Please Select Courier</label><br>                  
                     <input id="jt" class="ms-2" name="courier" type="radio" value="J&T Express">
                     <label for="jt">J&T Express</label>
                 </div>
@@ -2247,10 +2210,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- edit shipping fee --}}
-    <div class="modal fade" id="edit-shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
+    {{-- <div class="modal fade" id="edit-shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -2277,9 +2240,7 @@
                     <input id="edit-length" name="length" type="number" class="form-control"
                         placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
 
-                    <label class="fw-bold" for="courier">Please Select Courier</label><br>
-                    {{-- <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
-                        <label for="edit-jrs">JRS Express</label><br> --}}
+                    <label class="fw-bold" for="courier">Please Select Courier</label><br>                    
                     <input id="edit-jt" class="ms-2" name="courier" type="radio" value="J&T Express">
                     <label for="edit-jt">J&T Express</label>
                 </div>
@@ -2290,7 +2251,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="createLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -2304,11 +2265,7 @@
                         'Listing created successfully! Your information has been recorded and is now live for viewing.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('createMessage') }}
-                </div>
-                {{-- @elseif (session('createMessage'))
-                <div class="toast-body fw-bold text-danger">
-                    {{ session('createMessage') }}
-        </div> --}}
+                </div>             
             @endif
         </div>
     </div>
@@ -2361,6 +2318,12 @@
 ])
 
 <script>
+    document.getElementById('submitButton').addEventListener('click', () => {
+        if (document.getElementById('pdfUpload').files.length == 0) {
+            alert('Please upload book file.');
+        }
+    });
+
     document.getElementById('pdfUpload').addEventListener('change', (e) => {
         var file = e.target.files[0];
         document.getElementById('frame').src = URL.createObjectURL(file);
@@ -2570,131 +2533,131 @@
     var edit_modal = document.getElementById('edit-modal-category');
     var edit_courier;
 
-    function itemClicked(card) {
-        var status = document.getElementById('status_' + card);
-        var user = document.getElementById('user_' + card);
-        var img = document.getElementById('photo_' + card);
-        var title = document.getElementById('title_' + card);
-        var author = document.getElementById('author_' + card);
-        var edition = document.getElementById('edition_' + card);
-        var genre = document.getElementById('genre_' + card);
-        var stock = document.getElementById('stock_' + card);
-        var condition = document.getElementById('condition_' + card);
-        var description = document.getElementById('description_' + card);
-        var language = document.getElementById('language_' + card);
-        var weight = document.getElementById('weight_' + card);
-        var width = document.getElementById('width_' + card);
-        var height = document.getElementById('height_' + card);
-        var length = document.getElementById('length_' + card);
-        var courier = document.getElementById('courier_' + card);
-        var price = document.getElementById('price_' + card);
-        var exchange_preferences = document.getElementById('exchange_preferences_' + card);
-        var rental_duration = document.getElementById('rental_duration_' + card);
-        var rental_terms_and_condition = document.getElementById('rental_terms_and_condition_' + card);
-        var security_deposit = document.getElementById('security_deposit_' + card);
-        edit_modal.value = status.textContent;
-        if (edit_modal.value == 'Sale') {
-            document.getElementById('edit-sale-weight').value = weight.textContent;
-            document.getElementById('edit-sale-width').value = width.textContent;
-            document.getElementById('edit-sale-height').value = height.textContent;
-            document.getElementById('edit-sale-length').value = length.textContent;
-            document.getElementById('edit-sale-courier').value = courier.textContent;
-            document.getElementById('edit-book-id').value = card;
-            // document.getElementById('edit-sale-image').value = img.getAttribute('data-filename');
-            document.getElementById('edit-sale-book-image').src = img.src;
-            document.getElementById('edit-sale-genre').value = genre.textContent.trim();
-            document.getElementById('edit-sale-stock').value = stock.textContent.trim();
-            document.getElementById('edit-sale-price').value = price.textContent.trim();
-            document.getElementById('edit-sale-condition').value = condition.textContent.trim();
-            document.getElementById('edit-sale-language').value = language.textContent.trim();
-            document.getElementById('edit-sale-title').value = title.textContent.trim();
-            document.getElementById('edit-sale-author').value = author.textContent.trim();
-            document.getElementById('edit-sale-edition').value = edition.textContent.trim();
-            document.getElementById('edit-sale-description').value = description.textContent.trim();
-            document.getElementById('edit-weight').value = weight.textContent.trim();
-            document.getElementById('edit-width').value = width.textContent.trim();
-            document.getElementById('edit-height').value = height.textContent.trim();
-            document.getElementById('edit-length').value = length.textContent.trim();
-            // if (courier.textContent == "JRS Express") {
-            //     document.getElementById('edit-jrs').checked = true;
-            //     edit_courier = document.getElementById('edit-jrs').value;
-            // } else 
-            if (courier.textContent == "J&T Express") {
-                document.getElementById('edit-jt').checked = true;
-                edit_courier = document.getElementById('edit-jt').value;
-            }
-            document.getElementById("edit-sale-div").style.display = "flex";
-            document.getElementById("edit-exchange-div").style.display = "none";
-            document.getElementById("edit-rent-div").style.display = "none";
-        } else if (edit_modal.value == 'Exchange') {
-            document.getElementById('edit-exchange-weight').value = weight.textContent;
-            document.getElementById('edit-exchange-width').value = width.textContent;
-            document.getElementById('edit-exchange-height').value = height.textContent;
-            document.getElementById('edit-exchange-length').value = length.textContent;
-            document.getElementById('edit-exchange-courier').value = courier.textContent;
-            document.getElementById('edit-book-id').value = card;
-            document.getElementById('edit-exchange-book-image').src = img.src;
-            document.getElementById('edit-exchange-genre').value = genre.textContent.trim();
-            document.getElementById('edit-exchange-stock').value = stock.textContent.trim();
-            document.getElementById('edit-exchange-condition').value = condition.textContent.trim();
-            document.getElementById('edit-exchange-language').value = language.textContent.trim();
-            document.getElementById('edit-exchange-title').value = title.textContent.trim();
-            document.getElementById('edit-exchange-author').value = author.textContent.trim();
-            document.getElementById('edit-exchange-edition').value = edition.textContent.trim();
-            document.getElementById('edit-exchange-preferences').value = exchange_preferences.textContent.trim();
-            document.getElementById('edit-exchange-description').value = description.textContent.trim();
-            document.getElementById('edit-weight').value = weight.textContent.trim();
-            document.getElementById('edit-width').value = width.textContent.trim();
-            document.getElementById('edit-height').value = height.textContent.trim();
-            document.getElementById('edit-length').value = length.textContent.trim();
-            // if (courier.textContent == "JRS Express") {
-            //     document.getElementById('edit-jrs').checked = true;
-            //     edit_courier = document.getElementById('edit-jrs').value;
-            // } else 
-            if (courier.textContent == "J&T Express") {
-                document.getElementById('edit-jt').checked = true;
-                edit_courier = document.getElementById('edit-jt').value;
-            }
-            document.getElementById("edit-sale-div").style.display = "none";
-            document.getElementById("edit-exchange-div").style.display = "flex";
-            document.getElementById("edit-rent-div").style.display = "none";
-        } else if (edit_modal.value == 'Rent') {
-            document.getElementById('edit-rent-weight').value = weight.textContent;
-            document.getElementById('edit-rent-width').value = width.textContent;
-            document.getElementById('edit-rent-height').value = height.textContent;
-            document.getElementById('edit-rent-length').value = length.textContent;
-            document.getElementById('edit-rent-courier').value = courier.textContent;
-            document.getElementById('edit-book-id').value = card;
-            document.getElementById('edit-rent-book-image').src = img.src;
-            document.getElementById('edit-rent-genre').value = genre.textContent.trim();
-            document.getElementById('edit-rent-stock').value = stock.textContent.trim();
-            document.getElementById('edit-rent-condition').value = condition.textContent.trim();
-            document.getElementById('edit-rent-rental-price').value = price.textContent.trim();
-            document.getElementById('edit-rent-language').value = language.textContent.trim();
-            document.getElementById('edit-rent-title').value = title.textContent.trim();
-            document.getElementById('edit-rent-author').value = author.textContent.trim();
-            document.getElementById('edit-rent-edition').value = edition.textContent.trim();
-            document.getElementById('edit-rent-description').value = description.textContent.trim();
-            document.getElementById('edit-rent-rental-duration').value = rental_duration.textContent;
-            document.getElementById('edit-rent-rental-terms-and-condition').value = rental_terms_and_condition
-                .textContent;
-            document.getElementById('edit-rent-security-deposit').value = security_deposit.textContent;
-            document.getElementById('edit-weight').value = weight.textContent.trim();
-            document.getElementById('edit-width').value = width.textContent.trim();
-            document.getElementById('edit-height').value = height.textContent.trim();
-            document.getElementById('edit-length').value = length.textContent.trim();
-            // if (courier.textContent == "JRS Express") {
-            //     document.getElementById('edit-jrs').checked = true;
-            //     edit_courier = document.getElementById('edit-jrs').value;
-            // } else 
-            if (courier.textContent == "J&T Express") {
-                document.getElementById('edit-jt').checked = true;
-                edit_courier = document.getElementById('edit-jt').value;
-            }
-            document.getElementById("edit-sale-div").style.display = "none";
-            document.getElementById("edit-exchange-div").style.display = "none";
-            document.getElementById("edit-rent-div").style.display = "flex";
-        }
+    function itemClicked(id) {
+        // var status = document.getElementById('status_' + card);
+        // var user = document.getElementById('user_' + card);
+        // var img = document.getElementById('photo_' + card);
+        // var title = document.getElementById('title_' + card);
+        // var author = document.getElementById('author_' + card);
+        // var edition = document.getElementById('edition_' + card);
+        // var genre = document.getElementById('genre_' + card);
+        // var stock = document.getElementById('stock_' + card);
+        // var condition = document.getElementById('condition_' + card);
+        // var description = document.getElementById('description_' + card);
+        // var language = document.getElementById('language_' + card);
+        // var weight = document.getElementById('weight_' + card);
+        // var width = document.getElementById('width_' + card);
+        // var height = document.getElementById('height_' + card);
+        // var length = document.getElementById('length_' + card);
+        // var courier = document.getElementById('courier_' + card);
+        // var price = document.getElementById('price_' + card);
+        // var exchange_preferences = document.getElementById('exchange_preferences_' + card);
+        // var rental_duration = document.getElementById('rental_duration_' + card);
+        // var rental_terms_and_condition = document.getElementById('rental_terms_and_condition_' + card);
+        // var security_deposit = document.getElementById('security_deposit_' + card);
+        // edit_modal.value = status.textContent;
+        // if (edit_modal.value == 'Sale') {
+        //     document.getElementById('edit-sale-weight').value = weight.textContent;
+        //     document.getElementById('edit-sale-width').value = width.textContent;
+        //     document.getElementById('edit-sale-height').value = height.textContent;
+        //     document.getElementById('edit-sale-length').value = length.textContent;
+        //     document.getElementById('edit-sale-courier').value = courier.textContent;
+        //     document.getElementById('edit-book-id').value = card;
+        //     // document.getElementById('edit-sale-image').value = img.getAttribute('data-filename');
+        //     document.getElementById('edit-sale-book-image').src = img.src;
+        //     document.getElementById('edit-sale-genre').value = genre.textContent.trim();
+        //     document.getElementById('edit-sale-stock').value = stock.textContent.trim();
+        //     document.getElementById('edit-sale-price').value = price.textContent.trim();
+        //     document.getElementById('edit-sale-condition').value = condition.textContent.trim();
+        //     document.getElementById('edit-sale-language').value = language.textContent.trim();
+        //     document.getElementById('edit-sale-title').value = title.textContent.trim();
+        //     document.getElementById('edit-sale-author').value = author.textContent.trim();
+        //     document.getElementById('edit-sale-edition').value = edition.textContent.trim();
+        //     document.getElementById('edit-sale-description').value = description.textContent.trim();
+        //     document.getElementById('edit-weight').value = weight.textContent.trim();
+        //     document.getElementById('edit-width').value = width.textContent.trim();
+        //     document.getElementById('edit-height').value = height.textContent.trim();
+        //     document.getElementById('edit-length').value = length.textContent.trim();
+        //     // if (courier.textContent == "JRS Express") {
+        //     //     document.getElementById('edit-jrs').checked = true;
+        //     //     edit_courier = document.getElementById('edit-jrs').value;
+        //     // } else 
+        //     if (courier.textContent == "J&T Express") {
+        //         document.getElementById('edit-jt').checked = true;
+        //         edit_courier = document.getElementById('edit-jt').value;
+        //     }
+        //     document.getElementById("edit-sale-div").style.display = "flex";
+        //     document.getElementById("edit-exchange-div").style.display = "none";
+        //     document.getElementById("edit-rent-div").style.display = "none";
+        // } else if (edit_modal.value == 'Exchange') {
+        //     document.getElementById('edit-exchange-weight').value = weight.textContent;
+        //     document.getElementById('edit-exchange-width').value = width.textContent;
+        //     document.getElementById('edit-exchange-height').value = height.textContent;
+        //     document.getElementById('edit-exchange-length').value = length.textContent;
+        //     document.getElementById('edit-exchange-courier').value = courier.textContent;
+        //     document.getElementById('edit-book-id').value = card;
+        //     document.getElementById('edit-exchange-book-image').src = img.src;
+        //     document.getElementById('edit-exchange-genre').value = genre.textContent.trim();
+        //     document.getElementById('edit-exchange-stock').value = stock.textContent.trim();
+        //     document.getElementById('edit-exchange-condition').value = condition.textContent.trim();
+        //     document.getElementById('edit-exchange-language').value = language.textContent.trim();
+        //     document.getElementById('edit-exchange-title').value = title.textContent.trim();
+        //     document.getElementById('edit-exchange-author').value = author.textContent.trim();
+        //     document.getElementById('edit-exchange-edition').value = edition.textContent.trim();
+        //     document.getElementById('edit-exchange-preferences').value = exchange_preferences.textContent.trim();
+        //     document.getElementById('edit-exchange-description').value = description.textContent.trim();
+        //     document.getElementById('edit-weight').value = weight.textContent.trim();
+        //     document.getElementById('edit-width').value = width.textContent.trim();
+        //     document.getElementById('edit-height').value = height.textContent.trim();
+        //     document.getElementById('edit-length').value = length.textContent.trim();
+        //     // if (courier.textContent == "JRS Express") {
+        //     //     document.getElementById('edit-jrs').checked = true;
+        //     //     edit_courier = document.getElementById('edit-jrs').value;
+        //     // } else 
+        //     if (courier.textContent == "J&T Express") {
+        //         document.getElementById('edit-jt').checked = true;
+        //         edit_courier = document.getElementById('edit-jt').value;
+        //     }
+        //     document.getElementById("edit-sale-div").style.display = "none";
+        //     document.getElementById("edit-exchange-div").style.display = "flex";
+        //     document.getElementById("edit-rent-div").style.display = "none";
+        // } else if (edit_modal.value == 'Rent') {
+        //     document.getElementById('edit-rent-weight').value = weight.textContent;
+        //     document.getElementById('edit-rent-width').value = width.textContent;
+        //     document.getElementById('edit-rent-height').value = height.textContent;
+        //     document.getElementById('edit-rent-length').value = length.textContent;
+        //     document.getElementById('edit-rent-courier').value = courier.textContent;
+        //     document.getElementById('edit-book-id').value = card;
+        //     document.getElementById('edit-rent-book-image').src = img.src;
+        //     document.getElementById('edit-rent-genre').value = genre.textContent.trim();
+        //     document.getElementById('edit-rent-stock').value = stock.textContent.trim();
+        //     document.getElementById('edit-rent-condition').value = condition.textContent.trim();
+        //     document.getElementById('edit-rent-rental-price').value = price.textContent.trim();
+        //     document.getElementById('edit-rent-language').value = language.textContent.trim();
+        //     document.getElementById('edit-rent-title').value = title.textContent.trim();
+        //     document.getElementById('edit-rent-author').value = author.textContent.trim();
+        //     document.getElementById('edit-rent-edition').value = edition.textContent.trim();
+        //     document.getElementById('edit-rent-description').value = description.textContent.trim();
+        //     document.getElementById('edit-rent-rental-duration').value = rental_duration.textContent;
+        //     document.getElementById('edit-rent-rental-terms-and-condition').value = rental_terms_and_condition
+        //         .textContent;
+        //     document.getElementById('edit-rent-security-deposit').value = security_deposit.textContent;
+        //     document.getElementById('edit-weight').value = weight.textContent.trim();
+        //     document.getElementById('edit-width').value = width.textContent.trim();
+        //     document.getElementById('edit-height').value = height.textContent.trim();
+        //     document.getElementById('edit-length').value = length.textContent.trim();
+        //     // if (courier.textContent == "JRS Express") {
+        //     //     document.getElementById('edit-jrs').checked = true;
+        //     //     edit_courier = document.getElementById('edit-jrs').value;
+        //     // } else 
+        //     if (courier.textContent == "J&T Express") {
+        //         document.getElementById('edit-jt').checked = true;
+        //         edit_courier = document.getElementById('edit-jt').value;
+        //     }
+        //     document.getElementById("edit-sale-div").style.display = "none";
+        //     document.getElementById("edit-exchange-div").style.display = "none";
+        //     document.getElementById("edit-rent-div").style.display = "flex";
+        // }
         updateListingModal.show();
     }
     // update btn
@@ -3008,10 +2971,7 @@
         var image = document.getElementById("edit-rent-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
-</script>
-{{-- <script src="{{ asset('/js/app-homepage.js') }}"></script> --}}
 
-<script>
     document.getElementById('flexCheckDefault').addEventListener('change', function() {
         var submitButton = document.getElementById('submitButton');
         submitButton.disabled = !this.checked;

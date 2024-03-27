@@ -12,23 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('books', function(Blueprint $table) {
-            $table->id();
-            // $table->unsignedBigInteger('user_id');
+            $table->id();            
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status');
-            $table->string('unit');
-            $table->text('book_photo')->nullable();
-            $table->text('back_cover')->nullable();
+            // $table->string('unit');
+            // $table->text('book_photo')->nullable();
+            $table->text('book_filename')->nullable();
+            // $table->text('back_cover')->nullable();
             $table->text('interior_photo')->nullable();
             $table->string('title');
             $table->string('author');
             $table->string('edition');
             $table->string('genre');
-            $table->unsignedBigInteger('stock');
-            $table->text('condition');
+            // $table->unsignedBigInteger('stock');
+            // $table->text('condition');
             $table->text('description');
-            $table->string('language');            
+            // $table->string('language');            
 
             $table->string('price')->nullable();
             $table->text('exchange_preferences')->nullable();
@@ -37,11 +37,11 @@ return new class extends Migration
             $table->text('rental_terms_and_condition')->nullable();
             $table->text('security_deposit')->nullable();
 
-            $table->integer('weight');
-            $table->integer('width');
-            $table->integer('height'); 
-            $table->integer('length');
-            $table->string('courier');
+            // $table->integer('weight');
+            // $table->integer('width');
+            // $table->integer('height'); 
+            // $table->integer('length');
+            // $table->string('courier');
             $table->timestamps();
 
             // $table->foreign('user_id')->references('id')->on('users');
