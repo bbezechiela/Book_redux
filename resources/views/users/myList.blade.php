@@ -13,9 +13,6 @@
     <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
         <x-sidebar />
     </div>
-    {{-- <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
-        aria-labelledby="offcanvasExampleLabel">
-        <x-sidebar /> --}}
 </div>
 
 <div id="content" class="pe-0 content">
@@ -30,30 +27,12 @@
         </div>
     @endif
     <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
-        <div class="w-100 d-flex mt-1 p-0">
-            {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </button> --}}
+        <div class="w-100 d-flex mt-1 p-0">            
             <a href="/explore" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                     alt="Logo"></a>
         </div>
         <div class="position-absolute end-0">
             <div class="d-flex">
-                {{-- <div class="input-group mt-1" style="height: 2em">
-                    <span class="input-group-text">
-                        <i class="fa fa-search"></i>
-                    </span>
-                    <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                </div> --}}
-                {{-- <a href="/messages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a>
-                    <a href="/notification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
                 <ul class="nav py-profile justify-content-end">
                     <li class="nav-item dropdown">
                         <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -65,7 +44,6 @@
                             <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                             <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
                             <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
-                            {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
                             <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
                         </ul>
                     </li>
@@ -73,16 +51,6 @@
             </div>
         </div>
     </ul>
-    {{-- <ul class="nav bg-light sticky-top head-nav shadow py-3 px-4">
-            <div class="w-100 d-flex justify-content-between mt-1 p-0">
-                <button class="btn btn-light mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-                    aria-controls="offcanvasExample">
-                    <i><img src="/assets/burger.png" alt="menu"></i>
-                </button>
-                <input class="border rounded-3 px-3 w-100" type="text" placeholder="Search">
-                <a href="/" class="pb-2 px-2"><img class="img" src="../assets/Book_Logo.png" alt="Logo"></a>
-            </div>
-        </ul> --}}
     @php
         $order_amount = 0;
         $delivered_amount = 0;
@@ -122,10 +90,6 @@
                 <p class="my-0 text-center fw-bold fs-3">{{ $dropped_amount }}</p>
                 <p class="my-0 text-center fs-6">Dropped</p>
             </a>
-            {{-- <a href="/refund" class="btn book-status col-2 me-1 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">0</p>
-                <p class="my-0 text-center fs-6">Refund</p>
-            </a> --}}
 
         </div>
         <!-- My List contents -->
@@ -154,7 +118,7 @@
                 <div id="content-cards" class="w-100 mx-2 row justify-content-start px-4"
                     style="height: 300px; margin-top: 2em;">
                     @foreach ($books as $book)
-                        <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">                           
+                        <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">
                             <img id="photo_{{ $book->id }}" data-filename="{{ $book->back_cover }}"
                                 src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto rounded"
                                 alt="{{ $book->back_cover }}" height="170px" style="max-width: 200px;">
@@ -165,21 +129,17 @@
                                     {{ $book->author }}</p>
                                 <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
                                     {{ $book->genre }}</p>
-                                {{-- @if ($book->stock == 0) --}}
-                                {{-- <p class="text-danger fw-bold">Sold Out</p> --}}
-                                {{-- @else --}}
                                 <div class="card-foot price d-flex justify-content-between p-0 mt-2"
                                     style="font-size: 14px;">
                                     <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
                                             class="fa fa-eye" aria-hidden="true" style="margin-right: 5px;"></i>View
                                         Request</a>
-                                    <a class="p-0 edit-book" onclick="itemClicked('{{ $book->id }}')"><i
+                                    <a class="p-0 edit-book" onclick="itemClicked({{ $book->id }})"><i
                                             class="fa fa-pencil-square-o" aria-hidden="true"
                                             style="margin-right: 5px;"></i>Edit</a>
                                 </div>
                             </div>
                     @endforeach
-                    {{-- {{ $books->links() }} --}}
                 </div>
             </div>
         </div>
@@ -487,6 +447,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- Modal -->
     {{-- create listing --}}
     <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -1329,463 +1291,6 @@
                     </form>
                 </div>
 
-                <!-- rent -->
-                {{-- <div id="rent">
-                    <form id="rent-form" action="/mylist/rentpost" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="modal-body container-fluid px-5">
-                            <div class="row">
-                                <div class="col-5 px-0 me-1 border mb-2 rounded">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
-                                    <input type="text" name="weight" id="rent-weight" hidden>
-                                    <input type="text" name="width" id="rent-width" hidden>
-                                    <input type="text" name="height" id="rent-height" hidden>
-                                    <input type="text" name="length" id="rent-length" hidden>
-                                    <input type="text" name="courier" id="rent-courier" hidden>
-
-                                    <input type="file" name="book_photo" id="rent-image" class="d-none">
-                                    <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book
-                                        photo
-                                        field must be a file of type: jpeg, png, jpg, gif.</small>
-                                    <label for="rent-image" class="position-relative w-100 h-100"
-                                        style="cursor: pointer;">
-                                        <img id="rent-book-image" src="/assets/listing.png" alt="image"
-                                            class="img-fluid position-absolute top-50 start-50 translate-middle"
-                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            data-bs-title="Click to Upload Image" width="170" height="170">
-                                    </label>
-
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label class="col-md-4 control-label" for="filebutton1">Back
-                                                Cover</label>
-                                            <div class="col-md-8">
-                                                <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="filebutton1"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
-                                                </div>
-                                            </div>
-
-                                            <label class="col-md-4 control-label" for="filebutton2"
-                                                style="white-space: nowrap;">Content or Interior Photos</label>
-                                            <div class="col-md-8">
-                                                <div class="input-file-wrapper">
-                                                    <input id="filebutton2" name="filebutton2"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <select name="genre" id="" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                        <option>Genre</option>
-                                        <option value="Educational">Educational</option>
-                                        <option value="Romance & Saga">Romance & Saga</option>
-                                        <option value="Fantasy & Adventure">Fantasy & Adventure</option>
-                                        <option value="Science Fiction">Science Fiction</option>
-                                        <option value="Historical Fiction">Historical Fiction</option>
-                                        <option value="Mystery & Suspense">Mystery & Suspense</option>
-                                        <option value="Young Adult">Young Adult</option>
-                                        <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
-                                        <option value="Horror & Supernatural">Horror & Supernatural</option>
-                                        <option value="Comedy & Satire">Comedy & Satire</option>
-                                        <option value="Poetry & Prose">Poetry & Prose</option>
-                                        <option value="Self-Help">Self-Help</option>
-                                        <option value="Crime & Thriller">Crime & Thriller</option>
-                                    </select>
-                                    <select name="condition" id="" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                        <option>Condition</option>
-                                        <option value="New">New</option>
-                                        <option value="Like New">Like New</option>
-                                        <option value="Very Good">Very Good</option>
-                                        <option value="Good">Good</option>
-                                        <option value="Fair">Fair</option>
-                                        <option value="Poor">Poor</option>
-                                    </select>
-                                    <button type="button" id="rent-shipping-fee-btn" class="form-control"
-                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                        data-bs-title="Click to open shipping form"
-                                        style="text-align: justify; margin-bottom: 12px;">
-                                        Shipping Fee
-                                    </button>
-                                    <input type="text" name="price" id="rental-price" class="form-control"
-                                        placeholder="Rental Price" style="margin-bottom: 12px; color: #003060;">
-                                    <input type="text" name="security_deposit" class="form-control"
-                                        placeholder="Security Deposit" style="margin-bottom: 12px; color: #003060;">
-                                </div>
-                                <input type="text" name="title" class="form-control" placeholder="Title"
-                                    style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" name="author" class="form-control" placeholder="Author"
-                                    style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" name="edition" class="form-control" placeholder="Edition"
-                                    style="margin-bottom: 12px; color: #003060;">
-                                <select name="language" class="form-control form-select" id=""
-                                    style="margin-bottom: 12px; color: #003060;">
-                                    <option>Language</option>
-                                    <option value="English">English</option>
-                                </select>
-                                <input type="text" name="rental_duration" class="form-control"
-                                    placeholder="Rental Duration" style="margin-bottom: 12px; color: #003060;">
-                                <textarea name="rental_terms_and_condition" id="exchange-preferences" class="form-control" cols="30"
-                                    rows="4" placeholder="Rental Terms and Condition" style="margin-bottom: 12px; color: #003060;"></textarea>
-                                <textarea name="description" id="" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
-                                <div class="col guidelines">
-                                    <h6>Listing Guidelines</h6>
-                                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                                    aria-expanded="false" aria-controls="flush-collapseOne">
-                                                    Genre Guidelines
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <strong>Educational: </strong>
-                                                    <small>Educational books aim to impart knowledge and information
-                                                        to readers. They cover a wide range of topics, from academic
-                                                        subjects to self-improvement and skill
-                                                        development.</small><br>
-                                                    <strong>Romance & Saga: </strong>
-                                                    <small>Romance and Saga novels typically focus on the emotional
-                                                        and romantic relationships of the main characters. Sagas
-                                                        often encompass multiple generations and can be epic in
-                                                        scope.</small><br>
-                                                    <strong>Fantasy & Adventure: </strong>
-                                                    <small>Fantasy and Adventure books transport readers to
-                                                        imaginative worlds filled with magical creatures and epic
-                                                        quests. They often involve heroes or heroines on thrilling
-                                                        adventures.</small><br>
-                                                    <strong>Science Fiction: </strong>
-                                                    <small>Science fiction explores speculative and futuristic
-                                                        concepts often rooted in scientific and technological
-                                                        advancements. It can delve into futuristic technologies,
-                                                        space exploration, and alternate realities.</small><br>
-                                                    <strong>Historical Fiction: </strong>
-                                                    <small>Historical fiction is set in a particular historical
-                                                        period and incorporates real events, people, and settings
-                                                        into a fictional narrative. It offers a glimpse into the
-                                                        past with fictional characters and stories.</small><br>
-                                                    <strong>Mystery & Suspense: </strong>
-                                                    <small>Mystery and Suspense books revolve around solving a
-                                                        puzzle, uncovering a secret, or navigating high-stakes
-                                                        situations. They keep readers engaged through suspenseful
-                                                        and often thrilling plots.</small><br>
-                                                    <strong>Young Adult: </strong>
-                                                    <small>Young Adult literature targets teenage and young adult
-                                                        readers. These books address the challenges and experiences
-                                                        of young people, covering various genres and themes relevant
-                                                        to this age group.</small><br>
-                                                    <strong>Non-Fiction & Biography: </strong>
-                                                    <small>Non-fiction books provide factual information on various
-                                                        subjects, while biographies offer an in-depth look at the
-                                                        lives of real individuals. Both genres are grounded in
-                                                        reality and offer insights and knowledge.</small><br>
-                                                    <strong>Horror & Supernatural: </strong>
-                                                    <small>Horror and Supernatural books aim to evoke fear and
-                                                        suspense in readers. They often involve elements of the
-                                                        supernatural, such as ghosts, vampires, and otherworldly
-                                                        phenomena.</small><br>
-                                                    <strong>Comedy & Satire: </strong>
-                                                    <small>Comedy and Satire books are intended to make readers
-                                                        laugh and often use humor and wit to comment on society,
-                                                        politics, or human behavior. Satire may employ irony and
-                                                        sarcasm to critique or mock.</small><br>
-                                                    <strong>Poetry & Prose: </strong>
-                                                    <small>This genre encompasses creative works that use language
-                                                        and imagery to convey emotions, ideas, and beauty. Poetry
-                                                        focuses on rhythmic and symbolic language, while prose
-                                                        includes fiction and non-fiction works that tell stories or
-                                                        convey information.</small><br>
-                                                    <strong>Self-Help: </strong>
-                                                    <small>Self-Help books offer guidance, advice, and strategies
-                                                        for personal development and self-improvement. They address
-                                                        various aspects of life, including mental health,
-                                                        relationships, productivity, and well-being.</small><br>
-                                                    <strong>Crime & Thriller: </strong>
-                                                    <small>Crime and Thriller novels are filled with suspense,
-                                                        intrigue, and criminal elements. They often involve
-                                                        detectives, law enforcement, or ordinary individuals caught
-                                                        in dangerous situations, with an emphasis on solving crimes
-                                                        and facing perilous challenges.</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
-                                                    aria-expanded="false" aria-controls="flush-collapseTwo">
-                                                    Book Condition Guidelines
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <strong>New: </strong>
-                                                    <small>A book that is in pristine condition, showing no
-                                                        signs of use or wear. It looks like it has just come from
-                                                        the bookstore and
-                                                        may still have
-                                                        the original packaging or dust jacket.</small><br>
-                                                    <strong>Like New: </strong>
-                                                    <small>The book appears almost brand new but may have minor
-                                                        imperfections,
-                                                        such as a slight crease on the spine or cover, which are
-                                                        hardly
-                                                        noticeable.</small><br>
-                                                    <strong>Very Good: </strong>
-                                                    <small>The book is in excellent condition overall, with minimal
-                                                        signs
-                                                        of
-                                                        wear. There may be slight cover or spine creases, but the
-                                                        pages are clean
-                                                        and
-                                                        unmarked.</small><br>
-                                                    <strong>Good: </strong>
-                                                    <small>The book has been read and shows some wear and tear, but
-                                                        it is
-                                                        still in
-                                                        reasonable condition. There may be creases, minor stains, or
-                                                        dog-eared
-                                                        pages,
-                                                        but no significant damage.</small><br>
-                                                    <strong>Fair: </strong>
-                                                    <small>The book has seen significant use and displays noticeable
-                                                        wear. It
-                                                        may
-                                                        have loose or torn pages, markings, or
-                                                        highlighting.</small><br>
-                                                    <strong>Poor: </strong>
-                                                    <small>The book is heavily worn, damaged, or may be missing
-                                                        pages or
-                                                        covers.
-                                                        It is not in good reading condition and might be suitable
-                                                        only for reference
-                                                        purposes or collectors looking for rare editions.</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                                    aria-expanded="false" aria-controls="flush-collapseThree">
-                                                    Guidelines for Listing a Book for Exchange
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <strong>Book Information: </strong>
-                                                    <small>Provide accurate and detailed information about the book
-                                                        you want to sell. Include the book's title, author or
-                                                        other relevant identifiers, edition, condition (e.g., new,
-                                                        used), and a brief description.</small><br>
-
-                                                    <strong>Exchange Terms: </strong>
-                                                    <small>Clearly outline your exchange terms. Specify what types
-                                                        of
-                                                        books you are willing to exchange for and any conditions or
-                                                        preferences you have.</small><br>
-
-                                                    <strong>Images: </strong>
-                                                    <small>Upload clear and high-quality images of the book's cover
-                                                        and any relevant pages or content. Images help potential
-                                                        exchange partners assess the book's condition.
-                                                    </small><br>
-
-                                                    <strong>Listing Description: </strong>
-                                                    <small>Write a clear and informative description of the book and
-                                                        your preferences for the exchange.
-                                                        Mention any highlights, notes, or signs of wear and tear if
-                                                        the book is used.</small><br>
-
-                                                    <strong>Policies: </strong>
-                                                    <small>Familiarize yourself with BookRedux's policies,
-                                                        especially those related to listing books for exchange.
-                                                        Ensure
-                                                        that your listing complies with these policies.</small><br>
-
-                                                    <strong>Honesty and Accuracy: </strong>
-                                                    <small>Be honest about the book's condition and any potential
-                                                        flaws. Misrepresentation may lead to disputes and exchange
-                                                        request denials.</small><br>
-
-                                                    <strong>Availability and Stock Management: </strong>
-                                                    <small>Regularly update your exchange listing's availability. If
-                                                        the
-                                                        book
-                                                        is no longer available, remove the listing
-                                                        promptly.</small><br>
-
-                                                    <strong>Communication: </strong>
-                                                    <small>Be responsive to potential exchange partners' inquiries
-                                                        and
-                                                        messages. Good communication is key to finding suitable
-                                                        exchange
-                                                        opportunities.</small><br>
-
-                                                    <strong>Exchange Negotiation: </strong>
-                                                    <small>Be open to negotiation with potential exchange partners.
-                                                        Discuss terms, conditions, and any additional details to
-                                                        ensure
-                                                        a mutually beneficial exchange.</small><br>
-
-                                                    <strong>Review and Monitor Listings: </strong>
-                                                    <small>Regularly review and monitor your book exchange listings.
-                                                        Make
-                                                        necessary adjustments to improve the visibility and
-                                                        attractiveness of your listings.</small><br>
-
-                                                    <strong>Feedback: </strong>
-                                                    <small>After completing an exchange, consider leaving feedback
-                                                        about
-                                                        the experience with your exchange partner. Positive feedback
-                                                        can
-                                                        enhance your reputation on the platform..</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                                    aria-expanded="false" aria-controls="flush-collapseThree">
-                                                    Terms and Conditions for Listing Books for Rent
-                                                </button>
-                                            </h2>
-                                            <div id="flush-collapseThree" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>You warrant that all books listed for rent are
-                                                        genuine,
-                                                        free from copyright infringement, and do not violate any
-                                                        intellectual property rights.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>Users agree to the rental process outlined on
-                                                        BookRedux,
-                                                        which may include communication with other users,
-                                                        negotiation of
-                                                        rental terms, and arranging for the rental of
-                                                        books.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>BookRedux reserves the right to terminate your seller
-                                                        account or remove your listings for any violation of these
-                                                        terms or for other legitimate reasons.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>By listing books, you grant BookRedux the right to use
-                                                        your content, including images and descriptions, for
-                                                        promotional and display purposes on the
-                                                        platform.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>Users are encouraged to resolve disputes among themselves
-                                                        through communication and negotiation. BookRedux is not
-                                                        responsible for disputes between users.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>You are responsible for providing accurate and complete
-                                                        information about the books you list, including title,
-                                                        author, condition, rental price, and rental
-                                                        duration.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>By listing a book, you confirm that you are the rightful
-                                                        owner of the book, or you have the necessary authorization
-                                                        to rent it.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>You are responsible for fulfilling orders
-                                                        promptly and providing accurate shipping information.
-                                                        Failure to fulfill orders may result in penalties or account
-                                                        suspension.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>Users should agree on rental terms, including rental
-                                                        duration, rental price, and any security deposit, before
-                                                        finalizing the rental. BookRedux is not
-                                                        responsible for the terms of rental agreements between
-                                                        users.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>Users may be required to pay a security deposit or rental
-                                                        fee to rent books. BookRedux will process
-                                                        these payments securely and may deduct applicable fees and
-                                                        commissions.</small><br>
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                        height="16" fill="currentColor" class="bi bi-dot"
-                                                        viewBox="0 0 16 16">
-                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-                                                    </svg>
-                                                    <small>BookRedux may charge fees or commissions for using its
-                                                        platform, as outlined in the User Fee Schedule.</small><br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer border-0">
-                            <button type="submit" id="submit" class="btn mx-auto w-25 text-white rounded-3"
-                                style="background-color: #E55B13;">List</button>
-                        </div>
-                    </form>
-                </div> --}}
             </div>
 
         </div>
@@ -1799,70 +1304,55 @@
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Listing</h1>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
-                    <option value="Sale">Sale</option>
+                    <option value="Sale">Online Reading</option>
                     <option value="Exchange">Exchange</option>
-                    {{-- <option value="Rent">Rent</option> --}}
                 </select>
                 <input type="text" id="edit-book-id" name="id" hidden>
+
+                
                 <!-- sale -->
                 <div id="edit-sale-div">
                     <form id="edit-sale-form" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body container-fluid px-5">
-
                             <div class="row">
-                                <div class="col-5 me-1 px-0 border mb-2 rounded">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
-                                    <input type="text" name="weight" id="edit-sale-weight" hidden>
-                                    <input type="text" name="width" id="edit-sale-width" hidden>
-                                    <input type="text" name="height" id="edit-sale-height" hidden>
-                                    <input type="text" name="length" id="edit-sale-length" hidden>
-                                    <input type="text" name="courier" id="edit-sale-courier" hidden>
-
-                                    <input type="file" name="book_photo" id="edit-sale-image"
-                                        accept="image/*" hidden>
-                                    <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book
-                                        photo
-                                        field must be a file of type: jpeg, png, jpg, gif.</small>
-                                    <label for="edit-sale-image" class="position-relative w-100 h-100"
-                                        style="cursor: pointer;">
-                                        <img id="edit-sale-book-image" src="../assets/listing.png" alt="image"
-                                            class="img-fluid position-absolute top-50 start-50 translate-middle"
-                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            data-bs-title="Click to Upload Image" width="170" height="170">
-                                    </label>
-
+                                <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
+                                    <input type="text" name="user_id" value="{{ session('id') }}" required
+                                        hidden>
+        
+                                    {{-- The book file that the user uploaded should be display here for preview --}}
+                                    <div class="ExternalFiles h-75">
+                                        <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
+                                            Preview</small>
+                                        <input id="pdfUpload" type="file" accept="application/pdf"
+                                            name="pdf_file" hidden required>
+                                        <label for="pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
+                                            upload file</label>
+                                        <iframe class="w-100 h-100" id="frame" src=""
+                                            frameborder="0"></iframe>
+                                    </div>
+        
                                 </div>
-                                <div class="col">
+                                <div class="col mb-3">
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-md-4 control-label" for="filebutton1">Back
-                                                Cover</label>
+                                            <label class="col-md-4 control-label" for="filebutton1">Book Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="back_cover" accept="image/*"
+                                                    <input id="filebutton1" name="front_cover" accept="image/*"
                                                         class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
+                                                        style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
-
-                                            <label class="col-md-4 control-label" for="filebutton2"
-                                                style="white-space: nowrap;">Content or Interior Photos</label>
-                                            <div class="col-md-8">
-                                                <div class="input-file-wrapper">
-                                                    <input id="filebutton2" name="interior_photo" accept="image/*"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
-                                                </div>
-                                            </div>
+        
                                         </div>
                                     </div>
-                                    <select name="genre" id="edit-sale-genre" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
+        
+                                    <select name="genre" id="" class="form-control form-select"
+                                        style="margin-bottom: 12px; color: #003060;" required>
                                         <option>Genre</option>
                                         <option value="Educational">Educational</option>
                                         <option value="Romance & Saga">Romance & Saga</option>
@@ -1878,56 +1368,29 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="number" name="stock" id="edit-sale-stock"
-                                        class="form-control" placeholder="Stock"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                    <input type="text" name="price" id="edit-sale-price"
-                                        class="form-control" placeholder="Price"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                    {{-- <button type="button" id="edit-sale-shipping-fee-btn" class="form-control" --}}
-                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                        data-bs-title="Click to open shipping form"
-                                        style="text-align: justify; margin-bottom: 12px; color: #003060;">
-                                        Shipping Fee
-                                    </button>
-                                    <select name="condition" id="edit-sale-condition"
-                                        class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                        <option>Condition</option>
-                                        <option value="New">New</option>
-                                        <option value="Like New">Like New</option>
-                                        <option value="Very Good">Very Good</option>
-                                        <option value="Good">Good</option>
-                                        <option value="Fair">Fair</option>
-                                        <option value="Poor">Poor</option>
-                                    </select>
-                                    <select name="language" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;" id="edit-sale-language">
-                                        <option>Language</option>
-                                        <option value="English">English</option>
-                                    </select>
+                                    <input type="text" name="isbn" id="isbn-exchange" class="form-control"
+                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="edition" id="edition-sale" class="form-control"
+                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
-                                <input type="text" id="edit-sale-title" name="title" class="form-control"
-                                    placeholder="Title" style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" id="edit-sale-author" name="author" class="form-control"
-                                    placeholder="Author" style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" id="edit-sale-edition" name="edition" id="edition-sale"
-                                    class="form-control" placeholder="Edition"
-                                    style="margin-bottom: 12px; color: #003060;">
-                                <textarea name="description" id="edit-sale-description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <input type="text" name="title" class="form-control" placeholder="Title"
+                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <input type="text" name="author" class="form-control" placeholder="Author"
+                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <textarea name="description" id="description" class="form-control" cols="30" rows="4"
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
+                                
                             </div>
-
-                        </div>
-                        <div class="modal-footer border-0">
-                            <button type="button" id="sale-update"
-                                class="btn mx-auto w-25 text-white rounded-3 update-btn">Update</button>
-                            <form id="sale-form-delete" method="POST">
-                                @csrf
-                                <button type="button" id="sale-delete"
-                                    class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
-                            </form>
-                        </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" id="sale-update"
+                                    class="btn mx-auto w-25 text-white rounded-3 update-btn">Update</button>
+                                <form id="sale-form-delete" method="POST">
+                                    @csrf
+                                    <button type="button" id="sale-delete"
+                                        class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
+                                </form>
+                            </div>
+                        </div>d                       
                     </form>
                 </div>
 
@@ -2043,215 +1506,12 @@
                     </form>
                 </div>
 
-                <!-- rent -->
-                {{-- <div id="edit-rent-div">
-                    <form id="edit-rent-form" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="modal-body container-fluid px-5">
-                            <div class="row">
-                                <div class="col-5 px-0 me-1 border mb-2 rounded">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
-                                    <input type="text" name="weight" id="edit-rent-weight" hidden>
-                                    <input type="text" name="width" id="edit-rent-width" hidden>
-                                    <input type="text" name="height" id="edit-rent-height" hidden>
-                                    <input type="text" name="length" id="edit-rent-length" hidden>
-                                    <input type="text" name="courier" id="edit-rent-courier" hidden>
-
-                                    <input type="file" name="book_photo" id="edit-rent-image" class="d-none">
-                                    <small style="color: #737679; margin-left: 8px; font-size: 10px;">The book
-                                        photo
-                                        field must be a file of type: jpeg, png, jpg, gif.</small>
-                                    <label for="edit-rent-image" class="position-relative w-100 h-100"
-                                        style="cursor: pointer;">
-                                        <img id="edit-rent-book-image" src="../assets/listing.png" alt="image"
-                                            class="img-fluid position-absolute top-50 start-50 translate-middle"
-                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                            data-bs-title="Click to Upload Image" width="170" height="170">
-                                    </label>
-
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label class="col-md-4 control-label" for="filebutton1">Back
-                                                Cover</label>
-                                            <div class="col-md-8">
-                                                <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="filebutton1"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
-                                                </div>
-                                            </div>
-
-                                            <label class="col-md-4 control-label" for="filebutton2"
-                                                style="white-space: nowrap;">Content or Interior Photos</label>
-                                            <div class="col-md-8">
-                                                <div class="input-file-wrapper">
-                                                    <input id="filebutton2" name="filebutton2"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <select name="genre" id="edit-rent-genre" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                        <option>Genre</option>
-                                        <option value="Educational">Educational</option>
-                                        <option value="Romance & Saga">Romance & Saga</option>
-                                        <option value="Fantasy & Adventure">Fantasy & Adventure</option>
-                                        <option value="Science Fiction">Science Fiction</option>
-                                        <option value="Historical Fiction">Historical Fiction</option>
-                                        <option value="Mystery & Suspense">Mystery & Suspense</option>
-                                        <option value="Young Adult">Young Adult</option>
-                                        <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
-                                        <option value="Horror & Supernatural">Horror & Supernatural</option>
-                                        <option value="Comedy & Satire">Comedy & Satire</option>
-                                        <option value="Poetry & Prose">Poetry & Prose</option>
-                                        <option value="Self-Help">Self-Help</option>
-                                        <option value="Crime & Thriller">Crime & Thriller</option>
-                                    </select>
-                                    <input type="number" name="stock" id="edit-rent-stock"
-                                        class="form-control" placeholder="Stock"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                    <select name="condition" id="edit-rent-condition"
-                                        class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                        <option>Condition</option>
-                                        <option value="New">New</option>
-                                        <option value="Like New">Like New</option>
-                                        <option value="Very Good">Very Good</option>
-                                        <option value="Good">Good</option>
-                                        <option value="Fair">Fair</option>
-                                        <option value="Poor">Poor</option>
-                                    </select>
-                                    <button type="button" id="edit-rent-shipping-fee-btn" class="form-control"
-                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                        data-bs-title="Click to open shipping form"
-                                        style="text-align: justify; margin-bottom: 12px; color: #003060;">
-                                        Shipping Fee
-                                    </button>
-                                    <input type="text" name="price" id="edit-rent-rental-price"
-                                        class="form-control" placeholder="Rental Price"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                    <input type="text" name="security_deposit" id="edit-rent-security-deposit"
-                                        class="form-control" placeholder="Security Deposit"
-                                        style="margin-bottom: 12px; color: #003060;">
-                                </div>
-                                <input type="text" name="title" id="edit-rent-title" class="form-control"
-                                    placeholder="Title" style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" name="author" id="edit-rent-author" class="form-control"
-                                    placeholder="Author" style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" name="edition" id="edit-rent-edition" class="form-control"
-                                    placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
-                                <select name="language" class="form-control form-select"
-                                    style="margin-bottom: 12px; color: #003060;" id="edit-rent-language">
-                                    <option>Language</option>
-                                    <option value="English">English</option>
-                                </select>
-                                <input type="text" name="rental_duration" id="edit-rent-rental-duration"
-                                    class="form-control" placeholder="Rental Duration"
-                                    style="margin-bottom: 12px; color: #003060;">
-                                <textarea name="rental_terms_and_condition" id="edit-rent-rental-terms-and-condition" class="form-control"
-                                    cols="30" rows="4" placeholder="Rental Terms and Condition"
-                                    style="margin-bottom: 12px; color: #003060;"></textarea>
-                                <textarea name="description" id="edit-rent-description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer border-0">
-                            <button type="button" id="rent-update"
-                                class="btn mx-auto w-25 text-white rounded-3 update-btn">Update</button>
-                            <button type="button" id="rent-delete"
-                                class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
-                        </div>
-                    </form>
-                </div> --}}
             </div>
         </div>
     </div>
 
-    {{-- shipping fee --}}
-    {{-- <div class="modal fade" id="shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button id="back-shipping" class="btn text-decoration-none float-start"><img
-                            src="{{ asset('assets/left_arrow.png') }}" alt="back"></button>
-                    <div class="d-flex justify-content-center w-100">
-                        <h3 class="modal-title" id="staticBackdropLabel">Shipping Fee</h3>
-                    </div>
-                </div>
-                <div class="modal-body py-2 px-4">
-                    <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please
-                        fill
-                        in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
-                        fee or failed delivery.</span>
-                    <input type="number" name="weight" id="weight" class="form-control"
-                        placeholder="Weight (kg)" style="margin-bottom: 7px; margin-top: 8px; color: #003060;"><br>
 
-                    <label class="fw-bold" for="size">Packaging Size</label><br>
-                    <input id="width" name="width" type="number" class="form-control"
-                        placeholder="Width (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-                    <input id="height" name="height" type="number" class="form-control"
-                        placeholder="Height (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-                    <input id="length" name="length" type="number" class="form-control"
-                        placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
 
-                    <label class="fw-bold" for="courier">Please Select Courier</label><br>                  
-                    <input id="jt" class="ms-2" name="courier" type="radio" value="J&T Express">
-                    <label for="jt">J&T Express</label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
-                        style="background-color: #E55B13;">Save</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- edit shipping fee --}}
-    {{-- <div class="modal fade" id="edit-shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <button id="edit-back-shipping" class="btn text-decoration-none float-start"><img
-                            src="{{ asset('assets/left_arrow.png') }}" alt="back"></button>
-                    <div class="d-flex justify-content-center w-100">
-                        <h3 class="modal-title" id="staticBackdropLabel">Shipping Fee</h3>
-                    </div>
-                </div>
-                <div class="modal-body py-2 px-4">
-                    <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please
-                        fill
-                        in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
-                        fee or failed delivery.</span>
-                    <input type="number" name="weight" id="edit-weight" class="form-control"
-                        placeholder="Weight (kg)" style="margin-bottom: 7px; color: #003060;"><br>
-
-                    <label class="fw-bold" for="size">Packaging Size</label><br>
-                    <input id="edit-width" name="width" type="number" class="form-control"
-                        placeholder="Width (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-                    <input id="edit-height" name="height" type="number" class="form-control"
-                        placeholder="Height (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-                    <input id="edit-length" name="length" type="number" class="form-control"
-                        placeholder="Length (cm)" style="margin-bottom: 7px; color: #003060;"><br>
-
-                    <label class="fw-bold" for="courier">Please Select Courier</label><br>                    
-                    <input id="edit-jt" class="ms-2" name="courier" type="radio" value="J&T Express">
-                    <label for="edit-jt">J&T Express</label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="edit-shipping-save-btn"
-                        class="btn mx-auto w-25 text-white rounded-3"
-                        style="background-color: #E55B13;">Save</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="createLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
@@ -2265,7 +1525,7 @@
                         'Listing created successfully! Your information has been recorded and is now live for viewing.')
                 <div class="toast-body fw-bold text-success">
                     {{ session('createMessage') }}
-                </div>             
+                </div>
             @endif
         </div>
     </div>
@@ -2329,126 +1589,6 @@
         document.getElementById('frame').src = URL.createObjectURL(file);
     });
 
-
-    // function arrangeShipment(book_id, item_id) {
-    //     address_modal.innerHTML = '';
-    //     id_book = book_id;
-    //     fetch('/getorderdetails/' + book_id, {
-    //             method: 'GET'
-    //         })
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             // console.log(result);
-    //             result.user.address_user.forEach(address => {
-    //                 console.log(address);
-    //                 if (address.id == parseInt(selected_adress)) {
-    //                     seller_name.value = address.name;
-    //                     seller_contact_num.value = address.contact_number;
-    //                     seller_add.value = address.address;
-    //                     pickup_name.textContent = address.name;
-    //                     pickup_phone.textContent = address.contact_number;
-    //                     pickup_address.textContent = address.address;
-    //                     pickup_postal.textContent = address.postal_code;
-    //                 } else if (address.default_address) {
-    //                     selected_adress = address.id;
-    //                     seller_name.value = address.name;
-    //                     seller_contact_num.value = address.contact_number;
-    //                     seller_add.value = address.address;
-    //                     pickup_name.textContent = address.name;
-    //                     pickup_phone.textContent = address.contact_number;
-    //                     pickup_address.textContent = address.address;
-    //                 }
-    //                 var address_label = document.createElement('label');
-    //                 var address_text_section = document.createElement('div');
-    //                 var add_pickup_name = document.createElement('p');
-    //                 var add_pickup_phone = document.createElement('p');
-    //                 var add_pickup_address = document.createElement('p');
-    //                 var add_pickup_postal = document.createElement('p');
-    //                 var address_radio = document.createElement('input');
-    //                 address_label.className = 'pickup-address mb-2';
-    //                 address_label.htmlFor = 'id_' + address.id;
-    //                 address_text_section.className = 'text-section';
-    //                 // add_pickup_name.id = 'pickup-name';
-    //                 // add_pickup_name.className = 'fw-bold';
-    //                 // add_pickup_phone.id = 'pickup-phone';
-    //                 // add_pickup_address.id = 'pickup-address';
-    //                 // add_pickup_postal.id = 'pickup-postal';
-    //                 address_radio.id = 'id_' + address.id;
-    //                 address_radio.type = 'radio';
-    //                 address_radio.name = 'address_id';
-    //                 address_radio.value = address.id;
-    //                 add_pickup_name.textContent = address.name;
-    //                 add_pickup_phone.textContent = address.contact_number;
-    //                 add_pickup_address.textContent = address.address;
-    //                 address_modal.appendChild(address_label);
-    //                 address_label.appendChild(address_text_section);
-    //                 address_text_section.appendChild(add_pickup_name);
-    //                 address_text_section.appendChild(add_pickup_phone);
-    //                 address_text_section.appendChild(add_pickup_address);
-    //                 address_text_section.appendChild(add_pickup_postal);
-    //                 address_label.appendChild(address_radio);
-    //             });
-    //             var item_created;
-    //             result.item.forEach(item => {
-    //                 if (item.id == item_id) {
-    //                     id.value = item.id;
-    //                     customer_name.value = item.order.address.name;
-    //                     order_number.value = item.order.order_number;
-    //                     customer_contact_num.value = item.order.user.phone_number;
-    //                     customer_add.value = item.order.address.address;
-    //                     payment.value = item.order.payment_method;
-    //                     item_created = item.order.created_at;
-    //                 }
-    //             });
-    //             weight.value = result.weight;
-    //             width.value = result.width;
-    //             height.value = result.height;
-    //             length.value = result.length;
-    //             var date = new Date(item_created);
-    //             // order_date.value = date.toLocaleDateString('en-US', {month: 'long', year: 'numeric', day: 'numeric'});
-    //             order_date.value = date.toLocaleDateString();
-    //             book_title.value = result.title;
-    //             trans_type.value = result.status;
-    //             price.value = result.price;
-    //             shipping.value = '₱130';
-    //             if (document.getElementById('pick_up').checked) {
-    //                 displayPickupContent();
-    //             }
-    //         })
-    //         .catch(error => console.error(error));
-    // }
-    // address_update_btn.addEventListener('click', () => {
-    //     var address_selection = document.querySelectorAll('input[name="address_id"]');
-    //     address_selection.forEach(add_id => {
-    //         if (add_id.checked == true) {
-    //             selected_adress = add_id.value
-    //         }
-    //     });
-    //     // alert(selected_adress);
-    //     fetch('/getorderdetails/' + id_book, {
-    //             method: 'GET'
-    //         })
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             // console.log(result);
-    //             result.user.address_user.forEach(address => {
-    //                 if (address.id == selected_adress) {
-    //                     selected_adress = address.id;
-    //                     seller_name.value = address.name;
-    //                     seller_contact_num.value = address.contact_number;
-    //                     seller_add.value = address.region + ', ' + address.street_building_house +
-    //                         ', ' +
-    //                         address.brgy_village + ', ' + address.city_municipality;
-    //                     pickup_name.textContent = address.name;
-    //                     pickup_phone.textContent = address.contact_number;
-    //                     pickup_address.textContent = address.brgy_village + ', ' + address
-    //                         .city_municipality + ', ' + address.region;
-    //                     pickup_postal.textContent = address.postal_code;
-    //                 }
-    //             });
-    //         })
-    //         .catch(error => console.error(error));
-    // });
 
     function viewShipping(book_id, item_id) {
         fetch('/viewshipping/' + book_id, {
@@ -2514,171 +1654,43 @@
         updateToast.show()
     @endif
     // delete
-    var sale_delete = document.getElementById('sale-delete');
+    // var sale_delete = document.getElementById('sale-delete');
     var exchange_delete = document.getElementById('exchange-delete');
     // var rent_delete = document.getElementById('rent-delete');
-    sale_delete.addEventListener('click', () => {
-        var id = document.getElementById('edit-book-id');
-        window.location.href = "/mylist/delete/" + id.value;
-    });
+    // sale_delete.addEventListener('click', () => {
+    //     var id = document.getElementById('edit-book-id');
+    //     window.location.href = "/mylist/delete/" + id.value;
+    // });
     exchange_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
         window.location.href = "/mylist/delete/" + id.value;
     });
-    // rent_delete.addEventListener('click', () => {
-    //     var id = document.getElementById('edit-book-id');
-    //     window.location.href = "/mylist/delete/" + id.value;
-    // });
-    // update    
     var edit_modal = document.getElementById('edit-modal-category');
     var edit_courier;
 
-    function itemClicked(id) {
-        // var status = document.getElementById('status_' + card);
-        // var user = document.getElementById('user_' + card);
-        // var img = document.getElementById('photo_' + card);
-        // var title = document.getElementById('title_' + card);
-        // var author = document.getElementById('author_' + card);
-        // var edition = document.getElementById('edition_' + card);
-        // var genre = document.getElementById('genre_' + card);
-        // var stock = document.getElementById('stock_' + card);
-        // var condition = document.getElementById('condition_' + card);
-        // var description = document.getElementById('description_' + card);
-        // var language = document.getElementById('language_' + card);
-        // var weight = document.getElementById('weight_' + card);
-        // var width = document.getElementById('width_' + card);
-        // var height = document.getElementById('height_' + card);
-        // var length = document.getElementById('length_' + card);
-        // var courier = document.getElementById('courier_' + card);
-        // var price = document.getElementById('price_' + card);
-        // var exchange_preferences = document.getElementById('exchange_preferences_' + card);
-        // var rental_duration = document.getElementById('rental_duration_' + card);
-        // var rental_terms_and_condition = document.getElementById('rental_terms_and_condition_' + card);
-        // var security_deposit = document.getElementById('security_deposit_' + card);
-        // edit_modal.value = status.textContent;
-        // if (edit_modal.value == 'Sale') {
-        //     document.getElementById('edit-sale-weight').value = weight.textContent;
-        //     document.getElementById('edit-sale-width').value = width.textContent;
-        //     document.getElementById('edit-sale-height').value = height.textContent;
-        //     document.getElementById('edit-sale-length').value = length.textContent;
-        //     document.getElementById('edit-sale-courier').value = courier.textContent;
-        //     document.getElementById('edit-book-id').value = card;
-        //     // document.getElementById('edit-sale-image').value = img.getAttribute('data-filename');
-        //     document.getElementById('edit-sale-book-image').src = img.src;
-        //     document.getElementById('edit-sale-genre').value = genre.textContent.trim();
-        //     document.getElementById('edit-sale-stock').value = stock.textContent.trim();
-        //     document.getElementById('edit-sale-price').value = price.textContent.trim();
-        //     document.getElementById('edit-sale-condition').value = condition.textContent.trim();
-        //     document.getElementById('edit-sale-language').value = language.textContent.trim();
-        //     document.getElementById('edit-sale-title').value = title.textContent.trim();
-        //     document.getElementById('edit-sale-author').value = author.textContent.trim();
-        //     document.getElementById('edit-sale-edition').value = edition.textContent.trim();
-        //     document.getElementById('edit-sale-description').value = description.textContent.trim();
-        //     document.getElementById('edit-weight').value = weight.textContent.trim();
-        //     document.getElementById('edit-width').value = width.textContent.trim();
-        //     document.getElementById('edit-height').value = height.textContent.trim();
-        //     document.getElementById('edit-length').value = length.textContent.trim();
-        //     // if (courier.textContent == "JRS Express") {
-        //     //     document.getElementById('edit-jrs').checked = true;
-        //     //     edit_courier = document.getElementById('edit-jrs').value;
-        //     // } else 
-        //     if (courier.textContent == "J&T Express") {
-        //         document.getElementById('edit-jt').checked = true;
-        //         edit_courier = document.getElementById('edit-jt').value;
-        //     }
-        //     document.getElementById("edit-sale-div").style.display = "flex";
-        //     document.getElementById("edit-exchange-div").style.display = "none";
-        //     document.getElementById("edit-rent-div").style.display = "none";
-        // } else if (edit_modal.value == 'Exchange') {
-        //     document.getElementById('edit-exchange-weight').value = weight.textContent;
-        //     document.getElementById('edit-exchange-width').value = width.textContent;
-        //     document.getElementById('edit-exchange-height').value = height.textContent;
-        //     document.getElementById('edit-exchange-length').value = length.textContent;
-        //     document.getElementById('edit-exchange-courier').value = courier.textContent;
-        //     document.getElementById('edit-book-id').value = card;
-        //     document.getElementById('edit-exchange-book-image').src = img.src;
-        //     document.getElementById('edit-exchange-genre').value = genre.textContent.trim();
-        //     document.getElementById('edit-exchange-stock').value = stock.textContent.trim();
-        //     document.getElementById('edit-exchange-condition').value = condition.textContent.trim();
-        //     document.getElementById('edit-exchange-language').value = language.textContent.trim();
-        //     document.getElementById('edit-exchange-title').value = title.textContent.trim();
-        //     document.getElementById('edit-exchange-author').value = author.textContent.trim();
-        //     document.getElementById('edit-exchange-edition').value = edition.textContent.trim();
-        //     document.getElementById('edit-exchange-preferences').value = exchange_preferences.textContent.trim();
-        //     document.getElementById('edit-exchange-description').value = description.textContent.trim();
-        //     document.getElementById('edit-weight').value = weight.textContent.trim();
-        //     document.getElementById('edit-width').value = width.textContent.trim();
-        //     document.getElementById('edit-height').value = height.textContent.trim();
-        //     document.getElementById('edit-length').value = length.textContent.trim();
-        //     // if (courier.textContent == "JRS Express") {
-        //     //     document.getElementById('edit-jrs').checked = true;
-        //     //     edit_courier = document.getElementById('edit-jrs').value;
-        //     // } else 
-        //     if (courier.textContent == "J&T Express") {
-        //         document.getElementById('edit-jt').checked = true;
-        //         edit_courier = document.getElementById('edit-jt').value;
-        //     }
-        //     document.getElementById("edit-sale-div").style.display = "none";
-        //     document.getElementById("edit-exchange-div").style.display = "flex";
-        //     document.getElementById("edit-rent-div").style.display = "none";
-        // } else if (edit_modal.value == 'Rent') {
-        //     document.getElementById('edit-rent-weight').value = weight.textContent;
-        //     document.getElementById('edit-rent-width').value = width.textContent;
-        //     document.getElementById('edit-rent-height').value = height.textContent;
-        //     document.getElementById('edit-rent-length').value = length.textContent;
-        //     document.getElementById('edit-rent-courier').value = courier.textContent;
-        //     document.getElementById('edit-book-id').value = card;
-        //     document.getElementById('edit-rent-book-image').src = img.src;
-        //     document.getElementById('edit-rent-genre').value = genre.textContent.trim();
-        //     document.getElementById('edit-rent-stock').value = stock.textContent.trim();
-        //     document.getElementById('edit-rent-condition').value = condition.textContent.trim();
-        //     document.getElementById('edit-rent-rental-price').value = price.textContent.trim();
-        //     document.getElementById('edit-rent-language').value = language.textContent.trim();
-        //     document.getElementById('edit-rent-title').value = title.textContent.trim();
-        //     document.getElementById('edit-rent-author').value = author.textContent.trim();
-        //     document.getElementById('edit-rent-edition').value = edition.textContent.trim();
-        //     document.getElementById('edit-rent-description').value = description.textContent.trim();
-        //     document.getElementById('edit-rent-rental-duration').value = rental_duration.textContent;
-        //     document.getElementById('edit-rent-rental-terms-and-condition').value = rental_terms_and_condition
-        //         .textContent;
-        //     document.getElementById('edit-rent-security-deposit').value = security_deposit.textContent;
-        //     document.getElementById('edit-weight').value = weight.textContent.trim();
-        //     document.getElementById('edit-width').value = width.textContent.trim();
-        //     document.getElementById('edit-height').value = height.textContent.trim();
-        //     document.getElementById('edit-length').value = length.textContent.trim();
-        //     // if (courier.textContent == "JRS Express") {
-        //     //     document.getElementById('edit-jrs').checked = true;
-        //     //     edit_courier = document.getElementById('edit-jrs').value;
-        //     // } else 
-        //     if (courier.textContent == "J&T Express") {
-        //         document.getElementById('edit-jt').checked = true;
-        //         edit_courier = document.getElementById('edit-jt').value;
-        //     }
-        //     document.getElementById("edit-sale-div").style.display = "none";
-        //     document.getElementById("edit-exchange-div").style.display = "none";
-        //     document.getElementById("edit-rent-div").style.display = "flex";
-        // }
+    function itemClicked(id, status) {
+        console.log(id);
         updateListingModal.show();
     }
     // update btn
-    var sale_update_btn = document.getElementById('sale-update');
+    // var sale_update_btn = document.getElementById('sale-update');
     var exchange_update_btn = document.getElementById('exchange-update');
     // var rent_update_btn = document.getElementById('rent-update');
-    sale_update_btn.addEventListener('click', () => {
-        var sale_form = document.getElementById('edit-sale-form');
-        var book_id = document.getElementById('edit-book-id');
-        var edit_weight = document.getElementById('edit-weight');
-        var edit_width = document.getElementById('edit-width');
-        var edit_height = document.getElementById('edit-height');
-        var edit_length = document.getElementById('edit-length');
-        document.getElementById('edit-sale-weight').value = edit_weight.value;
-        document.getElementById('edit-sale-width').value = edit_width.value
-        document.getElementById('edit-sale-height').value = edit_height.value;
-        document.getElementById('edit-sale-length').value = edit_length.value;
-        document.getElementById('edit-sale-courier').value = edit_courier;
-        sale_form.action = "/mylist/updateSale/" + book_id.value;
-        sale_form.submit();
-    });
+    // sale_update_btn.addEventListener('click', () => {
+    //     var sale_form = document.getElementById('edit-sale-form');
+    //     var book_id = document.getElementById('edit-book-id');
+    //     var edit_weight = document.getElementById('edit-weight');
+    //     var edit_width = document.getElementById('edit-width');
+    //     var edit_height = document.getElementById('edit-height');
+    //     var edit_length = document.getElementById('edit-length');
+    //     document.getElementById('edit-sale-weight').value = edit_weight.value;
+    //     document.getElementById('edit-sale-width').value = edit_width.value
+    //     document.getElementById('edit-sale-height').value = edit_height.value;
+    //     document.getElementById('edit-sale-length').value = edit_length.value;
+    //     document.getElementById('edit-sale-courier').value = edit_courier;
+    //     sale_form.action = "/mylist/updateSale/" + book_id.value;
+    //     sale_form.submit();
+    // });
     exchange_update_btn.addEventListener('click', () => {
         var exchange_form = document.getElementById('edit-exchange-form');
         var book_id = document.getElementById('edit-book-id');
@@ -2694,31 +1706,15 @@
         exchange_form.action = "/mylist/updateExchange/" + book_id.value;
         exchange_form.submit();
     });
-    // rent_update_btn.addEventListener('click', () => {
-    //     var rent_form = document.getElementById('edit-rent-form');
-    //     var book_id = document.getElementById('edit-book-id');
-    //     var edit_weight = document.getElementById('edit-weight');
-    //     var edit_width = document.getElementById('edit-width');
-    //     var edit_height = document.getElementById('edit-height');
-    //     var edit_length = document.getElementById('edit-length');
-    //     document.getElementById('edit-rent-weight').value = edit_weight.value;
-    //     document.getElementById('edit-rent-width').value = edit_width.value
-    //     document.getElementById('edit-rent-height').value = edit_height.value;
-    //     document.getElementById('edit-rent-length').value = edit_length.value;
-    //     document.getElementById('edit-rent-courier').value = edit_courier;
-    //     rent_form.action = "/mylist/updateRent/" + book_id.value;
-    //     rent_form.submit();
-    // });
+
     edit_modal.addEventListener('change', () => {
         if (edit_modal.value == 'Sale') {
             document.getElementById("edit-sale-div").style.display = "flex";
             document.getElementById("edit-exchange-div").style.display = "none";
-            // document.getElementById("edit-rent-div").style.display = "none";
         } else if (edit_modal.value == 'Exchange') {
             document.getElementById("edit-sale-div").style.display = "none";
             document.getElementById("edit-exchange-div").style.display = "flex";
-            // document.getElementById("edit-rent-div").style.display = "none";
-        } 
+        }
     });
     // sort select    
     var sort_by = document.getElementById('sort');
@@ -2729,25 +1725,14 @@
             window.location.href = "/mylist/sale";
         } else if (sort_by.value == "Exchange") {
             window.location.href = "/mylist/exchange";
-        } 
+        }
     });
-    // tool tips
-    // const SaleimageToolTip = document.getElementById('sale-book-image');
-    // const tooltipSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(SaleimageToolTip);
+    // tool tips   
     const ExchangeImageToolTip = document.getElementById('exchange-book-image');
     const tooltipExchangeImageShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeImageToolTip);
-    // const RentImageToolTip = document.getElementById('rent-book-image');
-    // const tooltipRentImageShow = bootstrap.Tooltip.getOrCreateInstance(RentImageToolTip);
-    const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
-    const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
-    // const SaleShippingToolTip = document.getElementById('sale-shipping-fee-btn');
-    // const tooltipSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(SaleShippingToolTip);
-    // const ExchangeShippingToolTip = document.getElementById('exchange-shipping-fee-btn');
-    // const tooltipExchangeShippingShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeShippingToolTip);
-    // const RentShippingToolTip = document.getElementById('rent-shipping-fee-btn');
-    // const tooltipRentShippingShow = bootstrap.Tooltip.getOrCreateInstance(RentShippingToolTip);
-    // const EditSaleShippingToolTip = document.getElementById('edit-sale-shipping-fee-btn');
-    // const tooltipEditSaleShippingShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleShippingToolTip);
+    // const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
+    // const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
+
     // modals
     const createListingModal = new bootstrap.Modal('#createListingModal', {
         keyboard: false
@@ -2755,89 +1740,19 @@
     const updateListingModal = new bootstrap.Modal('#updateListingModal', {
         keyboard: false
     });
-    // const shippingModal = new bootstrap.Modal('#shipping-fee', {
-    //     keyboard: false
-    // });
-    // const editShippingModal = new bootstrap.Modal('#edit-shipping-fee', {
-    //     keyboard: false
-    // });
-    // buttons for modals
+
     var list_category = document.getElementById("modal-category");
     var create_listing_btn = document.getElementById('create-listing');
-    // var back_btn = document.getElementById("back-shipping");
-    // var sale_shipping_fee_btn = document.getElementById('sale-shipping-fee-btn');
-    // var exchange_shipping_fee_btn = document.getElementById('exchange-shipping-fee-btn');
-    // var rent_shipping_fee_btn = document.getElementById('rent-shipping-fee-btn');
-    // var shipping_save_btn = document.getElementById('shipping-save-btn');
-    // var edit_back_btn = document.getElementById("edit-back-shipping");
     var edit_sale_shipping_fee_btn = document.getElementById('edit-sale-shipping-fee-btn');
-    // var edit_exchange_shipping_fee_btn = document.getElementById('edit-exchange-shipping-fee-btn');
-    // var edit_rent_shipping_fee_btn = document.getElementById('edit-rent-shipping-fee-btn');
-    // var edit_shipping_save_btn = document.getElementById('edit-shipping-save-btn');
-    // shipping form inputs
-    // var weight = document.getElementById('weight');
-    // var width = document.getElementById('width');
-    // var height = document.getElementById('height');
-    // var length = document.getElementById('length');
-    // // var jrsRadio = document.getElementById('jrs');
-    // var jtRadio = document.getElementById('jt');
-    // var courier;
-    // // hidden inputs for sale
-    // var sale_weight = document.getElementById('sale-weight');
-    // var sale_width = document.getElementById('sale-width');
-    // var sale_height = document.getElementById('sale-height');
-    // var sale_length = document.getElementById('sale-length');
-    // var sale_courier = document.getElementById('sale-courier');
-    // hidden inputs for exchange
-    // var exchange_weight = document.getElementById('exchange-weight');
-    // var exchange_width = document.getElementById('exchange-width');
-    // var exchange_height = document.getElementById('exchange-height');
-    // var exchange_length = document.getElementById('exchange-length');
-    // var exchange_courier = document.getElementById('exchange-courier');
-    // // hidden inputs for rent
-    // var rent_weight = document.getElementById('rent-weight');
-    // var rent_width = document.getElementById('rent-width');
-    // var rent_height = document.getElementById('rent-height');
-    // var rent_length = document.getElementById('rent-length');
-    // var rent_courier = document.getElementById('rent-courier');
 
     create_listing_btn.addEventListener('click', function() {
         list_category.value = 'Sale';
         document.getElementById('listing-type').textContent = 'Online Reading';
+        document.getElementById("sale").style.display = "flex";
+        document.getElementById("exchange").style.display = "none";
         createListingModal.show();
     });
-    // back_btn.addEventListener("click", function() {
-    //     shippingModal.hide();
-    //     createListingModal.show();
-    // });
-    // sale_shipping_fee_btn.addEventListener('click', function() {
-    //     createListingModal.hide();
-    //     shippingModal.show();
-    // });
-    // exchange_shipping_fee_btn.addEventListener('click', function() {
-    //     createListingModal.hide();
-    //     shippingModal.show();
-    // });
-    // rent_shipping_fee_btn.addEventListener('click', function() {
-    //     createListingModal.hide();
-    //     shippingModal.show();
-    // });
-    // edit_back_btn.addEventListener('click', () => {
-    //     editShippingModal.hide();
-    //     updateListingModal.show();
-    // });
-    // edit_sale_shipping_fee_btn.addEventListener('click', () => {
-    //     updateListingModal.hide();
-    //     editShippingModal.show()
-    // });
-    // edit_exchange_shipping_fee_btn.addEventListener('click', () => {
-    //     updateListingModal.hide();
-    //     editShippingModal.show()
-    // });
-    // edit_rent_shipping_fee_btn.addEventListener('click', () => {
-    //     updateListingModal.hide();
-    //     editShippingModal.show()
-    // });
+
     var sale_form = document.getElementById('sale-form');
     var exchange_form = document.getElementById('exchange-form');
     // var rent_form = document.getElementById('rent-form');
@@ -2855,59 +1770,7 @@
         exchange_length.value = length.value;
         exchange_courier.value = courier;
     });
-    // rent_form.addEventListener('submit', function(event) {
-    //     rent_weight.value = weight.value;
-    //     rent_width.value = width.value;
-    //     rent_height.value = height.value;
-    //     rent_length.value = length.value;
-    //     rent_courier.value = courier;
-    // });
-    // shipping_save_btn.addEventListener('click', function() {
-    //     if (weight.value == "" || width.value == "" || height.value == "" || length.value == "") {
-    //         alert("Please complete every fields");
-    //     } else {
-    //         if (jtRadio.checked) {
-    //             courier = jtRadio.value;
-    //             // if (jrsRadio.checked) {
-    //             //     courier = jrsRadio.value;
-    //             // } else if (jtRadio.checked) {
-    //             //     courier = jtRadio.value;
-    //         } else {
-    //             courier = null;
-    //         }
-    //         sale_weight.value = weight.value;
-    //         sale_width.value = width.value;
-    //         sale_height.value = height.value;
-    //         sale_length.value = length.value;
-    //         sale_courier.value = courier;
-    //         shippingModal.hide();
-    //         createListingModal.show();
-    //     }
-    // });
-    // edit_shipping_save_btn.addEventListener('click', () => {
-    //     // var book_id = document.getElementById('edit-book-id');
-    //     var edit_weight = document.getElementById('edit-weight');
-    //     var edit_width = document.getElementById('edit-width');
-    //     var edit_height = document.getElementById('edit-height');
-    //     var edit_length = document.getElementById('edit-length');
-    //     var edit_jrs_radio = document.getElementById('edit-jrs');
-    //     var edit_jt_radio = document.getElementById('edit-jt');
-    //     if (edit_weight.value == "" || edit_width.value == "" || edit_height.value == "" || edit_length.value ==
-    //         "") {
-    //         alert("Please fill all the inputs");
-    //     } else {
-    //         if (edit_jrs_radio.checked) {
-    //             edit_courier = edit_jrs_radio.value;
-    //         } else if (edit_jt_radio.checked) {
-    //             edit_courier = edit_jt_radio.value;
-    //         } else {
-    //             edit_courier = null;
-    //         }
-    //         editShippingModal.hide();
-    //         updateListingModal.show();
-    //     }
-    //     // alert(edit_weight.value + " " + edit_width.value + " " + edit_height.value + " " + edit_length.value + " " + edit_courier);
-    // });
+
     // list category    
     var exchange_btn = document.getElementById('create-exchange-listing');
     exchange_btn.addEventListener('click', () => {
@@ -2915,7 +1778,6 @@
         document.getElementById('listing-type').textContent = 'Exchange';
         document.getElementById("sale").style.display = "none";
         document.getElementById("exchange").style.display = "flex";
-        // document.getElementById("rent").style.display = "none";
         createListingModal.show();
     });
     list_category.addEventListener("change", function() {
@@ -2923,45 +1785,31 @@
         if (list_category.value == "Sale") {
             document.getElementById("sale").style.display = "flex";
             document.getElementById("exchange").style.display = "none";
-            // document.getElementById("rent").style.display = "none";
         } else if (list_category.value == "Exchange") {
             document.getElementById("sale").style.display = "none";
             document.getElementById("exchange").style.display = "flex";
-            // document.getElementById("rent").style.display = "none";
-    } 
+        }
     });
-    // uploading image
-    // var sale_image_upload = document.getElementById("sale-image");
+    // uploading image    
     var exchange_image_upload = document.getElementById("exchange-image");
-    // var rent_image_upload = document.getElementById("rent-image");
-    // sale_image_upload.addEventListener("change", function() {
-    //     var image = document.getElementById("sale-book-image");
-    //     image.src = URL.createObjectURL(event.target.files[0]);
-    // });
+
     exchange_image_upload.addEventListener("change", function() {
         var image = document.getElementById("exchange-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
-    // rent_image_upload.addEventListener("change", function() {
-    //     var image = document.getElementById("rent-book-image");
-    //     image.src = URL.createObjectURL(event.target.files[0]);
-    // });
+
     // uploading edit image
-    var edit_sale_image_upload = document.getElementById("edit-sale-image");
+    // var edit_sale_image_upload = document.getElementById("edit-sale-image");
     var exchange_image_upload = document.getElementById("edit-exchange-image");
     // var rent_image_upload = document.getElementById("edit-rent-image");
-    edit_sale_image_upload.addEventListener("change", function() {
-        var image = document.getElementById("edit-sale-book-image");
-        image.src = URL.createObjectURL(event.target.files[0]);
-    });
+    // edit_sale_image_upload.addEventListener("change", function() {
+    //     var image = document.getElementById("edit-sale-book-image");
+    //     image.src = URL.createObjectURL(event.target.files[0]);
+    // });
     exchange_image_upload.addEventListener("change", function() {
         var image = document.getElementById("edit-exchange-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
     });
-    // rent_image_upload.addEventListener("change", function() {
-    //     var image = document.getElementById("edit-rent-book-image");
-    //     image.src = URL.createObjectURL(event.target.files[0]);
-    // });
 
     document.getElementById('flexCheckDefault').addEventListener('change', function() {
         var submitButton = document.getElementById('submitButton');
