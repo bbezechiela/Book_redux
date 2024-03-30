@@ -112,6 +112,18 @@
     color: #fff;
 }
 
+.exchange-button {
+    background-color: none;
+    border-color: #E55B13;
+    color: #E55B13;
+}
+
+.exchange-button:hover {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
 .check-report:checked {
     background-color: #E55B13;
     border-color: #E55B13;

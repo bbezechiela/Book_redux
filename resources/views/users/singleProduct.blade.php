@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </ul>
-            @if ($book_id->status == 'Exchange')
+            {{-- @if ($book_id->status == 'Exchange') --}}
             <div class="card mb-3 book-details mx-4">
                 <div class="row g-0">
                     <div class="col-md-4 p-5 stretch-card">
@@ -80,17 +80,17 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active easyzoom easyzoom--overlay"
                                         data-bs-interval="10000">
-                                        <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
+                                        <img src="/assets/Book_Logo.png"
                                             class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
                                             width="300px" height="564px">
                                     </div>
                                     <div class="carousel-item easyzoom easyzoom--overlay" data-bs-interval="2000">
-                                        <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
+                                        <img src="/assets/Book_Logo.png"
                                             class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
                                             width="300px" height="564px">
                                     </div>
                                     <div class="carousel-item easyzoom easyzoom--overlay">
-                                        <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
+                                        <img src="/assets/Book_Logo.png"
                                             class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
                                             width="300px" height="564px">
                                     </div>
@@ -113,15 +113,15 @@
                     <div class="col-md-8">
                         <div class="card-body">
 
-                            <h3 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
+                            <h3 class="card-title">Book Title <a href="" data-bs-toggle="modal"
                                     data-bs-target="#report">Report</a></h3>
                             <h5 class="card-title"><span style="color: #E55B13; font-weight: bold;"></span>
-                                <span> For {{ $book_id->status }}
-                                    |</span> <span>{{ $book_id->genre }}</span>
+                                <span> For Physical Exchange
+                                    |</span> <span>Romance</span>
                             </h5>
 
-                            <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
-                            <p class="card-text">Edition: <span>{{ $book_id->edition }}</span></p>
+                            <p class="card-text">Author: <span>Author</span></p>
+                            <p class="card-text">Edition: <span>Edition</span></p>
                             <div class="d-flex justify-content-start align-items-center mb-2">
                                 <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
                                     <p class="m-0" style="color: #003060;">ISBN:
@@ -131,14 +131,14 @@
                             </div>
                             <p class="card-text">Format: <span>Paperback</span>
                             </p>
-                            <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
+                            <p class="card-text">Condition: <span>Condition</span>
                             </p>
                             <p class="card-text">Exchange Preferences:
-                                <span>{{ $book_id->exchange_preferences }}</span>
+                                <span>This is an exchange preferences</span>
                             </p>
-                            <p class="card-text">Description: <span>{{ $book_id->description }}</span></p>
+                            <p class="card-text">Description: <span>Desciption</span></p>
                             <p class="card-text location-text"><i class="fa fa-map-marker"
-                                    aria-hidden="true"></i>{{ $user_id->address }}Bagacay, Tacloban</p>
+                                    aria-hidden="true"></i>Bagacay, Tacloban</p>
                             <a href="" data-bs-toggle="modal" class="btn cart-button" data-bs-target="#exchange_request"
                                 style="margin-bottom: 1em;">Send Exchange Request
                                 <i class="fa fa-exchange" aria-hidden="true"
@@ -345,27 +345,32 @@
                 </button>
             </div>
         </div>
-        @elseif ($book_id->status == 'Rent')
+
+        {{-- DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY --}}
+
         <div class="card mb-3 book-details mx-4">
             <div class="row g-0">
-                <div class="col-md-4 p-5">
+                <div class="col-md-4 p-5 stretch-card">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
-                                    class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
-                                    height="564px">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active easyzoom easyzoom--overlay" data-bs-interval="10000">
+                                    <img src="/assets/Book_Logo.png"
+                                        class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
+                                        width="300px" height="564px">
+                                </div>
+                                <div class="carousel-item easyzoom easyzoom--overlay" data-bs-interval="2000">
+                                    <img src="/assets/Book_Logo.png"
+                                        class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
+                                        width="300px" height="564px">
+                                </div>
+                                <div class="carousel-item easyzoom easyzoom--overlay">
+                                    <img src="/assets/Book_Logo.png"
+                                        class="img-fluid mx-auto rounded d-block mx-auto mainimage" alt="product"
+                                        width="300px" height="564px">
+                                </div>
                             </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
-                                    class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
-                                    height="564px">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
-                                    class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
-                                    height="564px">
-                            </div>
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
                             data-bs-slide="prev">
@@ -374,192 +379,303 @@
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
                             data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon" aria-hidden="true" style="color: #003060"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
-                                data-bs-target="#report">Report</a></h5>
-                        <h6 class="card-title"><span style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
-                            </span>
-                            <span>| For {{ $book_id->status }}
-                                |</span> <span>{{ $book_id->genre }}</span>
-                        </h6>
-                        </p>
-                        <p class="card-text">Security Deposit <span
-                                style="font-weight: bold;">₱{{ $book_id->security_deposit }}</span>
-                        </p>
-                        <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
-                        <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
-                        </p>
+
+                        <h3 class="card-title">Book Title <a href="" data-bs-toggle="modal"
+                                data-bs-target="#report">Report</a></h3>
+                        <h5 class="card-title"><span style="color: #E55B13; font-weight: bold;"></span>
+                            <span> For Digital Exchange
+                                |</span> <span>Genre</span>
+                        </h5>
+
+                        <p class="card-text">Author: <span>Author</span></p>
+                        <p class="card-text">Edition: <span>Edition</span></p>
                         <div class="d-flex justify-content-start align-items-center mb-2">
                             <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                <p class="m-0" style="color: #003060;">Quantity:
-                                    <span>{{ $book_id->stock }}
-                                        pieces available</span>
+                                <p class="m-0" style="color: #003060;">ISBN:
+                                    <span> 3456658998 </span>
                                 </p>
                             </div>
                         </div>
-                        <p class="card-text">Language: <span>{{ $book_id->language }}</span>
+                        <p class="card-text">Exchange Preferences:
+                            <span>Exchange Preferences</span>
                         </p>
-                        <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
-                        </p>
-                        <p class="card-text">Rental Duration: <span>{{ $book_id->rental_duration }}</span></p>
-                        <p class="card-text">Rental Terms & Condition:
-                            <span>{{ $book_id->rental_terms_and_condition }}</span>
-                        </p>
-                        <p class="card-text">Product Description: <span>{{ $book_id->description }}</span></p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
-                        </p>
-
-                        @if ($book_id->unit == 'Added to Cart' && $book_id->user_id == session('id'))
-                        <p class="fs-3 fw-bold text-success">Item added to Cart</p>
-                        @else
-                        <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
-                                aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-                        @endif
-
+                        <p class="card-text">Description: <span>Description</span></p>
+                        <a href="" data-bs-toggle="modal" class="btn cart-button" data-bs-target="#content_preview"
+                            style="margin-bottom: 1em;">Preview
+                            <i class="fa fa-eye" aria-hidden="true"
+                                style="margin-left: 8px; margin-right: 4px;"></i></a>
+                        <a href="" data-bs-toggle="modal" class="btn exchange-button"
+                            data-bs-target="#digital_exchange_request" style="margin-bottom: 1em;">Send Exchange Request
+                            <i class="fa fa-exchange" aria-hidden="true"
+                                style="margin-left: 8px; margin-right: 4px;"></i></a>
                     </div>
                 </div>
             </div>
         </div>
-        @else
-        <div class="card mb-3 book-details mx-4">
-            <div class="row g-0">
-                <div class="col-md-4 p-5">
-                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="{{ asset('images/books/' . $book_id->book_photo) }}"
-                                    class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
-                                    height="564px">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <img src="{{ asset('images/interior_photo/' . $book_id->interior_photo) }}"
-                                    class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
-                                    height="564px">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="{{ asset('images/book_cover/' . $book_id->back_cover) }}"
-                                    class="img-fluid mx-auto rounded d-block mx-auto" alt="product" width="300px"
-                                    height="564px">
+        <h3 style="color: #003060; margin-top: 1em; margin-left: 3em;">Interested Users</h3>
+        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/nestine.png" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/Eubert.png" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/osama.png" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/7.png" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/8.png" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/4.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/5.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/6.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $book_id->title }} <a href="" data-bs-toggle="modal"
-                                data-bs-target="#report">Report</a></h5>
-                        <h6 class="card-title"><span style="color: #E55B13; font-weight: bold;">₱{{ $book_id->price }}
-                            </span>
-                            <span>| For {{ $book_id->status }}
-                                |</span> <span>{{ $book_id->genre }}</span>
-                        </h6>
-
-                        </p>
-                        <p class="card-text">Author: <span>{{ $book_id->author }}</span></p>
-                        <p class="card-text">Edition: <span>{{ $book_id->edition }}</span>
-                        </p>
-                        <div class="d-flex justify-content-start align-items-center mb-2">
-                            <div class="col-md-6 col-lg-4 col-xl-3 d-flex align-items-center">
-                                <p class="m-0" style="color: #003060;">Quantity:
-                                    <span>{{ $book_id->stock }}
-                                        pieces available</span>
-                                </p>
-
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/3.jpg" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
                             </div>
                         </div>
-                        <p class="card-text">Language: <span>{{ $book_id->language }}</span>
-                        </p>
-                        <p class="card-text">Condition: <span>{{ $book_id->condition }}</span>
-                        </p>
-                        <p class="card-text">Description: <span>{{ $book_id->description }}</span></p>
-                        <p class="card-text"><small class="text-body-secondary">{{ $user_id->address }}</small>
-                        </p>
-
-                        @if ($book_id->unit == 'Added to Cart' && $book_id->user_id == session('id'))
-                        <p class="fs-3 fw-bold text-success">Item added to Cart</p>
-                        @else
-                        <a href="/addtocart/{{ $book_id->id }}" class="btn cart-button"><i class="fa fa-cart-plus"
-                                aria-hidden="true" style="margin-right: 7px"></i>Add to Cart</a>
-
-                        @endif
-
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/broke-empty.png" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/b1.jpg" class="rounded-circle shadow-4-strong img-fluid"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/4.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/5.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/6.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/bookstore.png" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/users.png" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/4.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/5.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/6.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/bookstore.png" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/users.png" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/4.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/5.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="text-center">
+                                <img src="/assets/6.jpg" class="rounded-circle shadow-4-strong"
+                                    style="width: 80px; height: 80px;" alt="...">
+                                <p style="color:#003060;">Nestine</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon one" aria-hidden="true" style="background-color: #d1c7c7;
+                border-radius: 50%;"></span>
+                <span class="visually-hidden one">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon one" aria-hidden="true" style="background-color: #d1c7c7;
+                border-radius: 50%;"></span>
+                <span class="visually-hidden one">Next</span>
+            </button>
         </div>
-        @endif
-        <h3 style="color: #003060; margin-top: 1em; margin-left: 3em;">Book Sharer</h3>
-        <div class="container text-center seller-details">
-            <div class="row align-items-center">
-                <div class="col">
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('images/profile_photos/' . $user_id->profile_photo) }}" alt="seller image"
-                            class="circle-picture">
-                        <div class="user-info">
-                            @if ($user_id->type == 'Bookseller')
-                            <p>{{ $user_id->business_name }}</p>
-                            @else
-                            <p>{{ $user_id->first_name . ' ' . $user_id->last_name }}</p>
-                            @endif
-                            {{-- <p>2K followers . 400 following</p> --}}
-                            <button class="message-button" data-username="{{ $user_id->username }}"><i
-                                    class="fa fa-envelope" aria-hidden="true"></i>Message</button>
-                            <a href="/userlistings/{{ $user_id->id }}"><button class="view-profile-button"><i
-                                        class="fa fa-eye" aria-hidden="true"></i>Profile</button></a>
-                        </div>
+    </div>
+
+    {{-- DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY --}}
+
+    {{-- @elseif ($book_id->status == 'Rent') --}}
+
+    {{-- @else --}}
+
+    {{-- @endif --}}
+    <h3 style="color: #003060; margin-top: 1em; margin-left: 3em;">Book Sharer</h3>
+    <div class="container text-center seller-details">
+        <div class="row align-items-center">
+            <div class="col">
+                <div class="d-flex align-items-center">
+                    <img src="/assets/nestine.png" alt="seller image" class="circle-picture">
+                    <div class="user-info">
+                        <p>Nestine Navarro</p>
+                        {{-- <p>2K followers . 400 following</p> --}}
+                        <button class="message-button" data-username="Nestinenn"><i class="fa fa-envelope"
+                                aria-hidden="true"></i>Message</button>
+                        <a href="/userlistings"><button class="view-profile-button"><i class="fa fa-eye"
+                                    aria-hidden="true"></i>Profile</button></a>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="listings">
-                        <h4 style="color: #E55B13;">20 </h4>
-                        <p class="card-text">Listed Books for Exchange</p>
-                    </div>
+            </div>
+            <div class="col">
+                <div class="listings">
+                    <h4 style="color: #E55B13;">20 </h4>
+                    <p class="card-text">Listed Books for Exchange</p>
                 </div>
-                <div class="col">
-                    <div class="listings">
-                        <h4 style="color: #E55B13;">10 </h4>
-                        <p class="card-text">Listed Books for Online Reading</p>
-                    </div>
+            </div>
+            <div class="col">
+                <div class="listings">
+                    <h4 style="color: #E55B13;">10 </h4>
+                    <p class="card-text">Listed Books for Online Reading</p>
                 </div>
-                <div class="col">
-                    <div class="reviews">
-                        <h4 style="color: #E55B13;">18</h4>
-                        <p class="card-text">User Ratings and Reviews</p>
-                    </div>
+            </div>
+            <div class="col">
+                <div class="reviews">
+                    <h4 style="color: #E55B13;">18</h4>
+                    <p class="card-text">User Ratings and Reviews</p>
                 </div>
-                {{-- <div class="col">
+            </div>
+            {{-- <div class="col">
                     <div class="ratings">
                         @if ($user_id->type == 'Bookseller')
                         @else
                         <p>Preferred genres:<span class="exchange">{{ $user_id->interest }}</span></p>
-                @endif
+            @endif
 
-            </div>
-        </div> --}}
-        <div class="ratings"
+        </div>
+    </div> --}}
+    {{-- <div class="ratings"
             style="background-color:#F6F5F5; border-radius: 8px; padding: 10px 17px; margin: 10px 0px 0px;">
-            <p>Preferred genres:<span class="exchange">{{ $user_id->interest }}</span></p>
+            <p>Preferred genres:<span class="exchange">Crime & Thriller</span></p>
         </div>
     </div>
     </div>
 
-    {{-- <div class="ratings-review">
+    <div class="ratings-review">
                 <div class="card-body rating-details">
                 </div>
                 <div class="container text-center review-rating-details">
@@ -612,102 +728,103 @@
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
     @foreach ($book_id->item as $items)
     @foreach ($items->ratedItem as $itemReviews)
-    @if ($itemReviews->user_id != $items->book->user_id)
-    <div class="container text-center customer-ratings">
+    @if ($itemReviews->user_id != $items->book->user_id) --}}
+    {{-- <div class="container text-center customer-ratings">
         <div class="row align-items-center">
             <div class="d-flex align-items-center">
                 <img src="{{ asset('images/profile_photos/' . $itemReviews->user->profile_photo) }}" alt="seller image"
-                    class="customer-picture">
-                <div class="customer-ratings-info">
-                    <p>{{ $itemReviews->user->first_name . ' ' . $itemReviews->user->last_name }}
-                    </p>
-                    @if ($itemReviews->rate_value == 1)
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    @elseif ($itemReviews->rate_value == 2)
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    @elseif ($itemReviews->rate_value == 3)
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    @elseif ($itemReviews->rate_value == 4)
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    @elseif ($itemReviews->rate_value == 5)
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
+    class="customer-picture">
+    <div class="customer-ratings-info">
+        <p>{{ $itemReviews->user->first_name . ' ' . $itemReviews->user->last_name }}
+        </p>
+        @if ($itemReviews->rate_value == 1)
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        @elseif ($itemReviews->rate_value == 2)
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        @elseif ($itemReviews->rate_value == 3)
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        @elseif ($itemReviews->rate_value == 4)
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star-o" aria-hidden="true"></i>
+        @elseif ($itemReviews->rate_value == 5)
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        @endif
+        <p style="font-weight: bold;">{{ $items->book->status }}</p>
+        <p>{{ $itemReviews->created_at->format('F j, Y, g:i a') }}</p>
+        <p>Condition: <span>{{ $itemReviews->condition_accuracy }}</span></p>
+        <p>Accuracy of Description:
+            <span>{{ $itemReviews->description_accuracy }}</span>
+        </p>
+        <p>Interaction: <span>{{ $itemReviews->interaction }}</span></p>
+        <p>{{ $itemReviews->description }}</p>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    @if (isset($itemReviews->first_img))
+                    <img src="{{ asset('images/rate_images/' . $itemReviews->first_img) }}" alt="Image 1"
+                        class="d-inline square-picture">
                     @endif
-                    <p style="font-weight: bold;">{{ $items->book->status }}</p>
-                    <p>{{ $itemReviews->created_at->format('F j, Y, g:i a') }}</p>
-                    <p>Condition: <span>{{ $itemReviews->condition_accuracy }}</span></p>
-                    <p>Accuracy of Description:
-                        <span>{{ $itemReviews->description_accuracy }}</span>
-                    </p>
-                    <p>Interaction: <span>{{ $itemReviews->interaction }}</span></p>
-                    <p>{{ $itemReviews->description }}</p>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                @if (isset($itemReviews->first_img))
-                                <img src="{{ asset('images/rate_images/' . $itemReviews->first_img) }}" alt="Image 1"
-                                    class="d-inline square-picture">
-                                @endif
-                                @if (isset($itemReviews->second_img))
-                                <img src="{{ asset('images/rate_images/' . $itemReviews->second_img) }}" alt="Image 1"
-                                    class="d-inline square-picture">
-                                @endif
-                                @if (isset($itemReviews->third_img))
-                                <img src="{{ asset('images/rate_images/' . $itemReviews->third_img) }}" alt="Image 1"
-                                    class="d-inline square-picture">
-                                @endif
-                                @if (isset($itemReviews->fourth_img))
-                                <img src="{{ asset('images/rate_images/' . $itemReviews->fourth_img) }}" alt="Image 1"
-                                    class="d-inline square-picture">
-                                @endif
-                                @if (isset($itemReviews->fifth_img))
-                                <img src="{{ asset('images/rate_images/' . $itemReviews->fifth_img) }}" alt="Image 1"
-                                    class="d-inline square-picture">
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    @if (isset($itemReviews->second_img))
+                    <img src="{{ asset('images/rate_images/' . $itemReviews->second_img) }}" alt="Image 1"
+                        class="d-inline square-picture">
+                    @endif
+                    @if (isset($itemReviews->third_img))
+                    <img src="{{ asset('images/rate_images/' . $itemReviews->third_img) }}" alt="Image 1"
+                        class="d-inline square-picture">
+                    @endif
+                    @if (isset($itemReviews->fourth_img))
+                    <img src="{{ asset('images/rate_images/' . $itemReviews->fourth_img) }}" alt="Image 1"
+                        class="d-inline square-picture">
+                    @endif
+                    @if (isset($itemReviews->fifth_img))
+                    <img src="{{ asset('images/rate_images/' . $itemReviews->fifth_img) }}" alt="Image 1"
+                        class="d-inline square-picture">
+                    @endif
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
+    </div>
     @endif
     @endforeach
-    @endforeach
+    @endforeach --}}
 
     </div>
 
     </div>
     </div>
 
-    <!-- Exchange Request Modal -->
+    <!-- Physical Exchange Request Modal -->
     <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Form
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Physical Exchange Request
+                        Form
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -850,63 +967,161 @@
         </div>
     </div>
 
-    {{-- <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Digital Exchange Request Modal -->
+    <div class="modal fade" id="digital_exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Form</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Digital Exchange Request
+                        Form
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault01" style="color:#003060;">Title</label>
+                                <input type="text" class="form-control" id="validationDefault01" placeholder="Title"
+                                    value="" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault02" style="color:#003060;">ISBN</label>
+                                <input type="text" class="form-control" id="validationDefault02" placeholder="ISBN"
+                                    value="" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault03" style="color:#003060;">Author</label>
+                                <input type="text" class="form-control" id="validationDefault03" placeholder="Author"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault04" style="color:#003060;">Genre</label>
+                                <select class="form-control" id="validationDefault04">
+                                    <option selected>Genre</option>
+                                    <option value="Educational">Educational</option>
+                                    <option value="Romance & Saga">Romance & Saga</option>
+                                    <option value="Fantasy & Adventure">Fantasy & Adventure</option>
+                                    <option value="Science Fiction">Science Fiction</option>
+                                    <option value="Historical Fiction">Historical Fiction</option>
+                                    <option value="Mystery & Suspense">Mystery & Suspense</option>
+                                    <option value="Young Adult">Young Adult</option>
+                                    <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
+                                    <option value="Horror & Supernatural">Horror & Supernatural</option>
+                                    <option value="Comedy & Satire">Comedy & Satire</option>
+                                    <option value="Poetry & Prose">Poetry & Prose</option>
+                                    <option value="Self-Help">Self-Help</option>
+                                    <option value="Crime & Thriller">Crime & Thriller</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault05" style="color:#003060;">Edition</label>
+                                <input type="text" class="form-control" id="validationDefault05" placeholder="Edition"
+                                    required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="col-md-4 control-label" for="filebutton1">Book
+                                    Cover</label>
+                                <div class="input-file-wrapper">
+                                    <input id="filebutton1" name="front_cover" accept="image/*"
+                                        class="input-file form-control" type="file" style="margin-bottom: 12px;">
+                                </div>
+                            </div>
+
+                            <label class="col-md-4 control-label" for="filebutton2" style="white-space: nowrap;">Book
+                                File</label>
+                            <div class="input-file-wrapper">
+                                <input id="filebutton2" name="interior_photo" accept="image/*"
+                                    class="input-file form-control" type="file" style="margin-bottom: 12px;">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label report-input"
+                                    style="color:#003060;">Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                    placeholder="Describe the book's shortcomings or add other important information concerning the request"
+                                    rows="7"></textarea>
+                            </div>
+                        </div>
+                <div class="modal-footer">
+                    <button type="button submit" class="btn report-button">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </div> -
+
+    <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Form
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-row">
-                          <div class="col-md-4 mb-3">
-                            <label for="validationDefault01">First name</label>
-                            <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark" required>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="validationDefault02">Last name</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="validationDefaultUsername">Username</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                              </div>
-                              <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefault01">First name</label>
+                                <input type="text" class="form-control" id="validationDefault01"
+                                    placeholder="First name" value="Mark" required>
                             </div>
-                          </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefault02">Last name</label>
+                                <input type="text" class="form-control" id="validationDefault02" placeholder="Last name"
+                                    value="Otto" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationDefaultUsername">Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="validationDefaultUsername"
+                                        placeholder="Username" aria-describedby="inputGroupPrepend2" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-row">
-                          <div class="col-md-6 mb-3">
-                            <label for="validationDefault03">City</label>
-                            <input type="text" class="form-control" id="validationDefault03" placeholder="City" required>
-                          </div>
-                          <div class="col-md-3 mb-3">
-                            <label for="validationDefault04">State</label>
-                            <input type="text" class="form-control" id="validationDefault04" placeholder="State" required>
-                          </div>
-                          <div class="col-md-3 mb-3">
-                            <label for="validationDefault05">Zip</label>
-                            <input type="text" class="form-control" id="validationDefault05" placeholder="Zip" required>
-                          </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault03">City</label>
+                                <input type="text" class="form-control" id="validationDefault03" placeholder="City"
+                                    required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault04">State</label>
+                                <input type="text" class="form-control" id="validationDefault04" placeholder="State"
+                                    required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationDefault05">Zip</label>
+                                <input type="text" class="form-control" id="validationDefault05" placeholder="Zip"
+                                    required>
+                            </div>
                         </div>
                         <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                            <label class="form-check-label" for="invalidCheck2">
-                              Agree to terms and conditions
-                            </label>
-                          </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                <label class="form-check-label" for="invalidCheck2">
+                                    Agree to terms and conditions
+                                </label>
+                            </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Submit form</button>
-                      </form>
+                    </form>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label report-input"
                             style="color:#003060;">Description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="Please further elaborate on your selected reason" rows="7" style="color:#003060;"></textarea>
+                            placeholder="Please further elaborate on your selected reason" rows="7"
+                            style="color:#003060;"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -914,7 +1129,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Report Modal -->
     <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -972,88 +1187,88 @@
     </div>
 </body>
 
- {{-- shipping fee --}}
- <div class="modal fade" id="shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
- aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog">
-     <div class="modal-content">
-         <div class="modal-header text-center">
-             <button id="back-shipping" class="btn text-decoration-none float-start"><img
-                     src="{{ asset('assets/left_arrow.png') }}" alt="back"></button>
-             <div class="d-flex justify-content-center w-100">
-                 <h3 class="modal-title" id="staticBackdropLabel">Shipping Fee</h3>
-             </div>
-         </div>
-         <div class="modal-body py-2 px-4">
-             <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please
-                 fill
-                 in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
-                 fee or failed delivery.</span>
-             <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight (kg)"
-                 style="margin-bottom: 7px; margin-top: 8px; color: #003060;"><br>
+{{-- shipping fee --}}
+<div class="modal fade" id="shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button id="back-shipping" class="btn text-decoration-none float-start"><img
+                        src="{{ asset('assets/left_arrow.png') }}" alt="back"></button>
+                <div class="d-flex justify-content-center w-100">
+                    <h3 class="modal-title" id="staticBackdropLabel">Shipping Fee</h3>
+                </div>
+            </div>
+            <div class="modal-body py-2 px-4">
+                <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please
+                    fill
+                    in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
+                    fee or failed delivery.</span>
+                <input type="number" name="weight" id="weight" class="form-control" placeholder="Weight (kg)"
+                    style="margin-bottom: 7px; margin-top: 8px; color: #003060;"><br>
 
-             <label class="fw-bold" for="size">Packaging Size</label><br>
-             <input id="width" name="width" type="number" class="form-control" placeholder="Width (cm)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
-             <input id="height" name="height" type="number" class="form-control" placeholder="Height (cm)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
-             <input id="length" name="length" type="number" class="form-control" placeholder="Length (cm)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
+                <label class="fw-bold" for="size">Packaging Size</label><br>
+                <input id="width" name="width" type="number" class="form-control" placeholder="Width (cm)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
+                <input id="height" name="height" type="number" class="form-control" placeholder="Height (cm)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
+                <input id="length" name="length" type="number" class="form-control" placeholder="Length (cm)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
 
-             <label class="fw-bold" for="courier">Please Select Courier</label><br>
-             {{-- <input id="jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
+                <label class="fw-bold" for="courier">Please Select Courier</label><br>
+                {{-- <input id="jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                  <label for="jrs">JRS Express</label><br> --}}
-             <input id="jt" class="ms-2" name="courier" type="radio" value="J&T Express">
-             <label for="jt">J&T Express</label>
-         </div>
-         <div class="modal-footer">
-             <button type="button" id="shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
-                 style="background-color: #E55B13;">Save</button>
-         </div>
-     </div>
- </div>
+                <input id="jt" class="ms-2" name="courier" type="radio" value="J&T Express">
+                <label for="jt">J&T Express</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
+                    style="background-color: #E55B13;">Save</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{-- edit shipping fee --}}
 <div class="modal fade" id="edit-shipping-fee" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
- aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog">
-     <div class="modal-content">
-         <div class="modal-header text-center">
-             <button id="edit-back-shipping" class="btn text-decoration-none float-start"><img
-                     src="{{ asset('assets/left_arrow.png') }}" alt="back"></button>
-             <div class="d-flex justify-content-center w-100">
-                 <h3 class="modal-title" id="staticBackdropLabel">Shipping Fee</h3>
-             </div>
-         </div>
-         <div class="modal-body py-2 px-4">
-             <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please
-                 fill
-                 in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
-                 fee or failed delivery.</span>
-             <input type="number" name="weight" id="edit-weight" class="form-control" placeholder="Weight (kg)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button id="edit-back-shipping" class="btn text-decoration-none float-start"><img
+                        src="{{ asset('assets/left_arrow.png') }}" alt="back"></button>
+                <div class="d-flex justify-content-center w-100">
+                    <h3 class="modal-title" id="staticBackdropLabel">Shipping Fee</h3>
+                </div>
+            </div>
+            <div class="modal-body py-2 px-4">
+                <span class="m-0 p-0" style="color: #737679; text-align: justify; font-size: 15px">Please
+                    fill
+                    in dimensions accurately. Inaccurate or missing dimensions may result in additional shipping
+                    fee or failed delivery.</span>
+                <input type="number" name="weight" id="edit-weight" class="form-control" placeholder="Weight (kg)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
 
-             <label class="fw-bold" for="size">Packaging Size</label><br>
-             <input id="edit-width" name="width" type="number" class="form-control" placeholder="Width (cm)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
-             <input id="edit-height" name="height" type="number" class="form-control" placeholder="Height (cm)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
-             <input id="edit-length" name="length" type="number" class="form-control" placeholder="Length (cm)"
-                 style="margin-bottom: 7px; color: #003060;"><br>
+                <label class="fw-bold" for="size">Packaging Size</label><br>
+                <input id="edit-width" name="width" type="number" class="form-control" placeholder="Width (cm)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
+                <input id="edit-height" name="height" type="number" class="form-control" placeholder="Height (cm)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
+                <input id="edit-length" name="length" type="number" class="form-control" placeholder="Length (cm)"
+                    style="margin-bottom: 7px; color: #003060;"><br>
 
-             <label class="fw-bold" for="courier">Please Select Courier</label><br>
-             {{-- <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
+                <label class="fw-bold" for="courier">Please Select Courier</label><br>
+                {{-- <input id="edit-jrs" class="ms-2" name="courier" type="radio" value="JRS Express">
                  <label for="edit-jrs">JRS Express</label><br> --}}
-             <input id="edit-jt" class="ms-2" name="courier" type="radio" value="J&T Express">
-             <label for="edit-jt">J&T Express</label>
-         </div>
-         <div class="modal-footer">
-             <button type="button" id="edit-shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
-                 style="background-color: #E55B13;">Save</button>
-         </div>
-     </div>
- </div>
+                <input id="edit-jt" class="ms-2" name="courier" type="radio" value="J&T Express">
+                <label for="edit-jt">J&T Express</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="edit-shipping-save-btn" class="btn mx-auto w-25 text-white rounded-3"
+                    style="background-color: #E55B13;">Save</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @include('partials.__footer', [
@@ -1729,7 +1944,7 @@
                 const y = e.clientY - rect.top;
                 img.style.transformOrigin = `${x}px ${y}px`;
                 img.style.transform =
-                'scale(2)'; // Adjust the scale value for desired zoom level
+                    'scale(2)'; // Adjust the scale value for desired zoom level
             });
             img.addEventListener('mouseout', function() {
                 img.style.transform = 'scale(1)';

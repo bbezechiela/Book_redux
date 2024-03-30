@@ -575,6 +575,16 @@
     background: #6FE76F;
 }
 
+.preview {
+    color: #003060;
+    background: #dae9f8;
+}
+
+.preview:hover {
+    color: #FFF;
+    background: #003060;
+}
+
 .deny {
     color: #FFF;
     background: #003060;

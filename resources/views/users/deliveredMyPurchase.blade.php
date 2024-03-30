@@ -66,6 +66,7 @@
                 </nav>
             </div>
         </div>
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
         <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -140,13 +141,93 @@
                             <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
                                 Details</button>
-                            <a class="btn btn-sm receive-button" data-bs-toggle="modal"
-                            data-bs-target="#rate-review" href="">Post Rating and Review</a>
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#rate-review"
+                                href="">Post Rating and Review</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name" href=""><span>Maria Mesa</span></a>
+                    <button class="message-seller message-button"><i class="fa fa-commenting"
+                            aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Completed</span>
+            </div>
+            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"
+                                    style="color: #003060"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Title: <span>The Pioneers</span></h5>
+                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                            <p class="card-text">Edition: <span>1st Edition</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                            <p class="card-text">Genre: <span>Self-help</span></p>
+                            <p class="card-text">Description: <span>This is a sample description.</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
+                        <div class="button-group">
+                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
+                                data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#book-details">View
+                                Details</button>
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#rate-review"
+                                href="">Post Rating and Review</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
         @php
         $loopCount = 0;
         @endphp
@@ -305,7 +386,7 @@
                             </div> --}}
                             <div class="review-details">
                                 <span id="item-id" hidden></span>
-                                <p>Accuracy of Condition:
+                                <p>Accuracy of Claim:
                                     {{-- <span>10/10</span> --}}
                                     <select class="btn" name="" id="condition-accuracy" required>
                                         {{-- <option >/10</option> --}}
@@ -400,7 +481,8 @@
                                             value="true">
                                     </div>
                                 </div>
-                                <p class="username-text">Your name will be shown as <span id="username">Nestine Navarro</span>
+                                <p class="username-text">Your name will be shown as <span id="username">Nestine
+                                        Navarro</span>
                                 </p>
                             </div>
                         </div>
@@ -411,6 +493,55 @@
                 </div>
             </div>
         </div>
+
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+ <!-- Book Details Modal -->
+ <div class="modal fade" id="book-details" tabindex="-1" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog modal-xl">
+     <div class="modal-content">
+         <div class="modal-header d-print-none">
+             <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
+         </div>
+         <div class="modal-body">
+            <h5 style="color: #E55B13;">Transaction #: 784328432194</h5>
+            <div class="details-container">
+                <div class="seller-details-box">
+                    <input type="text" class="d-none" id="item_id">
+                    <label for="seller-details" class="form-label">Lister</label>
+                    <input type="text" class="form-control" id="seller-fullname"
+                        placeholder="Nestine Nicole Navarro"><br>
+                    <label for="seller-details" class="form-label">Title: The Pioneers</label>
+                    <div class="ExternalFiles">
+                        <iframe src="/assets/TRANSACTION FORM.pdf" frameborder="0" height="400"
+                            width="500"></iframe>
+                    </div>
+                </div>
+
+                <div class="customer-details-box">
+                    <label for="customer-details" class="form-label">Requester</label>
+                    <input type="text" class="form-control" id="customer-fullname"
+                        placeholder="Jennie BlackPink"><br>
+                    <label for="seller-details" class="form-label">Title: City Limits</label>
+                    <div class="ExternalFiles">
+                        <iframe src="/assets/InfoSec_Module-1.pdf" frameborder="0" height="400"
+                            width="500"></iframe>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <div class="modal-footer d-print-none">
+             <button type="button" class="btn btn-secondary close-button"
+                 data-bs-dismiss="modal">Close</button>
+             <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
+                     class="glyphicon glyphicon-print" aria-hidden="true"></span> Disallow Access</button>
+             {{-- <button type="button" class="btn save-button">Update</button> --}}
+         </div>
+     </div>
+ </div>
+</div>
+</div>
+ {{-- CARD IS FOR DIGITAL EXCHANGE --}}
 
         {{-- Tracking Modal --}}
         <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -539,7 +670,8 @@
                                         <div class="d-flex flex-column justify-content-between ml-2">
                                             <div>
                                                 <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
-                                                <span id="detail-title" class="d-block fw-bold p-name">City Limits</span>
+                                                <span id="detail-title" class="d-block fw-bold p-name">City
+                                                    Limits</span>
                                                 <span id="detail-isbn" class="fs-12">ISBN:
                                                     65342688564324</span><br>
                                                 <span id="detail-isbn" class="fs-12">Author: Marx
@@ -558,8 +690,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div
-                                    class="d-flex flex-row justify-content-between align-items-center order-details">
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
                                     {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
                                             id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
                                             Penduko</span>
@@ -569,7 +700,8 @@
                                             class="font-weight-bold shipping-address-text">09491229441</span>
                                     </div> --}}
                                     <div><span class="d-block fw-bold fs-12">Requester Name</span><span
-                                            id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
+                                            id="detail-payment-method" class="font-weight-bold"
+                                            style="color: rgb(111, 185, 219)">Nestine
                                             Navarro</span></div>
                                     <div><span class="d-block fs-12">Contact Number</span><span
                                             id="detail-shipping-address"
@@ -602,10 +734,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div
-                                    class="d-flex flex-row justify-content-between align-items-center order-details">
-                                    <div><span class="d-block fs-12">Lister Name</span><span
-                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie Penduko</span>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <div><span class="d-block fs-12">Lister Name</span><span id="detail-order-date"
+                                            style="color: rgb(111, 185, 219)">Marie Penduko</span>
                                     </div>
                                     <div><span class="d-block fs-12">Contact number</span><span
                                             id="detail-shipping-address"
