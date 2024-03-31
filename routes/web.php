@@ -429,3 +429,5 @@ Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);
 Route::post('/googlesignin', [UserController::class, 'googleSignIn']);
 
 Route::post('/googlelogin', [UserController::class, 'googleLogin']);
+
+Route::get('/getbook/{id}', [ListingController::class, 'getBookID']);

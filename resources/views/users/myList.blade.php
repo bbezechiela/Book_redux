@@ -27,7 +27,7 @@
         </div>
     @endif
     <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
-        <div class="w-100 d-flex mt-1 p-0">            
+        <div class="w-100 d-flex mt-1 p-0">
             <a href="/explore" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                     alt="Logo"></a>
         </div>
@@ -134,7 +134,8 @@
                                     <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
                                             class="fa fa-eye" aria-hidden="true" style="margin-right: 5px;"></i>View
                                         Request</a>
-                                    <a class="p-0 edit-book" onclick="itemClicked({{ $book->id }})"><i
+                                    <a class="p-0 edit-book"
+                                        onclick="itemClicked({{ $book->id }}, '{{ $book->status }}')"><i
                                             class="fa fa-pencil-square-o" aria-hidden="true"
                                             style="margin-right: 5px;"></i>Edit</a>
                                 </div>
@@ -503,7 +504,7 @@
                                         </div>
                                     </div>
 
-                                    <select name="genre" id="" class="form-control form-select"
+                                    <select name="genre" id="genre" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;" required>
                                         <option>Genre</option>
                                         <option value="Educational">Educational</option>
@@ -1307,12 +1308,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
-                    <option value="Sale">Online Reading</option>
+                    <option value="Online Reading">Online Reading</option>
                     <option value="Exchange">Exchange</option>
                 </select>
                 <input type="text" id="edit-book-id" name="id" hidden>
 
-                
+
                 <!-- sale -->
                 <div id="edit-sale-div">
                     <form id="edit-sale-form" method="POST" enctype="multipart/form-data">
@@ -1322,19 +1323,18 @@
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
                                     <input type="text" name="user_id" value="{{ session('id') }}" required
                                         hidden>
-        
-                                    {{-- The book file that the user uploaded should be display here for preview --}}
+
                                     <div class="ExternalFiles h-75">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
                                             Preview</small>
-                                        <input id="pdfUpload" type="file" accept="application/pdf"
+                                        <input id="edit-pdfUpload" type="file" accept="application/pdf"
                                             name="pdf_file" hidden required>
-                                        <label for="pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
+                                        <label for="edit-pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
                                             upload file</label>
-                                        <iframe class="w-100 h-100" id="frame" src=""
+                                        <iframe class="w-100 h-100" id="edit-frame" src=""
                                             frameborder="0"></iframe>
                                     </div>
-        
+
                                 </div>
                                 <div class="col mb-3">
                                     <div class="form-group">
@@ -1342,16 +1342,16 @@
                                             <label class="col-md-4 control-label" for="filebutton1">Book Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="front_cover" accept="image/*"
+                                                    <input id="edit-bookcover" name="front_cover" accept="image/*"
                                                         class="input-file form-control" type="file"
                                                         style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
-        
+
                                         </div>
                                     </div>
-        
-                                    <select name="genre" id="" class="form-control form-select"
+
+                                    <select name="edit-genre" id="edit-genre" class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;" required>
                                         <option>Genre</option>
                                         <option value="Educational">Educational</option>
@@ -1368,18 +1368,18 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="text" name="isbn" id="isbn-exchange" class="form-control"
+                                    <input type="text" name="isbn" id="edit-isbn" class="form-control"
                                         placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
-                                    <input type="text" name="edition" id="edition-sale" class="form-control"
+                                    <input type="text" name="edition" id="edit-edition-sale" class="form-control"
                                         placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
-                                <input type="text" name="title" class="form-control" placeholder="Title"
-                                    style="margin-bottom: 12px; color: #003060;" required>
-                                <input type="text" name="author" class="form-control" placeholder="Author"
-                                    style="margin-bottom: 12px; color: #003060;" required>
-                                <textarea name="description" id="description" class="form-control" cols="30" rows="4"
+                                <input type="text" id="edit-title" name="title" class="form-control"
+                                    placeholder="Title" style="margin-bottom: 12px; color: #003060;" required>
+                                <input type="text" id="edit-author" name="author" class="form-control"
+                                    placeholder="Author" style="margin-bottom: 12px; color: #003060;" required>
+                                <textarea name="description" id="edit-description" class="form-control" cols="30" rows="4"
                                     placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
-                                
+
                             </div>
                             <div class="modal-footer border-0">
                                 <button type="button" id="sale-update"
@@ -1390,7 +1390,7 @@
                                         class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
                                 </form>
                             </div>
-                        </div>d                       
+                        </div>
                     </form>
                 </div>
 
@@ -1578,6 +1578,15 @@
 ])
 
 <script>
+    const fetchGet = async (path) => {
+        const get = await fetch(path, {
+            method: 'GET'
+        });
+        const data = await get.json();
+        return data;
+
+    }
+
     document.getElementById('submitButton').addEventListener('click', () => {
         if (document.getElementById('pdfUpload').files.length == 0) {
             alert('Please upload book file.');
@@ -1646,13 +1655,13 @@
     const deleteToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('deleteLiveToast'));
     const createToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('createLiveToast'));
     const updateToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('updateLiveToast'));
-    @if (session('deleteMessage'))
-        deleteToast.show()
-    @elseif (session('createMessage'))
-        createToast.show()
-    @elseif (session('updateMessage'))
-        updateToast.show()
-    @endif
+    // @if (session('deleteMessage'))
+    //     deleteToast.show()
+    // @elseif (session('createMessage'))
+    //     createToast.show()
+    // @elseif (session('updateMessage'))
+    //     updateToast.show()
+    // @endif
     // delete
     // var sale_delete = document.getElementById('sale-delete');
     var exchange_delete = document.getElementById('exchange-delete');
@@ -1663,14 +1672,35 @@
     // });
     exchange_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
-        window.location.href = "/mylist/delete/" + id.value;
     });
     var edit_modal = document.getElementById('edit-modal-category');
     var edit_courier;
 
-    function itemClicked(id, status) {
-        console.log(id);
-        updateListingModal.show();
+    const itemClicked = (id, status) => {
+        fetchGet(`/getbook/${id}`)
+            .then(result => {
+
+
+                if (status == 'Online Reading') {
+                    document.getElementById("edit-sale-div").style.display = "flex";
+                    document.getElementById('edit-frame').src = `/files/books/${result.book_filename}`;
+                    document.getElementById('edit-genre').value = result.genre;
+                    document.getElementById('edit-isbn').value = result.isbn;
+                    document.getElementById('edit-edition-sale').value = result.edition;
+                    document.getElementById('edit-title').value = result.title;
+                    document.getElementById('edit-author').value = result.author;
+                    document.getElementById('edit-description').value = result.description;
+                    console.log(result);
+                    document.getElementById("edit-exchange-div").style.display = "none";
+                } else {
+                    document.getElementById("edit-sale-div").style.display = "none";
+                    document.getElementById("edit-exchange-div").style.display = "exchange";
+                }
+                updateListingModal.show();
+            })
+            .catch(err => console.error(err));
+
+
     }
     // update btn
     // var sale_update_btn = document.getElementById('sale-update');
@@ -1692,23 +1722,23 @@
     //     sale_form.submit();
     // });
     exchange_update_btn.addEventListener('click', () => {
-        var exchange_form = document.getElementById('edit-exchange-form');
-        var book_id = document.getElementById('edit-book-id');
-        var edit_weight = document.getElementById('edit-weight');
-        var edit_width = document.getElementById('edit-width');
-        var edit_height = document.getElementById('edit-height');
-        var edit_length = document.getElementById('edit-length');
-        document.getElementById('edit-exchange-weight').value = edit_weight.value;
-        document.getElementById('edit-exchange-width').value = edit_width.value
-        document.getElementById('edit-exchange-height').value = edit_height.value;
-        document.getElementById('edit-exchange-length').value = edit_length.value;
-        document.getElementById('edit-exchange-courier').value = edit_courier;
-        exchange_form.action = "/mylist/updateExchange/" + book_id.value;
-        exchange_form.submit();
+        // var exchange_form = document.getElementById('edit-exchange-form');
+        // var book_id = document.getElementById('edit-book-id');
+        // var edit_weight = document.getElementById('edit-weight');
+        // var edit_width = document.getElementById('edit-width');
+        // var edit_height = document.getElementById('edit-height');
+        // var edit_length = document.getElementById('edit-length');
+        // document.getElementById('edit-exchange-weight').value = edit_weight.value;
+        // document.getElementById('edit-exchange-width').value = edit_width.value
+        // document.getElementById('edit-exchange-height').value = edit_height.value;
+        // document.getElementById('edit-exchange-length').value = edit_length.value;
+        // document.getElementById('edit-exchange-courier').value = edit_courier;
+        // exchange_form.action = "/mylist/updateExchange/" + book_id.value;
+        // exchange_form.submit();
     });
 
     edit_modal.addEventListener('change', () => {
-        if (edit_modal.value == 'Sale') {
+        if (edit_modal.value == 'Online Reading') {
             document.getElementById("edit-sale-div").style.display = "flex";
             document.getElementById("edit-exchange-div").style.display = "none";
         } else if (edit_modal.value == 'Exchange') {

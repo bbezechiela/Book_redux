@@ -12,7 +12,7 @@ class ListingController extends Controller
     public function myList()
     {
         if (session()->has('uid')) {
-            $data = Books::where('user_id', session('id'))->with('item')->orderBy('created_at', 'desc')->get();            
+            $data = Books::where('user_id', session('id'))->with('item')->orderBy('created_at', 'desc')->get();
             return view('users.myList', ['books' => $data, 'status' => 'All']);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -62,7 +62,7 @@ class ListingController extends Controller
     }
 
     public function saleList(Request $request)
-    {   
+    {
         // dd($request->all());
         $fileNameWithExt = $request->file('pdf_file')->getClientOriginalName();
         $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -74,9 +74,9 @@ class ListingController extends Controller
         $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
         $coverExtension = $request->file('front_cover')->getClientOriginalExtension();
         $coverNameToStore = $coverName . '_' . time() . $coverExtension;
-        $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);        
-        
-        
+        $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+
+
         $id = $request->input('user_id');
         $genre = $request->input('genre');
         $isbn = $request->input('isbn');
@@ -84,11 +84,9 @@ class ListingController extends Controller
         $title = $request->input('title');
         $author = $request->input('author');
         $description = $request->input('description');
-        $book_file = $request->input('pdf_file');
-        $front = $request->input('front_cover');
         $interior = $request->input('interior_photo');
-        
-        
+
+
         try {
             $post = Books::create([
                 'user_id' => $id,
@@ -105,13 +103,13 @@ class ListingController extends Controller
             ]);
 
             if ($post) {
-                return 'Success';
+                return redirect('mylist');
             }
         } catch (\Throwable $th) {
             throw $th;
         }
-        
-        
+
+
 
         // $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
         // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -120,7 +118,7 @@ class ListingController extends Controller
         // $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
         // $validated['book_photo'] = $fileNameToStore;
 
-        
+
         // $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
         // $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
         // $coverNameToStore = $coverName . '_' . time() . $coverExtension;
@@ -672,14 +670,13 @@ class ListingController extends Controller
     public function destroy($id)
     {
         $post = Books::find($id);
-        $cart = Cart::where('product_id', $id)->delete();
+        // $cart = Cart::where('product_id', $id)->delete();
         $post->delete();
 
         if ($post) {
             return redirect()->route('mylist')->with('deleteMessage', 'Listing deleted successfully. Your request has been processed, and the specified listing has been removed.');
-            
         } else {
-            return redirect()->route('mylist')->with('deleteMessage', 'Cannot delete listing');                        
+            return redirect()->route('mylist')->with('deleteMessage', 'Cannot delete listing');
         }
     }
 
@@ -730,20 +727,21 @@ class ListingController extends Controller
         return view('bookseller.listings', ['books' => $data, 'status' => 'All']);
     }
 
-    public function destroySeller($id) {
+    public function destroySeller($id)
+    {
         $post = Books::find($id);
         $cart = Cart::where('product_id', $id)->delete();
         $post->delete();
 
         if ($post) {
             return redirect('/listings')->with('deleteMessage', 'Listing deleted successfully. Your request has been processed, and the specified listing has been removed.');
-            
         } else {
-            return redirect('/listings')->with('deleteMessage', 'Cannot delete listing');                        
+            return redirect('/listings')->with('deleteMessage', 'Cannot delete listing');
         }
     }
 
-    public function sellerSale(Request $request) {
+    public function sellerSale(Request $request)
+    {
         $validated = $request->validate([
             'user_id' => 'required',
             'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
@@ -821,7 +819,8 @@ class ListingController extends Controller
 
     // }
 
-    public function sellerUpdateSale(Request $request, $id) {
+    public function sellerUpdateSale(Request $request, $id)
+    {
         if ($request->hasFile('book_photo')) {
             $validated = $request->validate([
                 // 'id' => 'required',
@@ -945,5 +944,15 @@ class ListingController extends Controller
             }
         }
     }
-    
+
+
+
+
+    // API's
+
+    public function getBookID($id)
+    {
+        $book = Books::find($id);
+        return $book;
+    }
 }
