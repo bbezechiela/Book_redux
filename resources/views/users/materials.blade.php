@@ -59,9 +59,9 @@
         <div id="mainOuterContainer">
             <div> 
                 <div>
-                    <form id='formOuterContainer' action='/' method='post' style='visibility: hidden;'> 
+                    <form id='formOuterContainer' method='post' style='visibility: hidden;'> 
                         <div id='fileUpperContainer'>
-                            <label for="file">Select Document To Upload</label>
+                            <label id='labell' for="file">Select Document To Upload</label>
                             <input id="file" type="file" style="display: none;">
                         </div>
                         <div id='formInnerContainer'>
@@ -89,6 +89,10 @@
         </div>
     </div>
 </div>
+<script>
+    const current_user_id = "{{ session('id') }}";
+    const csrf_token = "{{ csrf_token(); }}";
+</script>
 <script src="{{ asset('/js/materials.js'); }}"></script>
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
