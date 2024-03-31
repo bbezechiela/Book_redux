@@ -11,18 +11,18 @@
     </div>
 </div>
 <ul class="nav">
-    <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('bookclub*')) active @endif" data-blade="bookClub">
+    {{-- <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('bookclub*')) active @endif" data-blade="bookClub">
         <span class="nav-link">My Wall</span>
-    </a>
+    </a> --}}
     <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('sellingclub*')) active @endif" data-blade="bookSellingClub">
-        <span class="nav-link">Book Selling Club</span>
+        <span class="nav-link">Book Club</span>
     </a>
-    <a href="/exchangeclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('exchangeclub*')) active @endif" data-blade="bookExchangeClub">
+    {{-- <a href="/exchangeclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('exchangeclub*')) active @endif" data-blade="bookExchangeClub">
         <span class="nav-link">Book Exchange Club</span>
     </a>
     <a href="/rentingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('rentingclub*')) active @endif" data-blade="bookRentingClub">
         <span class="nav-link">Book Renting Club</span>
-    </a>
+    </a> --}}
 </ul>
 
 <script>

@@ -14,16 +14,16 @@
         aria-labelledby="offcanvasExampleLabel">
         <x-sidebar />
     </div>
-    <div id="sidebarClub" class="sidebarClub p-2 min-vh-100 shadow">
-        <x-sidebarClub />
+    <div id="sidebar" class="sidebar p-2 min-vh-100 shadow">
+        <x-sidebar />
     </div>
     <div id="content" class="content">
-        <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
-            <div class="w-100 d-flex mt-2 p-0">
-                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+        <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
+            <div class="w-100 d-flex mt-1 p-0">
+                {{-- <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                     aria-controls="offcanvasExample">
                     <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
+                </button> --}}
                 <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
                         alt="Logo"></a>
                 {{-- <ul class="nav nav-underline">
@@ -69,7 +69,7 @@
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
                                 <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
-                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
                                 <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
                             </ul>
                         </li>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h6>Book Selling Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
+                                <h6>Book Club<i class="btn fa fa-pencil-square-o" aria-hidden="true"
                                         data-bs-toggle="modal" data-bs-target="#createevent"></i></h6>
                                 {{-- <input class="form-control rounded-3 search-club" type="text" placeholder="Search"
                                     style="height: 2em"> --}}
@@ -144,23 +144,23 @@
                     </div>
                 </div>
 
-                <!-- For Sale Card -->
-                <div id="for_sale" class="col-lg-4">
+                <!-- Daily Discover Card -->
+                <div id="daily-discover" class="col-lg-4">
                     <div class="card mt-5 mb-3 custom-sticky-card card-sidebar">
                         <div class="card-header sticky-top">
                             <div class="d-flex justify-content-between">
-                                <h5 id="for-sale-header" class="mb-0 daily_discovery_text">For Sale</h5>
+                                <h5 id="daily-discover-header" class="mb-0">Daily Discover</h5>
                                 {{-- <small>See All<i class="fa fa-arrow-right" aria-hidden="true"></i></small> --}}
                             </div>
                         </div>
-                        @foreach ($post->shuffle() as $sale)
-                        <div class="card-body" onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
+                        @foreach ($post->shuffle() as $daily)
+                        <div class="card-body" onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('images/books/' . $sale->book_photo) }}" alt="Book Image"
+                                <img src="{{ asset('images/books/' . $daily->book_photo) }}" alt="Book Image"
                                     class="rounded me-3" width="80" height="80">
                                 <div>
-                                    <h6 class="mb-0">{{ $sale->title }}</h6>
-                                    <p class="mb-0">For {{ $sale->status }}</p>
+                                    <h6 id="book-title" class="mb-0">{{ $daily->title }}</h6>
+                                    <p class="mb-0">For {{ $daily->status }}</p>
                                 </div>
                             </div>
                         </div>

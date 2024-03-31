@@ -103,6 +103,13 @@ a::after {
 .edit-book {
     color: #E55B13;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.view-request{
+    color: #003060;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 input,
@@ -197,5 +204,85 @@ a:hover {
     bottom: 1px;
     right: 27px;
     margin: 0;
+    border: 1px solid #003060;
+}
+
+.accept {
+    color: #FFF;
+    background: #E55B13;
+}
+
+.accept:hover {
+    color: #FFF;
+    background: #6FE76F;
+}
+
+.deny {
+    color: #FFF;
+    background: #003060;
+}
+
+.deny:hover {
+    color: #FFF;
+    background: tomato;
+}
+
+.name-cart {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    height: 50px;
+    margin-bottom: 12px;
+    width: 92.5%;
+    margin-left: 3em;
+    margin-bottom: 0;
+    background-color: #dae9f8;
+    margin-top: .3em;
+    color: #003060;
+    font-weight: bold;
+    text-align: center;
+}
+
+.name-cart a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #003060;
+    font-weight: bold;
+    margin-right: .5em;
+    margin-left: 2em;
+}
+
+.name-cart a:hover {
+    text-decoration: underline;
+}
+
+.message-seller {
+    color: #E55B13;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 17px;
+}
+
+.message-seller:hover {
+    color: #98c0e7;
+}
+
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.arrange-button {
+    color: #fff;
+    background-color: #E55B13;
+    border: 1px solid #E55B13;
+    margin-right: 2em;
+}
+
+.arrange-button:hover{
+    color: #fff;
+    background-color: #003060;
     border: 1px solid #003060;
 }

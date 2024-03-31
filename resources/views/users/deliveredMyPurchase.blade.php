@@ -1,8 +1,8 @@
 @include('partials.__header', [
-    'title' => 'Delivered | BookRedux',
-    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-    'css_link' => '/css/myPurchase-style.css',
-    'aos_link' => '/aos-master/dist/aos.css',
+'title' => 'Delivered | BookRedux',
+'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+'css_link' => '/css/myPurchase-style.css',
+'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -37,7 +37,7 @@
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
                                 <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
-                                <li><a class="dropdown-item" href="/changepassword">Change Password</a></li>
+                                {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
                                 <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
                             </ul>
                         </li>
@@ -53,14 +53,12 @@
             <div class="card-body nav-details">
                 <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/booksrented">Books Rented</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
-                        href="/mypurchase">To Purchase</a>
+                        href="/mypurchase">My Exchange Request</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         style="background-color: #003060;" aria-current="page" href="/toreceive">To
                         Receive</a>
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
-                        aria-current="page" href="/delivered-mypurchase">Delivered</a>
+                        aria-current="page" href="/delivered-mypurchase">Completed</a>
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/dropped-mypurchase">Dropped</a>
                     {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
@@ -68,98 +66,179 @@
                 </nav>
             </div>
         </div>
-        @php
-            $loopCount = 0;
-        @endphp
-        @foreach ($orders as $order)
-            @foreach ($order->items as $item)
-                @if ($item->order_status == 'received')
-                    <div class="order-cart">
-                        <div class="name-cart d-flex justify-content-between">
-                            <div>
-                                @if ($item->book->user->type == 'Bookseller')
-                                    <a class="seller-name"
-                                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->business_name }}</span></a>
-                                @else
-                                    <a class="seller-name"
-                                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
-                                @endif
-                            </div>
-                            <span class="order-text me-5 mt-0">Delivered</span>
-                        </div>
-                        <div class="product-cart">
-                            <div class="book-details">
-                                <div class="left-section">
-                                    <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book"
-                                        width="80px" height="110px">
-                                    <div class="book-info">
-                                        <p class="mb-0 book-title">{{ $item->book->title }}</p>
-                                        <p class="mb-0 fw-bold interaction-type" id="interaction-type">
-                                            {{ $item->book->status }}</p>
-                                        <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
-                                        <button type="button" class="fw-bold p-0 post-btn text-start mb-0" data-bs-toggle="modal"
-                                data-bs-target="#track-delivery" style="color:#003060" onclick="trackOrder({{ $item->id }})">Track
-                                Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                                        <p id="track_{{ $item->id }}" class="d-none">{{ $item->tracking_number }}
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name" href=""><span>Maria Mesa</span></a>
+                    <button class="message-seller message-button"><i class="fa fa-commenting"
+                            aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Completed</span>
+            </div>
+            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
                                     </div>
-                                </div>
-                                <div class="right-section">
-                                    <div class="book-price">
-                                        <p class="product-price">₱{{ $item->book->price }}</p>
-                                        <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
-                                        </p> <br>
-                                        <p class="text-total fw-bold">Total Payment:<span
-                                                class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span>
-                                        </p>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="order-details mt-0">
-                                <div class="order-message">
-                                    @php
-                                        $loopFlag = false;
-                                        $rate_id = 0;
-
-                                        if ($item->ratedItem->count() > 0) {
-                                            foreach ($item->ratedItem as $review) {
-                                                if ($review->item_id == $item->id && $review->user_id == session('id') && $loopFlag == false) {
-                                                    $loopFlag = true;
-                                                    $rate_id = $review->id;
-                                                }
-                                            }
-                                        }
-                                    @endphp
-                                    @if ($loopFlag)
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review"
-                                            onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
-                                            Rating and Review</button>
-                                    @else
-                                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review"
-                                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
-                                            Rating and Review</button>
-                                    @endif
-                                </div>
-                                <div class="button-group">
-                                    <a href="/messages" type="button" class="btn btn-sm contact-button">Contact
-                                        Seller</a>
-                                </div>
-                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"
+                                    style="color: #003060"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
-                    @php
-                        $loopCount++;
-                    @endphp
-                @endif
-            @endforeach
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Title: <span>The Pioneers</span></h5>
+                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                            <p class="card-text">Edition: <span>1st Edition</span></p>
+                            <p class="card-text">Condition: <span>Good</span></p>
+                            <p class="card-text">Description: <span>This is a sample description.</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                            <p class="card-text">Genre: <span>Self-help</span></p>
+                            <p class="card-text">Format: <span>Paperback</span></p>
+                            <p class="card-text">Exchange Preferences: <span>This is a sample exchange
+                                    preferences.</span></p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
+                        <div class="button-group">
+                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
+                                data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
+                                Details</button>
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal"
+                            data-bs-target="#rate-review" href="">Post Rating and Review</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php
+        $loopCount = 0;
+        @endphp
+        @foreach ($orders as $order)
+        @foreach ($order->items as $item)
+        @if ($item->order_status == 'received')
+        <div class="order-cart">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    @if ($item->book->user->type == 'Bookseller')
+                    <a class="seller-name"
+                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->business_name }}</span></a>
+                    @else
+                    <a class="seller-name"
+                        href="/userlistings/{{ $order->user_id }}"><span>{{ $item->book->user->first_name . ' ' . $item->book->user->last_name }}</span></a>
+                    @endif
+                </div>
+                <span class="order-text me-5 mt-0">Delivered</span>
+            </div>
+            <div class="product-cart">
+                <div class="book-details">
+                    <div class="left-section">
+                        <img src="{{ asset('/images/books/' . $item->book->book_photo) }}" alt="book" width="80px"
+                            height="110px">
+                        <div class="book-info">
+                            <p class="mb-0 book-title">{{ $item->book->title }}</p>
+                            <p class="mb-0 fw-bold interaction-type" id="interaction-type">
+                                {{ $item->book->status }}</p>
+                            <p class="mb-0 payment-mode">{{ $order->payment_method }}</p>
+                            <button type="button" class="fw-bold p-0 post-btn text-start mb-0" data-bs-toggle="modal"
+                                data-bs-target="#track-delivery" style="color:#003060"
+                                onclick="trackOrder({{ $item->id }})">Track
+                                Order<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                            <p id="track_{{ $item->id }}" class="d-none">{{ $item->tracking_number }}
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="book-price">
+                            <p class="product-price">₱{{ $item->book->price }}</p>
+                            <p class="text-total">Shipping Fee:<span class="product-total">₱130</span>
+                            </p> <br>
+                            <p class="text-total fw-bold">Total Payment:<span
+                                    class="product-total fw-bold">₱{{ $item->book->price + 130 }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-details mt-0">
+                    <div class="order-message">
+                        @php
+                        $loopFlag = false;
+                        $rate_id = 0;
+
+                        if ($item->ratedItem->count() > 0) {
+                        foreach ($item->ratedItem as $review) {
+                        if ($review->item_id == $item->id && $review->user_id == session('id') && $loopFlag == false) {
+                        $loopFlag = true;
+                        $rate_id = $review->id;
+                        }
+                        }
+                        }
+                        @endphp
+                        @if ($loopFlag)
+                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                            data-bs-target="#rate-review" onclick="editRating({{ $review->id }}, {{ $item->id }})">Edit
+                            Rating and Review</button>
+                        @else
+                        <button type="button" class="post-btn-delivered" data-bs-toggle="modal"
+                            data-bs-target="#rate-review"
+                            onclick="ratingReview({{ $item->book->user->id }}, '{{ $item->book->status }}', {{ $item->id }})">Post
+                            Rating and Review</button>
+                        @endif
+                    </div>
+                    <div class="button-group">
+                        <a href="/messages" type="button" class="btn btn-sm contact-button">Contact
+                            Seller</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php
+        $loopCount++;
+        @endphp
+        @endif
+        @endforeach
         @endforeach
         @if ($loopCount == 0)
-            <div class="w-100 mt-5 d-flex justify-content-center">
-                <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
-            </div>
-            <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">Nothing received yet</h1>
+        <div class="w-100 mt-5 d-flex justify-content-center">
+            <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
+        </div>
+        <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">Nothing received yet</h1>
         @endif
 
         <!-- Rate and Review Modal -->
@@ -169,7 +248,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #003060;">Rate and Review
-                            Seller</h1>
+                            Lister</h1>
                         <button type="button" id="close-btn" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -276,53 +355,53 @@
                                 </p>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="description" rows="5" placeholder="Enter your text here..." required></textarea>
+                                    <textarea class="form-control" id="description" rows="5"
+                                        placeholder="Enter your text here..." required></textarea>
                                 </div>
                                 </p>
                                 <p>Photo:
-                                <div class="image-container">
-                                    <div class="image-holder">
-                                        <input id="first-img" type="file" accept="image/*" class="d-none"
-                                            required>
-                                        <label for="first-img"><i id="first-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="one-image" alt=""></i></label>
+                                    <div class="image-container">
+                                        <div class="image-holder">
+                                            <input id="first-img" type="file" accept="image/*" class="d-none" required>
+                                            <label for="first-img"><i id="first-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="one-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="second-img" type="file" accept="image/*" class="d-none">
+                                            <label for="second-img"><i id="second-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="two-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="third-img" type="file" accept="image/*" class="d-none">
+                                            <label for="third-img"><i id="three-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="three-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="fourth-img" type="file" accept="image/*" class="d-none">
+                                            <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="four-image" alt=""></i></label>
+                                        </div>
+                                        <div class="image-holder">
+                                            <input id="fifth-img" type="file" accept="image/*" class="d-none">
+                                            <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
+                                                    aria-hidden="true" style="cursor: pointer;"><img src=""
+                                                        id="five-image" alt=""></i></label>
+                                        </div>
                                     </div>
-                                    <div class="image-holder">
-                                        <input id="second-img" type="file" accept="image/*" class="d-none">
-                                        <label for="second-img"><i id="second-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="two-image" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="third-img" type="file" accept="image/*" class="d-none">
-                                        <label for="third-img"><i id="three-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="three-image" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="fourth-img" type="file" accept="image/*" class="d-none">
-                                        <label for="fourth-img"><i id="four-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="four-image" alt=""></i></label>
-                                    </div>
-                                    <div class="image-holder">
-                                        <input id="fifth-img" type="file" accept="image/*" class="d-none">
-                                        <label for="fifth-img"><i id="five-plus" class="fa fa-plus"
-                                                aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                    id="five-image" alt=""></i></label>
-                                    </div>
-                                </div>
                                 </p>
                                 <div class="col-4 d-flex justify-content-between show-text">
-                                    <p>Show username on your rating/review</p>
+                                    <p>Show name on your rating/review</p>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="user-switch" value="true">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="user-switch"
+                                            value="true">
                                     </div>
                                 </div>
-                                <p class="username-text">Your username will be shown as <span
-                                        id="username">necxs</span></p>
+                                <p class="username-text">Your name will be shown as <span id="username">Nestine Navarro</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -342,8 +421,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My
                             Purchase
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <section>
@@ -364,18 +442,17 @@
                                                 </div>
                                                 <div
                                                     class="d-flex flex-row justify-content-between align-items-center align-content-center">
-                                                    <span id="first_track{{ $item->id }}" class="dot"></span>
-                                                    <hr class="flex-fill track-line"><span
+                                                    {{-- <span id="first_track{{ $item->id }}" class="dot"></span> --}}
+                                                    {{-- <hr class="flex-fill track-line"><span
                                                         id="second_track{{ $item->id }}" class="dot"></span>
                                                     <hr class="flex-fill track-line"><span
                                                         id="fourth_track{{ $item->id }}" class="dot"></span>
                                                     <hr class="flex-fill track-line"><span
                                                         id="fifth_track{{ $item->id }}"
                                                         class="d-flex justify-content-center align-items-center big-dot dot"><i
-                                                            class="fa fa-check text-white"></i></span>
+                                                            class="fa fa-check text-white"></i></span> --}}
                                                 </div>
-                                                <div
-                                                    class="d-flex flex-row justify-content-between align-items-center">
+                                                <div class="d-flex flex-row justify-content-between align-items-center">
                                                     <div class="d-flex flex-column align-items-start tracking-text">
                                                         <span class="date-track"></span>
                                                         <span class="tracking-description">Order
@@ -426,41 +503,197 @@
     </div>
 </div>
 
+<!-- Shipping Details Modal -->
+<div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-print-none">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
+            </div>
+            <div class="modal-body d-print-block">
+                <div class="container mt-5 mb-5">
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-10">
+                            <div class="receipt bg-white p-3 rounded"><img src="../assets/Book_Logo.png" width="120">
+                                {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
+                                {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
+                                <hr>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <div><span class="d-block fs-12">Approved Request Date</span><span
+                                            id="detail-order-date" class="font-weight-bold">12 March
+                                            2020</span></div>
+                                    <div><span class="d-block fs-12">Transaction number</span><span
+                                            id="detail-order-number" class="font-weight-bold">TRA44434324</span>
+                                    </div>
+                                    <div><span class="d-block fs-12">Request Date</span><span id="detail-payment-method"
+                                            class="font-weight-bold">03 April
+                                            2024</span></div>
+                                    <div><span class="d-block fs-12">Shipping Address</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">Bagacay,
+                                            Tacloban</span></div>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center product-details">
+                                    <div class="d-flex flex-row product-name-image">
+                                        <div class="d-flex flex-column justify-content-between ml-2">
+                                            <div>
+                                                <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
+                                                <span id="detail-title" class="d-block fw-bold p-name">City Limits</span>
+                                                <span id="detail-isbn" class="fs-12">ISBN:
+                                                    65342688564324</span><br>
+                                                <span id="detail-isbn" class="fs-12">Author: Marx
+                                                    Hinton</span><br>
+                                                <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
+                                                <span id="detail-isbn" class="fs-12">Edition: 1st
+                                                    Edition</span><br>
+                                                <span id="detail-isbn" class="fs-12">Condition: New</span><br>
+                                                <span id="detail-isbn" class="fs-12">Exchange Method Preference:
+                                                    Meetup</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <h5 id="detail-price">Paperback</h5>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div
+                                    class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
+                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
+                                            Penduko</span>
+                                    </div>
+                                    <div><span class="d-block fs-12">Contact number</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">09491229441</span>
+                                    </div> --}}
+                                    <div><span class="d-block fw-bold fs-12">Requester Name</span><span
+                                            id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
+                                            Navarro</span></div>
+                                    <div><span class="d-block fs-12">Contact Number</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">09054173103</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center product-details">
+                                    <div class="d-flex flex-row product-name-image">
+                                        <div class="d-flex flex-column justify-content-between ml-2">
+                                            <div>
+                                                <h6 style="color:#E55B13;">Lister Book - Incoming book</h6>
+                                                <span id="detail-title" class="d-block fw-bold p-name">The
+                                                    Pioneers</span>
+                                                <span id="detail-isbn" class="fs-12">ISBN:
+                                                    65342688564324</span><br>
+                                                <span id="detail-isbn" class="fs-12">Author: Marx
+                                                    Hinton</span><br>
+                                                <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
+                                                <span id="detail-isbn" class="fs-12">Edition: 1st
+                                                    Edition</span><br>
+                                                <span id="detail-isbn" class="fs-12">Condition: New</span><br>
+                                                <span id="detail-isbn" class="fs-12">Exchange Method Preference:
+                                                    Meetup</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <h5 id="detail-price">Paperback</h5>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div
+                                    class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <div><span class="d-block fs-12">Lister Name</span><span
+                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie Penduko</span>
+                                    </div>
+                                    <div><span class="d-block fs-12">Contact number</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">09491229441</span>
+                                    </div>
+                                    {{-- <div><span class="d-block fs-12">Requester Name</span><span
+                                            id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
+                                            Navarro</span></div>
+                                    <div><span class="d-block fs-12">Contact Number</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">09054173103</span>
+                                    </div> --}}
+                                </div>
+                                <hr>
+                                {{-- <div class="mt-5 amount row">
+                                <div class="d-flex justify-content-center col-md-6"><img id="detail-barcode"
+                                        src="../assets/tracking.jfif" width="250" height="100">
+                                </div> --}}
+                                {{-- <div class="col-md-6">
+                                    <div class="billing">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Subtotal</span><span id="detail-subtotal"
+                                                class="font-weight-bold">₱100</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mt-2"><span>Shipping
+                                                fee</span><span id="detail-shipping-fee"
+                                                class="font-weight-bold">₱130</span></div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between mt-1"><span
+                                                class="font-weight-bold">Total</span>
+                                            <span id="detail-total"
+                                                class="font-weight-bold shipping-address-text">₱140</span>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                            </div><span class="d-block">Complete Address</span><span id="detail-address"
+                                class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
+                                Tacloban City</span>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center footer">
+                                <div class="thanks"><span class="d-block font-weight-bold">Thanks for
+                                        sharing</span><span>BookRedux team</span></div>
+                                {{-- <div class="d-flex flex-column justify-content-end align-items-end"><span class="d-block font-weight-bold">Need Help?</span><span>Call - 974493933</span></div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-print-none">
+                <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
+                        class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                {{-- <button type="button" class="btn save-button">Update</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 @include('partials.__footer', [
-    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-    'aos_link' => '/aos-master/dist/aos.js',
+'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
     const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
-
-    const trackOrder = (id) => {        
-        document.getElementById('modal_tracking').textContent = `Tracking Number: ${document.getElementById(`track_${id}`).textContent}`;
+    const trackOrder = (id) => {
+        document.getElementById('modal_tracking').textContent =
+            `Tracking Number: ${document.getElementById(`track_${id}`).textContent}`;
     }
-
     var rate_val = 0;
-
     var one_S = document.getElementById('one-star');
     var two_S = document.getElementById('two-star');
     var three_S = document.getElementById('three-star');
     var four_S = document.getElementById('four-star');
     var five_S = document.getElementById('five-star');
-
     var first_img = document.getElementById('first-img');
     var second_img = document.getElementById('second-img');
     var third_img = document.getElementById('third-img');
     var fourth_img = document.getElementById('fourth-img');
     var fifth_img = document.getElementById('fifth-img');
-
     var submit_btn = document.getElementById('submit-btn');
     var accu_cond = document.getElementById('condition-accuracy');
     var accu_desc = document.getElementById('condition-description');
     var interaction = document.getElementById('interaction');
     var description = document.getElementById('description');
     var check_username = document.getElementById('user-switch');
-
     var close_btn = document.getElementById('close-btn');
-
     first_img.addEventListener('change', () => {
         var img = document.getElementById('one-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -468,7 +701,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     second_img.addEventListener('change', () => {
         var img = document.getElementById('two-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -476,7 +708,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     third_img.addEventListener('change', () => {
         var img = document.getElementById('three-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -484,7 +715,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     fourth_img.addEventListener('change', () => {
         var img = document.getElementById('four-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -492,7 +722,6 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     fifth_img.addEventListener('change', () => {
         var img = document.getElementById('five-image');
         img.src = URL.createObjectURL(event.target.files[0]);
@@ -500,27 +729,22 @@
         img.style.width = '60px';
         img.style.height = '60px';
     });
-
     one_S.addEventListener('click', () => {
         star(1);
         rate_val = 1;
     });
-
     two_S.addEventListener('click', () => {
         star(2);
         rate_val = 2;
     });
-
     three_S.addEventListener('click', () => {
         star(3);
         rate_val = 3;
     });
-
     four_S.addEventListener('click', () => {
         star(4);
         rate_val = 4;
     });
-
     five_S.addEventListener('click', () => {
         star(5);
         rate_val = 5;
@@ -533,36 +757,29 @@
         third_img.value = '';
         fourth_img.value = '';
         fifth_img.value = '';
-
         document.getElementById('one-image').src = '';
         document.getElementById('two-image').src = '';
         document.getElementById('three-image').src = '';
         document.getElementById('four-image').src = '';
         document.getElementById('five-image').src = '';
-
         document.getElementById('one-image').style.width = '0px';
         document.getElementById('two-image').style.width = '0px';
         document.getElementById('three-image').style.width = '0px';
         document.getElementById('four-image').style.width = '0px';
         document.getElementById('five-image').style.width = '0px';
-
         document.getElementById('one-image').style.height = '0px';
         document.getElementById('two-image').style.height = '0px';
         document.getElementById('three-image').style.height = '0px';
         document.getElementById('four-image').style.height = '0px';
         document.getElementById('five-image').style.height = '0px';
-
         document.getElementById('first-plus').className = 'fa fa-plus';
         document.getElementById('second-plus').className = 'fa fa-plus';
         document.getElementById('three-plus').className = 'fa fa-plus';
         document.getElementById('four-plus').className = 'fa fa-plus';
         document.getElementById('five-plus').className = 'fa fa-plus';
-
-
         const request = {
             method: 'GET'
         };
-
         fetch('/getuser/' + user_id, request)
             .then(response => response.json())
             .then(data => {
@@ -576,28 +793,22 @@
                     document.getElementById('user_name').textContent = data.first_name + ' ' + data.last_name;
                     document.getElementById('username').textContent = data.username;
                 }
-
                 document.getElementById('interaction-type').textContent = type;
                 document.getElementById('item-id').textContent = item_id;
             })
             .catch(error => console.error(error));
-
         submit_btn.id = 'submit-btn';
         document.getElementById('submit-btn').textContent = 'Submit';
-
         document.getElementById('submit-btn').addEventListener('click', submitBtn);
     }
-
     var id_edit_btn = 0;
 
     function editRating(id, item_id) {
         submit_btn.disabled = false;
         var review_id = 0;
-
         const request = {
             method: 'GET'
         };
-
         fetch('/getrating/' + id, request)
             .then(response => response.json())
             .then(data => {
@@ -620,35 +831,30 @@
                 accu_desc.value = data.description_accuracy;
                 interaction.value = data.interaction;
                 description.value = data.description;
-
                 if (data.first_img != undefined) {
                     document.getElementById('one-image').src = '/images/rate_images/' + data.first_img;
                     document.getElementById('first-plus').className = 'fa p-0';
                     document.getElementById('one-image').style.width = '60px';
                     document.getElementById('one-image').style.height = '60px';
                 }
-
                 if (data.second_img != undefined) {
                     document.getElementById('two-image').src = '/images/rate_images/' + data.second_img;
                     document.getElementById('second-plus').className = 'fa p-0';
                     document.getElementById('two-image').style.width = '60px';
                     document.getElementById('two-image').style.height = '60px';
                 }
-
                 if (data.third_img != undefined) {
                     document.getElementById('three-image').src = '/images/rate_images/' + data.third_img;
                     document.getElementById('three-plus').className = 'fa p-0';
                     document.getElementById('three-image').style.width = '60px';
                     document.getElementById('three-image').style.height = '60px';
                 }
-
                 if (data.fourth_img != undefined) {
                     document.getElementById('four-image').src = '/images/rate_images/' + data.fourth_img;
                     document.getElementById('four-plus').className = 'fa p-0';
                     document.getElementById('four-image').style.width = '60px';
                     document.getElementById('four-image').style.height = '60px';
                 }
-
                 if (data.fifth_img != undefined) {
                     document.getElementById('five-image').src = '/images/rate_images/' + data.fifth_img;
                     document.getElementById('five-plus').className = 'fa p-0';
@@ -658,13 +864,10 @@
                 }
             })
             .catch(err => console.error(err));
-
         submit_btn.id = 'edit-btn';
         document.getElementById('edit-btn').textContent = 'Edit';
-
         id_edit_btn = id;
         document.getElementById('edit-btn').addEventListener('click', editBtn);
-
     }
 
     function submitBtn() {
@@ -674,9 +877,7 @@
     function editBtn() {
         edit(id_edit_btn);
     }
-
     close_btn.addEventListener('click', () => {
-
         if (document.getElementById('submit-btn') == null) {
             document.getElementById('edit-btn').removeEventListener('click', editBtn);
             star(0);
@@ -699,14 +900,17 @@
         document.getElementById('submit-btn').disabled = true;
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
-        formData.append('user_id', {{ session('id') }});
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
         formData.append('rate_value', rate_val);
         formData.append('condition_accuracy', accu_cond.value);
         formData.append('description_accuracy', accu_desc.value);
         formData.append('interaction', interaction.value);
         formData.append('description', description.value);
         formData.append('display_username', check_username.checked);
-
         if (first_img.files.length > 0) {
             formData.append('first_img', first_img.files[0]);
         }
@@ -722,7 +926,6 @@
         if (fifth_img.files.length > 0) {
             formData.append('fifth_img', fifth_img.files[0]);
         }
-
         // console.log(formData);
         fetch('/ratepost', {
                 method: 'POST',
@@ -747,14 +950,17 @@
         document.getElementById('edit-btn').disabled = true;
         var formData = new FormData();
         formData.append('item_id', document.getElementById('item-id').textContent);
-        formData.append('user_id', {{ session('id') }});
+        formData.append('user_id', {
+            {
+                session('id')
+            }
+        });
         formData.append('rate_value', rate_val);
         formData.append('condition_accuracy', accu_cond.value);
         formData.append('description_accuracy', accu_desc.value);
         formData.append('interaction', interaction.value);
         formData.append('description', description.value);
         formData.append('display_username', check_username.checked);
-
         if (first_img.files.length > 0) {
             formData.append('first_img', first_img.files[0]);
         }
@@ -770,7 +976,6 @@
         if (fifth_img.files.length > 0) {
             formData.append('fifth_img', fifth_img.files[0]);
         }
-
         // console.log(formData);
         fetch('/updaterate/' + id, {
                 method: 'POST',
@@ -791,8 +996,6 @@
             .catch(error => console.log(error));
     }
     // });
-
-
     function star(rate) {
         if (rate == 0) {
             one_S.className = 'fa fa-star-o';

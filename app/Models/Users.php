@@ -34,13 +34,13 @@ class Users extends Model
     }
 
     protected $fillable = [
-        'type',
-        'username',
-        'password',
-        'first_name',
-        'last_name',
+        'type',                
+        // 'first_name',
+        // 'last_name',
+        'name',
         'email',
-        'phone_number',
+        'uid',
+        // 'phone_number',
         'address',
         'birthday',
         'gender',

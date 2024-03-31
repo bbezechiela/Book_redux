@@ -125,6 +125,8 @@ Route::get('/mypurchase', [UserController::class, 'myPurchase']);
 
 Route::get('/toreceive', [UserController::class, 'toReceive']);
 
+Route::get('/toreceiveLister', [UserController::class, 'toreceiveLister']);
+
 Route::get('/delivered-mypurchase', [UserController::class, 'deliveredMyPurchase']);
 
 Route::get('/dropped-mypurchase', [UserController::class, 'droppedMyPurchase']);
@@ -335,8 +337,6 @@ Route::get('/manageseller', [AdminController::class, 'manageSeller']);
 
 Route::get('/reportedseller', [UserController::class, 'reportedSeller']);
 
-Route::get('/booksrented', [UserController::class, 'booksRented']);
-
 Route::get('/return', [UserController::class, 'manageReturn']);
 
 Route::get('/shipment', [UserController::class, 'manageShipment']);
@@ -431,3 +431,11 @@ Route::get('/getuseraddress', [UserController::class, 'getCurrentUserAddress']);
 Route::get('/getnearbybooks', [UserController::class, 'getNearbyBooks']);
 
 Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);
+
+
+// New API's
+Route::post('/googlesignin', [UserController::class, 'googleSignIn']);
+
+Route::post('/googlelogin', [UserController::class, 'googleLogin']);
+
+Route::get('/getbook/{id}', [ListingController::class, 'getBookID']);

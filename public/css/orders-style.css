@@ -227,7 +227,10 @@
 .arrange-button,
 .contact-button,
 .save-button,
-.track-button {
+.receive-button:hover,
+.track-button,
+.confirm-btn,
+.request-btn {
     color: #fff;
     background-color: #E55B13;
     border: 1px solid #E55B13;
@@ -237,7 +240,10 @@
 .arrange-button:hover,
 .contact-button:hover,
 .save-button:hover,
-.track-button:hover {
+.receive-button,
+.track-button:hover,
+.confirm-btn:hover,
+.request-btn:hover {
     color: #fff;
     background-color: #003060;
     border: 1px solid #003060;
@@ -246,6 +252,51 @@
 .button-group {
     display: flex;
     gap: 10px;
+}
+
+.name-return {
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    height: 50px;
+    margin-bottom: 12px;
+    width: 99%;
+    margin-bottom: 0;
+    background-color: #dae9f8;
+    margin-top: .3em;
+    color: #003060;
+    font-weight: bold;
+    text-align: center;
+}
+
+.product-return {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    height: auto;
+    margin-bottom: 12px;
+    width: 99%;
+    margin-top: 0;
+    margin-bottom: 2em;
+    padding: 2em;
+}
+
+.book-info-return {
+    text-align: justify;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+.book-details-return {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 13px;
+    color: #003060;
 }
 
 .modal-title {
@@ -507,4 +558,29 @@
     right: 27px;
     margin: 0;
     border: 1px solid #003060;
+}
+
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.accept {
+    color: #FFF;
+    background: #E55B13;
+}
+
+.accept:hover {
+    color: #FFF;
+    background: #6FE76F;
+}
+
+.deny {
+    color: #FFF;
+    background: #003060;
+}
+
+.deny:hover {
+    color: #FFF;
+    background: tomato;
 }

@@ -1,11 +1,11 @@
 <div class="d-flex flex-row p-3 shadow head-nav">
     <i class="border border-white rounded-circle"><img class="rounded-circle"
-            src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="Profile photo" class="img"
+            src="{{ session('image') }}" alt="Profile photo" class="img"
             width="65" height="65"></i>
 
     <div class="d-flex flex-column ms-2 text-white">
-        <span class="fw-bold">{{ session('first_name') . ' ' . session('last_name') }}</span>
-        <span>{{ session('username') }}</span>
+        <span class="fw-bold">{{ session('name') }}</span>
+        <span>{{ session('email') }}</span>
         {{-- <span class="profile-content"><a href="/followers" class="text-white text-decoration-none">2.9K Followers . </a><a href="/following" class="text-white text-decoration-none">500 Following</a></span> --}}
     </div>
     {{-- <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
@@ -25,15 +25,15 @@
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Materials</span>
     </a>
-    <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
+    {{-- <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
-    </a>
-    <a href='/messageses' class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
+    </a> --}}
+    <a href="/messageses" class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
         <i class="fa fa-envelope-o d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Messages</span>
     </a>
-    <a href="/bookclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
+    <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
         <i class="fa fa-users d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Book Club</span>
     </a>
@@ -63,10 +63,10 @@
         <i class="fa fa-thumbs-up d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">My Likes</span>
     </a> --}}
-    <a href="/feedback" class="btn nav-item d-flex flex-row w-100 px-5 py-0 feedback-side-btn">
+    {{-- <a href="/feedback" class="btn nav-item d-flex flex-row w-100 px-5 py-0 feedback-side-btn">
         <i class="fa fa-comments d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">System Feedback</span>
-    </a>
+    </a> --}}
     <a href="/logout" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="fa fa-sign-out d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Logout</span>
