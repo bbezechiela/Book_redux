@@ -14,6 +14,7 @@ return new class extends Migration
             $table->foreign('sender_id')->references('id')->on('users');
             $table->unsignedBigInteger('receiver_id');
             $table->string('message_content');
+            $table->string('message_type');
             $table->timestamps();
             $table->unsignedBigInteger('conversation_id');
             $table->foreign('conversation_id')->references('conversation_id')->on('conversations');

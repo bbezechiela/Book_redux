@@ -21,11 +21,15 @@
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Explore</span>
     </a>
+    <a href="/materials" class="btn nav-item d-flex flex-row w-100 px-5 py-0 explore-side-btn">
+        <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
+        <span class="nav-link">Materials</span>
+    </a>
     <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
     </a>
-    <a href="/messageses" class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
+    <a href='/messageses' class="btn nav-item d-flex flex-row w-100 px-5 py-0 messages-side-btn">
         <i class="fa fa-envelope-o d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Messages</span>
     </a>

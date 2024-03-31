@@ -102,6 +102,10 @@ class UserController extends Controller
         }
     }
 
+    function materials() {
+        return view('users.materials');
+    }
+
     public function singleProduct($id, $user_id)
     {
         if (session()->has('user')) {

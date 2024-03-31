@@ -21,6 +21,7 @@ class Messages extends Model
         'sender_id',
         'receiver_id',
         'message_content',
+        'message_type',
         'conversation_id'
     ];
     

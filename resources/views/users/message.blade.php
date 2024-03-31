@@ -423,8 +423,7 @@
 
         {{-- Original Frontend --}}
 
-        <div id='bodyCtn'>
-
+        <div >
             <div id='bodyCtn'>
                 <!-- pop out for ellipsis-->
                 <div id='ellipsisPopUp'></div>
@@ -444,9 +443,7 @@
 
                 <div id="rightSectionOuterContainer">
                     <div id="rightSectionInnerContainer">
-                        <div id="messagesHeaderContainer">
-                        </div>
-                        
+                        <div id="messagesHeaderContainer"></div>
                         <div id="messageOuterContainer"></div>
                         <div id="formOuterContainer"></div>
                     </div>

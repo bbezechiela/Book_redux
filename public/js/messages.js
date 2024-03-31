@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                     // .catch(error => console.log(error));
                 } else {
-                    console.log(reponse.error);
+                    console.log(response.error);
                 }
             })
             .catch(e => console.log(e));
@@ -681,14 +681,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 
                                 // ay kalimot ig clear it innerHTML para dri mag utro utro it element tas dri man retain it value kada click it container
                                 formOuterContainer.innerHTML = '';
-                
+
                                 const form = document.createElement('form');
                                 form.id = 'messageForm';
                                 form.method = 'post';
                                 
                                 // input field design
                                 const inputFieldCss = `
-                                    width: 500px;
+                                    width: 300px;
                                     border: 1px solid #F8F9FA;
                                     background-color: #F8F9FA;
                                     color: #003060;
@@ -698,10 +698,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                 inputField.id = 'messageInputContainer';
                                 inputField.type = 'textarea';
                                 inputField.placeholder = 'Type message...';
-                                inputField.style.cssText = inputFieldCss;                
                 
                                 const submitButtonCss = `
-                                    width: 80px;
+                                    width: 130px;
                                     border: 1px solid #E55B13;
                                     background-color: #E55B13;
                                     color: white;
@@ -713,7 +712,49 @@ document.addEventListener('DOMContentLoaded', function() {
                                 submitButton.textContent = 'Send';
                                 submitButton.style.cssText = submitButtonCss;
                 
-                                form.appendChild(inputField);
+                                // insert img
+                                const insertImg = document.createElement('input');
+                                insertImg.type = 'file';    
+                                insertImg.classList.add('insertImg');
+                                insertImg.style.fontSize = '25px';
+
+                                const imgIcon = document.createElement('i');
+                                imgIcon.className = 'fa fa-image';
+                                imgIcon.style.fontSize = '30px';
+
+                                const anotherLabel = document.createElement('label');
+                                anotherLabel.appendChild(insertImg);
+                                anotherLabel.appendChild(imgIcon);
+                                anotherLabel.classList.add('anotherLabel');
+                                
+                                const imgContainer = document.createElement('div');
+                                
+                                let img_file = null;
+                                insertImg.addEventListener('change', (event) => {
+                                    img_file = null;
+                                    const files = event.target.files;
+                                    
+                                    if (files.length > 0) {
+                                        img_file = files[0];
+                                        
+                                        imgContainer.style.backgroundImage = `url(${URL.createObjectURL(img_file)})`;
+                                        imgContainer.classList.add('imgg');
+                                        formOuterContainer.appendChild(imgContainer);
+                                        console.log(img_file.name);
+                                    } else {
+                                        console.log('no file selected');
+                                    }
+                                });
+
+                                const formLabel = document.createElement('label');
+                                formLabel.classList.add('formLabel');
+                                formLabel.appendChild(inputField);
+                                formLabel.appendChild(anotherLabel);
+
+                                // form.appendChild(inputField);
+                                // form.appendChild(insertImg);
+
+                                form.appendChild(formLabel);
                                 form.appendChild(submitButton);
                                 formOuterContainer.appendChild(form);
                 
@@ -743,15 +784,22 @@ document.addEventListener('DOMContentLoaded', function() {
                                         .catch(error => console.log(error));
                                 }
                 
-                                // display messages ha search na approach
+                                // display messages ha container na approach
                                 function displayMessages(responses) {
                                     responses.forEach(response => {
                                         const messageInnerContainer = document.createElement('div');
                                         messageInnerContainer.classList.add('messageInnerContainer');
-                
+                                        
                                         const messageCtn = document.createElement('div');
-                                        messageCtn.textContent = response.message_content;
-                                        messageCtn.id = "messageCtn";
+                                        if (response.message_type == 'text') {
+                                            messageCtn.textContent = response.message_content;  
+                                            messageCtn.classList.add('messageTextCtn');
+                                        } else {
+                                            const messageImgLocation = window.location.origin + '/images/messages_photos/' + response.message_content;
+                                            
+                                            messageCtn.style.backgroundImage = 'url("' + messageImgLocation + '")';
+                                            messageCtn.classList.add('messageImgCtn');
+                                        }
                                         
                                         const messageReceiverPhoto = document.createElement('div');
                                         messageReceiverPhoto.style.cssText = receiver_profile_pic_styles;
@@ -775,29 +823,34 @@ document.addEventListener('DOMContentLoaded', function() {
                                 //getMessages();
                                 setInterval(getMessages, 500);
                 
-                                document.getElementById('sendMessageButton').addEventListener('click', function() {
+                                document.getElementById('sendMessageButton').addEventListener('click', () => {
                                     const message_content = document.getElementById('messageInputContainer').value;
+                                    imgContainer.style.backgroundImage = 'none';
+                                    imgContainer.classList.remove('imgg');
                 
-                                    // conversation name
-                                    // conversation_name = response.conversation_name;
-                                    console.log(response.conversation_name);
-                                    
-                                    const data = {
-                                        current_username: current_username,
-                                        sender_id: current_user_id,
-                                        message_content: message_content,
-                                        conversation_name: response.conversation_name,
-                                        conversation_id: response.conversation_id
-                                    };
-                    
+                                    const formData = new FormData();
+                                    if (img_file === null) {
+                                        formData.append('current_username', current_username);
+                                        formData.append('sender_id', current_user_id);
+                                        formData.append('message_content', message_content);
+                                        formData.append('message_type', 'text');
+                                        formData.append('conversation_name', response.conversation_name);
+                                        formData.append('conversation_id', response.conversation_id);
+                                    } else  {
+                                        formData.append('current_username', current_username);
+                                        formData.append('sender_id', current_user_id);
+                                        formData.append('message_content', img_file);
+                                        formData.append('message_type', 'image');
+                                        formData.append('conversation_name', response.conversation_name);
+                                        formData.append('conversation_id', response.conversation_id);
+                                    }
                                     // pag send message
                                     fetch('/sendMessageTwo', {
                                         method: 'POST',
                                         headers: {
-                                            'Content-Type': 'application/json',
                                             'X-CSRF-TOKEN': csrfToken,
                                         },
-                                        body: JSON.stringify(data),
+                                        body: formData,
                                     })
                                         .then(responses => {
                                             if (responses.ok) {
@@ -806,7 +859,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             throw new Error('Sending message error');
                                         })
                                         .then(response => {
-                                            //console.log(response);
+                                            console.log(response);
                                             document.getElementById('messageForm').reset();
                                         })
                                         .catch(error => console.log(error));

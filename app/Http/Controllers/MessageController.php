@@ -41,11 +41,41 @@ class MessageController extends Controller
 
     // send message from conversation approach
     function sendMessageTwo(Request $request) {
-        $current_username = $request->json('current_username');
-        $sender_id = $request->json('sender_id');
-        $message_content = $request->json('message_content');
-        $conversation_name = $request->json('conversation_name');
-        $conversation_id = $request->json('conversation_id');
+        // $current_username = $request->json('current_username');
+        // $sender_id = $request->json('sender_id');
+        // $message_content = $request->json('message_content');
+        // $message_type = $request->json('message_type');
+        // $conversation_name = $request->json('conversation_name');
+        // $conversation_id = $request->json('conversation_id');
+        $current_username = $request->input('current_username');
+        $sender_id = $request->input('sender_id');
+        $message_type = $request->input('message_type');
+        $conversation_id = $request->input('conversation_id');
+        $conversation_name = $request->input('conversation_name');
+
+        $message_content = null;
+        if ($message_type != 'text') {
+            $validated = $request->validate([
+                'message_content' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+            ]);
+
+            // get original file contents including name
+            $imgWithOrigName = $request->file('message_content')->getClientOriginalName();
+            $imgWithOrigName = str_replace(' ', '_', $imgWithOrigName);
+            
+            // just get the filename
+            $imgFileName = pathinfo($imgWithOrigName, PATHINFO_FILENAME);
+            // just get file name extension
+            $imgFileNameWithExt = $request->file('message_content')->getClientOriginalExtension();
+
+            $imgToStore = $imgFileName . '_' . time() . '.' . $imgFileNameWithExt;
+            $request->file('message_content')->move(public_path('images/messages_photos'), $imgToStore);
+            
+            $message_content = $imgToStore;
+
+        } else {
+            $message_content = $request->input('message_content');
+        }
 
         // ig explode para mag bulag hira hin container it duwa na string
         $arr = explode(',', $conversation_name);
@@ -61,7 +91,8 @@ class MessageController extends Controller
                 'sender_id' => $sender_id,
                 'receiver_id' => $receiver_id,
                 'message_content' => $message_content,
-                'conversation_id' => $conversation_id
+                'message_type' => $message_type,
+                'conversation_id' => $conversation_id,
             ]);
 
             if ($messageInput) {
@@ -231,6 +262,11 @@ class MessageController extends Controller
      // testing
     function messages($username) {
         return view('users.message', ['data' => $username]);
+    }
+
+    // messages from left nav
+    function messageses() {
+        return view('users.message', ['data' => 'noone']);
     }
 
     function messageUsingPost(Request $request) {

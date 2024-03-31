@@ -1,6 +1,6 @@
 :root {
     --sidebar_width: 320px;
-} */
+} 
 * {
     box-sizing: border-box;
     margin: 0;
@@ -185,25 +185,58 @@
 
 /* right section outer container */
 #messageOuterContainer {
-    height: 150px;
+    height: 400px;
     width: 92%;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     /* box-shadow: 0 0 5px grey; */
     overflow-y: scroll;
 }
 
 #messageForm{
-height: 0;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.insertImg {
+    /* position: absolute; */
+    /* right: 15px; */
+    /* margin-top: 15px; */
+    display: none;
+}
+
+/* message img */
+.imgg {
+    border: 1px solid black;
+    height: 100px;
+    width: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+    margin-bottom: 1rem;
+}
+
+.anotherLabel {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+}
+
+.formLabel {
+    position: relative;
 }
 
 #messageInputContainer {
-    height: 40px;
-    width: 50em;
+    height: 50px;
+    width: 350px;
     padding-left: 15px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     outline: none; 
-    margin-top: 18em;
 }
 
 #sendMessageButton {
@@ -216,8 +249,7 @@ height: 0;
 }
 
 #rightSectionOuterContainer {
-    position: relative;
-    height: 700px;
+    height: 500px;
     width: 700px;
     background-color: white;
     /* box-shadow: 0 0 10px grey; */
@@ -226,7 +258,7 @@ height: 0;
 
 #rightSectionInnerContainer {
     position: absolute;
-    height: inherit;
+    height: 700px;
     width: inherit;
     display: flex;
     justify-content: space-evenly;
@@ -249,7 +281,7 @@ height: 0;
     width: 300px;
 }
 
-#messageCtn {
+.messageTextCtn {
     height: auto;
     max-width: 800px;
     border-radius: 8px;
@@ -257,6 +289,16 @@ height: 0;
     font-size: small;
     color: #003060;
     /* box-shadow: 0 0 3px #E55B13; */
+}
+
+.messageImgCtn {
+    height: 150px;
+    width: 150px;
+    border: 1px solid red;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10%;
 }
 
 .messageRight {
@@ -390,8 +432,8 @@ body {
 
 #bodyCtn {
     /* changes kanan ellipsis */
-    position: relative;
-    height: 470px;
+    height: 700px;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -400,7 +442,6 @@ body {
 /* search input container */
 #searchOuterContainer {
     height: auto;
-    position: relative;
 }
 
 #searchInnerContainer {
@@ -435,8 +476,8 @@ body {
 }
 
 #searchInputContainer:focus, #messageInputContainer:focus{
-    border-color: transparent;
-    box-shadow: inset 0px 0px 0px 1px transparent;
+    /* border-color: transparent; */
+    /* box-shadow: inset 0px 0px 0px 1px transparent; */
 }
 
 /* search result */
