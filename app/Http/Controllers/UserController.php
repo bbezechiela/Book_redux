@@ -93,16 +93,24 @@ class UserController extends Controller
             return view('landing_page')->with('message', 'You have to login first');
         }
     }
+    
+//Amu adi an orig
 
-    public function singleProduct($id, $user_id)
-    {
-        if (session()->has('uid')) {
-            $book = Books::with('item.ratedItem.user')->find($id);
-            $user = Users::with('addressUser')->find($user_id);
-            return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
-        } else {
-            return view('landing_page')->with('message', 'You have to login first');
-        }
+    // public function singleProduct($id, $user_id)
+    // {
+    //     if (session()->has('uid')) {
+    //         $book = Books::with('item.ratedItem.user')->find($id);
+    //         $user = Users::with('addressUser')->find($user_id);
+    //         return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
+    //     } else {
+    //         return view('landing_page')->with('message', 'You have to login first');
+    //     }
+    // }
+
+    //Temporary lang kay dik natutuhay han UI
+    public function singleProduct() {
+            return view('users.singleProduct');
+       
     }
 
     public function cart()

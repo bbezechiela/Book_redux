@@ -79,6 +79,7 @@
                     href="/refund">Refund</a> --}}
             </nav>
         </div>
+         {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
         <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -156,6 +157,7 @@
                 </div>
             </div>
         </div>
+         {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
         @php
         $loopCount = 0;
         @endphp
@@ -286,7 +288,7 @@
         </div> --}}
     </div>
 </div>
-
+ {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
 <!-- Request Modal -->
 <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -362,7 +364,7 @@
         </div>
     </div>
 </div>
-
+ {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',

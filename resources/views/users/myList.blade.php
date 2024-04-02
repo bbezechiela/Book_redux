@@ -162,96 +162,19 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Request Modal -->
-    <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="order-cart d-print-none">
-                        <div class="name-cart d-flex justify-content-between">
-                            <a class="seller-name" href=""><span style="margin-right: 5px;">Nestine
-                                    Navarro</span><button class="message-seller message-button"><i
-                                        class="fa fa-commenting" aria-hidden="true"></i></button></a>
-                            <span class="order-text me-5 mt-0">Exchange Request</span>
-                        </div>
-                        <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <div id="carouselExampleDark" class="carousel carousel-dark slide"
-                                        data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active" data-bs-interval="10000">
-                                                    <img src="/assets/city_limits.png" class="img-fluid rounded-start"
-                                                        alt="..." height="200px" width="200px">
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <img src="/assets/bubble_bath.png" class="img-fluid rounded-start"
-                                                        alt="..." height="200px" width="200px">
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img src="/assets/brown_book.png" class="img-fluid rounded-start"
-                                                        alt="..." height="200px" width="200px">
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="2000">
-                                                    <img src="/assets/yellow_book.png" class="img-fluid rounded-start"
-                                                        alt="..." height="200px" width="200px">
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img src="/assets/city_of_secrets.png"
-                                                        class="img-fluid rounded-start" alt="..." height="200px"
-                                                        width="200px">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"
-                                                style="color: #003060"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Title: <span>City Limits</span></h5>
-                                        <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                                        <p class="card-text">Edition: <span>1st Edition</span></p>
-                                        <p class="card-text">Condition: <span>Good</span></p>
-                                        <p class="card-text">Description: <span>This is a sample description of the
-                                                book I want to offer for exchange.</span></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                                        <p class="card-text">Genre: <span>Self-help</span></p>
-                                        <p class="card-text">Format: <span>Paperback</span></p>
-                                        <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
-                                    <button type="button" class="btn accept btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#shipping-details" onclick=""
-                                        style="margin-right: 1em;">Accept
-                                        <span class="fa fa-check"></span>
-                                    </button>
-                                    <a href="#" class="deny btn btn-sm" style="margin-right: 1em;">Decline
-                                        <span class="fa fa-close"></span></a>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Request Modal -->
+        <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
                         <div class="order-cart d-print-none">
                             <div class="name-cart d-flex justify-content-between">
                                 <a class="seller-name" href=""><span style="margin-right: 5px;">Nestine
@@ -337,131 +260,132 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Arrange Shipment Modal -->
-    <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Transaction Record</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="details-container">
-                        <div class="seller-details-box">
-                            <input type="text" class="d-none" id="item_id">
-                            <label for="seller-details" class="form-label">Sharer Details</label>
-                            <input type="text" class="form-control" id="seller-fullname"
-                                placeholder="Nestine Nicole Navarro"><br>
-                            <input type="text" class="form-control" id="seller-contact-number"
-                                placeholder="09097568923"><br>
-                            <input type="text" class="form-control" id="seller-address"
-                                placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban">
-                        </div>
-
-                        <div class="customer-details-box">
-                            <label for="customer-details" class="form-label">Requester Details</label>
-                            <input type="text" class="form-control" id="customer-fullname"
-                                placeholder="Jennie BlackPink"><br>
-                            <input type text="text" class="form-control" id="customer-contact-number"
-                                placeholder="09129348884"><br>
-                            <input type="text" class="form-control" id="customer-address"
-                                placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban">
-                        </div>
+        <!-- Arrange Shipment Modal -->
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Transaction Record</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
+                    <div class="modal-body">
+                        <div class="details-container">
+                            <div class="seller-details-box">
+                                <input type="text" class="d-none" id="item_id">
+                                <label for="seller-details" class="form-label">Sharer Details</label>
+                                <input type="text" class="form-control" id="seller-fullname"
+                                    placeholder="Nestine Nicole Navarro"><br>
+                                <input type="text" class="form-control" id="seller-contact-number"
+                                    placeholder="09097568923"><br>
+                                <input type="text" class="form-control" id="seller-address"
+                                    placeholder="Blk 33 Lot 52 Peerless Village, Bagacay, Tacloban">
+                            </div>
 
-                    <div class="details-container">
-                        <div class="package-details-box">
-                            <label for="package-details" class="form-label">Package Description</label>
-                            <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
-                            <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
-                            <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
-                            <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
-                            {{-- <input type="text" class="form-control" id="payment-method"
+                            <div class="customer-details-box">
+                                <label for="customer-details" class="form-label">Requester Details</label>
+                                <input type="text" class="form-control" id="customer-fullname"
+                                    placeholder="Jennie BlackPink"><br>
+                                <input type text="text" class="form-control" id="customer-contact-number"
+                                    placeholder="09129348884"><br>
+                                <input type="text" class="form-control" id="customer-address"
+                                    placeholder="Blk 33 Lot 52 Buhat Village, Diit, Tacloban">
+                            </div>
+                        </div>
+
+                        <div class="details-container">
+                            <div class="package-details-box">
+                                <label for="package-details" class="form-label">Package Description</label>
+                                <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
+                                <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
+                                <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
+                                <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
+                                {{-- <input type="text" class="form-control" id="payment-method"
                             placeholder="Cash on Delivery"> --}}
+                            </div>
+
+                            <div class="product-details-box">
+                                <label for="product-details" class="form-label">Product Details</label>
+                                <input type="text" class="form-control" id="order-date"
+                                    placeholder="Date of the request: 12/29/2023"><br>
+                                <input type="text" class="form-control" id="order-date"
+                                    placeholder="Date of the approved request: 12/29/2023"><br>
+                                <input type text="text" class="form-control" id="transaction-number"
+                                    placeholder="Transaction Number: TRA421376365"><br>
+                                <input type="text" class="form-control" id="book-title"
+                                    placeholder="Maria Clara"><br>
+                            </div>
                         </div>
 
-                        <div class="product-details-box">
-                            <label for="product-details" class="form-label">Product Details</label>
-                            <input type="text" class="form-control" id="order-date"
-                                placeholder="Date of the request: 12/29/2023"><br>
-                            <input type="text" class="form-control" id="order-date"
-                                placeholder="Date of the approved request: 12/29/2023"><br>
-                            <input type text="text" class="form-control" id="transaction-number"
-                                placeholder="Transaction Number: TRA421376365"><br>
-                            <input type="text" class="form-control" id="book-title"
-                                placeholder="Maria Clara"><br>
+                        <div class="details-container">
+                            <label class="drop-off-details" for="drop_off" onclick="hidePickupContent()">
+                                <i class="fa fa-dropbox" aria-hidden="true"></i>
+                                <div class="text-section">
+                                    <h6 class="fw-bold">Drop off</h6>
+                                    <p>You can drop off your parcel at any J&T Express Branch</p>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="Drop off"
+                                        name="transaction_type" id="drop_off">
+                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                                </div>
+                            </label>
+                            <label class="pickup-details" for="pick_up">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <div class="text-section">
+                                    <h6 class="fw-bold">Pickup</h6>
+                                    <p>J&T Express will collect parcel from your pickup address</p>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="Pickup"
+                                        name="transaction_type" id="pick_up">
+                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                                </div>
+                            </label>
+                            <label class="personal-transaction-details" for="personal_transaction"
+                                onclick="hidePickupContent()">
+                                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                                <div class="text-section">
+                                    <h6 class="fw-bold">Personal Transaction</h6>
+                                    <p>You and the customer will arrange your transaction</p>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" value="Personal Transaction"
+                                        name="transaction_type" id="personal_transaction">
+                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                                </div>
+                            </label>
                         </div>
-                    </div>
-
-                    <div class="details-container">
-                        <label class="drop-off-details" for="drop_off" onclick="hidePickupContent()">
-                            <i class="fa fa-dropbox" aria-hidden="true"></i>
-                            <div class="text-section">
-                                <h6 class="fw-bold">Drop off</h6>
-                                <p>You can drop off your parcel at any J&T Express Branch</p>
+                        <div class="details-container d-none" id="details">
+                            <div class="pickup-address">
+                                <div class="text-section">
+                                    <h6 class="mb-2 fw-bold">Pickup Address</h6>
+                                    <p id="pickup-name">Nestine Nicole Navarro</p>
+                                    <p id="pickup-phone">09054173103</p>
+                                    <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
+                                    <p id="pickup-postal">6500</p>
+                                </div>
+                                <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
+                                        href="#">Change</a></button>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Drop off"
-                                    name="transaction_type" id="drop_off">
-                                {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
-                            </div>
-                        </label>
-                        <label class="pickup-details" for="pick_up">
-                            <i class="fa fa-truck" aria-hidden="true"></i>
-                            <div class="text-section">
-                                <h6 class="fw-bold">Pickup</h6>
-                                <p>J&T Express will collect parcel from your pickup address</p>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Pickup"
-                                    name="transaction_type" id="pick_up">
-                                {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
-                            </div>
-                        </label>
-                        <label class="personal-transaction-details" for="personal_transaction"
-                            onclick="hidePickupContent()">
-                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                            <div class="text-section">
-                                <h6 class="fw-bold">Personal Transaction</h6>
-                                <p>You and the customer will arrange your transaction</p>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Personal Transaction"
-                                    name="transaction_type" id="personal_transaction">
-                                {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
-                            </div>
-                        </label>
-                    </div>
-                    <div class="details-container d-none" id="details">
-                        <div class="pickup-address">
-                            <div class="text-section">
-                                <h6 class="mb-2 fw-bold">Pickup Address</h6>
-                                <p id="pickup-name">Nestine Nicole Navarro</p>
-                                <p id="pickup-phone">09054173103</p>
-                                <p id="pickup-address">Peerless Village, Bagacay, Tacloban City</p>
-                                <p id="pickup-postal">6500</p>
-                            </div>
-                            <button class="change-btn" data-bs-toggle="modal" data-bs-target="#edit-address"><a
-                                    href="#">Change</a></button>
-                        </div>
-                        <div class="pickup-date">
-                            <div class="text-section">
-                                <h6 class="mb-2 fw-bold">Pickup Date</h6>
-                                <div class="form-group">
-                                    <input type="date" class="form-control" id="pickup-date"
-                                        data-date-format="yyyy-mm-dd">
+                            <div class="pickup-date">
+                                <div class="text-section">
+                                    <h6 class="mb-2 fw-bold">Pickup Date</h6>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" id="pickup-date"
+                                            data-date-format="yyyy-mm-dd">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" id="confirm-btn" class="btn confirm-button">Confirm</button>
-                    {{-- Clicking confirm button means you accept the order --}}
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" id="confirm-btn" class="btn confirm-button">Confirm</button>
+                        {{-- Clicking confirm button means you accept the order --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -511,7 +435,8 @@
                                 <div class="col mb-3">
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-md-4 control-label" for="filebutton1">Book Cover</label>
+                                            <label class="col-md-4 control-label" for="filebutton1">Back
+                                                Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
                                                     <input id="filebutton1" name="front_cover" accept="image/*"
@@ -1392,9 +1317,8 @@
                                     style="margin-bottom: 12px; color: #003060;">
                                 <input type="text" name="author" class="form-control" placeholder="Author"
                                     style="margin-bottom: 12px; color: #003060;">
-                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30"
-                                    rows="4" placeholder="Exchange Preferences (E.g., desired book genres etc.)"
-                                    style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30" rows="4"
+                                    placeholder="Exchange Preferences (E.g., desired book genres etc.)" style="margin-bottom: 12px; color: #003060;"></textarea>
                                 <textarea name="description" id="description" class="form-control" cols="30" rows="4"
                                     placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
                                 <div class="col guidelines">
@@ -1404,14 +1328,12 @@
                                             <h2 class="accordion-header">
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseOne"
-                                                    aria-expanded="false"
+                                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
                                                     aria-controls="panelsStayOpen-collapseOne">
                                                     Genre Guidelines
                                                 </button>
                                             </h2>
-                                            <div id="panelsStayOpen-collapseOne"
-                                                class="accordion-collapse collapse">
+                                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
                                                 <div class="accordion-body">
                                                     <strong>Educational: </strong>
                                                     <small>Educational books aim to impart knowledge and information
@@ -1487,8 +1409,7 @@
                                             <h2 class="accordion-header">
                                                 <button class="accordion-button collapsed" type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseTwo"
-                                                    aria-expanded="false"
+                                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
                                                     aria-controls="panelsStayOpen-collapseTwo">
                                                     Book Condition Guidelines
                                                 </button>
@@ -1750,7 +1671,6 @@
                 </div>
 
             </div>
-
         </div>
     </div>
 
@@ -1774,8 +1694,8 @@
 
                 <!-- online reading -->
                 <div id="edit-online-reading-div">
-                    <form id="edit-online-reading-form"  method="POST" enctype="multipart/form-data">
-                        @csrf                        
+                    <form id="edit-online-reading-form" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
@@ -1802,9 +1722,9 @@
                                                 Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="edit-bookcover" name="edit_front_cover" accept="image/*"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;" required>
+                                                    <input id="edit-bookcover" name="edit_front_cover"
+                                                        accept="image/*" class="input-file form-control"
+                                                        type="file" style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
 
@@ -1966,68 +1886,71 @@
 
             </div>
         </div>
-    </div>
 
 
 
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="createLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
-                <strong class="me-auto"></strong>
-                <small>1 min ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            @if (session('createMessage') &&
-                    session('createMessage') ==
-                        'Listing created successfully! Your information has been recorded and is now live for viewing.')
-                <div class="toast-body fw-bold text-success">
-                    {{ session('createMessage') }}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="createLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
-            @endif
+                @if (session('createMessage') &&
+                        session('createMessage') ==
+                            'Listing created successfully! Your information has been recorded and is now live for viewing.')
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('createMessage') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="deleteLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+                @if (session('deleteMessage') &&
+                        session('deleteMessage') ==
+                            'Listing deleted successfully. Your request has been processed, and the specified listing has been
+                            removed.')
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('deleteMessage') }}
+                    </div>
+                @elseif (session('deleteMessage'))
+                    <div class="toast-body fw-bold text-danger">
+                        {{ session('deleteMessage') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="updateLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                    <strong class="me-auto"></strong>
+                    <small>1 min ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+                @if (session('updateMessage') == 'Update Confirmed: Your listing has been successfully updated.')
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('updateMessage') }}
+                    </div>
+                @elseif (session('updateMessage'))
+                    <div class="toast-body fw-bold text-danger">
+                        {{ session('updateMessage') }}
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="deleteLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
-                <strong class="me-auto"></strong>
-                <small>1 min ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            @if (session('deleteMessage') &&
-                    session('deleteMessage') ==
-                        'Listing deleted successfully. Your request has been processed, and the specified listing has been removed.')
-                <div class="toast-body fw-bold text-success">
-                    {{ session('deleteMessage') }}
-                </div>
-            @elseif (session('deleteMessage'))
-                <div class="toast-body fw-bold text-danger">
-                    {{ session('deleteMessage') }}
-                </div>
-            @endif
-        </div>
-    </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="updateLiveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
-                <strong class="me-auto"></strong>
-                <small>1 min ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            @if (session('updateMessage') == 'Update Confirmed: Your listing has been successfully updated.')
-                <div class="toast-body fw-bold text-success">
-                    {{ session('updateMessage') }}
-                </div>
-            @elseif (session('updateMessage'))
-                <div class="toast-body fw-bold text-danger">
-                    {{ session('updateMessage') }}
-                </div>
-            @endif
-        </div>
-    </div>
-</div>
 </div>
 
 @include('partials.__footer', [
@@ -2113,7 +2036,6 @@
     function myFunction() {
         window.print();
     }
-
     // toast script
     const deleteToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('deleteLiveToast'));
     const createToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('createLiveToast'));
@@ -2143,7 +2065,7 @@
         fetchGet(`/getbook/${id}`)
             .then(result => {
                 if (status == 'Online Reading') {
-                    document.getElementById("edit-online-reading-div").style.display = "flex";                    
+                    document.getElementById("edit-online-reading-div").style.display = "flex";
                     document.getElementById('edit-frame').src = `/files/books/${result.book_filename}`;
                     document.getElementById('edit-genre').value = result.genre;
                     document.getElementById('edit-isbn').value = result.isbn;
@@ -2154,7 +2076,8 @@
                     document.getElementById('online-reading-delete').onclick = () => window.location.href =
                         `/mylist/delete/${result.id}`;
                     document.getElementById('online-reading-update').onclick = () => {
-                        document.getElementById('edit-online-reading-form').action = `/mylist/updateSale/${result.id}`;
+                        document.getElementById('edit-online-reading-form').action =
+                            `/mylist/updateSale/${result.id}`;
                         document.getElementById('edit-online-reading-form').submit();
                     }
                     console.log(result);
@@ -2298,7 +2221,7 @@
     // });
     list_category.addEventListener("change", function() {
         // console.log(String(list_category.value));
-        if (list_category.value == "Sale") {
+        if (list_category.value == "Online Reading") {
             document.getElementById("sale").style.display = "flex";
             document.getElementById("exchange").style.display = "none";
         } else if (list_category.value == "Exchange") {

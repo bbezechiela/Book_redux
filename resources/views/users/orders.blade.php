@@ -51,7 +51,7 @@
             <nav class="nav nav-pills flex-column flex-sm-row">
                 <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;" aria-current="page"
                     href="/orders">Exchange Request</a>
-                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;" 
+                <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
                     href="/toreceiveLister">To
                     Receive</a>
                 <a class="flex-sm-fill text-sm-center nav-link custom-nav-link" style="text-align: center;"
@@ -62,6 +62,7 @@
                     href="/refund">Refund</a> --}}
             </nav>
         </div>
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
         <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
@@ -225,6 +226,97 @@
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
                                 Details</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+        <div class="order-cart d-print-none">
+            <div class="name-cart d-flex justify-content-between">
+                <div>
+                    <a class="seller-name" href=""><span>Nestine Navarro</span></a>
+                    <button class="message-seller message-button"><i class="fa fa-commenting"
+                            aria-hidden="true"></i></button>
+                </div>
+                <span class="order-text me-5 mt-0">Exchange Request</span>
+            </div>
+            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active" data-bs-interval="10000">
+                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item" data-bs-interval="2000">
+                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
+                                            height="200px" width="200px">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"
+                                    style="color: #003060"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Title: <span>City Limits</span></h5>
+                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                            <p class="card-text">Edition: <span>1st Edition</span></p>
+                            <button type="button" class="btn preview btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#book-preview" onclick="arrangeShipment">Preview
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                            <p class="card-text">Genre: <span>Self-help</span></p>
+                            <p class="card-text">Description: <span>This is a sample description of the book I want to
+                                    offer for exchange.</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
+                        {{-- <div> --}}
+                        <small>The requester wants to exchange your book, <span class="btn" data-bs-toggle="modal"
+                                data-bs-target="#digital_request" style="color: #E55B13; border: none;">"The
+                                Pioneers"</span>
+                            for <span class="btn" style="color: #E55B13; cursor: text;">"City
+                                Limits"</span></small>
+                        <div>
+                            <button type="button" class="btn accept btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#accept_request" onclick="arrangeShipment">Accept
+                                <span class="fa fa-check"></span>
+                            </button>
+                            <a href="#" class="deny btn btn-sm">Decline <span class="fa fa-close"></span></a>
+                        </div>
+
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
@@ -409,7 +501,7 @@
         </div>
         <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No new exchange request today</h1>
         @endif
-
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
         <!-- Arrange Shipment Modal -->
         <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -537,7 +629,7 @@
                 </div>
             </div>
         </div>
-
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
         <!-- Edit Address Modal -->
         <div class="modal fade d-print-none" id="edit-address" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -570,6 +662,56 @@
                 </div>
             </div>
         </div>
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+        <!-- Arrange Shipment Modal -->
+        <div class="modal fade d-print-none" id="accept_request" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Transaction Record</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 style="color: #E55B13;">Transaction #: 784328432194</h5>
+                        <div class="details-container">
+                            <div class="seller-details-box">
+                                <input type="text" class="d-none" id="item_id">
+                                <label for="seller-details" class="form-label">Lister</label>
+                                <input type="text" class="form-control" id="seller-fullname"
+                                    placeholder="Nestine Nicole Navarro"><br>
+                                <label for="seller-details" class="form-label">Title: The Pioneers</label>
+                                <div class="ExternalFiles">
+                                    <iframe src="/assets/TRANSACTION FORM.pdf" frameborder="0" height="400"
+                                        width="500"></iframe>
+                                </div>
+                            </div>
+
+                            <div class="customer-details-box">
+                                <label for="customer-details" class="form-label">Requester</label>
+                                <input type="text" class="form-control" id="customer-fullname"
+                                    placeholder="Jennie BlackPink"><br>
+                                <label for="seller-details" class="form-label">Title: City Limits</label>
+                                <div class="ExternalFiles">
+                                    <iframe src="/assets/InfoSec_Module-1.pdf" frameborder="0" height="400"
+                                        width="500"></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" id="confirm-btn" class="btn confirm-button">Confirm</button>
+                    </div>
+                        <p style="color: #003060; text-align:center;">By confirming, you can access the entire file offered and grant
+                            the requester permission to view your file in full.</p>
+
+                </div>
+            </div>
+        </div>
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
 
         <!-- Shipping Details Modal -->
         <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -654,7 +796,8 @@
                                                 <div class="d-flex flex-column justify-content-between ml-2">
                                                     <div>
                                                         <h6 style="color:#E55B13;">Requester Book - Incoming book</h6>
-                                                        <span id="detail-title" class="d-block fw-bold p-name">City Limits</span>
+                                                        <span id="detail-title" class="d-block fw-bold p-name">City
+                                                            Limits</span>
                                                         <span id="detail-isbn" class="fs-12">ISBN:
                                                             65342688564324</span><br>
                                                         <span id="detail-isbn" class="fs-12">Author: Marx
@@ -684,7 +827,8 @@
                                                     class="font-weight-bold shipping-address-text">09491229441</span>
                                             </div> --}}
                                             <div><span class="d-block fs-12">Requester Name</span><span
-                                                    id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
+                                                    id="detail-payment-method" class="font-weight-bold"
+                                                    style="color: rgb(111, 185, 219)">Nestine
                                                     Navarro</span></div>
                                             <div><span class="d-block fs-12">Contact Number</span><span
                                                     id="detail-shipping-address"
@@ -737,6 +881,7 @@
             </div>
         </div>
     </div>
+    {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
     {{-- alert modal --}}
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -770,7 +915,7 @@
     </div>
 </div>
 </div>
-
+{{-- CARD IS FOR PHYSICAL EXCHANGE --}}
 <!-- Request Modal -->
 <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -846,7 +991,81 @@
         </div>
     </div>
 </div>
+{{-- CARD IS FOR PHYSICAL EXCHANGE --}}
 
+{{-- CARD IS FOR DIGITAL EXCHANGE --}}
+<!-- Digital Request Modal -->
+<div class="modal fade" id="digital_request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Submission
+                    Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em; border: none;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active" data-bs-interval="10000">
+                                            <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item" data-bs-interval="2000">
+                                            <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
+                                                height="200px" width="200px">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start"
+                                                alt="..." height="200px" width="200px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"
+                                        style="color: #003060"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Title: <span>The Pioneers</span></h5>
+                                <p class="card-text">Author: <span>Pedro Penduko</span></p>
+                                <p class="card-text">Edition: <span>1st Edition</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5 class="card-title">ISBN: <span>124154238778</span></h5>
+                                <p class="card-text">Genre: <span>Self-help</span></p>
+                                <p class="card-text">Description: <span>This is a sample description.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- CARD IS FOR DIGITAL EXCHANGE --}}
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',
