@@ -108,59 +108,6 @@ class ListingController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
-
-
-
-        // $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
-        // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-        // $extension = $request->file('book_photo')->getClientOriginalExtension();
-        // $fileNameToStore = $fileName . '_' . time() . $extension;
-        // $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
-        // $validated['book_photo'] = $fileNameToStore;
-
-
-        // $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
-        // $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
-        // $coverNameToStore = $coverName . '_' . time() . $coverExtension;
-        // $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
-        // $validated['back_cover'] = $coverNameToStore;
-
-        // $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
-        // $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
-        // $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
-        // $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
-        // $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
-        // $validated['interior_photo'] = $interiorNameToStore;
-
-        // // dd($validated);
-        // $salePost = Books::create([
-        //     'user_id' => $validated['user_id'],
-        //     'status' => 'Sale',
-        //     'unit' => 'Available',
-        //     'book_photo' => $validated['book_photo'],
-        //     'back_cover' => $validated["back_cover"],
-        //     'interior_photo' => $validated["interior_photo"],
-        //     'title' => $validated['title'],
-        //     'author' => $validated['author'],
-        //     'edition' => $validated['edition'],
-        //     'genre' => $validated['genre'],
-        //     'stock' => $validated["stock"],
-        //     'condition' => $validated['condition'],
-        //     'description' => $validated['description'],
-        //     'language' => $validated['language'],
-        //     'price' => $validated['price'],
-        //     'weight' => $validated['weight'],
-        //     'width' => $validated['width'],
-        //     'height' => $validated['height'],
-        //     'length' => $validated['length'],
-        //     'courier' => $validated['courier']
-        // ]);
-
-        // if ($salePost) {
-        //     return redirect()->route('mylist')->with('createMessage', 'Listing created successfully! Your information has been recorded and is now live for viewing.');
-        // } else {
-        //     return redirect()->route('mylist')->with('createMessage', 'Error: Cannot list item');
-        // }
     }
 
     public function exchangeList(Request $request)
@@ -321,126 +268,113 @@ class ListingController extends Controller
 
     public function saleUpdate(Request $request, $id)
     {
-        if ($request->hasFile('book_photo')) {
-            $validated = $request->validate([
-                // 'id' => 'required',
-                'user_id' => 'required',
-                'book_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-                'back_cover' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-                'interior_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
-                'title' => ['required', 'min:4'],
-                'author' => ['required', 'min:4'],
-                'edition' => ['required', 'min:4'],
-                'genre' => ['required', 'min:2'],
-                'stock' => 'required',
-                'condition' => 'required',
-                'description' => ['required', 'min:4'],
-                'language' => 'required',
-                'weight' => 'required',
-                'width' => 'required',
-                'height' => 'required',
-                'length' => 'required',
-                'courier' => 'required',
-                'price' => 'required'
-            ]);
+        // dd($request->all());        
+        $edit_genre = $request->input('edit-genre');
+        $isbn = $request->input('isbn');
+        $edition = $request->input('edition');
+        $title = $request->input('title');
+        $author = $request->input('author');
+        $description = $request->input('description');
 
-            $fileNameWithExt = $request->file('book_photo')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('book_photo')->getClientOriginalExtension();
-            $fileNameToStore = $fileName . '_' . time() . $extension;
-            $request->file('book_photo')->move(public_path('images/books'), $fileNameToStore);
-            $validated['book_photo'] = $fileNameToStore;
+        if ($request->has('edit_pdf_file') || $request->has('edit_front_cover')) {
 
-            $coverWithExt = $request->file('back_cover')->getClientOriginalName();
-            $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
-            $coverExtension = $request->file('back_cover')->getClientOriginalExtension();
-            $coverNameToStore = $coverName . '_' . time() . $coverExtension;
-            $request->file('back_cover')->move(public_path('images/book_cover'), $coverNameToStore);
-            $validated['back_cover'] = $coverNameToStore;
+            if (!$request->has('edit_pdf_file')) {
+                $coverWithExt = $request->file('edit_front_cover')->getClientOriginalName();
+                $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+                $coverExtension = $request->file('edit_front_cover')->getClientOriginalExtension();
+                $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+                $request->file('edit_front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
 
-            $interiorWithExt = $request->file('interior_photo')->getClientOriginalName();
-            $interiorName = pathinfo($interiorWithExt, PATHINFO_FILENAME);
-            $interiorExtension = $request->file('interior_photo')->getClientOriginalExtension();
-            $interiorNameToStore = $interiorName . '_' . time() . $interiorExtension;
-            $request->file('interior_photo')->move(public_path('images/interior_photo'), $interiorNameToStore);
-            $validated['interior_photo'] = $interiorNameToStore;
+                $book = Books::find($id);
 
-            $post = Books::find($id);
-            $post->update([
-                // 'id' => $validated['id'],
-                'user_id' => $validated['user_id'],
-                'status' => 'Sale',
-                'book_photo' => $validated['book_photo'],
-                'back_cover' => $validated["back_cover"],
-                'interior_photo' => $validated["interior_photo"],
-                'title' => $validated['title'],
-                'author' => $validated['author'],
-                'edition' => $validated['edition'],
-                'genre' => $validated['genre'],
-                'stock' => $validated["stock"],
-                'condition' => $validated['condition'],
-                'description' => $validated['description'],
-                'language' => $validated['language'],
-                'price' => $validated['price'],
-                'weight' => $validated['weight'],
-                'width' => $validated['width'],
-                'height' => $validated['height'],
-                'length' => $validated['length'],
-                'courier' => $validated['courier']
-            ]);
+                $book->update([
+                    'back_cover' => $coverNameToStore,
+                    'genre' => $edit_genre,
+                    'isbn' => $isbn,
+                    'edition' => $edition,
+                    'title' => $title,
+                    'author' => $author,
+                    'description' => $description
+                ]);
 
-            if ($post) {
-                return redirect()->route('mylist')->with('updateMessage', 'Update Confirmed: Your listing has been successfully updated.');
+                if ($book) {
+                    return redirect('mylist');
+                }
+
+                echo 'no pdf file';
+            } else if (!$request->has('edit_front_cover')) {
+                $fileNameWithExt = $request->file('edit_pdf_file')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('edit_pdf_file')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('edit_pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+                $book = Books::find($id);
+
+                $book->update([
+                    'book_filename' => $fileNameToStore,
+                    'genre' => $edit_genre,
+                    'isbn' => $isbn,
+                    'edition' => $edition,
+                    'title' => $title,
+                    'author' => $author,
+                    'description' => $description
+                ]);
+
+                if ($book) {
+                    return redirect('mylist');
+                }
+
+                echo 'no cover';
             } else {
-                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
+                $fileNameWithExt = $request->file('edit_pdf_file')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('edit_pdf_file')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('edit_pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+                $coverWithExt = $request->file('edit_front_cover')->getClientOriginalName();
+                $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+                $coverExtension = $request->file('edit_front_cover')->getClientOriginalExtension();
+                $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+                $request->file('edit_front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+
+                $book = Books::find($id);
+
+                $book->update([
+                    'book_filename' => $fileNameToStore,
+                    'back_cover' => $coverNameToStore,
+                    'genre' => $edit_genre,
+                    'isbn' => $isbn,
+                    'edition' => $edition,
+                    'title' => $title,
+                    'author' => $author,
+                    'description' => $description
+                ]);
+
+                if ($book) {
+                    return redirect('mylist');
+                }
+
+                echo 'have both';
             }
         } else {
-            $validated = $request->validate([
-                // 'id' => 'required',
-                'user_id' => 'required',
-                'title' => ['required', 'min:4'],
-                'author' => ['required', 'min:4'],
-                'edition' => ['required', 'min:4'],
-                'genre' => ['required', 'min:2'],
-                'stock' => 'required',
-                'condition' => 'required',
-                'description' => ['required', 'min:4'],
-                'language' => 'required',
-                'weight' => 'required',
-                'width' => 'required',
-                'height' => 'required',
-                'length' => 'required',
-                'courier' => 'required',
-                'price' => 'required'
+            $book = Books::find($id);
+
+            $book->update([
+                'genre' => $edit_genre,
+                'isbn' => $isbn,
+                'edition' => $edition,
+                'title' => $title,
+                'author' => $author,
+                'description' => $description
             ]);
 
-            $post = Books::find($id);
-            $post->update([
-                // 'id' => $validated['id'],
-                'user_id' => $validated['user_id'],
-                'status' => 'Sale',
-                'title' => $validated['title'],
-                'author' => $validated['author'],
-                'edition' => $validated['edition'],
-                'genre' => $validated['genre'],
-                'stock' => $validated["stock"],
-                'condition' => $validated['condition'],
-                'description' => $validated['description'],
-                'language' => $validated['language'],
-                'price' => $validated['price'],
-                'weight' => $validated['weight'],
-                'width' => $validated['width'],
-                'height' => $validated['height'],
-                'length' => $validated['length'],
-                'courier' => $validated['courier']
-            ]);
-
-            if ($post) {
-                return redirect()->route('mylist')->with('updateMessage', 'Update Confirmed: Your listing has been successfully updated.');
-            } else {
-                return redirect()->route('mylist')->with('updateMessage', 'Error: Cannot update item');
+            if ($book) {
+                return redirect('mylist');
             }
         }
+
     }
 
     public function exchangeUpdate(Request $request, $id)
@@ -730,7 +664,7 @@ class ListingController extends Controller
     public function destroySeller($id)
     {
         $post = Books::find($id);
-        $cart = Cart::where('product_id', $id)->delete();
+        // $cart = Cart::where('product_id', $id)->delete();
         $post->delete();
 
         if ($post) {

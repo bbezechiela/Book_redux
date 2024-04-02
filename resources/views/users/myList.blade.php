@@ -100,10 +100,26 @@
                     <button id="create-listing" class="create-btn-sale btn px-3 ms-2 d-flex align-items-center h-75"><i
                             class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
                         Online Reading</button>
-                    <button id="create-exchange-listing"
+                    <div class="dropdown">
+                        <button class="btn create-btn-exchange dropdown-toggle px-3 ms-2 d-flex align-items-center h-75"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
+                            Exchange
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a id="create-exchange-listing" class="dropdown-item" href="#"
+                                    style="color:#E55B13;"><i class="fa fa-plus-circle" aria-hidden="true"
+                                        style="margin-right: 5px;"></i>List
+                                    Book for Physical Exchange</a></li>
+                            <li><a id="create-digital-exchange-listing" class="dropdown-item" href="#"
+                                    style="color:#E55B13;"><i class="fa fa-plus-circle" aria-hidden="true"
+                                        style="margin-right: 5px;"></i>List Book for Digital Exchange</a></li>
+                        </ul>
+                    </div>
+                    {{-- <button id="create-exchange-listing"
                         class="create-btn-exchange btn px-3 ms-2 d-flex align-items-center h-75"><i
                             class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>
-                        List Book for Exchange</button>
+                        List Book for Exchange</button> --}}
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <label class="fw-bold" for="sort">Sort by</label>
@@ -120,8 +136,9 @@
                     @foreach ($books as $book)
                         <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">
                             <img id="photo_{{ $book->id }}" data-filename="{{ $book->back_cover }}"
-                                src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto rounded"
-                                alt="{{ $book->back_cover }}" height="170px" style="max-width: 200px;">
+                                src="{{ asset('images/book_cover/' . $book->back_cover) }}"
+                                class="img mx-auto rounded" alt="{{ $book->back_cover }}" height="170px"
+                                style="max-width: 200px;">
                             <div class="card-body py-0">
                                 <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
                                     {{ $book->title }}</p>
@@ -140,6 +157,7 @@
                                             style="margin-right: 5px;"></i>Edit</a>
                                 </div>
                             </div>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -461,7 +479,8 @@
                             class="fw-bold"></span></h1>
                     <select name="" class="btn mx-2 fw-bold px-0 interaction-type" id="modal-category" hidden>
                         <option value="Online Reading">Online Reading</option>
-                        <option value="Exchange">Exchange</option>
+                        <option value="Physical Exchange">Physical Exchange</option>
+                        <option value="Digital Exchange">Digital Exchange</option>
                     </select>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -1292,6 +1311,444 @@
                     </form>
                 </div>
 
+
+                {{-- digital exchange --}}
+                <div id="digital">
+                    <form id="digital-form" action="/mylist/digitalpost" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body container-fluid px-5">
+                            <div class="row">
+                                <div class="col-5 me-1 px-0 py-0 border mb-2 rounded">
+                                    <input type="text" name="user_id" value="{{ session('id') }}" hidden>
+                                    <input type="text" name="weight" id="sale-weight" hidden>
+                                    <input type="text" name="width" id="sale-width" hidden>
+                                    <input type="text" name="height" id="sale-height" hidden>
+                                    <input type="text" name="length" id="sale-length" hidden>
+                                    <input type="text" name="courier" id="sale-courier" hidden>
+
+                                    {{-- The book file that the user uploaded should be display here for preview --}}
+                                    <div class="ExternalFiles">
+                                        <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
+                                            Preview</small>
+                                        <input id="pdfUpload" type="file" accept="application/pdf"
+                                            onchange="pdfPreview()" name="pdf_file" hidden>
+                                        <label for="pdfUpload" class="btn create-btn-exchange my-1 mx-2">Click to
+                                            upload file</label>
+                                        {{-- <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe> --}}
+                                        <div class="border" id="pdfPreview"></div>
+                                    </div>
+
+                                    {{-- Remove this  --}}
+                                    {{-- <input type="file" name="book_photo" id="sale-image" accept="image/*" hidden>
+                                <label for="sale-image" class="position-relative w-100 h-100"
+                                    style="cursor: pointer;">
+                                <img id="sale-book-image" src="../assets/listing.png" alt="image"
+                                        class=""
+                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        data-bs-title="Click to Upload Image" width="170" height="170">
+                                </label> --}}
+                                    {{-- Remove this  --}}
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-md-4 control-label" for="filebutton1">Book
+                                                Cover</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="filebutton1" name="front_cover" accept="image/*"
+                                                        class="input-file form-control" type="file"
+                                                        style="margin-bottom: 12px;">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <select name="genre" id="" class="form-control form-select"
+                                        style="margin-bottom: 12px; color: #003060;">
+                                        <option>Genre</option>
+                                        <option value="Educational">Educational</option>
+                                        <option value="Romance & Saga">Romance & Saga</option>
+                                        <option value="Fantasy & Adventure">Fantasy & Adventure</option>
+                                        <option value="Science Fiction">Science Fiction</option>
+                                        <option value="Historical Fiction">Historical Fiction</option>
+                                        <option value="Mystery & Suspense">Mystery & Suspense</option>
+                                        <option value="Young Adult">Young Adult</option>
+                                        <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
+                                        <option value="Horror & Supernatural">Horror & Supernatural</option>
+                                        <option value="Comedy & Satire">Comedy & Satire</option>
+                                        <option value="Poetry & Prose">Poetry & Prose</option>
+                                        <option value="Self-Help">Self-Help</option>
+                                        <option value="Crime & Thriller">Crime & Thriller</option>
+                                    </select>
+                                    <input type="text" name="isbn" id="isbn-exchange" class="form-control"
+                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;">
+                                    <input type="text" name="edition" id="edition-sale" class="form-control"
+                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
+                                </div>
+                                <input type="text" name="title" class="form-control" placeholder="Title"
+                                    style="margin-bottom: 12px; color: #003060;">
+                                <input type="text" name="author" class="form-control" placeholder="Author"
+                                    style="margin-bottom: 12px; color: #003060;">
+                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30"
+                                    rows="4" placeholder="Exchange Preferences (E.g., desired book genres etc.)"
+                                    style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <textarea name="description" id="description" class="form-control" cols="30" rows="4"
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                <div class="col guidelines">
+                                    <h6>Listing Guidelines</h6>
+                                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#panelsStayOpen-collapseOne"
+                                                    aria-expanded="false"
+                                                    aria-controls="panelsStayOpen-collapseOne">
+                                                    Genre Guidelines
+                                                </button>
+                                            </h2>
+                                            <div id="panelsStayOpen-collapseOne"
+                                                class="accordion-collapse collapse">
+                                                <div class="accordion-body">
+                                                    <strong>Educational: </strong>
+                                                    <small>Educational books aim to impart knowledge and information
+                                                        to readers. They cover a wide range of topics, from academic
+                                                        subjects to self-improvement and skill
+                                                        development.</small><br>
+                                                    <strong>Romance & Saga: </strong>
+                                                    <small>Romance and Saga novels typically focus on the emotional
+                                                        and romantic relationships of the main characters. Sagas
+                                                        often encompass multiple generations and can be epic in
+                                                        scope.</small><br>
+                                                    <strong>Fantasy & Adventure: </strong>
+                                                    <small>Fantasy and Adventure books transport readers to
+                                                        imaginative worlds filled with magical creatures and epic
+                                                        quests. They often involve heroes or heroines on thrilling
+                                                        adventures.</small><br>
+                                                    <strong>Science Fiction: </strong>
+                                                    <small>Science fiction explores speculative and futuristic
+                                                        concepts often rooted in scientific and technological
+                                                        advancements. It can delve into futuristic technologies,
+                                                        space exploration, and alternate realities.</small><br>
+                                                    <strong>Historical Fiction: </strong>
+                                                    <small>Historical fiction is set in a particular historical
+                                                        period and incorporates real events, people, and settings
+                                                        into a fictional narrative. It offers a glimpse into the
+                                                        past with fictional characters and stories.</small><br>
+                                                    <strong>Mystery & Suspense: </strong>
+                                                    <small>Mystery and Suspense books revolve around solving a
+                                                        puzzle, uncovering a secret, or navigating high-stakes
+                                                        situations. They keep readers engaged through suspenseful
+                                                        and often thrilling plots.</small><br>
+                                                    <strong>Young Adult: </strong>
+                                                    <small>Young Adult literature targets teenage and young adult
+                                                        readers. These books address the challenges and experiences
+                                                        of young people, covering various genres and themes relevant
+                                                        to this age group.</small><br>
+                                                    <strong>Non-Fiction & Biography: </strong>
+                                                    <small>Non-fiction books provide factual information on various
+                                                        subjects, while biographies offer an in-depth look at the
+                                                        lives of real individuals. Both genres are grounded in
+                                                        reality and offer insights and knowledge.</small><br>
+                                                    <strong>Horror & Supernatural: </strong>
+                                                    <small>Horror and Supernatural books aim to evoke fear and
+                                                        suspense in readers. They often involve elements of the
+                                                        supernatural, such as ghosts, vampires, and otherworldly
+                                                        phenomena.</small><br>
+                                                    <strong>Comedy & Satire: </strong>
+                                                    <small>Comedy and Satire books are intended to make readers
+                                                        laugh and often use humor and wit to comment on society,
+                                                        politics, or human behavior. Satire may employ irony and
+                                                        sarcasm to critique or mock.</small><br>
+                                                    <strong>Poetry & Prose: </strong>
+                                                    <small>This genre encompasses creative works that use language
+                                                        and imagery to convey emotions, ideas, and beauty. Poetry
+                                                        focuses on rhythmic and symbolic language, while prose
+                                                        includes fiction and non-fiction works that tell stories or
+                                                        convey information.</small><br>
+                                                    <strong>Self-Help: </strong>
+                                                    <small>Self-Help books offer guidance, advice, and strategies
+                                                        for personal development and self-improvement. They address
+                                                        various aspects of life, including mental health,
+                                                        relationships, productivity, and well-being.</small><br>
+                                                    <strong>Crime & Thriller: </strong>
+                                                    <small>Crime and Thriller novels are filled with suspense,
+                                                        intrigue, and criminal elements. They often involve
+                                                        detectives, law enforcement, or ordinary individuals caught
+                                                        in dangerous situations, with an emphasis on solving crimes
+                                                        and facing perilous challenges.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#panelsStayOpen-collapseTwo"
+                                                    aria-expanded="false"
+                                                    aria-controls="panelsStayOpen-collapseTwo">
+                                                    Book Condition Guidelines
+                                                </button>
+                                            </h2>
+                                            <div id="panelsStayOpen-collapseTwo"
+                                                class="accordion-collapse collapse">
+                                                <div class="accordion-body">
+                                                    <strong>New: </strong>
+                                                    <small>A book that is in pristine condition, showing no
+                                                        signs of use or wear. It looks like it has just come from
+                                                        the bookstore and
+                                                        may still have
+                                                        the original packaging or dust jacket.</small><br>
+                                                    <strong>Like New: </strong>
+                                                    <small>The book appears almost brand new but may have minor
+                                                        imperfections,
+                                                        such as a slight crease on the spine or cover, which are
+                                                        hardly
+                                                        noticeable.</small><br>
+                                                    <strong>Very Good: </strong>
+                                                    <small>The book is in excellent condition overall, with minimal
+                                                        signs
+                                                        of
+                                                        wear. There may be slight cover or spine creases, but the
+                                                        pages are clean
+                                                        and
+                                                        unmarked.</small><br>
+                                                    <strong>Good: </strong>
+                                                    <small>The book has been read and shows some wear and tear, but
+                                                        it is
+                                                        still in
+                                                        reasonable condition. There may be creases, minor stains, or
+                                                        dog-eared
+                                                        pages,
+                                                        but no significant damage.</small><br>
+                                                    <strong>Fair: </strong>
+                                                    <small>The book has seen significant use and displays noticeable
+                                                        wear. It
+                                                        may
+                                                        have loose or torn pages, markings, or
+                                                        highlighting.</small><br>
+                                                    <strong>Poor: </strong>
+                                                    <small>The book is heavily worn, damaged, or may be missing
+                                                        pages or
+                                                        covers.
+                                                        It is not in good reading condition and might be suitable
+                                                        only for reference
+                                                        purposes or collectors looking for rare editions.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#panelsStayOpen-collapseThree"
+                                                    aria-expanded="false"
+                                                    aria-controls="panelsStayOpen-collapseThree">
+                                                    Selling Guidelines
+                                                </button>
+                                            </h2>
+                                            <div id="panelsStayOpen-collapseThree"
+                                                class="accordion-collapse collapse">
+                                                <div class="accordion-body">
+                                                    <strong>Book Information: </strong>
+                                                    <small>Provide accurate and detailed information about the book
+                                                        you want to sell. Include the book's title, author or
+                                                        other relevant identifiers, edition, condition (e.g., new,
+                                                        used), and a brief description.</small><br>
+
+                                                    <strong>Pricing: </strong>
+                                                    <small>Set a competitive and reasonable price for your book.
+                                                        Consider factors such as the book's condition, demand, and
+                                                        market rates.</small><br>
+
+                                                    <strong>Images: </strong>
+                                                    <small>Upload clear and high-quality images of the book's cover
+                                                        and any relevant pages or content. Images help potential
+                                                        buyers assess the book's condition.
+                                                    </small><br>
+
+                                                    <strong>Listing Description: </strong>
+                                                    <small>Write a clear and informative description of the book.
+                                                        Mention any highlights, notes, or signs of wear and tear if
+                                                        the book is used.</small><br>
+
+                                                    <strong>Policies: </strong>
+                                                    <small>Familiarize yourself with BookRedux's policies,
+                                                        especially those related to listing books for sale. Ensure
+                                                        that your listing complies with these policies.</small><br>
+
+                                                    <strong>Honesty and Accuracy: </strong>
+                                                    <small>Be honest about the book's condition and any potential
+                                                        flaws. Misrepresentation may lead to disputes and return
+                                                        requests.</small><br>
+
+                                                    <strong>Pricing and Fees: </strong>
+                                                    <small>Understand the pricing structure and fees associated with
+                                                        selling on the platform. <strong>BookRedux will charge 10%
+                                                            of the
+                                                            total price when the listing is placed in
+                                                            order.</strong></small><br>
+
+                                                    <strong>Availability and Stock Management: </strong>
+                                                    <small>Regularly update your listing's availability. If the book
+                                                        is no longer available, remove the listing
+                                                        promptly.</small><br>
+
+                                                    <strong>Communication: </strong>
+                                                    <small>Be responsive to potential buyers' inquiries and
+                                                        messages. Good communication can build trust with
+                                                        buyers.</small><br>
+
+                                                    <strong>Shipping: </strong>
+                                                    <small>Clearly specify your shipping methods, costs, and
+                                                        estimated delivery times. Use appropriate packaging to
+                                                        protect the book during transit.</small><br>
+
+                                                    <strong>Payment: </strong>
+                                                    <small>BookRedux will handle payment processing. Ensure that
+                                                        your payment information is accurate and up to
+                                                        date.</small><br>
+
+                                                    <strong>Review and Monitor Listings: </strong>
+                                                    <small>Regularly review and monitor your book listings. Make
+                                                        necessary adjustments to improve the visibility and
+                                                        attractiveness of your listings.</small><br>
+
+                                                    <strong>Buyer Feedback: </strong>
+                                                    <small>Encourage buyers to leave feedback after completing a
+                                                        transaction. Positive feedback can enhance your reputation
+                                                        on the platform.</small>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#panelsStayOpen-collapseOne"
+                                                    aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                                    Terms and Conditions for Listing Books for Sale
+                                                </button>
+                                            </h2>
+                                            <div id="panelsStayOpen-collapseFour"
+                                                class="accordion-collapse collapse show">
+                                                <div class="accordion-body">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>You warrant that all books listed are genuine, free from
+                                                        copyright infringement, and do not violate any intellectual
+                                                        property rights.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>BookRedux will handle returns and refunds in accordance
+                                                        with its policies. You must comply with these policies
+                                                        regarding returns and refunds for your listings.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>BookRedux may charge commissions, listing fees, or other
+                                                        charges for using its platform. These fees are outlined in
+                                                        the User Fee Schedule.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>BookRedux reserves the right to terminate your seller
+                                                        account or remove your listings for any violation of these
+                                                        terms or for other legitimate reasons.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>By listing books, you grant BookRedux the right to use
+                                                        your content, including images and descriptions, for
+                                                        promotional and display purposes on the
+                                                        platform.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>BookRedux will process payments from customers on your
+                                                        behalf and may deduct applicable fees and
+                                                        commissions.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>Users are encouraged to resolve disputes among themselves
+                                                        through communication and negotiation. BookRedux is not
+                                                        responsible for disputes between users.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>You are responsible for providing accurate
+                                                        and complete information about the books you list, including
+                                                        title, author, condition, and price.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>By listing a book, you confirm that you are the rightful
+                                                        owner of the book, or you have the necessary authorization
+                                                        to sell it.</small><br>
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
+                                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                                                    </svg>
+                                                    <small>You are responsible for fulfilling orders
+                                                        promptly and providing accurate shipping information.
+                                                        Failure to fulfill orders may result in penalties or account
+                                                        suspension.</small><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-check" style="margin-top: 1em">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">I have read and
+                                                agree
+                                                to the listing terms and condition.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button type="submit" id="submitButton" class="btn mx-auto w-25 text-white rounded-3"
+                                style="background-color: #E55B13;" disabled>List</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
         </div>
@@ -1305,7 +1762,8 @@
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Listing</h1>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
                     <option value="Online Reading">Online Reading</option>
@@ -1314,10 +1772,10 @@
                 <input type="text" id="edit-book-id" name="id" hidden>
 
 
-                <!-- sale -->
-                <div id="edit-sale-div">
-                    <form id="edit-sale-form" method="POST" enctype="multipart/form-data">
-                        @csrf
+                <!-- online reading -->
+                <div id="edit-online-reading-div">
+                    <form id="edit-online-reading-form"  method="POST" enctype="multipart/form-data">
+                        @csrf                        
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
@@ -1328,8 +1786,9 @@
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
                                             Preview</small>
                                         <input id="edit-pdfUpload" type="file" accept="application/pdf"
-                                            name="pdf_file" hidden required>
-                                        <label for="edit-pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
+                                            name="edit_pdf_file" hidden required>
+                                        <label for="edit-pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click
+                                            to
                                             upload file</label>
                                         <iframe class="w-100 h-100" id="edit-frame" src=""
                                             frameborder="0"></iframe>
@@ -1339,10 +1798,11 @@
                                 <div class="col mb-3">
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-md-4 control-label" for="filebutton1">Book Cover</label>
+                                            <label class="col-md-4 control-label" for="filebutton1">Book
+                                                Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="edit-bookcover" name="front_cover" accept="image/*"
+                                                    <input id="edit-bookcover" name="edit_front_cover" accept="image/*"
                                                         class="input-file form-control" type="file"
                                                         style="margin-bottom: 12px;" required>
                                                 </div>
@@ -1370,8 +1830,9 @@
                                     </select>
                                     <input type="text" name="isbn" id="edit-isbn" class="form-control"
                                         placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
-                                    <input type="text" name="edition" id="edit-edition-sale" class="form-control"
-                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="edition" id="edit-edition-sale"
+                                        class="form-control" placeholder="Edition"
+                                        style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
                                 <input type="text" id="edit-title" name="title" class="form-control"
                                     placeholder="Title" style="margin-bottom: 12px; color: #003060;" required>
@@ -1382,13 +1843,10 @@
 
                             </div>
                             <div class="modal-footer border-0">
-                                <button type="button" id="sale-update"
+                                <button type="button" id="online-reading-update"
                                     class="btn mx-auto w-25 text-white rounded-3 update-btn">Update</button>
-                                <form id="sale-form-delete" method="POST">
-                                    @csrf
-                                    <button type="button" id="sale-delete"
-                                        class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
-                                </form>
+                                <button type="button" id="online-reading-delete"
+                                    class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -1598,6 +2056,11 @@
         document.getElementById('frame').src = URL.createObjectURL(file);
     });
 
+    document.getElementById('edit-pdfUpload').addEventListener('change', (e) => {
+        var file = e.target.files[0];
+        document.getElementById('edit-frame').src = URL.createObjectURL(file);
+    })
+
 
     function viewShipping(book_id, item_id) {
         fetch('/viewshipping/' + book_id, {
@@ -1679,10 +2142,8 @@
     const itemClicked = (id, status) => {
         fetchGet(`/getbook/${id}`)
             .then(result => {
-
-
                 if (status == 'Online Reading') {
-                    document.getElementById("edit-sale-div").style.display = "flex";
+                    document.getElementById("edit-online-reading-div").style.display = "flex";                    
                     document.getElementById('edit-frame').src = `/files/books/${result.book_filename}`;
                     document.getElementById('edit-genre').value = result.genre;
                     document.getElementById('edit-isbn').value = result.isbn;
@@ -1690,10 +2151,16 @@
                     document.getElementById('edit-title').value = result.title;
                     document.getElementById('edit-author').value = result.author;
                     document.getElementById('edit-description').value = result.description;
+                    document.getElementById('online-reading-delete').onclick = () => window.location.href =
+                        `/mylist/delete/${result.id}`;
+                    document.getElementById('online-reading-update').onclick = () => {
+                        document.getElementById('edit-online-reading-form').action = `/mylist/updateSale/${result.id}`;
+                        document.getElementById('edit-online-reading-form').submit();
+                    }
                     console.log(result);
                     document.getElementById("edit-exchange-div").style.display = "none";
                 } else {
-                    document.getElementById("edit-sale-div").style.display = "none";
+                    document.getElementById("edit-online-reading-div").style.display = "none";
                     document.getElementById("edit-exchange-div").style.display = "exchange";
                 }
                 updateListingModal.show();
@@ -1739,10 +2206,10 @@
 
     edit_modal.addEventListener('change', () => {
         if (edit_modal.value == 'Online Reading') {
-            document.getElementById("edit-sale-div").style.display = "flex";
+            document.getElementById("edit-online-reading-div").style.display = "flex";
             document.getElementById("edit-exchange-div").style.display = "none";
         } else if (edit_modal.value == 'Exchange') {
-            document.getElementById("edit-sale-div").style.display = "none";
+            document.getElementById("edit-online-reading-div").style.display = "none";
             document.getElementById("edit-exchange-div").style.display = "flex";
         }
     });
@@ -1772,14 +2239,33 @@
     });
 
     var list_category = document.getElementById("modal-category");
-    var create_listing_btn = document.getElementById('create-listing');
+    // var create_listing_btn = document.getElementById('create-listing');
     var edit_sale_shipping_fee_btn = document.getElementById('edit-sale-shipping-fee-btn');
 
-    create_listing_btn.addEventListener('click', function() {
-        list_category.value = 'Sale';
+    document.getElementById('create-listing').addEventListener('click', function() {
+        list_category.value = 'Online Reading';
         document.getElementById('listing-type').textContent = 'Online Reading';
         document.getElementById("sale").style.display = "flex";
         document.getElementById("exchange").style.display = "none";
+        document.getElementById("digital").style.display = "none";
+        createListingModal.show();
+    });
+
+    document.getElementById('create-exchange-listing').addEventListener('click', () => {
+        list_category.value = 'Physical Exchange';
+        document.getElementById('listing-type').textContent = 'Physical Exchange';
+        document.getElementById("sale").style.display = "none";
+        document.getElementById("exchange").style.display = "flex";
+        document.getElementById("digital").style.display = "none";
+        createListingModal.show();
+    });
+
+    document.getElementById('create-digital-exchange-listing').addEventListener('click', () => {
+        list_category.value = 'Digital Exchange';
+        document.getElementById('listing-type').textContent = 'Physical Exchange';
+        document.getElementById("sale").style.display = "none";
+        document.getElementById("exchange").style.display = "none";
+        document.getElementById("digital").style.display = "flex";
         createListingModal.show();
     });
 
@@ -1802,14 +2288,14 @@
     });
 
     // list category    
-    var exchange_btn = document.getElementById('create-exchange-listing');
-    exchange_btn.addEventListener('click', () => {
-        list_category.value = "Exchange";
-        document.getElementById('listing-type').textContent = 'Exchange';
-        document.getElementById("sale").style.display = "none";
-        document.getElementById("exchange").style.display = "flex";
-        createListingModal.show();
-    });
+    // var exchange_btn = document.getElementById('create-exchange-listing');
+    // exchange_btn.addEventListener('click', () => {
+    //     list_category.value = "Exchange";
+    //     document.getElementById('listing-type').textContent = 'Exchange';
+    //     document.getElementById("sale").style.display = "none";
+    //     document.getElementById("exchange").style.display = "flex";
+    //     createListingModal.show();
+    // });
     list_category.addEventListener("change", function() {
         // console.log(String(list_category.value));
         if (list_category.value == "Sale") {
