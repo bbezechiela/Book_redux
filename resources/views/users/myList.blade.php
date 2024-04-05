@@ -142,11 +142,11 @@
                                     {{ $book->author }}</p>
                                 <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
                                     {{ $book->genre }}</p>
-                                <div class="card-foot price d-flex justify-content-between p-0 mt-2"
+                                <div class="card-foot price d-flex justify-content-end p-0 mt-2"
                                     style="font-size: 14px;">
-                                    <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
+                                    {{-- <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
                                             class="fa fa-eye" aria-hidden="true" style="margin-right: 5px;"></i>View
-                                        Request</a>
+                                        Request</a> --}}
                                     <a class="p-0 edit-book"
                                         onclick="itemClicked({{ $book->id }}, '{{ $book->status }}')"><i
                                             class="fa fa-pencil-square-o" aria-hidden="true"

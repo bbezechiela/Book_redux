@@ -44,8 +44,8 @@
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                                <img src="{{ session('image') }}"
-                                    alt="notification" width="35" height="35" class="rounded-5">
+                                <img src="{{ session('image') }}" alt="notification" width="35" height="35"
+                                    class="rounded-5">
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
@@ -65,21 +65,56 @@
         <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
             style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
                 width="25">Find Nearby Listings</button type="button">
+
+        {{-- <div id="books" class="mx-5 px-5 mt-5">
+            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 280px; ">
+                @foreach ($post as $book)
+                    <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        onclick="clickedPost({{ $book->id }}, {{ $book->user_id }})">
+                        <img src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto p-2"
+                            alt="..." width="130px" height="150px">
+                        <div class="card-body py-0">
+                            <p id="book-title" class="card-title mb-0 fw-bold">{{ $book->title }}</p>
+                            <p class="card-text mt-0 mb-0">{{ $book->author }}<br>
+                                {{ $book->genre }}</p>                            
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div> --}}
         <div id="daily-discover" class="mx-5 px-5">
             <h4 id="daily-discover-header">Daily Discover</h4>
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
+            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 290px; ">
                 <!-- card Daily Discover -->
                 @php
                     $dailyAmount = 0;
                 @endphp
                 @foreach ($post->shuffle() as $daily)
                     @if (!preg_match('/' . $daily->genre . ',?/i', $user->interest))
-                        @if ($daily->user->type == 'Bookseller')
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $daily->back_cover) }}" class="img mx-auto p-2"
+                                alt="..." width="130px" height="150px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                                    {{ $daily->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $daily->status }}</p>
+                            </div>
+                        </div>
+                        @php
+                            $dailyAmount++;
+
+                            if ($dailyAmount == 10) {
+                                break;
+                            }
+                        @endphp
+                        {{-- @if ($daily->user->type == 'Bookseller')
                             @if ($daily->status == 'Rent' && $daily->stock > 0)
                                 <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                     onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                    <img src="{{ asset('images/books/' . $daily->book_photo) }}"
-                                        class="img mx-auto p-2" alt="..." width="130px" height="150px">
+                                    <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
+                                        alt="..." width="130px" height="150px">
                                     <div class="card-body py-0">
                                         <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
                                         <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
@@ -264,20 +299,38 @@
                                     break;
                                 }
                             @endphp
-                        @endif
+                        @endif --}}
                     @endif
                 @endforeach
             </div>
         </div>
         <div id="featured" class="mx-5 px-5">
             <h4 id="featured-header">New Listings</h4>
-            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 330px; ">
+            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 290px; ">
                 <!-- card Featured -->
                 @php
                     $featuredAmount = 0;
                 @endphp
                 @foreach ($post->sortByDesc('created_at') as $daily)
-                    @if ($daily->user->type == 'Bookseller')
+                    <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
+                        <img src="{{ asset('images/book_cover/' . $daily->back_cover) }}" class="img mx-auto p-2"
+                            alt="..." width="130px" height="150px">
+                        <div class="card-body py-0">
+                            <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+                            <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                                {{ $daily->genre }}</p>
+                            <p class="fw-bold" style="color: #E55B13;">{{ $daily->status }}</p>
+                        </div>
+                    </div>
+                    @php
+                        $featuredAmount++;
+
+                        if ($featuredAmount == 10) {
+                            break;
+                        }
+                    @endphp
+                    {{-- @if ($daily->user->type == 'Bookseller')
                         @if ($daily->status == 'Rent' && $daily->stock > 0)
                             <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
@@ -313,11 +366,6 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
                                                             Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                            class="fa fa-list-alt" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add
-                                        to
-                                        Wishlist</a></li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -366,11 +414,6 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
                                                             Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                            class="fa fa-list-alt" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add
-                                        to
-                                        Wishlist</a></li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -472,20 +515,38 @@
                                 break;
                             }
                         @endphp
-                    @endif
+                    @endif --}}
                 @endforeach
             </div>
         </div>
         <div id="recommended" class="mx-5 px-5">
             <h4 id="recommended-header">Recommended for you</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
+            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 290px; ">
                 <!-- card Recommended for you -->
                 @php
                     $recommendedAmount = 0;
                 @endphp
                 @foreach ($post as $recommended)
                     @if (preg_match('/' . $recommended->genre . ',?/i', $user->interest))
-                        @if ($recommended->user->type == 'Bookseller')
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $recommended->back_cover) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
+                                    {{ $recommended->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $recommended->status }}</p>
+                            </div>
+                        </div>
+                        @php
+                            $recommendedAmount++;
+
+                            if ($recommendedAmount == 10) {
+                                break;
+                            }
+                        @endphp
+                        {{-- @if ($recommended->user->type == 'Bookseller')
                             @if ($recommended->status == 'Rent' && $recommended->stock > 0)
                                 <div class="card m-1 pb-4 shadow"
                                     style="width: 200px; flex: 0 0 auto; cursor: pointer;"
@@ -666,11 +727,6 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
                                                             Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                                class="fa fa-list-alt" aria-hidden="true"
-                                                style="margin-right: 7px"></i>Add
-                                            to
-                                            Wishlist</a></li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -684,20 +740,40 @@
                                     break;
                                 }
                             @endphp
-                        @endif
+                        @endif --}}
                     @endif
                 @endforeach
             </div>
         </div>
         <div id="for_sale" class="mx-5 px-5">
             <h4 id="for-sale-header">Online Reading</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
+            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 290px; ">
                 <!-- card For Sale -->
                 @php
                     $loopAmount = 0;
                 @endphp
-                @foreach ($post->shuffle() as $sale)
-                    @if ($sale->status == 'Sale' && $sale->stock > 0)
+                @foreach ($post->shuffle() as $onlineReading)
+                    @if ($onlineReading->status == 'Online Reading')
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $onlineReading->id }}, {{ $onlineReading->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $onlineReading->back_cover) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $onlineReading->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $onlineReading->author }}<br>
+                                    {{ $onlineReading->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $onlineReading->status }}</p>
+                            </div>
+                        </div>
+                        @php
+                            $loopAmount++;
+
+                            if ($loopAmount == 10) {
+                                break;
+                            }
+                        @endphp
+                    @endif
+                    {{-- @if ($sale->status == 'Sale' && $sale->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
                             <img src="{{ asset('images/books/' . $sale->book_photo) }}" class="img mx-auto p-2"
@@ -745,10 +821,6 @@
                                                                 class="fa fa-cart-plus" aria-hidden="true"
                                                                 style="margin-right: 7px"></i>Add to
                                                             Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                        class="fa fa-list-alt" aria-hidden="true"
-                                        style="margin-right: 7px"></i>Add to
-                                    Wishlist</a></li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -763,20 +835,33 @@
                                 break;
                             }
                         @endphp
-                    @endif
+                    @endif --}}
                 @endforeach
 
             </div>
         </div>
         <div id="for_exchange" class="mx-5 px-5">
             <h4 id="for-exchange-header">For Exchange</h4>
-            <div class="w-100mx-2 d-flex overflow-x-auto" style="height: 330px; ">
+            <div class="w-100mx-2 d-flex px-4 overflow-x-auto" style="height: 290px; ">
                 <!-- card For Exchange -->
                 @php
                     $exchangeAmount = 0;
                 @endphp
                 @foreach ($post->shuffle() as $exchange)
-                    @if ($exchange->status == 'Exchange' && $exchange->stock > 0)
+                    @if ($exchange->status == 'Digital Exchange')
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $exchange->back_cover) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $exchange->author }}<br>
+                                    {{ $exchange->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $exchange->status }}</p>
+                            </div>
+                        </div>
+                    @endif
+                    {{-- @if ($exchange->status == 'Exchange' && $exchange->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
                             <img src="{{ asset('images/books/' . $exchange->book_photo) }}" class="img mx-auto p-2"
@@ -815,11 +900,11 @@
                                 break;
                             }
                         @endphp
-                    @endif
+                    @endif --}}
                 @endforeach
             </div>
         </div>
-        
+
         <!-- DAILY DISCOVERY CONTENT -->
         <div id="daily-discovery-content" class="daily-discovery-content mt-3 w-100">
             <h4 class="text-center daily_discovery_text mx-5 pb-2">DAILY DISCOVER</h4>
@@ -864,11 +949,6 @@
                                                                     class="fa fa-cart-plus" aria-hidden="true"
                                                                     style="margin-right: 7px"></i>Add to
                                                                 Cart</a></li>
-                                                        {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                    class="fa fa-list-alt" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add
-                                to
-                                Wishlist</a></li> --}}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -1443,8 +1523,8 @@
                     @if ($exchange->status == 'Exchange' && $exchange->stock > 0)
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
-                            <img src="{{ asset('images/books/' . $exchange->book_photo) }}"
-                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
+                            <img src="{{ asset('images/books/' . $exchange->book_photo) }}" class="img mx-auto p-2"
+                                alt="..." width="130px" height="150px">
                             <div class="card-body py-0">
                                 <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}
                                 </p>
@@ -1466,8 +1546,7 @@
                                             </div>
                                         @endif
                                     @endforeach
-                                    <div
-                                        class="card-foot price d-flex justify-content-between align-items-center p-0">
+                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
                                         <span class="fw-bold p-0">For Exchange</span>
                                     </div>
                                 @endif
@@ -1486,8 +1565,7 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 @if (session('message'))
                     <div class="toast-body fw-bold text-success">
@@ -1522,8 +1600,8 @@
 </div>
 
 {{-- Nearby Listings Modal --}}
-<div class="modal fade" id="nearby_seller_modal" data-bs-backdrop="static" data-bs-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="nearby_seller_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -1572,8 +1650,8 @@
 </div>
 
 {{-- Nearby Seller Modal --}}
-<div class="modal fade" id="nearby_user_modal" data-bs-backdrop="static" data-bs-keyboard="false"
-    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="nearby_user_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -1583,8 +1661,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="user-circle-radius"
-                        aria-label="Floating label select example">
+                    <select class="form-select" id="user-circle-radius" aria-label="Floating label select example">
                         <option value="1">1 Kilometre</option>
                         <option value="2">2 Kilometre</option>
                         <option value="5">5 Kilometre</option>
@@ -1605,8 +1682,7 @@
                 <div class="d-flex justify-content-end flex-row">
                     <label for="current-user-location">Current Location:</label>
                     <div class="form-check form-switch mb-2 ms-2">
-                        <input class="form-check-input" type="checkbox" role="switch"
-                            id="current-user-location">
+                        <input class="form-check-input" type="checkbox" role="switch" id="current-user-location">
                     </div>
                 </div>
                 <div class="border rounded">
@@ -2048,7 +2124,7 @@
             },
             zoom: 13
         });
-        
+
 
         drawCircle(map, {
             lat: coordinates.lat,

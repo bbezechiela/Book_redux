@@ -373,52 +373,52 @@ class UserController extends Controller
         if (session()->has('uid')) {
             if ($request->hasFile('profile_photo')) {
                 $validated = $request->validate([
-                    'first_name' => ['required', 'min:4'],
-                    'last_name' => ['required', 'min:4'],
-                    'email' => ['required', 'email'],
-                    'phone_number' => ['required', 'max:12'],
-                    // 'address' => ['required', 'min:4'],
-                    'birthday' => 'required',
-                    'gender' => 'required',
+                    // 'first_name' => ['required', 'min:4'],
+                    // 'last_name' => ['required', 'min:4'],
+                    // 'email' => ['required', 'email'],
+                    // 'phone_number' => ['required', 'max:12'],
+                    // // 'address' => ['required', 'min:4'],
+                    // 'birthday' => 'required',
+                    // 'gender' => 'required',
                     // 'age' => 'required',
                     'interest' => 'required',
                     // 'username' => 'required',
                     // 'password' => 'required',
-                    'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
+                    // 'profile_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240'
                 ]);
 
                 $validated["interest"] = implode(', ', $validated["interest"]);
 
-                $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
-                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-                $extension = $request->file('profile_photo')->getClientOriginalExtension();
-                $fileNameToStore = $fileName . '_' . time() . $extension;
-                $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
-                $validated["profile_photo"] = $fileNameToStore;
+                // $fileNameWithExt = $request->file('profile_photo')->getClientOriginalName();
+                // $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                // $extension = $request->file('profile_photo')->getClientOriginalExtension();
+                // $fileNameToStore = $fileName . '_' . time() . $extension;
+                // $request->file('profile_photo')->move(public_path('images/profile_photos'), $fileNameToStore);
+                // $validated["profile_photo"] = $fileNameToStore;
 
                 $user = Users::find(session('id'));
                 $user->update($validated);
 
                 if ($user) {
-                    session()->put([
-                        'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,
-                        'username' => $user->username,
-                        'profile_pic' => $user->profile_photo
-                    ]);
+                    // session()->put([
+                    //     'first_name' => $user->first_name,
+                    //     'last_name' => $user->last_name,
+                    //     'username' => $user->username,
+                    //     'profile_pic' => $user->profile_photo
+                    // ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);
                 }
             } else {
                 $validated = $request->validate([
-                    'first_name' => ['required', 'min:4'],
-                    'last_name' => ['required', 'min:4'],
-                    'email' => ['required', 'email'],
-                    'phone_number' => ['required', 'max:12'],
-                    // 'address' => ['required', 'min:4'],
-                    'birthday' => 'required',
-                    'gender' => 'required',
+                    // 'first_name' => ['required', 'min:4'],
+                    // 'last_name' => ['required', 'min:4'],
+                    // 'email' => ['required', 'email'],
+                    // 'phone_number' => ['required', 'max:12'],
+                    // // 'address' => ['required', 'min:4'],
+                    // 'birthday' => 'required',
+                    // 'gender' => 'required',
                     // 'age' => 'required',
                     'interest' => 'required',
                     // 'username' => 'required',
@@ -433,11 +433,11 @@ class UserController extends Controller
 
                 if ($user) {
                     // return redirect('/myprofile');
-                    session()->put([
-                        'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,
-                        'username' => $user->username,
-                    ]);
+                    // session()->put([
+                    //     'first_name' => $user->first_name,
+                    //     'last_name' => $user->last_name,
+                    //     'username' => $user->username,
+                    // ]);
                     return view('users.myProfile', ['user' => $user, 'message' => 'Update successful! Your profile has been successfully updated.']);
                 } else {
                     return view('users.myProfile', ['user' => $user, 'message' => 'Error updating profile']);

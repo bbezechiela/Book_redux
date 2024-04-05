@@ -32,7 +32,7 @@
         <tbody>
             @foreach ($books as $book)
                 <tr>                    
-                    <td>{{ $book->user->first_name . ' ' . $book->user->last_name }}</td>
+                    <td>{{ $book->user->name }}</td>
                     <td><img class="img w-100" src="{{ asset('images/books/' . $book->book_photo) }}" alt="book photo"></td>
                     <td>For {{ $book->status }}</td>
                     <td>{{ $book->title }}</td>
