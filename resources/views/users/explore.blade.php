@@ -2048,21 +2048,7 @@
             },
             zoom: 13
         });
-
-        // var marker = new google.maps.Marker({
-        //     position: coordinates,
-        //     map: map,
-        //     title: 'First Marker Sample',
-        //     // icon: {
-        //     //     url: 'inay-profile.jpg',
-        //     //     scaledSize: new google.maps.Size(40, 40)
-        //     // },
-        //     // id: 1
-        // });
-
-        // marker.addListener('click', function() {
-        //     console.log('test marker click');
-        // });
+        
 
         drawCircle(map, {
             lat: coordinates.lat,

@@ -6,6 +6,7 @@ use App\Models\Books;
 use App\Models\Cart;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ListingController extends Controller
 {
@@ -84,7 +85,6 @@ class ListingController extends Controller
         $title = $request->input('title');
         $author = $request->input('author');
         $description = $request->input('description');
-        $interior = $request->input('interior_photo');
 
 
         try {
@@ -99,7 +99,54 @@ class ListingController extends Controller
                 'description' => $description,
                 'book_filename' => $fileNameToStore,
                 'back_cover' => $coverNameToStore,
-                'interior_photo' => $interior
+            ]);
+
+            if ($post) {
+                return redirect('mylist');
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function digitalPost(Request $request)
+    {
+        // dd($request->all());
+        $fileNameWithExt = $request->file('pdf_file')->getClientOriginalName();
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('pdf_file')->getClientOriginalExtension();
+        $fileNameToStore = $fileName . '_' . time() . $extension;
+        $request->file('pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+        $coverWithExt = $request->file('front_cover')->getClientOriginalName();
+        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        $coverExtension = $request->file('front_cover')->getClientOriginalExtension();
+        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+
+        $user_id = $request->input('user_id');
+        $genre = $request->input('genre');
+        $isbn = $request->input('isbn');
+        $edition = $request->input('edition');
+        $title = $request->input('title');
+        $author = $request->input('author');
+        $description = $request->input('description');
+        $exchange_pref = $request->input('exchange_preferences');
+
+        try {
+
+            $post = Books::create([
+                'user_id' => $user_id,
+                'status' => 'Digital Exchange',
+                'genre' => $genre,
+                'isbn' => $isbn,
+                'edition' => $edition,
+                'title' => $title,
+                'author' => $author,
+                'description' => $description,
+                'exchange_preferences' => $exchange_pref,
+                'book_filename' => $fileNameToStore,
+                'back_cover' => $coverNameToStore,
             ]);
 
             if ($post) {
@@ -374,7 +421,114 @@ class ListingController extends Controller
                 return redirect('mylist');
             }
         }
+    }
 
+    public function digitalUpdate(Request $request, $id)
+    {
+        // dd($request->all());
+        $genre = $request->input('genre');
+        $isbn = $request->input('isbn');
+        $edition = $request->input('edition');
+        $title = $request->input('title');
+        $author = $request->input('author');
+        $exchange_pref = $request->input('exchange_preferences');
+        $description = $request->input('description');
+
+        if ($request->has('pdf_file') || $request->has('front_cover')) {
+            if (!$request->has('pdf_file')) {
+                $coverWithExt = $request->file('front_cover')->getClientOriginalName();
+                $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+                $coverExtension = $request->file('front_cover')->getClientOriginalExtension();
+                $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+                $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+
+                $book = Books::find($id);
+
+                $book->update([
+                    'back_cover' => $coverNameToStore,
+                    'genre' => $genre,
+                    'isbn' => $isbn,
+                    'edition' => $edition,
+                    'title' => $title,
+                    'author' => $author,
+                    'exchange_preferences' => $exchange_pref,
+                    'description' => $description
+                ]);
+
+                if ($book) {
+                    return redirect('mylist');
+                }
+            } else if (!$request->has('front_cover')) {
+                $fileNameWithExt = $request->file('pdf_file')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('pdf_file')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+                $book = Books::find($id);
+
+                $book->update([
+                    'book_filename' => $fileNameToStore,
+                    'genre' => $genre,
+                    'isbn' => $isbn,
+                    'edition' => $edition,
+                    'title' => $title,
+                    'author' => $author,
+                    'exchange_preferences' => $exchange_pref,
+                    'description' => $description
+                ]);
+
+                if ($book) {
+                    return redirect('mylist');
+                }
+            } else {
+                $coverWithExt = $request->file('front_cover')->getClientOriginalName();
+                $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+                $coverExtension = $request->file('front_cover')->getClientOriginalExtension();
+                $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+                $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+
+                $fileNameWithExt = $request->file('pdf_file')->getClientOriginalName();
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $request->file('pdf_file')->getClientOriginalExtension();
+                $fileNameToStore = $fileName . '_' . time() . $extension;
+                $request->file('pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+                $book = Books::find($id);
+
+                $book->update([
+                    'back_cover' => $coverNameToStore,
+                    'book_filename' => $fileNameToStore,
+                    'genre' => $genre,
+                    'isbn' => $isbn,
+                    'edition' => $edition,
+                    'title' => $title,
+                    'author' => $author,
+                    'exchange_preferences' => $exchange_pref,
+                    'description' => $description
+                ]);
+
+                if ($book) {
+                    return redirect('mylist');
+                }
+            }
+        } else {
+            $book = Books::find($id);
+
+            $book->update([
+                'genre' => $genre,
+                'isbn' => $isbn,
+                'edition' => $edition,
+                'title' => $title,
+                'author' => $author,
+                'exchange_preferences' => $exchange_pref,
+                'description' => $description
+            ]);
+
+            if ($book) {
+                return redirect('mylist');
+            }
+        }
     }
 
     public function exchangeUpdate(Request $request, $id)

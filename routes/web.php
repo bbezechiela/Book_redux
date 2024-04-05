@@ -151,6 +151,8 @@ Route::post('/register', [UserController::class, 'store']);
 
 Route::post('/mylist/salepost', [ListingController::class, 'saleList']);
 
+Route::post('/mylist/digitalpost', [ListingController::class, 'digitalPost']);
+
 Route::post('/mylist/exchangepost', [ListingController::class, 'exchangeList']);
 
 Route::post('/listing/rentpost', [ListingController::class, 'rentList']);
@@ -192,6 +194,8 @@ Route::get('/reviews', [SellerController::class, 'reviewsRating']);
 Route::get('/sellermyreviews', [SellerController::class, 'myReviews']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
+
+Route::post('/mylist/digitalupdate/{id}', [ListingController::class, 'digitalUpdate']);
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
 

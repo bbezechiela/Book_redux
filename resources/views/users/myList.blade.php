@@ -115,11 +115,7 @@
                                     style="color:#E55B13;"><i class="fa fa-plus-circle" aria-hidden="true"
                                         style="margin-right: 5px;"></i>List Book for Digital Exchange</a></li>
                         </ul>
-                    </div>
-                    {{-- <button id="create-exchange-listing"
-                        class="create-btn-exchange btn px-3 ms-2 d-flex align-items-center h-75"><i
-                            class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>
-                        List Book for Exchange</button> --}}
+                    </div>                   
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <label class="fw-bold" for="sort">Sort by</label>
@@ -301,9 +297,7 @@
                                 <input type="text" class="form-control" id="weight" placeholder="1 (kg)"><br>
                                 <input type="text" class="form-control" id="width" placeholder="5 cm"><br>
                                 <input type="text" class="form-control" id="height" placeholder="7 cm"><br>
-                                <input type="text" class="form-control" id="length" placeholder="7 cm"><br>
-                                {{-- <input type="text" class="form-control" id="payment-method"
-                            placeholder="Cash on Delivery"> --}}
+                                <input type="text" class="form-control" id="length" placeholder="7 cm"><br>                                
                             </div>
 
                             <div class="product-details-box">
@@ -329,7 +323,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Drop off"
                                         name="transaction_type" id="drop_off">
-                                    {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
+                                    
                                 </div>
                             </label>
                             <label class="pickup-details" for="pick_up">
@@ -1246,53 +1240,39 @@
                             <div class="row">
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded">
                                     <input type="text" name="user_id" value="{{ session('id') }}" hidden>
-                                    <input type="text" name="weight" id="sale-weight" hidden>
-                                    <input type="text" name="width" id="sale-width" hidden>
-                                    <input type="text" name="height" id="sale-height" hidden>
-                                    <input type="text" name="length" id="sale-length" hidden>
-                                    <input type="text" name="courier" id="sale-courier" hidden>
 
                                     {{-- The book file that the user uploaded should be display here for preview --}}
                                     <div class="ExternalFiles">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
                                             Preview</small>
-                                        <input id="pdfUpload" type="file" accept="application/pdf"
-                                            onchange="pdfPreview()" name="pdf_file" hidden>
-                                        <label for="pdfUpload" class="btn create-btn-exchange my-1 mx-2">Click to
+                                        <input id="digital-pdfUpload" type="file" accept="application/pdf"
+                                            onchange="pdfPreview()" name="pdf_file" hidden required>
+                                        <label for="digital-pdfUpload" class="btn create-btn-exchange my-1 mx-2">Click
+                                            to
                                             upload file</label>
-                                        {{-- <iframe src="../assets/InfoSec_Module-1.pdf" frameborder="0"></iframe> --}}
-                                        <div class="border" id="pdfPreview"></div>
+                                        <iframe class="w-100 h-100" id="digital-frame" src=""
+                                            frameborder="0"></iframe>
                                     </div>
 
-                                    {{-- Remove this  --}}
-                                    {{-- <input type="file" name="book_photo" id="sale-image" accept="image/*" hidden>
-                                <label for="sale-image" class="position-relative w-100 h-100"
-                                    style="cursor: pointer;">
-                                <img id="sale-book-image" src="../assets/listing.png" alt="image"
-                                        class=""
-                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                        data-bs-title="Click to Upload Image" width="170" height="170">
-                                </label> --}}
-                                    {{-- Remove this  --}}
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <div class="row">
-                                            <label class="col-md-4 control-label" for="filebutton1">Book
+                                            <label class="col-md-4 control-label" for="digital-bookcover">Book
                                                 Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="filebutton1" name="front_cover" accept="image/*"
+                                                    <input id="digital-bookcover" name="front_cover" accept="image/*"
                                                         class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;">
+                                                        style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
 
-                                    <select name="genre" id="" class="form-control form-select"
-                                        style="margin-bottom: 12px; color: #003060;">
+                                    <select name="genre" id="digital-genre" class="form-control form-select"
+                                        style="margin-bottom: 12px; color: #003060;" required>
                                         <option>Genre</option>
                                         <option value="Educational">Educational</option>
                                         <option value="Romance & Saga">Romance & Saga</option>
@@ -1308,19 +1288,20 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="text" name="isbn" id="isbn-exchange" class="form-control"
-                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;">
-                                    <input type="text" name="edition" id="edition-sale" class="form-control"
-                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
+                                    <input type="text" name="isbn" id="digital-isbn" class="form-control"
+                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="edition" id="digital-edition" class="form-control"
+                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
                                 <input type="text" name="title" class="form-control" placeholder="Title"
-                                    style="margin-bottom: 12px; color: #003060;">
+                                    style="margin-bottom: 12px; color: #003060;" required>
                                 <input type="text" name="author" class="form-control" placeholder="Author"
-                                    style="margin-bottom: 12px; color: #003060;">
+                                    style="margin-bottom: 12px; color: #003060;" required>
                                 <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30" rows="4"
-                                    placeholder="Exchange Preferences (E.g., desired book genres etc.)" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    placeholder="Exchange Preferences (E.g., desired book genres etc.)" style="margin-bottom: 12px; color: #003060;"
+                                    required></textarea>
                                 <textarea name="description" id="description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
                                 <div class="col guidelines">
                                     <h6>Listing Guidelines</h6>
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -1414,8 +1395,7 @@
                                                     Book Condition Guidelines
                                                 </button>
                                             </h2>
-                                            <div id="panelsStayOpen-collapseTwo"
-                                                class="accordion-collapse collapse">
+                                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                                                 <div class="accordion-body">
                                                     <strong>New: </strong>
                                                     <small>A book that is in pristine condition, showing no
@@ -1654,8 +1634,8 @@
                                         </div>
                                         <div class="form-check" style="margin-top: 1em">
                                             <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault" />
-                                            <label class="form-check-label" for="flexCheckDefault">I have read and
+                                                id="digitalCheckList" />
+                                            <label class="form-check-label" for="digitalCheckList">I have read and
                                                 agree
                                                 to the listing terms and condition.</label>
                                         </div>
@@ -1664,8 +1644,9 @@
                             </div>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="submit" id="submitButton" class="btn mx-auto w-25 text-white rounded-3"
-                                style="background-color: #E55B13;" disabled>List</button>
+                            <button type="submit" id="digitalSubmitButton"
+                                class="btn mx-auto w-25 text-white rounded-3" style="background-color: #E55B13;"
+                                disabled>List</button>
                         </div>
                     </form>
                 </div>
@@ -1687,6 +1668,7 @@
                 </div>
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
                     <option value="Online Reading">Online Reading</option>
+                    <option value="Digital Exchange">Digital Exchange</option>
                     <option value="Exchange">Exchange</option>
                 </select>
                 <input type="text" id="edit-book-id" name="id" hidden>
@@ -1769,6 +1751,91 @@
                                     class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
                             </div>
                         </div>
+                    </form>
+                </div>
+
+                {{-- update digital exchange --}}
+                <div id="digital-update">
+                    <form id="edit-digital-form" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body container-fluid px-5">
+                            <div class="row">
+                                <div class="col-5 me-1 px-0 py-0 border mb-2 rounded">                                    
+                                    {{-- The book file that the user uploaded should be display here for preview --}}
+                                    <div class="ExternalFiles">
+                                        <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
+                                            Preview</small>
+                                        <input id="edit-digital-pdfUpload" type="file" accept="application/pdf"
+                                            onchange="pdfPreview()" name="pdf_file" hidden required>
+                                        <label for="edit-digital-pdfUpload"
+                                            class="btn create-btn-exchange my-1 mx-2">Click to
+                                            upload file</label>
+                                        <iframe class="w-100 h-100" id="edit-digital-frame" src=""
+                                            frameborder="0"></iframe>
+                                    </div>
+
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-md-4 control-label" for="edit-digital-bookcover">Book
+                                                Cover</label>
+                                            <div class="col-md-8">
+                                                <div class="input-file-wrapper">
+                                                    <input id="edit-digital-bookcover" name="front_cover"
+                                                        accept="image/*" class="input-file form-control"
+                                                        type="file" style="margin-bottom: 12px;" required>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <select name="genre" id="edit-digital-genre"
+                                        class="form-control form-select"
+                                        style="margin-bottom: 12px; color: #003060;" required>
+                                        <option>Genre</option>
+                                        <option value="Educational">Educational</option>
+                                        <option value="Romance & Saga">Romance & Saga</option>
+                                        <option value="Fantasy & Adventure">Fantasy & Adventure</option>
+                                        <option value="Science Fiction">Science Fiction</option>
+                                        <option value="Historical Fiction">Historical Fiction</option>
+                                        <option value="Mystery & Suspense">Mystery & Suspense</option>
+                                        <option value="Young Adult">Young Adult</option>
+                                        <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
+                                        <option value="Horror & Supernatural">Horror & Supernatural</option>
+                                        <option value="Comedy & Satire">Comedy & Satire</option>
+                                        <option value="Poetry & Prose">Poetry & Prose</option>
+                                        <option value="Self-Help">Self-Help</option>
+                                        <option value="Crime & Thriller">Crime & Thriller</option>
+                                    </select>
+                                    <input type="text" name="isbn" id="edit-digital-isbn"
+                                        class="form-control" placeholder="ISBN"
+                                        style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="edition" id="edit-digital-edition"
+                                        class="form-control" placeholder="Edition"
+                                        style="margin-bottom: 12px; color: #003060;" required>
+                                </div>
+                                <input type="text" name="title" id="edit-digital-title"
+                                    class="form-control" placeholder="Title"
+                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <input type="text" name="author" id="edit-digital-author"
+                                    class="form-control" placeholder="Author"
+                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <textarea name="exchange_preferences" id="edit-digital-exchange-preferences" class="form-control" cols="30"
+                                    rows="4" placeholder="Exchange Preferences (E.g., desired book genres etc.)"
+                                    style="margin-bottom: 12px; color: #003060;" required></textarea>
+                                <textarea name="description" id="edit-digital-description" class="form-control" cols="30" rows="4"
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" id="digital-exchange-update"
+                                    class="btn mx-auto w-25 text-white rounded-3 update-btn">Update</button>
+                                <button type="button" id="digital-exchange-delete"
+                                    class="btn mx-auto w-25 rounded-3 delete-btn">Delete</button>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
 
@@ -1919,7 +1986,7 @@
                 @if (session('deleteMessage') &&
                         session('deleteMessage') ==
                             'Listing deleted successfully. Your request has been processed, and the specified listing has been
-                            removed.')
+                                            removed.')
                     <div class="toast-body fw-bold text-success">
                         {{ session('deleteMessage') }}
                     </div>
@@ -1979,10 +2046,22 @@
         document.getElementById('frame').src = URL.createObjectURL(file);
     });
 
+    document.getElementById('digital-pdfUpload').addEventListener('change', (e) => {
+        var file = e.target.files[0];
+        document.getElementById('digital-frame').src = URL.createObjectURL(file);
+    });
+
+
+    // Update
     document.getElementById('edit-pdfUpload').addEventListener('change', (e) => {
         var file = e.target.files[0];
         document.getElementById('edit-frame').src = URL.createObjectURL(file);
-    })
+    });
+
+    document.getElementById('edit-digital-pdfUpload').addEventListener('change', (e) => {
+        var file = e.target.files[0];
+        document.getElementById('edit-digital-frame').src = URL.createObjectURL(file);
+    });
 
 
     function viewShipping(book_id, item_id) {
@@ -2040,21 +2119,8 @@
     const deleteToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('deleteLiveToast'));
     const createToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('createLiveToast'));
     const updateToast = bootstrap.Toast.getOrCreateInstance(document.getElementById('updateLiveToast'));
-    // @if (session('deleteMessage'))
-    //     deleteToast.show()
-    // @elseif (session('createMessage'))
-    //     createToast.show()
-    // @elseif (session('updateMessage'))
-    //     updateToast.show()
-    // @endif
-    // delete
-    // var sale_delete = document.getElementById('sale-delete');
-    var exchange_delete = document.getElementById('exchange-delete');
-    // var rent_delete = document.getElementById('rent-delete');
-    // sale_delete.addEventListener('click', () => {
-    //     var id = document.getElementById('edit-book-id');
-    //     window.location.href = "/mylist/delete/" + id.value;
-    // });
+    
+    var exchange_delete = document.getElementById('exchange-delete');    
     exchange_delete.addEventListener('click', () => {
         var id = document.getElementById('edit-book-id');
     });
@@ -2065,7 +2131,7 @@
         fetchGet(`/getbook/${id}`)
             .then(result => {
                 if (status == 'Online Reading') {
-                    document.getElementById("edit-online-reading-div").style.display = "flex";
+                    edit_modal.value = 'Online Reading'
                     document.getElementById('edit-frame').src = `/files/books/${result.book_filename}`;
                     document.getElementById('edit-genre').value = result.genre;
                     document.getElementById('edit-isbn').value = result.isbn;
@@ -2080,11 +2146,37 @@
                             `/mylist/updateSale/${result.id}`;
                         document.getElementById('edit-online-reading-form').submit();
                     }
+
                     console.log(result);
+                    document.getElementById("edit-online-reading-div").style.display = "flex";
                     document.getElementById("edit-exchange-div").style.display = "none";
+                    document.getElementById('digital-update').style.display = "none";
+                } else if (status == 'Digital Exchange') {
+                    edit_modal.value = 'Digital Exchange';
+                    document.getElementById('edit-digital-frame').src = `/files/books/${result.book_filename}`;
+                    document.getElementById('edit-digital-genre').value = result.genre;
+                    document.getElementById('edit-digital-isbn').value = result.isbn;
+                    document.getElementById('edit-digital-edition').value = result.edition;
+                    document.getElementById('edit-digital-title').value = result.title;
+                    document.getElementById('edit-digital-author').value = result.author;
+                    document.getElementById('edit-digital-exchange-preferences').value = result
+                        .exchange_preferences;
+                    document.getElementById('edit-digital-description').value = result.description;
+                    document.getElementById('digital-exchange-delete').onclick = () => window.location.href =
+                        `/mylist/delete/${result.id}`;
+                    document.getElementById('digital-exchange-update').onclick = () => {
+                        document.getElementById('edit-digital-form').action =
+                            `/mylist/digitalupdate/${result.id}`;
+                        document.getElementById('edit-digital-form').submit();
+                    }
+
+                    document.getElementById("edit-online-reading-div").style.display = "none";
+                    document.getElementById("edit-exchange-div").style.display = "none";
+                    document.getElementById('digital-update').style.display = "flex";
                 } else {
                     document.getElementById("edit-online-reading-div").style.display = "none";
-                    document.getElementById("edit-exchange-div").style.display = "exchange";
+                    document.getElementById('digital-update').style.display = "none";
+                    document.getElementById("edit-exchange-div").style.display = "none";
                 }
                 updateListingModal.show();
             })
@@ -2092,39 +2184,9 @@
 
 
     }
-    // update btn
-    // var sale_update_btn = document.getElementById('sale-update');
-    var exchange_update_btn = document.getElementById('exchange-update');
-    // var rent_update_btn = document.getElementById('rent-update');
-    // sale_update_btn.addEventListener('click', () => {
-    //     var sale_form = document.getElementById('edit-sale-form');
-    //     var book_id = document.getElementById('edit-book-id');
-    //     var edit_weight = document.getElementById('edit-weight');
-    //     var edit_width = document.getElementById('edit-width');
-    //     var edit_height = document.getElementById('edit-height');
-    //     var edit_length = document.getElementById('edit-length');
-    //     document.getElementById('edit-sale-weight').value = edit_weight.value;
-    //     document.getElementById('edit-sale-width').value = edit_width.value
-    //     document.getElementById('edit-sale-height').value = edit_height.value;
-    //     document.getElementById('edit-sale-length').value = edit_length.value;
-    //     document.getElementById('edit-sale-courier').value = edit_courier;
-    //     sale_form.action = "/mylist/updateSale/" + book_id.value;
-    //     sale_form.submit();
-    // });
-    exchange_update_btn.addEventListener('click', () => {
-        // var exchange_form = document.getElementById('edit-exchange-form');
-        // var book_id = document.getElementById('edit-book-id');
-        // var edit_weight = document.getElementById('edit-weight');
-        // var edit_width = document.getElementById('edit-width');
-        // var edit_height = document.getElementById('edit-height');
-        // var edit_length = document.getElementById('edit-length');
-        // document.getElementById('edit-exchange-weight').value = edit_weight.value;
-        // document.getElementById('edit-exchange-width').value = edit_width.value
-        // document.getElementById('edit-exchange-height').value = edit_height.value;
-        // document.getElementById('edit-exchange-length').value = edit_length.value;
-        // document.getElementById('edit-exchange-courier').value = edit_courier;
-        // exchange_form.action = "/mylist/updateExchange/" + book_id.value;
-        // exchange_form.submit();
+    
+    var exchange_update_btn = document.getElementById('exchange-update');  
+    exchange_update_btn.addEventListener('click', () => {        
     });
 
     edit_modal.addEventListener('change', () => {
@@ -2150,8 +2212,6 @@
     // tool tips   
     const ExchangeImageToolTip = document.getElementById('exchange-book-image');
     const tooltipExchangeImageShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeImageToolTip);
-    // const EditSaleimageToolTip = document.getElementById('edit-sale-book-image');
-    // const tooltipEditSaleImageShow = bootstrap.Tooltip.getOrCreateInstance(EditSaleimageToolTip);
 
     // modals
     const createListingModal = new bootstrap.Modal('#createListingModal', {
@@ -2185,7 +2245,7 @@
 
     document.getElementById('create-digital-exchange-listing').addEventListener('click', () => {
         list_category.value = 'Digital Exchange';
-        document.getElementById('listing-type').textContent = 'Physical Exchange';
+        document.getElementById('listing-type').textContent = 'Digital Exchange';
         document.getElementById("sale").style.display = "none";
         document.getElementById("exchange").style.display = "none";
         document.getElementById("digital").style.display = "flex";
@@ -2211,14 +2271,7 @@
     });
 
     // list category    
-    // var exchange_btn = document.getElementById('create-exchange-listing');
-    // exchange_btn.addEventListener('click', () => {
-    //     list_category.value = "Exchange";
-    //     document.getElementById('listing-type').textContent = 'Exchange';
-    //     document.getElementById("sale").style.display = "none";
-    //     document.getElementById("exchange").style.display = "flex";
-    //     createListingModal.show();
-    // });
+    
     list_category.addEventListener("change", function() {
         // console.log(String(list_category.value));
         if (list_category.value == "Online Reading") {
@@ -2238,13 +2291,9 @@
     });
 
     // uploading edit image
-    // var edit_sale_image_upload = document.getElementById("edit-sale-image");
+    
     var exchange_image_upload = document.getElementById("edit-exchange-image");
-    // var rent_image_upload = document.getElementById("edit-rent-image");
-    // edit_sale_image_upload.addEventListener("change", function() {
-    //     var image = document.getElementById("edit-sale-book-image");
-    //     image.src = URL.createObjectURL(event.target.files[0]);
-    // });
+   
     exchange_image_upload.addEventListener("change", function() {
         var image = document.getElementById("edit-exchange-book-image");
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -2254,8 +2303,8 @@
         var submitButton = document.getElementById('submitButton');
         submitButton.disabled = !this.checked;
     });
-    document.getElementById('exchangeDefault').addEventListener('change', function() {
-        var submitButton = document.getElementById('submitExchangeButton');
+    document.getElementById('digitalCheckList').addEventListener('change', function() {
+        var submitButton = document.getElementById('digitalSubmitButton');
         submitButton.disabled = !this.checked;
     });
 </script>
