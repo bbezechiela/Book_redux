@@ -9,6 +9,7 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easyzoom@2.5.3/css/easyzoom.css" />
     <script src="https://cdn.jsdelivr.net/npm/easyzoom@2.5.3/src/easyzoom.js"></script> --}}
+    <script src="https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.min.js"></script>
 </head>
 
 <body>
@@ -91,15 +92,17 @@
                                 class="fw-normal">{{ $book->description }}</span></p>
 
                         @if ($book->status == 'Digital Exchange')
-                            <a href="" data-bs-toggle="modal" class="btn cart-button"
-                                data-bs-target="#content_preview" style="margin-bottom: 1em;">Preview
+                            <button data-bs-toggle="modal"
+                                onclick="previewBtn('{{ $book->book_filename }}', '{{ $book->title }}')"
+                                class="btn cart-button" data-bs-toggle="modal" data-bs-target="#digitalPreviewModal"
+                                style="margin-bottom: 1em;">Preview
                                 <i class="fa fa-eye" aria-hidden="true"
-                                    style="margin-left: 8px; margin-right: 4px;"></i></a>
-                            <a href="" data-bs-toggle="modal" class="btn exchange-button"
+                                    style="margin-left: 8px; margin-right: 4px;"></i></button>
+                            <button data-bs-toggle="modal" class="btn exchange-button"
                                 data-bs-target="#digital_exchange_request" style="margin-bottom: 1em;">Send Exchange
                                 Request
                                 <i class="fa fa-exchange" aria-hidden="true"
-                                    style="margin-left: 8px; margin-right: 4px;"></i></a>
+                                    style="margin-left: 8px; margin-right: 4px;"></i></button>
                         @elseif ($book->status = 'Online Reading')
                             <button id="readNowBtn"
                                 onclick="readNowFunction('{{ $book->book_filename }}', '{{ $book->title }}')"
@@ -156,6 +159,23 @@
     {{-- </div> --}}
 
 
+    {{-- Digital Exchange Preview Modal --}}
+    <div class="modal fade" id="digitalPreviewModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="digitalPreviewModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content h-100">
+                <div class="modal-header">
+                    <h1 id="digitalPreviewTitle" class="modal-title fs-5 fw-bold" style="color: #003060">Modal title
+                    </h1>
+                    <button id="digitalPreviewClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="pdfPreview" class="d-flex justify-center flex-column m-5"></div>
+                    <h2 class="text-center mb-5 text-danger fw-bold">Send an Exchange Request to continue reading the whole document</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{-- Read Now Modal --}}
     <div class="modal fade" id="readNowModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -167,13 +187,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
-                    {{-- <button type="button" class="position-absolute btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
                     <iframe id="readNowFrame" frameborder="0" style="width: 100%; height: 100%;"></iframe>
                 </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -423,9 +438,9 @@
                     </div>
                 </div>
             </div>
-        </div> -
+        </div>
 
-        <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
+        {{-- <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -500,7 +515,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Report Modal -->
         <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -573,6 +588,49 @@
 
 
 <script>
+    document.getElementById('digitalPreviewClose').onclick = () => {
+        document.getElementById('pdfPreview').innerHTML = '';
+    }
+
+    const previewBtn = (filename, title) => {
+        document.getElementById('digitalPreviewTitle').textContent = title;
+        var loadingTask = pdfjsLib.getDocument(`/files/books/${filename}`);
+        var pdfDiv = document.getElementById('pdfPreview');
+        var pageNumIsRendering = false;
+        var pageNumIsPending = null;
+
+        loadingTask.promise.then((pdf) => {
+            // console.log(pdf.numPages);
+            for (var pageNum = 1; pageNum <= 2; pageNum++) {
+                const canvas = document.createElement('canvas');
+                canvas.className = 'border border-secondary-subtle my-2';
+                if (pageNum == 2) {
+                    canvas.style.filter = 'blur(7px)';                    
+                }
+
+                pdf.getPage(pageNum).then((page) => {
+                                
+                    var context = canvas.getContext('2d');
+                    var viewport = page.getViewport({
+                        scale: 1.5,
+                    });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    var renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    }
+                    
+                    pdfDiv.appendChild(canvas);                    
+
+                    page.render(renderContext).promise.then(() => {                                       
+                    });
+                });
+            }
+        });
+    }
+
     const readNowFunction = (filename, title) => {
         try {
             document.getElementById('readNowTitle').textContent = `${title}`
