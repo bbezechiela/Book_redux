@@ -148,23 +148,22 @@
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
-                        
+
                         <div>
                             <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
                                 Details</button>
-                            <a class="btn btn-sm receive-button" data-bs-toggle="modal"
-                            data-bs-target="#rate-review" href="">Post Rating and Review</a>
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#rate-review"
+                                href="">Post Rating and Review</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
- {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
 
-
-         {{-- CARD IS FOR DIGITAL EXCHANGE --}}
-         <div class="order-cart d-print-none">
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+        <div class="order-cart d-print-none">
             <div class="name-cart d-flex justify-content-between">
                 <div>
                     <a class="seller-name" href=""><span>Nestine Navarro</span></a>
@@ -226,23 +225,23 @@
                             <h5 class="card-title">ISBN: <span>124154238778</span></h5>
                             <p class="card-text">Genre: <span>Self-help</span></p>
                             <p class="card-text">Description: <span>This is a sample description of the book I want to
-                                offer for exchange.</span></p>
+                                    offer for exchange.</span></p>
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
-                        
+
                         <div>
                             <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                 data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#book-details">View
                                 Details</button>
-                            <a class="btn btn-sm receive-button" data-bs-toggle="modal"
-                            data-bs-target="#rate-review" href="">Post Rating and Review</a>
+                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#rate-review"
+                                href="">Post Rating and Review</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
- {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+        {{-- CARD IS FOR DIGITAL EXCHANGE --}}
         @php
         $loopCount = 0;
         @endphp
@@ -533,112 +532,108 @@
 
     </div>
 </div>
- {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
- <!-- Shipping Details Modal -->
- <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel"
- aria-hidden="true">
- <div class="modal-dialog modal-lg">
-     <div class="modal-content">
-         <div class="modal-header d-print-none">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
-         </div>
-         <div class="modal-body d-print-block">
-             <div class="container mt-5 mb-5">
-                 <div class="d-flex justify-content-center row">
-                     <div class="col-md-10">
-                         <div class="receipt bg-white p-3 rounded"><img src="../assets/Book_Logo.png"
-                                 width="120">
-                             {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
-                             {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
-                             <hr>
-                             <div
-                                 class="d-flex flex-row justify-content-between align-items-center order-details">
-                                 <div><span class="d-block fs-12">Approved Request Date</span><span
-                                         id="detail-order-date" class="font-weight-bold">12 March
-                                         2020</span></div>
-                                 <div><span class="d-block fs-12">Transaction number</span><span
-                                         id="detail-order-number" class="font-weight-bold">TRA44434324</span>
-                                 </div>
-                                 <div><span class="d-block fs-12">Request Date</span><span
-                                         id="detail-payment-method" class="font-weight-bold">03 April
-                                         2024</span></div>
-                                 <div><span class="d-block fs-12">Shipping Address</span><span
-                                         id="detail-shipping-address"
-                                         class="font-weight-bold shipping-address-text">Bagacay,
-                                         Tacloban</span></div>
-                             </div>
-                             <hr>
-                             <div class="d-flex justify-content-between align-items-center product-details">
-                                <div class="d-flex flex-row product-name-image">
-                                    <div class="d-flex flex-column justify-content-between ml-2">
-                                        <div>
-                                            <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
-                                            <span id="detail-title" class="d-block fw-bold p-name">The
-                                                Pioneers</span>
-                                            <span id="detail-isbn" class="fs-12">ISBN:
-                                                65342688564324</span><br>
-                                            <span id="detail-isbn" class="fs-12">Author: Marx
-                                                Hinton</span><br>
-                                            <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
-                                            <span id="detail-isbn" class="fs-12">Edition: 1st
-                                                Edition</span><br>
-                                            <span id="detail-isbn" class="fs-12">Condition: New</span><br>
-                                            <span id="detail-isbn" class="fs-12">Exchange Method Preference:
-                                                Meetup</span>
+{{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+<!-- Shipping Details Modal -->
+<div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-print-none">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
+            </div>
+            <div class="modal-body d-print-block">
+                <div class="container mt-5 mb-5">
+                    <div class="d-flex justify-content-center row">
+                        <div class="col-md-10">
+                            <div class="receipt bg-white p-3 rounded"><img src="../assets/Book_Logo.png" width="120">
+                                {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
+                                {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
+                                <hr>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <div><span class="d-block fs-12">Approved Request Date</span><span
+                                            id="detail-order-date" class="font-weight-bold">12 March
+                                            2020</span></div>
+                                    <div><span class="d-block fs-12">Transaction number</span><span
+                                            id="detail-order-number" class="font-weight-bold">TRA44434324</span>
+                                    </div>
+                                    <div><span class="d-block fs-12">Request Date</span><span id="detail-payment-method"
+                                            class="font-weight-bold">03 April
+                                            2024</span></div>
+                                    <div><span class="d-block fs-12">Shipping Address</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">Bagacay,
+                                            Tacloban</span></div>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center product-details">
+                                    <div class="d-flex flex-row product-name-image">
+                                        <div class="d-flex flex-column justify-content-between ml-2">
+                                            <div>
+                                                <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
+                                                <span id="detail-title" class="d-block fw-bold p-name">The
+                                                    Pioneers</span>
+                                                <span id="detail-isbn" class="fs-12">ISBN:
+                                                    65342688564324</span><br>
+                                                <span id="detail-isbn" class="fs-12">Author: Marx
+                                                    Hinton</span><br>
+                                                <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
+                                                <span id="detail-isbn" class="fs-12">Edition: 1st
+                                                    Edition</span><br>
+                                                <span id="detail-isbn" class="fs-12">Condition: New</span><br>
+                                                <span id="detail-isbn" class="fs-12">Exchange Method Preference:
+                                                    Meetup</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="product-price">
+                                        <h5 id="detail-price">Paperback</h5>
+                                    </div>
                                 </div>
-                                <div class="product-price">
-                                    <h5 id="detail-price">Paperback</h5>
-                                </div>
-                            </div>
-                            <hr>
-                            <div
-                                class="d-flex flex-row justify-content-between align-items-center order-details">
-                                <div><span class="d-block fw-bold fs-12">Lister Name</span><span
-                                        id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
-                                        Penduko</span>
-                                </div>
-                                <div><span class="d-block fs-12">Contact number</span><span
-                                        id="detail-shipping-address"
-                                        class="font-weight-bold shipping-address-text">09491229441</span>
-                                </div>
-                                {{-- <div><span class="d-block fs-12">Requester Name</span><span
+                                <hr>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    <div><span class="d-block fw-bold fs-12">Lister Name</span><span
+                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
+                                            Penduko</span>
+                                    </div>
+                                    <div><span class="d-block fs-12">Contact number</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">09491229441</span>
+                                    </div>
+                                    {{-- <div><span class="d-block fs-12">Requester Name</span><span
                                         id="detail-payment-method" class="font-weight-bold">Nestine
                                         Navarro</span></div>
                                 <div><span class="d-block fs-12">Contact Number</span><span
                                         id="detail-shipping-address"
                                         class="font-weight-bold shipping-address-text">09054173103</span>
                                 </div> --}}
-                            </div>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center product-details">
-                                <div class="d-flex flex-row product-name-image">
-                                    <div class="d-flex flex-column justify-content-between ml-2">
-                                        <div>
-                                            <h6 style="color:#E55B13;">Requester Book - Incoming book</h6>
-                                            <span id="detail-title" class="d-block fw-bold p-name">City Limits</span>
-                                            <span id="detail-isbn" class="fs-12">ISBN:
-                                                65342688564324</span><br>
-                                            <span id="detail-isbn" class="fs-12">Author: Marx
-                                                Hinton</span><br>
-                                            <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
-                                            <span id="detail-isbn" class="fs-12">Edition: 1st
-                                                Edition</span><br>
-                                            <span id="detail-isbn" class="fs-12">Condition: New</span><br>
-                                            <span id="detail-isbn" class="fs-12">Exchange Method Preference:
-                                                Meetup</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center product-details">
+                                    <div class="d-flex flex-row product-name-image">
+                                        <div class="d-flex flex-column justify-content-between ml-2">
+                                            <div>
+                                                <h6 style="color:#E55B13;">Requester Book - Incoming book</h6>
+                                                <span id="detail-title" class="d-block fw-bold p-name">City
+                                                    Limits</span>
+                                                <span id="detail-isbn" class="fs-12">ISBN:
+                                                    65342688564324</span><br>
+                                                <span id="detail-isbn" class="fs-12">Author: Marx
+                                                    Hinton</span><br>
+                                                <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
+                                                <span id="detail-isbn" class="fs-12">Edition: 1st
+                                                    Edition</span><br>
+                                                <span id="detail-isbn" class="fs-12">Condition: New</span><br>
+                                                <span id="detail-isbn" class="fs-12">Exchange Method Preference:
+                                                    Meetup</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="product-price">
+                                        <h5 id="detail-price">Paperback</h5>
+                                    </div>
                                 </div>
-                                <div class="product-price">
-                                    <h5 id="detail-price">Paperback</h5>
-                                </div>
-                            </div>
-                            <hr>
-                            <div
-                                class="d-flex flex-row justify-content-between align-items-center order-details">
-                                {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
+                                <hr>
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
+                                    {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
                                         id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
                                         Penduko</span>
                                 </div>
@@ -646,20 +641,21 @@
                                         id="detail-shipping-address"
                                         class="font-weight-bold shipping-address-text">09491229441</span>
                                 </div> --}}
-                                <div><span class="d-block fs-12">Requester Name</span><span
-                                        id="detail-payment-method" class="font-weight-bold" style="color: rgb(111, 185, 219)">Nestine
-                                        Navarro</span></div>
-                                <div><span class="d-block fs-12">Contact Number</span><span
-                                        id="detail-shipping-address"
-                                        class="font-weight-bold shipping-address-text">09054173103</span>
+                                    <div><span class="d-block fs-12">Requester Name</span><span
+                                            id="detail-payment-method" class="font-weight-bold"
+                                            style="color: rgb(111, 185, 219)">Nestine
+                                            Navarro</span></div>
+                                    <div><span class="d-block fs-12">Contact Number</span><span
+                                            id="detail-shipping-address"
+                                            class="font-weight-bold shipping-address-text">09054173103</span>
+                                    </div>
                                 </div>
-                            </div>
-                             <hr>
-                             {{-- <div class="mt-5 amount row">
+                                <hr>
+                                {{-- <div class="mt-5 amount row">
                                  <div class="d-flex justify-content-center col-md-6"><img id="detail-barcode"
                                          src="../assets/tracking.jfif" width="250" height="100">
                                  </div> --}}
-                             {{-- <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                      <div class="billing">
                                          <div class="d-flex justify-content-between">
                                              <span>Subtotal</span><span id="detail-subtotal"
@@ -676,81 +672,159 @@
                                          </div>
                                      </div>
                                  </div> --}}
-                         </div><span class="d-block">Complete Address</span><span id="detail-address"
-                             class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
-                             Tacloban City</span>
-                         <hr>
-                         <div class="d-flex justify-content-between align-items-center footer">
-                             <div class="thanks"><span class="d-block font-weight-bold">Thanks for
-                                     sharing</span><span>BookRedux team</span></div>
-                             {{-- <div class="d-flex flex-column justify-content-end align-items-end"><span class="d-block font-weight-bold">Need Help?</span><span>Call - 974493933</span></div> --}}
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <div class="modal-footer d-print-none">
-             <button type="button" class="btn btn-secondary close-button"
-                 data-bs-dismiss="modal">Close</button>
-             <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
-                     class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-             {{-- <button type="button" class="btn save-button">Update</button> --}}
-         </div>
-     </div>
- </div>
-</div>
-</div>
- {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
-
-
- {{-- CARD IS FOR DIGITAL EXCHANGE --}}
- <!-- Book Details Modal -->
- <div class="modal fade" id="book-details" tabindex="-1" aria-labelledby="exampleModalLabel"
- aria-hidden="true">
- <div class="modal-dialog modal-xl">
-     <div class="modal-content">
-         <div class="modal-header d-print-none">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
-         </div>
-         <div class="modal-body">
-            <h5 style="color: #E55B13;">Transaction #: 784328432194</h5>
-            <div class="details-container">
-                <div class="seller-details-box">
-                    <input type="text" class="d-none" id="item_id">
-                    <label for="seller-details" class="form-label">Lister</label>
-                    <input type="text" class="form-control" id="seller-fullname"
-                        placeholder="Nestine Nicole Navarro"><br>
-                    <label for="seller-details" class="form-label">Title: The Pioneers</label>
-                    <div class="ExternalFiles">
-                        <iframe src="/assets/TRANSACTION FORM.pdf" frameborder="0" height="400"
-                            width="500"></iframe>
-                    </div>
-                </div>
-
-                <div class="customer-details-box">
-                    <label for="customer-details" class="form-label">Requester</label>
-                    <input type="text" class="form-control" id="customer-fullname"
-                        placeholder="Jennie BlackPink"><br>
-                    <label for="seller-details" class="form-label">Title: City Limits</label>
-                    <div class="ExternalFiles">
-                        <iframe src="/assets/InfoSec_Module-1.pdf" frameborder="0" height="400"
-                            width="500"></iframe>
+                            </div><span class="d-block">Complete Address</span><span id="detail-address"
+                                class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
+                                Tacloban City</span>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center footer">
+                                <div class="thanks"><span class="d-block font-weight-bold">Thanks for
+                                        sharing</span><span>BookRedux team</span></div>
+                                {{-- <div class="d-flex flex-column justify-content-end align-items-end"><span class="d-block font-weight-bold">Need Help?</span><span>Call - 974493933</span></div> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-         </div>
-         <div class="modal-footer d-print-none">
-             <button type="button" class="btn btn-secondary close-button"
-                 data-bs-dismiss="modal">Close</button>
-             <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
-                     class="glyphicon glyphicon-print" aria-hidden="true"></span> Disallow Access</button>
-             {{-- <button type="button" class="btn save-button">Update</button> --}}
-         </div>
-     </div>
- </div>
+            <div class="modal-footer d-print-none">
+                <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
+                        class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
+                {{-- <button type="button" class="btn save-button">Update</button> --}}
+            </div>
+        </div>
+    </div>
 </div>
 </div>
- {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+{{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+
+{{-- CARD IS FOR DIGITAL EXCHANGE --}}
+<!-- Book Details Modal -->
+<div class="modal fade" id="book-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header d-print-none">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
+            </div>
+            <div class="modal-body">
+                <h5 style="color: #E55B13;">Transaction #: 784328432194</h5>
+                <div class="details-container">
+                    <div class="seller-details-box">
+                        <input type="text" class="d-none" id="item_id">
+                        <label for="seller-details" class="form-label">Lister</label>
+                        <input type="text" class="form-control" id="seller-fullname"
+                            placeholder="Nestine Nicole Navarro"><br>
+                        <label for="seller-details" class="form-label">Title: The Pioneers</label>
+                        <div class="ExternalFiles">
+                            <iframe src="/assets/TRANSACTION FORM.pdf" frameborder="0" height="400"
+                                width="500"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="customer-details-box">
+                        <label for="customer-details" class="form-label">Requester</label>
+                        <input type="text" class="form-control" id="customer-fullname"
+                            placeholder="Jennie BlackPink"><br>
+                        <label for="seller-details" class="form-label">Title: City Limits</label>
+                        <div class="ExternalFiles">
+                            <iframe src="/assets/InfoSec_Module-1.pdf" frameborder="0" height="400"
+                                width="500"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-print-none">
+                <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-primary hidden-print save-button" onclick="myFunction()" data-bs-toggle="modal"
+                    data-bs-target="#reason"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Disallow
+                    Access</button>
+                {{-- <button type="button" class="btn save-button">Update</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Reason Modal -->
+<div class="modal fade" id="reason" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel" style="color:#003060;">Please select a reason for wanting
+                    to disallow access from the user.</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 style="color:#E55B13;">The digital content received is: </h6>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        not as described
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        incomplete
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        contains errors or inaccuracies.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        different from what was advertised.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        not the original content.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        outdated or obsolete.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        inappropriate or offensive.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        fraudulent or misleading.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Others
+                    </label>
+                    <input type="text" placeholder="Input other reason" style="border: none; border-bottom: solid 1px #003060; color:#003060;">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label report-input"
+                        style="color:#003060;">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                        placeholder="Please further elaborate on your selected reason" rows="7"
+                        style="color:#003060;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn report-button">Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- CARD IS FOR DIGITAL EXCHANGE --}}
 @include('partials.__footer', [
 'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
 'aos_link' => '/aos-master/dist/aos.js',

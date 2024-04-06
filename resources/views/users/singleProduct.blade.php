@@ -103,10 +103,13 @@
                         @elseif ($book->status = 'Online Reading')
                             <button id="readNowBtn"
                                 onclick="readNowFunction('{{ $book->book_filename }}', '{{ $book->title }}')"
-                                data-bs-toggle="modal" class="btn cart-button" data-bs-toggle="modal"
+                                data-bs-toggle="modal" class="btn cart-button"
                                 data-bs-target="#readNowModal" style="margin-bottom: 1em;">Read Now
-                                <i class="fa fa-eye" aria-hidden="true"
-                                    style="margin-left: 8px; margin-right: 4px;"></i></button>
+                            </button>
+                            <button id="saveBtn"
+                            class="btn save-button" data-bs-toggle="modal"
+                            data-bs-target="#" style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true" style="margin-right: 7px;"></i>Save 
+                        </button>
                         @endif
                     </div>
                 </div>
