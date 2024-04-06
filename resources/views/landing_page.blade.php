@@ -594,7 +594,7 @@
 
                 const user = result.user;
                 if (user.emailVerified) {
-                    // console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}`);
+                    console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}, \nimage: ${user.photoURL}`);
                     googleLogin(user.uid, user.photoURL)
                         .then(response => {
                             if (response.redirected) {

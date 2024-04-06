@@ -32,7 +32,7 @@ class UserController extends Controller
             return redirect('/explore');
         } else {
             return view('landing_page');
-        }        
+        }
     }
 
     public function role()
@@ -93,8 +93,8 @@ class UserController extends Controller
             return view('landing_page')->with('message', 'You have to login first');
         }
     }
-    
-//Amu adi an orig
+
+    //Amu adi an orig
 
     // public function singleProduct($id, $user_id)
     // {
@@ -108,9 +108,16 @@ class UserController extends Controller
     // }
 
     //Temporary lang kay dik natutuhay han UI
-    public function singleProduct() {
-            return view('users.singleProduct');
-       
+    public function singleProduct($id, $user_id)
+    {
+        if (session()->has('uid')) {
+            $book = Books::with('user')->find($id);
+            
+            return view('users.singleProduct', ['book' => $book]);
+        } else {
+            return view('landing_page')->with('message', 'You have to login first');
+        }
+        // return view('users.singleProduct');       
     }
 
     public function cart()
@@ -1418,7 +1425,8 @@ class UserController extends Controller
                 'type' => 'General User',
                 'name' => $name,
                 'email' => $email,
-                'uid' => $uid
+                'uid' => $uid,
+                'profile_photo' => $photo
             ]);
 
             if ($signUp) {

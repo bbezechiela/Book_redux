@@ -19,8 +19,8 @@
     <div id="content" class="content">
         <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
             <div class="w-100 d-flex mt-2 p-0">
-                <a href="/explore" id="logo" class="px-2"><img class="img mt-1 me-5"
-                        src="../assets/Book_Logo.png" alt="Logo"></a>
+                <a href="/explore" id="logo" class="px-2"><img class="img mx-1" src="../assets/Book_Logo.png"
+                        alt="Logo"></a>
                 <a class="mx-2 mt-2 tabs" id="daily-discover-anchor" href="#daily-discover">Daily Discover</a>
                 <a class="mx-2 mt-2 tabs" id="featured-anchor" href="#featured">New Listings</a>
                 <a class="mx-2 mt-2 tabs" id="recommended-anchor" href="#recommended">Recommended for you</a>

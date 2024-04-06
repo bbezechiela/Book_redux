@@ -81,7 +81,7 @@
                         <p>Change Profile Photo</p>
                     </div>
                     <img class="img mx-auto rounded-circle border" id="img-icon"
-                        src="{{ asset('images/profile_photos/' . $user->profile_photo) }}" alt="upload_profile"
+                        src="{{ $user->profile_photo }}" alt="upload_profile"
                         width="80" height="80">
                     <input type="file" class="d-none" accept="image/*" id="profileUpload" name="profile_photo"
                         required>

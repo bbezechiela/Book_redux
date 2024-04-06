@@ -75,9 +75,9 @@ Route::get('/adminnotification', [UserController::class, 'adminNotification']);
 
 // Route::get('/search', [UserController::class, 'searchResult']);
 
-// Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']); //Amu adi an orig
+Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']); //Amu adi an orig
 
-Route::get('/product', [UserController::class, 'singleProduct']); //Temporary lang kay dik natutuhay han UI
+// Route::get('/product', [UserController::class, 'singleProduct']); //Temporary lang kay dik natutuhay han UI
 
 Route::get('/listingdetails/{id}', [AdminController::class, 'productDetailsPreview']);
 
