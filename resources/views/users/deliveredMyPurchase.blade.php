@@ -495,143 +495,139 @@
         </div>
 
         {{-- CARD IS FOR DIGITAL EXCHANGE --}}
- <!-- Book Details Modal -->
- <div class="modal fade" id="book-details" tabindex="-1" aria-labelledby="exampleModalLabel"
- aria-hidden="true">
- <div class="modal-dialog modal-xl">
-     <div class="modal-content">
-         <div class="modal-header d-print-none">
-             <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
-         </div>
-         <div class="modal-body">
-            <h5 style="color: #E55B13;">Transaction #: 784328432194</h5>
-            <div class="details-container">
-                <div class="seller-details-box">
-                    <input type="text" class="d-none" id="item_id">
-                    <label for="seller-details" class="form-label">Lister</label>
-                    <input type="text" class="form-control" id="seller-fullname"
-                        placeholder="Nestine Nicole Navarro"><br>
-                    <label for="seller-details" class="form-label">Title: The Pioneers</label>
-                    <div class="ExternalFiles">
-                        <iframe src="/assets/TRANSACTION FORM.pdf" frameborder="0" height="400"
-                            width="500"></iframe>
+        <!-- Book Details Modal -->
+        <div class="modal fade" id="book-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header d-print-none">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
                     </div>
-                </div>
+                    <div class="modal-body">
+                        <h5 style="color: #E55B13;">Transaction #: 784328432194</h5>
+                        <div class="details-container">
+                            <div class="seller-details-box">
+                                <input type="text" class="d-none" id="item_id">
+                                <label for="seller-details" class="form-label">Lister</label>
+                                <input type="text" class="form-control" id="seller-fullname"
+                                    placeholder="Nestine Nicole Navarro"><br>
+                                <label for="seller-details" class="form-label">Title: The Pioneers</label>
+                                <div class="ExternalFiles">
+                                    <iframe src="/assets/TRANSACTION FORM.pdf" frameborder="0" height="400"
+                                        width="500"></iframe>
+                                </div>
+                            </div>
 
-                <div class="customer-details-box">
-                    <label for="customer-details" class="form-label">Requester</label>
-                    <input type="text" class="form-control" id="customer-fullname"
-                        placeholder="Jennie BlackPink"><br>
-                    <label for="seller-details" class="form-label">Title: City Limits</label>
-                    <div class="ExternalFiles">
-                        <iframe src="/assets/InfoSec_Module-1.pdf" frameborder="0" height="400"
-                            width="500"></iframe>
+                            <div class="customer-details-box">
+                                <label for="customer-details" class="form-label">Requester</label>
+                                <input type="text" class="form-control" id="customer-fullname"
+                                    placeholder="Jennie BlackPink"><br>
+                                <label for="seller-details" class="form-label">Title: City Limits</label>
+                                <div class="ExternalFiles">
+                                    <iframe src="/assets/InfoSec_Module-1.pdf" frameborder="0" height="400"
+                                        width="500"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-print-none">
+                        <button type="button" class="btn btn-secondary close-button"
+                            data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"
+                            data-bs-toggle="modal" data-bs-target="#reason"><span class="glyphicon glyphicon-print"
+                                aria-hidden="true"></span> Disallow Access</button>
+                        {{-- <button type="button" class="btn save-button">Update</button> --}}
                     </div>
                 </div>
             </div>
-         </div>
-         <div class="modal-footer d-print-none">
-             <button type="button" class="btn btn-secondary close-button"
-                 data-bs-dismiss="modal">Close</button>
-             <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
-                     class="glyphicon glyphicon-print" aria-hidden="true"></span> Disallow Access</button>
-             {{-- <button type="button" class="btn save-button">Update</button> --}}
-         </div>
-     </div>
- </div>
-</div>
-</div>
- {{-- CARD IS FOR DIGITAL EXCHANGE --}}
+        </div>
+    </div>
+    {{-- CARD IS FOR DIGITAL EXCHANGE --}}
 
-        {{-- Tracking Modal --}}
-        <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My
-                            Purchase
-                        </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <section>
-                            <div class="container py-3 h-10 mb-4">
-                                <div class="row d-flex justify-content-center align-items-center">
-                                    <div class="col">
-                                        <div class="card card-stepper" style="border-radius: 10px; border: none;">
-                                            <div class="card-body p-4">
-                                                <div
-                                                    class="d-flex justify-content-between align-items-center header-track">
-                                                    <div class="d-flex flex-column">
-                                                        <span id="tracking-text-header"
-                                                            class="lead fw-normal tracking-text">Your order has been
-                                                            delivered</span>
-                                                        <span id="modal_tracking"
-                                                            class="text-muted small tracking-text"></span>
-                                                    </div>
+    {{-- Tracking Modal --}}
+    <div class="modal fade" id="track-delivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #003060;">Tracking My
+                        Purchase
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section>
+                        <div class="container py-3 h-10 mb-4">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col">
+                                    <div class="card card-stepper" style="border-radius: 10px; border: none;">
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center header-track">
+                                                <div class="d-flex flex-column">
+                                                    <span id="tracking-text-header"
+                                                        class="lead fw-normal tracking-text">Your order has been
+                                                        delivered</span>
+                                                    <span id="modal_tracking"
+                                                        class="text-muted small tracking-text"></span>
                                                 </div>
-                                                <div
-                                                    class="d-flex flex-row justify-content-between align-items-center align-content-center">
-                                                    {{-- <span id="first_track{{ $item->id }}" class="dot"></span> --}}
-                                                    {{-- <hr class="flex-fill track-line"><span
+                                            </div>
+                                            <div
+                                                class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                                                {{-- <span id="first_track{{ $item->id }}" class="dot"></span> --}}
+                                                {{-- <hr class="flex-fill track-line"><span
                                                         id="second_track{{ $item->id }}" class="dot"></span>
-                                                    <hr class="flex-fill track-line"><span
-                                                        id="fourth_track{{ $item->id }}" class="dot"></span>
-                                                    <hr class="flex-fill track-line"><span
-                                                        id="fifth_track{{ $item->id }}"
-                                                        class="d-flex justify-content-center align-items-center big-dot dot"><i
-                                                            class="fa fa-check text-white"></i></span> --}}
+                                                <hr class="flex-fill track-line"><span id="fourth_track{{ $item->id }}"
+                                                    class="dot"></span>
+                                                <hr class="flex-fill track-line"><span id="fifth_track{{ $item->id }}"
+                                                    class="d-flex justify-content-center align-items-center big-dot dot"><i
+                                                        class="fa fa-check text-white"></i></span> --}}
+                                            </div>
+                                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                                <div class="d-flex flex-column align-items-start tracking-text">
+                                                    <span class="date-track"></span>
+                                                    <span class="tracking-description">Order
+                                                        placed</span>
                                                 </div>
-                                                <div class="d-flex flex-row justify-content-between align-items-center">
-                                                    <div class="d-flex flex-column align-items-start tracking-text">
-                                                        <span class="date-track"></span>
-                                                        <span class="tracking-description">Order
-                                                            placed</span>
-                                                    </div>
-                                                    <div
-                                                        class="d-flex flex-column justify-content-center tracking-text">
-                                                        <span class="date-track"></span><span
-                                                            class="tracking-description">Preparing
-                                                            to ship</span>
-                                                    </div>
-                                                    <div class="d-flex flex-column align-items-center tracking-text">
-                                                        <span class="date-track"></span><span
-                                                            class="tracking-description">Out for
-                                                            delivery</span>
-                                                    </div>
-                                                    <div class="d-flex flex-column align-items-end tracking-text">
-                                                        <span class="date-track"></span><span
-                                                            class="tracking-description">Delivered</span>
-                                                    </div>
+                                                <div class="d-flex flex-column justify-content-center tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Preparing
+                                                        to ship</span>
+                                                </div>
+                                                <div class="d-flex flex-column align-items-center tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Out for
+                                                        delivery</span>
+                                                </div>
+                                                <div class="d-flex flex-column align-items-end tracking-text">
+                                                    <span class="date-track"></span><span
+                                                        class="tracking-description">Delivered</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- toast --}}
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
-                    <strong class="me-auto"></strong>
-                    <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-
-                <div id="toast-message" class="toast-body fw-bold text-success">
-                    {{ 'test' }}
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- toast --}}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="message" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
+                <strong class="me-auto"></strong>
+                <small>1 min ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+
+            <div id="toast-message" class="toast-body fw-bold text-success">
+                {{ 'test' }}
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <!-- Shipping Details Modal -->
@@ -794,6 +790,88 @@
         </div>
     </div>
 </div>
+</div>
+
+<!-- Reason Modal -->
+<div class="modal fade" id="reason" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel" style="color:#003060;">Please select a reason for wanting
+                    to disallow access from the user.</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 style="color:#E55B13;">The digital content received is: </h6>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        not as described
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        incomplete
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        contains errors or inaccuracies.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        different from what was advertised.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        not the original content.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        outdated or obsolete.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        inappropriate or offensive.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        fraudulent or misleading.
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input check-report" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                        Others
+                    </label>
+                    <input type="text" placeholder="Input other reason"
+                        style="border: none; border-bottom: solid 1px #003060; color:#003060;">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label report-input"
+                        style="color:#003060;">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                        placeholder="Please further elaborate on your selected reason" rows="7"
+                        style="color:#003060;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn report-button">Report</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @include('partials.__footer', [

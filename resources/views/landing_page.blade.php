@@ -59,7 +59,7 @@
                     data-bs-placement="top" data-bs-title="Sign Up">Sign In</a> --}}
                 <a id="signup-btn" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="Sign Up">
-                    Signin with &ensp;
+                    Sign up with &ensp;
                     <img class="img" src="/assets/googleIcon.svg" alt="google icon" />
                     oogle
                 </a>
