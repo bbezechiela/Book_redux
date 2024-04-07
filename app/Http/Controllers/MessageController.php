@@ -24,7 +24,7 @@ class MessageController extends Controller
             $arr = explode(',', $conversation_name);
             $receiver_username = ($arr[0] === $current_username) ? strval($arr[1]) : strval($arr[0]);
         
-            $getterTwo = Users::select('profile_photo')->where('username', $receiver_username)->first();
+            $getterTwo = Users::select('profile_photo')->where('name', $receiver_username)->first();
 
             $newKey = 'profile_photo';
             $newValue = $getterTwo;
@@ -82,7 +82,7 @@ class MessageController extends Controller
         $receiver_name = ($arr[0] === $current_username) ? strval($arr[1]) : strval($arr[0]);
 
         // pag kuha receiver id
-        $receiverIdQuery = Users::where('username', $receiver_name)->get();
+        $receiverIdQuery = Users::where('name', $receiver_name)->get();
 
         if (!$receiverIdQuery->isEmpty()) {
             $receiver_id = $receiverIdQuery->first()->id;
@@ -108,10 +108,11 @@ class MessageController extends Controller
 
     // send message from search approach
     function sendMessage(Request $request) {
-        $sender_id = $request->json('sender_id'); 
-        $receiver_id = $request->json('receiver_id');
-        $message_content = $request->json('message_content');
-        $conversation_name = $request->json('conversation_name');
+        $sender_id = $request->input('sender_id'); 
+        $receiver_id = $request->input('receiver_id');
+        $message_content = $request->input('message_content');
+        $message_type = $request->input('message_type');
+        $conversation_name = $request->input('conversation_name');
 
         $participantsUserArr = explode(',', $conversation_name);
         sort($participantsUserArr);
@@ -124,6 +125,7 @@ class MessageController extends Controller
                 'sender_id' => $sender_id,
                 'receiver_id' => $receiver_id,
                 'message_content' => $message_content,
+                'messsage_type' => $message_type,
                 'conversation_id' => $checker1->conversation_id
             ]);
             if ($messageInsert) {
@@ -166,14 +168,14 @@ class MessageController extends Controller
         $first_name = $request->query('first_name');
         $last_name = $request->query('last_name');
 
-        $getUsername = Users::where('username', "=", $username)->first();
-        $getFirst_name = Users::where('first_name', "=", $first_name)->first();
-        $getLast_name = Users::where('last_name', "=", $last_name)->first();
+        $getUsername = Users::where('name', "=", $username)->first();
+        // $getFirst_name = Users::where('first_name', "=", $first_name)->first();
+        // $getLast_name = Users::where('last_name', "=", $last_name)->first();
 
         if ($getUsername) {
             return response()->json(['data' => $getUsername]);
-            return response()->json(['data' => $getFirst_name]);
-            return response()->json(['data' => $getLast_name]);
+            // return response()->json(['data' => $getFirst_name]);
+            // return response()->json(['data' => $getLast_name]);
         } else {
             return response()->json(['error' => 'Theres no record']);
         }
@@ -250,7 +252,7 @@ class MessageController extends Controller
     function fullnameGetter(Request $request) {
         $receiverUsername = $request->query('receiverUsername');
 
-        $getter = Users::select('first_name', 'last_name')->where('username', $receiverUsername)->first();
+        $getter = Users::select('name')->where('name', $receiverUsername)->first();
         
         if ($getter) {
             return response()->json(['data' => $getter]);   

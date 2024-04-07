@@ -480,8 +480,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             // para ma apply an mga styles
                             receiver_profile_pic.style.cssText = receiver_profile_pic_styles;
                             // url an image depende kun hinut user tas it ira image
-                            receiver_profile_pic.style.backgroundImage = `url(${imgLocation})`; 
-                
+                            // receiver_profile_pic.style.backgroundImage = `url(${imgLocation})`; 
+                            receiver_profile_pic.style.backgroundImage = `url(${imgPath})`;
+
                             // image name checker
                             //console.log(response.profile_photo.profile_photo);
                 
@@ -495,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             const username_fullname_ctn = document.createElement('div');
                             username_fullname_ctn.classList.add('username_fullname_ctn_list');
                             username_fullname_ctn.appendChild(receiver_username);
-                            username_fullname_ctn.appendChild(receiver_fullname);
+                            // username_fullname_ctn.appendChild(receiver_fullname);
 
                             // conversation list menu button
                             const conversationListMenu = document.createElement('div');
@@ -661,7 +662,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 // receiver photo
                                 const receiver_photo = document.createElement('div');
                                 receiver_photo.style.cssText = receiver_profile_pic_styles;
-                                receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
+                                // receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
+                                receiver_photo.style.backgroundImage = `url(${imgPath})`;
                                 
                                 // conversation menu
                                 const conversationMenu = document.createElement('div');
@@ -1039,15 +1041,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     const searchResultFullname = document.createElement('div');
             
                     searchResultPicture.style.cssText = receiver_profile_pic_styles;
-                    searchResultPicture.style.backgroundImage = 'url("' + imgLocation + '")';
+                    searchResultPicture.style.backgroundImage = `url(${imgPath})`;
             
-                    searchResultUsername.textContent = responses.data.username;
+                    searchResultUsername.textContent = responses.data.name;
             
                     const username_fullname_ctn_search = document.createElement('div');
-                    searchResultFullname.textContent = '(' + responses.data.first_name + ' ' + responses.data.last_name + ')';
-            
                     username_fullname_ctn_search.appendChild(searchResultUsername);
-                    username_fullname_ctn_search.appendChild(searchResultFullname);
+                    // username_fullname_ctn_search.appendChild(searchResultFullname);
                     username_fullname_ctn_search.classList.add('username_fullname_ctn_search');
             
                     searchResultOuterCtn.appendChild(searchResultPicture);
@@ -1075,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const signal = controller.signal;
                         currentController = controller;
             
-                        const receiver_namee = responses.data.username;
+                        const receiver_namee = responses.data.name;
                         console.log(receiver_namee);
             
                         const rightSectionOuterContainer = document.getElementById('rightSectionOuterContainer');
@@ -1098,13 +1098,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
                         // receiver name
                         const receiverName = document.createElement('div');
-                        receiverName.textContent = responses.data.username;
+                        receiverName.textContent = responses.data.name;
                         receiverName.style.paddingLeft = '15px';
             
                         // receiver photo
                         const receiver_photo = document.createElement('div');
                         receiver_photo.style.cssText = receiver_profile_pic_styles;
-                        receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
+                        receiver_photo.style.backgroundImage = `url(${imgPath})`;
             
                         // anotherCtn
                         const anotherCtn = document.createElement('div');
@@ -1138,13 +1138,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         inputField.id = 'messageInputContainer';
                         inputField.type = 'textarea';
                         inputField.placeholder = 'Type message...';
-                        inputField.style.cssText = inputFieldCss;
             
                         const submitButtonCss = `
-                            width: 80px;
-                            color: white;
+                            width: 130px;
                             border: 1px solid #E55B13;
                             background-color: #E55B13;
+                            color: white;
                         `;
             
                         const submitButton = document.createElement('button');
@@ -1152,16 +1151,57 @@ document.addEventListener('DOMContentLoaded', function() {
                         submitButton.type = 'button';
                         submitButton.textContent = 'Send';
                         submitButton.style.cssText = submitButtonCss;
-            
-                        form.appendChild(inputField);
+                
+                        // insert img
+                        const insertImg = document.createElement('input');
+                        insertImg.type = 'file';    
+                        insertImg.classList.add('insertImg');
+                        insertImg.style.fontSize = '25px';
+
+                        const imgIcon = document.createElement('i');
+                        imgIcon.className = 'fa fa-image';
+                        imgIcon.style.fontSize = '30px';
+
+                        const anotherLabel = document.createElement('label');
+                        anotherLabel.appendChild(insertImg);
+                        anotherLabel.appendChild(imgIcon);
+                        anotherLabel.classList.add('anotherLabel');
+                        
+                        const imgContainer = document.createElement('div');
+                                
+                        let img_file = null;
+                        insertImg.addEventListener('change', (event) => {
+                            img_file = null;
+                            const files = event.target.files;
+                            
+                            if (files.length > 0) {
+                                img_file = files[0];
+                                
+                                imgContainer.style.backgroundImage = `url(${URL.createObjectURL(img_file)})`;
+                                imgContainer.classList.add('imgg');
+                                formOuterContainer.appendChild(imgContainer);
+                                console.log(img_file.name);
+                            } else {
+                                console.log('no file selected');
+                            }
+                        });
+
+                        const formLabel = document.createElement('label');
+                        formLabel.classList.add('formLabel');
+                        formLabel.appendChild(inputField);
+                        formLabel.appendChild(anotherLabel);
+
+                        // form.appendChild(inputField);
+                        // form.appendChild(insertImg);
+
+                        form.appendChild(formLabel);
                         form.appendChild(submitButton);
-            
                         formOuterContainer.appendChild(form);
+            
                         // message timestamp
                         lastMessageTimestamp = '1990-12-12 12:12:12';    
                     
-                        
-                        const receiver_username = responses.data.username;
+                        const receiver_username = responses.data.name;
             
                         const convoName = current_username + ',' + receiver_username;
             
@@ -1204,14 +1244,21 @@ document.addEventListener('DOMContentLoaded', function() {
                             responses.forEach(response => {
                                 const messageInnerContainer = document.createElement('div');
                                 messageInnerContainer.classList.add('messageInnerContainer');
-            
+                                        
                                 const messageCtn = document.createElement('div');
-                                messageCtn.textContent = response.message_content;
-                                messageCtn.id = "messageCtn";
+                                if (response.message_type == 'text') {
+                                    messageCtn.textContent = response.message_content;  
+                                    messageCtn.classList.add('messageTextCtn');
+                                } else {
+                                    const messageImgLocation = window.location.origin + '/images/messages_photos/' + response.message_content;
+                                            
+                                    messageCtn.style.backgroundImage = 'url("' + messageImgLocation + '")';
+                                    messageCtn.classList.add('messageImgCtn');
+                                }
                                 
                                 const messageReceiverPhoto = document.createElement('div');
                                 messageReceiverPhoto.style.cssText = receiver_profile_pic_styles;
-                                messageReceiverPhoto.style.backgroundImage = 'url("' + imgLocation +'")';
+                                messageReceiverPhoto.style.backgroundImage = `url(${imgPath})`;
             
                                 if (response.sender_id == current_user_id) {
                                     messageCtn.classList.add('messageRight');
@@ -1236,7 +1283,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             const xhttp1 = new XMLHttpRequest();
                             
                             // conversation name
-                            const conversation_name = current_username + "," + responses.data.username; 
+                            const conversation_name = current_username + "," + responses.data.name; 
+                            console.log(conversation_name);
                             
                             xhttp1.open('POST', '/conversations', true);
                             xhttp1.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -1260,32 +1308,55 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
                         
                             xhttp1.send(conversation_data);
+
+                            imgContainer.style.backgroundImage = 'none';
+                            imgContainer.classList.remove('imgg');
+
+                            // const data = JSON.stringify({
+                            //     sender_id: current_user_id,
+                            //     receiver_id: responses.data.id,
+                            //     message_content: messageValue,
+                            //     conversation_name: conversation_name
+                            // });
+                            // console.log(responses.data.id);
+        
+                            const formData = new FormData();
+                            if (img_file === null) {
+                                formData.append('sender_id', current_user_id);
+                                formData.append('receiver_id', responses.data.id);
+                                formData.append('message_content', message_value);
+                                formData.append('message_type', 'text');
+                                formData.append('conversation_name', conversation_name);
+                            } else  {
+                                formData.append('current_username', current_username);
+                                formData.append('receiver_id', responses.data.id);
+                                formData.append('message_content', img_file);
+                                formData.append('message_type', 'image');
+                                formData.append('conversation_name', conversation_name);
+                            }
+                            // pag send message
+                            fetch('/sendMessage', {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': csrfToken,
+                                },
+                                body: formData,
+                            })
+                                .then(responses => {
+                                    if (responses.ok) {
+                                        return responses.json();
+                                    }
+                                    throw new Error('Sending message error');
+                                })
+                                .then(response => {
+                                    console.log(response);
+                                    document.getElementById('messageForm').reset();
+                                })
+                                .catch(error => console.log(error));
                             
                             // pag send message
-                            const xhttp = new XMLHttpRequest();
                         
-                            xhttp.open('POST', '/sendMessage', true);
-                            xhttp.setRequestHeader('Content-Type', 'application/json');
-                            xhttp.setRequestHeader('X-CSRF-TOKEN', csrfToken);
-                        
-                            xhttp.onreadystatechange = function() {
-                                if (this.readyState === 4 && this.status === 200) {
-                                    const response = JSON.parse(this.responseText);
-                                    console.log(response.message);
-                                    document.getElementById('messageForm').reset();
-                                } else {
-                                    console.log('failed an pag request');
-                                }
-                            } 
-                        
-                            const data = JSON.stringify({
-                                sender_id: current_user_id,
-                                receiver_id: responses.data['id'],
-                                message_content: messageValue,
-                                conversation_name: conversation_name
-                            });
                             
-                            xhttp.send(data);
                         });  
             
                         //delete Conversation Ctn Based. 'event tikang ha conversation list na click'
@@ -1417,4 +1488,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         username.innerHTML = '';
     });
+    console.log(current_username);
 });

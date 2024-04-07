@@ -7,6 +7,7 @@
 
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 </head>
 
 <div id="body-container" class="container-fluid px-0">
@@ -59,50 +60,7 @@
         <div id="mainOuterContainer">
             <div>
                 <div id="">
-                    <div id='newlyAddedContainer' class='materialSectionContainer'>
-                        <div class='sectionText'>Newly Added Materials</div>
-                        <div id='newlyAddedMaterials' class='materialOuterContainer'></div>
-                    </div>
-                    <div id='mathAndScienceContainer' class='materialSectionContainer'>
-                        <div class='sectionText'>Popular in Math and Sciences</div>
-                        <div id='mathAndScienceMaterials' class='materialOuterContainer'></div>
-                    </div>
-                    <div id='techAndEngineeringContainer' class='materialSectionContainer'>
-                        <div class='sectionText'>Popular in Technology and Engineering</div>
-                        <div id='techAndEngineeringMaterials' class='materialOuterContainer'></div>
-                    </div>
-                    <div id='historyContainer' class='materialSectionContainer'>
-                        <div class='sectionText'>Popular in History</div>
-                        <div id='historyMaterials' class='materialOuterContainer'></div>
-                    </div>
-                </div>    
-
-                <div id='overlayContainer' style='visibility: hidden;'>
-                    <form id='formOuterContainer' method='post'> 
-                        <div id='fileUpperContainer'>
-                            <label id='labell' for="file">Select Document To Upload</label>
-                            <input id="file" type="file" style="display: none;">
-                        </div>
-                        <div id='formInnerContainer'>
-                            <label for="title">Title*</label>
-                            <input id="title" type="text">
-    
-                            <label for="category">Category*</label>
-                            <select name="category" id="category">
-                                <option value="default">Select a category</option>
-                                <option value="math">Math</option>
-                                <option value="history">History</option>
-                                <option value="work">Work stuff</option>
-                            </select>
-    
-                            <label for="description">Description*</label>
-                            <textarea name="description" id="description" cols="25" rows="7"></textarea>
-                        </div>
-                        <div id='formCtaContainer'>
-                            <button id='clearBtn' type="button">Clear</button>
-                            <button id='publish' type="submit">Publish</button>
-                        </div>
-                    </form>
+                
                 </div>
             </div>
         </div>
@@ -111,8 +69,10 @@
 <script>
     const current_user_id = "{{ session('id') }}";
     const csrf_token = "{{ csrf_token(); }}";
+    const responsee = {!! $data !!};
+    const pdfjsLib = pdfjsLib;
 </script>
-<script src="{{ asset('/js/materials.js'); }}"></script>
+<script src="{{ asset('/js/document.js'); }}"></script>
 @include('partials.__footer', [
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',

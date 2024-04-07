@@ -11,7 +11,8 @@ class MaterialController extends Controller
     // mabuhay
     function uploadMaterial(Request $request) {
         $current_user_id = $request->input('user_id');
-        
+        $slug = $request->input('slug');
+
         $validated = $request->validate([
             // 'document_info' => 'required|file|mimes:application/pdf,application/msword,vnd.openxmlformats-officedocument.wordprocessingml.document|max:10240',
             'document_info' => 'required|mimes:pdf|max:10240',
@@ -38,7 +39,7 @@ class MaterialController extends Controller
             'title' => $validated['title'],
             'category' => $validated['category'],
             'description' => $validated['description'],
-            'slug' => '1231231'
+            'slug' => $slug,
         ]);
 
         if ($adder->save()) {
@@ -46,6 +47,34 @@ class MaterialController extends Controller
         } else {
             return response()->json(['error' => 'Upload Failed']);
         }
-    }    
+    }
+    
+    // get materials
+    function getMaterials(Request $request) {
+        $getter = Materials::all();
+
+        if ($getter->count() > 0) {
+            return response()->json(['data' => $getter]);
+        } else {
+            return response()->json(['error' => 'Cant get anything from materials table']);
+        }
+    }
+
+    // get documents
+    function document($slug) {
+        $getter = Materials::where('slug', '=', $slug)->get();
+
+        if ($getter->count() > 0) {
+            $data = json_encode($getter);
+
+            // decode it html entities kay dri na babasa as na json
+            $decodedJson = html_entity_decode($data, ENT_QUOTES | ENT_XML1, 'UTF-8');
+
+            return view('users.document',  ['data' => $decodedJson]);
+        } else {
+            return view('users.document', ['data' => 'Cant find anything']);
+        }
+    }
 
 }
+    

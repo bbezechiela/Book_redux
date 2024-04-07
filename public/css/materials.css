@@ -188,13 +188,16 @@
     position: relative;
 }
 
-.uploadOverlay {
-    height: 100vh;
+#overlayContainer {
+    height: 80vh;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* form outer container */
@@ -210,11 +213,40 @@
 
 /* main outer container */
 #mainOuterContainer {
-    height: 80vh;
+    height: 1200px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.materialSectionContainer {
+    height: 400px;
+    width: 95%;
+    margin-left: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.materialCard {
+    height: 330px;
+    width: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.materialOuterContainer {
+    height: auto;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: 30px;
+    flex-direction: row;
+}
+
+.sectionText {
+    font-size: 25px;
 }
 
 /* file upper container */
