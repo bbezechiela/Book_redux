@@ -68,16 +68,15 @@
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
-                                    alt="notification" width="35" height="35" class="rounded-5"
-                                    style="margin-right: 2em;">
+                                <img src="{{ session('image') }}" alt="notification" width="35" height="35"
+                                    class="rounded-5" style="margin-right: 2em;">
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/mypurchase">My Purchase</a></li>
-                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
+                                {{-- <li><a class="dropdown-item" href="/addresses">Addresses</a></li> --}}
                                 {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
-                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                                {{-- <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li> --}}
                             </ul>
                         </li>
                     </ul>
@@ -93,9 +92,9 @@
                 <nav class="nav nav-pills flex-column flex-sm-row">
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/mypurchase">My Exchange Request</a>
-                    <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
+                    {{-- <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         style="background-color: #003060;" aria-current="page" href="/toreceive">To
-                        Receive</a>
+                        Receive</a> --}}
                     <a class="flex-sm-fill text-sm-center nav-link nav-custom-nav-link" style="text-align: center;"
                         href="/delivered-mypurchase">Completed</a>
                     <a class="flex-sm-fill text-sm-center nav-link" style="background-color: #003060;"
@@ -105,84 +104,54 @@
                 </nav>
             </div>
         </div>
-        <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href=""><span>Maria Mesa</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Dropped</span>
-            </div>
-            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
+        @foreach ($orders as $req)
+            @if ($req->status == 'Dropped')
+                <div class="order-cart d-print-none">
+                    <div class="name-cart d-flex justify-content-between">
+                        <div>
+                            <a class="seller-name" href=""><span>{{ $req->book->user->name }}</span></a>
+                            <button class="message-seller message-button"><i class="fa fa-commenting"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <span class="order-text me-5 mt-0">Dropped</span>
+                    </div>
+                    <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('/images/book_cover/' . $req->book->back_cover) }}"
+                                    class="img w-100 h-100" alt="image">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Title: <span>{{ $req->book->title }}</span></h5>
+                                    <p class="card-text">Author: <span>{{ $req->book->author }}</span></p>
+                                    <p class="card-text">Edition: <span>{{ $req->book->edition }}</span></p>
+                                    {{-- <p class="card-text">Condition: <span>Good</span></p> --}}
+                                    <p class="card-text">Description: <span>{{ $req->book->description }}</span></p>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"
-                                    style="color: #003060"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <div class="col-md-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">ISBN: <span>{{ $req->book->isbn }}</span></h5>
+                                    <p class="card-text">Genre: <span>{{ $req->book->genre }}</span></p>
+                                    {{-- <p class="card-text">Format: <span>Paperback</span></p>
+                                <p class="card-text">Exchange Preferences: <span>This is a sample exchange
+                                        preferences.</span></p> --}}
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
+                                <span class="btn" data-bs-toggle="modal" data-bs-target="#request"
+                                    onclick="viewReq({{ $req->id }})"
+                                    style="color: #E55B13; cursor: pointer; margin-left: 20px; border: none;">View
+                                    my exchange request</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Title: <span>The Pioneers</span></h5>
-                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                            <p class="card-text">Edition: <span>1st Edition</span></p>
-                            <p class="card-text">Condition: <span>Good</span></p>
-                            <p class="card-text">Description: <span>This is a sample description.</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                            <p class="card-text">Genre: <span>Self-help</span></p>
-                            <p class="card-text">Format: <span>Paperback</span></p>
-                            <p class="card-text">Exchange Preferences: <span>This is a sample exchange
-                                    preferences.</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-between mt-3 mb-3">
-                        <span class="btn" data-bs-toggle="modal" data-bs-target="#request"
-                                style="color: #E55B13; cursor: pointer; margin-left: 20px; border: none;">View
-                                my exchange request</span> 
                     </div>
                 </div>
-            </div>
-        </div>
+            @endif
+        @endforeach
 
-        @php
+        {{-- @php
             $loopCount = 0;
         @endphp
         @foreach ($items->orders as $order)
@@ -240,7 +209,7 @@
                 <img class="img mt-3" src="../assets/Empty-Box.png" alt="image">
             </div>
             <h1 class="mt-2 text-center fw-bold" style="color: #E55B13; font-size: 20px;">No order cancellations</h1>
-        @endif
+        @endif --}}
     </div>
 </div>
 
@@ -249,68 +218,32 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Submission Details</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request Submission
+                    Details</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em; border: none;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <div id="carouselExampleDark" class="carousel carousel-dark slide"
-                                data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active" data-bs-interval="10000">
-                                            <img src="/assets/city_limits.png" class="img-fluid rounded-start"
-                                                alt="..." height="200px" width="200px">
-                                        </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="/assets/bubble_bath.png" class="img-fluid rounded-start"
-                                                alt="..." height="200px" width="200px">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="/assets/brown_book.png" class="img-fluid rounded-start"
-                                                alt="..." height="200px" width="200px">
-                                        </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="/assets/yellow_book.png" class="img-fluid rounded-start"
-                                                alt="..." height="200px" width="200px">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start"
-                                                alt="..." height="200px" width="200px">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"
-                                        style="color: #003060"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
+                            <img id="request_img" class="img w-100 h-100" alt="image">
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h5 class="card-title">Title: <span>City Limits</span></h5>
-                                <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                                <p class="card-text">Edition: <span>1st Edition</span></p>
-                                <p class="card-text">Condition: <span>Good</span></p>
-                                <p class="card-text">Description: <span>This is a sample description of the book
+                                <h5 class="card-title">Title: <span id="title">City Limits</span></h5>
+                                <p class="card-text">Author: <span id="author">Pedro Penduko</span></p>
+                                <p class="card-text">Edition: <span id="edition">1st Edition</span></p>
+                                {{-- <p class="card-text">Condition: <span>Good</span></p> --}}
+                                <p class="card-text">Description: <span id="description">This is a sample description of the book
                                         I want to offer for exchange.</span></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                                <p class="card-text">Genre: <span>Self-help</span></p>
-                                <p class="card-text">Format: <span>Paperback</span></p>
-                                <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
+                                <h5 class="card-title">ISBN: <span id="isbn">124154238778</span></h5>
+                                <p class="card-text">Genre: <span id="genre">Self-help</span></p>
+                                {{-- <p class="card-text">Format: <span>Paperback</span></p>
+                                <p class="card-text">Exchange Method Preference: <span>Delivery</span></p> --}}
                             </div>
                         </div>
                     </div>
@@ -324,3 +257,23 @@
     'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
     'aos_link' => '/aos-master/dist/aos.js',
 ])
+
+<script>
+    const viewReq = (id) => {
+        fetch(`/request/${id}`, {
+                method: 'GET'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('request_img').src = `/images/book_cover/${data.back_cover}`;
+                document.getElementById('title').textContent = data.title;
+                document.getElementById('author').textContent = data.author;
+                document.getElementById('edition').textContent = data.edition;
+                document.getElementById('description').textContent = data.description;
+                document.getElementById('isbn').textContent = data.isbn;
+                document.getElementById('genre').textContent = data.genre;
+            })
+            .catch(err => console.error(err));
+    }
+</script>

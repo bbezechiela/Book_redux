@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use App\Models\Cart;
+use App\Models\Exchange_Requests;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
@@ -13,7 +14,7 @@ class ListingController extends Controller
     public function myList()
     {
         if (session()->has('uid')) {
-            $data = Books::where('user_id', session('id'))->with('item')->orderBy('created_at', 'desc')->get();
+            $data = Books::where('user_id', session('id'))->with('request')->orderBy('created_at', 'desc')->get();
             return view('users.myList', ['books' => $data, 'status' => 'All']);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -154,6 +155,49 @@ class ListingController extends Controller
             }
         } catch (\Throwable $th) {
             throw $th;
+        }
+    }
+
+    public function exchangeRequest(Request $request)
+    {
+        // dd($request->all());
+        $fileNameWithExt = $request->file('pdf_file')->getClientOriginalName();
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('pdf_file')->getClientOriginalExtension();
+        $fileNameToStore = $fileName . '_' . time() . $extension;
+        $request->file('pdf_file')->move(public_path('files/books'), $fileNameToStore);
+
+        $coverWithExt = $request->file('front_cover')->getClientOriginalName();
+        $coverName = pathinfo($coverWithExt, PATHINFO_FILENAME);
+        $coverExtension = $request->file('front_cover')->getClientOriginalExtension();
+        $coverNameToStore = $coverName . '_' . time() . $coverExtension;
+        $request->file('front_cover')->move(public_path('images/book_cover'), $coverNameToStore);
+
+        $user_id = $request->input('user_id');
+        $book_id = $request->input('book_id');
+        $title = $request->input('title');
+        $isbn = $request->input('isbn');
+        $author = $request->input('author');
+        $genre = $request->input('genre');
+        $edition = $request->input('edition');
+        $description = $request->input('description');
+
+        $send = Exchange_Requests::create([
+            'user_id' => $user_id,
+            'target_book_id' => $book_id,
+            'status' => 'Request',
+            'book_filename' => $fileNameToStore,
+            'back_cover' => $coverNameToStore,
+            'isbn' => $isbn,
+            'title' => $title,
+            'author' => $author,
+            'edition' => $edition,
+            'genre' => $genre,
+            'description' => $description
+        ]);
+
+        if ($send) {
+            return redirect('/product/' . $book_id);
         }
     }
 
@@ -1033,6 +1077,33 @@ class ListingController extends Controller
         }
     }
 
+    public function confirmExchangeRequest(Request $request)
+    {
+        $id = $request->input('req_id');
+        $confirm = $request->input('confirm_col');
+
+        $exchange = Exchange_Requests::find($id);
+        $exchange->update([
+            'status' => $confirm,
+            'allow' => true
+        ]);
+
+        if ($exchange) {
+            return redirect('/orders');
+        }
+    }
+
+    public function viewRequest($id) {
+        $req = Exchange_Requests::with('book')->find($id);
+
+        return view('users.file', ['request' => $req]);
+    }
+
+    public function viewBook($id) {
+        $book = Books::find($id);
+
+        return view('users.file', ['request' => $book]);
+    }
 
 
 

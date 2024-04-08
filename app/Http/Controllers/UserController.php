@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Books;
 use App\Models\Cart;
+use App\Models\Exchange_Requests;
 use App\Models\Order_Items;
 use App\Models\Orders;
 use App\Models\Reviews;
@@ -108,11 +109,11 @@ class UserController extends Controller
     // }
 
     //Temporary lang kay dik natutuhay han UI
-    public function singleProduct($id, $user_id)
+    public function singleProduct($id)
     {
         if (session()->has('uid')) {
-            $book = Books::with('user')->find($id);
-            
+            $book = Books::with('user', 'request')->find($id);
+
             return view('users.singleProduct', ['book' => $book]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -458,11 +459,11 @@ class UserController extends Controller
     public function myPurchase()
     {
         // $orders = Orders::where('order_status', 'pending')->with('items.book.user.addressUser')->get();
-
-        // return view('courier.manageShipment', ['orders' => $orders]);
-        $order = Users::with('orders.items.book.user')->find(session('id'));
+        
+        // $order = Users::with('orders.items.book.user')->find(session('id'));
+        $order = Exchange_Requests::where(['user_id' => session('id'), 'status' => 'Request'])->with('book.user', 'user')->get();
         // dd($order);        
-        return view('users.myPurchase', ['user' => $order]);
+        return view('users.myPurchase', ['orders' => $order]);
     }
 
     public function notification()
@@ -532,7 +533,8 @@ class UserController extends Controller
     public function deliveredMyPurchase()
     {
         // $order = Books::where(['unit' => 'Ordered'])->with('item.order.user', 'user', 'item.ratedItem')->get();
-        $order = Orders::where('user_id', session('id'))->with('user', 'items.book.user', 'items.ratedItem')->get();
+        // $order = Orders::where('user_id', session('id'))->with('user', 'items.book.user', 'items.ratedItem')->get();
+        $order = Exchange_Requests::where('user_id', session('id'))->with('book.user', 'user')->get();
         // dd($order);
         return view('users.deliveredMyPurchase', ['orders' => $order]);
         // return view('users.deliveredMyPurchase');
@@ -540,8 +542,8 @@ class UserController extends Controller
 
     public function droppedMyPurchase()
     {
-        $order = Users::with('orders.items.book.user')->find(session('id'));
-        return view('users.droppedMyPurchase', ['items' => $order]);
+        $order = Exchange_Requests::where('user_id', session('id'))->with('book.user', 'user')->get();
+        return view('users.droppedMyPurchase', ['orders' => $order]);
     }
 
     public function refundMyPurchase()
@@ -585,7 +587,8 @@ class UserController extends Controller
 
     public function orders()
     {
-        $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
+        // $order = Books::where('user_id', session('id'))->with('item.order.user')->get();
+        $order = Books::where('user_id', session('id'))->with('request.user')->get();
         // dd($order);        
         return view('users.orders', ['orders' => $order]);
     }
@@ -608,14 +611,12 @@ class UserController extends Controller
 
     public function declineOrder($id)
     {
-        $item = Order_Items::with('book')->find($id);
-        $qty = intval($item->qty) + intval($item->book->stock);
+        $req = Exchange_Requests::with('book.user', 'user')->find($id);
+        $req->update([
+            'status' => 'Dropped'
+        ]);
 
-        $book_update = $item->book->update(['unit' => 'Available', 'stock' => $qty]);
-        $item_update = $item->update(['order_status' => 'dropped']);
-
-
-        if ($item_update) {
+        if ($req) {
             return redirect('/orders');
         } else {
             return response()->json(['message' => 'error bitch']);
@@ -625,16 +626,16 @@ class UserController extends Controller
     public function delivered()
     {
         // $order = Books::where(['user_id' => session('id'), 'unit' => 'Ordered'])->with('item.order.user')->get();
-        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user', 'user')->get();
+        // $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user', 'user')->get();
+        $order = Books::where('user_id', session('id'))->with('request.user', 'user')->get();
         // dd($order);
         return view('users.delivered', ['orders' => $order]);
-        // $order = Orders::where(['user_id' => session('id')])->with('items.book.user')->get();       
-        // return view('users.delivered', ['order' => $order]);
+        
     }
 
     public function dropped()
     {
-        $order = Books::where('user_id', session('id'))->with('item.ratedItem.user', 'item.order.user')->get();
+        $order = Books::where('user_id', session('id'))->with('request.user', 'user')->get();
         return view('users.dropped', ['orders' => $order]);
     }
 
@@ -1462,5 +1463,17 @@ class UserController extends Controller
         } else {
             return response()->json('email does not exist');
         }
+    }
+
+    public function getExchangeRequest($id)
+    {
+        $request = Exchange_Requests::with('book.user', 'user')->find($id);
+        return response()->json($request);
+    }
+
+    public function getBookRequest($id) {
+        $book = Exchange_Requests::find($id);
+
+        return response()->json($book);
     }
 }

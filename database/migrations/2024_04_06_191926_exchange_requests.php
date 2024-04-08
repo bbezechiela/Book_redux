@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('target_book_id');
             $table->foreign('target_book_id')->references('id')->on('books');
+            $table->string('status');
             $table->text('book_filename')->nullable();
             $table->text('back_cover')->nullable();
             $table->text('isbn');

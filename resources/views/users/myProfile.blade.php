@@ -43,16 +43,16 @@
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                <img src="{{ session('image') }}"
                                     alt="notification" width="35" height="35" class="rounded-5"
                                     style="margin-right: 2em;">
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
-                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                {{-- <li><a class="dropdown-item" href="/addresses">Addresses</a></li> --}}
                                 {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
-                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li>
+                                {{-- <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a></li> --}}
                             </ul>
                         </li>
                     </ul>
@@ -69,7 +69,7 @@
                 </ul>
             </div>
         @endif
-        <form id="form" action="/myprofileupdate" method="POST" enctype="multipart/form-data">
+        {{-- <form id="form" action="/myprofileupdate" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row px-3 py-3 mx-3">
                 <div class="header">
@@ -100,11 +100,6 @@
                             placeholder="Email" style="margin-bottom: 12px; color: #003060;" value="{{ $user->email }}"
                             required>
                     </div>
-                    {{-- <div class="mx-1 d-flex justify-content-center">
-                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="address" name="address"
-                            type="text" placeholder="Address" style="margin-bottom: 8px; color: #003060;"
-                            value="{{ $user->address }}" required>
-                </div> --}}
                     <div class="mx-1 d-flex justify-content-center form-group">
                         <select class="w-100 mt-4 fs-6 px-2 form-control form-select" name="gender" id="gender"
                             style="margin-bottom: 12px; color: #003060;" required>
@@ -131,13 +126,8 @@
                             onfocus="(this.type='date')" onblur="if(this.value==''){this.type='text'}"
                             style="margin-bottom: 12px; color: #003060;" required>
                     </div>
-                    {{-- <div class="mx-1 d-flex justify-content-center">
-                        <input class="w-100 mt-3 fs-6 px-2 form-control" id="age" name="age"
-                            type="number" placeholder="Age" style="margin-bottom: 12px; color: #003060;"
-                            value="{{ $user->age }}" required>
-            </div> --}}
                 </div>
-            </div>
+            </div> --}}
 
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">

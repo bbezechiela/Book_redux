@@ -1,8 +1,8 @@
 @include('partials.__header', [
-'title' => 'My List | BookRedux',
-'bootstrap_link' => '/bootstrap/bootstrap.min.css',
-'css_link' => '/css/mylist-style.css',
-'aos_link' => '/aos-master/dist/aos.css',
+    'title' => 'My List | BookRedux',
+    'bootstrap_link' => '/bootstrap/bootstrap.min.css',
+    'css_link' => '/css/mylist-style.css',
+    'aos_link' => '/aos-master/dist/aos.css',
 ])
 
 <head>
@@ -17,18 +17,19 @@
 
 <div id="content" class="pe-0 content">
     @if ($errors->any())
-    <div class="alert alert-danger alert-dismissible">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 @endforeach
-        </ul>
-    </div>
+            </ul>
+        </div>
     @endif
     <ul class="nav bg-light sticky-top head-nav shadow py-4 px-4">
         <div class="w-100 d-flex mt-1 p-0">
-            <a href="/explore" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png" alt="Logo"></a>
+            <a href="/explore" class="px-2"><img class="img mt-1 me-5" src="../assets/Book_Logo.png"
+                    alt="Logo"></a>
         </div>
         <div class="position-absolute end-0">
             <div class="d-flex">
@@ -51,20 +52,21 @@
         </div>
     </ul>
     @php
-    $order_amount = 0;
-    $delivered_amount = 0;
-    $dropped_amount = 0;
-    foreach ($books as $orders) {
-    foreach ($orders->item as $item) {
-    if ($item->order_status == 'Pending') {
-    $order_amount++;
-    } elseif ($item->order_status == 'received') {
-    $delivered_amount++;
-    } elseif ($item->order_status == 'dropped') {
-    $dropped_amount++;
-    }
-    }
-    }
+        $exchange_request = 0;
+        $completed = 0;
+        $dropped = 0;
+
+        foreach ($books as $book ) {
+            foreach ($book->request as $req) {
+                if ($req->status == 'Request') {
+                    $exchange_request++;
+                } elseif ($req->status == 'Confirmed') {
+                    $completed++;
+                } elseif ($req->status == 'Dropped') {
+                    $dropped++;
+                }
+            }
+        }
     @endphp
     <div class="container-fuid pt-3 px-3">
         <div class="row border mx-2 mt-3 p-3 shadow rounded">
@@ -73,20 +75,20 @@
             </div>
 
             <a href="/orders" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $exchange_request }}</p>
                 <p class="my-0 text-center fs-6">Exchange Request</p>
             </a>
-            <a href="/toreceiveLister" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
+            {{-- <a href="/toreceiveLister" class="btn book-status col-2 ms-1 rounded rounded-4 py-2">
                 <p class="my-0 text-center fw-bold fs-3">{{ $order_amount }}</p>
                 <p class="my-0 text-center fs-6">To Receive</p>
-            </a>
+            </a> --}}
 
             <a href="/delivered" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">{{ $delivered_amount }}</p>
-                <p class="my-0 text-center fs-6">Delivered</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $completed }}</p>
+                <p class="my-0 text-center fs-6">Completed</p>
             </a>
             <a href="/dropped" class="btn book-status col-2 mx-2 rounded rounded-4 py-2">
-                <p class="my-0 text-center fw-bold fs-3">{{ $dropped_amount }}</p>
+                <p class="my-0 text-center fw-bold fs-3">{{ $dropped }}</p>
                 <p class="my-0 text-center fs-6">Dropped</p>
             </a>
 
@@ -100,68 +102,79 @@
                             class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
                         Online Reading</button>
                     <div class="dropdown">
-                        <button class="btn create-btn-exchange dropdown-toggle px-3 ms-2 d-flex align-items-center h-75"
+                        {{-- <button class="btn create-btn-exchange dropdown-toggle px-3 ms-2 d-flex align-items-center h-75"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
                             Exchange
+                        </button> --}}
+                        <button id="create-digital-exchange-listing" class="btn create-btn-exchange px-3 ms-2 d-flex align-items-center h-75"
+                            type="button" aria-expanded="false">
+                            <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
+                            Exchange
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a id="create-exchange-listing" class="dropdown-item" href="#" style="color:#E55B13;"><i
-                                        class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List
+                        {{-- <ul class="dropdown-menu">
+                            <li><a id="create-exchange-listing" class="dropdown-item" href="#"
+                                    style="color:#E55B13;"><i class="fa fa-plus-circle" aria-hidden="true"
+                                        style="margin-right: 5px;"></i>List
                                     Book for Physical Exchange</a></li>
                             <li><a id="create-digital-exchange-listing" class="dropdown-item" href="#"
                                     style="color:#E55B13;"><i class="fa fa-plus-circle" aria-hidden="true"
                                         style="margin-right: 5px;"></i>List Book for Digital Exchange</a></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
-                    <label class="fw-bold" for="sort">Sort by</label>
-                    <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort" style="background-color: #fff;">
+                    {{-- <label class="fw-bold" for="sort">Sort by</label>
+                    <select class="px-3 py-1 h-75 ms-2 rounded" name="" id="sort"
+                        style="background-color: #fff;">
                         <option selected disabled>{{ $status }}</option>
                         <option value="All">All</option>
                         <option value="Sale">Online Reading</option>
                         <option value="Exchange">Exchange</option>
-                    </select>
+                    </select> --}}
                 </div>
                 <div id="content-cards" class="w-100 mx-2 row justify-content-start px-4"
                     style="height: 300px; margin-top: 2em;">
                     @foreach ($books as $book)
-                    <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">
-                        <img id="photo_{{ $book->id }}" data-filename="{{ $book->back_cover }}"
-                            src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto rounded"
-                            alt="{{ $book->back_cover }}" height="170px" style="max-width: 200px;">
-                        <div class="card-body py-0">
-                            <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
-                                {{ $book->title }}</p>
-                            <p id="author_{{ $book->id }}" class="card-text mt-0 mb-0 pb-0">
-                                {{ $book->author }}</p>
-                            <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
-                                {{ $book->genre }}</p>
-                            <div class="card-foot price d-flex justify-content-end p-0 mt-2" style="font-size: 14px;">
-                                {{-- <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
+                        <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">
+                            <img id="photo_{{ $book->id }}" data-filename="{{ $book->back_cover }}"
+                                src="{{ asset('images/book_cover/' . $book->back_cover) }}"
+                                class="img mx-auto rounded" alt="{{ $book->back_cover }}" height="170px"
+                                style="max-width: 200px;">
+                            <div class="card-body py-0">
+                                <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
+                                    {{ $book->title }}</p>
+                                <p id="author_{{ $book->id }}" class="card-text mt-0 mb-0 pb-0">
+                                    {{ $book->author }}</p>
+                                <p id="genre_{{ $book->id }}" class="card-text mt-0 mb-0 pt-0">
+                                    {{ $book->genre }}</p>
+                                <div class="card-foot price d-flex justify-content-end p-0 mt-2"
+                                    style="font-size: 14px;">
+                                    {{-- <a class="p-0 view-request" data-bs-toggle="modal" data-bs-target="#request"><i
                                             class="fa fa-eye" aria-hidden="true" style="margin-right: 5px;"></i>View
                                         Request</a> --}}
-                                <a class="p-0 edit-book"
-                                    onclick="itemClicked({{ $book->id }}, '{{ $book->status }}')"><i
-                                        class="fa fa-pencil-square-o" aria-hidden="true"
-                                        style="margin-right: 5px;"></i>Edit</a>
+                                    <a class="p-0 edit-book"
+                                        onclick="itemClicked({{ $book->id }}, '{{ $book->status }}')"><i
+                                            class="fa fa-pencil-square-o" aria-hidden="true"
+                                            style="margin-right: 5px;"></i>Edit</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
 
         <!-- Request Modal -->
-        <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="request" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="order-cart d-print-none">
@@ -180,28 +193,28 @@
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active" data-bs-interval="10000">
                                                         <img src="/assets/city_limits.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item" data-bs-interval="2000">
                                                         <img src="/assets/bubble_bath.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item">
                                                         <img src="/assets/brown_book.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item" data-bs-interval="2000">
                                                         <img src="/assets/yellow_book.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                     <div class="carousel-item">
                                                         <img src="/assets/city_of_secrets.png"
-                                                            class="img-fluid rounded-start" alt="..." height="200px"
-                                                            width="200px">
+                                                            class="img-fluid rounded-start" alt="..."
+                                                            height="200px" width="200px">
                                                     </div>
                                                 </div>
                                             </div>
@@ -237,9 +250,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 d-flex justify-content-end mt-1 mb-3">
-                                        <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                            data-bs-toggle="modal" onclick="viewShipping"
-                                            data-bs-target="#shipping-details">View
+                                        <button id="arrange_shipment" type="button"
+                                            class="btn btn-sm arrange-button" data-bs-toggle="modal"
+                                            onclick="viewShipping" data-bs-target="#shipping-details">View
                                             Details</button>
                                     </div>
                                 </div>
@@ -251,13 +264,14 @@
         </div>
 
         <!-- Arrange Shipment Modal -->
-        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade d-print-none" id="arrange-shipment" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 fw-bold" id="staticBackdropLabel">Transaction Record</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="details-container">
@@ -300,7 +314,8 @@
                                     placeholder="Date of the approved request: 12/29/2023"><br>
                                 <input type text="text" class="form-control" id="transaction-number"
                                     placeholder="Transaction Number: TRA421376365"><br>
-                                <input type="text" class="form-control" id="book-title" placeholder="Maria Clara"><br>
+                                <input type="text" class="form-control" id="book-title"
+                                    placeholder="Maria Clara"><br>
                             </div>
                         </div>
 
@@ -324,8 +339,8 @@
                                     <p>J&T Express will collect parcel from your pickup address</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="Pickup" name="transaction_type"
-                                        id="pick_up">
+                                    <input class="form-check-input" type="radio" value="Pickup"
+                                        name="transaction_type" id="pick_up">
                                     {{-- <label class="form-check-label" for="flexCheckDefault"></label> --}}
                                 </div>
                             </label>
@@ -378,8 +393,8 @@
 
     <!-- Modal -->
     {{-- create listing --}}
-    <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="createListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -400,17 +415,19 @@
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" required hidden>
+                                    <input type="text" name="user_id" value="{{ session('id') }}" required
+                                        hidden>
 
                                     {{-- The book file that the user uploaded should be display here for preview --}}
                                     <div class="ExternalFiles h-75">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
                                             Preview</small>
-                                        <input id="pdfUpload" type="file" accept="application/pdf" name="pdf_file"
-                                            hidden required>
+                                        <input id="pdfUpload" type="file" accept="application/pdf"
+                                            name="pdf_file" hidden required>
                                         <label for="pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click to
                                             upload file</label>
-                                        <iframe class="w-100 h-100" id="frame" src="" frameborder="0"></iframe>
+                                        <iframe class="w-100 h-100" id="frame" src=""
+                                            frameborder="0"></iframe>
                                     </div>
 
                                 </div>
@@ -457,8 +474,7 @@
                                 <input type="text" name="author" class="form-control" placeholder="Author"
                                     style="margin-bottom: 12px; color: #003060;" required>
                                 <textarea name="description" id="description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"
-                                    required></textarea>
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
                                 <div class="col guidelines">
                                     <h6>Listing Guidelines</h6>
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -685,7 +701,8 @@
                                         </div> --}}
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                <button class="accordion-button" type="button"
+                                                    data-bs-toggle="collapse"
                                                     data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                                     aria-controls="panelsStayOpen-collapseOne">
                                                     Terms and Conditions for Listing Books for Digital Exchange
@@ -694,24 +711,27 @@
                                             <div id="panelsStayOpen-collapseFour"
                                                 class="accordion-collapse collapse show">
                                                 <div class="accordion-body">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You are the rightful owner of the content you are listing, or
                                                         you have obtained all necessary permissions and licenses to
                                                         distribute the content online.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You grant our website a non-exclusive, royalty-free,
                                                         worldwide license to display, distribute, and promote your
                                                         content for online reading purposes.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You acknowledge that users who access your content may read,
@@ -719,16 +739,18 @@
                                                         harmless our website from any claims arising from user
                                                         interactions with your content.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You understand that our website may moderate or remove
                                                         content that violates our terms of service or community
                                                         guidelines.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You understand that our website reserves the right to suspend
@@ -758,7 +780,8 @@
 
                 <!-- exchange -->
                 <div id="exchange" class="modal-body container-fluid px-5">
-                    <form id="exchange-form" action="/mylist/exchangepost" method="POST" enctype="multipart/form-data">
+                    <form id="exchange-form" action="/mylist/exchangepost" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-5 me-1 border px-0 mb-2 rounded">
@@ -853,8 +876,7 @@
                                 style="margin-bottom: 12px; color: #003060;">
                             <input type="text" name="author" class="form-control" placeholder="Author"
                                 style="margin-bottom: 12px; color: #003060;">
-                            <textarea name="exchange_preferences" id="exchange-preferences" class="form-control"
-                                cols="30" rows="4"
+                            <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30" rows="4"
                                 placeholder="Exchange Preferences (E.g., desired book genres, preferences on physical exchange)"
                                 style="margin-bottom: 12px; color: #003060;"></textarea>
                             <textarea name="description" id="description" class="form-control" cols="30" rows="4"
@@ -999,8 +1021,9 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
-                                                aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                                aria-controls="panelsStayOpen-collapseThree">
                                                 Guidelines for Listing a Book for Exchange
                                             </button>
                                         </h2>
@@ -1071,12 +1094,14 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour"
-                                                aria-expanded="true" aria-controls="panelsStayOpen-collapseFour">
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true"
+                                                aria-controls="panelsStayOpen-collapseFour">
                                                 Terms and Conditions for Listing Books for Exchange
                                             </button>
                                         </h2>
-                                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show">
+                                        <div id="panelsStayOpen-collapseFour"
+                                            class="accordion-collapse collapse show">
                                             <div class="accordion-body">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
@@ -1149,7 +1174,8 @@
                                         </div>
                                     </div>
                                     <div class="form-check" style="margin-top: 1em">
-                                        <input class="form-check-input" type="checkbox" value="" id="exchangeDefault" />
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="exchangeDefault" />
                                         <label class="form-check-label" for="exchangeDefault">I have read and agree
                                             to the listing terms and condition.</label>
                                     </div>
@@ -1166,7 +1192,8 @@
 
                 {{-- digital exchange --}}
                 <div id="digital">
-                    <form id="digital-form" action="/mylist/digitalpost" method="POST" enctype="multipart/form-data">
+                    <form id="digital-form" action="/mylist/digitalpost" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
@@ -1182,7 +1209,8 @@
                                         <label for="digital-pdfUpload" class="btn create-btn-exchange my-1 mx-2">Click
                                             to
                                             upload file</label>
-                                        <iframe class="w-100 h-100" id="digital-frame" src="" frameborder="0"></iframe>
+                                        <iframe class="w-100 h-100" id="digital-frame" src=""
+                                            frameborder="0"></iframe>
                                     </div>
 
                                 </div>
@@ -1228,13 +1256,11 @@
                                     style="margin-bottom: 12px; color: #003060;" required>
                                 <input type="text" name="author" class="form-control" placeholder="Author"
                                     style="margin-bottom: 12px; color: #003060;" required>
-                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control"
-                                    cols="30" rows="4"
-                                    placeholder="Exchange Preferences (E.g., desired book genres etc.)"
-                                    style="margin-bottom: 12px; color: #003060;" required></textarea>
-                                <textarea name="description" id="description" class="form-control" cols="30" rows="4"
-                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;"
+                                <textarea name="exchange_preferences" id="exchange-preferences" class="form-control" cols="30" rows="4"
+                                    placeholder="Exchange Preferences (E.g., desired book genres etc.)" style="margin-bottom: 12px; color: #003060;"
                                     required></textarea>
+                                <textarea name="description" id="description" class="form-control" cols="30" rows="4"
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
                                 <div class="col guidelines">
                                     <h6>Listing Guidelines</h6>
                                     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -1461,7 +1487,8 @@
                                         </div> --}}
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                <button class="accordion-button" type="button"
+                                                    data-bs-toggle="collapse"
                                                     data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
                                                     aria-controls="panelsStayOpen-collapseOne">
                                                     Terms and Conditions for Listing Books for Digital Exchange
@@ -1470,24 +1497,27 @@
                                             <div id="panelsStayOpen-collapseFour"
                                                 class="accordion-collapse collapse show">
                                                 <div class="accordion-body">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You are the rightful owner of the content you are listing, or
                                                         you have obtained all necessary permissions and licenses to
                                                         distribute the content digitally.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You grant our website a non-exclusive, royalty-free,
                                                         worldwide license to display, distribute, and promote your
                                                         content for digital exchange purposes.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You acknowledge that users who access your content may
@@ -1495,23 +1525,26 @@
                                                         harmless our website from any claims arising from user
                                                         interactions with your content.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You retain all intellectual property rights to your content,
                                                         and our website will not claim ownership over it.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You understand that our website may moderate or remove
                                                         content that violates our terms of service or community
                                                         guidelines.</small><br>
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                        height="16" fill="currentColor" class="bi bi-dot"
+                                                        viewBox="0 0 16 16">
                                                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                                     </svg>
                                                     <small>You understand that our website reserves the right to suspend
@@ -1533,8 +1566,9 @@
                             </div>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="submit" id="digitalSubmitButton" class="btn mx-auto w-25 text-white rounded-3"
-                                style="background-color: #E55B13;" disabled>List</button>
+                            <button type="submit" id="digitalSubmitButton"
+                                class="btn mx-auto w-25 text-white rounded-3" style="background-color: #E55B13;"
+                                disabled>List</button>
                         </div>
                     </form>
                 </div>
@@ -1544,8 +1578,8 @@
     </div>
 
     {{-- update listing modal --}}
-    <div class="modal fade" id="updateListingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="updateListingModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -1567,7 +1601,8 @@
                         <div class="modal-body container-fluid px-5">
                             <div class="row">
                                 <div class="col-5 me-1 px-0 py-0 border mb-2 rounded" style="height: 250px">
-                                    <input type="text" name="user_id" value="{{ session('id') }}" required hidden>
+                                    <input type="text" name="user_id" value="{{ session('id') }}" required
+                                        hidden>
 
                                     <div class="ExternalFiles h-75">
                                         <small style="color: #737679; margin-left: 8px; font-size: 10px;">Book File
@@ -1577,7 +1612,8 @@
                                         <label for="edit-pdfUpload" class="btn btn-outline-warning my-1 mx-2">Click
                                             to
                                             upload file</label>
-                                        <iframe class="w-100 h-100" id="edit-frame" src="" frameborder="0"></iframe>
+                                        <iframe class="w-100 h-100" id="edit-frame" src=""
+                                            frameborder="0"></iframe>
                                     </div>
 
                                 </div>
@@ -1588,9 +1624,9 @@
                                                 Cover</label>
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
-                                                    <input id="edit-bookcover" name="edit_front_cover" accept="image/*"
-                                                        class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;" required>
+                                                    <input id="edit-bookcover" name="edit_front_cover"
+                                                        accept="image/*" class="input-file form-control"
+                                                        type="file" style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
 
@@ -1616,16 +1652,16 @@
                                     </select>
                                     <input type="text" name="isbn" id="edit-isbn" class="form-control"
                                         placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
-                                    <input type="text" name="edition" id="edit-edition-sale" class="form-control"
-                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="edition" id="edit-edition-sale"
+                                        class="form-control" placeholder="Edition"
+                                        style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
-                                <input type="text" id="edit-title" name="title" class="form-control" placeholder="Title"
-                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <input type="text" id="edit-title" name="title" class="form-control"
+                                    placeholder="Title" style="margin-bottom: 12px; color: #003060;" required>
                                 <input type="text" id="edit-author" name="author" class="form-control"
                                     placeholder="Author" style="margin-bottom: 12px; color: #003060;" required>
-                                <textarea name="description" id="edit-description" class="form-control" cols="30"
-                                    rows="4" placeholder="Description" style="margin-bottom: 12px; color: #003060;"
-                                    required></textarea>
+                                <textarea name="description" id="edit-description" class="form-control" cols="30" rows="4"
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
 
                             </div>
                             <div class="modal-footer border-0">
@@ -1667,15 +1703,16 @@
                                             <div class="col-md-8">
                                                 <div class="input-file-wrapper">
                                                     <input id="edit-digital-bookcover" name="front_cover"
-                                                        accept="image/*" class="input-file form-control" type="file"
-                                                        style="margin-bottom: 12px;" required>
+                                                        accept="image/*" class="input-file form-control"
+                                                        type="file" style="margin-bottom: 12px;" required>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
 
-                                    <select name="genre" id="edit-digital-genre" class="form-control form-select"
+                                    <select name="genre" id="edit-digital-genre"
+                                        class="form-control form-select"
                                         style="margin-bottom: 12px; color: #003060;" required>
                                         <option>Genre</option>
                                         <option value="Educational">Educational</option>
@@ -1692,22 +1729,24 @@
                                         <option value="Self-Help">Self-Help</option>
                                         <option value="Crime & Thriller">Crime & Thriller</option>
                                     </select>
-                                    <input type="text" name="isbn" id="edit-digital-isbn" class="form-control"
-                                        placeholder="ISBN" style="margin-bottom: 12px; color: #003060;" required>
-                                    <input type="text" name="edition" id="edit-digital-edition" class="form-control"
-                                        placeholder="Edition" style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="isbn" id="edit-digital-isbn"
+                                        class="form-control" placeholder="ISBN"
+                                        style="margin-bottom: 12px; color: #003060;" required>
+                                    <input type="text" name="edition" id="edit-digital-edition"
+                                        class="form-control" placeholder="Edition"
+                                        style="margin-bottom: 12px; color: #003060;" required>
                                 </div>
-                                <input type="text" name="title" id="edit-digital-title" class="form-control"
-                                    placeholder="Title" style="margin-bottom: 12px; color: #003060;" required>
-                                <input type="text" name="author" id="edit-digital-author" class="form-control"
-                                    placeholder="Author" style="margin-bottom: 12px; color: #003060;" required>
-                                <textarea name="exchange_preferences" id="edit-digital-exchange-preferences"
-                                    class="form-control" cols="30" rows="4"
-                                    placeholder="Exchange Preferences (E.g., desired book genres etc.)"
+                                <input type="text" name="title" id="edit-digital-title"
+                                    class="form-control" placeholder="Title"
+                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <input type="text" name="author" id="edit-digital-author"
+                                    class="form-control" placeholder="Author"
+                                    style="margin-bottom: 12px; color: #003060;" required>
+                                <textarea name="exchange_preferences" id="edit-digital-exchange-preferences" class="form-control" cols="30"
+                                    rows="4" placeholder="Exchange Preferences (E.g., desired book genres etc.)"
                                     style="margin-bottom: 12px; color: #003060;" required></textarea>
-                                <textarea name="description" id="edit-digital-description" class="form-control"
-                                    cols="30" rows="4" placeholder="Description"
-                                    style="margin-bottom: 12px; color: #003060;" required></textarea>
+                                <textarea name="description" id="edit-digital-description" class="form-control" cols="30" rows="4"
+                                    placeholder="Description" style="margin-bottom: 12px; color: #003060;" required></textarea>
                             </div>
                             <div class="modal-footer border-0">
                                 <button type="button" id="digital-exchange-update"
@@ -1786,18 +1825,20 @@
                                     <option value="Self-Help">Self-Help</option>
                                     <option value="Crime & Thriller">Crime & Thriller</option>
                                 </select>
-                                <input type="number" name="stock" id="edit-exchange-stock" class="form-control"
-                                    placeholder="Stock" style="margin-bottom: 12px; color: #003060;">
-                                <input type="text" name="edition" id="edit-exchange-edition" class="form-control"
-                                    placeholder="Edition" style="margin-bottom: 12px; color: #003060;">
+                                <input type="number" name="stock" id="edit-exchange-stock"
+                                    class="form-control" placeholder="Stock"
+                                    style="margin-bottom: 12px; color: #003060;">
+                                <input type="text" name="edition" id="edit-exchange-edition"
+                                    class="form-control" placeholder="Edition"
+                                    style="margin-bottom: 12px; color: #003060;">
                                 <button type="button" id="edit-exchange-shipping-fee-btn" class="form-control"
                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                     data-bs-title="Click to open shipping form"
                                     style="text-align: justify; margin-bottom: 12px; color: #003060;">
                                     Shipping Fee
                                 </button>
-                                <select name="condition" id="edit-exchange-condition" class="form-control form-select"
-                                    style="margin-bottom: 12px; color: #003060;">
+                                <select name="condition" id="edit-exchange-condition"
+                                    class="form-control form-select" style="margin-bottom: 12px; color: #003060;">
                                     <option>Condition</option>
                                     <option value="New">New</option>
                                     <option value="Like New">Like New</option>
@@ -1816,12 +1857,10 @@
                                 placeholder="Title" style="margin-bottom: 12px; color: #003060;">
                             <input type="text" id="edit-exchange-author" name="author" class="form-control"
                                 placeholder="Author" style="margin-bottom: 12px; color: #003060;">
-                            <textarea name="exchange_preferences" id="edit-exchange-preferences" class="form-control"
-                                cols="30" rows="4" placeholder="Exchange Preferences"
-                                style="margin-bottom: 12px; color: #003060;"></textarea>
-                            <textarea name="description" id="edit-exchange-description" class="form-control" cols="30"
-                                rows="4" placeholder="Description"
-                                style="margin-bottom: 12px; color: #003060;"></textarea>
+                            <textarea name="exchange_preferences" id="edit-exchange-preferences" class="form-control" cols="30"
+                                rows="4" placeholder="Exchange Preferences" style="margin-bottom: 12px; color: #003060;"></textarea>
+                            <textarea name="description" id="edit-exchange-description" class="form-control" cols="30" rows="4"
+                                placeholder="Description" style="margin-bottom: 12px; color: #003060;"></textarea>
                         </div>
                         <div class="modal-footer border-0">
                             <button type="button" id="exchange-update"
@@ -1841,14 +1880,15 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
                 @if (session('createMessage') &&
-                session('createMessage') ==
-                'Listing created successfully! Your information has been recorded and is now live for viewing.')
-                <div class="toast-body fw-bold text-success">
-                    {{ session('createMessage') }}
-                </div>
+                        session('createMessage') ==
+                            'Listing created successfully! Your information has been recorded and is now live for viewing.')
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('createMessage') }}
+                    </div>
                 @endif
             </div>
         </div>
@@ -1858,19 +1898,20 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
                 @if (session('deleteMessage') &&
-                session('deleteMessage') ==
-                'Listing deleted successfully. Your request has been processed, and the specified listing has been
-                removed.')
-                <div class="toast-body fw-bold text-success">
-                    {{ session('deleteMessage') }}
-                </div>
+                        session('deleteMessage') ==
+                            'Listing deleted successfully. Your request has been processed, and the specified listing has been
+                                removed.')
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('deleteMessage') }}
+                    </div>
                 @elseif (session('deleteMessage'))
-                <div class="toast-body fw-bold text-danger">
-                    {{ session('deleteMessage') }}
-                </div>
+                    <div class="toast-body fw-bold text-danger">
+                        {{ session('deleteMessage') }}
+                    </div>
                 @endif
             </div>
         </div>
@@ -1880,16 +1921,17 @@
                     <img src="../assets/Book_Logo.png" class="rouxunded me-2" alt="...">
                     <strong class="me-auto"></strong>
                     <small>1 min ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
                 @if (session('updateMessage') == 'Update Confirmed: Your listing has been successfully updated.')
-                <div class="toast-body fw-bold text-success">
-                    {{ session('updateMessage') }}
-                </div>
+                    <div class="toast-body fw-bold text-success">
+                        {{ session('updateMessage') }}
+                    </div>
                 @elseif (session('updateMessage'))
-                <div class="toast-body fw-bold text-danger">
-                    {{ session('updateMessage') }}
-                </div>
+                    <div class="toast-body fw-bold text-danger">
+                        {{ session('updateMessage') }}
+                    </div>
                 @endif
             </div>
         </div>
@@ -1897,8 +1939,8 @@
 </div>
 
 @include('partials.__footer', [
-'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
-'aos_link' => '/aos-master/dist/aos.js',
+    'bootstrap_link' => '/bootstrap/bootstrap.bundle.min.js',
+    'aos_link' => '/aos-master/dist/aos.js',
 ])
 
 <script>
@@ -2058,16 +2100,16 @@
         }
     });
     // sort select    
-    var sort_by = document.getElementById('sort');
-    sort_by.addEventListener('change', function() {
-        if (sort_by.value == "All") {
-            window.location.href = "/mylist";
-        } else if (sort_by.value == "Sale") {
-            window.location.href = "/mylist/sale";
-        } else if (sort_by.value == "Exchange") {
-            window.location.href = "/mylist/exchange";
-        }
-    });
+    // var sort_by = document.getElementById('sort');
+    // sort_by.addEventListener('change', function() {
+    //     if (sort_by.value == "All") {
+    //         window.location.href = "/mylist";
+    //     } else if (sort_by.value == "Sale") {
+    //         window.location.href = "/mylist/sale";
+    //     } else if (sort_by.value == "Exchange") {
+    //         window.location.href = "/mylist/exchange";
+    //     }
+    // });
     // tool tips   
     const ExchangeImageToolTip = document.getElementById('exchange-book-image');
     const tooltipExchangeImageShow = bootstrap.Tooltip.getOrCreateInstance(ExchangeImageToolTip);
@@ -2089,14 +2131,14 @@
         document.getElementById("digital").style.display = "none";
         createListingModal.show();
     });
-    document.getElementById('create-exchange-listing').addEventListener('click', () => {
-        list_category.value = 'Physical Exchange';
-        document.getElementById('listing-type').textContent = 'Physical Exchange';
-        document.getElementById("sale").style.display = "none";
-        document.getElementById("exchange").style.display = "flex";
-        document.getElementById("digital").style.display = "none";
-        createListingModal.show();
-    });
+    // document.getElementById('create-exchange-listing').addEventListener('click', () => {
+    //     list_category.value = 'Physical Exchange';
+    //     document.getElementById('listing-type').textContent = 'Physical Exchange';
+    //     document.getElementById("sale").style.display = "none";
+    //     document.getElementById("exchange").style.display = "flex";
+    //     document.getElementById("digital").style.display = "none";
+    //     createListingModal.show();
+    // });
     document.getElementById('create-digital-exchange-listing').addEventListener('click', () => {
         list_category.value = 'Digital Exchange';
         document.getElementById('listing-type').textContent = 'Digital Exchange';

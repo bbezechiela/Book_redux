@@ -19,11 +19,14 @@ class Exchange_Requests extends Model
         return $this->belongsTo(Books::class, 'target_book_id');
     }
 
+    protected $table = 'exchange_requests';
+
     protected $fillable = [
         'user_id',
         'target_book_id',
         'book_filename',
         'back_cover',
+        'status',
         'isbn',
         'title',
         'author',

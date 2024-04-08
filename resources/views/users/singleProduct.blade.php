@@ -12,6 +12,10 @@
     <script src="https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.min.js"></script>
 </head>
 
+@php
+    // $requested = f
+@endphp
+
 <body>
     <div id="body-container" class="container-fluid px-0">
         <div id="sidebar" class="sidebar p-2 min-vh-100 offcanvas offcanvas-start" tabindex="-1"
@@ -34,8 +38,8 @@
                             <li class="nav-item dropdown">
                                 <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                     class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                                    <img src="{{ session('profile_pic') }}" alt="notification" width="35"
-                                        height="35" class="rounded-5" style="margin-right: 2em;">
+                                    <img src="{{ session('image') }}" alt="notification" width="35" height="35"
+                                        class="rounded-5" style="margin-right: 2em;">
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
@@ -98,21 +102,28 @@
                                 style="margin-bottom: 1em;">Preview
                                 <i class="fa fa-eye" aria-hidden="true"
                                     style="margin-left: 8px; margin-right: 4px;"></i></button>
-                            <button data-bs-toggle="modal" class="btn exchange-button"
-                                data-bs-target="#digital_exchange_request" style="margin-bottom: 1em;">Send Exchange
-                                Request
-                                <i class="fa fa-exchange" aria-hidden="true"
-                                    style="margin-left: 8px; margin-right: 4px;"></i></button>
+                            @if ($book->user_id != session('id'))
+                                <button data-bs-toggle="modal" class="btn exchange-button"
+                                    data-bs-target="#digital_exchange_request" style="margin-bottom: 1em;">Send Exchange
+                                    Request
+                                    <i class="fa fa-exchange" aria-hidden="true"
+                                        style="margin-left: 8px; margin-right: 4px;"></i></button>                            
+                                {{-- @foreach ($book->request as $req)
+                                    @if ($req->user_id == session('id'))
+                                        <p>Please Wait</p>
+                                    @endif
+                                @endforeach --}}
+                            @endif
                         @elseif ($book->status = 'Online Reading')
                             <button id="readNowBtn"
                                 onclick="readNowFunction('{{ $book->book_filename }}', '{{ $book->title }}')"
-                                data-bs-toggle="modal" class="btn cart-button"
-                                data-bs-target="#readNowModal" style="margin-bottom: 1em;">Read Now
+                                data-bs-toggle="modal" class="btn cart-button" data-bs-target="#readNowModal"
+                                style="margin-bottom: 1em;">Read Now
                             </button>
-                            <button id="saveBtn"
-                            class="btn save-button" data-bs-toggle="modal"
-                            data-bs-target="#" style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true" style="margin-right: 7px;"></i>Save 
-                        </button>
+                            <button id="saveBtn" class="btn save-button" data-bs-toggle="modal" data-bs-target="#"
+                                style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true"
+                                    style="margin-right: 7px;"></i>Save
+                            </button>
                         @endif
                     </div>
                 </div>
@@ -170,11 +181,13 @@
                 <div class="modal-header">
                     <h1 id="digitalPreviewTitle" class="modal-title fs-5 fw-bold" style="color: #003060">Modal title
                     </h1>
-                    <button id="digitalPreviewClose" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="digitalPreviewClose" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
                     <div id="pdfPreview" class="d-flex justify-center flex-column m-5"></div>
-                    <h2 class="text-center mb-5 text-danger fw-bold">Send an Exchange Request to continue reading the whole document</h2>
+                    <h2 class="text-center mb-5 text-danger fw-bold">Send an Exchange Request to continue reading the
+                        whole document</h2>
                 </div>
             </div>
         </div>
@@ -198,7 +211,7 @@
 
 
     <!-- Physical Exchange Request Modal -->
-    <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -350,7 +363,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Digital Exchange Request Modal -->
     <div class="modal fade" id="digital_exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -365,80 +378,84 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{-- <form> --}}
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault01" style="color:#003060;">Title</label>
-                            <input type="text" class="form-control" id="validationDefault01" placeholder="Title"
-                                value="" required>
+                    <form action="/exchangerequest" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="user_id" value="{{ session('id') }}" hidden>
+                        <input type="text" name="book_id" value="{{ $book->id }}" hidden>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault01" style="color:#003060;">Title</label>
+                                <input type="text" class="form-control" id="validationDefault01"
+                                    placeholder="Title" name="title" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault02" style="color:#003060;">ISBN</label>
+                                <input type="text" class="form-control" id="validationDefault02"
+                                    placeholder="ISBN" name="isbn" required>
+                            </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault02" style="color:#003060;">ISBN</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="ISBN"
-                                value="" required>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault03" style="color:#003060;">Author</label>
+                                <input type="text" class="form-control" id="validationDefault03"
+                                    placeholder="Author" name="author" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault04" style="color:#003060;">Genre</label>
+                                <select class="form-control" id="validationDefault04" name="genre" required>
+                                    <option selected>Genre</option>
+                                    <option value="Educational">Educational</option>
+                                    <option value="Romance & Saga">Romance & Saga</option>
+                                    <option value="Fantasy & Adventure">Fantasy & Adventure</option>
+                                    <option value="Science Fiction">Science Fiction</option>
+                                    <option value="Historical Fiction">Historical Fiction</option>
+                                    <option value="Mystery & Suspense">Mystery & Suspense</option>
+                                    <option value="Young Adult">Young Adult</option>
+                                    <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
+                                    <option value="Horror & Supernatural">Horror & Supernatural</option>
+                                    <option value="Comedy & Satire">Comedy & Satire</option>
+                                    <option value="Poetry & Prose">Poetry & Prose</option>
+                                    <option value="Self-Help">Self-Help</option>
+                                    <option value="Crime & Thriller">Crime & Thriller</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault03" style="color:#003060;">Author</label>
-                            <input type="text" class="form-control" id="validationDefault03" placeholder="Author"
-                                required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault04" style="color:#003060;">Genre</label>
-                            <select class="form-control" id="validationDefault04">
-                                <option selected>Genre</option>
-                                <option value="Educational">Educational</option>
-                                <option value="Romance & Saga">Romance & Saga</option>
-                                <option value="Fantasy & Adventure">Fantasy & Adventure</option>
-                                <option value="Science Fiction">Science Fiction</option>
-                                <option value="Historical Fiction">Historical Fiction</option>
-                                <option value="Mystery & Suspense">Mystery & Suspense</option>
-                                <option value="Young Adult">Young Adult</option>
-                                <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
-                                <option value="Horror & Supernatural">Horror & Supernatural</option>
-                                <option value="Comedy & Satire">Comedy & Satire</option>
-                                <option value="Poetry & Prose">Poetry & Prose</option>
-                                <option value="Self-Help">Self-Help</option>
-                                <option value="Crime & Thriller">Crime & Thriller</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault05" style="color:#003060;">Edition</label>
-                            <input type="text" class="form-control" id="validationDefault05"
-                                placeholder="Edition" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="col-md-4 control-label" for="filebutton1">Book
-                                Cover</label>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="validationDefault05" style="color:#003060;">Edition</label>
+                                <input type="text" class="form-control" id="validationDefault05"
+                                    placeholder="Edition" name="edition" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="col-md-4 control-label" for="filebutton1">Book
+                                    Cover</label>
+                                <div class="input-file-wrapper">
+                                    <input id="filebutton1" name="front_cover" accept="image/*"
+                                        class="input-file form-control" type="file" style="margin-bottom: 12px;">
+                                </div>
+                            </div>
+
+                            <label class="col-md-4 control-label" for="filebutton2" style="white-space: nowrap;">Book
+                                File</label>
                             <div class="input-file-wrapper">
-                                <input id="filebutton1" name="front_cover" accept="image/*"
+                                <input id="filebutton2" name="pdf_file" accept="application/pdf"
                                     class="input-file form-control" type="file" style="margin-bottom: 12px;">
                             </div>
                         </div>
 
-                        <label class="col-md-4 control-label" for="filebutton2" style="white-space: nowrap;">Book
-                            File</label>
-                        <div class="input-file-wrapper">
-                            <input id="filebutton2" name="interior_photo" accept="image/*"
-                                class="input-file form-control" type="file" style="margin-bottom: 12px;">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label report-input"
+                                    style="color:#003060;">Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description"
+                                    placeholder="Describe the book's shortcomings or add other important information concerning the request"
+                                    rows="7" required></textarea>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label report-input"
-                                style="color:#003060;">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1"
-                                placeholder="Describe the book's shortcomings or add other important information concerning the request"
-                                rows="7"></textarea>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn report-button">Send Request</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button submit" class="btn report-button">Send Request</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -604,15 +621,15 @@
 
         loadingTask.promise.then((pdf) => {
             // console.log(pdf.numPages);
-            for (var pageNum = 1; pageNum <= 2; pageNum++) {
+            for (var pageNum = 1; pageNum <= 10; pageNum++) {
                 const canvas = document.createElement('canvas');
                 canvas.className = 'border border-secondary-subtle my-2';
-                if (pageNum == 2) {
-                    canvas.style.filter = 'blur(7px)';                    
+                if (pageNum >= 6 && pageNum <= 10) {
+                    canvas.style.filter = 'blur(7px)';
                 }
 
                 pdf.getPage(pageNum).then((page) => {
-                                
+
                     var context = canvas.getContext('2d');
                     var viewport = page.getViewport({
                         scale: 1.5,
@@ -624,11 +641,10 @@
                         canvasContext: context,
                         viewport: viewport
                     }
-                    
-                    pdfDiv.appendChild(canvas);                    
 
-                    page.render(renderContext).promise.then(() => {                                       
-                    });
+                    pdfDiv.appendChild(canvas);
+
+                    page.render(renderContext).promise.then(() => {});
                 });
             }
         });

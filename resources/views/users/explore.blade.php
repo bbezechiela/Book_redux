@@ -59,12 +59,12 @@
                 </div>
             </div>
         </ul>
-        <button type="button" class="position-absolute end-0 mt-2 btn fw-bold nearby-user-btn"
+        {{-- <button type="button" class="position-absolute end-0 mt-2 btn fw-bold nearby-user-btn"
             style="color: #E55B13; margin-right: 230px"><img src="assets/location-icon.png" alt="Location icon"
                 class="img" width="25">Find Nearby Users</button type="button">
         <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
             style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
-                width="25">Find Nearby Listings</button type="button">
+                width="25">Find Nearby Listings</button type="button"> --}}
 
         {{-- <div id="books" class="mx-5 px-5 mt-5">
             <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 280px; ">
@@ -911,175 +911,17 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post->shuffle() as $daily)
                     @if (!preg_match('/' . $daily->genre . ',?/i', $user->interest))
-                        @if ($daily->user->type == 'Bookseller')
-                            @if ($daily->status == 'Rent' && $daily->stock > 0)
-                                <div class="card m-1 pb-4 shadow"
-                                    style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                    onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                    <img src="{{ asset('images/books/' . $daily->book_photo) }}"
-                                        class="img mx-auto p-2" alt="..." width="130px" height="150px">
-                                    <div class="card-body py-0">
-                                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                        <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                            {{ $daily->genre }}</p>
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $daily->user->address }}</p>
-                                        @foreach ($daily->cart as $cart)
-                                            @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                                <div
-                                                    class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                    <span class="fw-bold p-0 text-success">Added to cart</span>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                            <span class="fw-bold p-0">₱{{ $daily->security_deposit }}</span>
-                                            <div class="button-container">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle add-button"
-                                                        onclick="stopPropagation(event)" type="button"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item"
-                                                                href="/addtocart/{{ $daily->id }}"
-                                                                onclick="stopPropagation(event)"><i
-                                                                    class="fa fa-cart-plus" aria-hidden="true"
-                                                                    style="margin-right: 7px"></i>Add to
-                                                                Cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @elseif ($daily->stock > 0)
-                                <div class="card m-1 pb-4 shadow"
-                                    style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                    onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                    <img src="{{ asset('images/books/' . $daily->book_photo) }}"
-                                        class="img mx-auto p-2" alt="..." width="130px" height="150px">
-                                    <div class="card-body py-0">
-                                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                        <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                            {{ $daily->genre }}</p>
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $daily->user->address }}</p>
-                                        @foreach ($daily->cart as $cart)
-                                            @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                                <div
-                                                    class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                    <span class="fw-bold p-0 text-success">Added to cart</span>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                            <span class="fw-bold p-0">₱{{ $daily->price }}</span>
-                                            <div class="button-container">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle add-button"
-                                                        onclick="stopPropagation(event)" type="button"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item"
-                                                                href="/addtocart/{{ $daily->id }}"
-                                                                onclick="stopPropagation(event)"><i
-                                                                    class="fa fa-cart-plus" aria-hidden="true"
-                                                                    style="margin-right: 7px"></i>Add to
-                                                                Cart</a></li>
-                                                        {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                    class="fa fa-list-alt" aria-hidden="true"
-                                    style="margin-right: 7px"></i>Add
-                                to
-                                Wishlist</a></li> --}}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @elseif ($daily->status == 'Exchange' && $daily->stock > 0)
-                            <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                    alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                    <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                        {{ $daily->genre }}</p>
-                                    @foreach ($daily->user->addressUser as $address)
-                                        @if ($address->default_address)
-                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->address }}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($daily->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">For Exchange</span>
-                                    </div>
-                                </div>
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $daily->back_cover) }}" class="img mx-auto p-2"
+                                alt="..." width="130px" height="150px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                                    {{ $daily->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $daily->status }}</p>
                             </div>
-                        @elseif ($daily->stock > 0)
-                            <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                    alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                    <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                        {{ $daily->genre }}</p>
-                                    @foreach ($daily->user->addressUser as $address)
-                                        @if ($address->default_address)
-                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->address }}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($daily->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $daily->price }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $daily->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                        </div>                        
                     @endif
                 @endforeach
             </div>
@@ -1089,179 +931,17 @@
             <h4 class="text-center daily_discovery_text mx-5 pb-2">NEW LISTINGS</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post->sortByDesc('created_at') as $daily)
-                    @if ($daily->user->type == 'Bookseller')
-                        @if ($daily->status == 'Rent' && $daily->stock > 0)
-                            <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                    alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                    <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                        {{ $daily->genre }}</p>
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>{{ $daily->user->address }}</p>
-                                    @foreach ($daily->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $daily->security_deposit }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $daily->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                            class="fa fa-list-alt" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add
-                                        to
-                                        Wishlist</a></li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @elseif ($daily->stock > 0)
-                            <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                                <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                    alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                    <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                        {{ $daily->genre }}</p>
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>{{ $daily->user->address }}</p>
-                                    @foreach ($daily->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $daily->price }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $daily->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                            class="fa fa-list-alt" aria-hidden="true"
-                                            style="margin-right: 7px"></i>Add
-                                        to
-                                        Wishlist</a></li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @elseif ($daily->status == 'Exchange' && $daily->stock > 0)
-                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                            onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                            <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
-                            <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                    {{ $daily->genre }}</p>
-                                @foreach ($daily->user->addressUser as $address)
-                                    @if ($address->default_address)
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->address }}
-                                        </p>
-                                    @endif
-                                @endforeach
-                                @foreach ($daily->cart as $cart)
-                                    @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                            <span class="fw-bold p-0 text-success">Added to cart</span>
-                                        </div>
-                                    @endif
-                                @endforeach
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">For Exchange</span>
-                                </div>
-                            </div>
+                    <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                        onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
+                        <img src="{{ asset('images/book_cover/' . $daily->back_cover) }}" class="img mx-auto p-2"
+                            alt="..." width="130px" height="150px">
+                        <div class="card-body py-0">
+                            <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
+                            <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
+                                {{ $daily->genre }}</p>
+                            <p class="fw-bold" style="color: #E55B13;">{{ $daily->status }}</p>
                         </div>
-                    @elseif ($daily->stock > 0)
-                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                            onclick="clickedPost({{ $daily->id }}, {{ $daily->user_id }})">
-                            <img src="{{ asset('images/books/' . $daily->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
-                            <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $daily->title }}</p>
-                                <p class="card-text mt-0 mb-0">{{ $daily->author }}<br>
-                                    {{ $daily->genre }}</p>
-                                @foreach ($daily->user->addressUser as $address)
-                                    @if ($address->default_address)
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->address }}
-                                        </p>
-                                    @endif
-                                @endforeach
-                                @foreach ($daily->cart as $cart)
-                                    @if ($cart->user_id == session('id') && $cart->product_id == $daily->id)
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                            <span class="fw-bold p-0 text-success">Added to cart</span>
-                                        </div>
-                                    @endif
-                                @endforeach
-                                <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                    <span class="fw-bold p-0">₱{{ $daily->price }}</span>
-                                    <div class="button-container">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle add-button"
-                                                onclick="stopPropagation(event)" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="/addtocart/{{ $daily->id }}"
-                                                        onclick="stopPropagation(event)"><i class="fa fa-cart-plus"
-                                                            aria-hidden="true" style="margin-right: 7px"></i>Add to
-                                                        Cart</a></li>
-                                                {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                                class="fa fa-list-alt" aria-hidden="true"
-                                                style="margin-right: 7px"></i>Add
-                                            to
-                                            Wishlist</a></li> --}}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    </div>                   
                 @endforeach
             </div>
         </div>
@@ -1271,247 +951,40 @@
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post as $recommended)
                     @if (preg_match('/' . $recommended->genre . ',?/i', $user->interest))
-                        @if ($recommended->user->type == 'Bookseller')
-                            @if ($recommended->status == 'Rent' && $recommended->stock > 0)
-                                <div class="card m-1 pb-4 shadow"
-                                    style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                    onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
-                                    <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
-                                        class="img mx-auto p-2" alt="..." width="130px" height="150px">
-                                    <div class="card-body py-0">
-                                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}
-                                        </p>
-                                        <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
-                                            {{ $recommended->genre }}</p>
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $recommended->user->address }}</p>
-                                        @foreach ($recommended->cart as $cart)
-                                            @if ($cart->user_id == session('id') && $cart->product_id == $recommended->id)
-                                                <div
-                                                    class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                    <span class="fw-bold p-0 text-success">Added to cart</span>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                            <span class="fw-bold p-0">₱{{ $recommended->security_deposit }}</span>
-                                            <div class="button-container">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle add-button"
-                                                        onclick="stopPropagation(event)" type="button"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item"
-                                                                href="/addtocart/{{ $recommended->id }}"
-                                                                onclick="stopPropagation(event)"><i
-                                                                    class="fa fa-cart-plus" aria-hidden="true"
-                                                                    style="margin-right: 7px"></i>Add to
-                                                                Cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @elseif ($recommended->stock > 0)
-                                <div class="card m-1 pb-4 shadow"
-                                    style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                    onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
-                                    <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
-                                        class="img mx-auto p-2" alt="..." width="130px" height="150px">
-                                    <div class="card-body py-0">
-                                        <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}
-                                        </p>
-                                        <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
-                                            {{ $recommended->genre }}</p>
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $recommended->user->address }}</p>
-                                        @foreach ($recommended->cart as $cart)
-                                            @if ($cart->user_id == session('id') && $cart->product_id == $recommended->id)
-                                                <div
-                                                    class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                    <span class="fw-bold p-0 text-success">Added to cart</span>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                        <div
-                                            class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                            <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
-                                            <div class="button-container">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle add-button"
-                                                        onclick="stopPropagation(event)" type="button"
-                                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item"
-                                                                href="/addtocart/{{ $recommended->id }}"
-                                                                onclick="stopPropagation(event)"><i
-                                                                    class="fa fa-cart-plus" aria-hidden="true"
-                                                                    style="margin-right: 7px"></i>Add to
-                                                                Cart</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @elseif ($recommended->status == 'Exchange' && $recommended->stock > 0)
-                            <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
-                                <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
-                                    class="img mx-auto p-2" alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
-                                    <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
-                                        {{ $recommended->genre }}</p>
-                                    @foreach ($recommended->user->addressUser as $address)
-                                        @if ($address->default_address)
-                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->address }}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($recommended->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $recommended->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">For Exchange</span>
-                                    </div>
-                                </div>
+                        <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
+                            onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $recommended->back_cover) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
+                            <div class="card-body py-0">
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
+                                    {{ $recommended->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $recommended->status }}</p>
                             </div>
-                        @elseif ($recommended->stock > 0)
-                            <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                                onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
-                                <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
-                                    class="img mx-auto p-2" alt="..." width="130px" height="150px">
-                                <div class="card-body py-0">
-                                    <p id="book-title" class="card-title mb-0 fw-bold">{{ $recommended->title }}
-                                    </p>
-                                    <p class="card-text mt-0 mb-0">{{ $recommended->author }}<br>
-                                        {{ $recommended->genre }}</p>
-                                    @foreach ($recommended->user->addressUser as $address)
-                                        @if ($address->default_address)
-                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->address }}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($recommended->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $recommended->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $recommended->price }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $recommended->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                                class="fa fa-list-alt" aria-hidden="true"
-                                                style="margin-right: 7px"></i>Add
-                                            to
-                                            Wishlist</a></li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
+                        </div>                        
                     @endif
                 @endforeach
             </div>
         </div>
         <!-- FOR SALE CONTENT -->
         <div id="for-sale-content" class="daily-discovery-content mt-3 w-100">
-            <h4 class="text-center daily_discovery_text mx-5 pb-2">FOR SALE</h4>
+            <h4 class="text-center daily_discovery_text mx-5 pb-2">ONLINE READING</h4>
             <div class="row justify-content-center mx-5 mb-4">
-                @foreach ($post->shuffle() as $sale)
-                    @if ($sale->status == 'Sale' && $sale->stock > 0)
+                @foreach ($post->shuffle() as $onlineReading)
+                    @if ($onlineReading->status == 'Online Reading')
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                            onclick="clickedPost({{ $sale->id }}, {{ $sale->user_id }})">
-                            <img src="{{ asset('images/books/' . $sale->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
+                            onclick="clickedPost({{ $onlineReading->id }}, {{ $onlineReading->user_id }})">
+                            <img src="{{ asset('images/book_cover/' . $onlineReading->back_cover) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
                             <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $sale->title }}</p>
-                                <p class="card-text mt-0 mb-0">{{ $sale->author }}<br>
-                                    {{ $sale->genre }}</p>
-                                @if ($sale->user->type == 'Bookseller')
-                                    <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>{{ $sale->user->address }}
-                                    </p>
-                                @else
-                                    @foreach ($sale->user->addressUser as $address)
-                                        @if ($address->default_address)
-                                            <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                    aria-hidden="true"></i>{{ $address->address }}
-                                            </p>
-                                        @endif
-                                    @endforeach
-                                @endif
-
-                                @if ($sale->cart->count() >= 0)
-                                    @foreach ($sale->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $sale->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">₱{{ $sale->price }}</span>
-                                        <div class="button-container">
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle add-button"
-                                                    onclick="stopPropagation(event)" type="button"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"
-                                                            href="/addtocart/{{ $sale->id }}"
-                                                            onclick="stopPropagation(event)"><i
-                                                                class="fa fa-cart-plus" aria-hidden="true"
-                                                                style="margin-right: 7px"></i>Add to
-                                                            Cart</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#" onclick="stopPropagation(event)"><i
-                                        class="fa fa-list-alt" aria-hidden="true"
-                                        style="margin-right: 7px"></i>Add to
-                                    Wishlist</a></li> --}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $onlineReading->title }}</p>
+                                <p class="card-text mt-0 mb-0">{{ $onlineReading->author }}<br>
+                                    {{ $onlineReading->genre }}</p>
+                                <p class="fw-bold" style="color: #E55B13;">{{ $onlineReading->status }}</p>
                             </div>
                         </div>
-                    @endif
+                        
+                    @endif                   
                 @endforeach
             </div>
         </div>
@@ -1520,39 +993,19 @@
             <h4 class="text-center daily_discovery_text mx-5 pb-2">FOR EXCHANGE</h4>
             <div class="row justify-content-center mx-5 mb-4">
                 @foreach ($post->shuffle() as $exchange)
-                    @if ($exchange->status == 'Exchange' && $exchange->stock > 0)
+                    @if ($exchange->status == 'Digital Exchange')
                         <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
                             onclick="clickedPost({{ $exchange->id }}, {{ $exchange->user_id }})">
-                            <img src="{{ asset('images/books/' . $exchange->book_photo) }}" class="img mx-auto p-2"
-                                alt="..." width="130px" height="150px">
+                            <img src="{{ asset('images/book_cover/' . $exchange->back_cover) }}"
+                                class="img mx-auto p-2" alt="..." width="130px" height="150px">
                             <div class="card-body py-0">
-                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}
-                                </p>
+                                <p id="book-title" class="card-title mb-0 fw-bold">{{ $exchange->title }}</p>
                                 <p class="card-text mt-0 mb-0">{{ $exchange->author }}<br>
                                     {{ $exchange->genre }}</p>
-                                @foreach ($exchange->user->addressUser as $address)
-                                    @if ($address->default_address)
-                                        <p class="card-text mt-0 mb-2 location-text"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i>{{ $address->address }}
-                                        </p>
-                                    @endif
-                                @endforeach
-                                @if ($exchange->cart->count() >= 0)
-                                    @foreach ($exchange->cart as $cart)
-                                        @if ($cart->user_id == session('id') && $cart->product_id == $exchange->id)
-                                            <div
-                                                class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                                <span class="fw-bold p-0 text-success">Added to cart</span>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <span class="fw-bold p-0">For Exchange</span>
-                                    </div>
-                                @endif
+                                <p class="fw-bold" style="color: #E55B13;">{{ $exchange->status }}</p>
                             </div>
                         </div>
-                    @endif
+                    @endif                    
                 @endforeach
 
             </div>
@@ -1821,92 +1274,92 @@
     });
 
     // Nearby seller Button
-    document.querySelector('.nearby-seller-btn').addEventListener('click', () => {
-        // alert('test nearby seller btn');
-        nearby_seller_modal.show();
-        fetch('/getuseraddress', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                result.address_user.forEach(address => {
-                    if (address.default_address) {
-                        var {
-                            latitude,
-                            longitude
-                        } = address;
+    // document.querySelector('.nearby-seller-btn').addEventListener('click', () => {
+    //     // alert('test nearby seller btn');
+    //     nearby_seller_modal.show();
+    //     fetch('/getuseraddress', {
+    //             method: 'GET'
+    //         })
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+    //             result.address_user.forEach(address => {
+    //                 if (address.default_address) {
+    //                     var {
+    //                         latitude,
+    //                         longitude
+    //                     } = address;
 
-                        if (document.getElementById('current-location').checked) {
-                            console.log('test');
-                            navigator.geolocation.getCurrentPosition(successCallback, errorCallback,
-                                options);
-                        } else {
-                            coordinates.lat = parseFloat(latitude);
-                            coordinates.lng = parseFloat(longitude);
-                            map = new google.maps.Map(document.getElementById('map'), {
-                                center: {
-                                    lat: coordinates.lat,
-                                    lng: coordinates.lng
-                                },
-                                zoom: 13
-                            });
+    //                     if (document.getElementById('current-location').checked) {
+    //                         console.log('test');
+    //                         navigator.geolocation.getCurrentPosition(successCallback, errorCallback,
+    //                             options);
+    //                     } else {
+    //                         coordinates.lat = parseFloat(latitude);
+    //                         coordinates.lng = parseFloat(longitude);
+    //                         map = new google.maps.Map(document.getElementById('map'), {
+    //                             center: {
+    //                                 lat: coordinates.lat,
+    //                                 lng: coordinates.lng
+    //                             },
+    //                             zoom: 13
+    //                         });
 
-                            drawCircle(map, {
-                                lat: coordinates.lat,
-                                lng: coordinates.lng
-                            }, document.getElementById('circle-radius').value);
-                        }
-                    }
-                })
-                getNearbyListings();
-            })
-            .catch(error => console.error(error));
-    });
+    //                         drawCircle(map, {
+    //                             lat: coordinates.lat,
+    //                             lng: coordinates.lng
+    //                         }, document.getElementById('circle-radius').value);
+    //                     }
+    //                 }
+    //             })
+    //             getNearbyListings();
+    //         })
+    //         .catch(error => console.error(error));
+    // });
 
-    // Nearby User Button
-    document.querySelector('.nearby-user-btn').addEventListener('click', () => {
-        nearby_user_modal.show();
-        fetch('/getuseraddress', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                result.address_user.forEach(address => {
-                    if (address.default_address) {
-                        var {
-                            latitude,
-                            longitude
-                        } = address;
+    // // Nearby User Button
+    // document.querySelector('.nearby-user-btn').addEventListener('click', () => {
+    //     nearby_user_modal.show();
+    //     fetch('/getuseraddress', {
+    //             method: 'GET'
+    //         })
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+    //             result.address_user.forEach(address => {
+    //                 if (address.default_address) {
+    //                     var {
+    //                         latitude,
+    //                         longitude
+    //                     } = address;
 
-                        if (document.getElementById('current-user-location').checked) {
-                            navigator.geolocation.getCurrentPosition(nearbyUserSuccessCallback,
-                                errorCallback, options);
-                        } else {
-                            coordinates.lat = parseFloat(latitude);
-                            coordinates.lng = parseFloat(longitude);
+    //                     if (document.getElementById('current-user-location').checked) {
+    //                         navigator.geolocation.getCurrentPosition(nearbyUserSuccessCallback,
+    //                             errorCallback, options);
+    //                     } else {
+    //                         coordinates.lat = parseFloat(latitude);
+    //                         coordinates.lng = parseFloat(longitude);
 
-                            map = new google.maps.Map(document.getElementById('users-map'), {
-                                center: {
-                                    lat: coordinates.lat,
-                                    lng: coordinates.lng
-                                },
-                                zoom: 13
-                            });
+    //                         map = new google.maps.Map(document.getElementById('users-map'), {
+    //                             center: {
+    //                                 lat: coordinates.lat,
+    //                                 lng: coordinates.lng
+    //                             },
+    //                             zoom: 13
+    //                         });
 
-                            drawCircle(map, {
-                                lat: coordinates.lat,
-                                lng: coordinates.lng
-                            }, document.getElementById('user-circle-radius').value);
+    //                         drawCircle(map, {
+    //                             lat: coordinates.lat,
+    //                             lng: coordinates.lng
+    //                         }, document.getElementById('user-circle-radius').value);
 
-                            getNearbyUsers();
-                        }
-                    }
-                });
-            })
-            .catch(error => console.error(error));
-    });
+    //                         getNearbyUsers();
+    //                     }
+    //                 }
+    //             });
+    //         })
+    //         .catch(error => console.error(error));
+    // });
 
     function getNearbyListings() {
         book_ids = [];
@@ -2208,7 +1661,7 @@
 
                     result.forEach(data => {
                         console.log(data);
-                        if (data.stock > 0) {
+                        // if (data.stock > 0) {
                             const suggestionElement = document
                                 .createElement('div');
                             const searchedImage = document.createElement(
@@ -2220,8 +1673,8 @@
                             // suggestionElement.textContent = data.title;
                             suggestionElement.id = "searched-item";
                             suggestionElement.className = 'row px-2';
-                            searchedImage.src = '/images/books/' + data
-                                .book_photo;
+                            searchedImage.src = '/images/book_cover/' + data
+                                .back_cover;
                             searchedImage.className = 'col-3 px-0 bg-light';
                             searchedContent.className = 'col border';
                             searchedContent.id = 'textContent';
@@ -2233,8 +1686,7 @@
                             suggestionElement.addEventListener('click',
                                 () => {
                                     window.location.href = "/product/" +
-                                        data.id + "/" + data
-                                        .user_id;
+                                        data.id;
                                     searchContainer.innerHTML = '';
                                 });
                             searchContainer.appendChild(suggestionElement);
@@ -2248,7 +1700,7 @@
                             //     breakLoop = true;
                             //     return false;
                             // }
-                        }
+                        // }
                     });
                 })
                 .catch(error => console.log('error', error));
@@ -2259,7 +1711,7 @@
     });
     // clicked post
     function clickedPost(id, user_id) {
-        window.location.href = "/product/" + id + "/" + user_id;
+        window.location.href = "/product/" + id;
     };
     // tooltip
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -2305,7 +1757,7 @@
     // var near_you_cards = document.getElementById("near_you");
     var for_sale_cards = document.getElementById("for_sale");
     var for_exchange_cards = document.getElementById("for_exchange");
-    var for_rent_cards = document.getElementById("for_rent");
+    // var for_rent_cards = document.getElementById("for_rent");
     var daily_discover_btn = document.getElementById("daily-discover-header");
     var featured_btn = document.getElementById("featured-header");
     var recommended_btn = document.getElementById("recommended-header");
@@ -2321,7 +1773,7 @@
         // near_you_cards.style.display = "none";
         for_sale_cards.style.display = "none";
         for_exchange_cards.style.display = "none";
-        for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
         document.getElementById("daily-discovery-content").style.display = "table";
     });
     featured_btn.addEventListener("click", function() {
@@ -2331,7 +1783,7 @@
         // near_you_cards.style.display = "none";
         for_sale_cards.style.display = "none";
         for_exchange_cards.style.display = "none";
-        for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
         document.getElementById("featured-content").style.display = "table";
     });
     recommended_btn.addEventListener("click", function() {
@@ -2341,7 +1793,7 @@
         // near_you_cards.style.display = "none";
         for_sale_cards.style.display = "none";
         for_exchange_cards.style.display = "none";
-        for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
         document.getElementById("recommended-content").style.display = "table";
     });
     // near_you_btn.addEventListener("click", function() {
@@ -2351,7 +1803,7 @@
     // near_you_cards.style.display = "none";
     //     for_sale_cards.style.display = "none";
     //     for_exchange_cards.style.display = "none";
-    //     for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
     //     document.getElementById("near-you-content").style.display = "table";
     // });
     for_sale_btn.addEventListener("click", function() {
@@ -2361,7 +1813,7 @@
         // near_you_cards.style.display = "none";
         for_sale_cards.style.display = "none";
         for_exchange_cards.style.display = "none";
-        for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
         document.getElementById("for-sale-content").style.display = "table";
     });
     for_exchange_btn.addEventListener("click", function() {
@@ -2371,7 +1823,7 @@
         // near_you_cards.style.display = "none";
         for_sale_cards.style.display = "none";
         for_exchange_cards.style.display = "none";
-        for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
         document.getElementById("for-exchange-content").style.display = "table";
     });
     // for_rent_btn.addEventListener("click", function() {
@@ -2381,7 +1833,7 @@
     //     // near_you_cards.style.display = "none";
     //     for_sale_cards.style.display = "none";
     //     for_exchange_cards.style.display = "none";
-    //     for_rent_cards.style.display = "none";
+        // for_rent_cards.style.display = "none";
     //     document.getElementById("for-rent-content").style.display = "table";
     // });
 </script>
