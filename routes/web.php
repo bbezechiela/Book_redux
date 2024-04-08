@@ -58,13 +58,15 @@ Route::get('/followers', [UserController::class, 'followers']);
 
 Route::get('/explore', [UserController::class, 'explore'])->name('explore');
 
+Route::get('/materials', [UserController::class, 'materials']);
+
 Route::get('/notification', [UserController::class, 'notification']);
 
 Route::get('/read', [UserController::class, 'readNotification']);
 
 Route::get('/unread', [UserController::class, 'unreadNotification']);
 
-Route::get('/messageses', [UserController::class, 'message']);
+Route::get('/messageses', [MessageController::class, 'messageses']);
 
 Route::get('/messages/{user}', [MessageController::class, 'messages']);
 
@@ -387,6 +389,13 @@ Route::get('/getPosts', [BookClubController::class, 'getPosts']);
 Route::get('/getUser', [BookClubController::class, 'getUser']);
 
 Route::post('/addMember', [BookClubController::class, 'addMember']);
+
+// Materials API
+Route::post('/uploadMaterial', [MaterialController::class, 'uploadMaterial']);
+
+Route::get('/getMaterials', [MaterialController::class, 'getMaterials']);
+
+Route::get('/document/{slug}', [MaterialController::class, 'document']);
 
 // API's
 Route::get('/gettoshipitem/{id}', [UserController::class, 'getToShip']);
