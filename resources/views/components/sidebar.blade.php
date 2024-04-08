@@ -21,10 +21,10 @@
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Explore</span>
     </a>
-    <a href="/materials" class="btn nav-item d-flex flex-row w-100 px-5 py-0 explore-side-btn">
+    {{-- <a href="/materials" class="btn nav-item d-flex flex-row w-100 px-5 py-0 explore-side-btn">
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Materials</span>
-    </a>
+    </a> --}}
     {{-- <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
