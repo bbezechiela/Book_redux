@@ -200,8 +200,8 @@ class UserController extends Controller
         if (session()->has('uid')) {
 
             // $users = Users::where();
-            $user = Users::with('books', 'reviews')->find($id);
-            $post = Books::with('user.addressUser', 'cart')->get();
+            $user = Users::with('books')->find($id);
+            $post = Books::with('user')->get();
             return view('users.userProfilePreview', ['user' => $user, 'post' => $post]);
         } else {
             return view('landing_page')->with('message', 'You have to login first');
@@ -719,8 +719,8 @@ class UserController extends Controller
         $user = Users::find(session('id'));
         $user->update($validated);
         if ($user) {
-            // return redirect('/explore');
-            return redirect('/addresses');
+            return redirect('/explore');
+            // return redirect('/addresses');
         } else {
             return 'error bitch';
         }

@@ -30,16 +30,16 @@
                         <li class="nav-item dropdown">
                             <a href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 class="nav-link dropdown-toggle avatar" aria-expanded="false" title="profile">
-                                <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}"
+                                <img src="{{ session('image') }}"
                                     alt="notification" width="35" height="35" class="rounded-5"
                                     style="margin-right: 2em;">
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
                                 <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
-                                <li><a class="dropdown-item" href="/addresses">Addresses</a></li>
+                                {{-- <li><a class="dropdown-item" href="/addresses">Addresses</a></li> --}}
                                 {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
-                                <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a>
+                                {{-- <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a> --}}
                                 </li>
                             </ul>
                         </li>
@@ -54,7 +54,7 @@
                         <div class="rounded-top text-white d-flex flex-row"
                             style="background-color: #003060; height:200px;">
                             <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                                <img src="{{ asset('images/profile_photos/' . $user->profile_photo) }}"
+                                <img src="{{ $user->profile_photo }}"
                                     alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                     style="width: 150px; z-index: 1; background-color: #FFF;">
                                 <button type="button" class="btn message-button" style="z-index: 1;">
@@ -62,7 +62,7 @@
                                 </button>
                             </div>
                             <div class="ms-3" style="margin-top: 130px;">
-                                @if ($user->type == 'Bookseller')
+                                {{-- @if ($user->type == 'Bookseller')
                                     <h5>{{ $user->business_name }}</h5>
                                     <p>{{ $user->address }}</p>
                                 @else
@@ -72,9 +72,9 @@
                                             <h5>{{ $address->address }}</h5>
                                         @endif
                                     @endforeach
-                                @endif
+                                @endif --}}
                             </div>
-                            <div class="dropdown">
+                            {{-- <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-ellipsis-h ellipsis-icon ml-auto" aria-hidden="true"></i>
@@ -84,7 +84,7 @@
                                                 aria-hidden="true" style="margin-right: 1px"></i>
                                             Report</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="p-4 text-black" style="background-color: #f8f9fa;">
                             <div class="d-flex justify-content-end text-center py-1">
@@ -115,9 +115,9 @@
                                         href="/userlistings/{{ $user->id }}">Listings</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link custom-nav-link" href="/userreviews/{{ $user->id }}">User
+                                    {{-- <a class="nav-link custom-nav-link" href="/userreviews/{{ $user->id }}">User
                                         Reviews and
-                                        Ratings</a>
+                                        Ratings</a> --}}
                                 </li>
                             </ul>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="card col-3 m-1 pb-3 shadow"
                                 style="width: 240px; flex: 0 0 auto; cursor: pointer;"
                                 onclick="clickedPost({{ $book->id }}, {{ $book->user_id }})">
-                                <img src="{{ asset('images/books/' . $book->book_photo) }}" class="img mx-auto p-2"
+                                <img src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto p-2"
                                     alt="{{ $book->book_photo }}" width="130px" height="170px">
                                 <div class="card-body py-0">
                                     <p class="card-title mb-0 fw-bold">
@@ -161,7 +161,7 @@
                             <div class="card-body"
                                 onclick="clickedPost({{ $recommended->id }}, {{ $recommended->user_id }})">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('images/books/' . $recommended->book_photo) }}"
+                                    <img src="{{ asset('images/book_cover/' . $recommended->back_cover) }}"
                                         alt="Book Image" class="rounded me-3" width="80" height="80">
                                     <div>
                                         <h6 id="book-title" class="mb-0">{{ $recommended->title }}</h6>
@@ -183,7 +183,7 @@
 
 <script>
     function clickedPost(id, user_id) {
-        window.location.href = "/product/" + id + "/" + user_id;
+        window.location.href = "/product/" + id;
     };
     var recommended_cards = document.getElementById("recommended");
     var recommended_btn = document.getElementById("recommended-header");

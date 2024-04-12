@@ -120,10 +120,10 @@
                                 data-bs-toggle="modal" class="btn cart-button" data-bs-target="#readNowModal"
                                 style="margin-bottom: 1em;">Read Now
                             </button>
-                            <button id="saveBtn" class="btn save-button" data-bs-toggle="modal" data-bs-target="#"
+                            {{-- <button id="saveBtn" class="btn save-button" data-bs-toggle="modal" data-bs-target="#"
                                 style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true"
                                     style="margin-right: 7px;"></i>Save
-                            </button>
+                            </button> --}}
                         @endif
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                     <img src="{{ $book->user->profile_photo }}" alt="lister image" class="circle-picture">
                     <div class="user-info">
                         <p>{{ $book->user->name }}</p>
-                        <button class="message-button" data-username="Nestinenn"><i class="fa fa-envelope"
+                        <button onclick="redirect({{ $book->user->id }})" class="message-button" data-username="Nestinenn"><i class="fa fa-envelope"
                                 aria-hidden="true"></i>Message</button>
                         <a href="/userlistings/{{ $book->user->id }}"><button class="view-profile-button"><i
                                     class="fa fa-eye" aria-hidden="true"></i>Profile</button></a>
@@ -149,22 +149,22 @@
                 </div>
             </div>
             <div class="col">
-                <div class="listings">
+                {{-- <div class="listings">
                     <h4 style="color: #E55B13;">20 </h4>
                     <p class="card-text">Listed Books for Exchange</p>
-                </div>
+                </div> --}}
             </div>
             <div class="col">
-                <div class="listings">
+                {{-- <div class="listings">
                     <h4 style="color: #E55B13;">10 </h4>
                     <p class="card-text">Listed Books for Online Reading</p>
-                </div>
+                </div> --}}
             </div>
             <div class="col">
-                <div class="reviews">
+                {{-- <div class="reviews">
                     <h4 style="color: #E55B13;">18</h4>
                     <p class="card-text">User Ratings and Reviews</p>
-                </div>
+                </div> --}}
             </div>
 
         </div>
@@ -740,6 +740,9 @@
 </script>
 
 <script>
+    const redirect = (id) => {
+        window.location.href = `/messages/${id}`;
+    }
     // var first_img = document.getElementById('first-img');
     // var second_img = document.getElementById('second-img');
     // var third_img = document.getElementById('third-img');

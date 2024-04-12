@@ -921,7 +921,7 @@
                                     {{ $daily->genre }}</p>
                                 <p class="fw-bold" style="color: #E55B13;">{{ $daily->status }}</p>
                             </div>
-                        </div>                        
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -941,7 +941,7 @@
                                 {{ $daily->genre }}</p>
                             <p class="fw-bold" style="color: #E55B13;">{{ $daily->status }}</p>
                         </div>
-                    </div>                   
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -961,7 +961,7 @@
                                     {{ $recommended->genre }}</p>
                                 <p class="fw-bold" style="color: #E55B13;">{{ $recommended->status }}</p>
                             </div>
-                        </div>                        
+                        </div>
                     @endif
                 @endforeach
             </div>
@@ -983,8 +983,7 @@
                                 <p class="fw-bold" style="color: #E55B13;">{{ $onlineReading->status }}</p>
                             </div>
                         </div>
-                        
-                    @endif                   
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -1005,7 +1004,7 @@
                                 <p class="fw-bold" style="color: #E55B13;">{{ $exchange->status }}</p>
                             </div>
                         </div>
-                    @endif                    
+                    @endif
                 @endforeach
 
             </div>
@@ -1156,11 +1155,11 @@
 ])
 <script>
     window.embeddedChatbotConfig = {
-        chatbotId: "qSqyY67YEs7_l0X-mtrQI",
+        chatbotId: "XDQ-VKWvQDxvk6o6YOZkL",
         domain: "www.chatbase.co"
     }
 </script>
-<script src="https://www.chatbase.co/embed.min.js" chatbotId="qSqyY67YEs7_l0X-mtrQI" domain="www.chatbase.co" defer>
+<script src="https://www.chatbase.co/embed.min.js" chatbotId="XDQ-VKWvQDxvk6o6YOZkL" domain="www.chatbase.co" defer>
 </script>
 
 
@@ -1662,44 +1661,44 @@
                     result.forEach(data => {
                         console.log(data);
                         // if (data.stock > 0) {
-                            const suggestionElement = document
-                                .createElement('div');
-                            const searchedImage = document.createElement(
-                                'img');
-                            const searchedContent = document.createElement(
-                                'div');
-                            const titleText = document.createElement('p');
-                            const authorText = document.createElement('p');
-                            // suggestionElement.textContent = data.title;
-                            suggestionElement.id = "searched-item";
-                            suggestionElement.className = 'row px-2';
-                            searchedImage.src = '/images/book_cover/' + data
-                                .back_cover;
-                            searchedImage.className = 'col-3 px-0 bg-light';
-                            searchedContent.className = 'col border';
-                            searchedContent.id = 'textContent';
-                            titleText.className = 'm-0 fw-bold';
-                            titleText.id = 'searched-title';
-                            titleText.textContent = data.title;
-                            authorText.id = 'searched-author';
-                            authorText.textContent = data.author;
-                            suggestionElement.addEventListener('click',
-                                () => {
-                                    window.location.href = "/product/" +
-                                        data.id;
-                                    searchContainer.innerHTML = '';
-                                });
-                            searchContainer.appendChild(suggestionElement);
-                            suggestionElement.appendChild(searchedImage);
-                            suggestionElement.appendChild(searchedContent);
-                            searchedContent.appendChild(titleText);
-                            searchedContent.appendChild(authorText);
+                        const suggestionElement = document
+                            .createElement('div');
+                        const searchedImage = document.createElement(
+                            'img');
+                        const searchedContent = document.createElement(
+                            'div');
+                        const titleText = document.createElement('p');
+                        const authorText = document.createElement('p');
+                        // suggestionElement.textContent = data.title;
+                        suggestionElement.id = "searched-item";
+                        suggestionElement.className = 'row px-2';
+                        searchedImage.src = '/images/book_cover/' + data
+                            .back_cover;
+                        searchedImage.className = 'col-3 px-0 bg-light';
+                        searchedContent.className = 'col border';
+                        searchedContent.id = 'textContent';
+                        titleText.className = 'm-0 fw-bold';
+                        titleText.id = 'searched-title';
+                        titleText.textContent = data.title;
+                        authorText.id = 'searched-author';
+                        authorText.textContent = data.author;
+                        suggestionElement.addEventListener('click',
+                            () => {
+                                window.location.href = "/product/" +
+                                    data.id;
+                                searchContainer.innerHTML = '';
+                            });
+                        searchContainer.appendChild(suggestionElement);
+                        suggestionElement.appendChild(searchedImage);
+                        suggestionElement.appendChild(searchedContent);
+                        searchedContent.appendChild(titleText);
+                        searchedContent.appendChild(authorText);
 
-                            // loopCount++;
-                            // if (loopCount === 3) {
-                            //     breakLoop = true;
-                            //     return false;
-                            // }
+                        // loopCount++;
+                        // if (loopCount === 3) {
+                        //     breakLoop = true;
+                        //     return false;
+                        // }
                         // }
                     });
                 })
@@ -1803,7 +1802,7 @@
     // near_you_cards.style.display = "none";
     //     for_sale_cards.style.display = "none";
     //     for_exchange_cards.style.display = "none";
-        // for_rent_cards.style.display = "none";
+    // for_rent_cards.style.display = "none";
     //     document.getElementById("near-you-content").style.display = "table";
     // });
     for_sale_btn.addEventListener("click", function() {
@@ -1833,7 +1832,7 @@
     //     // near_you_cards.style.display = "none";
     //     for_sale_cards.style.display = "none";
     //     for_exchange_cards.style.display = "none";
-        // for_rent_cards.style.display = "none";
+    // for_rent_cards.style.display = "none";
     //     document.getElementById("for-rent-content").style.display = "table";
     // });
 </script>

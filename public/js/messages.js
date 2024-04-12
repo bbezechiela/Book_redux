@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // messageUsingPost
     function messageUsingPost() {
-        fetch(`/messageUsingPost?username=${usernameFromPost}`, {
+        fetch(`/messageUsingPost?id=${usernameFromPost}`, {
             method: 'GET',
         })
             .then(response => {
@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     // receiver name
                     const receiverName = document.createElement('div');
-                    receiverName.textContent =  response.data[0].username;
+                    receiverName.textContent =  response.data[0].name;
                     receiverName.style.paddingLeft = '15px';
                     
                     // receiver photo
                     const receiver_photo = document.createElement('div');
                     receiver_photo.style.cssText = receiver_profile_pic_styles;
-                    const imgLocation = window.location.origin + '/images/profile_photos/' + response.data[0].profile_photo;
-                    receiver_photo.style.backgroundImage = 'url("' + imgLocation +'")';
+                    const imgLocation = window.location.origin + response.data[0].profile_photo;
+                    receiver_photo.style.backgroundImage = `url(${response.data[0].profile_photo})`;
                     
                     // conversation menu
                     const conversationMenu = document.createElement('div');
