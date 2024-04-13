@@ -125,7 +125,7 @@ class MessageController extends Controller
                 'sender_id' => $sender_id,
                 'receiver_id' => $receiver_id,
                 'message_content' => $message_content,
-                'messsage_type' => $message_type,
+                'message_type' => $message_type,
                 'conversation_id' => $checker1->conversation_id
             ]);
             if ($messageInsert) {

@@ -1324,7 +1324,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             if (img_file === null) {
                                 formData.append('sender_id', current_user_id);
                                 formData.append('receiver_id', responses.data.id);
-                                formData.append('message_content', message_value);
+                                formData.append('message_content', messageValue);
                                 formData.append('message_type', 'text');
                                 formData.append('conversation_name', conversation_name);
                             } else  {
@@ -1353,9 +1353,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                     document.getElementById('messageForm').reset();
                                 })
                                 .catch(error => console.log(error));
-                            
-                            // pag send message
-                        
                             
                         });  
             

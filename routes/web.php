@@ -384,11 +384,6 @@ Route::get('/getUser', [BookClubController::class, 'getUser']);
 
 Route::post('/addMember', [BookClubController::class, 'addMember']);
 
-// Materials API
-Route::post('/uploadMaterial', [MaterialController::class, 'uploadMaterial']);
-
-Route::get('/getMaterials', [MaterialController::class, 'getMaterials']);
-
 Route::get('/document/{slug}', [MaterialController::class, 'document']);
 
 // API's
