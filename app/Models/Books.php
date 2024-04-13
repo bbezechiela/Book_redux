@@ -29,6 +29,10 @@ class Books extends Model
         return $this->hasMany(Track_Rental::class, 'book_id');
     }
 
+    public function request() {
+        return $this->hasMany(Exchange_Requests::class, 'target_book_id');
+    }
+
     protected $fillable = [
         'user_id',
         'status',

@@ -240,6 +240,18 @@
     color: #fff;
 }
 
+.report-button {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.report-button:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
 .receive-button,
 .confirm-btn:hover,
 .request-btn:hover,

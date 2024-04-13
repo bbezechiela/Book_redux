@@ -272,9 +272,9 @@ class MessageController extends Controller
     }
 
     function messageUsingPost(Request $request) {
-        $username = $request->query('username');
+        $username = $request->query('id');
 
-        $getter = Users::where('username', '=', $username)->get();
+        $getter = Users::where('id', '=', $username)->get();
 
         if ($getter->count() > 0) {
             return response()->json(['data' => $getter]);

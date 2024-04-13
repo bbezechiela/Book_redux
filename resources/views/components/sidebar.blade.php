@@ -21,10 +21,10 @@
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Explore</span>
     </a>
-    <a href="/materials" class="btn nav-item d-flex flex-row w-100 px-5 py-0 explore-side-btn">
+    {{-- <a href="/materials" class="btn nav-item d-flex flex-row w-100 px-5 py-0 explore-side-btn">
         <i class="fa fa-compass d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Materials</span>
-    </a>
+    </a> --}}
     {{-- <a href="/cart" class="btn nav-item d-flex flex-row w-100 px-5 py-0 cart-side-btn">
         <i class="fa fa-shopping-cart d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Cart</span>
@@ -33,10 +33,10 @@
         <i class="fa fa-envelope-o d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Messages</span>
     </a>
-    <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
+    {{-- <a href="/sellingclub" class="btn nav-item d-flex flex-row w-100 px-5 py-0 bookclub-side-btn">
         <i class="fa fa-users d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Book Club</span>
-    </a>
+    </a> --}}
     {{-- <a href="#" class="btn nav-item d-flex flex-row w-100 px-5 py-0">
         <i class="d-flex align-items-center"><img src="/assets/book_trading-icon.png" alt="home icon" width="20"
                 class="img"></i>
@@ -51,10 +51,10 @@
                 class="img"></i>
         <span class="nav-link">Book Shelf</span>
     </a> --}}
-    <a href="/categories" class="btn nav-item d-flex flex-row w-100 px-5 py-0 categories-side-btn">
+    {{-- <a href="/categories" class="btn nav-item d-flex flex-row w-100 px-5 py-0 categories-side-btn">
         <i class="fa fa-object-group d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Genres</span>
-    </a>
+    </a> --}}
     <a href="/mylist" class="btn nav-item d-flex flex-row w-100 px-5 py-0 mylist-side-btn">
         <i class="fa fa-list-ul d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">My List</span>

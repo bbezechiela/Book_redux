@@ -6,7 +6,7 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookClubController;
-use App\Http\Controllers\MaterialController;
+use App\Models\Exchange_Requests;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,7 +78,9 @@ Route::get('/adminnotification', [UserController::class, 'adminNotification']);
 
 // Route::get('/search', [UserController::class, 'searchResult']);
 
-Route::get('/product/{id}/{user_id}', [UserController::class, 'singleProduct']);
+Route::get('/product/{id}', [UserController::class, 'singleProduct']); //Amu adi an orig
+
+// Route::get('/product', [UserController::class, 'singleProduct']); //Temporary lang kay dik natutuhay han UI
 
 Route::get('/listingdetails/{id}', [AdminController::class, 'productDetailsPreview']);
 
@@ -152,6 +154,8 @@ Route::post('/register', [UserController::class, 'store']);
 
 Route::post('/mylist/salepost', [ListingController::class, 'saleList']);
 
+Route::post('/mylist/digitalpost', [ListingController::class, 'digitalPost']);
+
 Route::post('/mylist/exchangepost', [ListingController::class, 'exchangeList']);
 
 Route::post('/listing/rentpost', [ListingController::class, 'rentList']);
@@ -193,6 +197,8 @@ Route::get('/reviews', [SellerController::class, 'reviewsRating']);
 Route::get('/sellermyreviews', [SellerController::class, 'myReviews']);
 
 Route::post('/mylist/updateSale/{id}', [ListingController::class, 'saleUpdate']);
+
+Route::post('/mylist/digitalupdate/{id}', [ListingController::class, 'digitalUpdate']);
 
 Route::post('/mylist/updateExchange/{id}', [ListingController::class, 'exchangeUpdate']);
 
@@ -384,7 +390,12 @@ Route::get('/getUser', [BookClubController::class, 'getUser']);
 
 Route::post('/addMember', [BookClubController::class, 'addMember']);
 
-Route::get('/document/{slug}', [MaterialController::class, 'document']);
+// Materials API
+Route::post('/uploadMaterial', [MaterialController::class, 'uploadMaterial']);
+
+Route::get('/getMaterials', [MaterialController::class, 'getMaterials']);
+
+// Route::get('/document/{slug}', [MaterialController::class, 'document']);
 
 // API's
 Route::get('/gettoshipitem/{id}', [UserController::class, 'getToShip']);
@@ -429,6 +440,16 @@ Route::get('/getnearbybooks', [UserController::class, 'getNearbyBooks']);
 
 Route::post('/getnearbylistings', [UserController::class, 'nearbyListings']);
 
+Route::post('/exchangerequest', [ListingController::class, 'exchangeRequest']);
+
+Route::post('/confirmexchange', [ListingController::class, 'confirmExchangeRequest']);
+
+Route::get('/viewrequest/{id}', [ListingController::class, 'viewRequest']);
+
+Route::get('/viewbook/{id}', [ListingController::class, 'viewBook']);
+
+// Route::get('/declineorder/{id}', [ListingController::class, 'declineOrder'])
+
 
 // New API's
 Route::post('/googlesignin', [UserController::class, 'googleSignIn']);
@@ -436,3 +457,7 @@ Route::post('/googlesignin', [UserController::class, 'googleSignIn']);
 Route::post('/googlelogin', [UserController::class, 'googleLogin']);
 
 Route::get('/getbook/{id}', [ListingController::class, 'getBookID']);
+
+Route::get('/request/{id}', [UserController::class, 'getExchangeRequest']);
+
+Route::get('/requestsub/{id}', [UserController::class, 'getBookRequest']);

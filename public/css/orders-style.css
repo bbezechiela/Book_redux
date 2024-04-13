@@ -565,6 +565,18 @@
     margin: 0 auto;
 }
 
+.report-button {
+    background-color: #E55B13;
+    border-color: #E55B13;
+    color: #fff;
+}
+
+.report-button:hover {
+    background-color: #003060;
+    border-color: #003060;
+    color: #fff;
+}
+
 .accept {
     color: #FFF;
     background: #E55B13;
@@ -573,6 +585,16 @@
 .accept:hover {
     color: #FFF;
     background: #6FE76F;
+}
+
+.preview {
+    color: #003060;
+    background: #dae9f8;
+}
+
+.preview:hover {
+    color: #FFF;
+    background: #003060;
 }
 
 .deny {

@@ -21,10 +21,10 @@
                         <a class="nav-link fs-7" aria-current="page" href="#home" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Home">Home</a>
                     </li>
-                    <li class="nav-item mx-2 px-3">
+                    {{-- <li class="nav-item mx-2 px-3">
                         <a class="nav-link fs-7" aria-current="page" href="#listings" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Listings">Listings</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item mx-2 px-3">
                         <a class="nav-link fs-7" href="#howItWorks" data-bs-toggle="tooltip" data-bs-placement="bottom"
                             data-bs-title="How it Works">How it Works</a>
@@ -59,7 +59,7 @@
                     data-bs-placement="top" data-bs-title="Sign Up">Sign In</a> --}}
                 <a id="signup-btn" class="btn px-5 w-75 py-2 ms-2" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="Sign Up">
-                    Signin with &ensp;
+                    Sign up with &ensp;
                     <img class="img" src="/assets/googleIcon.svg" alt="google icon" />
                     oogle
                 </a>
@@ -594,7 +594,7 @@
 
                 const user = result.user;
                 if (user.emailVerified) {
-                    // console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}`);
+                    console.log(`uid: ${user.uid}, \nemail: ${user.email}, \nname: ${user.displayName}, \nimage: ${user.photoURL}`);
                     googleLogin(user.uid, user.photoURL)
                         .then(response => {
                             if (response.redirected) {
