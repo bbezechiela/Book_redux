@@ -1114,4 +1114,9 @@ class ListingController extends Controller
         $book = Books::find($id);
         return $book;
     }
+
+    public function getRequestUser($id) {
+        $user = Users::find($id);
+        return $user;
+    }
 }

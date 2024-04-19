@@ -22,8 +22,8 @@
             aria-labelledby="offcanvasExampleLabel">
             <x-sidebar />
         </div>
-        <div id="content" class="content">
-            <ul class="nav bg-light sticky-top head-nav shadow py-2 px-4">
+        <div id="content" class="content pt-5">
+            <ul class="nav bg-light fixed-top head-nav shadow py-2 px-4">
                 <div class="w-100 d-flex mt-2 p-0">
                     <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                         aria-controls="offcanvasExample">
@@ -59,8 +59,12 @@
 
         {{-- DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY --}}
 
-        <div class="card mb-3 book-details mx-4">
+        <div class="card mb-3 mt-5 book-details mx-4">
             <div class="row g-0">
+                <button class="btn px-3 py-1 rounded-3 position-absolute top-0 end-0 text-white" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                    style="width: fit-content; background-color: #003060; border-color: #003060;">Rate this
+                    Book</button>
                 <div class="col-md-4 p-5 stretch-card">
                     <img src="{{ asset('images/book_cover/' . $book->back_cover) }}" width="100%" height="100%"
                         alt="book">
@@ -107,7 +111,7 @@
                                     data-bs-target="#digital_exchange_request" style="margin-bottom: 1em;">Send Exchange
                                     Request
                                     <i class="fa fa-exchange" aria-hidden="true"
-                                        style="margin-left: 8px; margin-right: 4px;"></i></button>                            
+                                        style="margin-left: 8px; margin-right: 4px;"></i></button>
                                 {{-- @foreach ($book->request as $req)
                                     @if ($req->user_id == session('id'))
                                         <p>Please Wait</p>
@@ -120,10 +124,10 @@
                                 data-bs-toggle="modal" class="btn cart-button" data-bs-target="#readNowModal"
                                 style="margin-bottom: 1em;">Read Now
                             </button>
-                            {{-- <button id="saveBtn" class="btn save-button" data-bs-toggle="modal" data-bs-target="#"
+                            <button id="saveBtn" class="btn save-button" data-bs-toggle="modal" data-bs-target="#"
                                 style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true"
                                     style="margin-right: 7px;"></i>Save
-                            </button> --}}
+                            </button>
                         @endif
                     </div>
                 </div>
@@ -131,9 +135,43 @@
         </div>
     </div>
 
+    {{-- Rating Modal --}}
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Rate this Book</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center mb-2">
+                        <i id="one-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
+                        <i id="two-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
+                        <i id="three-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;"
+                            aria-hidden="true"></i>
+                        <i id="four-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
+                        <i id="five-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
+                    </div>
+                    <textarea class="w-100 mb-2 p-3" name="" placeholder="Description" id="" cols="40" rows="5"></textarea>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn text-white" style="background-color: #E55B13;">Submit</button>
+                    </div>
+                </div>
+                {{-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+
+
+
+
     {{-- DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY --}}
 
-    <h3 style="color: #003060; margin-top: 1em; margin-left: 3em;">Book Sharer</h3>
+    <h3 style="color: #003060; margin-top: 5em; margin-left: 3em;">Book Sharer</h3>
     <div class="container text-center seller-details">
         <div class="row align-items-center">
             <div class="col">
@@ -141,7 +179,8 @@
                     <img src="{{ $book->user->profile_photo }}" alt="lister image" class="circle-picture">
                     <div class="user-info">
                         <p>{{ $book->user->name }}</p>
-                        <button onclick="redirect({{ $book->user->id }})" class="message-button" data-username="Nestinenn"><i class="fa fa-envelope"
+                        <button onclick="redirect({{ $book->user->id }})" class="message-button"
+                            data-username="Nestinenn"><i class="fa fa-envelope"
                                 aria-hidden="true"></i>Message</button>
                         <a href="/userlistings/{{ $book->user->id }}"><button class="view-profile-button"><i
                                     class="fa fa-eye" aria-hidden="true"></i>Profile</button></a>
@@ -210,160 +249,7 @@
     </div>
 
 
-    <!-- Physical Exchange Request Modal -->
-    {{-- <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Physical Exchange
-                        Request
-                        Form
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault01" style="color:#003060;">Title</label>
-                                <input type="text" class="form-control" id="validationDefault01"
-                                    placeholder="Title" value="" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault02" style="color:#003060;">ISBN</label>
-                                <input type="text" class="form-control" id="validationDefault02"
-                                    placeholder="ISBN" value="" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault03" style="color:#003060;">Author</label>
-                                <input type="text" class="form-control" id="validationDefault03"
-                                    placeholder="Author" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault04" style="color:#003060;">Genre</label>
-                                <select class="form-control" id="validationDefault04">
-                                    <option selected>Genre</option>
-                                    <option value="Educational">Educational</option>
-                                    <option value="Romance & Saga">Romance & Saga</option>
-                                    <option value="Fantasy & Adventure">Fantasy & Adventure</option>
-                                    <option value="Science Fiction">Science Fiction</option>
-                                    <option value="Historical Fiction">Historical Fiction</option>
-                                    <option value="Mystery & Suspense">Mystery & Suspense</option>
-                                    <option value="Young Adult">Young Adult</option>
-                                    <option value="Non-Fiction & Biography">Non-Fiction & Biography</option>
-                                    <option value="Horror & Supernatural">Horror & Supernatural</option>
-                                    <option value="Comedy & Satire">Comedy & Satire</option>
-                                    <option value="Poetry & Prose">Poetry & Prose</option>
-                                    <option value="Self-Help">Self-Help</option>
-                                    <option value="Crime & Thriller">Crime & Thriller</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault05" style="color:#003060;">Edition</label>
-                                <input type="text" class="form-control" id="validationDefault05"
-                                    placeholder="Edition" required>
-                            </div>
-                            <div class="col-md-6 mb-3 form-group">
-                                <label for="validationDefault06" style="color:#003060;">Format</label>
-                                <select class="form-control" id="validationDefault06">
-                                    <option selected>Format</option>
-                                    <option value="Hardback">Hardback</option>
-                                    <option value="Paperback">Paperback</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault07" style="color:#003060;">Condition</label>
-                                <select class="form-control" id="validationDefault07">
-                                    <option selected>Condition</option>
-                                    <option value="New">New</option>
-                                    <option value="Like New">Like New</option>
-                                    <option value="Very Good">Very Good</option>
-                                    <option value="Good">Good</option>
-                                    <option value="Fair">Fair</option>
-                                    <option value="Poor">Poor</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="validationDefault08" style="color:#003060;">Exchange Method
-                                    Preference</label>
-                                <select class="form-control" id="validationDefault08">
-                                    <option selected>Exchange Method Preference</option>
-                                    <option value="Meetup">Meetup</option>
-                                    <option value="Delivery">Delivery</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" id="exchange-shipping-fee-btn" class="form-control"
-                            data-bs-toggle="tooltip" data-bs-placement="top"
-                            data-bs-title="Click to open shipping form"
-                            style="text-align: justify; margin-bottom: 12px;">
-                            Shipping Fee (DRE PA NA SHOW AN ANOTHER MODAL AHHAHA)
-                        </button>
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label report-input"
-                                    style="color:#003060;">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                    placeholder="Describe the book's shortcomings or add other important information concerning the request"
-                                    rows="7"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <p style="color:#003060;">Images of the book you want to offer
-                            <div class="image-container">
-                                <div class="image-holder">
-                                    <input id="first-img" type="file" accept="image/*" class="d-none" required>
-                                    <label for="">Front Cover</label><br>
-                                    <label for="first-img"><i id="first-plus" class="fa fa-plus" aria-hidden="true"
-                                            style="cursor: pointer;"><img src="" id="one-image"
-                                                alt=""></i></label>
-                                </div>
-                                <div class="image-holder">
-                                    <input id="second-img" type="file" accept="image/*" class="d-none">
-                                    <label for="">Back Cover</label><br>
-                                    <label for="second-img"><i id="second-plus" class="fa fa-plus"
-                                            aria-hidden="true" style="cursor: pointer;"><img src=""
-                                                id="two-image" alt=""></i></label>
-                                </div>
-                                <div class="image-holder">
-                                    <input id="third-img" type="file" accept="image/*" class="d-none">
-                                    <label for="">Content</label><br>
-                                    <label for="third-img"><i id="three-plus" class="fa fa-plus" aria-hidden="true"
-                                            style="cursor: pointer;"><img src="" id="three-image"
-                                                alt=""></i></label>
-                                </div>
-                                <div class="image-holder">
-                                    <input id="fourth-img" type="file" accept="image/*" class="d-none">
-                                    <label for="">Content</label><br>
-                                    <label for="fourth-img"><i id="four-plus" class="fa fa-plus" aria-hidden="true"
-                                            style="cursor: pointer;"><img src="" id="four-image"
-                                                alt=""></i></label>
-                                </div>
-                                <div class="image-holder">
-                                    <input id="fifth-img" type="file" accept="image/*" class="d-none">
-                                    <label for="">Content</label><br>
-                                    <label for="fifth-img"><i id="five-plus" class="fa fa-plus" aria-hidden="true"
-                                            style="cursor: pointer;"><img src="" id="five-image"
-                                                alt=""></i></label>
-                                </div>
-                            </div>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button submit" class="btn report-button">Send Request</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
+
 
     <!-- Digital Exchange Request Modal -->
     <div class="modal fade" id="digital_exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -659,157 +545,74 @@
         }
     };
 
-    // search script
-    // var search = document.getElementById('search_input');
-    // var searchContainer = document.getElementById('searches');
-    // if (search.value.trim().length < 1) {
-    //     searchContainer.style.display = 'none'
-    // }
-    // search.addEventListener('keydown', (event) => {
-    //     if (event.key === 'Enter' || event.keyCode === 13) {
-    //         window.location.href = '/searchitem/' + search.value;
-    //     }
-    // });
-    // search.addEventListener('input', () => {
-    //     if (search.value.trim().length > 1) {
-    //         const requestOptions = {
-    //             method: 'GET',
-    //         };
-    //         fetch('/search/' + search.value.trim(), requestOptions)
-    //             .then(response => response.json())
-    //             .then(result => {
-    //                 searchContainer.style.display = 'inline';
-    //                 searchContainer.innerHTML = '';
-    //                 // console.log(result);
-    //                 result.forEach(data => {
-    //                     console.log(data);
-    //                     if (data.unit == 'Available') {
-    //                         const suggestionElement = document.createElement('div');
-    //                         const searchedImage = document.createElement('img');
-    //                         const searchedContent = document.createElement('div');
-    //                         const titleText = document.createElement('p');
-    //                         const authorText = document.createElement('p');
-    //                         // suggestionElement.textContent = data.title;
-    //                         suggestionElement.id = "searched-item";
-    //                         suggestionElement.className = 'row px-2';
-    //                         searchedImage.src = '/images/books/' + data.book_photo;
-    //                         searchedImage.className = 'col-3 px-0 bg-light';
-    //                         searchedContent.className = 'col border';
-    //                         searchedContent.id = 'textContent';
-    //                         titleText.className = 'm-0 fw-bold';
-    //                         titleText.id = 'searched-title';
-    //                         titleText.textContent = data.title;
-    //                         authorText.id = 'searched-author';
-    //                         authorText.textContent = data.author;
-    //                         suggestionElement.addEventListener('click', () => {
-    //                             window.location.href = "/product/" + data.id + "/" + data
-    //                                 .user_id;
-    //                             searchContainer.innerHTML = '';
-    //                         });
-    //                         searchContainer.appendChild(suggestionElement);
-    //                         suggestionElement.appendChild(searchedImage);
-    //                         suggestionElement.appendChild(searchedContent);
-    //                         searchedContent.appendChild(titleText);
-    //                         searchedContent.appendChild(authorText);
-    //                     }
-    //                 });
-    //             })
-    //             .catch(error => console.log('error', error));
-    //     } else {
-    //         searchContainer.style.display = 'none'
-    //         searchContainer.innerHTML = '';
-    //     }
-    // });
-</script>
-
-<script>
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const messageButtons = document.querySelectorAll('.message-button');
-    //     messageButtons.forEach(button => {
-    //         button.addEventListener('click', function() {
-    //             const username = button.dataset.username;
-    //             redirectToMessaging(username);
-    //         });
-    //     });
-
-    //     function redirectToMessaging(username) {
-    //         const messagingUrl = `/messages/${username}`;
-    //         window.location.href = messagingUrl;
-    //     }
-    // });
-</script>
-
-<script>
     const redirect = (id) => {
         window.location.href = `/messages/${id}`;
     }
-    // var first_img = document.getElementById('first-img');
-    // var second_img = document.getElementById('second-img');
-    // var third_img = document.getElementById('third-img');
-    // var fourth_img = document.getElementById('fourth-img');
-    // var fifth_img = document.getElementById('fifth-img');
-    // first_img.addEventListener('change', () => {
-    //     var img = document.getElementById('one-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('first-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // second_img.addEventListener('change', () => {
-    //     var img = document.getElementById('two-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('second-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // third_img.addEventListener('change', () => {
-    //     var img = document.getElementById('three-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('three-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // fourth_img.addEventListener('change', () => {
-    //     var img = document.getElementById('four-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('four-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // fifth_img.addEventListener('change', () => {
-    //     var img = document.getElementById('five-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('five-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
 
-    // function ratingReview(user_id, type, item_id) {
-    //     submit_btn.disabled = false;
-    //     first_img.value = '';
-    //     second_img.value = '';
-    //     third_img.value = '';
-    //     fourth_img.value = '';
-    //     fifth_img.value = '';
-    //     document.getElementById('one-image').src = '';
-    //     document.getElementById('two-image').src = '';
-    //     document.getElementById('three-image').src = '';
-    //     document.getElementById('four-image').src = '';
-    //     document.getElementById('five-image').src = '';
-    //     document.getElementById('one-image').style.width = '0px';
-    //     document.getElementById('two-image').style.width = '0px';
-    //     document.getElementById('three-image').style.width = '0px';
-    //     document.getElementById('four-image').style.width = '0px';
-    //     document.getElementById('five-image').style.width = '0px';
-    //     document.getElementById('one-image').style.height = '0px';
-    //     document.getElementById('two-image').style.height = '0px';
-    //     document.getElementById('three-image').style.height = '0px';
-    //     document.getElementById('four-image').style.height = '0px';
-    //     document.getElementById('five-image').style.height = '0px';
-    //     document.getElementById('first-plus').className = 'fa fa-plus';
-    //     document.getElementById('second-plus').className = 'fa fa-plus';
-    //     document.getElementById('three-plus').className = 'fa fa-plus';
-    //     document.getElementById('four-plus').className = 'fa fa-plus';
-    //     document.getElementById('five-plus').className = 'fa fa-plus';
-    // }
+    var one_S = document.getElementById('one-star');
+    var two_S = document.getElementById('two-star');
+    var three_S = document.getElementById('three-star');
+    var four_S = document.getElementById('four-star');
+    var five_S = document.getElementById('five-star');
+
+    function star(rate) {
+        if (rate == 0) {
+            one_S.className = 'fa fa-star-o fs-2 mx-2';
+            two_S.className = 'fa fa-star-o fs-2 mx-2';
+            three_S.className = 'fa fa-star-o fs-2 mx-2';
+            four_S.className = 'fa fa-star-o fs-2 mx-2';
+            five_S.className = 'fa fa-star-o fs-2 mx-2';
+        } else if (rate == 1) {
+            one_S.className = 'fa fa-star fs-2 mx-2';
+            two_S.className = 'fa fa-star-o fs-2 mx-2';
+            three_S.className = 'fa fa-star-o fs-2 mx-2';
+            four_S.className = 'fa fa-star-o fs-2 mx-2';
+            five_S.className = 'fa fa-star-o fs-2 mx-2';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star fs-2 mx-2';
+            two_S.className = 'fa fa-star fs-2 mx-2';
+            three_S.className = 'fa fa-star-o fs-2 mx-2';
+            four_S.className = 'fa fa-star-o fs-2 mx-2';
+            five_S.className = 'fa fa-star-o fs-2 mx-2';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star fs-2 mx-2';
+            two_S.className = 'fa fa-star fs-2 mx-2';
+            three_S.className = 'fa fa-star fs-2 mx-2';
+            four_S.className = 'fa fa-star-o fs-2 mx-2';
+            five_S.className = 'fa fa-star-o fs-2 mx-2';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star fs-2 mx-2';
+            two_S.className = 'fa fa-star fs-2 mx-2';
+            three_S.className = 'fa fa-star fs-2 mx-2';
+            four_S.className = 'fa fa-star fs-2 mx-2';
+            five_S.className = 'fa fa-star-o fs-2 mx-2';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star fs-2 mx-2';
+            two_S.className = 'fa fa-star fs-2 mx-2';
+            three_S.className = 'fa fa-star fs-2 mx-2';
+            four_S.className = 'fa fa-star fs-2 mx-2';
+            five_S.className = 'fa fa-star fs-2 mx-2';
+        }
+    }
+
+    one_S.addEventListener('click', () => {
+        star(1);
+        rate_val = 1;
+    });
+    two_S.addEventListener('click', () => {
+        star(2);
+        rate_val = 2;
+    });
+    three_S.addEventListener('click', () => {
+        star(3);
+        rate_val = 3;
+    });
+    four_S.addEventListener('click', () => {
+        star(4);
+        rate_val = 4;
+    });
+    five_S.addEventListener('click', () => {
+        star(5);
+        rate_val = 5;
+    });
 </script>

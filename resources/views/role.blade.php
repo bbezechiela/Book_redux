@@ -24,11 +24,11 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s"
                     style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                    <div class="advisor_thumb"><img src="./assets/users.png" alt=""></div>
-                    <a href="/signup" style="text-decoration: none;">
+                    <div class="advisor_thumb"><img src="./assets/reader.svg" alt=""></div>
+                    <a href="/rolereader" style="text-decoration: none;">
                         <div class="single_advisor_details_info">
-                            <h6>General User</h6>
-                            <p class="designation">Ability to sell, buy, exchange books.</p>
+                            <h6 class="fw-bold">Book Reader</h6>
+                            <p class="designation">Ability to read books,  write, edit, delete reviews, and message with other users.</p>
                         </div>
                     </a>
                 </div>
@@ -36,11 +36,11 @@
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.3s"
                     style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-                    <div class="advisor_thumb"><img src="./assets/bookstore.png" alt=""></div>
-                    <a href="/sellersignup" style="text-decoration: none;">
+                    <div class="advisor_thumb"><img src="./assets/author.svg" alt=""></div>
+                    <a href="/roleauthor" style="text-decoration: none;">
                         <div class="single_advisor_details_info">
-                            <h6>Bookseller</h6>
-                            <p class="designation">Ability to list books for sale and for rent.</p>
+                            <h6 class="fw-bold">Book Author</h6>
+                            <p class="designation">Ability to list book for online reading, messaging, read reviews, ability to list books for exchange, send exchange request to other users,</p>
                         </div>
                     </a>
                 </div>

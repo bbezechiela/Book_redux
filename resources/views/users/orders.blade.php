@@ -72,7 +72,7 @@
                             <span class="order-text me-5 mt-0">{{ $order->book->status }} Request</span>
                         </div>
                         <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                            <div class="row g-0">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <img src="{{ asset('/images/book_cover/' . $order->back_cover) }}"
                                         class="img w-100 h-100" alt="image">

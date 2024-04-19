@@ -448,7 +448,9 @@ Route::get('/viewrequest/{id}', [ListingController::class, 'viewRequest']);
 
 Route::get('/viewbook/{id}', [ListingController::class, 'viewBook']);
 
-// Route::get('/declineorder/{id}', [ListingController::class, 'declineOrder'])
+Route::get('/rolereader', [UserController::class, 'roleToReader']);
+
+Route::get('/roleauthor', [UserController::class, 'roleToAuthor']);
 
 
 // New API's
@@ -461,3 +463,5 @@ Route::get('/getbook/{id}', [ListingController::class, 'getBookID']);
 Route::get('/request/{id}', [UserController::class, 'getExchangeRequest']);
 
 Route::get('/requestsub/{id}', [UserController::class, 'getBookRequest']);
+
+Route::get('/getrequestuser/{id}', [ListingController::class, 'getRequestUser']);

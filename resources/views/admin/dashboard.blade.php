@@ -36,7 +36,7 @@
                         </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}?v={{ time() }}"
+                            <img src="{{ session('image') }}?v={{ time() }}"
                                 alt="profile" width="35" height="35" class="rounded-5" style="margin-right: 2em;">
                         </button></a>
                 </div>
@@ -118,13 +118,13 @@
                                         <li class="dropdown-header text-start">
                                             <h6>Filter</h6>
                                         </li>
-                                        <li><a id="new_user_today" class="dropdown-item btn">Today</a></li>
-                                        <li><a id="new_user_this_month" class="dropdown-item btn">This Month</a></li>
-                                        <li><a id="new_user_this_year" class="dropdown-item btn">This Year</a></li>
+                                        <li><a id="reports_today" class="dropdown-item btn">Today</a></li>
+                                        <li><a id="reports_this_month" class="dropdown-item btn">This Month</a></li>
+                                        <li><a id="reports_this_year" class="dropdown-item btn">This Year</a></li>
                                     </ul>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">New Booksellers <span id="new_user_header">| This
+                                    <h5 class="card-title">Reports <span id="reports_header">| This
                                             Month</span></h5>
                                     <div class="d-flex align-items-center">
                                         <div
@@ -132,7 +132,7 @@
                                             <i class="fa fa-users" aria-hidden="true"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6 id="new_user">{{ $CountCurrUser }}</h6>
+                                            <h6 id="new_user">0</h6>
                                         </div>
                                     </div>
                                 </div>

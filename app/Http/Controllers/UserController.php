@@ -95,20 +95,24 @@ class UserController extends Controller
         }
     }
 
-    //Amu adi an orig
+    public function roleToReader() {
+        $user = Users::find(session('id'));
+        $user->update([
+            'type' => 'Reader'
+        ]);
 
-    // public function singleProduct($id, $user_id)
-    // {
-    //     if (session()->has('uid')) {
-    //         $book = Books::with('item.ratedItem.user')->find($id);
-    //         $user = Users::with('addressUser')->find($user_id);
-    //         return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
-    //     } else {
-    //         return view('landing_page')->with('message', 'You have to login first');
-    //     }
-    // }
+        return redirect('/survey');
+    }
 
-    //Temporary lang kay dik natutuhay han UI
+    public function roleToAuthor() {
+        $user = Users::find(session('id'));
+        $user->update([
+            'type' => 'Author'
+        ]);
+
+        return redirect('/survey');
+    }
+
     public function singleProduct($id)
     {
         if (session()->has('uid')) {
@@ -921,7 +925,7 @@ class UserController extends Controller
         })->get();
 
         if ($search) {
-            return view('users.search', ['items' => $search]);
+            return view('users.search', ['items' => $search, 'query' => $item]);
         }
         // else {
         //     $search_name = Users::where(function ($query) use ($item) {
@@ -1438,7 +1442,7 @@ class UserController extends Controller
                     'uid' => $signUp->uid,
                     'image' => $photo
                 ]);
-                return redirect('/survey');
+                return redirect('/role');
             }
         }
     }
@@ -1454,6 +1458,7 @@ class UserController extends Controller
             session()->put([
                 'id' => $user->id,
                 'name' => $user->name,
+                'type' => $user->type,
                 'email' => $user->email,
                 'uid' => $user->uid,
                 'image' => $photo

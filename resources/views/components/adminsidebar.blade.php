@@ -15,12 +15,12 @@
         <i class="fa fa-th-list d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage User Listings</span>
     </a>
-    <a href="/adminmessages"
+    {{-- <a href="/adminmessages"
         class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('adminMessage*')) active @endif"
         data-blade="adminMessage" style="white-space: nowrap">
         <i class="fa fa-envelope-o d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Messages</span>
-    </a>
+    </a> --}}
     {{-- <a href="/managesellingclub"
         class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if(Request::is('managesellingclub*')) active @endif"
         data-blade="manageSellingClub" style="white-space: nowrap">
@@ -45,12 +45,12 @@
         <i class="fa fa-users d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage User</span>
     </a>
-    <a href="/manageseller"
+    {{-- <a href="/manageseller"
         class="btn nav-item d-flex flex-row w-100 px-5 py-0 sidebar-btn @if (Request::is('manageseller*')) active @endif"
         data-blade="managesellerAccounts" style="white-space: nowrap">
         <i class="fa fa-user-secret d-flex align-items-center" aria-hidden="true"></i>
         <span class="nav-link">Manage Bookseller</span>
-    </a>
+    </a> --}}
     {{-- <a href="/orderdetails" class="btn nav-item d-flex flex-row w-100 px-5 py-0 myList-side-btn" style="white-space: nowrap">
         <i class="fa fa-list-alt d-flex align-items-center" aria-hidden="true" style="color: #003060;"></i>
         <span class="nav-link">Order Details</span>
