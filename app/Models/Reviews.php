@@ -9,8 +9,8 @@ class Reviews extends Model
 {
     use HasFactory;
 
-    public function item() {
-        return $this->belongsTo(Order_Items::class, 'item_id');
+    public function request() {
+        return $this->belongsTo(Exchange_Requests::class, 'request_id');
     }
 
     public function user() {
@@ -18,10 +18,11 @@ class Reviews extends Model
     }
 
     protected $fillable = [
-        'item_id',
+        'book_id',
+        'request_id',
         'user_id',
         'rate_value',
-        'condition_accuracy',
+        'content_accuracy',
         'description_accuracy',
         'interaction',
         'description',

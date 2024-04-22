@@ -452,6 +452,12 @@ Route::get('/rolereader', [UserController::class, 'roleToReader']);
 
 Route::get('/roleauthor', [UserController::class, 'roleToAuthor']);
 
+Route::get('/saved', [UserController::class, 'goToSaved']);
+
+Route::get('/savebook/{id}', [ListingController::class, 'saveBook']);
+
+Route::post('/onlinereadreview', [ListingController::class, 'postReview']);
+
 
 // New API's
 Route::post('/googlesignin', [UserController::class, 'googleSignIn']);

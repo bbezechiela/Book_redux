@@ -67,29 +67,7 @@
                 </div>
             </div>
         </ul>
-        {{-- <button type="button" class="position-absolute end-0 mt-2 btn fw-bold nearby-user-btn"
-            style="color: #E55B13; margin-right: 230px"><img src="assets/location-icon.png" alt="Location icon"
-                class="img" width="25">Find Nearby Users</button type="button">
-        <button type="button" class="position-absolute end-0 mt-2 mx-3 btn fw-bold nearby-seller-btn"
-            style="color: #E55B13"><img src="assets/location-icon.png" alt="Location icon" class="img"
-                width="25">Find Nearby Listings</button type="button"> --}}
-
-        {{-- <div id="books" class="mx-5 px-5 mt-5">
-            <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 280px; ">
-                @foreach ($post as $book)
-                    <div class="card m-1 pb-4 shadow" style="width: 200px; flex: 0 0 auto; cursor: pointer;"
-                        onclick="clickedPost({{ $book->id }}, {{ $book->user_id }})">
-                        <img src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto p-2"
-                            alt="..." width="130px" height="150px">
-                        <div class="card-body py-0">
-                            <p id="book-title" class="card-title mb-0 fw-bold">{{ $book->title }}</p>
-                            <p class="card-text mt-0 mb-0">{{ $book->author }}<br>
-                                {{ $book->genre }}</p>                            
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div> --}}
+       
         <div id="daily-discover" class="mx-5 px-5">
             <h4 id="daily-discover-header">Daily Discover</h4>
             <div id="content-cards" class="w-100 mx-2 d-flex px-4 overflow-x-auto" style="height: 290px; ">

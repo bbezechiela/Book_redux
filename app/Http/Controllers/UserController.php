@@ -9,6 +9,7 @@ use App\Models\Exchange_Requests;
 use App\Models\Order_Items;
 use App\Models\Orders;
 use App\Models\Reviews;
+use App\Models\Saved_Books;
 use App\Models\Track_Rental;
 use App\Models\User;
 use App\Models\Users;
@@ -86,7 +87,7 @@ class UserController extends Controller
 
             // $users = Users::where();
             $user = Users::find(session('id'));
-            $post = Books::with('user.addressUser', 'cart')->get();
+            $post = Books::with('user.addressUser')->get();
             return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
@@ -100,8 +101,12 @@ class UserController extends Controller
         $user->update([
             'type' => 'Reader'
         ]);
+        
 
-        return redirect('/survey');
+        if ($user) {
+            session()->put('type', $user->type);
+            return redirect('/survey');
+        }
     }
 
     public function roleToAuthor() {
@@ -110,13 +115,16 @@ class UserController extends Controller
             'type' => 'Author'
         ]);
 
-        return redirect('/survey');
+        if ($user) {
+            session()->put('type', $user->type);
+            return redirect('/survey');
+        }
     }
 
     public function singleProduct($id)
     {
         if (session()->has('uid')) {
-            $book = Books::with('user', 'request')->find($id);
+            $book = Books::with('user', 'review.user')->find($id);                        
 
             return view('users.singleProduct', ['book' => $book]);
         } else {
@@ -733,7 +741,7 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget(['id', 'name', 'email', 'uid', 'image']);
-        return view('landing_page');
+        return redirect('/');
     }
 
     public function login_process(Request $request)
@@ -1409,6 +1417,10 @@ class UserController extends Controller
         return $item;
     }
 
+    public function goToSaved() {
+        $saved_books = Saved_Books::with('book', 'user')->get();
+        return view('users.saved', ['books' => $saved_books]);
+    }
 
 
 

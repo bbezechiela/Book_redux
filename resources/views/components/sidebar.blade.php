@@ -41,7 +41,7 @@
                 class="img"></i>
         <span class="nav-link">Interactive Trading</span>
     </a> --}}
-    <a href="/wishlist" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0 wishlist-side-btn">
+    <a href="/saved" id="wishlist-side-btn" class="btn nav-item d-flex flex-row w-100 px-5 py-0 saved-side-btn">
         <i class="fa fa-sharp fa-solid fa-bookmark d-flex align-items-center" style="color: #fff;" aria-hidden="true"></i>
         <span class="nav-link">Saved</span>
     </a>

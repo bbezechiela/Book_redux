@@ -15,15 +15,18 @@ class Books extends Model
         return $this->belongsTo(Users::class, 'user_id');
     }
 
-    public function item()
-    {
-        return $this->hasMany(Order_Items::class, 'book_id');
+    public function review() {
+        return $this->hasMany(Reviews::class, 'book_id');
     }
+    // public function item()
+    // {
+    //     return $this->hasMany(Order_Items::class, 'book_id');
+    // }
 
-    public function cart()
-    {
-        return $this->hasMany(Cart::class, 'product_id');
-    }
+    // public function cart()
+    // {
+    //     return $this->hasMany(Cart::class, 'product_id');
+    // }
 
     public function track() {
         return $this->hasMany(Track_Rental::class, 'book_id');

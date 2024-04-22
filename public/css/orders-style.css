@@ -234,7 +234,7 @@
     color: #fff;
     background-color: #E55B13;
     border: 1px solid #E55B13;
-    margin-right: 2em;
+    /* margin-right: 2em; */
 }
 
 .arrange-button:hover,

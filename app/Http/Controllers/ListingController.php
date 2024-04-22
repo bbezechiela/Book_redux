@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Books;
 use App\Models\Cart;
 use App\Models\Exchange_Requests;
+use App\Models\Reviews;
+use App\Models\Saved_Books;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
@@ -379,6 +381,7 @@ class ListingController extends Controller
                 $book = Books::find($id);
 
                 $book->update([
+                    'status' => 'Online Reading',
                     'back_cover' => $coverNameToStore,
                     'genre' => $edit_genre,
                     'isbn' => $isbn,
@@ -403,6 +406,7 @@ class ListingController extends Controller
                 $book = Books::find($id);
 
                 $book->update([
+                    'status' => 'Online Reading',
                     'book_filename' => $fileNameToStore,
                     'genre' => $edit_genre,
                     'isbn' => $isbn,
@@ -433,6 +437,7 @@ class ListingController extends Controller
                 $book = Books::find($id);
 
                 $book->update([
+                    'status' => 'Online Reading',
                     'book_filename' => $fileNameToStore,
                     'back_cover' => $coverNameToStore,
                     'genre' => $edit_genre,
@@ -453,6 +458,7 @@ class ListingController extends Controller
             $book = Books::find($id);
 
             $book->update([
+                'status' => 'Online Reading',
                 'genre' => $edit_genre,
                 'isbn' => $isbn,
                 'edition' => $edition,
@@ -489,6 +495,7 @@ class ListingController extends Controller
                 $book = Books::find($id);
 
                 $book->update([
+                    'status' => 'Digital Exchange',
                     'back_cover' => $coverNameToStore,
                     'genre' => $genre,
                     'isbn' => $isbn,
@@ -512,6 +519,7 @@ class ListingController extends Controller
                 $book = Books::find($id);
 
                 $book->update([
+                    'status' => 'Digital Exchange',
                     'book_filename' => $fileNameToStore,
                     'genre' => $genre,
                     'isbn' => $isbn,
@@ -541,6 +549,7 @@ class ListingController extends Controller
                 $book = Books::find($id);
 
                 $book->update([
+                    'status' => 'Digital Exchange',
                     'back_cover' => $coverNameToStore,
                     'book_filename' => $fileNameToStore,
                     'genre' => $genre,
@@ -560,6 +569,7 @@ class ListingController extends Controller
             $book = Books::find($id);
 
             $book->update([
+                'status' => 'Digital Exchange',
                 'genre' => $genre,
                 'isbn' => $isbn,
                 'edition' => $edition,
@@ -801,8 +811,10 @@ class ListingController extends Controller
 
     public function destroy($id)
     {
-        $post = Books::find($id);
-        // $cart = Cart::where('product_id', $id)->delete();
+        $post = Books::with('request')->find($id);
+        foreach ($post->request as $req) {
+            $req->delete();
+        }
         $post->delete();
 
         if ($post) {
@@ -1093,6 +1105,13 @@ class ListingController extends Controller
         }
     }
 
+    public function postReview(Request $request) {        
+        $review = Reviews::create($request->all());
+        if ($review) {
+            return response()->json('success');
+        }
+    }
+
     public function viewRequest($id) {
         $req = Exchange_Requests::with('book')->find($id);
 
@@ -1103,6 +1122,17 @@ class ListingController extends Controller
         $book = Books::find($id);
 
         return view('users.file', ['request' => $book]);
+    }
+
+    public function saveBook ($id) {
+        $save = Saved_Books::create([
+            'user_id' => session('id'),
+            'book_id' => $id
+        ]);
+
+        if ($save) {
+            return redirect('/saved');
+        }
     }
 
 

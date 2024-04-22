@@ -124,10 +124,10 @@
                                 data-bs-toggle="modal" class="btn cart-button" data-bs-target="#readNowModal"
                                 style="margin-bottom: 1em;">Read Now
                             </button>
-                            <button id="saveBtn" class="btn save-button" data-bs-toggle="modal" data-bs-target="#"
+                            <a id="saveBtn" href="/savebook/{{ $book->id }}" class="btn save-button"
                                 style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true"
                                     style="margin-right: 7px;"></i>Save
-                            </button>
+                            </a>
                         @endif
                     </div>
                 </div>
@@ -146,16 +146,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center mb-2">
-                        <i id="one-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
-                        <i id="two-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
+                        <i id="one-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;"
+                            aria-hidden="true"></i>
+                        <i id="two-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;"
+                            aria-hidden="true"></i>
                         <i id="three-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;"
                             aria-hidden="true"></i>
-                        <i id="four-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
-                        <i id="five-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;" aria-hidden="true"></i>
+                        <i id="four-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;"
+                            aria-hidden="true"></i>
+                        <i id="five-star" class="fa fa-star-o fs-2 mx-2" style="cursor: pointer; color: #003060;"
+                            aria-hidden="true"></i>
                     </div>
-                    <textarea class="w-100 mb-2 p-3" name="" placeholder="Description" id="" cols="40" rows="5"></textarea>
+                    <textarea class="w-100 mb-2 p-3" name="" placeholder="Description" id="rate_textarea" cols="40.value";
+                        rows="5"></textarea>
                     <div class="d-flex justify-content-end">
-                        <button class="btn text-white" style="background-color: #E55B13;">Submit</button>
+                        <button class="btn text-white" id="rate_submit_btn"
+                            style="background-color: #E55B13;">Submit</button>
                     </div>
                 </div>
                 {{-- <div class="modal-footer">
@@ -171,8 +177,8 @@
 
     {{-- DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY DIGITAL EXCHANGE DISPLAY --}}
 
-    <h3 style="color: #003060; margin-top: 5em; margin-left: 3em;">Book Sharer</h3>
-    <div class="container text-center seller-details">
+    <h3 style="color: #003060; margin-top: 2em; padding-left: 4em;">Book Sharer</h3>
+    <div class="container px-0 text-center seller-details">
         <div class="row align-items-center">
             <div class="col">
                 <div class="d-flex align-items-center" style="width: 320px">
@@ -206,6 +212,43 @@
                 </div> --}}
             </div>
 
+        </div>
+        <div class="container-fluid mt-5 px-0 ">
+            {{-- <h2 class="text-start">Reviews</h2> --}}
+            {{-- <hr class="w-50 mx-auto border-1 opacity-100 mt-1" style="border-color: #003060;"> --}}
+
+            <div class="row flex-column px-3 gap-3 pt-3">
+                @foreach ($book->review as $review)
+                    <div class="d-flex p-3 rounded-4 border">
+                        <div class="px-2">
+                            <img src="{{ $review->user->profile_photo }}" alt="image" class="rounded-circle"
+                                style="width: 50px; height: 50px;">
+                        </div>
+                        <div class="w-100">
+                            <p class="text-start fw-bold mb-0">{{ $review->user->name }}</p>
+                            <div class="d-flex justify-content-start gap-1">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $review->rate_value)
+                                        <i id="one-star" class="fa fa-star" style="cursor: pointer; color: #E55B13;"
+                                            aria-hidden="true"></i>
+                                    @else
+                                        <i id="one-star" class="fa fa-star-o"
+                                            style="cursor: pointer; color: #E55B13;" aria-hidden="true"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <div class="d-flex flex-column mt-2 pe-4">
+                                @if ($review->content_accuracy)
+                                    <p>Accuracy of Content: {{ $review->content_accuracy }}</p>
+                                @endif
+                                <p class="text-start m-0">
+                                    {{ $review->description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
 
     </div>
@@ -346,82 +389,6 @@
             </div>
         </div>
 
-        {{-- <div class="modal fade" id="exchange_request" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Exchange Request
-                            Form
-                        </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationDefault01">First name</label>
-                                    <input type="text" class="form-control" id="validationDefault01"
-                                        placeholder="First name" value="Mark" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationDefault02">Last name</label>
-                                    <input type="text" class="form-control" id="validationDefault02"
-                                        placeholder="Last name" value="Otto" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationDefaultUsername">Username</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationDefaultUsername"
-                                            placeholder="Username" aria-describedby="inputGroupPrepend2" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationDefault03">City</label>
-                                    <input type="text" class="form-control" id="validationDefault03"
-                                        placeholder="City" required>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationDefault04">State</label>
-                                    <input type="text" class="form-control" id="validationDefault04"
-                                        placeholder="State" required>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationDefault05">Zip</label>
-                                    <input type="text" class="form-control" id="validationDefault05"
-                                        placeholder="Zip" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="invalidCheck2" required>
-                                    <label class="form-check-label" for="invalidCheck2">
-                                        Agree to terms and conditions
-                                    </label>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" type="submit">Submit form</button>
-                        </form>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label report-input"
-                                style="color:#003060;">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1"
-                                placeholder="Please further elaborate on your selected reason" rows="7" style="color:#003060;"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn report-button">Report</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
         <!-- Report Modal -->
         <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -554,6 +521,7 @@
     var three_S = document.getElementById('three-star');
     var four_S = document.getElementById('four-star');
     var five_S = document.getElementById('five-star');
+    var rate_val = 0;
 
     function star(rate) {
         if (rate == 0) {
@@ -615,4 +583,32 @@
         star(5);
         rate_val = 5;
     });
+
+    const postReview = async (url, data) => {
+        var post = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        return await post;
+    }
+
+    document.getElementById('rate_submit_btn').onclick = () => {
+        postReview('/onlinereadreview', {
+                user_id: {{ session('id') }},
+                book_id: {{ $book->id }},
+                rate_value: rate_val,
+                description: document.getElementById('rate_textarea').value
+            })
+            .then(res => {
+                if (res.status == 200) {
+                    location.reload();
+                }
+            })
+            .catch(err => console.error(err));
+    }
 </script>
