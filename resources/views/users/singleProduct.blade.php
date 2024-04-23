@@ -112,11 +112,6 @@
                                     Request
                                     <i class="fa fa-exchange" aria-hidden="true"
                                         style="margin-left: 8px; margin-right: 4px;"></i></button>
-                                {{-- @foreach ($book->request as $req)
-                                    @if ($req->user_id == session('id'))
-                                        <p>Please Wait</p>
-                                    @endif
-                                @endforeach --}}
                             @endif
                         @elseif ($book->status = 'Online Reading')
                             <div class="d-flex justify-content-between">
@@ -132,8 +127,9 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn text-decoration-underline"
-                                        style="color: #E55B13;" onclick="reportModal.show()">Report Listing</button>
+                                    <button class="btn text-decoration-underline" style="color: #E55B13;"
+                                        onclick="reportModal.show()" data-bs-toggle="modal"
+                                        data-bs-target="#reportModal">Report Listing</button>
                                 </div>
                             </div>
                         @endif
@@ -300,6 +296,65 @@
     </div>
 
 
+    {{-- Report Modal --}}
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Select a
+                        Reason</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                            Counterfeit and copyright
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                            Prohibited item
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                            Offensive or potentially offensive item
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                            Fraudulent listing
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input check-report" type="checkbox" value=""
+                            id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
+                            Others
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label report-input"
+                            style="color:#003060;">Description</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                            placeholder="Please further elaborate on your selected reason" rows="7" style="color:#003060;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn report-button">Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- Digital Exchange Request Modal -->
@@ -398,86 +453,6 @@
         </div>
 
 
-        <!-- Report Modal -->
-        <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#003060;">Select a
-                            Reason</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-check">
-                            <input class="form-check-input check-report" type="checkbox" value=""
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
-                                Counterfeit and copyright
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input check-report" type="checkbox" value=""
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
-                                Prohibited item
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input check-report" type="checkbox" value=""
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
-                                Offensive or potentially offensive item
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input check-report" type="checkbox" value=""
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
-                                Fraudulent listing
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input check-report" type="checkbox" value=""
-                                id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault" style="color:#003060;">
-                                Others
-                            </label>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label report-input"
-                                style="color:#003060;">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1"
-                                placeholder="Please further elaborate on your selected reason" rows="7" style="color:#003060;"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn report-button">Report</button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 </body>
 
 
