@@ -20,24 +20,10 @@
             </div>
             <div class="position-absolute end-0">
                 <div class="d-flex">
-                    {{-- <div class="input-group mt-1" style="height: 2em">
-                        <span class="input-group-text">
-                            <i class="fa fa-search"></i>
-                        </span>
-                        <input class="form-control rounded-3 search-field" type="text" placeholder="Search">
-                    </div> --}}
-                    {{-- <a href="/adminmessages"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Messages">
-                            <i class="fa fa-envelope-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
-                    {{-- <a href="/adminnotification"><button class="btn mx-1 mt-1" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" data-bs-title="Notification">
-                            <i class="fa fa-bell-o" aria-hidden="true" style="font-size: 20px; color: #003060;"></i>
-                        </button></a> --}}
                     <a href="/adminprofile"><button class="btn mx-1 p-0" data-bs-toggle="tooltip"
                             data-bs-placement="bottom" data-bs-title="Profile">
-                            <img src="{{ asset('images/profile_photos/' . session('profile_pic')) }}" alt="profile"
-                                width="35" height="35" class="rounded-5" style="margin-right: 2em;">
+                            <img src="{{ session('image') }}" alt="profile" width="35" height="35"
+                                class="rounded-5" style="margin-right: 2em;">
                         </button></a>
                 </div>
             </div>
@@ -62,7 +48,7 @@
                                             $userCount = 0;
 
                                             foreach ($users as $count) {
-                                                if ($count->type == 'General User') {
+                                                if ($count->type == ('Reader' || 'Author')) {
                                                     $userCount++;
                                                 }
                                             }
@@ -73,30 +59,12 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-xxl-4 col-md-6">
-                        <div class="card info-card reported-card">
-                            <div class="filter view-reports">
-                                <a class="icon" href="/reporteduser">View</a>
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Total Reported User</h5>
-                                <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="fa fa-ban" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>3,264</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+
                     <div class="card table-card" style="margin-left: 1em;">
                         <div class="card-datatable table-responsive">
                             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"
                                 style="">
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-sm-12 col-md-4">
                                         <div class="dataTables_length" id="DataTables_Table_0_length">
                                             <label>Show
@@ -128,7 +96,7 @@
                                         <label>Search:<input type="search" class="form-control search-table"
                                                 placeholder="" aria-controls="DataTables_Table_0"></label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <table
                                     class="datatables-basic table border-top dataTable no-footer dtr-column collapsed"
                                     id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info"
@@ -140,39 +108,25 @@
                                             <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
                                                 rowspan="1" colspan="1" style="width: 18px;" data-col="1"
                                                 aria-label="">
-                                                <input type="checkbox" class="form-check-input">
+                                                <input type="checkbox" class="form-check-input" hidden>
                                             </th>
-                                            {{-- <th class="sorting sorting_asc" tabindex="0"
-                                                aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                style="width: 120px;">ID</th> --}}
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Username</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">Profile Picture</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Profile</th>
+                                                rowspan="1" colspan="1" style="width: 120px;">User Type</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 180px;">First Name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 180px;">Last Name</th>
+                                                rowspan="1" colspan="1" style="width: 180px;">Name</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Email</th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 108px;">Contact Number
+                                                rowspan="1" colspan="1" style="width: 108px;">UID
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Gender</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Birthday</th>
-                                            {{-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Address</th> --}}
+                                                rowspan="1" colspan="1" style="width: 120px;">Interest</th>
+
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 120px;">Account Created
                                             </th>
-                                            {{-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Sold</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Bought</th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1" style="width: 120px;">Exchanged</th> --}}
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1" style="width: 144px;">Actions
                                             </th>
@@ -180,53 +134,35 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($users as $user)
-                                            @if ($user->type == 'General User')
+                                            @if ($user->type == ('Reader' || 'Author'))
                                                 <tr class="odd">
                                                     <td class="control" tabindex="0" style=""></td>
                                                     <td class="  dt-checkboxes-cell"><input type="checkbox"
-                                                            class="dt-checkboxes form-check-input"></td>
-                                                    {{-- <td class="sorting_1">
-                                                #5765753487
-                                            </td> --}}
-                                                    <td>{{ $user->username }}</td>
+                                                            class="dt-checkboxes form-check-input" hidden></td>
                                                     <td>
                                                         <div
                                                             class="d-flex justify-content-start align-items-center book-image">
-                                                            <div class="d-flex flex-column"><img class="img mt-1 me-5"
-                                                                    src="{{ asset('images/profile_photos/' . $user->profile_photo) }}"
-                                                                    alt="Logo">
+                                                            <div class="d-flex flex-column"><img
+                                                                    class="img mt-1 me-5 rounded-circle"
+                                                                    src="{{ $user->profile_photo }}" alt="Logo">
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ $user->first_name }}</td>
-                                                    <td>{{ $user->last_name }}</td>
+                                                    <td>{{ $user->type }}</td>
+                                                    <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->phone_number }}</td>
-                                                    <td>{{ $user->gender }}</td>
-                                                    <td>{{ $user->birthday }}</td>
-                                                    {{-- <td>{{ $user->address }}</td> --}}
+                                                    <td>{{ $user->uid }}</td>
+                                                    <td>{{ $user->interest }}</td>
                                                     <td>{{ $user->created_at }}</td>
-                                                    {{-- <td>5</td>
-                                                    <td>7</td>
-                                                    <td>8</td> --}}
-                                                    <td>
-                                                        <div class="d-inline-block"><a href="javascript:;"
-                                                                class="btn btn-sm btn-icon dropdown-toggle hide-arrow"
-                                                                data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                                            <ul class="dropdown-menu dropdown-menu-end m-0"
-                                                                style="">
-                                                                <li><a href="javascript:;"
-                                                                        class="dropdown-item">Suspend</a>
-                                                                </li>
-                                                                <li><a href="javascript:;" class="dropdown-item">Send
-                                                                        an
-                                                                        offense</a>
-                                                                </li>
-                                                                <div class="dropdown-divider"></div>
-                                                                <li><a href="/deleteaccount/{{ $user->id }}"
-                                                                        class="dropdown-item text-danger delete-record">Delete
-                                                                        account</a>
-                                                                </li>
+                                                    <td>                                                       
+                                                        <div class="dropdown">
+                                                            <button class="btn dropdown-toggle"
+                                                                type="button" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                
+                                                            </button>
+                                                            <ul class="dropdown-menu">                                                               
+                                                                <li><a class="dropdown-item" href="/deleteaccount/{{ $user->id }}">Delete</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -234,57 +170,7 @@
                                             @endif
                                         @endforeach
                                     </tbody>
-                                </table>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                            aria-live="polite">Showing 1 to 7 of 100
-                                            entries</div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <div class="dataTables_paginate paging_simple_numbers"
-                                            id="DataTables_Table_0_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="DataTables_Table_0_previous"><a
-                                                        aria-controls="DataTables_Table_0" aria-disabled="true"
-                                                        role="link" data-dt-idx="previous" tabindex="0"
-                                                        class="page-link">Previous</a></li>
-                                                <li class="paginate_button page-item active active-page">
-                                                    <a href="#" aria-controls="DataTables_Table_0"
-                                                        role="link" aria-current="page" data-dt-idx="0"
-                                                        tabindex="0" class="page-link">1</a>
-                                                </li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link"
-                                                        data-dt-idx="1" tabindex="0" class="page-link">2</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link"
-                                                        data-dt-idx="2" tabindex="0" class="page-link">3</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link"
-                                                        data-dt-idx="3" tabindex="0" class="page-link">4</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link"
-                                                        data-dt-idx="4" tabindex="0" class="page-link">5</a></li>
-                                                <li class="paginate_button page-item disabled"
-                                                    id="DataTables_Table_0_ellipsis"><a
-                                                        aria-controls="DataTables_Table_0" aria-disabled="true"
-                                                        role="link" data-dt-idx="ellipsis" tabindex="0"
-                                                        class="page-link">…</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                        aria-controls="DataTables_Table_0" role="link"
-                                                        data-dt-idx="14" tabindex="0" class="page-link">15</a></li>
-                                                <li class="paginate_button page-item next"
-                                                    id="DataTables_Table_0_next">
-                                                    <a href="#" aria-controls="DataTables_Table_0"
-                                                        role="link" data-dt-idx="next" tabindex="0"
-                                                        class="page-link">Next</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                </table>                                
                             </div>
                         </div>
                     </div>

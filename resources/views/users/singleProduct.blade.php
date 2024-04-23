@@ -119,15 +119,23 @@
                                 @endforeach --}}
                             @endif
                         @elseif ($book->status = 'Online Reading')
-                            <button id="readNowBtn"
-                                onclick="readNowFunction('{{ $book->book_filename }}', '{{ $book->title }}')"
-                                data-bs-toggle="modal" class="btn cart-button" data-bs-target="#readNowModal"
-                                style="margin-bottom: 1em;">Read Now
-                            </button>
-                            <a id="saveBtn" href="/savebook/{{ $book->id }}" class="btn save-button"
-                                style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true"
-                                    style="margin-right: 7px;"></i>Save
-                            </a>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button id="readNowBtn"
+                                        onclick="readNowFunction('{{ $book->book_filename }}', '{{ $book->title }}')"
+                                        data-bs-toggle="modal" class="btn cart-button" data-bs-target="#readNowModal"
+                                        style="margin-bottom: 1em;">Read Now
+                                    </button>
+                                    <a id="saveBtn" href="/savebook/{{ $book->id }}" class="btn save-button"
+                                        style="margin-bottom: 1em;"><i class="fa fa-bookmark-o" aria-hidden="true"
+                                            style="margin-right: 7px;"></i>Save
+                                    </a>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn text-decoration-underline"
+                                        style="color: #E55B13;" onclick="reportModal.show()">Report Listing</button>
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -391,7 +399,27 @@
 
 
         <!-- Report Modal -->
-        <div class="modal fade" id="report" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -449,7 +477,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 </body>
 
 
@@ -461,6 +489,12 @@
 
 
 <script>
+    const reportModal = new bootstrap.Modal('#reportModal', {
+        keyboard: false
+    })
+
+
+
     document.getElementById('digitalPreviewClose').onclick = () => {
         document.getElementById('pdfPreview').innerHTML = '';
     }
