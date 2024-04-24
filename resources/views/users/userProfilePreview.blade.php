@@ -36,10 +36,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/myprofile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>
-                                {{-- <li><a class="dropdown-item" href="/addresses">Addresses</a></li> --}}
-                                {{-- <li><a class="dropdown-item" href="/changepassword">Change Password</a></li> --}}
-                                {{-- <li><a class="dropdown-item" href="/reviewsandratings">User Reviews and Ratings</a> --}}
+                                <li><a class="dropdown-item" href="/mypurchase">My Exchange Request</a></li>                                
                                 </li>
                             </ul>
                         </li>
@@ -62,29 +59,9 @@
                                 </button>
                             </div>
                             <div class="ms-3" style="margin-top: 130px;">
-                                {{-- @if ($user->type == 'Bookseller')
-                                    <h5>{{ $user->business_name }}</h5>
-                                    <p>{{ $user->address }}</p>
-                                @else
-                                    <h5>{{ $user->first_name . ' ' . $user->last_name }}</h5>
-                                    @foreach ($user->addressUser as $address)
-                                        @if ($address->default_address)
-                                            <h5>{{ $address->address }}</h5>
-                                        @endif
-                                    @endforeach
-                                @endif --}}
-                            </div>
-                            {{-- <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle ellipsis-button" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-h ellipsis-icon ml-auto" aria-hidden="true"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-exclamation-circle"
-                                                aria-hidden="true" style="margin-right: 1px"></i>
-                                            Report</a></li>
-                                </ul>
-                            </div> --}}
+                                <h5>{{ $user->name }}</h5>
+                                <p>{{ $user->email }}</p>                                
+                            </div>                           
                         </div>
                         <div class="p-4 text-black" style="background-color: #f8f9fa;">
                             <div class="d-flex justify-content-end text-center py-1">
@@ -92,10 +69,10 @@
                                     <p class="mb-1 h5" style="color: #E55B13;">{{ $user->books->count() }}</p>
                                     <p class="small text-muted mb-0">Listings</p>
                                 </div>
-                                <div class="px-3">
+                                {{-- <div class="px-3">
                                     <p class="mb-1 h5" style="color: #E55B13;">{{ $user->reviews->count() }}</p>
                                     <p class="small text-muted mb-0">Reviews</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="card-body p-4">
@@ -135,15 +112,7 @@
                                     <p class="card-text mt-0 mb-0 pb-0">
                                         {{ $book->author }}</p>
                                     <p class="card-text mt-0 mb-0 pt-0">
-                                        {{ $book->genre }}</p>
-                                    {{-- @if ($book->stock == 0)
-                                    <p class="text-danger fw-bold">Sold Out</p>
-                                @else
-                                    <div class="card-foot price d-flex justify-content-between align-items-center p-0">
-                                        <a class="fw-bold p-0 edit-book"
-                                            onclick="itemClicked('{{ $book->id }}')">Edit</a>
-                                    </div>
-                                @endif --}}
+                                        {{ $book->genre }}</p>                                    
                                 </div>
                             </div>
                         @endforeach

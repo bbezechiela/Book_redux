@@ -439,7 +439,15 @@ Route::get('/viewrequest/{id}', [ListingController::class, 'viewRequest']);
 
 Route::get('/viewbook/{id}', [ListingController::class, 'viewBook']);
 
-// Route::get('/declineorder/{id}', [ListingController::class, 'declineOrder'])
+Route::get('/rolereader', [UserController::class, 'roleToReader']);
+
+Route::get('/roleauthor', [UserController::class, 'roleToAuthor']);
+
+Route::get('/saved', [UserController::class, 'goToSaved']);
+
+Route::get('/savebook/{id}', [ListingController::class, 'saveBook']);
+
+Route::post('/onlinereadreview', [ListingController::class, 'postReview']);
 
 
 // New API's
@@ -452,3 +460,5 @@ Route::get('/getbook/{id}', [ListingController::class, 'getBookID']);
 Route::get('/request/{id}', [UserController::class, 'getExchangeRequest']);
 
 Route::get('/requestsub/{id}', [UserController::class, 'getBookRequest']);
+
+Route::get('/getrequestuser/{id}', [ListingController::class, 'getRequestUser']);

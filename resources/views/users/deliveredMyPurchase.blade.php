@@ -61,90 +61,7 @@
                         href="/refund-mypurchase">Refund</a> --}}
                 </nav>
             </div>
-        </div>
-        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
-        {{-- <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href=""><span>Maria Mesa</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Completed</span>
-            </div>
-            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"
-                                    style="color: #003060"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Title: <span>The Pioneers</span></h5>
-                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                            <p class="card-text">Edition: <span>1st Edition</span></p>
-                            <p class="card-text">Condition: <span>Good</span></p>
-                            <p class="card-text">Description: <span>This is a sample description.</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                            <p class="card-text">Genre: <span>Self-help</span></p>
-                            <p class="card-text">Format: <span>Paperback</span></p>
-                            <p class="card-text">Exchange Preferences: <span>This is a sample exchange
-                                    preferences.</span></p>
-
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
-                        <div class="button-group">
-                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
-                                Details</button>
-                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#rate-review"
-                                href="">Post Rating and Review</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+        </div>        
 
         {{-- CARD IS FOR DIGITAL EXCHANGE --}}
         @foreach ($orders as $order)
@@ -182,8 +99,8 @@
                                 <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
                                     data-bs-toggle="modal" onclick="viewDetails({{ $order->id }})" data-bs-target="#book-details">View
                                     Details</button>
-                                <a class="btn btn-sm receive-button" data-bs-toggle="modal"
-                                    data-bs-target="#rate-review" href="">Post Rating and Review</a>
+                                <button class="btn btn-sm receive-button" data-bs-toggle="modal"
+                                    data-bs-target="#rate-review" onclick="rate({{ $order->book->user->id }})">Post Rating and Review</button>
                             </div>
                         </div>
                     </div>
@@ -315,44 +232,14 @@
                                                 aria-hidden="true"></i>
                                             <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
                                                 aria-hidden="true"></i>
-                                        </div>
-                                        {{-- <span id="interaction-type" class="fw-bold interaction-drpdwn">Interaction
-                                            Type</span> --}}
-                                        {{-- <div class="dropdown interaction-drpdwn">
-                                            <button class="btn dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                Interaction Type
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><button class="dropdown-item" type="button">Sale</button></li>
-                                                <li><button class="dropdown-item" type="button">Exchange</button>
-                                                </li>
-                                                <li><button class="dropdown-item" type="button">Lent</button></li>
-                                            </ul>
-                                        </div> --}}
+                                        </div>                                      
                                     </div>
                                 </div>
-                            </div>
-                            {{-- <div class="col-4 d-flex m-0 justify-content-end">
-                                <div class="rate">
-                                    <i id="one-star" class="fa fa-star-o" style="cursor: pointer;"
-                                        aria-hidden="true"></i>
-                                    <i id="two-star" class="fa fa-star-o" style="cursor: pointer;"
-                                        aria-hidden="true"></i>
-                                    <i id="three-star" class="fa fa-star-o" style="cursor: pointer;"
-                                        aria-hidden="true"></i>
-                                    <i id="four-star" class="fa fa-star-o" style="cursor: pointer;"
-                                        aria-hidden="true"></i>
-                                    <i id="five-star" class="fa fa-star-o" style="cursor: pointer;"
-                                        aria-hidden="true"></i>
-                                </div>
-                            </div> --}}
+                            </div>                           
                             <div class="review-details">
                                 <span id="item-id" hidden></span>
-                                <p>Accuracy of Claim:
-                                    {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-accuracy" required>
-                                        {{-- <option >/10</option> --}}
+                                <p>Accuracy of Claim:                                    
+                                    <select class="btn" name="" id="condition-accuracy" required>                                        
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
                                         <option value="3/10">3/10</option>
@@ -365,10 +252,8 @@
                                         <option value="10/10">10/10</option>
                                     </select>
                                 </p>
-                                <p>Accuracy of Description:
-                                    {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-description" required>
-                                        {{-- <option >/10</option> --}}
+                                <p>Accuracy of Description:                                    
+                                    <select class="btn" name="" id="condition-description" required>                                        
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
                                         <option value="3/10">3/10</option>
@@ -381,10 +266,8 @@
                                         <option value="10/10">10/10</option>
                                     </select>
                                 </p>
-                                <p>Interaction:
-                                    {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="interaction" required>
-                                        {{-- <option >/10</option> --}}
+                                <p>Interaction:                                    
+                                    <select class="btn" name="" id="interaction" required>                                    
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
                                         <option value="3/10">3/10</option>
@@ -437,7 +320,7 @@
                                     </div>
                                 </div>
                                 </p>
-                                <div class="col-4 d-flex justify-content-between show-text">
+                                {{-- <div class="col-4 d-flex justify-content-between show-text">
                                     <p>Show name on your rating/review</p>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" role="switch"
@@ -446,7 +329,7 @@
                                 </div>
                                 <p class="username-text">Your name will be shown as <span id="username">Nestine
                                         Navarro</span>
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                     </div>
@@ -618,10 +501,7 @@
                                 {{-- <h4 class="mt-2 mb-3">Your order is confirmed!</h4> --}}
                                 {{-- <h6 class="name">Hello John,</h6><span class="fs-12 text-black-50">your order has been confirmed and will be shipped in two days</span> --}}
                                 <hr>
-                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
-                                    <div><span class="d-block fs-12">Approved Request Date</span><span
-                                            id="detail-order-date" class="font-weight-bold">12 March
-                                            2020</span></div>
+                                <div class="d-flex flex-rofunction/span></div>
                                     <div><span class="d-block fs-12">Transaction number</span><span
                                             id="detail-order-number" class="font-weight-bold">TRA44434324</span>
                                     </div>
@@ -659,15 +539,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
-                                    {{-- <div><span class="d-block fw-bold fs-12">Lister Name</span><span
-                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
-                                            Penduko</span>
-                                    </div>
-                                    <div><span class="d-block fs-12">Contact number</span><span
-                                            id="detail-shipping-address"
-                                            class="font-weight-bold shipping-address-text">09491229441</span>
-                                    </div> --}}
+                                <div class="d-flex flex-row justify-content-between align-items-center order-details">                                    
                                     <div><span class="d-block fw-bold fs-12">Requester Name</span><span
                                             id="detail-payment-method" class="font-weight-bold"
                                             style="color: rgb(111, 185, 219)">Nestine
@@ -719,28 +591,7 @@
                                             class="font-weight-bold shipping-address-text">09054173103</span>
                                     </div> --}}
                                 </div>
-                                <hr>
-                                {{-- <div class="mt-5 amount row">
-                                <div class="d-flex justify-content-center col-md-6"><img id="detail-barcode"
-                                        src="../assets/tracking.jfif" width="250" height="100">
-                                </div> --}}
-                                {{-- <div class="col-md-6">
-                                    <div class="billing">
-                                        <div class="d-flex justify-content-between">
-                                            <span>Subtotal</span><span id="detail-subtotal"
-                                                class="font-weight-bold">₱100</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mt-2"><span>Shipping
-                                                fee</span><span id="detail-shipping-fee"
-                                                class="font-weight-bold">₱130</span></div>
-                                        <hr>
-                                        <div class="d-flex justify-content-between mt-1"><span
-                                                class="font-weight-bold">Total</span>
-                                            <span id="detail-total"
-                                                class="font-weight-bold shipping-address-text">₱140</span>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                                <hr>                               
                             </div><span class="d-block">Complete Address</span><span id="detail-address"
                                 class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
                                 Tacloban City</span>
@@ -862,6 +713,16 @@
 ])
 
 <script>
+    const get = async (url) => {
+        var data = await fetch(url, {
+            method: 'GET'
+        });
+
+        return await data.json();
+    }
+
+
+    // PDF JS Part
     const viewDetails = (id) => {
         fetch(`/request/${id}`, {
                 method: 'GET'
@@ -898,22 +759,35 @@
             })
             .catch(err => console.error(err));
     }
+    // PDF JS Part
+
+    const rate = (user_id) => {
+        get(`/getrequestuser/${user_id}`)
+            .then(data => {
+                console.log(data);
+                document.getElementById('user_img').src = data.profile_photo;
+                document.getElementById('user_name').textContent = data.name;
+            })
+            .catch(err => console.error(err));
+    }
+
+
     // const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
     // const trackOrder = (id) => {
     //     document.getElementById('modal_tracking').textContent =
     //         `Tracking Number: ${document.getElementById(`track_${id}`).textContent}`;
     // }
     // var rate_val = 0;
-    // var one_S = document.getElementById('one-star');
-    // var two_S = document.getElementById('two-star');
-    // var three_S = document.getElementById('three-star');
-    // var four_S = document.getElementById('four-star');
-    // var five_S = document.getElementById('five-star');
-    // var first_img = document.getElementById('first-img');
-    // var second_img = document.getElementById('second-img');
-    // var third_img = document.getElementById('third-img');
-    // var fourth_img = document.getElementById('fourth-img');
-    // var fifth_img = document.getElementById('fifth-img');
+    var one_S = document.getElementById('one-star');
+    var two_S = document.getElementById('two-star');
+    var three_S = document.getElementById('three-star');
+    var four_S = document.getElementById('four-star');
+    var five_S = document.getElementById('five-star');
+    var first_img = document.getElementById('first-img');
+    var second_img = document.getElementById('second-img');
+    var third_img = document.getElementById('third-img');
+    var fourth_img = document.getElementById('fourth-img');
+    var fifth_img = document.getElementById('fifth-img');
     // var submit_btn = document.getElementById('submit-btn');
     // var accu_cond = document.getElementById('condition-accuracy');
     // var accu_desc = document.getElementById('condition-description');
@@ -921,61 +795,61 @@
     // var description = document.getElementById('description');
     // var check_username = document.getElementById('user-switch');
     // var close_btn = document.getElementById('close-btn');
-    // first_img.addEventListener('change', () => {
-    //     var img = document.getElementById('one-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('first-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // second_img.addEventListener('change', () => {
-    //     var img = document.getElementById('two-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('second-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // third_img.addEventListener('change', () => {
-    //     var img = document.getElementById('three-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('three-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // fourth_img.addEventListener('change', () => {
-    //     var img = document.getElementById('four-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('four-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // fifth_img.addEventListener('change', () => {
-    //     var img = document.getElementById('five-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('five-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // one_S.addEventListener('click', () => {
-    //     star(1);
-    //     rate_val = 1;
-    // });
-    // two_S.addEventListener('click', () => {
-    //     star(2);
-    //     rate_val = 2;
-    // });
-    // three_S.addEventListener('click', () => {
-    //     star(3);
-    //     rate_val = 3;
-    // });
-    // four_S.addEventListener('click', () => {
-    //     star(4);
-    //     rate_val = 4;
-    // });
-    // five_S.addEventListener('click', () => {
-    //     star(5);
-    //     rate_val = 5;
-    // });
+    first_img.addEventListener('change', () => {
+        var img = document.getElementById('one-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('first-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    second_img.addEventListener('change', () => {
+        var img = document.getElementById('two-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('second-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    third_img.addEventListener('change', () => {
+        var img = document.getElementById('three-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('three-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    fourth_img.addEventListener('change', () => {
+        var img = document.getElementById('four-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('four-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    fifth_img.addEventListener('change', () => {
+        var img = document.getElementById('five-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('five-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    one_S.addEventListener('click', () => {
+        star(1);
+        rate_val = 1;
+    });
+    two_S.addEventListener('click', () => {
+        star(2);
+        rate_val = 2;
+    });
+    three_S.addEventListener('click', () => {
+        star(3);
+        rate_val = 3;
+    });
+    four_S.addEventListener('click', () => {
+        star(4);
+        rate_val = 4;
+    });
+    five_S.addEventListener('click', () => {
+        star(5);
+        rate_val = 5;
+    });
 
     // function ratingReview(user_id, type, item_id) {
     //     submit_btn.disabled = false;
@@ -1223,43 +1097,43 @@
     //         .catch(error => console.log(error));
     // }
     // // });
-    // function star(rate) {
-    //     if (rate == 0) {
-    //         one_S.className = 'fa fa-star-o';
-    //         two_S.className = 'fa fa-star-o';
-    //         three_S.className = 'fa fa-star-o';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 1) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star-o';
-    //         three_S.className = 'fa fa-star-o';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 2) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star-o';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 3) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 4) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star';
-    //         four_S.className = 'fa fa-star';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 5) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star';
-    //         four_S.className = 'fa fa-star';
-    //         five_S.className = 'fa fa-star';
-    //     }
-    // }
+    function star(rate) {
+        if (rate == 0) {
+            one_S.className = 'fa fa-star-o';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 1) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star';
+        }
+    }
 </script>

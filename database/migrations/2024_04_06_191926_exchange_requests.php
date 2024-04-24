@@ -30,6 +30,7 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**

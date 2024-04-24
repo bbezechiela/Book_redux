@@ -61,7 +61,7 @@ class AdminController extends Controller
 
     public function manageUserListing()
     {
-        $user = Books::all();
+        $user = Books::with('user')->get();
         return view('admin.manageUserListing', ['user' => $user]);
     }
 
@@ -207,8 +207,15 @@ class AdminController extends Controller
     }
 
     public function deleteUserListing($id) {
-        $listing = Books::with('item')->find($id);
-        $listing->item()->delete();
+        $listing = Books::with('request', 'review')->find($id);
+        foreach ($listing->request as $req) {
+            $req->delete();
+        }
+
+        foreach($listing->review as $rev) {
+            $rev->delete();
+        }
+        
         $listing->delete();
 
         if ($listing) {

@@ -57,89 +57,6 @@
                     href="/refund">Refund</a> --}}
             </nav>
         </div>
-        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
-        {{-- <div class="order-cart d-print-none">
-            <div class="name-cart d-flex justify-content-between">
-                <div>
-                    <a class="seller-name" href=""><span>Nestine Navarro</span></a>
-                    <button class="message-seller message-button"><i class="fa fa-commenting"
-                            aria-hidden="true"></i></button>
-                </div>
-                <span class="order-text me-5 mt-0">Completed</span>
-            </div>
-            <div class="card mb-3" style="max-width: 100%; margin-left: 3em; margin-right: 2.1em;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active" data-bs-interval="10000">
-                                        <img src="/assets/city_limits.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/bubble_bath.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/brown_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item" data-bs-interval="2000">
-                                        <img src="/assets/yellow_book.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="/assets/city_of_secrets.png" class="img-fluid rounded-start" alt="..."
-                                            height="200px" width="200px">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"
-                                    style="color: #003060"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Title: <span>City Limits</span></h5>
-                            <p class="card-text">Author: <span>Pedro Penduko</span></p>
-                            <p class="card-text">Edition: <span>1st Edition</span></p>
-                            <p class="card-text">Condition: <span>Good</span></p>
-                            <p class="card-text">Description: <span>This is a sample description of the book I want to
-                                    offer for exchange.</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-body">
-                            <h5 class="card-title">ISBN: <span>124154238778</span></h5>
-                            <p class="card-text">Genre: <span>Self-help</span></p>
-                            <p class="card-text">Format: <span>Paperback</span></p>
-                            <p class="card-text">Exchange Method Preference: <span>Delivery</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-12 d-flex justify-content-end mt-3 mb-3">
-
-                        <div>
-                            <button id="arrange_shipment" type="button" class="btn btn-sm arrange-button"
-                                data-bs-toggle="modal" onclick="viewShipping" data-bs-target="#shipping-details">View
-                                Details</button>
-                            <a class="btn btn-sm receive-button" data-bs-toggle="modal" data-bs-target="#rate-review"
-                                href="">Post Rating and Review</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- CARD IS FOR PHYSICAL EXCHANGE --}}
 
         {{-- CARD IS FOR DIGITAL EXCHANGE --}}
         @foreach ($orders as $order)
@@ -181,8 +98,10 @@
                                             data-bs-toggle="modal" onclick="viewDetails({{ $req->id }})"
                                             data-bs-target="#book-details">View
                                             Details</button>
-                                        {{-- <a class="btn btn-sm receive-button" data-bs-toggle="modal"
-                                            data-bs-target="#rate-review" href="">Post Rating and Review</a> --}}
+                                        <button class="btn btn-sm receive-button" data-bs-toggle="modal"
+                                            data-bs-target="#rate-review"
+                                            onclick="ratingReview({{ $req->user->id }})">Post Rating and
+                                            Review</button>
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +205,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="customer-details">
-                                    <img src="../assets/eubert.png" id="user_img" alt="seller image"
+                                    <img src="../assets/3.jpg" id="user_img" alt="seller image"
                                         class="circle-picture">
                                     <div class="name-interaction">
                                         <p id="user_name">Marc Eubert Contado</p>
@@ -320,10 +239,8 @@
                             <div class="review-details">
                                 <span id="review_id" hidden></span>
                                 <span id="item-id" hidden></span>
-                                <p>Accuracy of Claim:
-                                    {{-- <span>10/10</span> --}}
-                                    <select class="btn" name="" id="condition-accuracy" required>
-                                        {{-- <option >/10</option> --}}
+                                <p>Accuracy of Content:
+                                    <select class="btn" name="" id="condition-accuracy" required>                                        
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
                                         <option value="3/10">3/10</option>
@@ -337,9 +254,7 @@
                                     </select>
                                 </p>
                                 <p>Accuracy of Description:
-                                    {{-- <span>10/10</span> --}}
                                     <select class="btn" name="" id="condition-description" required>
-                                        {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
                                         <option value="3/10">3/10</option>
@@ -353,9 +268,7 @@
                                     </select>
                                 </p>
                                 <p>Interaction:
-                                    {{-- <span>10/10</span> --}}
                                     <select class="btn" name="" id="interaction" required>
-                                        {{-- <option >/10</option> --}}
                                         <option value="1/10">1/10</option>
                                         <option value="2/10">2/10</option>
                                         <option value="3/10">3/10</option>
@@ -408,14 +321,14 @@
                                     </div>
                                 </div>
                                 </p>
-                                <div class="col-4 d-flex justify-content-between show-text">
+                                {{-- <div class="col-4 d-flex justify-content-between show-text">
                                     <p>Show name on your rating/review</p>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" role="switch"
                                             id="username-switch">
                                     </div>
                                 </div>
-                                <p class="username-text">Your name will be shown as <span>Nestine Navarro</span></p>
+                                <p class="username-text">Your name will be shown as <span>Nestine Navarro</span></p> --}}
                             </div>
                         </div>
                     </div>
@@ -481,135 +394,7 @@
         </div>
 
     </div>
-</div>
-{{-- CARD IS FOR PHYSICAL EXCHANGE --}}
-<!-- Shipping Details Modal -->
-{{-- <div class="modal fade" id="shipping-details" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header d-print-none">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Transaction Details</h1>
-            </div>
-            <div class="modal-body d-print-block">
-                <div class="container mt-5 mb-5">
-                    <div class="d-flex justify-content-center row">
-                        <div class="col-md-10">
-                            <div class="receipt bg-white p-3 rounded"><img src="../assets/Book_Logo.png" width="120">                               
-                                <hr>
-                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
-                                    <div><span class="d-block fs-12">Approved Request Date</span><span
-                                            id="detail-order-date" class="font-weight-bold">12 March
-                                            2020</span></div>
-                                    <div><span class="d-block fs-12">Transaction number</span><span
-                                            id="detail-order-number" class="font-weight-bold">TRA44434324</span>
-                                    </div>
-                                    <div><span class="d-block fs-12">Request Date</span><span id="detail-payment-method"
-                                            class="font-weight-bold">03 April
-                                            2024</span></div>
-                                    <div><span class="d-block fs-12">Shipping Address</span><span
-                                            id="detail-shipping-address"
-                                            class="font-weight-bold shipping-address-text">Bagacay,
-                                            Tacloban</span></div>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between align-items-center product-details">
-                                    <div class="d-flex flex-row product-name-image">
-                                        <div class="d-flex flex-column justify-content-between ml-2">
-                                            <div>
-                                                <h6 style="color:#E55B13;">My Book - Outgoing book</h6>
-                                                <span id="detail-title" class="d-block fw-bold p-name">The
-                                                    Pioneers</span>
-                                                <span id="detail-isbn" class="fs-12">ISBN:
-                                                    65342688564324</span><br>
-                                                <span id="detail-isbn" class="fs-12">Author: Marx
-                                                    Hinton</span><br>
-                                                <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
-                                                <span id="detail-isbn" class="fs-12">Edition: 1st
-                                                    Edition</span><br>
-                                                <span id="detail-isbn" class="fs-12">Condition: New</span><br>
-                                                <span id="detail-isbn" class="fs-12">Exchange Method Preference:
-                                                    Meetup</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h5 id="detail-price">Paperback</h5>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
-                                    <div><span class="d-block fw-bold fs-12">Lister Name</span><span
-                                            id="detail-order-date" style="color: rgb(111, 185, 219)">Marie
-                                            Penduko</span>
-                                    </div>
-                                    <div><span class="d-block fs-12">Contact number</span><span
-                                            id="detail-shipping-address"
-                                            class="font-weight-bold shipping-address-text">09491229441</span>
-                                    </div>
-                                 
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between align-items-center product-details">
-                                    <div class="d-flex flex-row product-name-image">
-                                        <div class="d-flex flex-column justify-content-between ml-2">
-                                            <div>
-                                                <h6 style="color:#E55B13;">Requester Book - Incoming book</h6>
-                                                <span id="detail-title" class="d-block fw-bold p-name">City
-                                                    Limits</span>
-                                                <span id="detail-isbn" class="fs-12">ISBN:
-                                                    65342688564324</span><br>
-                                                <span id="detail-isbn" class="fs-12">Author: Marx
-                                                    Hinton</span><br>
-                                                <span id="detail-isbn" class="fs-12">Genre: Self-help</span><br>
-                                                <span id="detail-isbn" class="fs-12">Edition: 1st
-                                                    Edition</span><br>
-                                                <span id="detail-isbn" class="fs-12">Condition: New</span><br>
-                                                <span id="detail-isbn" class="fs-12">Exchange Method Preference:
-                                                    Meetup</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h5 id="detail-price">Paperback</h5>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex flex-row justify-content-between align-items-center order-details">
-                                   
-                                    <div><span class="d-block fs-12">Requester Name</span><span
-                                            id="detail-payment-method" class="font-weight-bold"
-                                            style="color: rgb(111, 185, 219)">Nestine
-                                            Navarro</span></div>
-                                    <div><span class="d-block fs-12">Contact Number</span><span
-                                            id="detail-shipping-address"
-                                            class="font-weight-bold shipping-address-text">09054173103</span>
-                                    </div>
-                                </div>
-                                <hr>
-                               
-                            </div><span class="d-block">Complete Address</span><span id="detail-address"
-                                class="font-weight-bold shipping-address-text">Blk 33 Lot 52 Bagacay,
-                                Tacloban City</span>
-                            <hr>
-                            <div class="d-flex justify-content-between align-items-center footer">
-                                <div class="thanks"><span class="d-block font-weight-bold">Thanks for
-                                        sharing</span><span>BookRedux team</span></div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer d-print-none">
-                <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="modal">Close</button>
-                <button class="btn btn-primary hidden-print save-button" onclick="myFunction()"><span
-                        class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>                
-            </div>
-        </div>
-    </div>
-</div>
-</div> --}}
-{{-- CARD IS FOR PHYSICAL EXCHANGE --}}
+</div>{
 
 {{-- CARD IS FOR DIGITAL EXCHANGE --}}
 <!-- Book Details Modal -->
@@ -762,6 +547,16 @@
 ])
 
 <script>
+    const get = async (url) => {
+        var data = await fetch(url, {
+            method: 'GET'
+        });
+
+        return await data.json();
+    }
+
+
+    // PDF Js Start
     const listerPreview = (filename) => {
         var loadingTask = pdfjsLib.getDocument(`/files/books/${filename}`);
         var pdfDiv = document.getElementById('listerPdfPreview');
@@ -837,6 +632,8 @@
             }
         });
     }
+    // PDF Js End
+
 
     const viewDetails = (id) => {
         fetch(`/request/${id}`, {
@@ -880,117 +677,129 @@
         document.getElementById('listerPdfPreview').innerHTML = '';
     }
 
+    const ratingReview = (user_id) => {
+        get(`/getrequestuser/${user_id}`)
+            .then(data => {
+                console.log(data);
+                document.getElementById('user_img').src = data.profile_photo;
+                document.getElementById('user_name').textContent = data.name;
+            })
+            .catch(err => console.error(err));
+    }
+
     // const message = bootstrap.Toast.getOrCreateInstance(document.getElementById('message'));
-    // var first_img = document.getElementById('first-img');
-    // var second_img = document.getElementById('second-img');
-    // var third_img = document.getElementById('third-img');
-    // var fourth_img = document.getElementById('fourth-img');
-    // var fifth_img = document.getElementById('fifth-img');
-    // var one_S = document.getElementById('one-star');
-    // var two_S = document.getElementById('two-star');
-    // var three_S = document.getElementById('three-star');
-    // var four_S = document.getElementById('four-star');
-    // var five_S = document.getElementById('five-star');
+    var first_img = document.getElementById('first-img');
+    var second_img = document.getElementById('second-img');
+    var third_img = document.getElementById('third-img');
+    var fourth_img = document.getElementById('fourth-img');
+    var fifth_img = document.getElementById('fifth-img');
+    var one_S = document.getElementById('one-star');
+    var two_S = document.getElementById('two-star');
+    var three_S = document.getElementById('three-star');
+    var four_S = document.getElementById('four-star');
+    var five_S = document.getElementById('five-star');
     // var submit_btn = document.getElementById('submit-btn');
     // var description = document.getElementById('description');
     // var username_radio = document.getElementById('username-switch');
-    // var rate_val = 0;
+    var rate_val = 0;
     // var submit_btn_status = '';
-    // first_img.addEventListener('change', () => {
-    //     var img = document.getElementById('one-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('first-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // second_img.addEventListener('change', () => {
-    //     var img = document.getElementById('two-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('second-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // third_img.addEventListener('change', () => {
-    //     var img = document.getElementById('three-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('three-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // fourth_img.addEventListener('change', () => {
-    //     var img = document.getElementById('four-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('four-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // fifth_img.addEventListener('change', () => {
-    //     var img = document.getElementById('five-image');
-    //     img.src = URL.createObjectURL(event.target.files[0]);
-    //     document.getElementById('five-plus').className = 'fa p-0';
-    //     img.style.width = '60px';
-    //     img.style.height = '60px';
-    // });
-    // one_S.addEventListener('click', () => {
-    //     star(1);
-    //     rate_val = 1;
-    // });
-    // two_S.addEventListener('click', () => {
-    //     star(2);
-    //     rate_val = 2;
-    // });
-    // three_S.addEventListener('click', () => {
-    //     star(3);
-    //     rate_val = 3;
-    // });
-    // four_S.addEventListener('click', () => {
-    //     star(4);
-    //     rate_val = 4;
-    // });
-    // five_S.addEventListener('click', () => {
-    //     star(5);
-    //     rate_val = 5;
-    // });
+    first_img.addEventListener('change', () => {
+        var img = document.getElementById('one-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('first-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    second_img.addEventListener('change', () => {
+        var img = document.getElementById('two-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('second-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    third_img.addEventListener('change', () => {
+        var img = document.getElementById('three-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('three-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    fourth_img.addEventListener('change', () => {
+        var img = document.getElementById('four-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('four-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
+    fifth_img.addEventListener('change', () => {
+        var img = document.getElementById('five-image');
+        img.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById('five-plus').className = 'fa p-0';
+        img.style.width = '60px';
+        img.style.height = '60px';
+    });
 
-    // function star(rate) {
-    //     if (rate == 0) {
-    //         one_S.className = 'fa fa-star-o';
-    //         two_S.className = 'fa fa-star-o';
-    //         three_S.className = 'fa fa-star-o';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 1) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star-o';
-    //         three_S.className = 'fa fa-star-o';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 2) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star-o';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 3) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star';
-    //         four_S.className = 'fa fa-star-o';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 4) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star';
-    //         four_S.className = 'fa fa-star';
-    //         five_S.className = 'fa fa-star-o';
-    //     } else if (rate == 5) {
-    //         one_S.className = 'fa fa-star';
-    //         two_S.className = 'fa fa-star';
-    //         three_S.className = 'fa fa-star';
-    //         four_S.className = 'fa fa-star';
-    //         five_S.className = 'fa fa-star';
-    //     }
-    // }
+    function star(rate) {
+        if (rate == 0) {
+            one_S.className = 'fa fa-star-o';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 1) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star-o';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 2) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star-o';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 3) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star-o';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 4) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star-o';
+        } else if (rate == 5) {
+            one_S.className = 'fa fa-star';
+            two_S.className = 'fa fa-star';
+            three_S.className = 'fa fa-star';
+            four_S.className = 'fa fa-star';
+            five_S.className = 'fa fa-star';
+        }
+    }
+
+    one_S.addEventListener('click', () => {
+        star(1);
+        rate_val = 1;
+    });
+    two_S.addEventListener('click', () => {
+        star(2);
+        rate_val = 2;
+    });
+    three_S.addEventListener('click', () => {
+        star(3);
+        rate_val = 3;
+    });
+    four_S.addEventListener('click', () => {
+        star(4);
+        rate_val = 4;
+    });
+    five_S.addEventListener('click', () => {
+        star(5);
+        rate_val = 5;
+    });
+    
 
     // function editRating(id) {
     //     // alert(id);

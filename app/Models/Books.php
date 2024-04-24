@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 class Books extends Model
 {
@@ -15,14 +16,12 @@ class Books extends Model
         return $this->belongsTo(Users::class, 'user_id');
     }
 
-    public function item()
-    {
-        return $this->hasMany(Order_Items::class, 'book_id');
+    public function review() {
+        return $this->hasMany(Reviews::class, 'book_id');
     }
-
-    public function cart()
-    {
-        return $this->hasMany(Cart::class, 'product_id');
+    
+    public function reports() {
+        return $this->hasMany(Report::class, 'book_id');
     }
 
     public function track() {

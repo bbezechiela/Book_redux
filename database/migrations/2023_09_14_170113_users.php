@@ -20,19 +20,19 @@ return new class extends Migration
             $table->string('email');
             $table->string('uid');
             // $table->string('phone_number');
-            $table->string('address')->nullable();
-            $table->string('birthday')->nullable();
-            $table->string('gender')->nullable();
+            // $table->string('address')->nullable();
+            // $table->string('birthday')->nullable();
+            // $table->string('gender')->nullable();
             // $table->integer('age');
             $table->string('interest')->nullable();            
             $table->text('profile_photo')->nullable();
 
             // seller
-            $table->string('owner_name')->nullable();
-            $table->string('registration_number')->nullable();
-            $table->string('business_name')->nullable();
-            $table->string('date_registered')->nullable();
-            $table->string('permit')->nullable();
+            // $table->string('owner_name')->nullable();
+            // $table->string('registration_number')->nullable();
+            // $table->string('business_name')->nullable();
+            // $table->string('date_registered')->nullable();
+            // $table->string('permit')->nullable();
             $table->timestamps();
         });
     }

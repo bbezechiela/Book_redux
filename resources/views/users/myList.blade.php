@@ -56,7 +56,7 @@
         $completed = 0;
         $dropped = 0;
 
-        foreach ($books as $book ) {
+        foreach ($books as $book) {
             foreach ($book->request as $req) {
                 if ($req->status == 'Request') {
                     $exchange_request++;
@@ -107,8 +107,9 @@
                             <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
                             Exchange
                         </button> --}}
-                        <button id="create-digital-exchange-listing" class="btn create-btn-exchange px-3 ms-2 d-flex align-items-center h-75"
-                            type="button" aria-expanded="false">
+                        <button id="create-digital-exchange-listing"
+                            class="btn create-btn-exchange px-3 ms-2 d-flex align-items-center h-75" type="button"
+                            aria-expanded="false">
                             <i class="fa fa-plus-circle" aria-hidden="true" style="margin-right: 5px;"></i>List Book for
                             Exchange
                         </button>
@@ -138,9 +139,8 @@
                     @foreach ($books as $book)
                         <div class="card col-3 m-1 shadow py-2" style="width: 240px; flex: 0 0 auto; mb-3">
                             <img id="photo_{{ $book->id }}" data-filename="{{ $book->back_cover }}"
-                                src="{{ asset('images/book_cover/' . $book->back_cover) }}"
-                                class="img mx-auto rounded" alt="{{ $book->back_cover }}" height="170px"
-                                style="max-width: 200px;">
+                                src="{{ asset('images/book_cover/' . $book->back_cover) }}" class="img mx-auto rounded"
+                                alt="{{ $book->back_cover }}" height="170px" style="max-width: 200px;">
                             <div class="card-body py-0">
                                 <p id="title_{{ $book->id }}" class="card-title mb-0 fw-bold">
                                     {{ $book->title }}</p>
@@ -559,146 +559,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                                    aria-controls="panelsStayOpen-collapseTwo">
-                                                    Book Condition Guidelines
-                                                </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                                <div class="accordion-body">
-                                                    <strong>New: </strong>
-                                                    <small>A book that is in pristine condition, showing no
-                                                        signs of use or wear. It looks like it has just come from
-                                                        the bookstore and
-                                                        may still have
-                                                        the original packaging or dust jacket.</small><br>
-                                                    <strong>Like New: </strong>
-                                                    <small>The book appears almost brand new but may have minor
-                                                        imperfections,
-                                                        such as a slight crease on the spine or cover, which are
-                                                        hardly
-                                                        noticeable.</small><br>
-                                                    <strong>Very Good: </strong>
-                                                    <small>The book is in excellent condition overall, with minimal
-                                                        signs
-                                                        of
-                                                        wear. There may be slight cover or spine creases, but the
-                                                        pages are clean
-                                                        and
-                                                        unmarked.</small><br>
-                                                    <strong>Good: </strong>
-                                                    <small>The book has been read and shows some wear and tear, but
-                                                        it is
-                                                        still in
-                                                        reasonable condition. There may be creases, minor stains, or
-                                                        dog-eared
-                                                        pages,
-                                                        but no significant damage.</small><br>
-                                                    <strong>Fair: </strong>
-                                                    <small>The book has seen significant use and displays noticeable
-                                                        wear. It
-                                                        may
-                                                        have loose or torn pages, markings, or
-                                                        highlighting.</small><br>
-                                                    <strong>Poor: </strong>
-                                                    <small>The book is heavily worn, damaged, or may be missing
-                                                        pages or
-                                                        covers.
-                                                        It is not in good reading condition and might be suitable
-                                                        only for reference
-                                                        purposes or collectors looking for rare editions.</small>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-                                        {{-- <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseThree"
-                                                    aria-expanded="false"
-                                                    aria-controls="panelsStayOpen-collapseThree">
-                                                    Selling Guidelines
-                                                </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseThree"
-                                                class="accordion-collapse collapse">
-                                                <div class="accordion-body">
-                                                    <strong>Book Information: </strong>
-                                                    <small>Provide accurate and detailed information about the book
-                                                        you want to sell. Include the book's title, author or
-                                                        other relevant identifiers, edition, condition (e.g., new,
-                                                        used), and a brief description.</small><br>
-
-                                                    <strong>Pricing: </strong>
-                                                    <small>Set a competitive and reasonable price for your book.
-                                                        Consider factors such as the book's condition, demand, and
-                                                        market rates.</small><br>
-
-                                                    <strong>Images: </strong>
-                                                    <small>Upload clear and high-quality images of the book's cover
-                                                        and any relevant pages or content. Images help potential
-                                                        buyers assess the book's condition.
-                                                    </small><br>
-
-                                                    <strong>Listing Description: </strong>
-                                                    <small>Write a clear and informative description of the book.
-                                                        Mention any highlights, notes, or signs of wear and tear if
-                                                        the book is used.</small><br>
-
-                                                    <strong>Policies: </strong>
-                                                    <small>Familiarize yourself with BookRedux's policies,
-                                                        especially those related to listing books for sale. Ensure
-                                                        that your listing complies with these policies.</small><br>
-
-                                                    <strong>Honesty and Accuracy: </strong>
-                                                    <small>Be honest about the book's condition and any potential
-                                                        flaws. Misrepresentation may lead to disputes and return
-                                                        requests.</small><br>
-
-                                                    <strong>Pricing and Fees: </strong>
-                                                    <small>Understand the pricing structure and fees associated with
-                                                        selling on the platform. <strong>BookRedux will charge 10%
-                                                            of the
-                                                            total price when the listing is placed in
-                                                            order.</strong></small><br>
-
-                                                    <strong>Availability and Stock Management: </strong>
-                                                    <small>Regularly update your listing's availability. If the book
-                                                        is no longer available, remove the listing
-                                                        promptly.</small><br>
-
-                                                    <strong>Communication: </strong>
-                                                    <small>Be responsive to potential buyers' inquiries and
-                                                        messages. Good communication can build trust with
-                                                        buyers.</small><br>
-
-                                                    <strong>Shipping: </strong>
-                                                    <small>Clearly specify your shipping methods, costs, and
-                                                        estimated delivery times. Use appropriate packaging to
-                                                        protect the book during transit.</small><br>
-
-                                                    <strong>Payment: </strong>
-                                                    <small>BookRedux will handle payment processing. Ensure that
-                                                        your payment information is accurate and up to
-                                                        date.</small><br>
-
-                                                    <strong>Review and Monitor Listings: </strong>
-                                                    <small>Regularly review and monitor your book listings. Make
-                                                        necessary adjustments to improve the visibility and
-                                                        attractiveness of your listings.</small><br>
-
-                                                    <strong>Buyer Feedback: </strong>
-                                                    <small>Encourage buyers to leave feedback after completing a
-                                                        transaction. Positive feedback can enhance your reputation
-                                                        on the platform.</small>
-
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
                                                 <button class="accordion-button" type="button"
@@ -1345,146 +1205,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                                    aria-controls="panelsStayOpen-collapseTwo">
-                                                    Book Condition Guidelines
-                                                </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                                <div class="accordion-body">
-                                                    <strong>New: </strong>
-                                                    <small>A book that is in pristine condition, showing no
-                                                        signs of use or wear. It looks like it has just come from
-                                                        the bookstore and
-                                                        may still have
-                                                        the original packaging or dust jacket.</small><br>
-                                                    <strong>Like New: </strong>
-                                                    <small>The book appears almost brand new but may have minor
-                                                        imperfections,
-                                                        such as a slight crease on the spine or cover, which are
-                                                        hardly
-                                                        noticeable.</small><br>
-                                                    <strong>Very Good: </strong>
-                                                    <small>The book is in excellent condition overall, with minimal
-                                                        signs
-                                                        of
-                                                        wear. There may be slight cover or spine creases, but the
-                                                        pages are clean
-                                                        and
-                                                        unmarked.</small><br>
-                                                    <strong>Good: </strong>
-                                                    <small>The book has been read and shows some wear and tear, but
-                                                        it is
-                                                        still in
-                                                        reasonable condition. There may be creases, minor stains, or
-                                                        dog-eared
-                                                        pages,
-                                                        but no significant damage.</small><br>
-                                                    <strong>Fair: </strong>
-                                                    <small>The book has seen significant use and displays noticeable
-                                                        wear. It
-                                                        may
-                                                        have loose or torn pages, markings, or
-                                                        highlighting.</small><br>
-                                                    <strong>Poor: </strong>
-                                                    <small>The book is heavily worn, damaged, or may be missing
-                                                        pages or
-                                                        covers.
-                                                        It is not in good reading condition and might be suitable
-                                                        only for reference
-                                                        purposes or collectors looking for rare editions.</small>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-                                        {{-- <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#panelsStayOpen-collapseThree"
-                                                    aria-expanded="false"
-                                                    aria-controls="panelsStayOpen-collapseThree">
-                                                    Selling Guidelines
-                                                </button>
-                                            </h2>
-                                            <div id="panelsStayOpen-collapseThree"
-                                                class="accordion-collapse collapse">
-                                                <div class="accordion-body">
-                                                    <strong>Book Information: </strong>
-                                                    <small>Provide accurate and detailed information about the book
-                                                        you want to sell. Include the book's title, author or
-                                                        other relevant identifiers, edition, condition (e.g., new,
-                                                        used), and a brief description.</small><br>
-
-                                                    <strong>Pricing: </strong>
-                                                    <small>Set a competitive and reasonable price for your book.
-                                                        Consider factors such as the book's condition, demand, and
-                                                        market rates.</small><br>
-
-                                                    <strong>Images: </strong>
-                                                    <small>Upload clear and high-quality images of the book's cover
-                                                        and any relevant pages or content. Images help potential
-                                                        buyers assess the book's condition.
-                                                    </small><br>
-
-                                                    <strong>Listing Description: </strong>
-                                                    <small>Write a clear and informative description of the book.
-                                                        Mention any highlights, notes, or signs of wear and tear if
-                                                        the book is used.</small><br>
-
-                                                    <strong>Policies: </strong>
-                                                    <small>Familiarize yourself with BookRedux's policies,
-                                                        especially those related to listing books for sale. Ensure
-                                                        that your listing complies with these policies.</small><br>
-
-                                                    <strong>Honesty and Accuracy: </strong>
-                                                    <small>Be honest about the book's condition and any potential
-                                                        flaws. Misrepresentation may lead to disputes and return
-                                                        requests.</small><br>
-
-                                                    <strong>Pricing and Fees: </strong>
-                                                    <small>Understand the pricing structure and fees associated with
-                                                        selling on the platform. <strong>BookRedux will charge 10%
-                                                            of the
-                                                            total price when the listing is placed in
-                                                            order.</strong></small><br>
-
-                                                    <strong>Availability and Stock Management: </strong>
-                                                    <small>Regularly update your listing's availability. If the book
-                                                        is no longer available, remove the listing
-                                                        promptly.</small><br>
-
-                                                    <strong>Communication: </strong>
-                                                    <small>Be responsive to potential buyers' inquiries and
-                                                        messages. Good communication can build trust with
-                                                        buyers.</small><br>
-
-                                                    <strong>Shipping: </strong>
-                                                    <small>Clearly specify your shipping methods, costs, and
-                                                        estimated delivery times. Use appropriate packaging to
-                                                        protect the book during transit.</small><br>
-
-                                                    <strong>Payment: </strong>
-                                                    <small>BookRedux will handle payment processing. Ensure that
-                                                        your payment information is accurate and up to
-                                                        date.</small><br>
-
-                                                    <strong>Review and Monitor Listings: </strong>
-                                                    <small>Regularly review and monitor your book listings. Make
-                                                        necessary adjustments to improve the visibility and
-                                                        attractiveness of your listings.</small><br>
-
-                                                    <strong>Buyer Feedback: </strong>
-                                                    <small>Encourage buyers to leave feedback after completing a
-                                                        transaction. Positive feedback can enhance your reputation
-                                                        on the platform.</small>
-
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
                                                 <button class="accordion-button" type="button"
@@ -1590,7 +1310,7 @@
                 <select name="" class="btn mx-5 fw-bold px-0 interaction-type" id="edit-modal-category">
                     <option value="Online Reading">Online Reading</option>
                     <option value="Digital Exchange">Digital Exchange</option>
-                    <option value="Exchange">Exchange</option>
+                    {{-- <option value="Exchange">Exchange</option> --}}
                 </select>
                 <input type="text" id="edit-book-id" name="id" hidden>
 
@@ -1904,7 +1624,7 @@
                 @if (session('deleteMessage') &&
                         session('deleteMessage') ==
                             'Listing deleted successfully. Your request has been processed, and the specified listing has been
-                                removed.')
+                                                removed.')
                     <div class="toast-body fw-bold text-success">
                         {{ session('deleteMessage') }}
                     </div>
@@ -2049,10 +1769,16 @@
                     document.getElementById('edit-description').value = result.description;
                     document.getElementById('online-reading-delete').onclick = () => window.location.href =
                         `/mylist/delete/${result.id}`;
+
                     document.getElementById('online-reading-update').onclick = () => {
                         document.getElementById('edit-online-reading-form').action =
                             `/mylist/updateSale/${result.id}`;
                         document.getElementById('edit-online-reading-form').submit();
+                    }
+                    document.getElementById('digital-exchange-update').onclick = () => {
+                        document.getElementById('edit-digital-form').action =
+                            `/mylist/digitalupdate/${result.id}`;
+                        document.getElementById('edit-digital-form').submit();
                     }
                     console.log(result);
                     document.getElementById("edit-online-reading-div").style.display = "flex";
@@ -2071,6 +1797,12 @@
                     document.getElementById('edit-digital-description').value = result.description;
                     document.getElementById('digital-exchange-delete').onclick = () => window.location.href =
                         `/mylist/delete/${result.id}`;
+
+                    document.getElementById('online-reading-update').onclick = () => {
+                        document.getElementById('edit-online-reading-form').action =
+                            `/mylist/updateSale/${result.id}`;
+                        document.getElementById('edit-online-reading-form').submit();
+                    }
                     document.getElementById('digital-exchange-update').onclick = () => {
                         document.getElementById('edit-digital-form').action =
                             `/mylist/digitalupdate/${result.id}`;
@@ -2093,10 +1825,12 @@
     edit_modal.addEventListener('change', () => {
         if (edit_modal.value == 'Online Reading') {
             document.getElementById("edit-online-reading-div").style.display = "flex";
+            document.getElementById('digital-update').style.display = "none";
             document.getElementById("edit-exchange-div").style.display = "none";
-        } else if (edit_modal.value == 'Exchange') {
+        } else if (edit_modal.value == 'Digital Exchange') {
             document.getElementById("edit-online-reading-div").style.display = "none";
-            document.getElementById("edit-exchange-div").style.display = "flex";
+            document.getElementById('digital-update').style.display = "flex";
+            document.getElementById("edit-exchange-div").style.display = "none";
         }
     });
     // sort select    
@@ -2131,14 +1865,7 @@
         document.getElementById("digital").style.display = "none";
         createListingModal.show();
     });
-    // document.getElementById('create-exchange-listing').addEventListener('click', () => {
-    //     list_category.value = 'Physical Exchange';
-    //     document.getElementById('listing-type').textContent = 'Physical Exchange';
-    //     document.getElementById("sale").style.display = "none";
-    //     document.getElementById("exchange").style.display = "flex";
-    //     document.getElementById("digital").style.display = "none";
-    //     createListingModal.show();
-    // });
+
     document.getElementById('create-digital-exchange-listing').addEventListener('click', () => {
         list_category.value = 'Digital Exchange';
         document.getElementById('listing-type').textContent = 'Digital Exchange';
@@ -2164,17 +1891,7 @@
         exchange_length.value = length.value;
         exchange_courier.value = courier;
     });
-    // list category    
-    list_category.addEventListener("change", function() {
-        // console.log(String(list_category.value));
-        if (list_category.value == "Online Reading") {
-            document.getElementById("sale").style.display = "flex";
-            document.getElementById("exchange").style.display = "none";
-        } else if (list_category.value == "Exchange") {
-            document.getElementById("sale").style.display = "none";
-            document.getElementById("exchange").style.display = "flex";
-        }
-    });
+
     // uploading image    
     var exchange_image_upload = document.getElementById("exchange-image");
     exchange_image_upload.addEventListener("change", function() {

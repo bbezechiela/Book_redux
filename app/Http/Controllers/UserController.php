@@ -9,6 +9,7 @@ use App\Models\Exchange_Requests;
 use App\Models\Order_Items;
 use App\Models\Orders;
 use App\Models\Reviews;
+use App\Models\Saved_Books;
 use App\Models\Track_Rental;
 use App\Models\User;
 use App\Models\Users;
@@ -86,7 +87,7 @@ class UserController extends Controller
 
             // $users = Users::where();
             $user = Users::find(session('id'));
-            $post = Books::with('user.addressUser', 'cart')->get();
+            $post = Books::with('user.addressUser')->get();
             return view('users.explore', ['post' => $post, 'user' => $user]);
             // return view('users.homepage')->with('post', $post);
             // return view('users.homepage', compact('post'));
@@ -95,24 +96,35 @@ class UserController extends Controller
         }
     }
 
-    //Amu adi an orig
+    public function roleToReader() {
+        $user = Users::find(session('id'));
+        $user->update([
+            'type' => 'Reader'
+        ]);
+        
 
-    // public function singleProduct($id, $user_id)
-    // {
-    //     if (session()->has('uid')) {
-    //         $book = Books::with('item.ratedItem.user')->find($id);
-    //         $user = Users::with('addressUser')->find($user_id);
-    //         return view('users.singleProduct', ['book_id' => $book, 'user_id' => $user]);
-    //     } else {
-    //         return view('landing_page')->with('message', 'You have to login first');
-    //     }
-    // }
+        if ($user) {
+            session()->put('type', $user->type);
+            return redirect('/survey');
+        }
+    }
 
-    //Temporary lang kay dik natutuhay han UI
+    public function roleToAuthor() {
+        $user = Users::find(session('id'));
+        $user->update([
+            'type' => 'Author'
+        ]);
+
+        if ($user) {
+            session()->put('type', $user->type);
+            return redirect('/survey');
+        }
+    }
+
     public function singleProduct($id)
     {
         if (session()->has('uid')) {
-            $book = Books::with('user', 'request')->find($id);
+            $book = Books::with('user', 'review.user')->find($id);                        
 
             return view('users.singleProduct', ['book' => $book]);
         } else {
@@ -729,7 +741,7 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget(['id', 'name', 'email', 'uid', 'image']);
-        return view('landing_page');
+        return redirect('/');
     }
 
     public function login_process(Request $request)
@@ -921,7 +933,7 @@ class UserController extends Controller
         })->get();
 
         if ($search) {
-            return view('users.search', ['items' => $search]);
+            return view('users.search', ['items' => $search, 'query' => $item]);
         }
         // else {
         //     $search_name = Users::where(function ($query) use ($item) {
@@ -1405,6 +1417,10 @@ class UserController extends Controller
         return $item;
     }
 
+    public function goToSaved() {
+        $saved_books = Saved_Books::with('book', 'user')->get();
+        return view('users.saved', ['books' => $saved_books]);
+    }
 
 
 
@@ -1438,7 +1454,7 @@ class UserController extends Controller
                     'uid' => $signUp->uid,
                     'image' => $photo
                 ]);
-                return redirect('/survey');
+                return redirect('/role');
             }
         }
     }
@@ -1454,6 +1470,7 @@ class UserController extends Controller
             session()->put([
                 'id' => $user->id,
                 'name' => $user->name,
+                'type' => $user->type,
                 'email' => $user->email,
                 'uid' => $user->uid,
                 'image' => $photo
