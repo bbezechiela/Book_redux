@@ -58,8 +58,6 @@ Route::get('/followers', [UserController::class, 'followers']);
 
 Route::get('/explore', [UserController::class, 'explore'])->name('explore');
 
-Route::get('/materials', [UserController::class, 'materials']);
-
 Route::get('/notification', [UserController::class, 'notification']);
 
 Route::get('/read', [UserController::class, 'readNotification']);

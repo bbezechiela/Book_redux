@@ -284,10 +284,11 @@ class MessageController extends Controller
     }
 
     function sendMessageThree(Request $request) {
-        $sender_id = $request->json('sender_id');
-        $receiver_id = $request->json('receiver_id');
-        $message_content = $request->json('message_content');
-        $conversation_name = $request->json('conversation_name');        
+        $sender_id = $request->input('sender_id');
+        $receiver_id = $request->input('receiver_id');
+        $message_type = $request->input('message_type');
+        $message_content = $request->input('message_content');
+        $conversation_name = $request->input('conversation_name');
 
         $participantsUserArr = explode(',', $conversation_name);
         sort($participantsUserArr);
@@ -300,7 +301,8 @@ class MessageController extends Controller
                 'sender_id' => $sender_id,
                 'receiver_id' => $receiver_id,
                 'message_content' => $message_content,
-                'conversation_id' => $checker->conversation_id
+                'message_type' => $message_type,
+                'conversation_id' => $checker->conversation_id,
             ]);
             if ($messageInsert) {
                 return response()->json(['message' => 'message inserted successfully']);
